@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janyskova Digital | Weby, které vás posunou před konkurenci</title>
+    <meta name="description" content="Stavím weby nové generace. Žádný WordPress, jen čistý kód, extrémní rychlost a design, který prodává vaše služby.">
+    
+    <meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { 
+            /* VÝRAZNĚJŠÍ BARVY POZADÍ */
+            --bg-center: #0f2a44; 
+            --bg-edge: #020406;
+            --accent: #38bdf8; 
+            --text: #f8fafc; 
+            --text-dim: #94a3b8; 
+            --card-bg: rgba(15, 23, 42, 0.8); 
+            --accent-btn: #38bdf8; 
+        }
+        
+        body { 
+            /* Silnější záře v pozadí */
+            background: radial-gradient(circle at center, var(--bg-center) 0%, var(--bg-edge) 80%);
+            background-attachment: fixed;
+            color: var(--text); 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden;            
+        }
+
+        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.5; } /* Vyšší viditelnost sítě */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        
+        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 24px; text-decoration: none; color: #fff; }
+        .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
+        .nav-links a { margin-left: 25px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+
+        header { padding: 100px 0; text-align: center; }
+        h1 { font-size: clamp(36px, 8vw, 76px); font-weight: 800; line-height: 1; margin-bottom: 30px; letter-spacing: -3px; }
+        h1 span { background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3)); }
+        .hero-sub { font-size: clamp(18px, 3vw, 24px); color: var(--text-dim); max-width: 800px; margin: 0 auto 50px; }
+
+        .btn { display: inline-block; background: var(--accent); color: #000; padding: 20px 50px; border-radius: 100px; text-decoration: none; font-weight: 800; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(56, 189, 248, 0.6); }
+
+        .section-title { text-align: center; font-size: 42px; margin-bottom: 60px; font-weight: 800; }
+        .section-title span { color: var(--accent); text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
+        .trust-card { background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 45px; border-radius: 35px; backdrop-filter: blur(15px); transition: 0.3s; }
+        .trust-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .trust-card h3 { color: var(--accent); font-size: 24px; margin-bottom: 15px; }
+
+        .process-section { padding: 100px 0; background: rgba(56, 189, 248, 0.04); border-radius: 50px; margin: 50px 0; }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
+        .step-num { font-size: 70px; font-weight: 800; color: rgba(56, 189, 248, 0.15); margin-bottom: -40px; }
+
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 50px; }
+        .price-card { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 40px; padding: 60px 45px; position: relative; transition: 0.3s; }
+        .price-card.popular { border: 2px solid var(--accent); box-shadow: 0 0 50px rgba(56, 189, 248, 0.2); }
+        .price { font-size: 56px; font-weight: 800; margin: 30px 0; color: #fff; }
+        .price span { font-size: 20px; color: var(--text-dim); }
+
+        .contact-section { max-width: 700px; margin: 120px auto; background: var(--card-bg); padding: 60px; border-radius: 45px; border: 1px solid rgba(56, 189, 248, 0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+        .form-group { margin-bottom: 25px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; color: #fff; font-family: inherit; font-size: 16px; transition: 0.3s; }
+        .form-group input:focus { border-color: var(--accent); outline: none; background: rgba(56, 189, 248, 0.05); }
+
+        footer { text-align: center; padding: 80px 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-links { font-size: 12px; margin-top: 20px; }
+        .footer-links a { color: inherit; text-decoration: none; margin: 0 10px; transition: 0.3s; }
+        .footer-links a:hover { color: #fff; text-decoration: underline; }
+
+        /* COOKIES LIŠTA */
+        .cookie-banner {
+            position: fixed; bottom: -100%; left: 0; width: 100%;
+            background: #0d0e12; border-top: 2px solid var(--accent);
+            padding: 25px; z-index: 9999; display: flex; justify-content: center;
+            align-items: center; gap: 25px; flex-wrap: wrap; text-align: center;
+            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            box-shadow: 0 -15px 40px rgba(0,0,0,0.7);
+        }
+        .cookie-banner.show { bottom: 0; }
+        .cookie-text { font-size: 14px; color: var(--text); max-width: 600px; text-align: left; }
+        .cookie-buttons { display: flex; gap: 15px; }
+        .btn-cookie { background: var(--accent-btn); color: #000; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; }
+        .btn-cookie:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .btn-cookie.secondary { background: transparent; border: 1px solid var(--text-dim); color: var(--text-dim); }
+    </style>
+</head>
+<body>
+    <canvas id="network-canvas"></canvas>
+    <div class="container">
+        <nav>
+            <a href="/" class="logo">Janyskova<span>Digital</span></a>
+            <div class="nav-links">
+                <a href="#proces">Proces</a>
+                <a href="#cenik">Ceník</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </nav>
+
+        <header>
+            <h1>Váš web je vaše <span>nejsilnější zbraň</span></h1>
+            <p class="hero-sub">Většina webů dnes zákazníky spíše odrazuje pomalostí. Já stavím digitální produkty, které vynikají bleskovým výkonem a designem, který nutí k akci.</p>
+            <a href="#kontakt" class="btn">Chci web bez kompromisů</a>
+        </header>
+
+        <main>
+            <h2 class="section-title">V čem jsem <span>jiná?</span></h2>
+            <section class="trust-grid">
+                <div class="trust-card">
+                    <h3>⚡ Rychlost jako priorita</h3>
+                    <p>Každá vteřina načítání vás stojí 7 % konverzí. Moje weby píšu tak, aby dosahovaly 100 % v testech Google PageSpeed. To žádná šablona nezvládne.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>🧠 Psychologie prodeje</h3>
+                    <p>Web není jen obrázek. Navrhuji strukturu tak, aby zákazníka přirozeně vedla k objednávce nebo kontaktu. Design s účelem.</p>
+                </div>
+                <div class="trust-card">
+                    <h3>🔒 Nezničitelný web</h3>
+                    <p>Stavím na technologiích, které nelze hacknout běžnými způsoby. Žádné neustálé aktualizace pluginů a strach z výpadku.</p>
+                </div>
+            </section>
+
+            <section id="proces" class="process-section">
+                <h2 class="section-title">Jak probíhá <span>spolupráce</span></h2>
+                <div class="process-steps">
+                    <div>
+                        <div class="step-num">01</div>
+                        <h4>Strategie</h4>
+                        <p>Nejdřív pochopím váš byznys. Kdo je váš klient a co má na webu udělat?</p>
+                    </div>
+                    <div>
+                        <div class="step-num">02</div>
+                        <h4>Vývoj</h4>
+                        <p>Kódování webu na míru. Žádné zbytečnosti, jen čistý výkon a čistý design.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">03</div>
+                        <h4>Start</h4>
+                        <p>Web nasadíme a propojíme s Google Search Console. Jste online a připraveni růst.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cenik" class="pricing-section">
+                <h2 class="section-title">Jasná <span>investice</span></h2>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Start</h3>
+                        <p>Perfektní pro specialisty a řemeslníky.</p>
+                        <div class="price">5 000 <span>Kč</span></div>
+                        <ul class="features">
+                            <li>Výkonný One-page web</li>
+                            <li>Bleskové načítání</li>
+                            <li>Základní technické SEO</li>
+                            <li>Hosting a SSL v ceně</li>
+                        </ul>
+                    </div>
+                    <div class="price-card popular">
+                        <div style="background: var(--accent); color: #000; position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); padding: 5px 20px; border-radius: 20px; font-weight: 800; font-size: 12px;">DOPORUČENO</div>
+                        <h3>Business</h3>
+                        <p>Vše, co potřebuje rostoucí firma.</p>
+                        <div class="price">12 000 <span>Kč</span></div>
+                        <ul class="features">
+                            <li>Vícestránková prezentace</li>
+                            <li>Pokročilá SEO strategie</li>
+                            <li>Kontaktní formulář s logikou</li>
+                            <li>Propojení s analytikou</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="faq" style="padding: 100px 0;">
+                <h2 class="section-title">Často kladené <span>otázky</span></h2>
+                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
+                        <h4 style="color: var(--accent); margin-top: 0; font-size: 18px;">Kolik mě bude stát provoz webu ročně?</h4>
+                        <p style="margin-bottom: 0; color: var(--text-dim);">Téměř nic. Na rozdíl od běžných webů, kde platíte tisíce ročně za hosting, u mě platíte **0 Kč za provoz samotného webu**. Jediným vaším nákladem bude vaše vlastní doména (např. .cz), což dělá zhruba 200–300 Kč za rok. Žádné skryté měsíční paušály.</p>
+                    </div>
+
+                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
+                        <h4 style="color: var(--accent); margin-top: 0; font-size: 18px;">Proč nepoužíváte WordPress jako ostatní?</h4>
+                        <p style="margin-bottom: 0; color: var(--text-dim);">WordPress je těžkopádný systém plný doplňků, které se musí neustále aktualizovat, jinak hrozí napadení hackerem. Weby na WordPressu bývají pomalé. Já píšu weby čistým kódem – jsou bleskově rychlé, bezpečné a Google je díky tomu ve vyhledávání upřednostňuje.</p>
+                    </div>
+
+                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
+                        <h4 style="color: var(--accent); margin-top: 0; font-size: 18px;">Budu si moci texty na webu měnit sám/sama?</h4>
+                        <p style="margin-bottom: 0; color: var(--text-dim);">Ano, samozřejmě. Ke každému webu připravuji jednoduché a přehledné prostředí (administraci), kde si zvládnete přepsat texty nebo vyměnit fotky během minuty ze svého počítače i mobilu, aniž byste museli umět kódovat.</p>
+                    </div>
+
+                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
+                        <h4 style="color: var(--accent); margin-top: 0; font-size: 18px;">Co když budu chtít v budoucnu web rozšířit?</h4>
+                        <p style="margin-bottom: 0; color: var(--text-dim);">To je největší výhoda čistého kódu. Web není uzamčený v žádné šabloně. Pokud budete chtít za rok přidat blog, novou službu nebo galerii, dá se to kdykoliv dopsat bez nutnosti předělávat celý web od nuly.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="contact-section" id="kontakt">
+                <h2 style="text-align:center; margin-bottom: 40px;">Pojďme postavit váš <span>nový web</span></h2>
+                <form action="https://formspree.io/f/mwvzvkrw" method="POST">
+                    <div class="form-group"><input type="text" name="jmeno" placeholder="Vaše jméno" required></div>
+                    <div class="form-group"><input type="email" name="_replyto" placeholder="E-mail" required></div>
+                    <div class="form-group"><textarea name="zprava" rows="5" placeholder="Co potřebujete vyřešit?" required></textarea></div>
+                    
+                    <input type="hidden" name="_next" value="/podekovani.html">
+                    
+                    <button type="submit" class="btn" style="width:100%;">Odeslat poptávku</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 Gabriela Janýšková | janyskovadigital.cz</p>
+            <div class="footer-links">
+                <a href="/ochrana-udaju.html">Ochrana osobních údajů (GDPR)</a>
+                <a href="/cookies.html">Zásady používání cookies</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-text">
+            Pro správné fungování webu používám soubory cookie. <a href="/cookies.html" style="color: var(--accent); font-weight: bold;">Více informací</a>.
+        </div>
+        <div class="cookie-buttons">
+            <button id="accept-cookies" class="btn-cookie">Souhlasím</button>
+            <button id="reject-cookies" class="btn-cookie secondary">Jen nezbytné</button>
+        </div>
+    </div>
+
+    <script>
+        // VÝRAZNĚJŠÍ ANIMACE POZADÍ S AGRESIVNĚJŠÍ INTERAKTIVITOU
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        let mouse = { x: null, y: null, radius: 200 }; // Větší dosah myši
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        function resize() { 
+            canvas.width = window.innerWidth; 
+            canvas.height = window.innerHeight; 
+        }
+        window.addEventListener('resize', resize); 
+        resize();
+
+        // Více bodů pro hustší siť
+        for(let i=0; i<80; i++) { 
+            points.push({ 
+                x: Math.random()*canvas.width, 
+                y: Math.random()*canvas.height, 
+                vx: (Math.random()-0.5)*0.3, 
+                vy: (Math.random()-0.5)*0.3,
+                size: Math.random() * 2 + 1 // Různé velikosti teček
+            }); 
+        }
+
+        function draw() {
+            ctx.clearRect(0,0,canvas.width,canvas.height); 
+            ctx.fillStyle = '#38bdf8'; 
+            ctx.strokeStyle = '#38bdf8';
+            
+            points.forEach((p, i) => {
+                p.x += p.vx; 
+                p.y += p.vy;
+
+                // Silnější interaktivita - agresivnější odstrkování
+                if (mouse.x != null) {
+                    let dx = p.x - mouse.x;
+                    let dy = p.y - mouse.y;
+                    let distance = Math.hypot(dx, dy);
+                    if (distance < mouse.radius) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        p.x += (dx / distance) * force * 4; // Silnější odraz
+                        p.y += (dy / distance) * force * 4;
+                    }
+                }
+
+                if(p.x<0 || p.x>canvas.width) p.vx*=-1; 
+                if(p.y<0 || p.y>canvas.height) p.vy*=-1;
+                
+                ctx.beginPath(); 
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); 
+                ctx.fill();
+
+                for(let j=i+1; j<points.length; j++) {
+                    const p2 = points[j]; 
+                    const dist = Math.hypot(p.x-p2.x, p.y-p2.y);
+                    if(dist<200) { // Delší spojnice
+                        ctx.globalAlpha = (1-(dist/200))*0.35; // Výraznější čáry
+                        ctx.lineWidth=0.8; 
+                        ctx.beginPath(); 
+                        ctx.moveTo(p.x, p.y); 
+                        ctx.lineTo(p2.x,p2.y); 
+                        ctx.stroke(); 
+                    }
+                }
+                ctx.globalAlpha = 1;
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Logika pro Cookies (opraveno schovávání)
+        const banner = document.getElementById('cookie-banner');
+        if (!localStorage.getItem('cookiesConsent')) {
+            setTimeout(() => banner.classList.add('show'), 1000);
+        }
+        document.getElementById('accept-cookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesConsent', 'all');
+            banner.classList.remove('show'); 
+        });
+        document.getElementById('reject-cookies').addEventListener('click', () => {
+            localStorage.setItem('cookiesConsent', 'essential');
+            banner.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
