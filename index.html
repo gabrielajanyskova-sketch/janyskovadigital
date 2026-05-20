@@ -18,13 +18,14 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
         :root { 
             --bg-center: #0f2a44; 
             --bg-edge: #020406;
             --accent: #38bdf8; 
+            --matrix-green: #00ff66;
             --text: #f8fafc; 
             --text-dim: #94a3b8; 
             --card-bg: rgba(15, 23, 42, 0.75); 
@@ -50,18 +51,140 @@
         #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.45; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
         
-        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; }
+        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
         .logo { font-weight: 800; font-size: 24px; text-decoration: none; color: #fff; }
         .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
         .nav-links a { margin-left: 25px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
-        header { padding: 120px 0 100px; text-align: center; }
-        h1 { font-size: clamp(34px, 7vw, 70px); font-weight: 800; line-height: 1.1; margin-bottom: 30px; letter-spacing: -2px; }
-        h1 span { background: linear-gradient(135deg, #fff 0%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3)); }
-        .hero-sub { font-size: clamp(18px, 3vw, 22px); color: var(--text-dim); max-width: 850px; margin: 0 auto 50px; }
+        header { padding: 100px 0 80px; text-align: center; position: relative; }
+        
+        .floating-gfx {
+            position: absolute;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: clamp(16px, 3vw, 24px);
+            color: rgba(56, 189, 248, 0.15);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+        }
+        .gfx-1 { top: 15%; left: 8%; animation: float-slow 6s ease-in-out infinite; }
+        .gfx-2 { top: 45%; right: 5%; color: rgba(0, 255, 102, 0.12); animation: float-slow 8s ease-in-out infinite 1s; }
+        .gfx-3 { bottom: 10%; left: 12%; animation: float-slow 7s ease-in-out infinite 2s; }
 
-        .btn { display: inline-block; background: var(--accent); color: #000; padding: 20px 50px; border-radius: 100px; text-decoration: none; font-weight: 800; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.06);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--matrix-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--matrix-green);
+            animation: pulse-dot 1.5s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        h1 { 
+            font-size: clamp(34px, 6.5vw, 65px); 
+            font-weight: 800; 
+            line-height: 1.15; 
+            margin: 0 auto 20px; 
+            letter-spacing: -1px; 
+            color: #fff;
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .scramble-title {
+            display: block;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            background: linear-gradient(120deg, #fff 25%, var(--accent) 50%, var(--matrix-green) 75%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.15));
+            cursor: pointer;
+            animation: shine-sweep 6s linear infinite;
+        }
+
+        @keyframes shine-sweep {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .scramble-title:hover {
+            animation: glitch-snap 0.3s ease-out;
+        }
+
+        @keyframes glitch-snap {
+            0% { transform: skewX(0deg); }
+            20% { transform: skewX(-3deg); filter: drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ff66); }
+            40% { transform: skewX(3deg); }
+            60% { transform: skewX(-1deg); }
+            100% { transform: skewX(0deg); filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.15)); }
+        }
+
+        .scramble-sub {
+            display: block;
+            font-size: 0.72em;
+            font-weight: 700;
+            color: var(--text);
+            margin-top: 12px;
+        }
+
+        .scramble-sub span {
+            color: var(--accent);
+            text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+            border-bottom: 2px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .honest-note {
+            display: inline-block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 14px;
+            color: var(--matrix-green);
+            background: rgba(0, 255, 102, 0.04);
+            border-left: 3px solid var(--matrix-green);
+            padding: 8px 16px;
+            margin: 15px auto 40px;
+            border-radius: 0 8px 8px 0;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-sub { font-size: clamp(18px, 3vw, 22px); color: var(--text-dim); max-width: 850px; margin: 0 auto 50px; position: relative; z-index: 2; }
+        .btn { display: inline-block; background: var(--accent); color: #000; padding: 20px 50px; border-radius: 100px; text-decoration: none; font-weight: 800; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); position: relative; z-index: 2; }
         .btn:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(56, 189, 248, 0.6); }
 
         .section-title { text-align: center; font-size: 42px; margin-bottom: 60px; font-weight: 800; }
@@ -70,7 +193,10 @@
         .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
         .trust-card { background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.08); padding: 45px; border-radius: 35px; backdrop-filter: blur(15px); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .trust-card:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .trust-card h3 { color: var(--accent); font-size: 24px; margin-bottom: 15px; }
+        
+        .card-header-icon { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .card-header-icon svg { width: 28px; height: 28px; fill: var(--accent); filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5)); }
+        .trust-card h3 { color: var(--accent); font-size: 24px; margin: 0; }
 
         .process-section { padding: 100px 0; background: rgba(56, 189, 248, 0.03); border-radius: 50px; margin: 50px 0; border: 1px solid rgba(56, 189, 248, 0.05); }
         .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
@@ -85,36 +211,55 @@
         .features li { margin-bottom: 12px; color: var(--text-dim); position: relative; padding-left: 25px; }
         .features li::before { content: "✓"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
 
-        .contact-section { max-width: 700px; margin: 120px auto; background: var(--card-bg); padding: 60px; border-radius: 45px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); backdrop-filter: blur(15px); }
+        /* --- STYL PRO FAQ SEKCI --- */
+        .faq-section { padding: 60px 0 100px; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; margin-top: 40px; }
+        @media(max-width: 600px) { .faq-grid { grid-template-columns: 1fr; } }
+        .faq-item { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); padding: 35px; border-radius: 24px; backdrop-filter: blur(15px); }
+        .faq-item h3 { color: var(--accent); font-size: 18px; margin: 0 0 12px 0; font-weight: 700; }
+        .faq-item p { color: var(--text-dim); font-size: 15px; margin: 0; line-height: 1.6; }
+
+        .contact-section { max-width: 700px; margin: 60px auto 120px; background: var(--card-bg); padding: 60px; border-radius: 45px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); backdrop-filter: blur(15px); }
         .form-group { margin-bottom: 25px; }
         .form-group input, .form-group textarea { width: 100%; padding: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 15px; color: #fff; font-family: inherit; font-size: 16px; transition: 0.3s; box-sizing: border-box; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); outline: none; background: rgba(56, 189, 248, 0.04); box-shadow: 0 0 20px rgba(56, 189, 248, 0.1); }
 
         footer { text-align: center; padding: 80px 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
-        .footer-links { font-size: 12px; margin-top: 20px; }
-        .footer-links a { color: inherit; text-decoration: none; margin: 0 10px; transition: 0.3s; }
-        .footer-links a:hover { color: #fff; text-decoration: underline; }
+        footer .footer-logo { font-weight: 800; font-size: 22px; text-decoration: none; color: #fff; margin-bottom: 15px; display: block; }
+        footer .footer-logo span { color: var(--accent); text-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
+        
+        .contact-row { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 14px; margin: 8px 0; }
+        .contact-row svg { width: 16px; height: 16px; fill: var(--accent); }
 
+        .footer-bottom { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; text-align: center; color: #55657e; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.02); padding-top: 30px; }
+        .footer-legal a { color: #55657e; text-decoration: none; transition: 0.2s; margin: 0 10px; z-index: 10; position: relative; }
+        .footer-legal a:hover { color: var(--accent); }
+
+        /* --- STYL PRO COOKIE LIŠTU --- */
         .cookie-banner {
-            position: fixed; bottom: -100%; left: 0; width: 100%;
-            background: #0d0e12; border-top: 2px solid var(--accent);
-            padding: 25px; z-index: 9999; display: flex; justify-content: center;
-            align-items: center; gap: 25px; flex-wrap: wrap; text-align: center;
-            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 0 -15px 40px rgba(0,0,0,0.7);
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(150px);
+            width: calc(100% - 48px); max-width: 550px; background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(56, 189, 248, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px); border-radius: 24px; padding: 25px; z-index: 9999;
+            display: none; flex-direction: column; gap: 15px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .cookie-banner.show { bottom: 0; }
-        .cookie-text { font-size: 14px; color: var(--text); max-width: 600px; text-align: left; }
-        .cookie-buttons { display: flex; gap: 15px; }
-        .btn-cookie { background: var(--accent-btn); color: #000; border: none; padding: 12px 25px; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: inherit; font-size: 14px; transition: 0.3s; }
-        .btn-cookie:hover { transform: scale(1.05); filter: brightness(1.1); }
-        .btn-cookie.secondary { background: transparent; border: 1px solid var(--text-dim); color: var(--text-dim); }
+        .cookie-banner.show { display: flex; transform: translateX(-50%) translateY(0); }
+        .cookie-text { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
+        .cookie-text strong { color: #fff; }
+        .cookie-text a { color: var(--accent); text-decoration: none; }
+        .cookie-btns { display: flex; gap: 12px; justify-content: flex-end; }
+        .cookie-btn { padding: 12px 24px; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
+        .cookie-accept { background: var(--accent); color: #000; }
+        .cookie-accept:hover { background: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        .cookie-reject { background: rgba(255,255,255,0.05); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1); }
+        .cookie-reject:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        @media(max-width: 480px) { .cookie-btns { flex-direction: column-reverse; } .cookie-btn { width: 100%; } }
     </style>
 </head>
 <body>
     <div class="mouse-glow"></div>
-    
     <canvas id="network-canvas" aria-label="Interaktivní animované síťové pozadí"></canvas>
+    
     <div class="container">
         <nav>
             <a href="/" class="logo">Janyskova<span>Digital</span></a>
@@ -125,9 +270,26 @@
             </div>
         </nav>
 
-        <header>
-            <h1>Tvorba webových stránek <span>levně, ale bez kompromisů</span></h1>
-            <p class="hero-sub">Získejte moderní web na míru s extrémním výkonem za zlomek běžné ceny. Zapomeňte na předražené služby. Se mnou máte roční náklady 0 Kč za hosting. Platíte pouze za svou vlastní doménu (cca 200–300 Kč ročně) přímo registrátorovi.</p>
+        <header id="hero-header">
+            <div class="floating-gfx gfx-1">&lt;div&gt;</div>
+            <div class="floating-gfx gfx-2">{ const web = "rychly"; }</div>
+            <div class="floating-gfx gfx-3">&lt;/html&gt;</div>
+
+            <div class="tech-badge">
+                <span class="dot"></span>
+                status: psáno čistým kódem
+            </div>
+
+            <h1>
+                <span class="scramble-title" id="scramble-h1" data-value="Tvorba webových stránek">Tvorba webových stránek</span>
+                <span class="scramble-sub">cenově dostupné, ale <span>v maximální kvalitě</span></span>
+            </h1>
+
+            <div class="honest-note">
+                <strong>&gt;_ info:</strong> A jo, i provoz tohohle celého webu mě stojí jenom kolem 200 Kč ročně za doménu. Žádný drahý hosting, nekecám.
+            </div>
+
+            <p class="hero-sub">Získejte moderní web na míru s extrémním výkonem za zlomek běžné ceny. Zapomeňte na předražené služby. Se mnou máte roční náklady 0 Kč za hosting. Platíte pouze za svou vlastní doménu přímo registrátorovi.</p>
             <a href="#kontakt" class="btn">Chci levný a rychlý web</a>
         </header>
 
@@ -136,15 +298,24 @@
                 <h2 class="section-title">Proč je můj web <span>nejvýhodnější investice?</span></h2>
                 <div class="trust-grid">
                     <div class="trust-card">
-                        <h3>⚡ Extrémní rychlost a výkon</h3>
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg>
+                            <h3>Extrémní rychlost a výkon</h3>
+                        </div>
                         <p>Pomalý web vás stojí zákazníky. Moje weby píšu čistým kódem, takže dosahují až 100 % v testech Google PageSpeed. Rychlé načítání navíc Google miluje a posouvá vás zdarma nahoru ve vyhledávání.</p>
                     </div>
                     <div class="trust-card">
-                        <h3>💰 Žádné poplatky za hosting</h3>
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2-.9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                            <h3>Žádné poplatky za hosting</h3>
+                        </div>
                         <p>Neplaťte agenturám tisíce korun ročně za předražený webhosting a správu. U mě platíte pouze jednorázovou cenu za tvorbu webu. Provoz samotného hostingu vás u mě stojí 0 Kč ročně. Jediným vaším nákladem zůstává standardní poplatek za doménu.</p>
                     </div>
                     <div class="trust-card">
-                        <h3>🔒 Bezpečnost bez starostí</h3>
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            <h3>Bezpečnost bez starostí</h3>
+                        </div>
                         <p>Na rozdíl od WordPressu nepoužívám těžkopádné pluginy, které neustále zastarávají a lákají hackery. Čistý kód je prakticky nezničitelný, stabilní a nevyžaduje žádnou drahou údržbu.</p>
                     </div>
                 </div>
@@ -156,9 +327,6 @@
                     <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 28px;">Ahoj, jsem Gabča.</h3>
                     <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8;">
                         Pomáhám drobným podnikatelům, živnostníkům i začínajícím projektům získat profesionální digitální vizitku, která je skvěle prezentuje a přitom nestojí majlant. Stavím na moderní weby na míru a s lidmi úspěšně spolupracuji kompletně online po celé České republice.
-                    </p>
-                    <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-top: 20px;">
-                        Nejsem drahá korporátní agentura, která si účtuje skryté poplatky. Sázím na férovou lidskou cenu, přímou komunikaci a čisté, bleskově rychlé technologie, které vám v budoucnu ušetří hromadu peněz za provoz.
                     </p>
                 </div>
             </section>
@@ -214,45 +382,35 @@
                     </div>
                 </div>
             </section>
-            
-            <section id="faq" style="padding: 100px 0;">
+
+            <section id="faq" class="faq-section">
                 <h2 class="section-title">Často kladené <span>otázky (FAQ)</span></h2>
-                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px;">
-                    
-                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
-                        <h3 style="color: var(--accent); margin-top: 0; font-size: 18px;">Kolik mě bude stát provoz webových stránek ročně?</h3>
-                        <p style="margin-bottom: 0; color: var(--text-dim);">U mě platíte <strong>0 Kč ročně za provoz hostingu</strong>. Na rozdíl od jiných řešení, kde platíte tisíce korun za drahé servery nebo měsíční pronájmy systémů, můj čistý kód běží na moderních platformách zcela zdarma. Vaším jediným pravidelným nákladem bude nákup vlastní domény (cca 200–300 Kč ročně), kterou si platíte sami u svého registrátora.</p>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Jak je možné, že neplatím nic za hosting?</h3>
+                        <p>Web stavím čistým kódem bez redakčního systému jako je WordPress. Výsledné soubory nahrávám na moderní cloudové platformy, které nabízejí hosting pro statické weby zcela zdarma a navíc s extrémní rychlostí a zabezpečením.</p>
                     </div>
-
-                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
-                        <h3 style="color: var(--accent); margin-top: 0; font-size: 18px;">Proč je tvorba webu přes kód lepší než WordPress?</h3>
-                        <p style="margin-bottom: 0; color: var(--text-dim);">Weby na WordPressu bývají těžkopádné, pomalé a kvůli neustálým aktualizacím doplňků vyžadují placenou údržbu, jinak hrozí jejich napadení. Já stavím weby čistým kódem. Jsou bleskově rychlé, bezpečné a Google je ve výsledcích vyhledávání upřednostňuje před konkurencí.</p>
+                    <div class="faq-item">
+                        <h3>Budu moci web v budoucnu sama upravovat?</h3>
+                        <p>Ano, samozřejmě. Kód píšu velmi přehledně a čistě. Pokud budete chtít v budoucnu změnit texty nebo přidat fotku, buď vám s tím ráda pomůžu, nebo vás navedu, jak si v souboru jednoduše přepsat text bez nutnosti cokoli programovat.</p>
                     </div>
-
-                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
-                        <h3 style="color: var(--accent); margin-top: 0; font-size: 18px;">Budu si moci texty na webu měnit sám/sama?</h3>
-                        <p style="margin-bottom: 0; color: var(--text-dim);">Ano, samozřejmě. Ke každému webu na přání připravuji jednoduchou administraci (CMS), kde zvládnete přepsat texty nebo nahrát nové fotky během minuty přímo z počítače nebo mobilu bez jakýchkoliv znalostí kódování.</p>
+                    <div class="faq-item">
+                        <h3>Jak dlouho trvá kompletní tvorba webu?</h3>
+                        <p>Menší prezentační weby (balíček Start) mívám hotové zpravidla do 7 až 10 dnů od chvíle, kdy od vás dostanu podklady (texty, případně fotky). U rozsáhlejších webů se domluvíme na přesném harmonogramu.</p>
                     </div>
-
-                    <div style="background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.1); padding: 30px; border-radius: 20px; backdrop-filter: blur(15px);">
-                        <h3 style="color: var(--accent); margin-top: 0; font-size: 18px;">Co když budu chtít v budoucnu web rozšířit?</h3>
-                        <p style="margin-bottom: 0; color: var(--text-dim);">To je největší výhoda čistého kódu – web není uzamčen v žádné šabloně. Pokud budete chtít za rok přidat sekci pro reference, blog, novou službu nebo galerii, dá se to kdykoliv dopsat bez nutnosti předělávat celý web od nuly.</p>
+                    <div class="faq-item">
+                        <h3>Pomůžete mi s výběrem a registrací domény?</h3>
+                        <p>Jasně! Společně vymyslíme ideální název domény pro vaše podnikání a ukážu vám, kde a jak ji nejvýhodněji koupit přímo na vaše jméno, abyste byli jejím stoprocentním vlastníkem.</p>
                     </div>
-
                 </div>
             </section>
 
             <section class="contact-section" id="kontakt">
                 <h2 style="text-align:center; margin-bottom: 20px;">Pojďme postavit váš <span>nový web</span></h2>
-                <p style="text-align: center; color: var(--text-dim); max-width: 550px; margin: 0 auto 40px; font-size: 16px;">
-                    Působím po celé České republice. V dnešní době není problém se <strong>spojit online přes Google Meet</strong>, probrat vaše představy u kávy a vše vyřešit na dálku.
-                </p>
-                
                 <form action="https://formspree.io/f/mykvkvpz" method="POST">
                     <div class="form-group"><input type="text" name="jmeno" placeholder="Vaše jméno" required></div>
                     <div class="form-group"><input type="email" name="_replyto" placeholder="E-mail" required></div>
-                    <div class="form-group"><textarea name="zprava" rows="5" placeholder="Co potřebujete na svém webu vyřešit? (Nebo navrhněte čas pro online schůzku)" required></textarea></div>
-                                         
+                    <div class="form-group"><textarea name="zprava" rows="5" placeholder="Co potřebujete na svém webu vyřešit?" required></textarea></div>
                     <button type="submit" class="btn" style="width:100%;">Odeslat nezávaznou poptávku</button>
                 </form>
             </section>
@@ -260,22 +418,21 @@
 
         <footer style="background: rgba(15, 23, 42, 0.4); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 30px;">
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;" class="container">
-                
                 <div>
-                    <h3 style="color: #fff; margin-bottom: 15px; font-size: 18px;">Janyskova<span>Digital</span></h3>
-                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních, bleskově rychlých webových stránek s čistým kódem a nulovými náklady na hosting.</p>
+                    <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
+                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a nulovými náklady na hosting.</p>
                 </div>
-
                 <div>
                     <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Kontakt</h3>
-                    <p style="color: var(--text-dim); font-size: 14px; margin: 5px 0;">
-                        📧 <a href="mailto:info@janyskovadigital.cz" style="color: inherit; text-decoration: none;">info@janyskovadigital.cz</a>
-                    </p>
-                    <p style="color: var(--text-dim); font-size: 14px; margin: 5px 0;">
-   			 📞 <a href="tel:+420739395800" style="color: inherit; text-decoration: none;">+420 739 395 800</a>
-                    </p>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <a href="mailto:info@janyskovadigital.cz" style="color: inherit; text-decoration: none;">info@janyskovadigital.cz</a>
+                    </div>
+                    <div class="contact-row">
+                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        <a href="tel:+420739395800" style="color: inherit; text-decoration: none;">+420 739 395 800</a>
+                    </div>
                 </div>
-
                 <div>
                     <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Fakturační údaje</h3>
                     <p style="color: var(--text-dim); font-size: 14px; margin: 0; line-height: 1.5;">
@@ -284,36 +441,130 @@
                         741 01 Starý Jičín<br>
                     </p>
                 </div>
-
-                <div>
-                    <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Sledujte mě</h3>
-                    <div style="display: flex; gap: 15px; font-size: 14px;">
-                        <a href="https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/" target="_blank" rel="noopener" style="color: var(--text-dim); text-decoration: none; transition: 0.3s; font-weight: bold;">LinkedIn</a>
-                    </div>
-                </div>
             </div>
-
-            <div style="text-align: center; color: #55657e; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.02); padding-top: 30px;">
-                <p>© 2026 Gabriela Janýšková | Všechna práva vyhrazena.</p>
-                <div class="footer-links">
-                    <a href="/ochrana-udaju.html">Ochrana osobních údajů (GDPR)</a>
-                    <a href="/cookies.html">Zásady používání cookies</a>
+            
+            <div class="container footer-bottom">
+                <p style="margin: 0;">© 2026 Gabriela Janýšková | Všechna práva vyhrazena.</p>
+                <div class="footer-legal">
+                    <a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>
+                    <a href="/obchodni-podminky.html">Obchodní podmínky</a>
                 </div>
             </div>
         </footer>
     </div>
 
+    <div id="cookie-banner" class="cookie-banner">
+        <p class="cookie-text">
+            <strong>Nastavení cookies.</strong> Tento web používá k měření návštěvnosti soubory cookies. Pomáhají mi analyzovat, co vás zajímá, abych mohla web dál vylepšovat. Více informací naleznete v sekci <a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>.
+        </p>
+        <div class="cookie-btns">
+            <button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button>
+            <button id="cookie-accept" class="cookie-btn cookie-accept">Přijmout vše</button>
+        </div>
+    </div>
+
     <script>
+        // --- LOGIKA GOOGLE ANALYTICS & COOKIE LIŠTY ---
+        const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; 
+
+        function loadGoogleAnalytics() {
+            if (window.ga_loaded) return;
+            window.ga_loaded = true;
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+            document.head.appendChild(script);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', GA_MEASUREMENT_ID);
+        }
+
+        const banner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('cookie-accept');
+        const rejectBtn = document.getElementById('cookie-reject');
+
+        function hideBannerComplete() {
+            banner.classList.remove('show');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 400);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('cookie-consent');
+            if (consent === 'accepted') {
+                loadGoogleAnalytics();
+            } else if (consent !== 'rejected') {
+                setTimeout(() => banner.classList.add('show'), 1000);
+            }
+        });
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'accepted');
+            hideBannerComplete();
+            loadGoogleAnalytics();
+        });
+
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'rejected');
+            hideBannerComplete();
+        });
+
+
+        // --- PŮVODNÍ FUNKCE WEBU ---
+        const chars = "0101100110_X_/";
+        const target = document.getElementById('scramble-h1');
+        const originalText = target.dataset.value;
+        let animationFrame = null;
+
+        function triggerScramble() {
+            let startTime = performance.now();
+            const duration = 750;
+
+            function update(currentTime) {
+                let elapsed = currentTime - startTime;
+                let progress = Math.min(elapsed / duration, 1);
+                let solvedCount = Math.floor(progress * originalText.length);
+
+                let currentResult = "";
+                for (let i = 0; i < originalText.length; i++) {
+                    if (i < solvedCount) {
+                        currentResult += originalText[i];
+                    } else if (originalText[i] === " ") {
+                        currentResult += " ";
+                    } else {
+                        currentResult += chars[Math.floor(Math.random() * chars.length)];
+                    }
+                }
+
+                target.innerText = currentResult;
+                if (progress < 1) animationFrame = requestAnimationFrame(update);
+            }
+            cancelAnimationFrame(animationFrame);
+            animationFrame = requestAnimationFrame(update);
+        }
+
+        window.addEventListener('DOMContentLoaded', triggerScramble);
+        target.addEventListener('mouseover', triggerScramble);
+
         const glowBg = document.querySelector('.mouse-glow');
+        const floatingElements = document.querySelectorAll('.floating-gfx');
+        
         window.addEventListener('mousemove', (e) => {
             glowBg.style.setProperty('--mouse-x', e.clientX + 'px');
             glowBg.style.setProperty('--mouse-y', e.clientY + 'px');
-        });
-        window.addEventListener('touchmove', (e) => {
-            if(e.touches.length > 0) {
-                glowBg.style.setProperty('--mouse-x', e.touches[0].clientX + 'px');
-                glowBg.style.setProperty('--mouse-y', e.touches[0].clientY + 'px');
-            }
+
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.02;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.02;
+
+            floatingElements.forEach((el, index) => {
+                const speed = (index + 1) * 0.7; 
+                el.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+            });
         });
 
         const canvas = document.getElementById('network-canvas');
@@ -321,96 +572,47 @@
         let points = [];
         let mouse = { x: null, y: null, radius: 200 };
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-
-        function resize() { 
-            canvas.width = window.innerWidth; 
-            canvas.height = window.innerHeight; 
-        }
-        window.addEventListener('resize', resize); 
-        resize();
+        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize); resize();
 
         for(let i=0; i<75; i++) { 
             points.push({ 
-                x: Math.random()*canvas.width, 
-                y: Math.random()*canvas.height, 
-                vx: (Math.random()-0.5)*0.25, 
-                vy: (Math.random()-0.5)*0.25,
-                size: Math.random() * 2 + 1
+                x: Math.random()*canvas.width, y: Math.random()*canvas.height, 
+                vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, size: Math.random() * 2 + 1
             }); 
         }
 
         function draw() {
             ctx.clearRect(0,0,canvas.width,canvas.height); 
-            ctx.fillStyle = '#38bdf8'; 
-            ctx.strokeStyle = '#38bdf8';
-            
+            ctx.fillStyle = '#38bdf8'; ctx.strokeStyle = '#38bdf8';
             points.forEach((p, i) => {
-                p.x += p.vx; 
-                p.y += p.vy;
-
+                p.x += p.vx; p.y += p.vy;
                 if (mouse.x != null) {
-                    let dx = p.x - mouse.x;
-                    let dy = p.y - mouse.y;
-                    let distance = Math.hypot(dx, dy);
+                    let dx = p.x - mouse.x; let dy = p.y - mouse.y; let distance = Math.hypot(dx, dy);
                     if (distance < mouse.radius) {
                         let force = (mouse.radius - distance) / mouse.radius;
-                        p.x += (dx / distance) * force * 3;
-                        p.y += (dy / distance) * force * 3;
+                        p.x += (dx / distance) * force * 2; p.y += (dy / distance) * force * 2;
                     }
                 }
-
-                if(p.x<0 || p.x>canvas.width) p.vx*=-1; 
-                if(p.y<0 || p.y>canvas.height) p.vy*=-1;
-                
-                ctx.beginPath(); 
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); 
-                ctx.fill();
-
+                if(p.x<0 || p.x>canvas.width) p.vx*=-1; if(p.y<0 || p.y>canvas.height) p.vy*=-1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
                 for(let j=i+1; j<points.length; j++) {
-                    const p2 = points[j]; 
-                    const dist = Math.hypot(p.x-p2.x, p.y-p2.y);
-                    if(dist<180) {
-                        ctx.globalAlpha = (1-(dist/180))*0.3; 
-                        ctx.lineWidth=0.7; 
-                        ctx.beginPath(); 
-                        ctx.moveTo(p.x, p.y); 
-                        ctx.lineTo(p2.x,p2.y); 
-                        ctx.stroke(); 
-                    }
+                    const p2 = points[j]; const dist = Math.hypot(p.x-p2.x, p.y-p2.y);
+                    if(dist<180) { ctx.globalAlpha = (1-(dist/180))*0.3; ctx.lineWidth=0.7; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x,p2.y); ctx.stroke(); }
                 }
                 ctx.globalAlpha = 1;
             });
             requestAnimationFrame(draw);
         }
         draw();
-
-        const banner = document.getElementById('cookie-banner');
-        if (!localStorage.getItem('cookiesConsent')) {
-            setTimeout(() => banner.classList.add('show'), 1000);
-        }
-        document.getElementById('accept-cookies').addEventListener('click', () => {
-            localStorage.setItem('cookiesConsent', 'all');
-            banner.classList.remove('show'); 
-        });
-        document.getElementById('reject-cookies').addEventListener('click', () => {
-            localStorage.setItem('cookiesConsent', 'essential');
-            banner.classList.remove('show');
-        });
     </script>
 <script>
   const form = document.querySelector('form');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    await fetch(form.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    });
+    await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
     window.location.href = 'https://janyskovadigital.cz/podekovani.html';
   });
 </script>
