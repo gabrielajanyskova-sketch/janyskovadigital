@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Levná tvorba webových stránek na míru | Janyskova Digital</title>
-    <meta name="description" content="Hledáte levný web s extrémním výkonem? Tvorba webových stránek na míru pro celou ČR. Rychlé, bezpečné a moderní weby za skvělou cenu a s provozem hostingu za 0 Kč.">
+    <meta name="description" content="Hledáte levný web s extrémním výkonem? Tvorba webových stránek na míru pro celou ČR. Rychlé, bezpečné a moderní weby za skvělou cenu and s provozem hostingu za 0 Kč.">
     <meta property="og:title" content="Levná tvorba webových stránek na míru | Janyskova Digital">
     <meta property="og:description" content="Stavím moderní weby s bleskovou rychlostí. Žádný WordPress, jen čistý kód a prodejní design. Zjistěte, proč jsou mé weby nejvýhodnější na trhu.">
 
@@ -211,7 +211,6 @@
         .features li { margin-bottom: 12px; color: var(--text-dim); position: relative; padding-left: 25px; }
         .features li::before { content: "✓"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
 
-        /* --- STYL PRO FAQ SEKCI --- */
         .faq-section { padding: 60px 0 100px; }
         .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; margin-top: 40px; }
         @media(max-width: 600px) { .faq-grid { grid-template-columns: 1fr; } }
@@ -235,7 +234,6 @@
         .footer-legal a { color: #55657e; text-decoration: none; transition: 0.2s; margin: 0 10px; z-index: 10; position: relative; }
         .footer-legal a:hover { color: var(--accent); }
 
-        /* --- STYL PRO COOKIE LIŠTU --- */
         .cookie-banner {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(150px);
             width: calc(100% - 48px); max-width: 550px; background: rgba(15, 23, 42, 0.95);
@@ -446,8 +444,7 @@
             <div class="container footer-bottom">
                 <p style="margin: 0;">© 2026 Gabriela Janýšková | Všechna práva vyhrazena.</p>
                 <div class="footer-legal">
-                    <a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>
-                    <a href="/obchodni-podminky.html">Obchodní podmínky</a>
+                    <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
                 </div>
             </div>
         </footer>
@@ -455,7 +452,7 @@
 
     <div id="cookie-banner" class="cookie-banner">
         <p class="cookie-text">
-            <strong>Nastavení cookies.</strong> Tento web používá k měření návštěvnosti soubory cookies. Pomáhají mi analyzovat, co vás zajímá, abych mohla web dál vylepšovat. Více informací naleznete v sekci <a href="/ochrana-osobnich-udaju.html">Ochrana osobních údajů</a>.
+            <strong>Nastavení cookies.</strong> Tento web používá k měření návštěvnosti soubory cookies. Pomáhají mi analyzovat, co vás zajímá, abych mohla web dál vylepšovat. Více informací naleznete v sekci <a href="ochrana-udaju.html">Ochrana osobních údajů</a>.
         </p>
         <div class="cookie-btns">
             <button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button>
@@ -464,7 +461,6 @@
     </div>
 
     <script>
-        // --- LOGIKA GOOGLE ANALYTICS & COOKIE LIŠTY ---
         const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; 
 
         function loadGoogleAnalytics() {
@@ -514,8 +510,6 @@
             hideBannerComplete();
         });
 
-
-        // --- PŮVODNÍ FUNKCE WEBU ---
         const chars = "0101100110_X_/";
         const target = document.getElementById('scramble-h1');
         const originalText = target.dataset.value;
@@ -607,14 +601,14 @@
         }
         draw();
     </script>
-<script>
-  const form = document.querySelector('form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
-    window.location.href = 'https://janyskovadigital.cz/podekovani.html';
-  });
-</script>
+    <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+        window.location.href = 'https://janyskovadigital.cz/podekovani.html';
+      });
+    </script>
 </body>
 </html>
