@@ -4,52 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrace Webu | JanyskovaDigital.cz</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --bg-main: #f8fafc;
-            --bg-sidebar: #0f172a;
-            --bg-card: #ffffff;
-            --primary: #4f46e5;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --text-light: #f8fafc;
-            --success: #10b981;
-            --border: #e2e8f0;
-        }
-
+        :root { --bg-main: #f8fafc; --bg-sidebar: #0f172a; --bg-card: #ffffff; --primary: #4f46e5; --text-main: #1e293b; --text-muted: #64748b; --text-light: #f8fafc; --success: #10b981; --border: #e2e8f0; }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-main); color: var(--text-main); display: flex; min-height: 100vh; margin: 0; }
-
-        /* PŘIHLAŠOVACÍ OBRAZOVKA */
-        #login-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--bg-main);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 99999;
-        }
-        .login-box {
-            background: var(--bg-card);
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-            width: 100%; max-width: 400px;
-            text-align: center;
-        }
+        #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-main); display: flex; justify-content: center; align-items: center; z-index: 99999; }
+        .login-box { background: var(--bg-card); padding: 40px; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; }
         .login-box h2 { margin-bottom: 25px; font-size: 24px; font-weight: 700; }
         .login-box span { color: #818cf8; }
         .error-msg { color: #ef4444; font-size: 14px; font-weight: 600; margin-bottom: 15px; display: none; }
-
-        /* SKRYTÝ OBSAH ADMINU (ZOBRAZÍ SE AŽ PO PŘIHLÁŠENÍ) */
         #admin-interface { display: none; width: 100%; min-height: 100vh; }
-
-        /* SIDEBAR */
         .sidebar { width: 260px; background-color: var(--bg-sidebar); color: var(--text-light); padding: 30px 20px; display: flex; flex-direction: column; position: fixed; height: 100vh; }
         .sidebar-brand { font-size: 20px; font-weight: 700; margin-bottom: 40px; padding-left: 10px; letter-spacing: -0.5px; }
         .sidebar-brand span { color: #818cf8; }
@@ -59,14 +26,10 @@
         .sidebar-menu a { display: flex; align-items: center; color: #94a3b8; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: 500; font-size: 14px; transition: 0.2s; }
         .sidebar-menu a:hover, .sidebar-menu li.active a { background-color: rgba(255, 255, 255, 0.06); color: var(--text-light); }
         .sidebar-menu li.active a { background-color: var(--primary); }
-
-        /* HLAVNÍ OBSAH */
         .main-content { margin-left: 260px; flex: 1; padding: 40px; }
         .header-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
         h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
         .profile-badge { font-weight: 600; font-size: 14px; color: var(--text-muted); background: var(--bg-card); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); }
-
-        /* FORMULÁŘE A TLAČÍTKA */
         .dashboard-section { background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); padding: 30px; margin-bottom: 40px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02); max-width: 800px; }
         .section-header { margin-bottom: 25px; }
         .section-header h2 { font-size: 20px; font-weight: 700; }
@@ -75,11 +38,9 @@
         .form-group label { font-size: 14px; font-weight: 600; color: #475569; }
         .form-group input, .form-group textarea { padding: 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 15px; background: #f8fafc; width: 100%; }
         .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); background: #fff; }
-        
         .save-btn, .login-btn { background: var(--primary); color: #fff; border: none; padding: 14px 28px; font-weight: 600; border-radius: 6px; cursor: pointer; width: fit-content; font-size: 15px; transition: 0.2s; }
         .save-btn:hover, .login-btn:hover { background-color: #4338ca; }
         .login-btn { width: 100%; margin-top: 10px; }
-
         .notification { display: none; background: #d1fae5; border: 2px solid var(--success); color: #065f46; padding: 20px; border-radius: 8px; margin-top: 25px; font-weight: 600; font-size: 15px; }
     </style>
 </head>
@@ -89,9 +50,7 @@
         <div class="login-box">
             <h2>Janyskova<span>Digital</span></h2>
             <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 20px;">Klientská zóna & Administrace</p>
-            
-            <div class="error-msg" id="login-error">Nesprávné uživatelské jméno nebo heslo!</div>
-            
+            <div class="error-msg" id="login-error">Nesprávné jméno nebo heslo!</div>
             <div class="form-group" style="margin-bottom: 15px; text-align: left;">
                 <label>Uživatelské jméno</label>
                 <input type="text" id="username" placeholder="Zadejte jméno">
@@ -133,7 +92,6 @@
                     <h2>Rychlá úprava úvodní sekce (Hero)</h2>
                     <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">Zde vidíte reálné texty z vašeho webu. Přepište je a vyzkoušejte uložení.</p>
                 </div>
-                
                 <div class="editor-form">
                     <div class="form-group">
                         <label>Hlavní velký nadpis (H1)</label>
@@ -141,11 +99,10 @@
                     </div>
                     <div class="form-group">
                         <label>Podnadpis (Popisný text pod nadpisem)</label>
-                        <textarea id="hero-text" rows="3">Tvorba rychlých a levných webových stránek bez WordPressu. Moderní weby s čistým kódem, které šetří vaše náklady a čas. S provozem za 0 Kč.</textarea>
+                        <textarea id="hero-text" rows="3">Tvorba rychlých a levných webových stránek bez WordPressu. Moderní Weby s čistým kódem, které šetří vaše náklady a čas. S provozem za 0 Kč.</textarea>
                     </div>
                     <button type="button" class="save-btn" onclick="simulovatUlozeni()">Uložit změny na webu</button>
                 </div>
-
                 <div class="notification" id="success-notif">
                     ✓ Změny byly úspěšně odeslány do systému Cloudflare Pages. Web se na pozadí přegenerovává a do 15 vteřin se upravený text projeví na ostrém webu! (Měsíční poplatky za provoz: 0 Kč)
                 </div>
@@ -154,11 +111,9 @@
     </div>
 
     <script>
-        // TADY SI URČUJEŠ SVÉ PŘIHLAŠOVACÍ ÚDAJE (Můžeš si je kdykoliv přepsat)
         const SPRAVNE_JMENO = 'admin';
         const SPRAVNE_HESLO = 'digital2026';
 
-        // Kontrola, zda už uživatel není přihlášený (aby nemusel zadávat heslo pořád dokola)
         if (localStorage.getItem('admin_prihlasen') === 'true') {
             document.getElementById('login-screen').style.display = 'none';
             document.getElementById('admin-interface').style.display = 'block';
@@ -168,13 +123,10 @@
             const jmeno = document.getElementById('username').value;
             const heslo = document.getElementById('password').value;
             const errorMsg = document.getElementById('login-error');
-            const loginScreen = document.getElementById('login-screen');
-            const adminInterface = document.getElementById('admin-interface');
-
             if (jmeno === SPRAVNE_JMENO && heslo === SPRAVNE_HESLO) {
                 localStorage.setItem('admin_prihlasen', 'true');
-                loginScreen.style.display = 'none';
-                adminInterface.style.display = 'block';
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('admin-interface').style.display = 'block';
                 errorMsg.style.display = 'none';
             } else {
                 errorMsg.style.display = 'block';
@@ -195,7 +147,6 @@
             var notif = document.getElementById('success-notif');
             button.innerText = 'Ukládám a generuji web...';
             button.style.opacity = '0.7';
-            
             setTimeout(function() {
                 button.innerText = 'Uložit změny na webu';
                 button.style.opacity = '1';
@@ -203,6 +154,6 @@
             }, 1200);
         }
     </script>
-
 </body>
+</html>
 </html>
