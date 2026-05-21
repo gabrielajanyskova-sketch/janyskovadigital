@@ -1,20 +1,20 @@
 backend:
   name: github
-  repo: TVOJE_JMÉNO_NA_GITHUBU/NÁZEV_REPOSITÁŘE # Sem napiš jak se jmenuješ na GitHubu/název projektu
+  repo: TVU_J_GITHUB_PROFIL/NAZEV_REPOSITARE  # SEM NAPRAV TŮJ PROFIL/REPOSITÁŘ (např. janyskova/web)
   branch: main
-  base_url: https://decap-cms-oauth.vercel.app # Bezplatná brána pro bezpečné přihlášení
+  base_url: https://decap-cms-oauth.vercel.app
   auth_endpoint: api/auth
 
-media_folder: "images" # Sem se uloží fotky, které klient nahraje
+media_folder: "images"
 public_folder: "/images"
 
 collections:
-  - name: "stranky"
-    label: "Obsah webu"
+  - name: "hlavni_strana"
+    label: "Hlavní stránka webu"
     files:
-      - file: "index.html" # Soubor, který chce klient upravovat
-        label: "Hlavní stránka"
-        name: "home"
+      - file: "index.html"
+        label: "Úvodní texty (Hero)"
+        name: "hero_sekce"
         fields:
-          - { label: "Hlavní velký nadpis", name: "heading", widget: "string" }
-          - { label: "Popisný text v úvodu", name: "hero_text", widget: "text" }
+          - { label: "Hlavní nadpis (H1)", name: "heading", widget: "string" }
+          - { label: "Podnadpis (Popisný text)", name: "hero_text", widget: "text" }
