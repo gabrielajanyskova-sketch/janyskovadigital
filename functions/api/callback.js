@@ -4,7 +4,7 @@ export async function onRequest(context) {
   
   const clientId = "Ov231lhLF6oRmHXEduvv";
   // SEM VLOŽ TEN DLOUHÝ CLIENT SECRET, KTERÝ JSI VYGENEROVALA NA GITHUBU V MINULÉM KROKU:
-  const clientSecret = "SEM_VLOZ_TVUJ_CLIENT_SECRET"; 
+  const clientSecret = "3ec35317161932f70182c300c3ac69ab38105377"; 
 
   const response = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
