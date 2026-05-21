@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: TVU_J_GITHUB_PROFIL/NAZEV_REPOSITARE  # SEM NAPRAV TŮJ PROFIL/REPOSITÁŘ (např. janyskova/web)
+  repo: gabrielajanyskova-sketch/janyskovadigital
   branch: main
-  base_url: https://decap-cms-oauth.vercel.app
-  auth_endpoint: api/auth
+  base_url: https://janyskovadigital.cz
+  auth_endpoint: /api/auth
 
 media_folder: "images"
 public_folder: "/images"
