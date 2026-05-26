@@ -305,6 +305,32 @@
   }
 }
 </script>
+    <style>
+  .reveal-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section, .trust-card, .price-card, .faq-item').forEach(el => {
+    el.classList.add('reveal-section');
+    revealObserver.observe(el);
+  });
+</script>
 </head>
 <body>
     <div class="mouse-glow"></div>
