@@ -401,6 +401,278 @@
                     </div>
                 </div>
             </section>
+            <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrace Webů | JanyskovaDigital.cz</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-sidebar: #0f172a; /* Elegantní tmavě modrá/břidlicová */
+            --bg-card: #ffffff;
+            --primary: #4f46e5; /* Moderní fialová/indigo */
+            --primary-light: #e0e7ff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-light: #f8fafc;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* BOČNÍ PANEL (SIDEBAR) */
+        .sidebar {
+            width: 260px;
+            background-color: var(--bg-sidebar);
+            color: var(--text-light);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .sidebar-brand {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            padding-left: 10px;
+            letter-spacing: -0.5px;
+        }
+        .sidebar-brand span { color: #818cf8; }
+
+        .menu-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-left: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-menu { list-style: none; margin-bottom: 30px; }
+        .sidebar-menu li { margin-bottom: 8px; }
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .sidebar-menu a:hover, .sidebar-menu li.active a {
+            background-color: rgba(255, 255, 255, 0.06);
+            color: var(--text-light);
+        }
+        .sidebar-menu li.active a {
+            background-color: var(--primary);
+        }
+
+        /* HLAVNÍ OBSAH */
+        .main-content {
+            margin-left: 260px;
+            flex: 1;
+            padding: 40px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+        .user-profile { font-weight: 600; font-size: 14px; color: var(--text-muted); background: var(--bg-card); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border); }
+
+        /* KARTY SE STATISTIKAMI */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        .stat-title { font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+        .stat-value { font-size: 32px; font-weight: 700; color: var(--text-main); line-height: 1; }
+        .stat-desc { font-size: 13px; margin-top: 10px; font-weight: 500; }
+        .text-success { color: var(--success); }
+        .text-primary { color: var(--primary); }
+
+        /* SEKCE / BLOKY */
+        .dashboard-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        .section-header { margin-bottom: 25px; }
+        .section-header h2 { font-size: 20px; font-weight: 700; }
+
+        /* TABULKA POPTÁVEK */
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+        th { padding: 15px; color: var(--text-muted); font-weight: 600; border-bottom: 2px solid var(--border); }
+        td { padding: 15px; border-bottom: 1px solid var(--border); color: #334155; }
+        tr:hover td { background-color: #f8fafc; }
+        
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .badge-new { background-color: #fee2e2; color: #ef4444; }
+        .badge-progress { background-color: #fef3c7; color: #d97706; }
+        .badge-done { background-color: #d1fae5; color: #059669; }
+
+        /* RYCHLÝ EDITOR TEXTU */
+        .editor-form { display: grid; gap: 20px; max-width: 700px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 14px; font-weight: 600; color: #475569; }
+        .form-group input, .form-group textarea { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; background: #f8fafc; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); background: #fff; }
+        
+        .save-btn { background: var(--primary); color: #fff; border: none; padding: 12px 24px; font-weight: 600; border-radius: 6px; cursor: pointer; width: fit-content; font-size: 14px; }
+        .save-btn:hover { background-color: #4338ca; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">Janyskova<span>Digital</span></div>
+        
+        <p class="menu-label">Hlavní přehled</p>
+        <ul class="sidebar-menu">
+            <li class="active"><a href="#prehled">Nástěnka (Dashboard)</a></li>
+            <li><a href="#poptavky">Přijaté poptávky</a></li>
+        </ul>
+
+        <p class="menu-label">Správa obsahu</p>
+        <ul class="sidebar-menu">
+            <li><a href="#editor">Úprava textů webu</a></li>
+            <li><a href="#galerie">Správa fotogalerie</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="header-content">
+            <div>
+                <h1>Klientská administrace</h1>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">Vítejte zpět v administraci vašeho webu.</p>
+            </div>
+            <div class="user-profile">Klient: Tesařství Sychra</div>
+        </div>
+
+        <div class="stats-grid" id="prehled">
+            <div class="stat-card">
+                <p class="stat-title">Návštěvnost (Tento měsíc)</p>
+                <p class="stat-value">1 240</p>
+                <p class="stat-desc text-success">▲ +12 % oproti min. měsíci</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-title">Nové poptávky</p>
+                <p class="stat-value">4</p>
+                <p class="stat-desc text-primary" style="font-weight: 700;">Vyžadují vaši reakci</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-title">Rychlost načítání webu</p>
+                <p class="stat-value">99 /100</p>
+                <p class="stat-desc text-success">● Stav webu: Vynikající</p>
+            </div>
+        </div>
+
+        <div class="dashboard-section" id="poptavky">
+            <div class="section-header">
+                <h2>Nejnovější poptávky z webového formuláře</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Jméno klienta</th>
+                            <th>Kontakt</th>
+                            <th>Projekt / Poznámka</th>
+                            <th>Stav</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dnes, 14:20</td>
+                            <td>Petr Novák</td>
+                            <td>+420 777 111 222<br><span style="font-size: 12px; color: var(--text-muted)">novak@email.cz</span></td>
+                            <td>Stavba vázaného krovu na novostavbě (120m²)</td>
+                            <td><span class="badge badge-new">Nová</span></td>
+                        </tr>
+                        <tr>
+                            <td>Včera, 09:15</td>
+                            <td>Martin Dvořák</td>
+                            <td>dvorak.stavby@seznam.cz</td>
+                            <td>Poptávka na zahradní pergolu z masivu</td>
+                            <td><span class="badge badge-progress">Řeší se</span></td>
+                        </tr>
+                        <tr>
+                            <td>18. 5. 2026</td>
+                            <td>Jana Malá</td>
+                            <td>+420 602 333 444</td>
+                            <td>Vyřezávaná dřevěná socha na zahradu</td>
+                            <td><span class="badge badge-done">Dokončeno</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="dashboard-section" id="editor">
+            <div class="section-header">
+                <h2>Rychlá úprava textů na hlavní stránce</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">Zde si můžete kdykoliv sami přepsat hlavní texty bez nutnosti volat programátora.</p>
+            </div>
+            
+            <div class="editor-form">
+                <div class="form-group">
+                    <label>Hlavní nadpis webu (H1)</label>
+                    <input type="text" value="Poctivé tesařské řemeslo. Žádné náhražky.">
+                </div>
+                <div class="form-group">
+                    <label>Podnadpis v úvodu (Hero text)</label>
+                    <textarea rows="3">Stavíme masivní krovy, těžké dřevěné skelety a střechy, které nespadnou. Pořádná chlapská práce přímo na staveništi.</textarea>
+                </div>
+                <button type="button" class="save-btn" onclick="alert('Obsah byl úspěšně aktualizován na reálném webu!')">Uložit změny</button>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
 
             <section id="cenik" class="pricing-section">
                 <h2 class="section-title">Transparentní <span>ceník webových stránek</span></h2>
