@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Janyskova Digital</title>
+<style>
+  :root {
+    --bg: #0d0f14;
+    --bg2: #141720;
+    --bg3: #1c2030;
+    --accent: #38bdf8;
+    --green: #00ff66;
+    --red: #ff5555;
+    --text: #f1f5f9;
+    --dim: #64748b;
+    --border: rgba(56,189,248,0.12);
+    --card: rgba(20,23,32,0.9);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* LOGIN */
+  .login-wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% 40%, rgba(56,189,248,0.06), transparent 60%);
+  }
+
+  .login-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 50px 45px;
+    width: 100%;
+    max-width: 420px;
+    backdrop-filter: blur(20px);
+  }
+
+  .login-logo {
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .login-logo span {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .login-logo span em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .login-logo p {
+    font-size: 13px;
+    color: var(--dim);
+    margin-top: 6px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  .form-group input:focus {
+    border-color: rgba(56,189,248,0.4);
+    background: rgba(56,189,248,0.03);
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-login:hover { background: #7dd3f8; }
+
+  .login-error {
+    background: rgba(255,85,85,0.1);
+    border: 1px solid rgba(255,85,85,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #ff8888;
+    margin-bottom: 18px;
+    display: none;
+  }
+
+  /* DASHBOARD */
+  .dashboard { display: none; }
+
+  .topbar {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 0 30px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+  }
+
+  .topbar-logo em { color: var(--accent); font-style: normal; }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: var(--dim);
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+
+  .btn-logout {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--dim);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-logout:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+  .main-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 64px);
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 25px 0;
+  }
+
+  .sidebar-section {
+    padding: 0 20px;
+    margin-bottom: 5px;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 0 12px;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: var(--dim);
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .sidebar-item:hover { background: rgba(56,189,248,0.06); color: var(--text); }
+  .sidebar-item.active { background: rgba(56,189,248,0.1); color: var(--accent); }
+
+  .sidebar-item svg {
+    width: 18px; height: 18px;
+    stroke: currentColor; fill: none;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 35px 40px;
+    overflow-y: auto;
+  }
+
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: var(--dim);
+    margin-bottom: 35px;
+  }
+
+  /* CARDS */
+  .edit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(15px);
+  }
+
+  .edit-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .edit-card-title svg {
+    width: 18px; height: 18px;
+    stroke: currentColor; fill: none;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 18px;
+  }
+
+  .field-row.full { grid-template-columns: 1fr; }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .field label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  .field input, .field textarea {
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: 0.3s;
+    resize: vertical;
+  }
+
+  .field input:focus, .field textarea:focus {
+    border-color: rgba(56,189,248,0.35);
+    background: rgba(56,189,248,0.03);
+  }
+
+  /* PHOTO UPLOAD */
+  .photo-upload {
+    border: 2px dashed rgba(56,189,248,0.2);
+    border-radius: 14px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .photo-upload:hover { border-color: rgba(56,189,248,0.4); background: rgba(56,189,248,0.03); }
+
+  .photo-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+  .photo-upload svg {
+    width: 32px; height: 32px;
+    stroke: var(--dim); fill: none;
+    stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    margin: 0 auto 10px;
+  }
+
+  .photo-upload p { font-size: 14px; color: var(--dim); }
+  .photo-upload span { font-size: 12px; color: rgba(100,116,139,0.6); margin-top: 4px; display: block; }
+
+  .photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .photo-thumb {
+    position: relative;
+    width: 80px; height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .photo-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  .photo-thumb .remove {
+    position: absolute;
+    top: 4px; right: 4px;
+    background: rgba(0,0,0,0.7);
+    border: none;
+    border-radius: 50%;
+    width: 20px; height: 20px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* SAVE BTN */
+  .save-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .save-info { font-size: 13px; color: var(--dim); }
+
+  .btn-save {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn-save:hover { background: #7dd3f8; transform: translateY(-1px); }
+  .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .btn-save svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; fill: none;
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  }
+
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.success { border-color: rgba(0,255,102,0.3); }
+  .toast.error { border-color: rgba(255,85,85,0.3); }
+
+  .toast-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+
+  .toast.success .toast-icon { background: rgba(0,255,102,0.15); color: var(--green); }
+  .toast.error .toast-icon { background: rgba(255,85,85,0.15); color: var(--red); }
+
+  /* SPINNER */
+  .spinner {
+    width: 16px; height: 16px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SETTINGS PAGE */
+  .token-field {
+    position: relative;
+  }
+
+  .token-field input { padding-right: 45px; font-family: monospace; font-size: 13px; }
+
+  .token-toggle {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--dim); cursor: pointer;
+    font-size: 16px;
+  }
+
+  /* STATS */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+  }
+
+  .stat-card .num {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 900px) {
+    .main-layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .content { padding: 20px; }
+    .field-row { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-wrap" id="login-wrap">
+  <div class="login-box">
+    <div class="login-logo">
+      <span>Janyskova<em>Digital</em></span>
+      <p>Admin panel</p>
+    </div>
+    <div class="login-error" id="login-error">Nesprávné heslo nebo token. Zkuste to znovu.</div>
+    <div class="form-group">
+      <label>Heslo</label>
+      <input type="password" id="login-password" placeholder="Zadejte heslo" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="form-group">
+      <label>GitHub Token</label>
+      <input type="password" id="login-token" placeholder="ghp_xxxxxxxxxxxx" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Přihlásit se</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+  <div class="topbar">
+    <div class="topbar-logo">Janyskova<em>Digital</em> <span style="font-size:13px;color:var(--dim);font-weight:400;margin-left:8px;">Admin</span></div>
+    <div class="topbar-right">
+      <div class="status-badge">
+        <div class="status-dot"></div>
+        <span>Připojeno k GitHubu</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Odhlásit</button>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <div class="sidebar">
+      <div class="sidebar-label">Obsah webu</div>
+      <div class="sidebar-section">
+        <button class="sidebar-item active" onclick="showPage('hero')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>
+          Hlavní sekce
+        </button>
+        <button class="sidebar-item" onclick="showPage('about')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          O mně
+        </button>
+        <button class="sidebar-item" onclick="showPage('pricing')">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Ceník
+        </button>
+        <button class="sidebar-item" onclick="showPage('contact')">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Kontakt
+        </button>
+        <button class="sidebar-item" onclick="showPage('photos')">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Fotografie
+        </button>
+      </div>
+      <div class="sidebar-label">Nastavení</div>
+      <div class="sidebar-section">
+        <button class="sidebar-item" onclick="showPage('settings')">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Nastavení
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- HERO PAGE -->
+      <div class="page active" id="page-hero">
+        <div class="page-title">Hlavní sekce</div>
+        <div class="page-subtitle">Upravte texty na hlavní stránce webu</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Nadpisy
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Hlavní nadpis (H1)</label>
+              <input type="text" id="h1-text" value="Tvorba webových stránek" placeholder="Hlavní nadpis">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Podnadpis</label>
+              <input type="text" id="sub-text" value="cenově dostupné, ale v maximální kvalitě" placeholder="Podnadpis">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Popis (hero text)</label>
+              <textarea id="hero-desc" rows="3" placeholder="Popis pod nadpisem...">Získejte moderní web na míru s extrémním výkonem za zlomek běžné ceny. Zapomeňte na předražené služby. Se mnou máte roční náklady 0 Kč za hosting.</textarea>
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Info poznámka (zelený řádek)</label>
+              <input type="text" id="honest-note" value="A ano, i provoz tohoto celého webu vyjde pouze 200 Kč ročně. Platí se pouze doména.">
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info" id="hero-save-info">Neuložené změny se ztratí po zavření stránky</span>
+          <button class="btn-save" id="hero-save-btn" onclick="savePage('hero')">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Uložit změny
+          </button>
+        </div>
+      </div>
+
+      <!-- ABOUT PAGE -->
+      <div class="page" id="page-about">
+        <div class="page-title">O mně</div>
+        <div class="page-subtitle">Upravte sekci s představením</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            Obsah sekce
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Nadpis sekce</label>
+              <input type="text" id="about-title" value="Ahoj, jsem Gabča.">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Text o mně</label>
+              <textarea id="about-text" rows="5">Pomáhám drobným podnikatelům, živnostníkům i začínajícím projektům získat profesionální digitální vizitku, která je skvěle prezentuje a přitom nestojí majlant. Moje základna je pro Nový Jičín, Příbor, Kopřivnici a okolí, ale díky moderním technologiím úspěšně spolupracuji s klienty kompletně online po celé České republice.</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info" id="about-save-info">Neuložené změny se ztratí po zavření stránky</span>
+          <button class="btn-save" id="about-save-btn" onclick="savePage('about')">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Uložit změny
+          </button>
+        </div>
+      </div>
+
+      <!-- PRICING PAGE -->
+      <div class="page" id="page-pricing">
+        <div class="page-title">Ceník</div>
+        <div class="page-subtitle">Upravte ceny a popisy balíčků</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Web Start
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Název balíčku</label>
+              <input type="text" id="start-name" value="Web Start">
+            </div>
+            <div class="field">
+              <label>Cena (Kč)</label>
+              <input type="text" id="start-price" value="5 000">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Popis</label>
+              <input type="text" id="start-desc" value="Perfektní pro specialisty, řemeslníky a drobné živnostníky.">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Výhody (každá na nový řádek)</label>
+              <textarea id="start-features" rows="6">Výkonný moderní One-page web
+Bleskové načítání (zelená čísla v testech)
+Základní technické SEO optimalizace
+Zabezpečený SSL certifikát v ceně
+Nulové náklady na hosting (0 Kč / rok)</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Web Business
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Název balíčku</label>
+              <input type="text" id="business-name" value="Web Business">
+            </div>
+            <div class="field">
+              <label>Cena (Kč)</label>
+              <input type="text" id="business-price" value="12 000">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Popis</label>
+              <input type="text" id="business-desc" value="Vše, co potřebuje rostoucí firma pro úspěšný prodej.">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Výhody (každá na nový řádek)</label>
+              <textarea id="business-features" rows="6">Kompletní vícestránkový web
+Pokročilá SEO analýza klíčových slov
+Chytrý kontaktní formulář
+Propojení s Google Analytics
+Nulové náklady na hosting (0 Kč / rok)</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info" id="pricing-save-info">Neuložené změny se ztratí po zavření stránky</span>
+          <button class="btn-save" id="pricing-save-btn" onclick="savePage('pricing')">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Uložit změny
+          </button>
+        </div>
+      </div>
+
+      <!-- CONTACT PAGE -->
+      <div class="page" id="page-contact">
+        <div class="page-title">Kontakt</div>
+        <div class="page-subtitle">Upravte kontaktní údaje zobrazené na webu</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Kontaktní údaje
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>Email</label>
+              <input type="email" id="contact-email" value="info@janyskovadigital.cz">
+            </div>
+            <div class="field">
+              <label>Telefon</label>
+              <input type="tel" id="contact-phone" value="+420 739 395 800">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Adresa (fakturační)</label>
+              <input type="text" id="contact-address" value="Starojická Lhota 45, 741 01 Starý Jičín">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Jméno (fakturační)</label>
+              <input type="text" id="contact-name" value="Gabriela Janýšková">
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info" id="contact-save-info">Neuložené změny se ztratí po zavření stránky</span>
+          <button class="btn-save" id="contact-save-btn" onclick="savePage('contact')">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Uložit změny
+          </button>
+        </div>
+      </div>
+
+      <!-- PHOTOS PAGE -->
+      <div class="page" id="page-photos">
+        <div class="page-title">Fotografie</div>
+        <div class="page-subtitle">Nahrajte fotografie na web</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Nahrát fotografie
+          </div>
+          <div class="photo-upload" onclick="document.getElementById('photo-input').click()">
+            <input type="file" id="photo-input" multiple accept="image/*" onchange="handlePhotos(this)" style="display:none">
+            <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+            <p>Klikněte nebo přetáhněte fotografie sem</p>
+            <span>JPG, PNG, WebP · max 5 MB</span>
+          </div>
+          <div class="photo-preview" id="photo-preview"></div>
+          <p style="font-size:13px;color:var(--dim);margin-top:15px;">Fotografie se nahrají do složky <code style="background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;">/images/</code> ve vašem repozitáři.</p>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info" id="photos-save-info">Vyberte fotografie a klikněte Nahrát</span>
+          <button class="btn-save" id="photos-save-btn" onclick="uploadPhotos()">
+            <svg viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg>
+            Nahrát fotografie
+          </button>
+        </div>
+      </div>
+
+      <!-- SETTINGS PAGE -->
+      <div class="page" id="page-settings">
+        <div class="page-title">Nastavení</div>
+        <div class="page-subtitle">Konfigurace admin panelu</div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Přístupové údaje
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>Nové heslo (ponechte prázdné pro zachování)</label>
+              <input type="password" id="new-password" placeholder="Nové heslo">
+            </div>
+          </div>
+          <div class="field-row full">
+            <div class="field">
+              <label>GitHub Token</label>
+              <div class="token-field">
+                <input type="password" id="settings-token" placeholder="ghp_xxxxxxxxxxxx">
+                <button class="token-toggle" onclick="toggleToken()">👁</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-card-title">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Informace o repozitáři
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label>GitHub uživatel</label>
+              <input type="text" value="gabrielajanyskova-sketch" readonly style="opacity:0.6;">
+            </div>
+            <div class="field">
+              <label>Repozitář</label>
+              <input type="text" value="janyskovadigital" readonly style="opacity:0.6;">
+            </div>
+          </div>
+        </div>
+
+        <div class="save-bar">
+          <span class="save-info">Změny hesel se uloží lokálně</span>
+          <button class="btn-save" onclick="saveSettings()">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Uložit nastavení
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toast-icon">✓</div>
+  <span id="toast-msg">Změny uloženy!</span>
+</div>
+
+<script>
+  const OWNER = 'gabrielajanyskova-sketch';
+  const REPO = 'janyskovadigital';
+  const BRANCH = 'main';
+  const ADMIN_PASSWORD = 'janyskova2026';
+
+  let githubToken = '';
+  let selectedPhotos = [];
+
+  function doLogin() {
+    const pw = document.getElementById('login-password').value;
+    const token = document.getElementById('login-token').value;
+    const err = document.getElementById('login-error');
+
+    if (pw !== ADMIN_PASSWORD || !token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
+      err.style.display = 'block';
+      return;
+    }
+
+    githubToken = token;
+    localStorage.setItem('admin_token', token);
+    err.style.display = 'none';
+    document.getElementById('login-wrap').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    document.getElementById('settings-token').value = token;
+  }
+
+  function doLogout() {
+    githubToken = '';
+    localStorage.removeItem('admin_token');
+    document.getElementById('login-wrap').style.display = 'flex';
+    document.getElementById('dashboard').style.display = 'none';
+    document.getElementById('login-password').value = '';
+    document.getElementById('login-token').value = '';
+  }
+
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    const icon = document.getElementById('toast-icon');
+    document.getElementById('toast-msg').textContent = msg;
+    t.className = 'toast ' + type;
+    icon.textContent = type === 'success' ? '✓' : '✕';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  async function getFileSha(path) {
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`, {
+      headers: { Authorization: `token ${githubToken}`, Accept: 'application/vnd.github.v3+json' }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      return { sha: data.sha, content: atob(data.content.replace(/\n/g, '')) };
+    }
+    return null;
+  }
+
+  async function updateFile(path, content, message) {
+    const existing = await getFileSha(path);
+    const body = {
+      message,
+      content: btoa(unescape(encodeURIComponent(content))),
+      branch: BRANCH
+    };
+    if (existing) body.sha = existing.sha;
+
+    const res = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `token ${githubToken}`,
+        Accept: 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    return res.ok;
+  }
+
+  async function savePage(section) {
+    const btn = document.getElementById(section + '-save-btn');
+    const info = document.getElementById(section + '-save-info');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Ukládám...';
+
+    try {
+      const file = await getFileSha('index.html');
+      if (!file) throw new Error('Soubor nenalezen');
+
+      let html = file.content;
+
+      if (section === 'hero') {
+        const h1 = document.getElementById('h1-text').value;
+        const sub = document.getElementById('sub-text').value;
+        const desc = document.getElementById('hero-desc').value;
+        const note = document.getElementById('honest-note').value;
+
+        html = html.replace(/(<span class="scramble-title"[^>]*data-value=")[^"]*(")/,
+          `$1${h1}$2`);
+        html = html.replace(/(<span class="scramble-sub">)[^<]*(<span)/,
+          `$1${sub.split('v maximální')[0]}$2`);
+        html = html.replace(/(<strong>&gt;_ info:<\/strong>)[^<]*/,
+          `$1 ${note}`);
+        html = html.replace(/(<p class="hero-sub">)[^<]*/,
+          `$1${desc}`);
+      }
+
+      if (section === 'about') {
+        const title = document.getElementById('about-title').value;
+        const text = document.getElementById('about-text').value;
+        html = html.replace(/(<h3 style="color: var\(--accent\)[^>]*>)[^<]*/,
+          `$1${title}`);
+        html = html.replace(/(<p style="color: var\(--text-dim\); font-size: 18px[^>]*>\s*)[^<]*/,
+          `$1${text}`);
+      }
+
+      if (section === 'pricing') {
+        const sName = document.getElementById('start-name').value;
+        const sPrice = document.getElementById('start-price').value;
+        const bName = document.getElementById('business-name').value;
+        const bPrice = document.getElementById('business-price').value;
+
+        html = html.replace(/(class="price">od )[^<]*(<span>Kč<\/span><\/div>\s*<ul class="features">\s*<li>Výkonný)/,
+          `$1${sPrice} $2`);
+        html = html.replace(/(class="price">od )[^<]*(<span>Kč<\/span><\/div>\s*<ul class="features">\s*<li>Kompletní)/,
+          `$1${bPrice} $2`);
+      }
+
+      if (section === 'contact') {
+        const email = document.getElementById('contact-email').value;
+        const phone = document.getElementById('contact-phone').value;
+        const name = document.getElementById('contact-name').value;
+
+        html = html.replace(/(href="mailto:)[^"]*(")/g, `$1${email}$2`);
+        html = html.replace(/(href="tel:)[^"]*(")/g, `$1${phone.replace(/\s/g,'')}$2`);
+        html = html.replace(/(>)[^<]*(< \/a>\s*<\/div>\s*<div class="contact-row">\s*<svg viewBox="0 0 24 24"><path d="M6.62)/,
+          `$1${email}$2`);
+      }
+
+      const ok = await updateFile('index.html', html, `Admin: upravena sekce ${section}`);
+
+      if (ok) {
+        showToast('Změny uloženy! Web se aktualizuje za ~30 sekund.', 'success');
+        info.textContent = 'Uloženo — ' + new Date().toLocaleTimeString('cs-CZ');
+      } else {
+        throw new Error('GitHub API odmítlo uložení');
+      }
+    } catch (e) {
+      showToast('Chyba: ' + e.message, 'error');
+      info.textContent = 'Uložení se nezdařilo';
+    }
+
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="20 6 9 17 4 12"/></svg> Uložit změny';
+  }
+
+  function handlePhotos(input) {
+    const files = Array.from(input.files);
+    selectedPhotos = files;
+    const preview = document.getElementById('photo-preview');
+    preview.innerHTML = '';
+    files.forEach((f, i) => {
+      const reader = new FileReader();
+      reader.onload = e => {
+        const div = document.createElement('div');
+        div.className = 'photo-thumb';
+        div.innerHTML = `<img src="${e.target.result}"><button class="remove" onclick="removePhoto(${i})">×</button>`;
+        preview.appendChild(div);
+      };
+      reader.readAsDataURL(f);
+    });
+  }
+
+  function removePhoto(i) {
+    selectedPhotos.splice(i, 1);
+    const dt = new DataTransfer();
+    selectedPhotos.forEach(f => dt.items.add(f));
+    document.getElementById('photo-input').files = dt.files;
+    handlePhotos(document.getElementById('photo-input'));
+  }
+
+  async function uploadPhotos() {
+    if (selectedPhotos.length === 0) {
+      showToast('Nejprve vyberte fotografie', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('photos-save-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Nahrávám...';
+
+    let uploaded = 0;
+    for (const file of selectedPhotos) {
+      const reader = new FileReader();
+      await new Promise(resolve => {
+        reader.onload = async e => {
+          const base64 = e.target.result.split(',')[1];
+          const path = `images/${file.name}`;
+          const existing = await getFileSha(path);
+          const body = {
+            message: `Admin: nahrána fotografie ${file.name}`,
+            content: base64,
+            branch: BRANCH
+          };
+          if (existing) body.sha = existing.sha;
+
+          await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`, {
+            method: 'PUT',
+            headers: {
+              Authorization: `token ${githubToken}`,
+              Accept: 'application/vnd.github.v3+json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+          });
+          uploaded++;
+          resolve();
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    showToast(`Nahráno ${uploaded} fotografií do /images/`, 'success');
+    document.getElementById('photos-save-info').textContent = `Nahráno ${uploaded} fotografií`;
+    btn.disabled = false;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg> Nahrát fotografie';
+    selectedPhotos = [];
+    document.getElementById('photo-preview').innerHTML = '';
+  }
+
+  function toggleToken() {
+    const input = document.getElementById('settings-token');
+    input.type = input.type === 'password' ? 'text' : 'password';
+  }
+
+  function saveSettings() {
+    const newPw = document.getElementById('new-password').value;
+    const newToken = document.getElementById('settings-token').value;
+    if (newToken) {
+      githubToken = newToken;
+      localStorage.setItem('admin_token', newToken);
+    }
+    showToast('Nastavení uloženo', 'success');
+  }
+
+  // Auto-login pokud je token uložený
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('admin_token');
+    if (saved) {
+      document.getElementById('login-token').value = saved;
+    }
+  });
+</script>
+</body>
+</html>
