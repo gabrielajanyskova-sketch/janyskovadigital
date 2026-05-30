@@ -594,40 +594,73 @@
             </section>
         </main>
 
-        <footer style="background: rgba(15, 23, 42, 0.85); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 30px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;" class="container">
-                <div>
-                    <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
-                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a nulovými náklady na hosting.</p>
-                </div>
-                <div>
-                    <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Kontakt</h3>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        <a href="mailto:info@janyskovadigital.cz" style="color: inherit; text-decoration: none;">info@janyskovadigital.cz</a>
-                    </div>
-                    <div class="contact-row">
-                        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                        <a href="tel:+420739395800" style="color: inherit; text-decoration: none;">+420 739 395 800</a>
-                    </div>
-                </div>
-                <div>
-                    <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Fakturační údaje</h3>
-                    <p style="color: var(--text-dim); font-size: 14px; margin: 0; line-height: 1.5;">
-                        Gabriela Janýšková<br>
-                        Starojická Lhota 45<br>
-                        741 01 Starý Jičín<br>
-                    </p>
-                </div>
+     <footer style="background: rgba(15, 23, 42, 0.85); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 30px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;" class="container">
+
+        <!-- Sloupec 1 – Logo + popis -->
+        <div>
+            <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
+            <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a nulovými náklady na hosting.</p>
+        </div>
+
+        <!-- Sloupec 2 – Kontakt -->
+        <div>
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Kontakt</h3>
+            <div class="contact-row">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <a href="mailto:info@janyskovadigital.cz" style="color: inherit; text-decoration: none;">info@janyskovadigital.cz</a>
             </div>
-            <div class="container footer-bottom">
-                <p style="margin: 0; color: #94a3b8;">© 2026 Gabriela Janýšková/JanyskovaDigital</p>
-                <div class="footer-legal">
-                    <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
-                </div>
+            <div class="contact-row">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <a href="tel:+420739395800" style="color: inherit; text-decoration: none;">+420 739 395 800</a>
             </div>
-        </footer>
+        </div>
+
+        <!-- Sloupec 3 – Lokality (NOVÉ) -->
+        <div>
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Oblasti působení</h3>
+            <nav aria-label="Lokální stránky">
+                <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+                    <li>
+                        <a href="/novy-jicin/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;"
+                           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'">
+                            <span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Nový Jičín
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/pribor/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;"
+                           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'">
+                            <span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Příbor
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/koprivnice/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;"
+                           onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'">
+                            <span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Kopřivnice
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Sloupec 4 – Fakturační údaje -->
+        <div>
+            <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Fakturační údaje</h3>
+            <p style="color: var(--text-dim); font-size: 14px; margin: 0; line-height: 1.5;">
+                Gabriela Janýšková<br>
+                Starojická Lhota 45<br>
+                741 01 Starý Jičín<br>
+            </p>
+        </div>
+
     </div>
+    <div class="container footer-bottom">
+        <p style="margin: 0; color: #94a3b8;">© 2026 Gabriela Janýšková...</p>
+        <div class="footer-legal">
+            <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
+        </div>
+    </div>
+</footer>
 
     <div id="cookie-banner" class="cookie-banner">
         <p class="cookie-text">
