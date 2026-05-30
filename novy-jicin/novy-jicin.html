@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tvorba webových stránek Nový Jičín | Janyskova Digital</title>
+    <meta name="description" content="Profesionální tvorba webových stránek v Novém Jičíně. Čistý kód, extrémní rychlost a nulové náklady na hosting. Weby pro živnostníky a firmy z Nového Jičína a okolí.">
+    <meta property="og:title" content="Tvorba webových stránek Nový Jičín | Janyskova Digital">
+    <meta property="og:description" content="Profesionální tvorba webových stránek v Novém Jičíně. Čistý kód, extrémní rychlost a nulové náklady na hosting. Weby pro živnostníky a firmy z Nového Jičína a okolí.">
+    <meta property="og:url" content="https://janyskovadigital.cz/novy-jicin/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="cs_CZ">
+    <meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+    <link rel="canonical" href="https://janyskovadigital.cz/novy-jicin/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Janyskova Digital",
+      "description": "Tvorba moderních webových stránek na míru s čistým kódem a nulovými náklady na hosting.",
+      "url": "https://janyskovadigital.cz",
+      "telephone": "+420739395800",
+      "email": "info@janyskovadigital.cz",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Starojická Lhota 45",
+        "addressLocality": "Starý Jičín",
+        "postalCode": "741 01",
+        "addressCountry": "CZ"
+      },
+      "founder": { "@type": "Person", "name": "Gabriela Janýšková" },
+      "areaServed": [
+        { "@type": "City", "name": "Nový Jičín" },
+        { "@type": "City", "name": "Nový Jičín" },
+        { "@type": "City", "name": "Příbor" },
+        { "@type": "City", "name": "Kopřivnice" }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Domů", "item": "https://janyskovadigital.cz/" },
+        { "@type": "ListItem", "position": 2, "name": "Tvorba webových stránek Nový Jičín", "item": "https://janyskovadigital.cz/novy-jicin/" }
+      ]
+    }
+    </script>
+
+    <style>
+        @font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');
+    font-weight: 400; font-display: swap;
+}
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');
+    font-weight: 700; font-display: swap;
+}
+@font-face {
+    font-family: 'Plus Jakarta Sans';
+    src: url('/fonts/plus-jakarta-sans-latin-800-normal.woff2') format('woff2');
+    font-weight: 800; font-display: swap;
+}
+@font-face {
+    font-family: 'Share Tech Mono';
+    src: url('/fonts/share-tech-mono-latin-400-normal.woff2') format('woff2');
+    font-weight: 400; font-display: swap;
+}
+        :root {
+            --bg-center: #0f2a44;
+            --bg-edge: #020406;
+            --accent: #38bdf8;
+            --matrix-green: #00ff66;
+            --text: #f8fafc;
+            --text-dim: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.75);
+        }
+        * { box-sizing: border-box; }
+        body { background: #020406; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        .mouse-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle 450px at var(--mouse-x,50%) var(--mouse-y,50%), rgba(56,189,248,0.13), transparent 80%),
+                        radial-gradient(circle at center, var(--bg-center) 0%, var(--bg-edge) 100%);
+            z-index: -2; pointer-events: none; }
+        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.45; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
+        .logo { font-weight: 800; font-size: 24px; text-decoration: none; color: #fff; }
+        .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(56,189,248,0.5); }
+        .nav-links a { margin-left: 25px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+        header { padding: 100px 0 80px; text-align: center; position: relative; }
+        .tech-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); padding: 6px 16px; border-radius: 20px; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; position: relative; z-index: 2; }
+        .tech-badge .dot { width: 6px; height: 6px; background: var(--matrix-green); border-radius: 50%; box-shadow: 0 0 10px var(--matrix-green); animation: pulse-dot 1.5s infinite; }
+        @keyframes pulse-dot { 0%,100%{opacity:.4} 50%{opacity:1} }
+        h1 { font-size: clamp(34px,6.5vw,65px); font-weight: 800; line-height: 1.15; margin: 0 auto 20px; letter-spacing: -1px; color: #fff; max-width: 900px; position: relative; z-index: 2; }
+        .hero-title { display: block; font-family: 'Share Tech Mono', monospace; text-transform: uppercase;
+            background: linear-gradient(120deg, #fff 25%, var(--accent) 50%, var(--matrix-green) 75%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(56,189,248,0.15)); animation: shine-sweep 6s linear infinite; }
+        @keyframes shine-sweep { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+        .hero-sub-line { display: block; font-size: 0.72em; font-weight: 700; color: var(--text); margin-top: 12px; }
+        .hero-sub-line span { color: var(--accent); text-shadow: 0 0 12px rgba(56,189,248,0.4); border-bottom: 2px solid rgba(56,189,248,0.3); }
+        .hero-sub { font-size: clamp(18px,3vw,22px); color: var(--text-dim); max-width: 850px; margin: 0 auto 50px; position: relative; z-index: 2; }
+        .btn { display: inline-block; background: var(--accent); color: #000; padding: 20px 50px; border-radius: 100px; text-decoration: none; font-weight: 800; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(56,189,248,0.2); position: relative; z-index: 2; }
+        .btn:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(56,189,248,0.6); }
+        .section-title { text-align: center; font-size: 42px; margin-bottom: 60px; font-weight: 800; }
+        .section-title span { color: var(--accent); text-shadow: 0 0 20px rgba(56,189,248,0.3); }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 30px; margin-bottom: 100px; }
+        .trust-card { background: var(--card-bg); border: 1px solid rgba(56,189,248,0.08); padding: 45px; border-radius: 35px; backdrop-filter: blur(15px); transition: 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .trust-card:hover { border-color: rgba(56,189,248,0.4); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .card-header-icon { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .card-header-icon svg { width: 28px; height: 28px; fill: var(--accent); filter: drop-shadow(0 0 8px rgba(56,189,248,0.5)); }
+        .trust-card h3 { color: var(--accent); font-size: 24px; margin: 0; }
+        .process-section { padding: 100px 0; background: rgba(56,189,248,0.03); border-radius: 50px; margin: 50px 0; border: 1px solid rgba(56,189,248,0.05); }
+        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 40px; text-align: center; }
+        .step-num { font-size: 70px; font-weight: 800; color: rgba(56,189,248,0.25); margin-bottom: -40px; }
+        .faq-section { padding: 60px 0 100px; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px,1fr)); gap: 30px; margin-top: 40px; }
+        @media(max-width:600px){ .faq-grid { grid-template-columns: 1fr; } }
+        .faq-item { background: var(--card-bg); border: 1px solid rgba(255,255,255,0.05); padding: 35px; border-radius: 24px; backdrop-filter: blur(15px); }
+        .faq-item h3 { color: var(--accent); font-size: 18px; margin: 0 0 12px 0; font-weight: 700; }
+        .faq-item p { color: var(--text-dim); font-size: 15px; margin: 0; line-height: 1.6; }
+        .contact-section { max-width: 700px; margin: 60px auto 120px; background: var(--card-bg); padding: 60px; border-radius: 45px; border: 1px solid rgba(56,189,248,0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); backdrop-filter: blur(15px); }
+        .form-group { margin-bottom: 25px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 15px; color: #fff; font-family: inherit; font-size: 16px; transition: 0.3s; box-sizing: border-box; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); outline: none; background: rgba(56,189,248,0.04); box-shadow: 0 0 20px rgba(56,189,248,0.1); }
+        .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-dim); margin-bottom: 30px; position: relative; z-index: 2; justify-content: center; flex-wrap: wrap; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 80px 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
+        footer .footer-logo { font-weight: 800; font-size: 22px; text-decoration: none; color: #fff; margin-bottom: 15px; display: block; }
+        footer .footer-logo span { color: var(--accent); }
+        .reveal-section { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .reveal-section.visible { opacity: 1; transform: translateY(0); }
+        @media(max-width:768px) { .contact-section { padding: 40px 24px; } }
+    </style>
+
+</head>
+<body>
+    <div class="mouse-glow"></div>
+    <canvas id="network-canvas" aria-label="Interaktivní animované síťové pozadí"></canvas>
+    <div class="container">
+        <nav>
+            <a href="/" class="logo">Janyskova<span>Digital</span></a>
+            <div class="nav-links">
+                <a href="/#proces">Proces</a>
+                <a href="/#cenik">Ceník</a>
+                <a href="/#faq">FAQ</a>
+            </div>
+        </nav>
+
+        <header>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Domů</a>
+                <span aria-hidden="true">›</span>
+                <span>Tvorba webových stránek Nový Jičín</span>
+            </nav>
+            <div class="tech-badge">
+                <span class="dot"></span>
+                status: psáno čistým kódem
+            </div>
+            <h1>
+                <span class="hero-title">Webové stránky Nový Jičín</span>
+                <span class="hero-sub-line">cenově dostupné, ale <span>v maximální kvalitě</span></span>
+            </h1>
+            <p class="hero-sub">Jsem z regionu – znám místní trh a potřeby podnikatelů z Nového Jičína. Získejte moderní web na míru, který vás vyřadí před konkurenci ve vyhledávání i v očích zákazníků.</p>
+            <a href="#kontakt" class="btn">Chci web pro Nového Jičína</a>
+        </header>
+
+        <main>
+            <section class="reveal-section" style="padding: 60px 0 40px;">
+                <div style="max-width: 800px; margin: 0 auto; background: var(--card-bg); border: 1px solid rgba(56,189,248,0.15); border-radius: 30px; padding: 45px; backdrop-filter: blur(15px);">
+                    <h2 style="color: var(--accent); font-size: 26px; margin-top: 0;">Tvorba webu v Novém Jičíně</h2>
+                    <p style="color: var(--text-dim); font-size: 17px; line-height: 1.8;">Jako místní vím, že podnikatelé v Novém Jičíně a okolí potřebují web, který pracuje za ně – přivádí zákazníky, budí důvěru a nestojí majlant na provoz. Proto dělám weby čistým kódem bez WordPressu: jsou bleskové, bezpečné a hosting vás vyjde na <strong>0 Kč ročně</strong>.</p>
+                    <p style="color: var(--matrix-green); font-family: 'Share Tech Mono', monospace; font-size: 14px; border-left: 3px solid var(--matrix-green); padding-left: 15px; margin-bottom: 0;">📍 Působím přímo v Novém Jičíně a okolí – projekt můžeme probrat osobně u vás nebo v kavárně.</p>
+                </div>
+            </section>
+
+            <section class="reveal-section" style="padding: 80px 0 40px;">
+                <h2 class="section-title">Proč je můj web <span>nejvýhodnější investice?</span></h2>
+                <div class="trust-grid">
+                    <div class="trust-card">
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg>
+                            <h3>Extrémní rychlost a výkon</h3>
+                        </div>
+                        <p>Pomalý web vás stojí zákazníky. Moje weby dosahují až 100 % v testech Google PageSpeed. Rychlé načítání Google miluje a posouvá vás ve vyhledávání pro klíčová slova jako <em>webové stránky Nový Jičín</em>.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2-.9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                            <h3>Žádné poplatky za hosting</h3>
+                        </div>
+                        <p>Neplaťte agenturám tisíce ročně za předražený hosting. U mě platíte jen jednorázovou cenu za tvorbu. Hosting vás vyjde na <strong>0 Kč ročně</strong> – platíte pouze za doménu přímo registrátorovi.</p>
+                    </div>
+                    <div class="trust-card">
+                        <div class="card-header-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                            <h3>Bezpečnost bez starostí</h3>
+                        </div>
+                        <p>Čistý kód bez WordPressu – žádné zastaralé pluginy, žádní hackeři. Web je stabilní, bezpečný a nevyžaduje drahou údržbu.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="proces" class="process-section reveal-section">
+                <h2 class="section-title">Jak probíhá <span>tvorba webu</span></h2>
+                <div class="process-steps">
+                    <div>
+                        <div class="step-num">01</div>
+                        <h3>Strategie a cena</h3>
+                        <p>Ujasníme si, co má váš web umět a pro koho je určen. Nastavíme pevný rozpočet, který se už nezvýší.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">02</div>
+                        <h3>Kódování na míru</h3>
+                        <p>Píšu web přímo v čistém HTML a CSS – žádné šablony, jen maximální rychlost pro mobily i počítače.</p>
+                    </div>
+                    <div>
+                        <div class="step-num">03</div>
+                        <h3>Zviditelnění na Google</h3>
+                        <p>Web propojíme s Google Search Console a Seznam Webmasterem, aby byl okamžitě vidět ve vyhledávačích.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq-section reveal-section" id="faq">
+                <h2 class="section-title">Často kladené <span>otázky</span></h2>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <h3>Jak je možné, že neplatím nic za hosting?</h3>
+                        <p>Web stavím čistým kódem bez WordPressu. Výsledné soubory nahrávám na moderní cloudové platformy, které nabízejí hosting pro statické weby zcela zdarma a s extrémní rychlostí.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Budu moci web v budoucnu sama upravovat?</h3>
+                        <p>Ano. Kód píšu velmi přehledně a čistě. Pokud budete chtít změnit texty nebo přidat fotku, buď vám pomůžu, nebo vás navedu jak si text jednoduše přepsat bez programování.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Jak dlouho trvá kompletní tvorba webu?</h3>
+                        <p>Menší prezentační weby mívám hotové do 7–10 dnů od dodání podkladů. U rozsáhlejších webů se domluvíme na přesném harmonogramu.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Jste opravdu z Nového Jičína?</h3>
+                        <p>Ano, bydlím ve Starojické Lhotě kousek od Nového Jičína. Dobře znám místní prostředí a pokud chcete, schůzku v Novém Jičíně domluvíme ráda.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact-section reveal-section" id="kontakt">
+                <h2 style="text-align:center; margin-bottom: 10px;">Pojďme postavit váš <span style="color:var(--accent);">web v Novém Jičíně</span></h2>
+                <p style="text-align:center; color:var(--text-dim); margin-bottom:35px; font-size:15px;">Nezávazná poptávka – odpovídám do 24 hodin</p>
+                <form action="https://formspree.io/f/mykvkvpz" method="POST">
+                    <input type="hidden" name="_subject" value="Poptávka z lokální stránky – Nový Jičín">
+                    <div class="form-group"><input type="text" name="jmeno" placeholder="Vaše jméno" required></div>
+                    <div class="form-group"><input type="email" name="_replyto" placeholder="E-mail" required></div>
+                    <div class="form-group"><textarea name="zprava" rows="5" placeholder="Co potřebujete na svém webu vyřešit?" required></textarea></div>
+                    <button type="submit" class="btn" style="width:100%;">Odeslat nezávaznou poptávku</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
+            <p>Tvorba moderních webů s čistým kódem a nulovými náklady na hosting.</p>
+            <p style="margin-top: 20px; font-size: 14px;">
+                Lokální stránky:
+                <a href="/novy-jicin/" style="color:var(--accent); text-decoration:none; margin: 0 8px;">Nový Jičín</a>·
+                <a href="/pribor/" style="color:var(--accent); text-decoration:none; margin: 0 8px;">Příbor</a>·
+                <a href="/koprivnice/" style="color:var(--accent); text-decoration:none; margin: 0 8px;">Kopřivnice</a>
+            </p>
+            <p style="margin-top: 15px; font-size: 13px; color: #55657e;">
+                © 2025 Janyskova Digital · Gabriela Janýšková ·
+                <a href="/ochrana-osobnich-udaju/" style="color:#94a3b8; text-decoration:none;">Ochrana osobních údajů</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Mouse glow
+        document.addEventListener('mousemove', e => {
+            document.querySelector('.mouse-glow').style.setProperty('--mouse-x', e.clientX + 'px');
+            document.querySelector('.mouse-glow').style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+        // Network canvas
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let nodes = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener('resize', resize);
+        for (let i = 0; i < 60; i++) nodes.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random()-0.5)*0.4, vy: (Math.random()-0.5)*0.4 });
+        function drawNetwork() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            nodes.forEach(n => { n.x += n.vx; n.y += n.vy; if(n.x<0||n.x>canvas.width) n.vx*=-1; if(n.y<0||n.y>canvas.height) n.vy*=-1; });
+            for (let i=0; i<nodes.length; i++) for (let j=i+1; j<nodes.length; j++) {
+                const dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d=Math.sqrt(dx*dx+dy*dy);
+                if(d<150){ ctx.strokeStyle=`rgba(56,189,248,${0.15*(1-d/150)})`; ctx.lineWidth=0.5; ctx.beginPath(); ctx.moveTo(nodes[i].x,nodes[i].y); ctx.lineTo(nodes[j].x,nodes[j].y); ctx.stroke(); }
+            }
+            nodes.forEach(n => { ctx.fillStyle='rgba(56,189,248,0.5)'; ctx.beginPath(); ctx.arc(n.x,n.y,2,0,Math.PI*2); ctx.fill(); });
+            requestAnimationFrame(drawNetwork);
+        }
+        drawNetwork();
+        // Reveal on scroll
+        const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
+        document.querySelectorAll('.reveal-section').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
