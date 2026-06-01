@@ -235,7 +235,7 @@
         .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
         .step-num { font-size: 70px; font-weight: 800; color: rgba(56, 189, 248, 0.25); margin-bottom: -40px; }
 
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 50px; align-items: start;}
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 50px; }
         .price-card { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; padding: 60px 45px; position: relative; backdrop-filter: blur(15px); transition: 0.3s; }
         .price-card.popular { border: 2px solid var(--accent); box-shadow: 0 0 50px rgba(56, 189, 248, 0.15); }
         .price { font-size: 56px; font-weight: 800; margin: 30px 0; color: #fff; min-height: 120px; }
@@ -513,13 +513,16 @@
 
             <section id="cenik" class="pricing-section">
     <h2 class="section-title">Transparentní <span>ceník webových stránek</span></h2>
-    <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div class="pricing-grid">
 
         <!-- Web Start -->
         <div class="price-card">
             <h3>Web Start</h3>
             <p>Perfektní pro specialisty, řemeslníky a drobné živnostníky.</p>
-            <div class="price">5 900 <span>Kč</span></div>
+            <div class="price">
+                <span style="display:block; height:24px;"></span>
+                5 900 <span>Kč</span>
+            </div>
             <ul class="features">
                 <li>Výkonný moderní One-page web</li>
                 <li>Bleskové načítání (zelená čísla v testech)</li>
@@ -534,7 +537,10 @@
             <div style="background:#0a1628; color:var(--matrix-green); position:absolute; top:0; left:50%; transform:translate(-50%,-50%); padding:5px 20px; border-radius:20px; font-weight:600; font-size:13px; border:2px solid var(--matrix-green); box-shadow:0 0 15px rgba(0,255,102,0.2); font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap;">Nejvýhodnější</div>
             <h3>Web Business</h3>
             <p>Vše, co potřebuje rostoucí firma pro úspěšný prodej.</p>
-            <div class="price"><span style="font-size:20px; color:var(--text-dim); display:block;">od</span>12 000 <span>Kč</span></div>
+            <div class="price">
+                <span style="display:block; height:24px; font-size:20px; color:var(--text-dim);">od</span>
+                12 000 <span>Kč</span>
+            </div>
             <ul class="features">
                 <li>Kompletní vícestránkový web</li>
                 <li>Pokročilá SEO analýza klíčových slov</li>
@@ -549,7 +555,10 @@
         <div class="price-card">
             <h3>Web Care</h3>
             <p>Nechte správu webu na mně – vy se věnujte byznysu.</p>
-            <div class="price">990 <span>Kč/měs</span></div>
+            <div class="price">
+                <span style="display:block; height:24px;"></span>
+                990 <span>Kč/měs</span>
+            </div>
             <ul class="features">
                 <li>Aktualizace textů a fotek</li>
                 <li>Drobné úpravy webu každý měsíc</li>
@@ -558,6 +567,12 @@
                 <li><strong>Prioritní podpora a rychlá odezva</strong></li>
             </ul>
         </div>
+
+    </div>
+    <p style="text-align:center; color:var(--text-dim); margin-top:40px; font-size:15px;">
+        Působím primárně v oblastech <strong>Nový Jičín, Příbor, Kopřivnice a okolí</strong>. Pokud jste z regionu, ráda s vámi projekt proberu i osobně.
+    </p>
+</section>
 
     </div>
     <p style="text-align:center; color:var(--text-dim); margin-top:40px; font-size:15px;">
