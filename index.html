@@ -200,8 +200,9 @@
         .nav-links a:hover { color: var(--accent); }
 
         /* Hamburger */
-        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1100; position: relative; }
-        .ham-bar { display: block; width: 28px; height: 2px; background: var(--accent); border-radius: 2px; transition: 0.4s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; cursor: pointer; padding: 10px; z-index: 1100; position: fixed; top: 20px; right: 20px; backdrop-filter: blur(10px); transition: 0.3s; }
+        .hamburger:hover { border-color: rgba(56,189,248,0.5); background: rgba(56,189,248,0.1); }
+        .ham-bar { display: block; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; transition: 0.4s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
         .hamburger.open .ham-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
         .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -580,6 +581,36 @@
                     <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-top: 16px;">
                         Každý web stavím s ohledem na AI vyhledávání — aby vás našel nejen Google, ale i ChatGPT nebo Perplexity. Většina webdesignerů tohle ještě neřeší. Já ano.
                     </p>
+                </div>
+            </section>
+
+            <section id="reference" style="padding: 100px 0;">
+                <h2 class="section-title">Weby které jsem <span>postavila</span></h2>
+                <div style="position: relative; margin-top: 50px;">
+                    <button onclick="slideRef(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">‹</button>
+                    <button onclick="slideRef(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">›</button>
+
+                    <div style="overflow: hidden; border-radius: 30px;">
+                        <div id="ref-track" style="display: flex; transition: transform 0.4s ease;">
+
+                            <div style="min-width: 100%; background: rgba(15,23,42,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; overflow: hidden;">
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding: 40px 50px;">
+                                    <img src="/img/nikola-desktop.webp" alt="Web Nikola Hubáčková — fotografka" style="flex: 1; min-width: 280px; max-width: 500px; height: auto; object-fit: contain;">
+                                    <div style="flex: 1; min-width: 240px;">
+                                        <div style="font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--matrix-green); letter-spacing: 1px; margin-bottom: 10px;">FOTOGRAFIE</div>
+                                        <h3 style="font-size: 26px; font-weight: 700; margin: 0 0 12px;">Nikola Hubáčková</h3>
+                                        <p style="color: var(--text-dim); font-size: 16px; margin: 0 0 24px; line-height: 1.7;">Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online objednávkovým formulářem.</p>
+                                        <a href="https://hubackovafoto.cz" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: none;">hubackovafoto.cz →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="ref-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent);"></div>
+                    </div>
                 </div>
             </section>
 
@@ -1155,12 +1186,25 @@
             btn.classList.toggle('open');
             document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
         }
-        // Zavřít při kliknutí na pozadí
         document.getElementById('fullscreen-menu').addEventListener('click', function(e) {
             if (e.target === this) toggleMenu();
         });
-        // Zavřít při Escape
         document.addEventListener('keydown', e => { if (e.key === 'Escape') { const m = document.getElementById('fullscreen-menu'); if (m.classList.contains('open')) toggleMenu(); }});
+
+        // Slider referencí — bezpečná deklarace
+        if (typeof window.refCurrent === 'undefined') {
+            window.refCurrent = 0;
+        }
+        function slideRef(dir) {
+            const track = document.getElementById('ref-track');
+            if (!track) return;
+            const slides = track.children.length;
+            window.refCurrent = (window.refCurrent + dir + slides) % slides;
+            track.style.transform = `translateX(-${window.refCurrent * 100}%)`;
+            document.querySelectorAll('#ref-dots div').forEach((d, i) => {
+                d.style.background = i === window.refCurrent ? 'var(--accent)' : 'rgba(56,189,248,0.2)';
+            });
+        }
     </script>
 </body>
 </html>
