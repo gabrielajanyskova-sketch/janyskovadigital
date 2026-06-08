@@ -791,43 +791,41 @@
                         <div class="card-top">
                             <h3>Web Care</h3>
                             <p>Nechte správu webu na mně – vy se věnujte byznysu.</p>
-                            <!-- Toggle -->
                             <div style="display:flex; gap:0; margin: 16px 0 0; border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; overflow:hidden;">
-                                <button onclick="switchCare('monthly')" id="care-btn-monthly"
-                                    style="flex:1; padding:10px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:var(--accent); color:#000; text-transform:uppercase; letter-spacing:0.5px;">
-                                    Měsíční
-                                </button>
-                                <button onclick="switchCare('hourly')" id="care-btn-hourly"
-                                    style="flex:1; padding:10px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">
-                                    Hodinově
-                                </button>
+                                <button onclick="switchCare('basic')" id="care-btn-basic" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:var(--accent); color:#000; text-transform:uppercase; letter-spacing:0.5px;">Základní</button>
+                                <button onclick="switchCare('standard')" id="care-btn-standard" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">Standard</button>
+                                <button onclick="switchCare('hourly')" id="care-btn-hourly" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">Hodinově</button>
                             </div>
                         </div>
 
-                        <!-- Měsíční -->
-                        <div id="care-monthly">
-                            <div class="price">
-                                990 <span class="unit">Kč/měs</span>
-                            </div>
+                        <div id="care-basic">
+                            <div class="price">490 <span class="unit">Kč/měs</span></div>
                             <ul class="features">
-                                <li>Aktualizace textů a fotek</li>
-                                <li>Drobné úpravy webu každý měsíc</li>
-                                <li>Technický dohled a monitoring</li>
-                                <li>Měsíční report z Google Analytics</li>
-                                <li><strong>Prioritní podpora a rychlá odezva</strong></li>
+                                <li>Technický monitoring webu</li>
+                                <li>1 úprava obsahu měsíčně (text nebo fotka)</li>
+                                <li>Odpověď do 48 hodin</li>
+                                <li><strong>Ideální pro stabilní weby</strong></li>
                             </ul>
                         </div>
 
-                        <!-- Hodinově -->
-                        <div id="care-hourly" style="display:none;">
-                            <div class="price">
-                                850 <span class="unit">Kč/hod</span>
-                            </div>
+                        <div id="care-standard" style="display:none;">
+                            <div class="price">990 <span class="unit">Kč/měs</span></div>
                             <ul class="features">
-                                <li>Úpravy webu podle aktuální potřeby</li>
-                                <li>Fakturace za skutečně odpracovaný čas</li>
+                                <li>Technický monitoring webu</li>
+                                <li>Úpravy obsahu do 2 hodin práce měsíčně</li>
+                                <li>Měsíční report z Google Analytics</li>
+                                <li>Odpověď do 24 hodin</li>
+                                <li><strong>Prioritní podpora</strong></li>
+                            </ul>
+                        </div>
+
+                        <div id="care-hourly" style="display:none;">
+                            <div class="price">850 <span class="unit">Kč/hod</span></div>
+                            <ul class="features">
+                                <li>Platíte jen za odvedenou práci</li>
                                 <li>Žádné měsíční závazky</li>
                                 <li>Vyřízení do 48 hodin od zadání</li>
+                                <li>Faktura po dokončení</li>
                                 <li><strong>Ideální pro občasné změny</strong></li>
                             </ul>
                         </div>
@@ -835,21 +833,16 @@
 
                     <script>
                     function switchCare(type) {
-                        var monthly = document.getElementById('care-monthly');
-                        var hourly = document.getElementById('care-hourly');
-                        var btnM = document.getElementById('care-btn-monthly');
-                        var btnH = document.getElementById('care-btn-hourly');
-                        if (type === 'monthly') {
-                            monthly.style.display = 'block';
-                            hourly.style.display = 'none';
-                            btnM.style.background = 'var(--accent)'; btnM.style.color = '#000';
-                            btnH.style.background = 'transparent'; btnH.style.color = 'var(--text-dim)';
-                        } else {
-                            monthly.style.display = 'none';
-                            hourly.style.display = 'block';
-                            btnH.style.background = 'var(--accent)'; btnH.style.color = '#000';
-                            btnM.style.background = 'transparent'; btnM.style.color = 'var(--text-dim)';
-                        }
+                        ['basic','standard','hourly'].forEach(function(t) {
+                            document.getElementById('care-'+t).style.display = 'none';
+                            var btn = document.getElementById('care-btn-'+t);
+                            btn.style.background = 'transparent';
+                            btn.style.color = 'var(--text-dim)';
+                        });
+                        document.getElementById('care-'+type).style.display = 'block';
+                        var active = document.getElementById('care-btn-'+type);
+                        active.style.background = 'var(--accent)';
+                        active.style.color = '#000';
                     }
                     </script>
 
