@@ -465,6 +465,65 @@
             opacity: 1;
             transform: translateY(0);
         }
+        /* ==========================================================================
+   KOMPLETNÍ OPTIMALIZACE PRO MOBILNÍ ZAŘÍZENÍ (MAX 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Celkové odsazení a rozvržení hlavičky (Hero sekce) */
+    header {
+        padding: 50px 0 40px !important;
+        text-align: center;
+    }
+
+    /* 2. Zkrocení nadpisu H1, aby netlačil na okraje a správně se zalamoval */
+    header h1 {
+        font-size: 28px !important;
+        line-height: 1.25 !important;
+        padding: 0 15px !important;
+        margin-bottom: 15px !important;
+    }
+
+    /* 3. Klíčová oprava pro Scramble efekt — zrušíme fixní šířku, text se začne zalamovat */
+    .scramble-title {
+        min-width: auto !important; 
+        display: inline !important;
+        white-space: normal !important;
+        font-size: 1em !important;
+        word-break: break-word !important;
+    }
+
+    /* 4. Skrytí poletujících kódů na pozadí, které na mobilu překáží v čtení */
+    .floating-gfx {
+        display: none !important;
+    }
+
+    /* 5. Úprava podnadpisu (Hero textu), aby byl čitelný a kompaktní */
+    .hero-sub {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 25px !important;
+        padding: 0 15px !important;
+    }
+
+    /* 6. Zmenšení a vycentrování té upřímné poznámky pod textem */
+    .honest-note {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin: 10px auto 25px !important;
+        padding: 10px 14px !important;
+        max-width: 90% !important;
+    }
+
+    /* 7. Optimalizace hlavního CTA tlačítka pro palec na mobilu */
+    header .btn {
+        padding: 16px 30px !important;
+        font-size: 15px !important;
+        width: calc(100% - 30px) !important; /* Roztáhne se pěkně na šířku displeje s mírným okrajem */
+        max-width: 340px !important; /* Aby na větších tabletech nebylo obří */
+        display: inline-block !important;
+    }
+}
     </style>
 </head>
 <body>
