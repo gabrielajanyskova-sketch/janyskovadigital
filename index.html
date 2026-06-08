@@ -13,24 +13,24 @@
     <meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tvorba webových stránek na míru | Janyskova Digital">
     <meta name="twitter:description" content="Weby na míru pro živnostníky z Novojičínska i celé ČR. Čistý kód, rychlost, hosting v ceně.">
+    <meta name="geo.region" content="CZ-80">
+    <meta name="geo.placename" content="Nový Jičín">
+    <meta name="geo.position" content="49.5933;18.0139">
+    <meta name="ICBM" content="49.5933, 18.0139">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="canonical" href="https://janyskovadigital.cz/" />
 
-    <meta name="geo.region" content="CZ-80">
-    <meta name="geo.placename" content="Nový Jičín">
-    <meta name="geo.position" content="49.5933;18.0139">
-    <meta name="ICBM" content="49.5933, 18.0139">
-    <meta name="geo.region" content="CZ-80">
-    <meta name="geo.placename" content="Nový Jičín">
-    <meta name="geo.position" content="49.5933;18.0139">
-    <meta name="ICBM" content="49.5933, 18.0139">
     <meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M" />
     <meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh" />
 
@@ -237,28 +237,6 @@
             .hamburger { display: flex; }
         }
 
-
-        /* Hamburger */
-        .hamburger { display: none; flex-direction: column; gap: 6px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; cursor: pointer; padding: 10px; z-index: 1100; position: fixed; top: 20px; right: 20px; backdrop-filter: blur(10px); transition: 0.3s; }
-        .hamburger:hover { border-color: rgba(56,189,248,0.5); background: rgba(56,189,248,0.1); }
-        .ham-bar { display: block; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; transition: 0.4s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
-        .hamburger.open .ham-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-        .fullscreen-menu { position: fixed; inset: 0; background: rgba(2,4,6,0.97); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-        .fullscreen-menu.open { opacity: 1; pointer-events: all; }
-        .fullscreen-menu a { font-size: clamp(36px, 10vw, 72px); font-weight: 800; color: rgba(255,255,255,0.15); text-decoration: none; text-transform: uppercase; letter-spacing: -1px; line-height: 1.1; transform: translateY(30px); opacity: 0; transition: color 0.3s, transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease; }
-        .fullscreen-menu.open a { transform: translateY(0); opacity: 1; }
-        .fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
-        .fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
-        .fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
-        .fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
-        .fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
-        .fullscreen-menu.open a:nth-child(6) { transition-delay: 0.3s; }
-        .fullscreen-menu a:hover { color: var(--accent); text-shadow: 0 0 40px rgba(56,189,248,0.4); }
-        .fullscreen-menu .menu-contact { margin-top: 60px; font-size: 15px; color: var(--text-dim); font-family: 'Share Tech Mono', monospace; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s; }
-        .fullscreen-menu.open .menu-contact { opacity: 1; transform: translateY(0); }
-        @media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
         header { padding: 100px 0 80px; text-align: center; position: relative; }
 
         .floating-gfx {
@@ -361,13 +339,11 @@
 
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 50px; }
         .price-card { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; padding: 60px 45px; position: relative; backdrop-filter: blur(15px); transition: 0.3s; display: flex; flex-direction: column; }
-        .card-top { height: 200px; display: flex; flex-direction: column; justify-content: flex-start; }
         .price-card.popular { border: 2px solid var(--accent); box-shadow: 0 0 50px rgba(56, 189, 248, 0.15); }
         .card-top { height: 200px; display: flex; flex-direction: column; justify-content: flex-start; }
         .price { font-size: 52px; font-weight: 800; margin: 24px 0; color: #fff; height: 70px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
         .price .unit { font-size: 18px; color: var(--text-dim); font-weight: 400; }
         .price span { font-size: 20px; color: var(--text-dim); }
-        .price .unit { font-size: 18px; color: var(--text-dim); font-weight: 400; }
         .features { list-style: none; padding: 0; margin: 0; text-align: left; }
         .features li { margin-bottom: 12px; color: var(--text-dim); position: relative; padding-left: 25px; }
         .features li::before { content: "✓"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
@@ -419,19 +395,6 @@
             flex-shrink: 0;
         }
 
-        /* Quiz */
-        .quiz-wrap { max-width: 700px; margin: 0 auto; }
-        .quiz-step { display: none; }
-        .quiz-step.active { display: block; }
-        .quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 14px; margin: 24px 0; }
-        .quiz-opt { background: var(--card-bg); border: 1px solid rgba(56,189,248,0.15); border-radius: 16px; padding: 18px 20px; cursor: pointer; font-size: 15px; font-weight: 600; color: var(--text); transition: 0.3s; text-align: left; font-family: inherit; }
-        .quiz-opt:hover { border-color: rgba(56,189,248,0.5); background: rgba(56,189,248,0.08); transform: translateY(-2px); }
-        .quiz-result { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.2); border-radius: 24px; padding: 32px; text-align: center; }
-        .quiz-result h3 { color: var(--accent); font-size: 24px; margin: 0 0 12px; }
-        .quiz-result p { color: var(--text-dim); margin: 0 0 24px; font-size: 16px; line-height: 1.7; }
-        .quiz-progress { display: flex; gap: 8px; margin-bottom: 24px; }
-        .quiz-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(56,189,248,0.2); transition: 0.3s; }
-        .quiz-dot.done { background: var(--accent); }
         .faq-section { padding: 60px 0 100px; }
         .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; margin-top: 40px; }
         @media(max-width: 600px) { .faq-grid { grid-template-columns: 1fr; } }
@@ -512,17 +475,11 @@
         <nav>
             <a href="/" class="logo">Janyskova<span>Digital</span></a>
             <div class="nav-links">
-                <a href="#jak-to-funguje">Jak to funguje</a>
+                <a href="#proces">Proces</a>
                 <a href="#cenik">Ceník</a>
-                <a href="#reference">Reference</a>
+                <a href="#faq">FAQ</a>
                 <a href="/blog.html">Blog</a>
-                <a href="#kontakt" style="color:var(--accent);">Kontakt</a>
             </div>
-            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Otevřít menu">
-                <span class="ham-bar"></span>
-                <span class="ham-bar"></span>
-                <span class="ham-bar"></span>
-            </button>
             <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Otevřít menu">
                 <span class="ham-bar"></span>
                 <span class="ham-bar"></span>
@@ -530,22 +487,12 @@
             </button>
         </nav>
 
-        <div class="fullscreen-menu" id="fullscreen-menu">
-            <a href="#jak-to-funguje" onclick="toggleMenu()">Jak to funguje</a>
-            <a href="#cenik" onclick="toggleMenu()">Ceník</a>
-            <a href="#reference" onclick="toggleMenu()">Reference</a>
-            <a href="#o-mne" onclick="toggleMenu()">O mně</a>
-            <a href="/blog.html" onclick="toggleMenu()">Blog</a>
-            <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
-            <div class="menu-contact">info@janyskovadigital.cz</div>
-        </div>
-
         <!-- Fullscreen menu -->
         <div class="fullscreen-menu" id="fullscreen-menu">
-            <a href="#jak-to-funguje" onclick="toggleMenu()">Jak to funguje</a>
+            <a href="#proces" onclick="toggleMenu()">Proces</a>
             <a href="#cenik" onclick="toggleMenu()">Ceník</a>
-            <a href="#reference" onclick="toggleMenu()">Reference</a>
             <a href="#o-mne" onclick="toggleMenu()">O mně</a>
+            <a href="#faq" onclick="toggleMenu()">FAQ</a>
             <a href="/blog.html" onclick="toggleMenu()">Blog</a>
             <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
             <div class="menu-contact">info@janyskovadigital.cz</div>
@@ -563,15 +510,15 @@
 
             <h1>
                 <span class="scramble-title" id="scramble-h1" data-value="Tvorba webových stránek">Tvorba webových stránek</span>
-                <span class="scramble-sub">na míru, v čistém kódu a s <span>hostingem v ceně tvorby</span></span>
+                <span class="scramble-sub">na míru, v čistém kódu a s <span>nulovými náklady na hosting</span></span>
             </h1>
 
             <div class="honest-note">
-                <strong>&gt;_</strong> Celý provoz tohoto webu stojí 200 Kč ročně — jen doména. Hosting je v ceně tvorby.
+                <strong>&gt;_</strong> Celý provoz tohoto webu stojí 200 Kč ročně — jen doména. Hosting? Zdarma.
             </div>
 
-            <p class="hero-sub">Váš web by měl přivádět zákazníky, ne jen existovat. Stavím weby na míru — rychlé, moderní a bez zbytečných měsíčních nákladů. Platíte jen za doménu.</p>
-            <a href="#kontakt" class="btn">Chci web, který funguje</a>
+            <p class="hero-sub">Moderní webové stránky na míru — čistý kód, bleskové načítání a roční náklady pouze za doménu. Bez WordPressu, bez předražených šablon, bez skrytých poplatků za hosting.</p>
+            <a href="#kontakt" class="btn">Chci moderní web na míru</a>
         </header>
 
         <main>
@@ -581,23 +528,23 @@
                     <div class="trust-card">
                         <div class="card-header-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg>
-                            <h3>Web který se načte dřív, než zákazník stačí odejít</h3>
+                            <h3>Extrémní rychlost a výkon</h3>
                         </div>
-                        <p>Pomalý web ztrácí zákazníky — to nejsou dohady, to jsou data Googlu. Moje weby se načtou za méně než 1 sekundu a dosahují 100 bodů v PageSpeed testu.</p>
+                        <p>Pomalý web vás stojí zákazníky. Moje weby píšu čistým kódem, takže dosahují až 100 % v testech Google PageSpeed. Rychlé načítání navíc Google miluje a posouvá vás zdarma nahoru ve vyhledávání.</p>
                     </div>
                     <div class="trust-card">
                         <div class="card-header-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2-.9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                            <h3>Hosting v ceně — žádné měsíční poplatky navíc</h3>
+                            <h3>Žádné poplatky za hosting</h3>
                         </div>
-                        <p>Agentury si účtují 2 000–5 000 Kč ročně za hosting. U mě je hosting součástí tvorby webu. Jediné co platíte je doména — zhruba 200 Kč za rok.</p>
+                        <p>Neplaťte agenturám tisíce korun ročně za předražený webhosting a správu. U mě platíte pouze jednorázovou cenu za tvorbu webu. Provoz samotného hostingu vás u mě stojí 0 Kč ročně. Jediným vaším nákladem zůstává standardní poplatek za doménu.</p>
                     </div>
                     <div class="trust-card">
                         <div class="card-header-icon">
                             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                            <h3>Žádný WordPress, žádné starosti s aktualizacemi</h3>
+                            <h3>Bezpečnost bez starostí</h3>
                         </div>
-                        <p>WordPress weby potřebují pravidelné aktualizace — jinak jsou zranitelné. Čistý kód prostě funguje. Bez pluginů, bez hackerů, bez drahé údržby.</p>
+                        <p>Na rozdíl od WordPressu nepoužívám těžkopádné pluginy, které neustále zastarávají a lákají hackery. Čistý kód je prakticky nezničitelný, stabilní a nevyžaduje žádnou drahou údržbu.</p>
                     </div>
                 </div>
             </section>
@@ -648,32 +595,54 @@
                 </div>
             </section>
 
-            <section id="jak-to-funguje" class="process-section">
-                <h2 class="section-title">Jak probíhá <span>spolupráce?</span></h2>
+            <section id="reference" style="padding: 100px 0;">
+                <h2 class="section-title">Weby které jsem <span>postavila</span></h2>
+                <div style="position: relative; margin-top: 50px;">
+                    <button onclick="slideRef(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">‹</button>
+                    <button onclick="slideRef(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">›</button>
+
+                    <div style="overflow: hidden; border-radius: 30px;">
+                        <div id="ref-track" style="display: flex; transition: transform 0.4s ease;">
+
+                            <div style="min-width: 100%; background: rgba(15,23,42,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; overflow: hidden;">
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding: 40px 50px;">
+                                    <img src="/img/nikola-desktop.webp" alt="Web Nikola Hubáčková — fotografka" style="flex: 1; min-width: 280px; max-width: 500px; height: auto; object-fit: contain;">
+                                    <div style="flex: 1; min-width: 240px;">
+                                        <div style="font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--matrix-green); letter-spacing: 1px; margin-bottom: 10px;">FOTOGRAFIE</div>
+                                        <h3 style="font-size: 26px; font-weight: 700; margin: 0 0 12px;">Nikola Hubáčková</h3>
+                                        <p style="color: var(--text-dim); font-size: 16px; margin: 0 0 24px; line-height: 1.7;">Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online objednávkovým formulářem.</p>
+                                        <a href="https://hubackovafoto.cz" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: none;">hubackovafoto.cz →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="ref-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent);"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="proces" class="process-section">
+                <h2 class="section-title">Jak probíhá <span>tvorba webu</span></h2>
                 <div class="process-steps">
                     <div>
                         <div class="step-num">01</div>
-                        <h3>Nezávazná konzultace</h3>
-                        <p>Zavoláme si nebo napíšeme — probereme co váš web potřebuje, co se vám líbí a jaký máte rozpočet. Bez závazků a technických řečí.</p>
+                        <h3>Strategie a cena</h3>
+                        <p>Ujasníme si, co má váš web umět a pro koho je určen. Nastavíme pevný rozpočet, který se už nezvýší.</p>
                     </div>
                     <div>
                         <div class="step-num">02</div>
-                        <h3>Tvorba na míru</h3>
-                        <p>Píšu web přímo v čistém kódu — žádné šablony ani WordPress. Výsledek je rychlý, moderní a přesně pro vás.</p>
+                        <h3>Kódování na míru</h3>
+                        <p>Píšu web přímo v čistém HTML a CSS. Žádné zbytečné šablony, jen maximální rychlost pro mobily i počítače.</p>
                     </div>
                     <div>
                         <div class="step-num">03</div>
-                        <h3>Spuštění a Google</h3>
-                        <p>Web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.</p>
+                        <h3>Zviditelnění na Google</h3>
+                        <p>Web zdarma propojíme s Google Search Console a Seznam Webmasterem, aby byl okamžitě vidět ve vyhledávačích.</p>
                     </div>
-                    <div>
-                        <div class="step-num">04</div>
-                        <h3>Jsem tu i po spuštění</h3>
-                        <p>Potřebujete změnit text nebo přidat fotku? Napište mi — odpovídám do 24 hodin a ráda pomůžu.</p>
-                    </div>
-                </div>
-                <div style="text-align:center; margin-top:50px;">
-                    <a href="#kontakt" class="btn">Začít spolupráci →</a>
                 </div>
             </section>
 
@@ -759,12 +728,11 @@
                             5 900 <span class="unit">Kč</span>
                         </div>
                         <ul class="features">
-                            <li>Web na míru — žádné šablony, žádný WordPress</li>
-                            <li>Načítání pod 1 sekundu, PageSpeed 95–100</li>
-                            <li>SEO od základů — strukturovaná data, meta tagy, sitemap</li>
-                            <li>Mobilní verze, SSL certifikát, kontaktní formulář</li>
-                            <li>Propojení s Google Search Console a Seznam</li>
-                            <li><strong>Hosting v ceně tvorby — platíte jen doménu</strong></li>
+                            <li>Výkonný moderní One-page web</li>
+                            <li>Bleskové načítání (zelená čísla v testech)</li>
+                            <li>Základní technické SEO optimalizace</li>
+                            <li>Zabezpečený SSL certifikát v ceně</li>
+                            <li><strong>Nulové náklady na hosting (0 Kč / rok)</strong></li>
                         </ul>
                     </div>
 
@@ -778,12 +746,12 @@
                             <span class="unit" style="font-size:16px; margin-right:-4px;">od</span> 12 000 <span class="unit">Kč</span>
                         </div>
                         <ul class="features">
-                            <li>Vícestránkový web na míru (služby, galerie, blog...)</li>
-                            <li>Analýza klíčových slov — najdou vás zákazníci co hledají</li>
-                            <li>Kontaktní formulář + Google Analytics + Search Console</li>
-                            <li>WhatsApp tlačítko, cookie lišta, mobilní verze</li>
-                            <li>Hosting v ceně tvorby — platíte jen doménu</li>
-                            <li><strong>Cena dle rozsahu — vždy domluvená předem</strong></li>
+                            <li>Kompletní vícestránkový web</li>
+                            <li>Pokročilá SEO analýza klíčových slov</li>
+                            <li>Chytrý kontaktní formulář</li>
+                            <li>Propojení s Google Analytics</li>
+                            <li><strong>Nulové náklady na hosting (0 Kč / rok)</strong></li>
+                            <li>Cena dle rozsahu projektu – individuálně</li>
                         </ul>
                     </div>
 
@@ -791,41 +759,43 @@
                         <div class="card-top">
                             <h3>Web Care</h3>
                             <p>Nechte správu webu na mně – vy se věnujte byznysu.</p>
+                            <!-- Toggle -->
                             <div style="display:flex; gap:0; margin: 16px 0 0; border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; overflow:hidden;">
-                                <button onclick="switchCare('basic')" id="care-btn-basic" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:var(--accent); color:#000; text-transform:uppercase; letter-spacing:0.5px;">Základní</button>
-                                <button onclick="switchCare('standard')" id="care-btn-standard" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">Standard</button>
-                                <button onclick="switchCare('hourly')" id="care-btn-hourly" style="flex:1; padding:8px 4px; font-family:inherit; font-size:11px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">Hodinově</button>
+                                <button onclick="switchCare('monthly')" id="care-btn-monthly"
+                                    style="flex:1; padding:10px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:var(--accent); color:#000; text-transform:uppercase; letter-spacing:0.5px;">
+                                    Měsíční
+                                </button>
+                                <button onclick="switchCare('hourly')" id="care-btn-hourly"
+                                    style="flex:1; padding:10px; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.5px;">
+                                    Hodinově
+                                </button>
                             </div>
                         </div>
 
-                        <div id="care-basic">
-                            <div class="price">490 <span class="unit">Kč/měs</span></div>
+                        <!-- Měsíční -->
+                        <div id="care-monthly">
+                            <div class="price">
+                                990 <span class="unit">Kč/měs</span>
+                            </div>
                             <ul class="features">
-                                <li>Technický monitoring webu</li>
-                                <li>1 úprava obsahu měsíčně (text nebo fotka)</li>
-                                <li>Odpověď do 48 hodin</li>
-                                <li><strong>Ideální pro stabilní weby</strong></li>
-                            </ul>
-                        </div>
-
-                        <div id="care-standard" style="display:none;">
-                            <div class="price">990 <span class="unit">Kč/měs</span></div>
-                            <ul class="features">
-                                <li>Technický monitoring webu</li>
-                                <li>Úpravy obsahu do 2 hodin práce měsíčně</li>
+                                <li>Aktualizace textů a fotek</li>
+                                <li>Drobné úpravy webu každý měsíc</li>
+                                <li>Technický dohled a monitoring</li>
                                 <li>Měsíční report z Google Analytics</li>
-                                <li>Odpověď do 24 hodin</li>
-                                <li><strong>Prioritní podpora</strong></li>
+                                <li><strong>Prioritní podpora a rychlá odezva</strong></li>
                             </ul>
                         </div>
 
+                        <!-- Hodinově -->
                         <div id="care-hourly" style="display:none;">
-                            <div class="price">850 <span class="unit">Kč/hod</span></div>
+                            <div class="price">
+                                850 <span class="unit">Kč/hod</span>
+                            </div>
                             <ul class="features">
-                                <li>Platíte jen za odvedenou práci</li>
+                                <li>Úpravy webu podle aktuální potřeby</li>
+                                <li>Fakturace za skutečně odpracovaný čas</li>
                                 <li>Žádné měsíční závazky</li>
                                 <li>Vyřízení do 48 hodin od zadání</li>
-                                <li>Faktura po dokončení</li>
                                 <li><strong>Ideální pro občasné změny</strong></li>
                             </ul>
                         </div>
@@ -833,16 +803,21 @@
 
                     <script>
                     function switchCare(type) {
-                        ['basic','standard','hourly'].forEach(function(t) {
-                            document.getElementById('care-'+t).style.display = 'none';
-                            var btn = document.getElementById('care-btn-'+t);
-                            btn.style.background = 'transparent';
-                            btn.style.color = 'var(--text-dim)';
-                        });
-                        document.getElementById('care-'+type).style.display = 'block';
-                        var active = document.getElementById('care-btn-'+type);
-                        active.style.background = 'var(--accent)';
-                        active.style.color = '#000';
+                        var monthly = document.getElementById('care-monthly');
+                        var hourly = document.getElementById('care-hourly');
+                        var btnM = document.getElementById('care-btn-monthly');
+                        var btnH = document.getElementById('care-btn-hourly');
+                        if (type === 'monthly') {
+                            monthly.style.display = 'block';
+                            hourly.style.display = 'none';
+                            btnM.style.background = 'var(--accent)'; btnM.style.color = '#000';
+                            btnH.style.background = 'transparent'; btnH.style.color = 'var(--text-dim)';
+                        } else {
+                            monthly.style.display = 'none';
+                            hourly.style.display = 'block';
+                            btnH.style.background = 'var(--accent)'; btnH.style.color = '#000';
+                            btnM.style.background = 'transparent'; btnM.style.color = 'var(--text-dim)';
+                        }
                     }
                     </script>
 
@@ -917,47 +892,6 @@
                 </div>
             </section>
 
-            <section style="padding: 80px 0;">
-                <h2 class="section-title">Jaký web <span>potřebujete?</span></h2>
-                <p style="text-align:center; color:var(--text-dim); font-size:17px; max-width:500px; margin:-40px auto 50px;">3 otázky a víte, který balíček je pro vás.</p>
-                <div class="quiz-wrap">
-                    <div class="quiz-progress">
-                        <div class="quiz-dot done" id="qd1"></div>
-                        <div class="quiz-dot" id="qd2"></div>
-                        <div class="quiz-dot" id="qd3"></div>
-                    </div>
-                    <div class="quiz-step active" id="qs1">
-                        <p style="font-size:18px; font-weight:700; margin-bottom:8px;">Kolik stránek váš web potřebuje?</p>
-                        <div class="quiz-options">
-                            <button class="quiz-opt" onclick="quizNext(1,'one')">Jen jedna stránka — představím se a dám kontakt</button>
-                            <button class="quiz-opt" onclick="quizNext(1,'multi')">Víc stránek — služby, galerie, blog, o nás...</button>
-                        </div>
-                    </div>
-                    <div class="quiz-step" id="qs2">
-                        <p style="font-size:18px; font-weight:700; margin-bottom:8px;">Budete web potřebovat průběžně upravovat?</p>
-                        <div class="quiz-options">
-                            <button class="quiz-opt" onclick="quizNext(2,'no')">Ne moc — změny jednou za čas</button>
-                            <button class="quiz-opt" onclick="quizNext(2,'yes')">Ano — nové fotky, akce, texty pravidelně</button>
-                        </div>
-                    </div>
-                    <div class="quiz-step" id="qs3">
-                        <p style="font-size:18px; font-weight:700; margin-bottom:8px;">Jak rychle web potřebujete?</p>
-                        <div class="quiz-options">
-                            <button class="quiz-opt" onclick="quizNext(3,'fast')">Co nejdřív — do 2 týdnů</button>
-                            <button class="quiz-opt" onclick="quizNext(3,'normal')">Normálně — máme čas to udělat pořádně</button>
-                        </div>
-                    </div>
-                    <div class="quiz-step" id="qs-result">
-                        <div class="quiz-result">
-                            <h3 id="quiz-result-title"></h3>
-                            <p id="quiz-result-text"></p>
-                            <a href="#kontakt" class="btn">Chci tenhle web →</a>
-                        </div>
-                        <button onclick="quizReset()" style="background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:14px; margin-top:16px; display:block; margin-left:auto; margin-right:auto;">↺ Zkusit znovu</button>
-                    </div>
-                </div>
-            </section>
-
             <section id="faq" class="faq-section">
                 <h2 class="section-title">Často kladené <span>otázky (FAQ)</span></h2>
                 <div class="faq-grid">
@@ -980,6 +914,31 @@
                 </div>
             </section>
 
+            <section style="padding: 80px 0;">
+                <h2 class="section-title">Z <span>blogu</span></h2>
+                <p style="text-align:center; color:var(--text-dim); font-size:17px; max-width:600px; margin:-40px auto 50px;">Tipy a novinky ze světa webdesignu, SEO a AI vyhledávání.</p>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px; margin-bottom:40px;">
+
+                    <a href="/blog/cena-webu-novy-jicin.html" style="text-decoration:none; background:var(--card-bg); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:32px; display:flex; flex-direction:column; gap:12px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.transform='translateY(0)'">
+                        <div style="font-family:'Share Tech Mono',monospace; font-size:12px; color:var(--matrix-green); letter-spacing:1px;">WEBDESIGN · NOVÝ JIČÍN</div>
+                        <h3 style="font-size:20px; font-weight:700; color:var(--text); margin:0; line-height:1.3;">Kolik stojí web pro živnostníka v Novém Jičíně v roce 2026?</h3>
+                        <p style="color:var(--text-dim); font-size:14px; margin:0; line-height:1.6;">Ceny webů se liší od 0 Kč po desítky tisíc ročně. Porovnám šablony, WordPress a čistý kód.</p>
+                        <div style="color:var(--accent); font-size:14px; font-weight:700; margin-top:auto;">Číst článek →</div>
+                    </a>
+
+                    <a href="/blog/ai-vyhledavani.html" style="text-decoration:none; background:var(--card-bg); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:32px; display:flex; flex-direction:column; gap:12px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.transform='translateY(0)'">
+                        <div style="font-family:'Share Tech Mono',monospace; font-size:12px; color:var(--matrix-green); letter-spacing:1px;">AI & SEO</div>
+                        <h3 style="font-size:20px; font-weight:700; color:var(--text); margin:0; line-height:1.3;">AI vyhledávání mění pravidla — je váš web připravený?</h3>
+                        <p style="color:var(--text-dim); font-size:14px; margin:0; line-height:1.6;">ChatGPT, Perplexity a Google AI Overviews odpovídají přímo bez klikání na weby.</p>
+                        <div style="color:var(--accent); font-size:14px; font-weight:700; margin-top:auto;">Číst článek →</div>
+                    </a>
+
+                </div>
+                <div style="text-align:center;">
+                    <a href="/blog.html" style="display:inline-block; color:var(--accent); font-weight:700; font-size:15px; text-decoration:none; border:1px solid rgba(56,189,248,0.3); padding:14px 32px; border-radius:50px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.8)'" onmouseout="this.style.borderColor='rgba(56,189,248,0.3)'">Všechny články →</a>
+                </div>
+            </section>
+
             <section class="contact-section" id="kontakt">
                 <h2 style="text-align:center; margin-bottom: 20px;">Pojďme postavit váš <span style="color:var(--accent); text-shadow: 0 0 20px rgba(56,189,248,0.3);">nový web</span></h2>
                 <form id="contact-form">
@@ -999,7 +958,10 @@
 
                 <div>
                     <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
-                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a nulovými náklady na hosting.</p>
+                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby.</p>
+                    <div style="margin-top:16px;">
+                        <a href="/blog.html" style="color:var(--accent); font-size:14px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a>
+                    </div>
                 </div>
 
                 <div>
@@ -1281,73 +1243,6 @@
             document.querySelectorAll('#ref-dots div').forEach((d, i) => {
                 d.style.background = i === window.refCurrent ? 'var(--accent)' : 'rgba(56,189,248,0.2)';
             });
-        }
-    </script>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('fullscreen-menu');
-            const btn = document.getElementById('hamburger');
-            menu.classList.toggle('open');
-            btn.classList.toggle('open');
-            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
-        }
-        document.getElementById('fullscreen-menu').addEventListener('click', function(e) {
-            if (e.target === this) toggleMenu();
-        });
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') { const m = document.getElementById('fullscreen-menu'); if (m.classList.contains('open')) toggleMenu(); }
-        });
-
-        if (typeof window.refCurrent === 'undefined') { window.refCurrent = 0; }
-        function slideRef(dir) {
-            const track = document.getElementById('ref-track');
-            if (!track) return;
-            const slides = track.children.length;
-            window.refCurrent = (window.refCurrent + dir + slides) % slides;
-            track.style.transform = `translateX(-${window.refCurrent * 100}%)`;
-            document.querySelectorAll('#ref-dots div').forEach((d, i) => {
-                d.style.background = i === window.refCurrent ? 'var(--accent)' : 'rgba(56,189,248,0.2)';
-            });
-        }
-
-        var quizAnswers = {};
-        function quizNext(step, answer) {
-            quizAnswers['q'+step] = answer;
-            document.getElementById('qs'+step).classList.remove('active');
-            document.getElementById('qd'+step).classList.add('done');
-            if (step < 3) {
-                document.getElementById('qs'+(step+1)).classList.add('active');
-                var nextDot = document.getElementById('qd'+(step+1));
-                if (nextDot) nextDot.classList.add('done');
-            } else { showQuizResult(); }
-        }
-        function showQuizResult() {
-            document.getElementById('qs-result').classList.add('active');
-            var q1 = quizAnswers.q1, q2 = quizAnswers.q2, q3 = quizAnswers.q3;
-            var title, text;
-            if (q1 === 'one' && q3 === 'fast') {
-                title = 'Landing page do 48 hodin';
-                text = 'Potřebujete web rychle a jednoduše. Landing page za 2 900 Kč — hotová do 48 hodin od dodání podkladů.';
-            } else if (q1 === 'one') {
-                title = 'Web Start — od 5 900 Kč';
-                text = 'Jednoduchý one-page web, který zákazníkům řekne kdo jste, co děláte a jak vás kontaktovat. Hotový do 10 dnů, hosting v ceně.';
-            } else if (q1 === 'multi' && q2 === 'yes') {
-                title = 'Web Business + Web Care';
-                text = 'Vícestránkový web na míru od 12 000 Kč a správa webu od 490 Kč/měs — takže se o nic nemusíte starat.';
-            } else {
-                title = 'Web Business — od 12 000 Kč';
-                text = 'Víc stránek, pokročilé SEO, galerie nebo blog. Cena závisí na rozsahu, vždy ji domluvíme předem.';
-            }
-            document.getElementById('quiz-result-title').textContent = title;
-            document.getElementById('quiz-result-text').textContent = text;
-        }
-        function quizReset() {
-            quizAnswers = {};
-            ['qs1','qs2','qs3','qs-result'].forEach(function(id){ document.getElementById(id).classList.remove('active'); });
-            ['qd1','qd2','qd3'].forEach(function(id){ document.getElementById(id).classList.remove('done'); });
-            document.getElementById('qs1').classList.add('active');
-            document.getElementById('qd1').classList.add('done');
         }
     </script>
 </body>
