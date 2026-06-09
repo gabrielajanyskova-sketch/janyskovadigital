@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ochrana osobních údajů | Janyskova Digital</title>
-    <style>
-        body { background: #05070a; color: #f8fafc; font-family: sans-serif; line-height: 1.6; padding: 50px 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        h1 { color: #38bdf8; margin-bottom: 30px; }
-        h2 { color: #38bdf8; margin-top: 30px; font-size: 1.2rem; }
-        .identifikace { background: rgba(56, 189, 248, 0.05); padding: 20px; border-radius: 10px; border: 1px solid rgba(56, 189, 248, 0.2); }
-        a { color: #38bdf8; text-decoration: none; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ochrana osobních údajů | Janyskova Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+<style>
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+:root { --bg: #08060c; --bg2: #0f0b16; --pink: #f0147a; --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+h1, h2 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+.blob { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+.b1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(240,20,122,0.28) 0%, transparent 65%); top: -10%; left: -10%; animation: bf1 20s ease-in-out infinite; }
+@keyframes bf1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(30px,-20px);} }
+nav { padding: 24px 28px; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.7); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 20px; text-decoration: none; color: var(--text); }
+.logo em { font-style: italic; color: var(--pink); }
+.back { font-size: 13px; color: var(--text-dim); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.back:hover { color: var(--pink); }
+main { flex: 1; padding: 60px 24px 100px; position: relative; z-index: 1; }
+.container { max-width: 760px; margin: 0 auto; }
+.page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.page-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); }
+h1 { font-size: clamp(32px, 4vw, 48px); line-height: 1.1; margin-bottom: 40px; }
+h1 em { font-style: italic; color: var(--pink); }
+.info-card { background: rgba(240,20,122,0.05); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 40px; font-size: 15px; color: var(--text-dim); line-height: 1.7; }
+.info-card strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 8px; }
+h2 { font-size: 20px; color: var(--text); margin: 36px 0 12px; }
+h2::before { content: ''; display: inline-block; width: 4px; height: 20px; background: var(--pink); border-radius: 2px; margin-right: 12px; vertical-align: middle; }
+p { font-size: 15px; color: var(--text-dim); line-height: 1.8; margin-bottom: 16px; }
+p strong { color: var(--text); }
+a { color: var(--pink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+footer { padding: 24px 28px; border-top: 1px solid rgba(240,20,122,0.08); font-size: 12px; color: rgba(245,240,250,0.3); text-align: center; position: relative; z-index: 1; }
+footer a { color: rgba(240,20,122,0.6); }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Ochrana osobních údajů (GDPR)</h1>
-        
-        <div class="identifikace">
-            <strong>Správce osobních údajů:</strong><br>
-            Gabriela Janýšková<br>
-            Sídlo: Starojická Lhota 45, 741 01 Starý Jičín<br>
-            IČO: 19616295<br>
-            Fyzická osoba podnikající dle živnostenského zákona zapsaná u MěÚ Nový Jičín.
-        </div>
-
-        <h2>1. Jaké údaje zpracovávám?</h2>
-        <p>Zpracovávám pouze údaje, které mi dobrovolně poskytnete prostřednictvím kontaktního formuláře na tomto webu, konkrétně: <strong>Jméno, příjmení a e-mailovou adresu.</strong></p>
-
-        <h2>2. Účel a doba zpracování</h2>
-        <p>Vaše údaje zpracovávám výhradně za účelem odpovědi na vaši poptávku nebo dotaz. Údaje uchovávám po dobu nezbytnou k vyřízení komunikace, nejdéle však 1 rok, pokud nedojde k uzavření smlouvy o spolupráci.</p>
-
-        <h2>3. Vaše práva</h2>
-        <p>Máte právo požadovat přístup k vašim údajům, jejich opravu, výmaz nebo vznést námitku proti zpracování. Stačí mi napsat na můj kontaktní e-mail.</p>
-
-        <p style="margin-top: 50px;"><a href="/">← Zpět na hlavní stránku</a></p>
+<div class="blob b1" aria-hidden="true"></div>
+<nav>
+  <a href="/" class="logo">Janyskova <em>Digital</em></a>
+  <a href="/" class="back">← Zpět na web</a>
+</nav>
+<main>
+  <div class="container">
+    <div class="page-tag">Právní informace</div>
+    <h1>Ochrana osobních<br><em>údajů (GDPR)</em></h1>
+    <div class="info-card">
+      <strong>Správce osobních údajů:</strong>
+      Gabriela Janýšková<br>
+      Sídlo: Starojická Lhota 45, 741 01 Starý Jičín<br>
+      IČO: 19616295<br>
+      Fyzická osoba podnikající dle živnostenského zákona zapsaná u MěÚ Nový Jičín.<br>
+      E-mail: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a>
     </div>
+    <h2>1. Jaké údaje zpracovávám?</h2>
+    <p>Zpracovávám pouze údaje, které mi dobrovolně poskytnete prostřednictvím kontaktního formuláře na tomto webu, konkrétně: <strong>jméno, příjmení a e-mailovou adresu.</strong></p>
+    <h2>2. Účel a doba zpracování</h2>
+    <p>Vaše údaje zpracovávám výhradně za účelem odpovědi na vaši poptávku nebo dotaz. Údaje uchovávám po dobu nezbytnou k vyřízení komunikace, nejdéle však 1 rok, pokud nedojde k uzavření smlouvy o spolupráci.</p>
+    <h2>3. Vaše práva</h2>
+    <p>Máte právo požadovat přístup k vašim údajům, jejich opravu, výmaz nebo vznést námitku proti zpracování. Stačí mi napsat na <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a>.</p>
+    <h2>4. Cookies</h2>
+    <p>Web používá analytické cookies prostřednictvím Google Analytics pouze se souhlasem. Více v <a href="cookies.html">Zásadách používání cookies</a>.</p>
+  </div>
+</main>
+<footer>© 2026 Gabriela Janýšková · <a href="/">janyskovadigital.cz</a></footer>
 </body>
 </html>
