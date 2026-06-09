@@ -1,486 +1,1033 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tvorba webových stránek na míru | Janyskova Digital</title>
-    <meta name="description" content="Tvorba webových stránek na míru pro OSVČ a firmy z Novojičínska i celé ČR. Čistý kód, blesková rychlost, hosting v ceně tvorby.">
-    <meta property="og:title" content="Tvorba webových stránek na míru | Janyskova Digital">
-    <meta property="og:description" content="Tvorba webových stránek na míru pro OSVČ a firmy z Nového Jičína, Příboru, Kopřivnice i celé ČR. Čistý kód, blesková rychlost a provoz hostingu za 0 Kč.">
-    <meta property="og:url" content="https://janyskovadigital.cz/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="cs_CZ">
-    <meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tvorba webových stránek na míru | Janyskova Digital">
-    <meta name="twitter:description" content="Weby na míru pro OSVČ z Novojičínska i celé ČR. Čistý kód, rychlost, hosting v ceně.">
-    <meta name="geo.region" content="CZ-80">
-    <meta name="geo.placename" content="Nový Jičín">
-    <meta name="geo.position" content="49.5933;18.0139">
-    <meta name="ICBM" content="49.5933, 18.0139">
-    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/plus-jakarta-sans-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="canonical" href="https://janyskovadigital.cz/" />
-    <meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M" />
-    <meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Janyskova Digital","description":"Gabriela Janýšková je webdesigner z Nového Jičína.","url":"https://janyskovadigital.cz","telephone":"+420739395800","email":"info@janyskovadigital.cz","address":{"@type":"PostalAddress","streetAddress":"Starojická Lhota 45","addressLocality":"Starý Jičín","postalCode":"741 01","addressCountry":"CZ"}}</script>
-    <style>
-        @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-        @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-        @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-800-normal.woff2') format('woff2'); font-weight: 800; font-display: swap; }
-        @font-face { font-family: 'Share Tech Mono'; src: url('/fonts/share-tech-mono-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-        :root {
-            --bg-center: #0f2a44;
-            --bg-edge: #020406;
-            --accent: #38bdf8;
-            --matrix-green: #00ff66;
-            --text: #f8fafc;
-            --text-dim: #c8d4e3;
-            --card-bg: rgba(15, 23, 42, 0.75);
-            --accent-btn: #38bdf8;
-        }
-        * { box-sizing: border-box; }
-        body { background: #020406; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
-        .mouse-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle 450px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(56, 189, 248, 0.13), transparent 80%), radial-gradient(circle at center, var(--bg-center) 0%, var(--bg-edge) 100%); background-attachment: fixed; z-index: -2; pointer-events: none; }
-        #network-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.45; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-        nav { padding: 30px 0; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 10; }
-        .logo { font-weight: 800; font-size: 24px; text-decoration: none; color: #fff; }
-        .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
-        .nav-links a { margin-left: 25px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--accent); }
-        .hamburger { display: none; flex-direction: column; gap: 6px; background: rgba(15,23,42,0.8); border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; cursor: pointer; padding: 10px; z-index: 1100; position: fixed; top: 20px; right: 20px; backdrop-filter: blur(10px); transition: 0.3s; }
-        .hamburger:hover { border-color: rgba(56,189,248,0.5); background: rgba(56,189,248,0.1); }
-        .ham-bar { display: block; width: 24px; height: 2px; background: var(--accent); border-radius: 2px; transition: 0.4s cubic-bezier(0.16,1,0.3,1); transform-origin: center; }
-        .hamburger.open .ham-bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.open .ham-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
-        .hamburger.open .ham-bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-        .fullscreen-menu { position: fixed; inset: 0; background: rgba(2,4,6,0.97); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
-        .fullscreen-menu.open { opacity: 1; pointer-events: all; }
-        .fullscreen-menu a { font-size: clamp(36px, 10vw, 72px); font-weight: 800; color: rgba(255,255,255,0.15); text-decoration: none; text-transform: uppercase; letter-spacing: -1px; line-height: 1.1; transition: color 0.3s, transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease; transform: translateY(30px); opacity: 0; }
-        .fullscreen-menu.open a { transform: translateY(0); opacity: 1; }
-        .fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
-        .fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
-        .fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
-        .fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
-        .fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
-        .fullscreen-menu a:hover { color: var(--accent); text-shadow: 0 0 40px rgba(56,189,248,0.4); }
-        .fullscreen-menu .menu-contact { margin-top: 60px; font-size: 15px; color: var(--text-dim); font-family: 'Share Tech Mono', monospace; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease 0.35s, transform 0.5s ease 0.35s; }
-        .fullscreen-menu.open .menu-contact { opacity: 1; transform: translateY(0); }
-        @media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
-        header { padding: 100px 0 80px; text-align: center; position: relative; }
-        .floating-gfx { position: absolute; font-family: 'Share Tech Mono', monospace; font-size: clamp(16px, 3vw, 24px); color: rgba(56, 189, 248, 0.15); text-shadow: 0 0 10px rgba(56, 189, 248, 0.1); pointer-events: none; user-select: none; z-index: 1; transition: transform 0.1s ease-out; }
-        .gfx-1 { top: 15%; left: 8%; animation: float-slow 6s ease-in-out infinite; }
-        .gfx-2 { top: 45%; right: 5%; color: rgba(0, 255, 102, 0.12); animation: float-slow 8s ease-in-out infinite 1s; }
-        .gfx-3 { bottom: 10%; left: 12%; animation: float-slow 7s ease-in-out infinite 2s; }
-        @keyframes float-slow { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(3deg); } }
-        .tech-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); padding: 6px 16px; border-radius: 20px; font-family: 'Share Tech Mono', monospace; font-size: 13px; color: var(--accent); letter-spacing: 1px; margin-bottom: 25px; text-transform: uppercase; position: relative; z-index: 2; }
-        .tech-badge .dot { width: 6px; height: 6px; background: var(--matrix-green); border-radius: 50%; box-shadow: 0 0 10px var(--matrix-green); animation: pulse-dot 1.5s infinite; }
-        @keyframes pulse-dot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-        h1 { font-size: clamp(34px, 6.5vw, 65px); font-weight: 800; line-height: 1.15; margin: 0 auto 20px; letter-spacing: -1px; color: #fff; max-width: 900px; position: relative; z-index: 2; }
-        .scramble-title { display: block; font-family: 'Share Tech Mono', monospace; text-transform: uppercase; min-width: max-content; background: linear-gradient(120deg, #fff 25%, var(--accent) 50%, var(--matrix-green) 75%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.15)); cursor: pointer; animation: shine-sweep 6s linear infinite; }
-        @keyframes shine-sweep { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-        .scramble-title:hover { animation: glitch-snap 0.3s ease-out; }
-        @keyframes glitch-snap { 0% { transform: skewX(0deg); } 20% { transform: skewX(-3deg); filter: drop-shadow(-2px 0 #ff0055) drop-shadow(2px 0 #00ff66); } 40% { transform: skewX(3deg); } 60% { transform: skewX(-1deg); } 100% { transform: skewX(0deg); filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.15)); } }
-        .scramble-sub { display: block; font-size: 0.72em; font-weight: 700; color: var(--text); margin-top: 12px; }
-        .scramble-sub span { color: var(--accent); text-shadow: 0 0 12px rgba(56, 189, 248, 0.4); border-bottom: 2px solid rgba(56, 189, 248, 0.3); }
-        .honest-note { display: inline-block; font-family: 'Share Tech Mono', monospace; font-size: 14px; color: var(--matrix-green); background: rgba(0, 255, 102, 0.04); border-left: 3px solid var(--matrix-green); padding: 8px 16px; margin: 15px auto 40px; border-radius: 0 8px 8px 0; max-width: 600px; text-align: left; position: relative; z-index: 2; }
-        .hero-sub { font-size: clamp(18px, 3vw, 22px); color: var(--text-dim); max-width: 850px; margin: 0 auto 50px; position: relative; z-index: 2; }
-        .btn { display: inline-block; background: var(--accent); color: #000; padding: 20px 50px; border-radius: 100px; text-decoration: none; font-weight: 800; transition: 0.4s; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); position: relative; z-index: 2; }
-        .btn:hover { transform: scale(1.03); box-shadow: 0 0 40px rgba(56, 189, 248, 0.6); }
-        .section-title { text-align: center; font-size: 42px; margin-bottom: 60px; font-weight: 800; }
-        .section-title span { color: var(--accent); text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
-        .trust-card { background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.08); padding: 45px; border-radius: 35px; backdrop-filter: blur(15px); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .trust-card:hover { border-color: rgba(56, 189, 248, 0.4); transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .card-header-icon { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .card-header-icon svg { width: 28px; height: 28px; fill: var(--accent); filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5)); }
-        .trust-card h3 { color: var(--accent); font-size: 24px; margin: 0; }
-        .process-section { padding: 100px 0; background: rgba(56, 189, 248, 0.03); border-radius: 50px; margin: 50px 0; border: 1px solid rgba(56, 189, 248, 0.05); }
-        .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
-        .step-num { font-size: 70px; font-weight: 800; color: rgba(56, 189, 248, 0.25); margin-bottom: -40px; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; margin-top: 50px; }
-        .price-card { background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 40px; padding: 60px 45px; position: relative; backdrop-filter: blur(15px); transition: 0.3s; display: flex; flex-direction: column; }
-        .price-card.popular { border: 2px solid var(--accent); box-shadow: 0 0 50px rgba(56, 189, 248, 0.15); }
-        .card-top { height: 200px; display: flex; flex-direction: column; justify-content: flex-start; }
-        .price { font-size: 52px; font-weight: 800; margin: 24px 0; color: #fff; height: 70px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
-        .price .unit { font-size: 18px; color: var(--text-dim); font-weight: 400; }
-        .price span { font-size: 20px; color: var(--text-dim); }
-        .features { list-style: none; padding: 0; margin: 0; text-align: left; }
-        .features li { margin-bottom: 12px; color: var(--text-dim); position: relative; padding-left: 25px; }
-        .features li::before { content: "✓"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
-        .extras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 50px; }
-        .extra-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(56, 189, 248, 0.1); border-radius: 20px; padding: 28px 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; backdrop-filter: blur(10px); transition: 0.3s; }
-        .extra-card:hover { border-color: rgba(56, 189, 248, 0.35); transform: translateY(-2px); }
-        .extra-left { display: flex; align-items: center; gap: 15px; }
-        .extra-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .extra-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.4)); }
-        .extra-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-        .extra-desc { font-size: 13px; color: var(--text-dim); }
-        .extra-price { font-family: 'Share Tech Mono', monospace; font-size: 16px; font-weight: 700; color: var(--accent); white-space: nowrap; flex-shrink: 0; }
-        .faq-section { padding: 60px 0 100px; }
-        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 30px; margin-top: 40px; }
-        @media(max-width: 600px) { .faq-grid { grid-template-columns: 1fr; } }
-        .faq-item { background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.05); padding: 35px; border-radius: 24px; backdrop-filter: blur(15px); }
-        .faq-item h3 { color: var(--accent); font-size: 18px; margin: 0 0 12px 0; font-weight: 700; }
-        .faq-item p { color: var(--text-dim); font-size: 15px; margin: 0; line-height: 1.6; }
-        .contact-section { max-width: 700px; margin: 60px auto 120px; background: var(--card-bg); padding: 60px; border-radius: 45px; border: 1px solid rgba(56, 189, 248, 0.2); box-shadow: 0 20px 50px rgba(0,0,0,0.4); backdrop-filter: blur(15px); }
-        .form-group { margin-bottom: 25px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 15px; color: #fff; font-family: inherit; font-size: 16px; transition: 0.3s; box-sizing: border-box; }
-        .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); outline: none; background: rgba(56, 189, 248, 0.04); box-shadow: 0 0 20px rgba(56, 189, 248, 0.1); }
-        footer { text-align: center; padding: 80px 0; color: var(--text-dim); border-top: 1px solid rgba(255,255,255,0.05); }
-        footer .footer-logo { font-weight: 800; font-size: 22px; text-decoration: none; color: #fff; margin-bottom: 15px; display: block; }
-        footer .footer-logo span { color: var(--accent); text-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
-        .contact-row { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 14px; margin: 8px 0; }
-        .contact-row svg { width: 16px; height: 16px; fill: var(--accent); }
-        .footer-bottom { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; text-align: center; color: #c8d4e3; font-size: 13px; border-top: 1px solid rgba(255,255,255,0.02); padding-top: 30px; }
-        .footer-legal a { color: #c8d4e3; text-decoration: none; transition: 0.2s; margin: 0 10px; z-index: 10; position: relative; }
-        .footer-legal a:hover { color: var(--accent); }
-        .cookie-banner { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(150px); width: calc(100% - 48px); max-width: 550px; background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.6); backdrop-filter: blur(20px); border-radius: 24px; padding: 25px; z-index: 9999; display: none; flex-direction: column; gap: 15px; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .cookie-banner.show { display: flex; transform: translateX(-50%) translateY(0); }
-        .cookie-text { font-size: 14px; color: var(--text-dim); margin: 0; line-height: 1.5; }
-        .cookie-text strong { color: #fff; }
-        .cookie-text a { color: var(--accent); text-decoration: none; }
-        .cookie-btns { display: flex; gap: 12px; justify-content: flex-end; }
-        .cookie-btn { padding: 12px 24px; border-radius: 50px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s; border: none; text-transform: uppercase; letter-spacing: 0.5px; }
-        .cookie-accept { background: var(--accent); color: #000; }
-        .cookie-accept:hover { background: #fff; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
-        .cookie-reject { background: rgba(255,255,255,0.05); color: #c8d4e3; border: 1px solid rgba(255,255,255,0.15); }
-        .cookie-reject:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        @media(max-width: 480px) { .cookie-btns { flex-direction: column-reverse; } .cookie-btn { width: 100%; } }
-        .kalk-range { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; background: rgba(56, 189, 248, 0.15); border-radius: 100px; outline: none; cursor: pointer; transition: background 0.3s; }
-        .kalk-range:hover { background: rgba(56, 189, 248, 0.25); }
-        .kalk-range::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); cursor: pointer; box-shadow: 0 0 12px rgba(56, 189, 248, 0.5); transition: transform 0.2s, box-shadow 0.2s; }
-        .kalk-range::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 20px rgba(56, 189, 248, 0.7); }
-        .kalk-range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); cursor: pointer; border: none; box-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
-        @media (max-width: 700px) { #kalkulacka > div { padding: 30px 24px !important; } #kalkulacka > div > div:first-of-type { grid-template-columns: 1fr !important; } #kalkulacka > div > div:nth-of-type(2) { grid-template-columns: 1fr !important; } }
-        .reveal-section { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-        .reveal-section.visible { opacity: 1; transform: translateY(0); }
-        @media (max-width: 768px) {
-            header { padding: 50px 0 40px !important; text-align: center; }
-            header h1 { font-size: 28px !important; line-height: 1.25 !important; padding: 0 15px !important; margin-bottom: 15px !important; }
-            .scramble-title { min-width: auto !important; display: inline !important; white-space: normal !important; font-size: 1em !important; word-break: break-word !important; }
-            .floating-gfx { display: none !important; }
-            .hero-sub { font-size: 16px !important; line-height: 1.5 !important; margin-bottom: 25px !important; padding: 0 15px !important; }
-            .honest-note { font-size: 12px !important; line-height: 1.4 !important; margin: 10px auto 25px !important; padding: 10px 14px !important; max-width: 90% !important; }
-            header .btn { padding: 16px 30px !important; font-size: 15px !important; width: calc(100% - 30px) !important; max-width: 340px !important; display: inline-block !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tvorba webových stránek na míru | Janyskova Digital — Nový Jičín</title>
+<meta name="description" content="Gabriela Janýšková — webdesignerka z Nového Jičína. Weby na míru pro OSVČ a firmy z Novojičínska i celé ČR. Čistý kód, PageSpeed 100, hosting v ceně tvorby.">
+<meta property="og:title" content="Tvorba webových stránek na míru | Janyskova Digital">
+<meta property="og:description" content="Weby na míru pro OSVČ z Nového Jičína, Příboru, Kopřivnice i celé ČR. Čistý kód, blesková rychlost, hosting v ceně tvorby.">
+<meta property="og:url" content="https://janyskovadigital.cz/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tvorba webových stránek na míru | Janyskova Digital">
+<meta name="twitter:description" content="Weby na míru pro OSVČ z Novojičínska i celé ČR. Čistý kód, rychlost, hosting v ceně.">
+<meta name="geo.region" content="CZ-80">
+<meta name="geo.placename" content="Nový Jičín">
+<meta name="geo.position" content="49.5933;18.0139">
+<meta name="ICBM" content="49.5933, 18.0139">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="canonical" href="https://janyskovadigital.cz/" />
+<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M" />
+<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "ProfessionalService"],
+    "@id": "https://janyskovadigital.cz/#business",
+    "name": "Janyskova Digital",
+    "description": "Gabriela Janýšková je webdesignerka z Nového Jičína. Tvorba webových stránek na míru pro OSVČ a firmy — čistý kód, PageSpeed 100, hosting v ceně tvorby.",
+    "url": "https://janyskovadigital.cz",
+    "telephone": "+420739395800",
+    "email": "info@janyskovadigital.cz",
+    "address": {"@type": "PostalAddress", "streetAddress": "Starojická Lhota 45", "addressLocality": "Starý Jičín", "postalCode": "741 01", "addressCountry": "CZ"},
+    "geo": {"@type": "GeoCoordinates", "latitude": "49.5933", "longitude": "18.0139"},
+    "areaServed": [
+      {"@type": "City", "name": "Nový Jičín"},
+      {"@type": "City", "name": "Příbor"},
+      {"@type": "City", "name": "Kopřivnice"},
+      {"@type": "State", "name": "Moravskoslezský kraj"},
+      {"@type": "Country", "name": "Česká republika"}
+    ],
+    "priceRange": "5900-12000 CZK",
+    "founder": {"@type": "Person", "name": "Gabriela Janýšková"},
+    "sameAs": ["https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/", "https://www.instagram.com/JanyskovaDigital"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tvorba webových stránek na míru",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Start"}, "price": "5900", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Business"}, "price": "12000", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Care"}, "price": "490", "priceCurrency": "CZK"}
+      ]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Kolik stojí tvorba webových stránek v Novém Jičíně?", "acceptedAnswer": {"@type": "Answer", "text": "Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte pouze doménu přibližně 200 Kč ročně."}},
+      {"@type": "Question", "name": "Kdo dělá weby v Novém Jičíně?", "acceptedAnswer": {"@type": "Answer", "text": "Gabriela Janýšková (Janyskova Digital) je webdesignerka z Nového Jičína, která tvoří weby na míru pro OSVČ a firmy v Moravskoslezském kraji i celé ČR."}},
+      {"@type": "Question", "name": "Proč neplatím za hosting?", "acceptedAnswer": {"@type": "Answer", "text": "Weby jsou stavěné čistým kódem bez WordPressu. Hosting je součástí ceny tvorby. Platíte pouze doménu přibližně 200 Kč ročně."}},
+      {"@type": "Question", "name": "Jak dlouho trvá tvorba webu?", "acceptedAnswer": {"@type": "Answer", "text": "Menší one-page web bývá hotový do 7–10 dnů od dodání podkladů."}},
+      {"@type": "Question", "name": "Tvoříte weby i mimo Nový Jičín?", "acceptedAnswer": {"@type": "Answer", "text": "Ano, spolupráce probíhá kompletně online. Weby tvoříme pro klienty z celé České republiky."}},
+      {"@type": "Question", "name": "Kolik stojí webové stránky v Novém Jičíně?", "acceptedAnswer": {"@type": "Answer", "text": "Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting v ceně."}}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://janyskovadigital.cz/#website",
+    "url": "https://janyskovadigital.cz",
+    "name": "Janyskova Digital — Tvorba webů Nový Jičín",
+    "inLanguage": "cs",
+    "publisher": {"@id": "https://janyskovadigital.cz/#business"}
+  }
+]
+</script>
+
+<style>
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+
+:root {
+  --bg: #08060c;
+  --bg2: #0f0b16;
+  --bg3: #150f1e;
+  --pink: #f0147a;
+  --pink-light: #f855a0;
+  --pink-dim: rgba(240,20,122,0.15);
+  --pink-border: rgba(240,20,122,0.25);
+  --text: #f5f0fa;
+  --text-dim: #b8a8cc;
+  --card-bg: rgba(21,15,30,0.9);
+  --border: rgba(240,20,122,0.18);
+  --green: #00e5a0;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 400; line-height: 1.65; overflow-x: hidden; }
+
+:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+h1, h2, .serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+
+/* ── BLOB POZADÍ ── */
+.bg-blobs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.55; will-change: transform; }
+.blob-1 { width: 650px; height: 650px; background: radial-gradient(circle, rgba(240,20,122,0.45) 0%, transparent 65%); top: -15%; left: -15%; animation: blobFloat1 18s ease-in-out infinite; }
+.blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(180,10,90,0.3) 0%, transparent 65%); top: 35%; right: -12%; animation: blobFloat2 22s ease-in-out infinite; }
+.blob-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(240,20,122,0.22) 0%, transparent 65%); bottom: 5%; left: 15%; animation: blobFloat3 16s ease-in-out infinite; }
+.blob-4 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(100,20,180,0.2) 0%, transparent 65%); top: 55%; right: 20%; animation: blobFloat1 20s ease-in-out infinite 5s; }
+@keyframes blobFloat1 { 0%,100%{transform:translate(0,0) scale(1);} 33%{transform:translate(45px,-35px) scale(1.06);} 66%{transform:translate(-28px,22px) scale(0.95);} }
+@keyframes blobFloat2 { 0%,100%{transform:translate(0,0) scale(1);} 40%{transform:translate(-38px,28px) scale(1.08);} 70%{transform:translate(22px,-18px) scale(0.93);} }
+@keyframes blobFloat3 { 0%,100%{transform:translate(0,0) scale(1);} 30%{transform:translate(32px,22px) scale(1.07);} 60%{transform:translate(-22px,-28px) scale(0.96);} }
+
+/* ── MOUSE GLOW ── */
+.mouse-glow { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(circle 380px at var(--mx,50%) var(--my,50%), rgba(240,20,122,0.1) 0%, transparent 70%); }
+
+/* NAV */
+nav { padding: 26px 0; position: relative; z-index: 100; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.7); backdrop-filter: blur(20px); position: sticky; top: 0; }
+.nav-inner { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 22px; text-decoration: none; color: var(--text); }
+.logo em { font-style: italic; color: var(--pink); }
+.nav-links a { margin-left: 28px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.25s; }
+.nav-links a:hover { color: var(--pink); }
+.nav-links a.cta { color: var(--pink); border: 1px solid var(--pink-border); padding: 8px 20px; border-radius: 100px; transition: all 0.25s; }
+.nav-links a.cta:hover { background: var(--pink); color: white; box-shadow: 0 0 24px rgba(240,20,122,0.4); }
+
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+/* FULLSCREEN MENU */
+.fullscreen-menu { position: fixed; inset: 0; background: rgba(8,6,12,0.98); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+.fullscreen-menu.open { opacity: 1; pointer-events: all; }
+.fullscreen-menu a { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 62px); color: rgba(245,240,250,0.2); text-decoration: none; padding: 6px 0; opacity: 0; transform: translateY(20px); transition: color 0.2s, opacity 0.4s ease, transform 0.4s ease; }
+.fullscreen-menu.open a { opacity: 1; transform: translateY(0); }
+.fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+.fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+.fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+.fullscreen-menu.open a:nth-child(6) { transition-delay: 0.3s; }
+.fullscreen-menu a:hover { color: var(--pink); text-shadow: 0 0 40px rgba(240,20,122,0.5); }
+.fullscreen-menu .menu-sub { font-size: 13px; color: var(--text-dim); margin-top: 30px; letter-spacing: 1px; opacity: 0; transition: opacity 0.4s ease 0.38s; }
+.fullscreen-menu.open .menu-sub { opacity: 1; }
+
+/* LAYOUT */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.section-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); flex-shrink: 0; }
+.section-title { font-size: clamp(34px, 4.5vw, 56px); line-height: 1.08; letter-spacing: -0.5px; color: var(--text); margin-bottom: 50px; }
+.section-title em { font-style: italic; color: var(--pink); }
+
+/* HERO */
+.hero { padding: 90px 0 110px; position: relative; overflow: hidden; min-height: 600px; }
+#robot-canvas { position: fixed; inset: 0; width: 100%; height: 100%; opacity: 0.18; pointer-events: none; z-index: -1; }
+@media(max-width: 900px) { #robot-canvas { opacity: 0.12; } }
+.hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--pink-dim); border: 1px solid var(--pink-border); padding: 6px 16px; border-radius: 100px; margin-bottom: 28px; }
+.eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); box-shadow: 0 0 8px var(--pink); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+.eyebrow-text { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; }
+.hero h1 { font-size: clamp(40px, 5.5vw, 70px); line-height: 1.06; letter-spacing: -1.5px; color: var(--text); margin-bottom: 24px; }
+.hero h1 em { color: var(--pink); font-style: italic; }
+.hero-sub { font-size: 17px; color: var(--text-dim); line-height: 1.85; margin-bottom: 38px; max-width: 460px; }
+.hero-note { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(0,229,160,0.2); background: rgba(0,229,160,0.06); padding: 10px 18px; border-radius: 100px; font-size: 13px; color: var(--green); margin-bottom: 36px; }
+.hero-note svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+/* HERO KARTA */
+.hero-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 30px; backdrop-filter: blur(20px); }
+.hero-card-head { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 18px; font-weight: 600; }
+.hero-card-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid rgba(240,20,122,0.08); }
+.hero-card-row:last-child { border-bottom: none; }
+.hero-card-label { font-size: 13px; color: var(--text-dim); }
+.hero-card-val { font-size: 20px; font-family: 'DM Serif Display', serif; }
+.val-green { color: var(--green); }
+.val-pink { color: var(--pink); }
+.val-white { color: var(--text); }
+.hero-scores { display: flex; gap: 8px; margin-top: 20px; }
+.score-pill { flex: 1; text-align: center; background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.15); border-radius: 12px; padding: 10px 4px; }
+.score-pill span { display: block; font-size: 20px; font-weight: 800; color: var(--green); }
+.score-pill small { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: rgba(0,229,160,0.6); }
+
+/* BTNS */
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; transition: all 0.3s; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 8px 30px rgba(240,20,122,0.35); }
+.btn-primary:hover { background: var(--pink-light); box-shadow: 0 8px 40px rgba(240,20,122,0.55); transform: translateY(-1px); }
+.btn-primary svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text-dim); padding: 15px 32px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.3s; border: 1px solid rgba(245,240,250,0.15); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
+.btn-outline:hover { border-color: var(--pink-border); color: var(--pink); }
+
+/* DIVIDER */
+.section-divider { height: 1px; background: rgba(240,20,122,0.08); }
+
+/* TRUST */
+.trust-section { padding: 100px 0; position: relative; z-index: 1; }
+.trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.trust-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 34px; transition: all 0.3s; backdrop-filter: blur(10px); }
+.trust-card:hover { border-color: rgba(240,20,122,0.45); box-shadow: 0 0 40px rgba(240,20,122,0.08); transform: translateY(-3px); }
+.trust-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--pink-dim); border: 1px solid var(--pink-border); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.trust-icon svg { width: 20px; height: 20px; stroke: var(--pink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.trust-card h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.trust-card p { font-size: 14px; color: var(--text-dim); line-height: 1.75; }
+
+/* O MNĚ */
+.about-section { padding: 100px 0; background: var(--bg2); position: relative; z-index: 1; }
+.about-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: center; }
+.about-img-wrap { position: relative; }
+.about-img-wrap img { width: 100%; border-radius: 20px; object-fit: cover; aspect-ratio: 3/4; display: block; border: 1px solid var(--border); }
+.about-badge { position: absolute; bottom: -20px; right: -16px; background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 14px 18px; backdrop-filter: blur(10px); }
+.about-badge span { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+.about-badge strong { font-size: 17px; font-family: 'DM Serif Display', serif; color: var(--text); }
+.about-text p { font-size: 16px; color: var(--text-dim); line-height: 1.85; margin-bottom: 16px; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+.about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 32px; }
+.about-pill { display: inline-flex; align-items: center; gap: 7px; background: var(--pink-dim); border: 1px solid var(--pink-border); padding: 7px 15px; border-radius: 100px; font-size: 12px; color: var(--pink-light); font-weight: 500; }
+.about-pill svg { width: 12px; height: 12px; stroke: var(--pink); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* REFERENCE */
+.ref-section { padding: 100px 0; position: relative; z-index: 1; }
+.ref-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; backdrop-filter: blur(10px); }
+.ref-img { background: var(--bg2); padding: 40px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border); }
+.ref-img img { width: 100%; border-radius: 12px; }
+.ref-body { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; }
+.ref-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 12px; }
+.ref-body h3 { font-size: 26px; font-family: 'DM Serif Display', serif; color: var(--text); margin-bottom: 12px; }
+.ref-body p { font-size: 15px; color: var(--text-dim); line-height: 1.75; margin-bottom: 24px; }
+.ref-link { color: var(--pink); font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+.ref-link:hover { gap: 10px; }
+
+/* PROCESS */
+.process-section { padding: 100px 0; background: var(--bg2); position: relative; z-index: 1; }
+.process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
+.process-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 36px 32px; transition: all 0.3s; position: relative; overflow: hidden; }
+.process-card::before { content: ''; position: absolute; inset: 0; background: rgba(240,20,122,0.0); transition: background 0.3s; border-radius: 20px; }
+.process-card:hover { border-color: rgba(240,20,122,0.45); transform: translateY(-3px); box-shadow: 0 0 40px rgba(240,20,122,0.1); }
+.process-card:hover::before { background: rgba(240,20,122,0.03); }
+.process-num { font-family: 'DM Serif Display', serif; font-size: 52px; font-weight: 400; color: rgba(240,20,122,0.18); line-height: 1; margin-bottom: 16px; transition: color 0.3s; }
+.process-card:hover .process-num { color: rgba(240,20,122,0.35); }
+.process-card h3 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.process-card p { font-size: 14px; color: var(--text-dim); line-height: 1.75; }
+
+/* KALKULAČKA */
+.kalk-section { padding: 100px 0; position: relative; z-index: 1; }
+.kalk-wrap { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 54px; max-width: 900px; margin: 0 auto; backdrop-filter: blur(10px); }
+.kalk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+.kalk-label { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 12px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
+.kalk-label span { color: var(--pink); font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none; }
+.kalk-range { -webkit-appearance: none; appearance: none; width: 100%; height: 3px; background: rgba(240,20,122,0.15); border-radius: 100px; outline: none; cursor: pointer; }
+.kalk-range::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--pink); cursor: pointer; border: 2px solid var(--bg); box-shadow: 0 0 12px rgba(240,20,122,0.5); }
+.kalk-range::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: var(--pink); cursor: pointer; border: 2px solid var(--bg); }
+.kalk-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+.kalk-box { border-radius: 16px; padding: 24px; text-align: center; }
+.kalk-box-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+.kalk-box-val { font-size: 28px; font-family: 'DM Serif Display', serif; }
+.kalk-box.current { background: rgba(255,80,80,0.06); border: 1px solid rgba(255,80,80,0.15); }
+.kalk-box.current .kalk-box-label { color: rgba(255,120,120,0.8); }
+.kalk-box.current .kalk-box-val { color: #ff7080; }
+.kalk-box.jd { background: var(--pink-dim); border: 1px solid var(--pink-border); }
+.kalk-box.jd .kalk-box-label { color: var(--pink); }
+.kalk-box.jd .kalk-box-val { color: var(--pink); }
+.kalk-box.save { background: rgba(0,229,160,0.06); border: 1px solid rgba(0,229,160,0.2); }
+.kalk-box.save .kalk-box-label { color: rgba(0,229,160,0.7); }
+.kalk-box.save .kalk-box-val { color: var(--green); }
+.kalk-bar-wrap { margin-bottom: 28px; }
+.kalk-bar-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.kalk-bar-track { background: rgba(255,255,255,0.05); border-radius: 100px; height: 8px; position: relative; overflow: hidden; }
+.kalk-bar-current { position: absolute; left: 0; top: 0; height: 100%; background: #ff5070; border-radius: 100px; transition: width 0.4s cubic-bezier(0.16,1,0.3,1); }
+.kalk-bar-jd { position: absolute; left: 0; top: 0; height: 100%; background: var(--pink); border-radius: 100px; opacity: 0.75; transition: width 0.4s cubic-bezier(0.16,1,0.3,1); }
+.kalk-note { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+
+/* CENÍK */
+.pricing-section { padding: 100px 0; background: var(--bg2); position: relative; z-index: 1; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
+.price-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 38px 30px; position: relative; display: flex; flex-direction: column; transition: all 0.3s; backdrop-filter: blur(10px); }
+.price-card:hover { border-color: rgba(240,20,122,0.4); box-shadow: 0 0 40px rgba(240,20,122,0.08); transform: translateY(-3px); }
+.price-card.popular { border: 1px solid var(--pink); box-shadow: 0 0 50px rgba(240,20,122,0.12); }
+.popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--pink); color: white; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 18px; border-radius: 100px; white-space: nowrap; font-weight: 700; }
+.price-card-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 10px; }
+.price-card h3 { font-size: 22px; font-family: 'DM Serif Display', serif; color: var(--text); margin-bottom: 6px; }
+.price-card > p { font-size: 13px; color: var(--text-dim); margin-bottom: 18px; line-height: 1.6; }
+.price-amount { font-size: 44px; font-family: 'DM Serif Display', serif; color: var(--text); line-height: 1; margin-bottom: 22px; }
+.price-amount small { font-size: 16px; color: var(--text-dim); font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 400; }
+.price-divider { height: 1px; background: rgba(240,20,122,0.1); margin-bottom: 18px; }
+.features { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-dim); line-height: 1.5; }
+.features li::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--pink-dim); border: 1px solid var(--pink-border); flex-shrink: 0; margin-top: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23f0147a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+.care-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 12px 0 18px; }
+.care-btn { flex: 1; padding: 7px 4px; font-family: inherit; font-size: 10px; font-weight: 700; cursor: pointer; border: none; transition: all 0.2s; background: transparent; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+.care-btn.active { background: var(--pink); color: white; }
+
+/* EXTRAS */
+.extras-section { padding: 60px 0 100px; position: relative; z-index: 1; }
+.extras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 36px; }
+.extra-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px; display: flex; align-items: center; justify-content: space-between; gap: 14px; transition: all 0.25s; backdrop-filter: blur(10px); }
+.extra-card:hover { border-color: rgba(240,20,122,0.4); transform: translateY(-2px); }
+.extra-left { display: flex; align-items: center; gap: 12px; }
+.extra-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--pink-dim); border: 1px solid var(--pink-border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.extra-icon svg { width: 17px; height: 17px; stroke: var(--pink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.extra-name { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.extra-desc { font-size: 12px; color: var(--text-dim); }
+.extra-price { font-size: 14px; font-weight: 700; color: var(--pink); white-space: nowrap; flex-shrink: 0; }
+
+/* FAQ */
+.faq-section { padding: 100px 0; background: var(--bg2); position: relative; z-index: 1; }
+.faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 18px; margin-top: 50px; }
+.faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 26px 28px; backdrop-filter: blur(10px); transition: border-color 0.25s; }
+.faq-item:hover { border-color: rgba(240,20,122,0.35); }
+.faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.faq-item p { font-size: 14px; color: var(--text-dim); line-height: 1.75; }
+
+/* BLOG */
+.blog-section { padding: 100px 0; position: relative; z-index: 1; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 50px; }
+.blog-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 26px; display: flex; flex-direction: column; gap: 10px; text-decoration: none; transition: all 0.25s; backdrop-filter: blur(10px); }
+.blog-card:hover { border-color: rgba(240,20,122,0.4); transform: translateY(-3px); box-shadow: 0 0 40px rgba(240,20,122,0.07); }
+.blog-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; }
+.blog-card h3 { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.35; }
+.blog-card p { font-size: 14px; color: var(--text-dim); line-height: 1.6; flex: 1; }
+.blog-card span { font-size: 13px; font-weight: 700; color: var(--pink); margin-top: auto; }
+
+/* KONTAKT */
+.contact-section { padding: 100px 0; position: relative; z-index: 1; }
+.contact-wrap { max-width: 620px; margin: 0 auto; background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 54px; backdrop-filter: blur(10px); }
+.contact-wrap h2 { margin-bottom: 8px; }
+.contact-wrap > p { font-size: 16px; color: var(--text-dim); margin-bottom: 34px; line-height: 1.7; }
+.form-group { margin-bottom: 18px; position: relative; }
+.form-group label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+.form-group input, .form-group textarea { width: 100%; padding: 13px 18px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; transition: border-color 0.25s; outline: none; }
+.form-group input:focus, .form-group textarea:focus { border-color: var(--pink); background: rgba(240,20,122,0.04); }
+.form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-dim); opacity: 0.6; }
+.form-group textarea { resize: none; height: 110px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.contact-info { margin-top: 26px; padding-top: 22px; border-top: 1px solid rgba(240,20,122,0.1); display: flex; flex-direction: column; gap: 10px; }
+.contact-info a { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.contact-info a:hover { color: var(--pink); }
+.contact-info svg { width: 14px; height: 14px; stroke: var(--pink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* FOOTER */
+footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(240,20,122,0.1); position: relative; z-index: 1; }
+.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
+.footer-logo-link { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); text-decoration: none; display: block; margin-bottom: 12px; }
+.footer-logo-link em { font-style: italic; color: var(--pink); }
+.footer-desc { font-size: 14px; color: rgba(245,240,250,0.4); line-height: 1.7; }
+.footer-heading { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(245,240,250,0.3); font-weight: 600; margin-bottom: 16px; }
+.footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links-list a { color: rgba(245,240,250,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.footer-links-list a:hover { color: var(--pink); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,240,250,0.25); flex-wrap: wrap; gap: 10px; }
+.footer-bottom a { color: rgba(245,240,250,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-bottom a:hover { color: var(--pink); }
+
+/* COOKIE */
+.cookie-banner { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(150px); width: calc(100% - 48px); max-width: 540px; background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 22px 24px; z-index: 9999; display: none; flex-direction: column; gap: 14px; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+.cookie-banner.show { display: flex; transform: translateX(-50%) translateY(0); }
+.cookie-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+.cookie-text strong { color: var(--text); }
+.cookie-text a { color: var(--pink); text-decoration: none; }
+.cookie-btns { display: flex; gap: 10px; justify-content: flex-end; }
+.cookie-btn { padding: 10px 22px; border-radius: 100px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; }
+.cookie-accept { background: var(--pink); color: white; }
+.cookie-accept:hover { box-shadow: 0 0 20px rgba(240,20,122,0.4); }
+.cookie-reject { background: transparent; color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1); }
+.cookie-reject:hover { border-color: rgba(240,20,122,0.3); color: var(--pink); }
+@media(max-width: 480px) { .cookie-btns { flex-direction: column-reverse; } .cookie-btn { width: 100%; } }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 50px; }
+  .hero-right { order: -1; }
+  .about-inner { grid-template-columns: 1fr; gap: 50px; }
+  .about-img-wrap { max-width: 300px; margin: 0 auto; }
+  .about-badge { right: 0; }
+  .ref-card { grid-template-columns: 1fr; }
+  .ref-img { display: none; }
+  .process-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .kalk-grid { grid-template-columns: 1fr; }
+  .kalk-results { grid-template-columns: 1fr; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+  .form-row { grid-template-columns: 1fr; }
+  .contact-wrap { padding: 36px 22px; }
+  .kalk-wrap { padding: 36px 20px; }
+}
+@media (max-width: 600px) {
+  .hero { padding: 60px 0 80px; }
+  .hero h1 { font-size: 38px; }
+  .process-grid { grid-template-columns: 1fr; }
+  .section-title { font-size: 30px; }
+}
+</style>
 </head>
 <body>
-    <div class="mouse-glow"></div>
-    <canvas id="network-canvas" aria-label="Interaktivní animované síťové pozadí"></canvas>
-    <div class="container">
-        <nav>
-            <a href="/" class="logo">Janyskova<span>Digital</span></a>
-            <div class="nav-links">
-                <a href="#jak-to-funguje">Jak to funguje</a>
-                <a href="#cenik">Ceník</a>
-                <a href="#reference">Reference</a>
-                <a href="/blog.html">Blog</a>
-                <a href="#kontakt" style="color:var(--accent);">Kontakt</a>
-            </div>
-            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Otevřít menu">
-                <span class="ham-bar"></span><span class="ham-bar"></span><span class="ham-bar"></span>
-            </button>
-        </nav>
-        <div class="fullscreen-menu" id="fullscreen-menu">
-            <a href="#jak-to-funguje" onclick="toggleMenu()">Jak to funguje</a>
-            <a href="#cenik" onclick="toggleMenu()">Ceník</a>
-            <a href="#reference" onclick="toggleMenu()">Reference</a>
-            <a href="#o-mne" onclick="toggleMenu()">O mně</a>
-            <a href="/blog.html" onclick="toggleMenu()">Blog</a>
-            <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
-            <div class="menu-contact">info@janyskovadigital.cz</div>
+
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+</div>
+<canvas id="robot-canvas" aria-hidden="true"></canvas>
+<div class="mouse-glow" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="#jak-to-funguje">Jak to funguje</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#reference">Reference</a>
+      <a href="/blog.html">Blog</a>
+      <a href="#kontakt" class="cta">Napsat mi</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <a href="#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+  <a href="#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="#reference" onclick="closeMenu()">Reference</a>
+  <a href="#o-mne" onclick="closeMenu()">O mně</a>
+  <a href="/blog.html" onclick="closeMenu()">Blog</a>
+  <a href="#kontakt" onclick="closeMenu()">Napsat mi</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
+
+<main id="main">
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="eyebrow-dot"></div>
+          <span class="eyebrow-text">Webdesignerka · Nový Jičín</span>
         </div>
-        <header id="hero-header">
-            <div class="floating-gfx gfx-1">&lt;div&gt;</div>
-            <div class="floating-gfx gfx-2">{ const web = "rychly"; }</div>
-            <div class="floating-gfx gfx-3">&lt;/html&gt;</div>
-            <div class="tech-badge"><span class="dot"></span>status: psáno čistým kódem</div>
-            <h1>
-                <span class="scramble-title" id="scramble-h1" data-value="Tvorba webových stránek">Tvorba webových stránek</span>
-                <span class="scramble-sub">na míru, čistým kódem, <span>bez starostí</span></span>
-            </h1>
-            <div class="honest-note"><strong>&gt;_</strong> Tento web stojí 200 Kč ročně. Jen doména. Hosting je v ceně tvorby.</div>
-            <p class="hero-sub">Potřebujete web, který zákazníkům řekne kdo jste, co nabízíte a jak vás kontaktovat? Stavím weby na míru — čistým kódem, bez WordPressu a bez měsíčních poplatků. Zaplatíte tvorbu webu a pak jen doménu kolem 200 Kč ročně.</p>
-            <a href="#kontakt" class="btn">Chci nezávaznou poptávku</a>
-        </header>
-        <main>
-            <section>
-                <h2 class="section-title">Proč si vybrat <span>Janyskova Digital?</span></h2>
-                <div class="trust-grid">
-                    <div class="trust-card">
-                        <div class="card-header-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2v9h9L11 22v-9H2L13 2z"/></svg>
-                            <h3>Rychlý web = zákazník, který zůstane</h3>
-                        </div>
-                        <p>Tři sekundy načítání a půlka návštěvníků odejde. Moje weby se načtou za méně než sekundu — a Google to odměňuje lepšími pozicemi ve vyhledávání.</p>
-                    </div>
-                    <div class="trust-card">
-                        <div class="card-header-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-                            <h3>Žádné měsíční faktury za hosting</h3>
-                        </div>
-                        <p>U jiných zaplatíte za hosting 2 000–5 000 Kč každý rok. U mě je hosting součástí ceny webu. Dál platíte jen doménu — to je asi 200 Kč ročně. Nic víc.</p>
-                    </div>
-                    <div class="trust-card">
-                        <div class="card-header-icon">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                            <h3>Web, který nemusíte hlídat</h3>
-                        </div>
-                        <p>WordPress potřebuje neustálou péči — pluginy, aktualizace, bezpečnostní záplaty. Čistý kód nic z toho nepotřebuje. Spustím vám web a vy se můžete věnovat svému byznysu.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section style="padding: 60px 0; text-align: center;">
-                <p style="color: var(--text-dim); font-size: 14px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 40px;">Ověřeno Googlem</p>
-                <div style="display: inline-flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
-                    <div style="background: var(--card-bg); border: 1px solid rgba(0,255,102,0.3); border-radius: 20px; padding: 25px 30px; text-align: center; min-width: 120px;"><div style="font-size: 42px; font-weight: 800; color: #00ff66; font-family: 'Share Tech Mono', monospace;">100</div><div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; text-transform: uppercase;">Performance</div></div>
-                    <div style="background: var(--card-bg); border: 1px solid rgba(0,255,102,0.3); border-radius: 20px; padding: 25px 30px; text-align: center; min-width: 120px;"><div style="font-size: 42px; font-weight: 800; color: #00ff66; font-family: 'Share Tech Mono', monospace;">100</div><div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; text-transform: uppercase;">Accessibility</div></div>
-                    <div style="background: var(--card-bg); border: 1px solid rgba(0,255,102,0.3); border-radius: 20px; padding: 25px 30px; text-align: center; min-width: 120px;"><div style="font-size: 42px; font-weight: 800; color: #00ff66; font-family: 'Share Tech Mono', monospace;">100</div><div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; text-transform: uppercase;">Best Practices</div></div>
-                    <div style="background: var(--card-bg); border: 1px solid rgba(0,255,102,0.3); border-radius: 20px; padding: 25px 30px; text-align: center; min-width: 120px;"><div style="font-size: 42px; font-weight: 800; color: #00ff66; font-family: 'Share Tech Mono', monospace;">100</div><div style="font-size: 12px; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; text-transform: uppercase;">SEO</div></div>
-                </div>
-                <p style="color: var(--text-dim); font-size: 14px; margin-top: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">Tento web dosahuje maximálního skóre ve všech kategoriích Google PageSpeed Insights — rychlost, přístupnost, bezpečnost i SEO.</p>
-            </section>
-
-            <section id="o-mne" style="padding: 100px 0;">
-                <h2 class="section-title">Kdo navrhuje vaše <span>nové webové stránky?</span></h2>
-                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                    <div style="position: relative; width: 180px; height: 180px; margin: 0 auto 32px;">
-                        <div style="position: absolute; inset: -3px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--matrix-green)); z-index: 0;"></div>
-                        <img src="gabca.webp" alt="Gabriela Janyšková — webdesigner Nový Jičín" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: center top; position: relative; z-index: 1; border: 3px solid var(--bg-dark);">
-                    </div>
-                    <h3 style="color: var(--accent); margin-bottom: 20px; font-size: 28px;">Ahoj, jsem Gabča — webdesignerka z Nového Jičína.</h3>
-                    <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8;">Pomáhám drobným podnikatelům, OSVČ i začínajícím projektům získat profesionální digitální vizitku. Moje základna je pro <a href="/novy-jicin/" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(56,189,248,0.3);">Nový Jičín</a>, <a href="/pribor/" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(56,189,248,0.3);">Příbor</a> a <a href="/koprivnice/" style="color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(56,189,248,0.3);">Kopřivnici</a>, ale díky moderním technologiím úspěšně spolupracuji s klienty kompletně online po celé České republice.</p>
-                    <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-top: 20px;">Počítače mě baví od malička. IT jsem nikdy nestudovala — jsem samouk, který se učí v praxi a sledováním toho, kam technologie míří. Za sebou mám rekvalifikační kurz na specialistku AI a kurz marketingu od Juniorní akademie.</p>
-                    <p style="color: var(--text-dim); font-size: 18px; line-height: 1.8; margin-top: 16px;">Každý web stavím s ohledem na AI vyhledávání — aby vás našel nejen Google, ale i ChatGPT nebo Perplexity. Většina webdesignerů tohle ještě neřeší. Já ano.</p>
-                </div>
-            </section>
-
-            <section id="reference" style="padding: 100px 0;">
-                <h2 class="section-title">Weby které jsem <span>postavila</span></h2>
-                <div style="position: relative; margin-top: 50px;">
-                    <button onclick="slideRef(-1)" style="position: absolute; left: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">‹</button>
-                    <button onclick="slideRef(1)" style="position: absolute; right: -20px; top: 50%; transform: translateY(-50%); z-index: 10; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); color: var(--accent); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center;" onmouseover="this.style.background='rgba(56,189,248,0.25)'" onmouseout="this.style.background='rgba(56,189,248,0.1)'">›</button>
-                    <div style="overflow: hidden; border-radius: 30px;">
-                        <div id="ref-track" style="display: flex; transition: transform 0.4s ease;">
-                            <div style="min-width: 100%; background: rgba(15,23,42,0.5); border: 1px solid rgba(255,255,255,0.08); border-radius: 30px; overflow: hidden;">
-                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px; padding: 40px 50px;">
-                                    <img src="/img/nikola-desktop.webp" alt="Web Nikola Hubáčková — fotografka" style="flex: 1; min-width: 280px; max-width: 500px; height: auto; object-fit: contain;">
-                                    <div style="flex: 1; min-width: 240px;">
-                                        <div style="font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--matrix-green); letter-spacing: 1px; margin-bottom: 10px;">FOTOGRAFIE</div>
-                                        <h3 style="font-size: 26px; font-weight: 700; margin: 0 0 12px;">Nikola Hubáčková</h3>
-                                        <p style="color: var(--text-dim); font-size: 16px; margin: 0 0 24px; line-height: 1.7;">Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online objednávkovým formulářem.</p>
-                                        <a href="https://hubackovafoto.cz" target="_blank" rel="noopener" style="color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: none;">hubackovafoto.cz →</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="ref-dots" style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;"><div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent);"></div></div>
-                </div>
-            </section>
-
-            <section id="jak-to-funguje" class="process-section">
-                <h2 class="section-title">Jak probíhá <span>spolupráce?</span></h2>
-                <div class="process-steps">
-                    <div><div class="step-num">01</div><h3>Nezávazná konzultace</h3><p>Zavoláme si nebo napíšeme — probereme co váš web potřebuje, co se vám líbí a jaký máte rozpočet. Bez závazků a technických řečí.</p></div>
-                    <div><div class="step-num">02</div><h3>Tvorba na míru</h3><p>Píšu web přímo v čistém kódu — žádné šablony ani WordPress. Výsledek je rychlý, moderní a přesně pro vás.</p></div>
-                    <div><div class="step-num">03</div><h3>Spuštění a Google</h3><p>Web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.</p></div>
-                    <div><div class="step-num">04</div><h3>Jsem tu i po spuštění</h3><p>Potřebujete změnit text nebo přidat fotku? Napište mi — odpovídám do 24 hodin a ráda pomůžu.</p></div>
-                </div>
-                <div style="text-align:center; margin-top:50px;"><a href="#kontakt" class="btn">Chci nezávaznou poptávku →</a></div>
-            </section>
-
-            <section id="kalkulacka" style="padding: 100px 0;">
-                <h2 class="section-title">Kolik vás stojí <span>váš současný web?</span></h2>
-                <p style="text-align:center; color: var(--text-dim); font-size: 18px; max-width: 600px; margin: -30px auto 60px;">Nastavte posuvníky podle vaší situace a uvidíte, kolik skutečně ušetříte.</p>
-                <div style="max-width: 900px; margin: 0 auto; background: var(--card-bg); border: 1px solid rgba(56, 189, 248, 0.12); border-radius: 40px; padding: 60px; backdrop-filter: blur(15px); box-shadow: 0 20px 60px rgba(0,0,0,0.3);">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px;">
-                        <div><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><label for="k-hosting" style="color: var(--text-dim); font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">Hosting / rok</label><span id="k-hosting-out" style="color: var(--accent); font-weight: 700; font-size: 15px; font-family: 'Share Tech Mono', monospace;">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range"></div>
-                        <div><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><label for="k-sprava" style="color: var(--text-dim); font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">Správa webu / rok</label><span id="k-sprava-out" style="color: var(--accent); font-weight: 700; font-size: 15px; font-family: 'Share Tech Mono', monospace;">2 000 Kč</span></div><input type="range" id="k-sprava" min="0" max="20000" step="100" value="2000" class="kalk-range"></div>
-                        <div><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><label for="k-domena" style="color: var(--text-dim); font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">Doména / rok</label><span id="k-domena-out" style="color: var(--accent); font-weight: 700; font-size: 15px; font-family: 'Share Tech Mono', monospace;">250 Kč</span></div><input type="range" id="k-domena" min="100" max="1000" step="50" value="250" class="kalk-range"></div>
-                        <div><div style="display:flex; justify-content:space-between; margin-bottom:12px;"><label for="k-roky" style="color: var(--text-dim); font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">Počet let</label><span id="k-roky-out" style="color: var(--accent); font-weight: 700; font-size: 15px; font-family: 'Share Tech Mono', monospace;">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range"></div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;">
-                        <div style="background: rgba(255,60,60,0.06); border: 1px solid rgba(255,60,60,0.15); border-radius: 24px; padding: 30px; text-align: center;"><div style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,100,100,0.7); margin-bottom: 12px;">Současný web</div><div id="k-ted" style="font-size: 32px; font-weight: 800; color: #ff6b6b; font-family: 'Share Tech Mono', monospace;">25 250 Kč</div></div>
-                        <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 24px; padding: 30px; text-align: center;"><div style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px;">JanyskovaDigital</div><div id="k-jd" style="font-size: 32px; font-weight: 800; color: var(--accent); font-family: 'Share Tech Mono', monospace;">6 250 Kč</div></div>
-                        <div style="background: rgba(0, 255, 102, 0.06); border: 1px solid rgba(0, 255, 102, 0.2); border-radius: 24px; padding: 30px; text-align: center;"><div style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(0,255,102,0.7); margin-bottom: 12px;">Ušetříte</div><div id="k-uspora" style="font-size: 32px; font-weight: 800; color: #00ff66; font-family: 'Share Tech Mono', monospace;">19 000 Kč</div></div>
-                    </div>
-                    <div style="margin-bottom: 35px;"><div style="display:flex; justify-content:space-between; margin-bottom: 10px;"><span style="font-size: 13px; color: var(--text-dim); letter-spacing: 1px;">Současný web</span><span style="font-size: 13px; color: var(--text-dim); letter-spacing: 1px;">Janyskova Digital</span></div><div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 100px; height: 10px; position: relative; overflow: hidden;"><div id="k-bar-ted" style="position: absolute; left:0; top:0; height:100%; background: linear-gradient(90deg, #ff6b6b, #ff4444); border-radius: 100px; transition: width 0.4s cubic-bezier(0.16,1,0.3,1);"></div><div id="k-bar-jd" style="position: absolute; left:0; top:0; height:100%; background: linear-gradient(90deg, var(--accent), #00ff66); border-radius: 100px; opacity: 0.8; transition: width 0.4s cubic-bezier(0.16,1,0.3,1);"></div></div></div>
-                    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap: wrap; gap: 20px;"><p style="color: var(--text-dim); font-size: 13px; margin: 0; max-width: 480px; line-height: 1.6;">Výpočet: stávající náklady = (hosting + správa + doména) × roky. U Janyskova Digital: tvorba webu od 5 900 Kč + doména × roky. Hosting v ceně tvorby.</p><a href="#kontakt" style="display: inline-block; background: transparent; color: var(--matrix-green); padding: 16px 36px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px; border: 2px solid var(--matrix-green); box-shadow: 0 0 20px rgba(0,255,102,0.2); transition: 0.3s;" onmouseover="this.style.boxShadow='0 0 40px rgba(0,255,102,0.5)'" onmouseout="this.style.boxShadow='0 0 20px rgba(0,255,102,0.2)'">Chci ušetřit →</a></div>
-                </div>
-            </section>
-
-            <section id="cenik" class="pricing-section">
-                <h2 class="section-title">Transparentní <span>ceník webových stránek</span></h2>
-                <div class="pricing-grid">
-                    <div class="price-card">
-                        <div class="card-top"><h3>Web Start</h3><p>Perfektní pro OSVČ a specialisty.</p></div>
-                        <div class="price">5 900 <span class="unit">Kč</span></div>
-                        <ul class="features"><li>Web na míru — žádné šablony, žádný WordPress</li><li>Načítání pod 1 sekundu, PageSpeed 95–100</li><li>SEO od základů — strukturovaná data, meta tagy, sitemap</li><li>Mobilní verze, SSL certifikát, kontaktní formulář</li><li>Propojení s Google Search Console a Seznam</li><li><strong>Hosting v ceně tvorby — platíte jen doménu</strong></li></ul>
-                    </div>
-                    <div class="price-card popular">
-                        <div style="background:#0a1628; color:var(--matrix-green); position:absolute; top:0; left:50%; transform:translate(-50%,-50%); padding:5px 20px; border-radius:20px; font-weight:600; font-size:13px; border:2px solid var(--matrix-green); box-shadow:0 0 15px rgba(0,255,102,0.2); font-family:'Plus Jakarta Sans',sans-serif; white-space:nowrap;">Nejvýhodnější</div>
-                        <div class="card-top"><h3>Web Business</h3><p>Vše, co potřebuje rostoucí firma pro úspěšný prodej.</p></div>
-                        <div class="price"><span class="unit" style="font-size:16px; margin-right:-4px;">od</span> 12 000 <span class="unit">Kč</span></div>
-                        <ul class="features"><li>Vícestránkový web na míru (služby, galerie, blog...)</li><li>Analýza klíčových slov — najdou vás zákazníci co hledají</li><li>Kontaktní formulář + Google Analytics + Search Console</li><li>WhatsApp tlačítko, cookie lišta, mobilní verze</li><li>Hosting v ceně tvorby — platíte jen doménu</li><li><strong>Cena dle rozsahu — vždy domluvená předem</strong></li></ul>
-                    </div>
-                    <div class="price-card">
-                        <div class="card-top"><h3>Web Care</h3><p>Nechte správu webu na mně – vy se věnujte byznysu.</p>
-                        <div style="display:flex; gap:0; margin: 16px 0 0; border: 1px solid rgba(56,189,248,0.2); border-radius: 12px; overflow:hidden;">
-                            <button onclick="switchCare('basic')" id="care-btn-basic" style="flex:1; padding:8px 2px; font-family:inherit; font-size:10px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:var(--accent); color:#000; text-transform:uppercase; letter-spacing:0.3px;">Základní</button>
-                            <button onclick="switchCare('active')" id="care-btn-active" style="flex:1; padding:8px 2px; font-family:inherit; font-size:10px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.3px;">Aktivní</button>
-                            <button onclick="switchCare('hourly')" id="care-btn-hourly" style="flex:1; padding:8px 2px; font-family:inherit; font-size:10px; font-weight:700; cursor:pointer; border:none; transition:0.2s; background:transparent; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.3px;">Hodinově</button>
-                        </div></div>
-                        <div id="care-basic"><div class="price">390 <span class="unit">Kč/měs</span></div><ul class="features"><li>Monitoring dostupnosti webu</li><li>1 úprava obsahu měsíčně (text, fotka, ceník)</li><li>Kontrola funkčnosti formulářů</li><li>Reakce do 48 hodin</li><li><strong>Ideální pro stabilní weby</strong></li></ul></div>
-                        <div id="care-active" style="display:none;"><div class="price">990 <span class="unit">Kč/měs</span></div><ul class="features"><li>Vše ze Základního balíčku</li><li>Až 2 hodiny práce měsíčně v ceně</li><li>Přidání článků, referencí, akcí</li><li>Měsíční report z Google Analytics a GSC</li><li>Reakce do 24 hodin</li><li><strong>Pro firmy co chtějí aktivně růst</strong></li></ul></div>
-                        <div id="care-hourly" style="display:none;"><div class="price">700 <span class="unit">Kč/hod</span></div><ul class="features"><li>Platíte jen za odvedenou práci</li><li>Žádné měsíční závazky</li><li>Min. 30 minut za každou úpravu</li><li>Faktura po dokončení práce</li><li><strong>Ideální pro občasné změny</strong></li></ul></div>
-                    </div>
-                    <script>function switchCare(type){['basic','active','hourly'].forEach(function(t){document.getElementById('care-'+t).style.display='none';var btn=document.getElementById('care-btn-'+t);btn.style.background='transparent';btn.style.color='var(--text-dim)';});document.getElementById('care-'+type).style.display='block';var active=document.getElementById('care-btn-'+type);active.style.background='var(--accent)';active.style.color='#000';}</script>
-                </div>
-                <div style="margin-top: 80px;">
-                    <h3 style="text-align: center; font-size: 28px; font-weight: 800; margin-bottom: 12px;">Potřebujete <span style="color:var(--accent);">něco navíc?</span></h3>
-                    <p style="text-align: center; color: var(--text-dim); font-size: 15px; margin-bottom: 10px; margin-top: 0;">Jednorázové služby, které si můžete přikoupit samostatně.</p>
-                    <div class="extras-grid">
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="extra-name">Rychlostní optimalizace</div><div class="extra-desc">PageSpeed audit + opravy stávajícího webu</div></div></div><div class="extra-price">od 1 500 Kč</div></div>
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="extra-name">SEO audit webu</div><div class="extra-desc">Analýza a doporučení pro lepší pozice na Google</div></div></div><div class="extra-price">od 990 Kč</div></div>
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div><div class="extra-name">Texty pro web</div><div class="extra-desc">AI copywriting – texty co prodávají a zaujmou</div></div></div><div class="extra-price">od 800 Kč</div></div>
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div><div><div class="extra-name">Landing page do 48 hodin</div><div class="extra-desc">Expresní one-page web – ideální pro akce a kampaně</div></div></div><div class="extra-price">od 3 900 Kč</div></div>
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="extra-name">Nastavení GSC + Seznam</div><div class="extra-desc">Google Search Console a Seznam Webmaster od A do Z</div></div></div><div class="extra-price">490 Kč</div></div>
-                        <div class="extra-card"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="extra-name">Konzultace 1 hodina</div><div class="extra-desc">Poradím s webem, SEO nebo online prezentací</div></div></div><div class="extra-price">500 Kč</div></div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="faq" class="faq-section">
-                <h2 class="section-title">Často kladené <span>otázky (FAQ)</span></h2>
-                <div class="faq-grid">
-                    <div class="faq-item"><h3>Proč neplatím za hosting?</h3><p>Weby stavím čistým kódem bez WordPressu. Výsledné soubory nahrávám na moderní cloudovou platformu, která statické weby hostuje v rámci své infrastruktury. Hosting je proto součástí ceny tvorby — vy platíte jen doménu, přibližně 200 Kč ročně.</p></div>
-                    <div class="faq-item"><h3>Budu moci web v budoucnu sama upravovat?</h3><p>Ano, samozřejmě. Kód píšu velmi přehledně a čistě. Pokud budete chtít v budoucnu změnit texty nebo přidat fotku, buď vám s tím ráda pomůžu, nebo vás navedu, jak si v souboru jednoduše přepsat text bez nutnosti cokoli programovat.</p></div>
-                    <div class="faq-item"><h3>Jak dlouho trvá kompletní tvorba webu?</h3><p>Menší prezentační weby (balíček Start) mívám hotové zpravidla do 7 až 10 dnů od chvíle, kdy od vás dostanu podklady (texty, případně fotky). U rozsáhlejších webů se domluvíme na přesném harmonogramu.</p></div>
-                    <div class="faq-item"><h3>Pomůžete mi s výběrem a registrací domény?</h3><p>Jasně! Společně vymyslíme ideální název domény pro vaše podnikání a ukážu vám, kde a jak ji nejvýhodněji koupit přímo na vaše jméno, abyste byli jejím stoprocentním vlastníkem.</p></div>
-                </div>
-            </section>
-
-            <section style="padding: 80px 0;">
-                <h2 class="section-title">Z <span>blogu</span></h2>
-                <p style="text-align:center; color:var(--text-dim); font-size:17px; max-width:600px; margin:-40px auto 50px;">Tipy a novinky ze světa webdesignu, SEO a AI vyhledávání.</p>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:24px; margin-bottom:40px;">
-                    <a href="/blog/rychlost-webu.html" style="text-decoration:none; background:var(--card-bg); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:32px; display:flex; flex-direction:column; gap:12px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.transform='translateY(0)'"><div style="font-family:'Share Tech Mono',monospace; font-size:12px; color:var(--matrix-green); letter-spacing:1px;">RYCHLOST WEBU</div><h3 style="font-size:20px; font-weight:700; color:var(--text); margin:0; line-height:1.3;">Proč záleží na rychlosti webu?</h3><p style="color:var(--text-dim); font-size:14px; margin:0; line-height:1.6;">Pomalý web zákazníky odrazuje a Google ho řadí níže. Jak to změřit a co s tím udělat.</p><div style="color:var(--accent); font-size:14px; font-weight:700; margin-top:auto;">Číst článek →</div></a>
-                    <a href="/blog/cena-webu-novy-jicin.html" style="text-decoration:none; background:var(--card-bg); border:1px solid rgba(255,255,255,0.07); border-radius:24px; padding:32px; display:flex; flex-direction:column; gap:12px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.3)'; this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.transform='translateY(0)'"><div style="font-family:'Share Tech Mono',monospace; font-size:12px; color:var(--matrix-green); letter-spacing:1px;">WEBDESIGN · NOVÝ JIČÍN</div><h3 style="font-size:20px; font-weight:700; color:var(--text); margin:0; line-height:1.3;">Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?</h3><p style="color:var(--text-dim); font-size:14px; margin:0; line-height:1.6;">Doba se posunula a s ní i technologie. Dnes už nemusíte platit obrovské částky za složité systémy.</p><div style="color:var(--accent); font-size:14px; font-weight:700; margin-top:auto;">Číst článek →</div></a>
-                </div>
-                <div style="text-align:center;"><a href="/blog.html" style="display:inline-block; color:var(--accent); font-weight:700; font-size:15px; text-decoration:none; border:1px solid rgba(56,189,248,0.3); padding:14px 32px; border-radius:50px; transition:0.3s;" onmouseover="this.style.borderColor='rgba(56,189,248,0.8)'" onmouseout="this.style.borderColor='rgba(56,189,248,0.3)'">Všechny články →</a></div>
-            </section>
-
-            <section class="contact-section" id="kontakt">
-                <h2 style="text-align:center; margin-bottom: 20px;">Pojďme postavit váš <span style="color:var(--accent); text-shadow: 0 0 20px rgba(56,189,248,0.3);">nový web</span></h2>
-                <form id="contact-form">
-                    <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
-                    <input type="hidden" name="subject" value="Nová poptávka z webu">
-                    <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
-                    <div class="form-group"><input type="text" name="jmeno" placeholder="Vaše jméno" required></div>
-                    <div class="form-group"><input type="email" name="email" placeholder="E-mail" required></div>
-                    <div class="form-group"><textarea name="zprava" rows="5" placeholder="Co potřebujete na svém webu vyřešit?" required></textarea></div>
-                    <button type="submit" class="btn" style="width:100%;">Odeslat nezávaznou poptávku</button>
-                </form>
-            </section>
-        </main>
-
-        <footer style="background: rgba(15, 23, 42, 0.85); border-top: 1px solid rgba(255,255,255,0.05); padding: 60px 0 30px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;" class="container">
-                <div>
-                    <a href="/" class="footer-logo">Janyskova<span>Digital</span></a>
-                    <p style="color: var(--text-dim); font-size: 14px;">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby.</p>
-                    <div style="margin-top:16px;"><a href="/blog.html" style="color:var(--accent); font-size:14px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a></div>
-                </div>
-                <div>
-                    <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Kontakt</h3>
-                    <div class="contact-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:info@janyskovadigital.cz" style="color: inherit; text-decoration: none;">info@janyskovadigital.cz</a></div>
-                    <div class="contact-row"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><a href="tel:+420739395800" style="color: inherit; text-decoration: none;">+420 739 395 800</a></div>
-                </div>
-                <div style="align-self: start;">
-                    <h3 style="color: var(--accent); margin-bottom: 15px; font-size: 16px;">Kde působím</h3>
-                    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-                        <li><a href="/novy-jicin/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'"><span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Nový Jičín</a></li>
-                        <li><a href="/pribor/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'"><span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Příbor</a></li>
-                        <li><a href="/koprivnice/" style="color: var(--text-dim); text-decoration: none; font-size: 14px; transition: 0.2s; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-dim)'"><span style="color: var(--accent); font-size: 10px;">▶</span> Tvorba webu Kopřivnice</a></li>
-                    </ul>
-                    <p style="color: var(--text-dim); font-size: 13px; margin: 15px 0 0; line-height: 1.6;">Primárně Novojičínsko, ale weby tvořím pro celou ČR – vše jde řešit online.</p>
-                </div>
-            </div>
-            <div class="container footer-bottom">
-                <p style="margin: 0; color: #c8d4e3;">© 2026 Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín</p>
-                <a href="https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/" target="_blank" rel="noopener" style="color: #c8d4e3; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='#c8d4e3'">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    LinkedIn
-                </a>
-                <div class="footer-legal"><a href="ochrana-udaju.html">Ochrana osobních údajů</a></div>
-            </div>
-        </footer>
+        <h1>Web, který<br>pro vás <em>pracuje</em><br>nonstop.</h1>
+        <p class="hero-sub">Jmenuju se Gabča a tvořím weby na míru — čistým kódem, bez WordPressu a bez měsíčních poplatků za hosting.</p>
+        <div class="hero-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Tento web stojí 200 Kč ročně. Jen doména. Hosting je v ceně tvorby.
+        </div>
+        <div class="hero-btns">
+          <a href="#kontakt" class="btn-primary">
+            Chci nezávaznou poptávku
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#jak-to-funguje" class="btn-outline">Jak to funguje</a>
+        </div>
+      </div>
+      <div class="hero-right reveal">
+        <div class="hero-card">
+          <div class="hero-card-head">Výsledky mých webů</div>
+          <div class="hero-card-row"><span class="hero-card-label">Načítání webu</span><span class="hero-card-val val-green">pod 1 s</span></div>
+          <div class="hero-card-row"><span class="hero-card-label">Hosting ročně</span><span class="hero-card-val val-green">0 Kč</span></div>
+          <div class="hero-card-row"><span class="hero-card-label">Doména ročně</span><span class="hero-card-val val-white">~200 Kč</span></div>
+          <div class="hero-card-row"><span class="hero-card-label">Dodání webu</span><span class="hero-card-val val-pink">7–10 dní</span></div>
+          <div class="hero-scores">
+            <div class="score-pill"><span>100</span><small>Performance</small></div>
+            <div class="score-pill"><span>100</span><small>SEO</small></div>
+            <div class="score-pill"><span>100</span><small>Accessibility</small></div>
+            <div class="score-pill"><span>100</span><small>Best Practices</small></div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div id="cookie-banner" class="cookie-banner">
-        <p class="cookie-text"><strong>Nastavení cookies.</strong> Tento web používá k měření návštěvnosti soubory cookies. Pomáhají mi analyzovat, co vás zajímá, abych mohla web dál vylepšovat. Více informací naleznete v sekci <a href="ochrana-udaju.html">Ochrana osobních údajů</a>.</p>
-        <div class="cookie-btns"><button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button><button id="cookie-accept" class="cookie-btn cookie-accept">Přijmout vše</button></div>
+<div class="section-divider"></div>
+
+<section class="trust-section" id="proc-ja">
+  <div class="container">
+    <div class="section-tag">Proč Janyskova Digital</div>
+    <h2 class="section-title">Co dostanete,<br>co jinde <em>nenajdete.</em></h2>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Rychlost, která prodává</h3>
+        <p>Tři sekundy načítání a polovina návštěvníků odejde. Moje weby se načítají pod sekundu — a Google to odměňuje lepšími pozicemi.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Žádné měsíční faktury</h3>
+        <p>U jiných platíte za hosting 2–5 tisíc ročně. U mě je hosting v ceně webu. Dál platíte jen doménu — přibližně 200 Kč ročně.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Web bez starostí</h3>
+        <p>WordPress potřebuje neustálé aktualizace a záplaty. Čistý kód nic z toho nepotřebuje. Spustím web a vy se věnujete byznysu.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <h3>Najdou vás i AI vyhledávače</h3>
+        <p>Každý web stavím tak, aby vás našel nejen Google, ale i ChatGPT nebo Perplexity. Většina webdesignerů tohle ještě neřeší. Já ano.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Lokální znalost</h3>
+        <p>Vím, jak funguje podnikání na Novojičínsku. Vaše zákazníky hledám tam, kde jsou — v Novém Jičíně, Příboře, Kopřivnici i okolí.</p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Jsem tu i po spuštění</h3>
+        <p>Potřebujete změnit cenu nebo přidat fotku? Napište — odpovídám do 24 hodin. Nejste číslo ve frontě, jste klient.</p>
+      </div>
     </div>
+  </div>
+</section>
 
-    <a href="https://wa.me/420739395800" target="_blank" rel="noopener" aria-label="Kontaktujte nás přes WhatsApp" style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 9999; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 30px rgba(37,211,102,0.6)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 20px rgba(37,211,102,0.4)';">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.16-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.714 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+<div class="section-divider"></div>
 
-    <script>
-        const GA_MEASUREMENT_ID = 'G-TMSH0HC2SH';
-        function loadGoogleAnalytics() { if (window.ga_loaded) return; window.ga_loaded = true; const script = document.createElement('script'); script.async = true; script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`; document.head.appendChild(script); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', GA_MEASUREMENT_ID); }
-        const banner = document.getElementById('cookie-banner');
-        const acceptBtn = document.getElementById('cookie-accept');
-        const rejectBtn = document.getElementById('cookie-reject');
-        function hideBannerComplete() { banner.classList.remove('show'); setTimeout(() => { banner.style.display = 'none'; }, 400); }
-        window.addEventListener('DOMContentLoaded', () => { const consent = localStorage.getItem('cookie-consent'); if (consent === 'accepted') { loadGoogleAnalytics(); } else if (consent !== 'rejected') { setTimeout(() => banner.classList.add('show'), 1000); } });
-        acceptBtn.addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBannerComplete(); loadGoogleAnalytics(); });
-        rejectBtn.addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBannerComplete(); });
-        const chars = "0101100110_X_/";
-        const target = document.getElementById('scramble-h1');
-        const originalText = target.dataset.value;
-        let animationFrame = null;
-        function triggerScramble() { let startTime = performance.now(); const duration = 750; function update(currentTime) { let elapsed = currentTime - startTime; let progress = Math.min(elapsed / duration, 1); let solvedCount = Math.floor(progress * originalText.length); let currentResult = ""; for (let i = 0; i < originalText.length; i++) { if (i < solvedCount) { currentResult += originalText[i]; } else if (originalText[i] === " ") { currentResult += " "; } else { currentResult += chars[Math.floor(Math.random() * chars.length)]; } } target.innerText = currentResult; if (progress < 1) animationFrame = requestAnimationFrame(update); } cancelAnimationFrame(animationFrame); animationFrame = requestAnimationFrame(update); }
-        window.addEventListener('DOMContentLoaded', triggerScramble);
-        target.addEventListener('mouseover', triggerScramble);
-        const glowBg = document.querySelector('.mouse-glow');
-        const floatingElements = document.querySelectorAll('.floating-gfx');
-        window.addEventListener('mousemove', (e) => { glowBg.style.setProperty('--mouse-x', e.clientX + 'px'); glowBg.style.setProperty('--mouse-y', e.clientY + 'px'); const moveX = (e.clientX - window.innerWidth / 2) * 0.02; const moveY = (e.clientY - window.innerHeight / 2) * 0.02; floatingElements.forEach((el, index) => { const speed = (index + 1) * 0.7; el.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`; }); });
-        const canvas = document.getElementById('network-canvas');
-        const ctx = canvas.getContext('2d');
-        let points = [];
-        let mouse = { x: null, y: null, radius: 200 };
-        window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize); resize();
-        for(let i=0; i<75; i++) { points.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.25, vy: (Math.random()-0.5)*0.25, size: Math.random() * 2 + 1 }); }
-        function draw() { ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle = '#38bdf8'; ctx.strokeStyle = '#38bdf8'; points.forEach((p, i) => { p.x += p.vx; p.y += p.vy; if (mouse.x != null) { let dx = p.x - mouse.x; let dy = p.y - mouse.y; let distance = Math.hypot(dx, dy); if (distance < mouse.radius) { let force = (mouse.radius - distance) / mouse.radius; p.x += (dx / distance) * force * 2; p.y += (dy / distance) * force * 2; } } if(p.x<0 || p.x>canvas.width) p.vx*=-1; if(p.y<0 || p.y>canvas.height) p.vy*=-1; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill(); for(let j=i+1; j<points.length; j++) { const p2 = points[j]; const dist = Math.hypot(p.x-p2.x, p.y-p2.y); if(dist<180) { ctx.globalAlpha = (1-(dist/180))*0.3; ctx.lineWidth=0.7; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x,p2.y); ctx.stroke(); } } ctx.globalAlpha = 1; }); requestAnimationFrame(draw); }
-        draw();
-        (function() { function fmt(n) { return Math.round(n).toLocaleString('cs-CZ') + '\u00a0Kč'; } function updateKalk() { var hosting = parseInt(document.getElementById('k-hosting').value); var sprava = parseInt(document.getElementById('k-sprava').value); var domena = parseInt(document.getElementById('k-domena').value); var roky = parseInt(document.getElementById('k-roky').value); document.getElementById('k-hosting-out').textContent = fmt(hosting); document.getElementById('k-sprava-out').textContent = fmt(sprava); document.getElementById('k-domena-out').textContent = fmt(domena); document.getElementById('k-roky-out').textContent = roky + (roky === 1 ? ' rok' : roky < 5 ? ' roky' : ' let'); var ted = (hosting + sprava + domena) * roky; var jd = 5900 + (domena * roky); var uspora = Math.max(0, ted - jd); document.getElementById('k-ted').textContent = fmt(ted); document.getElementById('k-jd').textContent = fmt(jd); document.getElementById('k-uspora').textContent = fmt(uspora); var max = Math.max(ted, jd, 1); document.getElementById('k-bar-ted').style.width = Math.round((ted / max) * 100) + '%'; document.getElementById('k-bar-jd').style.width = Math.round((jd / max) * 100) + '%'; } ['k-hosting','k-sprava','k-domena','k-roky'].forEach(function(id) { document.getElementById(id).addEventListener('input', updateKalk); }); updateKalk(); })();
-        const revealObserver = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
-        document.querySelectorAll('section, .trust-card, .price-card, .faq-item, .extra-card').forEach(el => { el.classList.add('reveal-section'); revealObserver.observe(el); });
-        const form = document.getElementById('contact-form');
-        form.addEventListener('submit', async (e) => { e.preventDefault(); const btn = form.querySelector('button[type="submit"]'); btn.disabled = true; btn.textContent = 'Odesílám...'; const formData = new FormData(form); const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData }); const data = await res.json(); if (data.success) { window.location.href = 'https://janyskovadigital.cz/podekovani.html'; } else { btn.disabled = false; btn.textContent = 'Odeslat nezávaznou poptávku'; alert('Něco se pokazilo, zkuste to prosím znovu.'); } });
-    </script>
-    <script>
-        function toggleMenu() { const menu = document.getElementById('fullscreen-menu'); const btn = document.getElementById('hamburger'); menu.classList.toggle('open'); btn.classList.toggle('open'); document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : ''; }
-        document.getElementById('fullscreen-menu').addEventListener('click', function(e) { if (e.target === this) toggleMenu(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { const m = document.getElementById('fullscreen-menu'); if (m.classList.contains('open')) toggleMenu(); }});
-        if (typeof window.refCurrent === 'undefined') { window.refCurrent = 0; }
-        function slideRef(dir) { const track = document.getElementById('ref-track'); if (!track) return; const slides = track.children.length; window.refCurrent = (window.refCurrent + dir + slides) % slides; track.style.transform = `translateX(-${window.refCurrent * 100}%)`; document.querySelectorAll('#ref-dots div').forEach((d, i) => { d.style.background = i === window.refCurrent ? 'var(--accent)' : 'rgba(56,189,248,0.2)'; }); }
-    </script>
+<section class="about-section" id="o-mne">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-img-wrap reveal">
+        <img src="gabca.webp" alt="Gabriela Janýšková — webdesignerka z Nového Jičína" width="400" height="533" loading="lazy" decoding="async">
+        <div class="about-badge"><span>Sídlím v</span><strong>Novém Jičíně</strong></div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-tag">O mně</div>
+        <h2 class="section-title">Ahoj, jsem Gabča —<br><em>webdesignerka</em><br>z Nového Jičína.</h2>
+        <p>Pomáhám drobným podnikatelům, OSVČ i začínajícím projektům získat profesionální web, který je skvěle prezentuje — a přitom nestojí majlant. Moje základna je <strong>Novojičínsko</strong>, ale díky moderním technologiím spolupracuji s klienty po celé ČR.</p>
+        <p>Počítače mě baví od malička. IT jsem nikdy nestudovala — jsem samouk, který se učí v praxi. Za sebou mám <strong>rekvalifikační kurz na specialistku AI</strong> a <strong>kurz marketingu od Juniorní akademie</strong>.</p>
+        <div class="about-pills">
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Čistý kód, žádný WordPress</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed 100/100</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>SEO + AEO + GEO</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Specialistka AI</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Kurz marketingu</span>
+        </div>
+        <a href="#kontakt" class="btn-primary">Pojďme se poznat <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="ref-section" id="reference">
+  <div class="container">
+    <div class="section-tag">Reference</div>
+    <h2 class="section-title">Weby, které jsem <em>postavila.</em></h2>
+    <div class="ref-card reveal">
+      <div class="ref-img"><img src="/img/nikola-desktop.webp" alt="Web hubackovafoto.cz" loading="lazy" decoding="async"></div>
+      <div class="ref-body">
+        <div class="ref-tag">Fotografie · Olomoucký kraj</div>
+        <h3>Nikola Hubáčková</h3>
+        <p>Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online poptávkovým formulářem.</p>
+        <a href="https://hubackovafoto.cz" target="_blank" rel="noopener noreferrer" class="ref-link">hubackovafoto.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="process-section" id="jak-to-funguje">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center;">Jak to funguje</div>
+    <h2 class="section-title" style="text-align:center;">Spolupráce krok <em>za krokem.</em></h2>
+    <div class="process-grid reveal">
+      <div class="process-card"><div class="process-num">01</div><h3>Konzultace</h3><p>Zavoláme si nebo napíšeme — probereme co váš web potřebuje a jaký máte rozpočet. Bez závazků a technických řečí.</p></div>
+      <div class="process-card"><div class="process-num">02</div><h3>Tvorba</h3><p>Píšu web přímo v čistém kódu — žádné šablony, žádný WordPress. Výsledek je rychlý, moderní a přesně pro vás.</p></div>
+      <div class="process-card"><div class="process-num">03</div><h3>Spuštění</h3><p>Web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.</p></div>
+      <div class="process-card"><div class="process-num">04</div><h3>Podpora</h3><p>Potřebujete změnit text nebo přidat fotku? Napište mi — odpovídám do 24 hodin. Nejste číslo ve frontě.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:50px;">
+      <a href="#kontakt" class="btn-primary">Chci nezávaznou poptávku</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="kalk-section" id="kalkulacka">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center;">Kalkulačka úspor</div>
+    <h2 class="section-title" style="text-align:center;">Kolik vás stojí <em>váš současný web?</em></h2>
+    <p style="text-align:center; color:var(--text-dim); font-size:17px; max-width:520px; margin:-30px auto 50px; line-height:1.7;">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
+    <div class="kalk-wrap reveal">
+      <div class="kalk-grid">
+        <div><div class="kalk-label">Hosting / rok <span id="k-hosting-out">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range" aria-label="Hosting za rok"></div>
+        <div><div class="kalk-label">Správa webu / rok <span id="k-sprava-out">2 000 Kč</span></div><input type="range" id="k-sprava" min="0" max="20000" step="100" value="2000" class="kalk-range" aria-label="Správa webu za rok"></div>
+        <div><div class="kalk-label">Doména / rok <span id="k-domena-out">250 Kč</span></div><input type="range" id="k-domena" min="100" max="1000" step="50" value="250" class="kalk-range" aria-label="Doména za rok"></div>
+        <div><div class="kalk-label">Počet let <span id="k-roky-out">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range" aria-label="Počet let"></div>
+      </div>
+      <div class="kalk-results">
+        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">25 250 Kč</div></div>
+        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">6 250 Kč</div></div>
+        <div class="kalk-box save"><div class="kalk-box-label">Ušetříte</div><div class="kalk-box-val" id="k-uspora">19 000 Kč</div></div>
+      </div>
+      <div class="kalk-bar-wrap">
+        <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
+        <div class="kalk-bar-track"><div class="kalk-bar-current" id="k-bar-ted"></div><div class="kalk-bar-jd" id="k-bar-jd"></div></div>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+        <p class="kalk-note">Výpočet: (hosting + správa + doména) × roky vs. tvorba od 5 900 Kč + doména × roky. Hosting v ceně tvorby.</p>
+        <a href="#kontakt" class="btn-primary">Chci ušetřit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="pricing-section" id="cenik">
+  <div class="container">
+    <div class="section-tag">Ceník</div>
+    <h2 class="section-title">Transparentní <em>ceny.</em><br>Žádná překvapení.</h2>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-card-tag">One-page web</div>
+        <h3>Web Start</h3>
+        <p>Perfektní pro OSVČ, specialisty a živnostníky.</p>
+        <div class="price-amount">5 900 <small>Kč</small></div>
+        <div class="price-divider"></div>
+        <ul class="features">
+          <li>Web na míru — žádné šablony, žádný WordPress</li>
+          <li>Načítání pod 1 sekundu, PageSpeed 95–100</li>
+          <li>SEO, Schema.org, sitemap, meta tagy</li>
+          <li>Mobilní verze, SSL, kontaktní formulář</li>
+          <li>Propojení s Google Search Console a Seznam</li>
+          <li><strong style="color:var(--text);">Hosting v ceně — platíte jen doménu</strong></li>
+        </ul>
+      </div>
+      <div class="price-card popular reveal">
+        <div class="popular-badge">Nejvýhodnější</div>
+        <div class="price-card-tag">Vícestránkový web</div>
+        <h3>Web Business</h3>
+        <p>Pro firmy a podnikatele, kteří chtějí růst.</p>
+        <div class="price-amount"><small style="font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;">od</small> 12 000 <small>Kč</small></div>
+        <div class="price-divider"></div>
+        <ul class="features">
+          <li>Vícestránkový web na míru</li>
+          <li>Analýza klíčových slov a lokální SEO</li>
+          <li>Google Analytics + Search Console</li>
+          <li>WhatsApp tlačítko, cookie lišta</li>
+          <li>Hosting v ceně — platíte jen doménu</li>
+          <li><strong style="color:var(--text);">Cena dle rozsahu — domluvená předem</strong></li>
+        </ul>
+      </div>
+      <div class="price-card reveal">
+        <div class="price-card-tag">Správa webu</div>
+        <h3>Web Care</h3>
+        <p>Nechte správu webu na mně.</p>
+        <div class="care-toggle" role="tablist">
+          <button onclick="switchCare('basic')" id="care-btn-basic" class="care-btn active" role="tab">Základní</button>
+          <button onclick="switchCare('active')" id="care-btn-active" class="care-btn" role="tab">Standard</button>
+          <button onclick="switchCare('hourly')" id="care-btn-hourly" class="care-btn" role="tab">Hodinově</button>
+        </div>
+        <div id="care-basic">
+          <div class="price-amount">490 <small>Kč/měs</small></div>
+          <ul class="features"><li>Monitoring dostupnosti webu</li><li>1 úprava obsahu měsíčně</li><li>Kontrola funkčnosti formulářů</li><li>Reakce do 48 hodin</li></ul>
+        </div>
+        <div id="care-active" style="display:none;">
+          <div class="price-amount">990 <small>Kč/měs</small></div>
+          <ul class="features"><li>Vše ze Základního balíčku</li><li>Až 2 hodiny práce měsíčně</li><li>Přidání článků, referencí, akcí</li><li>Měsíční report z Analytics a GSC</li><li>Reakce do 24 hodin</li></ul>
+        </div>
+        <div id="care-hourly" style="display:none;">
+          <div class="price-amount">850 <small>Kč/hod</small></div>
+          <ul class="features"><li>Platíte jen za odvedenou práci</li><li>Žádné měsíční závazky</li><li>Min. 30 minut za každou úpravu</li><li>Faktura po dokončení práce</li></ul>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; font-size:14px; color:var(--text-dim); margin-top:28px; font-style:italic;">Ceny jsou orientační — finální nabídku vám ráda připravím na míru.</p>
+  </div>
+</section>
+
+<section class="extras-section">
+  <div class="container">
+    <h3 style="font-size:22px; font-family:'DM Serif Display',serif; color:var(--text); margin-bottom:6px;">Potřebujete <em style="font-style:italic; color:var(--pink);">něco navíc?</em></h3>
+    <p style="font-size:13px; color:var(--text-dim);">Jednorázové služby, které si můžete přikoupit samostatně.</p>
+    <div class="extras-grid">
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="extra-name">Rychlostní optimalizace</div><div class="extra-desc">PageSpeed audit + opravy stávajícího webu</div></div></div><div class="extra-price">od 1 500 Kč</div></div>
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><div class="extra-name">SEO audit webu</div><div class="extra-desc">Analýza a doporučení pro lepší pozice</div></div></div><div class="extra-price">od 990 Kč</div></div>
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div><div class="extra-name">Texty pro web</div><div class="extra-desc">Copywriting co prodává a zaujme</div></div></div><div class="extra-price">od 800 Kč</div></div>
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div><div><div class="extra-name">Landing page do 48 hodin</div><div class="extra-desc">Expresní one-page — ideální pro akce</div></div></div><div class="extra-price">od 3 900 Kč</div></div>
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="extra-name">Nastavení GSC + Seznam</div><div class="extra-desc">Google Search Console a Seznam Webmaster</div></div></div><div class="extra-price">490 Kč</div></div>
+      <div class="extra-card reveal"><div class="extra-left"><div class="extra-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div class="extra-name">Konzultace 1 hodina</div><div class="extra-desc">Poradím s webem, SEO nebo online prezentací</div></div></div><div class="extra-price">500 Kč</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center;">Časté otázky</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <div class="faq-grid" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Proč neplatím za hosting?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.</p></div></div>
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Budu moci web v budoucnu sama upravovat?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Ano. Kód píšu přehledně a čistě. Pokud budete chtít změnit texty nebo přidat fotku, buď vám s tím ráda pomůžu, nebo vás navedu jak na to.</p></div></div>
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Jak dlouho trvá tvorba webu?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Menší weby mívám hotové do 7–10 dnů od chvíle, kdy dostanu podklady. U rozsáhlejších projektů se domluvíme na harmonogramu.</p></div></div>
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Pomůžete mi s výběrem domény?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Jasně! Společně vymyslíme ideální název a ukážu vám, kde a jak ji nejvýhodněji koupit přímo na vaše jméno.</p></div></div>
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Tvoříte weby i mimo Nový Jičín?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Ano, spolupráce probíhá kompletně online. Weby tvořím pro klienty z celé České republiky.</p></div></div>
+      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question"><h3 itemprop="name">Kolik stojí webové stránky v Novém Jičíně?</h3><div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><p itemprop="text">Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="section-tag">Blog</div>
+    <h2 class="section-title">Tipy ze světa <em>webdesignu a AI.</em></h2>
+    <div class="blog-grid">
+      <a href="/blog/rychlost-webu.html" class="blog-card reveal"><div class="blog-tag">Rychlost webu</div><h3>Proč záleží na rychlosti webu?</h3><p>Pomalý web zákazníky odrazuje a Google ho řadí níže. Jak to změřit a co s tím udělat.</p><span>Číst článek →</span></a>
+      <a href="/blog/cena-webu-novy-jicin.html" class="blog-card reveal"><div class="blog-tag">Webdesign · Nový Jičín</div><h3>Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?</h3><p>Dnes už nemusíte platit obrovské částky za složité systémy, pokud je pro svůj byznys reálně nevyužijete.</p><span>Číst článek →</span></a>
+    </div>
+    <div style="text-align:center; margin-top:32px;"><a href="/blog.html" class="btn-outline">Všechny články</a></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="contact-section" id="kontakt">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center;">Kontakt</div>
+    <h2 class="section-title" style="text-align:center; margin-bottom:40px;">Pojďme postavit <em>váš nový web.</em></h2>
+    <div class="contact-wrap reveal">
+      <h2 style="font-size:26px; margin-bottom:8px;">Napište mi</h2>
+      <p>Ráda si o vašem webu popovídám. Odpovídám do 24 hodin.</p>
+      <form id="contact-form" novalidate>
+        <input type="hidden" name="access_key" value="e7fbbc6f-f4d1-4485-a88a-0165a3875c0d">
+        <input type="hidden" name="subject" value="Nová poptávka z webu — Janyskova Digital">
+        <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
+        <div class="form-row">
+          <div class="form-group"><label for="jmeno">Vaše jméno</label><input type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="name"></div>
+          <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="E-mail" required autocomplete="email"></div>
+        </div>
+        <div class="form-group"><label for="zprava">Zpráva</label><textarea id="zprava" name="zprava" placeholder="Co potřebujete na svém webu vyřešit?" required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Odeslat nezávaznou poptávku <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+      </form>
+      <div class="contact-info">
+        <a href="tel:+420739395800" aria-label="Zavolejte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+420 739 395 800</a>
+        <a href="mailto:info@janyskovadigital.cz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@janyskovadigital.cz</a>
+        <a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>@JanyskovaDigital</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
+        <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
+        <div style="margin-top:14px;"><a href="/blog.html" style="color:var(--pink); font-size:13px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a></div>
+      </div>
+      <div>
+        <div class="footer-heading">Kde působím</div>
+        <ul class="footer-links-list">
+          <li><a href="/novy-jicin/">Tvorba webu Nový Jičín</a></li>
+          <li><a href="/pribor/">Tvorba webu Příbor</a></li>
+          <li><a href="/koprivnice/">Tvorba webu Kopřivnice</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kontakt</div>
+        <ul class="footer-links-list">
+          <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
+          <li><a href="tel:+420739395800">+420 739 395 800</a></li>
+          <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín</span>
+      <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
+    </div>
+  </div>
+</footer>
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Nastavení cookies">
+  <p class="cookie-text"><strong>Nastavení cookies.</strong> Tento web používá soubory cookies k měření návštěvnosti. Více v <a href="ochrana-udaju.html">Ochraně osobních údajů</a>.</p>
+  <div class="cookie-btns">
+    <button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button>
+    <button id="cookie-accept" class="cookie-btn cookie-accept">Přijmout</button>
+  </div>
+</div>
+
+<a href="https://wa.me/420739395800" target="_blank" rel="noopener noreferrer" aria-label="Napište přes WhatsApp" style="position:fixed; bottom:28px; right:28px; width:54px; height:54px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:9998; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 28px rgba(37,211,102,0.6)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 20px rgba(37,211,102,0.4)'">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.16-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.714 1.456h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+const GA_ID = 'G-TMSH0HC2SH';
+function loadGA() { if (window.ga_loaded) return; window.ga_loaded = true; const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(s); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', GA_ID); }
+
+const banner = document.getElementById('cookie-banner');
+function hideBanner() { banner.classList.remove('show'); setTimeout(() => { banner.style.display = 'none'; }, 400); }
+window.addEventListener('DOMContentLoaded', () => { const c = localStorage.getItem('cookie-consent'); if (c === 'accepted') { loadGA(); } else if (c !== 'rejected') { setTimeout(() => banner.classList.add('show'), 1200); } });
+document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBanner(); loadGA(); });
+document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBanner(); });
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open');
+  hamburger.setAttribute('aria-expanded', open);
+  mobileMenu.setAttribute('aria-hidden', !open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
+
+function switchCare(t) {
+  ['basic','active','hourly'].forEach(x => { document.getElementById('care-'+x).style.display='none'; document.getElementById('care-btn-'+x).classList.remove('active'); });
+  document.getElementById('care-'+t).style.display='block';
+  document.getElementById('care-btn-'+t).classList.add('active');
+}
+
+(function() {
+  function fmt(n) { return Math.round(n).toLocaleString('cs-CZ') + '\u00a0Kč'; }
+  function upd() {
+    const h=parseInt(document.getElementById('k-hosting').value), s=parseInt(document.getElementById('k-sprava').value), d=parseInt(document.getElementById('k-domena').value), r=parseInt(document.getElementById('k-roky').value);
+    document.getElementById('k-hosting-out').textContent=fmt(h);
+    document.getElementById('k-sprava-out').textContent=fmt(s);
+    document.getElementById('k-domena-out').textContent=fmt(d);
+    document.getElementById('k-roky-out').textContent=r+(r===1?' rok':r<5?' roky':' let');
+    const ted=(h+s+d)*r, jd=5900+(d*r), us=Math.max(0,ted-jd);
+    document.getElementById('k-ted').textContent=fmt(ted);
+    document.getElementById('k-jd').textContent=fmt(jd);
+    document.getElementById('k-uspora').textContent=fmt(us);
+    const mx=Math.max(ted,jd,1);
+    document.getElementById('k-bar-ted').style.width=Math.round((ted/mx)*100)+'%';
+    document.getElementById('k-bar-jd').style.width=Math.round((jd/mx)*100)+'%';
+  }
+  ['k-hosting','k-sprava','k-domena','k-roky'].forEach(id=>document.getElementById(id).addEventListener('input',upd));
+  upd();
+})();
+
+const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+const mouseGlow = document.querySelector('.mouse-glow');
+window.addEventListener('mousemove', e => {
+  mouseGlow.style.setProperty('--mx', e.clientX + 'px');
+  mouseGlow.style.setProperty('--my', e.clientY + 'px');
+}, { passive: true });
+
+(function() {
+  const canvas = document.getElementById('robot-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const P = 'rgba(240,20,122,';
+  let W, H, dpr;
+  let nodes = [], edges = [], pulses = [], t = 0;
+  let mouse = { x: -9999, y: -9999 };
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    build();
+  }
+
+  function build() {
+    nodes = []; edges = []; pulses = [];
+    const count = Math.floor((W * H) / 18000);
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * W;
+      const y = Math.random() * H;
+      nodes.push({ x, y, ox: x, oy: y, vx: 0, vy: 0,
+        r: 1.8 + Math.random() * 2.2,
+        phase: Math.random() * Math.PI * 2,
+        spd: 0.3 + Math.random() * 0.7 });
+    }
+    const maxD = Math.min(W, H) * 0.2;
+    nodes.forEach((a, i) => {
+      nodes.forEach((b, j) => {
+        if (j <= i) return;
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < maxD && Math.random() > 0.4) edges.push({ a, b, maxD });
+      });
+    });
+    for (let i = 0; i < 12; i++) spawnPulse();
+  }
+
+  function spawnPulse() {
+    if (!edges.length) return;
+    const e = edges[Math.floor(Math.random() * edges.length)];
+    pulses.push({ a: e.a, b: e.b, t: Math.random() * 0.3,
+      spd: 0.004 + Math.random() * 0.008, rev: Math.random() > 0.5 });
+  }
+
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.012;
+
+    // Fyzika — útěk od myši + návrat
+    nodes.forEach(n => {
+      const dx = n.x - mouse.x;
+      const dy = n.y - mouse.y;
+      const dist = Math.hypot(dx, dy);
+      const R = 160;
+      if (dist < R && dist > 0) {
+        const f = ((R - dist) / R) * 3.5;
+        n.vx += (dx / dist) * f;
+        n.vy += (dy / dist) * f;
+      }
+      n.vx += (n.ox - n.x) * 0.055;
+      n.vy += (n.oy - n.y) * 0.055;
+      n.vx *= 0.8; n.vy *= 0.8;
+      n.x += n.vx; n.y += n.vy;
+    });
+
+    // Hrany
+    edges.forEach(({ a, b, maxD }) => {
+      const d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d > maxD * 1.8) return;
+      const midX = (a.x + b.x) / 2, midY = (a.y + b.y) / 2;
+      const md = Math.hypot(midX - mouse.x, midY - mouse.y);
+      const mb = Math.max(0, 1 - md / 150);
+      const alpha = Math.max(0, (1 - d / (maxD * 1.5)) * 0.18 + mb * 0.4);
+      ctx.strokeStyle = P + alpha + ')';
+      ctx.lineWidth = 0.6 + mb * 1.5;
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    });
+
+    // Uzly
+    nodes.forEach(n => {
+      const bright = 0.4 + 0.6 * Math.abs(Math.sin(t * n.spd + n.phase));
+      const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);
+      const mb = Math.max(0, 1 - md / 120) * 0.6;
+      const alpha = Math.min(1, 0.35 * bright + mb);
+      const rr = n.r * (1 + mb * 1.2);
+      ctx.beginPath(); ctx.arc(n.x, n.y, rr, 0, Math.PI * 2);
+      ctx.fillStyle = P + alpha + ')'; ctx.fill();
+      if (mb > 0.05 || alpha > 0.5) {
+        ctx.beginPath(); ctx.arc(n.x, n.y, rr * 4, 0, Math.PI * 2);
+        ctx.fillStyle = P + (alpha * 0.1) + ')'; ctx.fill();
+      }
+    });
+
+    // Pulzy
+    for (let i = pulses.length - 1; i >= 0; i--) {
+      const p = pulses[i];
+      p.t += p.spd;
+      if (p.t >= 1) { pulses.splice(i, 1); spawnPulse(); continue; }
+      const prog = p.rev ? 1 - p.t : p.t;
+      const px = p.a.x + (p.b.x - p.a.x) * prog;
+      const py = p.a.y + (p.b.y - p.a.y) * prog;
+      const fade = Math.sin(p.t * Math.PI);
+      ctx.beginPath(); ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = P + (0.9 * fade) + ')'; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, 10, 0, Math.PI * 2);
+      ctx.fillStyle = P + (0.15 * fade) + ')'; ctx.fill();
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  window.addEventListener('touchmove', e => { if (e.touches[0]) { mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; } }, { passive: true });
+  window.addEventListener('resize', resize);
+  window.addEventListener('load', resize);
+  resize();
+  setTimeout(() => { build(); frame(); }, 80);
+})();
+
+
+
+
+
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  const orig = btn.innerHTML;
+  btn.disabled = true;
+  btn.textContent = 'Odesílám...';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const data = await res.json();
+    if (data.success) { window.location.href = 'https://janyskovadigital.cz/podekovani.html'; }
+    else { throw new Error(); }
+  } catch {
+    btn.innerHTML = orig; btn.disabled = false;
+    alert('Něco se pokazilo, zkuste to prosím znovu.');
+  }
+});
+</script>
 </body>
 </html>
