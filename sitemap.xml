@@ -30,34 +30,6 @@
   </url>
 
   <url>
-    <loc>https://janyskovadigital.cz/ostrava/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://janyskovadigital.cz/frydek-mistek/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://janyskovadigital.cz/hranice/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>https://janyskovadigital.cz/valasske-mezirici/</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
     <loc>https://janyskovadigital.cz/podekovani.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>yearly</changefreq>
@@ -81,6 +53,20 @@
   <url>
     <loc>https://janyskovadigital.cz/blog/ai-vyhledavani.html</loc>
     <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://janyskovadigital.cz/blog/cena-webu-novy-jicin</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://janyskovadigital.cz/blog/rychlost-webu</loc>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
