@@ -66,16 +66,31 @@ footer { background: #050408; padding: 40px 28px 24px; border-top: 1px solid rgb
 <body>
 <div class="blob b1" aria-hidden="true"></div>
 <div class="blob b2" aria-hidden="true"></div>
-<nav>
-  <div class="nav-inner">
-    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
-      <a href="/">Domů</a>
-      <a href="/#cenik">Ceník</a>
-      <a href="/#kontakt" class="cta">Napsat mi</a>
+      <a href="#jak-to-funguje">Jak to funguje</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#reference">Reference</a>
+      <a href="/blog.html">Blog</a>
+      <a href="#kontakt" class="cta">Napsat mi</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <a href="#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+  <a href="#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="#reference" onclick="closeMenu()">Reference</a>
+  <a href="#o-mne" onclick="closeMenu()">O mně</a>
+  <a href="/blog.html" onclick="closeMenu()">Blog</a>
+  <a href="#kontakt" onclick="closeMenu()">Napsat mi</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
 <main>
   <div class="container">
     <div class="page-tag">Blog</div>
