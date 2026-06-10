@@ -186,6 +186,20 @@ nav { padding: 26px 0; position: relative; z-index: 100; border-bottom: 1px soli
 .eyebrow-text { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; }
 .hero h1 { font-size: clamp(40px, 5.5vw, 70px); line-height: 1.06; letter-spacing: -1.5px; color: var(--text); margin-bottom: 24px; }
 .hero h1 em { color: var(--pink); font-style: italic; }
+.hero h1 .scramble-word {
+  display: inline-block;
+  background: linear-gradient(120deg, var(--text) 20%, var(--pink) 50%, #fff 65%, var(--text) 80%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  cursor: pointer;
+  animation: shineSweep 5s linear infinite;
+}
+@keyframes shineSweep {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
 .hero-sub { font-size: 17px; color: var(--text-dim); line-height: 1.85; margin-bottom: 38px; max-width: 460px; }
 .hero-note { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(0,229,160,0.2); background: rgba(0,229,160,0.06); padding: 10px 18px; border-radius: 100px; font-size: 13px; color: var(--green); margin-bottom: 36px; }
 .hero-note svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
@@ -395,7 +409,8 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 50px; }
-  .hero-right { order: -1; }
+  .hero-right { order: 2; }
+  .hero-left { order: 1; }
   .about-inner { grid-template-columns: 1fr; gap: 50px; }
   .about-img-wrap { max-width: 300px; margin: 0 auto; }
   .about-badge { right: 0; }
@@ -468,7 +483,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
           <div class="eyebrow-dot"></div>
           <span class="eyebrow-text">Webdesignerka · Nový Jičín</span>
         </div>
-        <h1>Web, který<br>pro vás <em>pracuje</em><br>nonstop.</h1>
+        <h1>Web, který<br>pro vás <em>pracuje</em><br><span class="scramble-word" id="scramble-h1" data-value="nonstop.">nonstop.</span></h1>
         <p class="hero-sub">Jmenuju se Gabča a tvořím weby na míru — čistým kódem, bez WordPressu a bez měsíčních poplatků za hosting.</p>
         <div class="hero-note">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -879,6 +894,38 @@ function switchCare(t) {
 
 const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// SCRAMBLE EFEKT na hero nadpis
+(function() {
+  const el = document.getElementById('scramble-h1');
+  if (!el) return;
+  const orig = el.dataset.value;
+  const chars = '01_/X#<>';
+  let raf = null;
+
+  function scramble() {
+    cancelAnimationFrame(raf);
+    const start = performance.now();
+    const dur = 700;
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const solved = Math.floor(p * orig.length);
+      let out = '';
+      for (let i = 0; i < orig.length; i++) {
+        if (i < solved || orig[i] === ' ') out += orig[i];
+        else out += chars[Math.floor(Math.random() * chars.length)];
+      }
+      el.textContent = out;
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else el.textContent = orig;
+    }
+    raf = requestAnimationFrame(tick);
+  }
+
+  el.addEventListener('mouseenter', scramble);
+  // Spustit jednou při načtení
+  setTimeout(scramble, 600);
+})();
 
 const mouseGlow = document.querySelector('.mouse-glow');
 window.addEventListener('mousemove', e => {

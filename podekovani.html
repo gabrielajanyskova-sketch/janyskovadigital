@@ -1,32 +1,170 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Děkuji za zprávu | Janyskova Digital</title>
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#38bdf8">
-    <meta name="msapplication-TileColor" content="#05070a">
-    <meta name="theme-color" content="#05070a">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Děkuji za zprávu | Janyskova Digital</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+<style>
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+:root { --bg: #08060c; --pink: #f0147a; --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); --green: #00e5a0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+h1, h2 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;800&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #05070a; color: #f8fafc; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
-        .container { background: rgba(15, 23, 42, 0.7); padding: 50px; border-radius: 30px; border: 1px solid #38bdf8; backdrop-filter: blur(10px); }
-        h1 { color: #38bdf8; font-size: 40px; margin-bottom: 20px; }
-        p { color: #94a3b8; font-size: 18px; margin-bottom: 30px; }
-        .btn { display: inline-block; background: #38bdf8; color: #000; padding: 14px 30px; border-radius: 100px; text-decoration: none; font-weight: 700; }
-    </style>
+/* ── ANIMOVANÉ BLOB POZADÍ ── */
+.bg-blobs { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); }
+.b1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(240,20,122,0.4) 0%, transparent 65%); top: -15%; left: -15%; animation: bf1 16s ease-in-out infinite; }
+.b2 { width: 450px; height: 450px; background: radial-gradient(circle, rgba(160,10,80,0.28) 0%, transparent 65%); bottom: -10%; right: -10%; animation: bf2 20s ease-in-out infinite; }
+.b3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(100,0,200,0.15) 0%, transparent 65%); top: 40%; right: 20%; animation: bf3 14s ease-in-out infinite; }
+@keyframes bf1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(40px,-30px) scale(1.05);} }
+@keyframes bf2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-30px,25px) scale(1.08);} }
+@keyframes bf3 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(20px,-20px);} }
+
+/* ── NAV ── */
+nav { padding: 22px 28px; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.75); backdrop-filter: blur(20px); position: relative; z-index: 10; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 20px; text-decoration: none; color: var(--text); }
+.logo em { font-style: italic; color: var(--pink); }
+
+/* ── HLAVNÍ OBSAH ── */
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 24px; position: relative; z-index: 1; }
+.wrap { max-width: 680px; width: 100%; }
+
+/* ── VELKÝ TYPOGRAFICKÝ HEADING ── */
+.heading-block { margin-bottom: 48px; position: relative; }
+
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+.eyebrow-text { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); font-weight: 600; }
+
+.big-heading { font-size: clamp(52px, 9vw, 96px); line-height: 0.95; letter-spacing: -3px; color: var(--text); margin-bottom: 0; position: relative; }
+.big-heading .line1 { display: block; }
+.big-heading .line2 { display: block; color: transparent; -webkit-text-stroke: 1px rgba(240,20,122,0.6); }
+.big-heading .line3 { display: block; font-style: italic; color: var(--pink); text-shadow: 0 0 60px rgba(240,20,122,0.4); }
+
+/* Dekorativní prvek vedle nadpisu */
+.heading-deco { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.deco-line { height: 1px; background: linear-gradient(90deg, transparent, var(--pink)); animation: linePulse 2s ease-in-out infinite; }
+.deco-line:nth-child(1) { width: 60px; animation-delay: 0s; }
+.deco-line:nth-child(2) { width: 40px; animation-delay: 0.3s; }
+.deco-line:nth-child(3) { width: 80px; animation-delay: 0.6s; }
+.deco-line:nth-child(4) { width: 30px; animation-delay: 0.9s; }
+@keyframes linePulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+/* ── PEREX ── */
+.perex { font-size: 17px; color: var(--text-dim); line-height: 1.8; margin-bottom: 40px; max-width: 520px; }
+
+/* ── KROKY ── */
+.steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 44px; }
+.step { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(240,20,122,0.08); align-items: flex-start; }
+.step:last-child { border-bottom: none; }
+.step-num { font-family: 'DM Serif Display', serif; font-size: 40px; color: rgba(240,20,122,0.2); line-height: 1; flex-shrink: 0; width: 48px; transition: color 0.3s; }
+.step:hover .step-num { color: rgba(240,20,122,0.55); }
+.step-content h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.step-content p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+/* ── TLAČÍTKA ── */
+.btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 15px 32px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; transition: all 0.3s; box-shadow: 0 8px 28px rgba(240,20,122,0.35); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(240,20,122,0.5); }
+.btn-primary svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+.btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--text-dim); padding: 14px 28px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: all 0.3s; }
+.btn-ghost:hover { border-color: rgba(240,20,122,0.3); color: var(--pink); }
+.btn-ghost svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ── FOOTER ── */
+footer { padding: 22px 28px; border-top: 1px solid rgba(240,20,122,0.08); font-size: 12px; color: rgba(245,240,250,0.28); text-align: center; position: relative; z-index: 1; }
+footer a { color: rgba(240,20,122,0.5); text-decoration: none; }
+
+@media(max-width: 600px) {
+  .big-heading { font-size: 52px; letter-spacing: -2px; }
+  .heading-deco { display: none; }
+  .btns { flex-direction: column; }
+  .btn-primary, .btn-ghost { justify-content: center; }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>Děkuji za zprávu!</h1>
-        <p>Všechno v pořádku dorazilo. Ozvu se vám co nejdříve zpět.</p>
-        <a href="/" class="btn">Zpět na web</a>
+
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<nav><a href="/" class="logo">Janyskova <em>Digital</em></a></nav>
+
+<main>
+  <div class="wrap">
+
+    <div class="heading-block">
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-text">Zpráva odeslána</span>
+      </div>
+
+      <h1 class="big-heading">
+        <span class="line1">Zpráva</span>
+        <span class="line2">dorazila.</span>
+        <span class="line3">Díky!</span>
+      </h1>
+
+      <div class="heading-deco" aria-hidden="true">
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+      </div>
     </div>
+
+    <p class="perex">Ozvu se vám do 24 hodin — ale obvykle mnohem dřív.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <h3>Přečtu vaši zprávu</h3>
+          <p>Projdu detaily a zamyslím se, jak vám nejlíp pomoct.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <h3>Ozvu se zpět</h3>
+          <p>E-mailem nebo telefonem — domluvíme se na dalším postupu.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <h3>Jdeme do toho</h3>
+          <p>Začneme pracovat na webu, který bude skutečně váš.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <a href="/" class="btn-primary">
+        Zpět na web
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer>© 2026 Gabriela Janýšková · <a href="ochrana-udaju.html">Ochrana osobních údajů</a></footer>
+
 </body>
 </html>
