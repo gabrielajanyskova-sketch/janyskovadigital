@@ -859,7 +859,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
     <div class="contact-wrap reveal">
       <h3 style="font-size:26px; margin-bottom:8px; font-family:'DM Serif Display',serif; font-weight:400; color:var(--text);">Napište mi</h3>
       <p>Ráda si o vašem webu popovídám. Odpovídám do 24 hodin.</p>
-      <form id="contact-form" novalidate>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
         <input type="hidden" name="access_key" value="e7fbbc6f-f4d1-4485-a88a-0165a3875c0d">
         <input type="hidden" name="subject" value="Nová poptávka z webu — Janyskova Digital">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
@@ -1030,10 +1030,70 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 
 const mouseGlow = document.querySelector('.mouse-glow');
-window.addEventListener('mousemove', e => {
+if (mouseGlow) window.addEventListener('mousemove', e => {
   mouseGlow.style.setProperty('--mx', e.clientX + 'px');
   mouseGlow.style.setProperty('--my', e.clientY + 'px');
 }, { passive: true });
+
+// KONTAKTNÍ FORMULÁŘ
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const btn = form.querySelector('button[type="submit"]');
+  const btnOrigHTML = btn.innerHTML;
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Validace
+    const jmeno = form.querySelector('#jmeno').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const zprava = form.querySelector('#zprava').value.trim();
+    if (!jmeno || !email || !zprava) {
+      showMsg('Vyplňte prosím všechna pole.', 'error');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMsg('Zadejte platnou e-mailovou adresu.', 'error');
+      return;
+    }
+
+    // Loading
+    btn.disabled = true;
+    btn.innerHTML = 'Odesílám… <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity="0.3"/><path d="M12 2a10 10 0 0 1 10 10" style="animation:spin 0.8s linear infinite;transform-origin:center"/></svg>';
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const json = await res.json();
+      if (json.success) {
+        window.location.href = 'https://janyskovadigital.cz/podekovani.html';
+      } else {
+        throw new Error(json.message || 'Chyba serveru');
+      }
+    } catch (err) {
+      showMsg('Něco se pokazilo. Zkuste to znovu nebo mi napište přímo na info@janyskovadigital.cz', 'error');
+      btn.disabled = false;
+      btn.innerHTML = btnOrigHTML;
+    }
+  });
+
+  function showMsg(text, type) {
+    const old = form.querySelector('.form-msg');
+    if (old) old.remove();
+    const div = document.createElement('div');
+    div.className = 'form-msg';
+    div.style.cssText = 'margin-top:12px;padding:12px 18px;border-radius:10px;font-size:14px;' +
+      (type === 'error'
+        ? 'background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);color:#ff7080;'
+        : 'background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);color:var(--green);');
+    div.textContent = text;
+    form.appendChild(div);
+  }
+})();
 
 
 (function() {
