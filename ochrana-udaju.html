@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ochrana osobních údajů | Janyskova Digital</title>
+<title>Ochrana osobních údajů (GDPR) | Janyskova Digital</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -11,72 +11,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
 <style>
+
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
-:root { --bg: #08060c; --bg2: #0f0b16; --pink: #f0147a; --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); }
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+:root { --bg: #08060c; --bg2: #0f0b16; --pink: #f0147a; --pink-light: #f855a0; --pink-dim: rgba(240,20,122,0.15); --pink-border: rgba(240,20,122,0.25); --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
-h1, h2 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
-.blob { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
-.b1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(240,20,122,0.28) 0%, transparent 65%); top: -10%; left: -10%; animation: bf1 20s ease-in-out infinite; }
-@keyframes bf1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(30px,-20px);} }
-nav { padding: 24px 28px; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.7); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'DM Serif Display', serif; font-size: 20px; text-decoration: none; color: var(--text); }
-.logo em { font-style: italic; color: var(--pink); }
-.back { font-size: 13px; color: var(--text-dim); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-.back:hover { color: var(--pink); }
-main { flex: 1; padding: 60px 24px 100px; position: relative; z-index: 1; }
-.container { max-width: 760px; margin: 0 auto; }
-.page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.page-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); }
-h1 { font-size: clamp(32px, 4vw, 48px); line-height: 1.1; margin-bottom: 40px; }
-h1 em { font-style: italic; color: var(--pink); }
-.info-card { background: rgba(240,20,122,0.05); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 40px; font-size: 15px; color: var(--text-dim); line-height: 1.7; }
-.info-card strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 8px; }
-h2 { font-size: 20px; color: var(--text); margin: 36px 0 12px; }
-h2::before { content: ''; display: inline-block; width: 4px; height: 20px; background: var(--pink); border-radius: 2px; margin-right: 12px; vertical-align: middle; }
-p { font-size: 15px; color: var(--text-dim); line-height: 1.8; margin-bottom: 16px; }
-p strong { color: var(--text); }
-a { color: var(--pink); text-decoration: none; }
-a:hover { text-decoration: underline; }
-footer { padding: 24px 28px; border-top: 1px solid rgba(240,20,122,0.08); font-size: 12px; color: rgba(245,240,250,0.3); text-align: center; position: relative; z-index: 1; }
-footer a { color: rgba(240,20,122,0.6); }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+.bg-blobs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45; }
+.b1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(240,20,122,0.35) 0%, transparent 65%); top: -10%; left: -10%; animation: bf1 20s ease-in-out infinite; }
+@keyframes bf1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-20px) scale(1.04);} }
+
+/* NAV */
 nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.75); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; }
 .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'DM Serif Display', serif; font-size: 20px; text-decoration: none; color: var(--text); }
+.logo { font-family: 'DM Serif Display', serif; font-size: 22px; text-decoration: none; color: var(--text); }
 .logo em { font-style: italic; color: var(--pink); }
 .nav-links { display: flex; align-items: center; }
-.nav-links a { margin-left: 24px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.25s; }
+.nav-links a { margin-left: 28px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.25s; }
 .nav-links a:hover { color: var(--pink); }
-.nav-links a.cta { color: var(--pink); border: 1px solid rgba(240,20,122,0.3); padding: 7px 18px; border-radius: 100px; transition: all 0.25s; }
-.nav-links a.cta:hover { background: var(--pink); color: white; }
+.nav-links a.cta { color: var(--pink); border: 1px solid rgba(240,20,122,0.3); padding: 8px 20px; border-radius: 100px; transition: all 0.25s; }
+.nav-links a.cta:hover { background: var(--pink); color: white; box-shadow: 0 0 24px rgba(240,20,122,0.4); }
+/* HAMBURGER */
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100; }
 .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text); transition: all 0.3s; }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+/* FULLSCREEN MENU */
 .fullscreen-menu { position: fixed; inset: 0; background: rgba(8,6,12,0.98); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
 .fullscreen-menu.open { opacity: 1; pointer-events: all; }
-.fullscreen-menu a { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 60px); color: rgba(245,240,250,0.2); text-decoration: none; padding: 6px 0; opacity: 0; transform: translateY(20px); transition: color 0.2s, opacity 0.4s ease, transform 0.4s ease; }
+.fullscreen-menu a { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 62px); color: rgba(245,240,250,0.2); text-decoration: none; padding: 6px 0; opacity: 0; transform: translateY(20px); transition: color 0.2s, opacity 0.4s ease, transform 0.4s ease; }
 .fullscreen-menu.open a { opacity: 1; transform: translateY(0); }
 .fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
 .fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
 .fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
 .fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
 .fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
-.fullscreen-menu a:hover { color: var(--pink); }
-.fullscreen-menu .menu-sub { font-size: 13px; color: var(--text-dim); margin-top: 28px; letter-spacing: 1px; opacity: 0; transition: opacity 0.4s ease 0.3s; }
+.fullscreen-menu.open a:nth-child(6) { transition-delay: 0.3s; }
+.fullscreen-menu a:hover { color: var(--pink); text-shadow: 0 0 40px rgba(240,20,122,0.5); }
+.fullscreen-menu .menu-sub { font-size: 13px; color: var(--text-dim); margin-top: 30px; letter-spacing: 1px; opacity: 0; transition: opacity 0.4s ease 0.38s; }
 .fullscreen-menu.open .menu-sub { opacity: 1; }
-@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+main { flex: 1; padding: 60px 0 100px; position: relative; z-index: 1; }
+.container { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+.page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.page-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); flex-shrink: 0; }
+h1 { font-size: clamp(32px, 4vw, 50px); line-height: 1.1; margin-bottom: 40px; }
+h1 em { font-style: italic; color: var(--pink); }
+.info-card { background: rgba(240,20,122,0.05); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 44px; font-size: 15px; color: var(--text-dim); line-height: 1.75; }
+.info-card strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 8px; }
+h2 { font-size: 21px; color: var(--text); margin: 40px 0 12px; display: flex; align-items: center; gap: 12px; }
+h2::before { content: ''; display: inline-block; width: 4px; height: 22px; background: var(--pink); border-radius: 2px; flex-shrink: 0; }
+p { font-size: 15px; color: var(--text-dim); line-height: 1.85; margin-bottom: 16px; }
+p strong { color: var(--text); }
+a { color: var(--pink); text-decoration: none; transition: opacity 0.2s; }
+a:hover { opacity: 0.8; text-decoration: underline; }
+
+footer { background: #050408; padding: 40px 0 24px; border-top: 1px solid rgba(240,20,122,0.1); position: relative; z-index: 1; }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3); }
+.footer-inner a { color: rgba(240,20,122,0.6); text-decoration: none; transition: color 0.2s; }
+.footer-inner a:hover { color: var(--pink); }
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+.footer-logo em { font-style: italic; color: var(--pink); }
+
 </style>
 </head>
 <body>
-<div class="blob b1" aria-hidden="true"></div>
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+<div class="bg-blobs" aria-hidden="true"><div class="blob b1"></div></div>
 <nav role="navigation" aria-label="Hlavní navigace">
   <div class="nav-inner">
-    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na úvod">Janyskova <em>Digital</em></a>
     <div class="nav-links">
       <a href="/#jak-to-funguje">Jak to funguje</a>
       <a href="/#cenik">Ceník</a>
@@ -93,11 +108,12 @@ nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); backgroun
   <a href="/#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
   <a href="/#cenik" onclick="closeMenu()">Ceník</a>
   <a href="/#reference" onclick="closeMenu()">Reference</a>
+  <a href="/#o-mne" onclick="closeMenu()">O mně</a>
   <a href="/blog.html" onclick="closeMenu()">Blog</a>
   <a href="/#kontakt" onclick="closeMenu()">Napsat mi</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
-<main>
+<main id="main">
   <div class="container">
     <div class="page-tag">Právní informace</div>
     <h1>Ochrana osobních<br><em>údajů (GDPR)</em></h1>
@@ -116,9 +132,39 @@ nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); backgroun
     <h2>3. Vaše práva</h2>
     <p>Máte právo požadovat přístup k vašim údajům, jejich opravu, výmaz nebo vznést námitku proti zpracování. Stačí mi napsat na <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a>.</p>
     <h2>4. Cookies</h2>
-    <p>Web používá analytické cookies prostřednictvím Google Analytics pouze se souhlasem. Více v <a href="cookies.html">Zásadách používání cookies</a>.</p>
+    <p>Web používá analytické cookies prostřednictvím Google Analytics pouze se souhlasem. Více v <a href="/cookies.html">Zásadách používání cookies</a>.</p>
   </div>
 </main>
-<footer>© 2026 Gabriela Janýšková · <a href="/">janyskovadigital.cz</a></footer>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Janyskova <em>Digital</em></a>
+    <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín</span>
+    <a href="/ochrana-udaju.html">Ochrana osobních údajů</a>
+  </div>
+</footer>
+<script>
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+}
+function closeMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu(); });
+
+</script>
 </body>
 </html>

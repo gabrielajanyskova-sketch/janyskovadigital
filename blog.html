@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog o webdesignu a AI | Janyskova Digital</title>
-<meta name="description" content="Blog Gabriely Janýškové — tipy o webdesignu, SEO, rychlosti webu a AI vyhledávání pro podnikatele z Nového Jičína i celé ČR.">
+<title>Blog o webdesignu a AI 2026 | Janyskova Digital</title>
+<meta name="description" content="Blog Gabriely Janýškové — praktické tipy o webdesignu, SEO, rychlosti webu a AI vyhledávání pro podnikatele z Nového Jičína i celé ČR.">
 <meta property="og:title" content="Blog o webdesignu a AI | Janyskova Digital">
+<meta property="og:description" content="Praktické tipy o webdesignu, SEO, rychlosti webu a AI vyhledávání pro podnikatele z ČR.">
 <meta property="og:url" content="https://janyskovadigital.cz/blog.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:alt" content="Blog Janyskova Digital — webdesign a AI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog o webdesignu a AI | Janyskova Digital">
+<meta name="twitter:description" content="Praktické tipy o webdesignu, SEO a AI vyhledávání pro podnikatele.">
+<meta name="twitter:image" content="https://janyskovadigital.cz/og-image.png">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://janyskovadigital.cz/blog.html">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -19,86 +27,151 @@
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "@id": "https://janyskovadigital.cz/blog.html#blog",
+  "name": "Blog Janyskova Digital",
+  "description": "Tipy o webdesignu, SEO, rychlosti webu a AI vyhledávání pro podnikatele.",
+  "url": "https://janyskovadigital.cz/blog.html",
+  "inLanguage": "cs",
+  "publisher": {"@id": "https://janyskovadigital.cz/#business"},
+  "blogPost": [
+    {"@type": "BlogPosting", "headline": "Proč záleží na rychlosti webu?", "url": "https://janyskovadigital.cz/blog/rychlost-webu.html"},
+    {"@type": "BlogPosting", "headline": "Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?", "url": "https://janyskovadigital.cz/blog/cena-webu-novy-jicin.html"},
+    {"@type": "BlogPosting", "headline": "AI vyhledávání mění pravidla — je váš web připravený?", "url": "https://janyskovadigital.cz/blog/ai-vyhledavani.html"}
+  ]
+}
+</script>
 <style>
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
-:root { --bg: #08060c; --bg2: #0f0b16; --pink: #f0147a; --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); --card: rgba(21,15,30,0.9); }
+:root { --bg: #08060c; --bg2: #0f0b16; --pink: #f0147a; --pink-light: #f855a0; --pink-dim: rgba(240,20,122,0.15); --pink-border: rgba(240,20,122,0.25); --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); --card-bg: rgba(21,15,30,0.9); }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
 h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
-.blob { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
-.b1 { width: 550px; height: 550px; background: radial-gradient(circle, rgba(240,20,122,0.3) 0%, transparent 65%); top: -10%; left: -15%; animation: bf1 20s ease-in-out infinite; }
-.b2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(180,10,90,0.2) 0%, transparent 65%); bottom: 10%; right: -10%; animation: bf2 24s ease-in-out infinite; }
-@keyframes bf1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(35px,-25px);} }
-@keyframes bf2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-25px,20px);} }
-nav { padding: 24px 28px; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.7); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; }
-.nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: 'DM Serif Display', serif; font-size: 20px; text-decoration: none; color: var(--text); }
+:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+.bg-blobs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.5; }
+.b1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(240,20,122,0.4) 0%, transparent 65%); top: -10%; left: -15%; animation: bf1 20s ease-in-out infinite; }
+.b2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(180,10,90,0.25) 0%, transparent 65%); bottom: 10%; right: -10%; animation: bf2 24s ease-in-out infinite; }
+@keyframes bf1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(35px,-25px) scale(1.05);} }
+@keyframes bf2 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-25px,20px) scale(1.08);} }
+
+/* NAV */
+nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.75); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 22px; text-decoration: none; color: var(--text); }
 .logo em { font-style: italic; color: var(--pink); }
-.nav-links a { margin-left: 24px; text-decoration: none; color: var(--text-dim); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.2s; }
+.nav-links { display: flex; align-items: center; }
+.nav-links a { margin-left: 28px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.25s; }
 .nav-links a:hover { color: var(--pink); }
-.nav-links a.cta { color: var(--pink); border: 1px solid rgba(240,20,122,0.3); padding: 7px 18px; border-radius: 100px; }
-.nav-links a.cta:hover { background: var(--pink); color: white; }
-main { flex: 1; padding: 70px 24px 100px; position: relative; z-index: 1; }
-.container { max-width: 1100px; margin: 0 auto; }
+.nav-links a.cta { color: var(--pink); border: 1px solid rgba(240,20,122,0.3); padding: 8px 20px; border-radius: 100px; transition: all 0.25s; }
+.nav-links a.cta:hover { background: var(--pink); color: white; box-shadow: 0 0 24px rgba(240,20,122,0.4); }
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+/* FULLSCREEN MENU */
+.fullscreen-menu { position: fixed; inset: 0; background: rgba(8,6,12,0.98); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+.fullscreen-menu.open { opacity: 1; pointer-events: all; }
+.fullscreen-menu a { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 62px); color: rgba(245,240,250,0.2); text-decoration: none; padding: 6px 0; opacity: 0; transform: translateY(20px); transition: color 0.2s, opacity 0.4s ease, transform 0.4s ease; }
+.fullscreen-menu.open a { opacity: 1; transform: translateY(0); }
+.fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+.fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+.fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+.fullscreen-menu.open a:nth-child(6) { transition-delay: 0.3s; }
+.fullscreen-menu a:hover { color: var(--pink); text-shadow: 0 0 40px rgba(240,20,122,0.5); }
+.fullscreen-menu .menu-sub { font-size: 13px; color: var(--text-dim); margin-top: 30px; letter-spacing: 1px; opacity: 0; transition: opacity 0.4s ease 0.38s; }
+.fullscreen-menu.open .menu-sub { opacity: 1; }
+
+main { flex: 1; padding: 70px 0 100px; position: relative; z-index: 1; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 .page-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-.page-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); }
-h1 { font-size: clamp(36px, 5vw, 58px); line-height: 1.08; margin-bottom: 14px; }
+.page-tag::before { content: ''; width: 20px; height: 1px; background: var(--pink); flex-shrink: 0; }
+h1 { font-size: clamp(38px, 5vw, 60px); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: 16px; }
 h1 em { font-style: italic; color: var(--pink); }
 .hero-sub { font-size: 17px; color: var(--text-dim); line-height: 1.75; margin-bottom: 60px; max-width: 560px; }
 .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
-.blog-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; transition: all 0.25s; backdrop-filter: blur(10px); }
+.blog-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 12px; text-decoration: none; transition: all 0.25s; backdrop-filter: blur(10px); }
 .blog-card:hover { border-color: rgba(240,20,122,0.45); transform: translateY(-3px); box-shadow: 0 0 40px rgba(240,20,122,0.08); }
 .blog-card-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; }
 .blog-card h2 { font-size: 20px; color: var(--text); line-height: 1.3; }
 .blog-card p { font-size: 14px; color: var(--text-dim); line-height: 1.7; flex: 1; }
 .blog-card .read { font-size: 13px; font-weight: 700; color: var(--pink); margin-top: auto; display: flex; align-items: center; gap: 6px; transition: gap 0.2s; }
 .blog-card:hover .read { gap: 10px; }
-footer { background: #050408; padding: 40px 28px 24px; border-top: 1px solid rgba(240,20,122,0.1); position: relative; z-index: 1; }
-.footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3); }
-.footer-inner a { color: rgba(240,20,122,0.6); text-decoration: none; }
+
+footer { background: #050408; padding: 40px 0 24px; border-top: 1px solid rgba(240,20,122,0.1); position: relative; z-index: 1; }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3); }
+.footer-inner a { color: rgba(240,20,122,0.6); text-decoration: none; transition: color 0.2s; }
+.footer-inner a:hover { color: var(--pink); }
 .footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
 .footer-logo em { font-style: italic; color: var(--pink); }
-@media(max-width: 768px) { .nav-links { display: none; } }
+
 @media(max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<div class="blob b1" aria-hidden="true"></div>
-<div class="blob b2" aria-hidden="true"></div>
-<nav>
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+<div class="bg-blobs" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+</div>
+<nav role="navigation" aria-label="Hlavní navigace">
   <div class="nav-inner">
-    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na úvod">Janyskova <em>Digital</em></a>
     <div class="nav-links">
-      <a href="/">Domů</a>
+      <a href="/#jak-to-funguje">Jak to funguje</a>
       <a href="/#cenik">Ceník</a>
+      <a href="/#reference">Reference</a>
+      <a href="/blog.html">Blog</a>
       <a href="/#kontakt" class="cta">Napsat mi</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<main>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <a href="/#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+  <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="/#reference" onclick="closeMenu()">Reference</a>
+  <a href="/#o-mne" onclick="closeMenu()">O mně</a>
+  <a href="/blog.html" onclick="closeMenu()">Blog</a>
+  <a href="/#kontakt" onclick="closeMenu()">Napsat mi</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
+<main id="main">
   <div class="container">
     <div class="page-tag">Blog</div>
     <h1>Tipy ze světa<br><em>webdesignu a AI.</em></h1>
     <p class="hero-sub">Píšu o tom, co skutečně funguje — rychlost webu, SEO, AI vyhledávání a jak na online prezentaci pro živnostníky a malé firmy.</p>
-    <div class="blog-grid">
-      <a href="/blog/rychlost-webu.html" class="blog-card">
+    <div class="blog-grid" role="list">
+      <a href="/blog/rychlost-webu.html" class="blog-card" role="listitem">
         <div class="blog-card-tag">Rychlost webu</div>
         <h2>Proč záleží na rychlosti webu?</h2>
         <p>Pomalý web zákazníky odrazuje a Google ho řadí níže. Jak to změřit, co jsou Core Web Vitals a co s tím udělat bez nutnosti programovat.</p>
-        <span class="read">Číst článek →</span>
+        <span class="read" aria-label="Číst článek: Proč záleží na rychlosti webu?">Číst článek →</span>
       </a>
-      <a href="/blog/cena-webu-novy-jicin.html" class="blog-card">
+      <a href="/blog/cena-webu-novy-jicin.html" class="blog-card" role="listitem">
         <div class="blog-card-tag">Webdesign · Nový Jičín</div>
         <h2>Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?</h2>
         <p>Doba se posunula a s ní i technologie. Dnes už nemusíte platit obrovské částky za složité systémy, pokud je pro svůj byznys reálně nevyužijete.</p>
-        <span class="read">Číst článek →</span>
-       </a>
-           <a href="/blog/ai-vyhledavani.html" class="blog-card">
-        <div class="blog-card-tag">AI a SEO</div>
-        <h2>AI vyhledávání mění pravidla</h2>
-        <p>Ještě před pár lety bylo SEO jasná věc — napsat správná klíčová slova, získat zpětné odkazy a čekat, až vás Google posune výš. Dnes se pravidla rychle mění. </p>
-        <span class="read">Číst článek →</span>
+        <span class="read" aria-label="Číst článek: Kolik stojí web pro OSVČ v Novém Jičíně?">Číst článek →</span>
+      </a>
+      <a href="/blog/ai-vyhledavani.html" class="blog-card" role="listitem">
+        <div class="blog-card-tag">AI & SEO</div>
+        <h2>AI vyhledávání mění pravidla — je váš web připravený?</h2>
+        <p>ChatGPT, Perplexity a Google AI Overviews odpovídají přímo. Co to znamená pro váš byznys a jak se připravit?</p>
+        <span class="read" aria-label="Číst článek: AI vyhledávání mění pravidla">Číst článek →</span>
       </a>
     </div>
   </div>
@@ -107,8 +180,32 @@ footer { background: #050408; padding: 40px 28px 24px; border-top: 1px solid rgb
   <div class="footer-inner">
     <a href="/" class="footer-logo">Janyskova <em>Digital</em></a>
     <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín</span>
-    <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
+    <a href="/ochrana-udaju.html">Ochrana osobních údajů</a>
   </div>
 </footer>
+<script>
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+}
+function closeMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu(); });
+
+</script>
 </body>
 </html>
