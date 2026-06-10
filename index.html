@@ -36,8 +36,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=optional" onload="this.onload=null;this.rel='stylesheet'" fetchpriority="low">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=optional"></noscript>
 
 
 <script type="application/ld+json">
@@ -127,6 +127,7 @@
 <style>
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
 @font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'DM Serif Display Fallback'; src: local('Georgia'); size-adjust: 97%; ascent-override: 90%; descent-override: 25%; line-gap-override: normal; }
 
 
 :root {
@@ -154,7 +155,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta San
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
 
 
-h1, h2, .serif { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+h1, h2, .serif { font-family: 'DM Serif Display', 'DM Serif Display Fallback', Georgia, serif; font-weight: 400; }
 
 
 /* ── BLOB POZADÍ ── */
@@ -265,8 +266,8 @@ nav { padding: 26px 0; position: relative; z-index: 100; border-bottom: 1px soli
 
 
 /* BTNS */
-.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; transition: all 0.3s; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 8px 30px rgba(240,20,122,0.35); }
-.btn-primary:hover { background: var(--pink-light); box-shadow: 0 8px 40px rgba(240,20,122,0.55); transform: translateY(-1px); }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: #c0105f; color: white; padding: 16px 36px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; letter-spacing: 0.3px; transition: all 0.3s; border: none; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; box-shadow: 0 8px 30px rgba(240,20,122,0.35); }
+.btn-primary:hover { background: #d4116a; box-shadow: 0 8px 40px rgba(240,20,122,0.55); transform: translateY(-1px); }
 .btn-primary svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
 .btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: var(--text-dim); padding: 15px 32px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.3s; border: 1px solid rgba(245,240,250,0.15); cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; }
 .btn-outline:hover { border-color: var(--pink-border); color: var(--pink); }
@@ -440,8 +441,8 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .footer-links-list a { color: rgba(245,240,250,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .footer-links-list a:hover { color: var(--pink); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,240,250,0.45); flex-wrap: wrap; gap: 10px; }
-.footer-bottom a { color: rgba(245,240,250,0.55); text-decoration: none; transition: color 0.2s; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,240,250,0.6); flex-wrap: wrap; gap: 10px; }
+.footer-bottom a { color: rgba(245,240,250,0.65); text-decoration: none; transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--pink); }
 
 
@@ -453,7 +454,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 .cookie-text a { color: var(--pink); text-decoration: none; }
 .cookie-btns { display: flex; gap: 10px; justify-content: flex-end; }
 .cookie-btn { padding: 10px 22px; border-radius: 100px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; }
-.cookie-accept { background: var(--pink); color: white; }
+.cookie-accept { background: #c0105f; color: white; }
 .cookie-accept:hover { box-shadow: 0 0 20px rgba(240,20,122,0.4); }
 .cookie-reject { background: transparent; color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1); }
 .cookie-reject:hover { border-color: rgba(240,20,122,0.3); color: var(--pink); }
