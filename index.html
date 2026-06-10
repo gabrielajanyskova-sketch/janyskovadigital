@@ -435,13 +435,13 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; margin-bottom: 40px; }
 .footer-logo-link { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); text-decoration: none; display: block; margin-bottom: 12px; }
 .footer-logo-link em { font-style: italic; color: var(--pink); }
-.footer-desc { font-size: 14px; color: rgba(245,240,250,0.4); line-height: 1.7; }
-.footer-heading { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(245,240,250,0.3); font-weight: 600; margin-bottom: 16px; }
+.footer-desc { font-size: 14px; color: rgba(245,240,250,0.55); line-height: 1.7; }
+.footer-heading { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(245,240,250,0.5); font-weight: 600; margin-bottom: 16px; }
 .footer-links-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-links-list a { color: rgba(245,240,250,0.5); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+.footer-links-list a { color: rgba(245,240,250,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .footer-links-list a:hover { color: var(--pink); }
-.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,240,250,0.25); flex-wrap: wrap; gap: 10px; }
-.footer-bottom a { color: rgba(245,240,250,0.35); text-decoration: none; transition: color 0.2s; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: rgba(245,240,250,0.45); flex-wrap: wrap; gap: 10px; }
+.footer-bottom a { color: rgba(245,240,250,0.55); text-decoration: none; transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--pink); }
 
 
@@ -471,10 +471,11 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   .hero-right { order: 2; }
   .hero-left { order: 1; }
   .about-inner { grid-template-columns: 1fr; gap: 50px; }
-  .about-img-wrap { max-width: 300px; margin: 0 auto; }
+  .about-img-wrap { max-width: 200px; margin: 0 auto; }
   .about-badge { right: 0; }
   .ref-card { grid-template-columns: 1fr; }
-  .ref-img { display: none; }
+  .ref-img { display: flex; border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+  .ref-img img { max-height: 220px; width: auto; margin: 0 auto; }
   .process-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
   .kalk-grid { grid-template-columns: 1fr; }
@@ -870,7 +871,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
       </form>
       <div class="contact-info">
         <a href="tel:+420739395800" aria-label="Zavolejte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+420 739 395 800</a>
-        <a href="mailto:info@janyskovadigital.cz"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@janyskovadigital.cz</a>
+        <a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@janyskovadigital.cz</a>
         <a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>@JanyskovaDigital</a>
       </div>
     </div>
@@ -900,7 +901,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
       <div>
         <div class="footer-heading">Kontakt</div>
         <ul class="footer-links-list">
-          <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
+          <li><a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;">info@janyskovadigital.cz</a></li>
           <li><a href="tel:+420739395800">+420 739 395 800</a></li>
           <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
           <li><a href="https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -1044,12 +1045,18 @@ window.addEventListener('mousemove', e => {
   let mouse = { x: -9999, y: -9999 };
 
 
+  let resizeTimer;
   function resize() {
-    dpr = window.devicePixelRatio || 1;
-    W = window.innerWidth; H = window.innerHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    build();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      requestAnimationFrame(function() {
+        dpr = window.devicePixelRatio || 1;
+        W = window.innerWidth; H = window.innerHeight;
+        canvas.width = W * dpr; canvas.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        build();
+      });
+    }, 100);
   }
 
 
