@@ -28,7 +28,28 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  
+<url>
+    <loc>https://janyskovadigital.cz/ostrava/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+<url>
+    <loc>https://janyskovadigital.cz/hranice/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
+  <url>
+    <loc>https://janyskovadigital.cz/frydek-mistek/</loc>
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://janyskovadigital.cz/podekovani.html</loc>
     <lastmod>2026-06-02</lastmod>
