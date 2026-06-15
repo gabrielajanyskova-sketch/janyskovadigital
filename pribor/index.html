@@ -61,14 +61,7 @@
     "sameAs": ["https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/","https://www.instagram.com/JanyskovaDigital"],
     "openingHours": "Mo-Fr 08:00-17:00",
     "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"8","bestRating":"5","worstRating":"1"}
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [{"@type":"Question","name":"Proč neplatím za hosting?","acceptedAnswer":{"@type":"Answer","text":"Weby stavím čistým kódem bez WordPressu. Hosting je v ceně tvorby — platíte jen doménu, přibližně 200 Kč ročně."}},
-{"@type":"Question","name":"Tvoříte weby přímo v Příboře?","acceptedAnswer":{"@type":"Answer","text":"Bydlím ve Starojické Lhotě kousek od Příbora. Schůzku domluvíme osobně nebo online."}},
-{"@type":"Question","name":"Jak dlouho trvá tvorba webu?","acceptedAnswer":{"@type":"Answer","text":"Menší weby mívám hotové do 7–10 dnů od dodání podkladů."}},
-{"@type":"Question","name":"Kolik stojí web v Příboře?","acceptedAnswer":{"@type":"Answer","text":"Tvorba začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně."}}]
+  }]
   },
   {
     "@context": "https://schema.org",
@@ -472,6 +465,18 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb span { opacity: 0.4; }
 </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Kolik stojí tvorba webových stránek v Příboře?","acceptedAnswer":{"@type":"Answer","text":"Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte pouze doménu přibližně 200 Kč ročně."}},
+      {"@type":"Question","name":"Tvoříte weby přímo v Příboře?","acceptedAnswer":{"@type":"Answer","text":"Příbor je kousek — schůzku domluvíme osobně nebo plně online."}},
+      {"@type":"Question","name":"Proč neplatím za hosting?","acceptedAnswer":{"@type":"Answer","text":"Weby jsou stavěné čistým kódem bez WordPressu. Hosting je součástí ceny tvorby. Platíte pouze doménu přibližně 200 Kč ročně."}},
+      {"@type":"Question","name":"Jak dlouho trvá tvorba webu?","acceptedAnswer":{"@type":"Answer","text":"Menší one-page web bývá hotový do 7–10 dnů od dodání podkladů."}}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -515,7 +520,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
 
 <section class="hero">
   <div class="container">
-    <nav class="breadcrumb" aria-label="Drobečková navigace">
+    <nav class="breadcrumb" style="display:none;" aria-label="Drobečková navigace">
       <a href="/">Domů</a>
       <span aria-hidden="true">/</span>
       <span aria-current="page">Příbor</span>
@@ -720,41 +725,41 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   <div class="container">
     <div class="section-tag" style="justify-content:center;">Časté otázky</div>
     <h2 class="section-title" style="text-align:center;">Na co se <em>ptáte nejčastěji.</em></h2>
-    <div class="faq-grid" itemscope itemtype="https://schema.org/FAQPage">
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Proč neplatím za hosting?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.</p>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <h3>Proč neplatím za hosting?</h3>
+        <div>
+          <p>Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.</p>
         </div>
       </div>
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Tvoříte weby přímo v Příboře?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Bydlím ve Starojické Lhotě kousek od Příbora. Schůzku domluvíme osobně v Příboře nebo online — záleží na vás.</p>
+      <div class="faq-item reveal">
+        <h3>Tvoříte weby přímo v Příboře?</h3>
+        <div>
+          <p>Bydlím ve Starojické Lhotě kousek od Příbora. Schůzku domluvíme osobně v Příboře nebo online — záleží na vás.</p>
         </div>
       </div>
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Jak dlouho trvá tvorba webu?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Menší weby mívám hotové do 7–10 dnů od chvíle, kdy dostanu podklady. U rozsáhlejších projektů se domluvíme na harmonogramu.</p>
+      <div class="faq-item reveal">
+        <h3>Jak dlouho trvá tvorba webu?</h3>
+        <div>
+          <p>Menší weby mívám hotové do 7–10 dnů od chvíle, kdy dostanu podklady. U rozsáhlejších projektů se domluvíme na harmonogramu.</p>
         </div>
       </div>
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Kolik stojí web v Příboře?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Tvorba začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně — platíte jen doménu.</p>
+      <div class="faq-item reveal">
+        <h3>Kolik stojí web v Příboře?</h3>
+        <div>
+          <p>Tvorba začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně — platíte jen doménu.</p>
         </div>
       </div>
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Budu moci web v budoucnu sama upravovat?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Ano. Kód píšu přehledně a čistě. Pokud chcete změnit texty nebo přidat fotku, buď vám pomůžu, nebo vás navedu jak na to.</p>
+      <div class="faq-item reveal">
+        <h3>Budu moci web v budoucnu sama upravovat?</h3>
+        <div>
+          <p>Ano. Kód píšu přehledně a čistě. Pokud chcete změnit texty nebo přidat fotku, buď vám pomůžu, nebo vás navedu jak na to.</p>
         </div>
       </div>
-      <div class="faq-item reveal" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name">Zvládnete web pro živnostníka z Příbora?</h3>
-        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text">Samozřejmě. Příbor je jedna z oblastí, kde pravidelně pracuji. Schůzku domluvíme online i osobně.</p>
+      <div class="faq-item reveal">
+        <h3>Zvládnete web pro živnostníka z Příbora?</h3>
+        <div>
+          <p>Samozřejmě. Příbor je jedna z oblastí, kde pravidelně pracuji. Schůzku domluvíme online i osobně.</p>
         </div>
       </div>
     </div>
