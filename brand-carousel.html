@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Manuál — Janyskova Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #08060c; font-family: 'Plus Jakarta Sans', sans-serif; color: #f5f0fa; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 32px 16px; }
+
+.stage-title { font-family: 'DM Serif Display', serif; font-size: clamp(24px,4vw,40px); color: #f5f0fa; letter-spacing: -1px; margin-bottom: 4px; text-align: center; }
+.stage-title em { color: #f0147a; font-style: italic; }
+.stage-sub { font-size: 12px; color: #b8a8cc; text-align: center; margin-bottom: 28px; }
+
+/* CAROUSEL */
+.carousel-wrap { width: 100%; max-width: 600px; }
+.carousel-outer { overflow: hidden; border-radius: 20px; box-shadow: 0 0 60px rgba(240,20,122,0.1); }
+.carousel-track { display: flex; transition: transform 0.4s cubic-bezier(.77,0,.18,1); will-change: transform; }
+
+/* SLIDE */
+.slide { min-width: 100%; position: relative; overflow: hidden; }
+.slide-inner { padding: clamp(30px,6vw,56px); min-height: clamp(420px,65vw,580px); display: flex; flex-direction: column; }
+
+/* PAGE NUM */
+.pn { position: absolute; bottom: 16px; right: 20px; font-size: 10px; letter-spacing: 2px; font-weight: 600; opacity: 0.3; text-transform: uppercase; }
+
+/* SECTION TAG */
+.stag { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #f0147a; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.stag::after { content: ''; flex: 1; height: 1px; background: rgba(240,20,122,0.2); }
+
+/* TITLE */
+.stitle { font-family: 'DM Serif Display', serif; font-size: clamp(28px,5.5vw,48px); line-height: 1.08; letter-spacing: -0.5px; margin-bottom: clamp(20px,3.5vw,36px); }
+.stitle em { color: #f0147a; font-style: italic; }
+
+/* ══ COVER ══ */
+.s-cover { background: #08060c; }
+.s-cover::before { content: ''; position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; background: radial-gradient(circle,rgba(240,20,122,0.3) 0%,transparent 65%); border-radius: 50%; pointer-events: none; }
+.s-cover .slide-inner { justify-content: space-between; }
+.cover-tag-txt { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(240,20,122,0.8); font-weight: 600; }
+.cover-h { font-family: 'DM Serif Display', serif; font-size: clamp(44px,9vw,80px); color: #f5f0fa; line-height: 1.05; letter-spacing: -2px; position: relative; z-index: 1; }
+.cover-h em { color: #f0147a; font-style: italic; }
+.cover-sub-txt { font-size: clamp(9px,1.5vw,12px); letter-spacing: 3px; text-transform: uppercase; color: rgba(245,240,250,0.4); font-weight: 600; margin-top: 10px; }
+.cover-foot { display: flex; justify-content: space-between; align-items: flex-end; }
+.cover-author { font-size: 12px; color: rgba(245,240,250,0.4); }
+.cover-author strong { color: #f5f0fa; display: block; font-size: 14px; margin-bottom: 2px; }
+.cover-year { font-family: 'DM Serif Display', serif; font-size: clamp(50px,10vw,90px); color: rgba(240,20,122,0.06); line-height: 1; }
+
+/* ══ LOGO ══ */
+.s-logo { background: #f5f0fa; }
+.s-logo .stitle { color: #0f0b16; }
+.s-logo .stag::after { background: rgba(240,20,122,0.15); }
+.logo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lb { border-radius: 12px; padding: clamp(18px,3.5vw,30px); display: flex; align-items: center; justify-content: center; min-height: clamp(80px,14vw,120px); }
+.lb-dk { background: #08060c; border: 1px solid rgba(240,20,122,0.15); }
+.lb-lt { background: #f0ecf8; border: 1px solid #e0d8ee; }
+.lb-pk { background: linear-gradient(135deg,#c0105f,#8a0a44); }
+.lb-gr { background: linear-gradient(145deg,#0f0b16,#1a0520); border: 1px solid rgba(240,20,122,0.2); }
+.wm .m { font-family: 'DM Serif Display', serif; font-size: clamp(14px,2.5vw,24px); color: #f5f0fa; line-height: 1; }
+.wm .m em { color: #f0147a; font-style: italic; }
+.wm .s { font-size: clamp(6px,1vw,9px); letter-spacing: 2px; text-transform: uppercase; color: #b8a8cc; font-weight: 600; margin-top: 5px; }
+.wm.lgt .m { color: #0f0b16; }
+.wm.lgt .m em { color: #c0105f; }
+.wm.lgt .s { color: #8a7aaa; }
+.wm.wht .m { color: white; }
+.wm.wht .m em { color: rgba(255,255,255,0.75); }
+.wm.wht .s { color: rgba(255,255,255,0.6); }
+
+/* ══ BARVY ══ */
+.s-colors { background: #0f0b16; }
+.swatches { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; }
+.sw-block { height: clamp(50px,9vw,80px); border-radius: 8px 8px 0 0; }
+.sw-info { padding: 8px 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-top: none; border-radius: 0 0 8px 8px; }
+.sw-name { font-size: clamp(7px,1.1vw,10px); font-weight: 700; color: #f5f0fa; }
+.sw-hex { font-size: clamp(6px,0.9vw,9px); color: #b8a8cc; font-family: monospace; margin-top: 2px; }
+.tonal { display: grid; grid-template-columns: repeat(7,1fr); border-radius: 8px; overflow: hidden; height: clamp(18px,3vw,28px); margin-top: clamp(14px,2.5vw,22px); }
+
+/* ══ TYPOGRAFIE ══ */
+.s-type { background: #f5f0fa; }
+.s-type .stitle { color: #0f0b16; }
+.s-type .stag::after { background: rgba(240,20,122,0.15); }
+.type-rows { display: flex; flex-direction: column; gap: clamp(10px,1.8vw,16px); }
+.type-r { display: flex; align-items: baseline; gap: clamp(12px,2.5vw,24px); padding-bottom: clamp(10px,1.8vw,16px); border-bottom: 1px solid rgba(15,11,22,0.07); }
+.type-r:last-child { border-bottom: none; padding-bottom: 0; }
+.type-lbl { font-size: clamp(8px,1.2vw,11px); color: #b8a8cc; width: clamp(48px,8vw,80px); flex-shrink: 0; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ══ VIZITKY ══ */
+.s-cards { background: #08060c; }
+.cards-g { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.bc { border-radius: 10px; aspect-ratio: 1.75/1; padding: clamp(14px,3vw,24px); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+.bc-dk { background: #0f0b16; border: 1px solid rgba(240,20,122,0.2); }
+.bc-dk::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: radial-gradient(circle,rgba(240,20,122,0.2) 0%,transparent 65%); border-radius: 50%; }
+.bc-lt { background: #f5f0fa; border: 1px solid #e0d8ee; }
+.bc-center { align-items: center; justify-content: center; text-align: center; }
+.bc-logo-t { font-family: 'DM Serif Display', serif; font-size: clamp(11px,2vw,18px); position: relative; z-index: 1; }
+.bc-dk .bc-logo-t { color: #f5f0fa; }
+.bc-dk .bc-logo-t em { color: #f0147a; font-style: italic; }
+.bc-lt .bc-logo-t { color: #0f0b16; }
+.bc-lt .bc-logo-t em { color: #c0105f; font-style: italic; }
+.bc-bot { position: relative; z-index: 1; }
+.bc-name { font-size: clamp(8px,1.4vw,13px); font-weight: 700; }
+.bc-dk .bc-name { color: #f5f0fa; }
+.bc-lt .bc-name { color: #0f0b16; }
+.bc-role { font-size: clamp(6px,0.9vw,9px); letter-spacing: 1.5px; text-transform: uppercase; color: #f0147a; font-weight: 600; margin: 2px 0 4px; }
+.bc-ct { font-size: clamp(6px,0.9vw,9px); line-height: 1.7; }
+.bc-dk .bc-ct { color: #b8a8cc; }
+.bc-lt .bc-ct { color: #8a7aaa; }
+.bc-big { font-family: 'DM Serif Display', serif; font-size: clamp(13px,2.5vw,24px); position: relative; z-index: 1; }
+.bc-dk .bc-big { color: #f5f0fa; }
+.bc-dk .bc-big em { color: #f0147a; font-style: italic; }
+.bc-lt .bc-big { color: #0f0b16; }
+.bc-lt .bc-big em { color: #c0105f; font-style: italic; }
+
+/* ══ INSTAGRAM ══ */
+.s-ig { background: #0f0b16; }
+.ig-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 5px; border-radius: 10px; overflow: hidden; }
+.ig-post { aspect-ratio: 1/1; display: flex; flex-direction: column; padding: clamp(10px,2.5vw,18px); position: relative; overflow: hidden; }
+.ig-1 { background: linear-gradient(145deg,#0f0b16,#1a0520); justify-content: flex-end; }
+.ig-1::before { content: ''; position: absolute; top: -20px; right: -20px; width: 90px; height: 90px; background: radial-gradient(circle,rgba(240,20,122,0.3) 0%,transparent 65%); border-radius: 50%; }
+.ig-2 { background: #08060c; align-items: center; justify-content: center; text-align: center; }
+.ig-3 { background: #0f0b16; justify-content: space-between; }
+.ig-3::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg,#f0147a,transparent); }
+.ig-4 { background: #08060c; align-items: center; justify-content: center; text-align: center; }
+.ig-5 { background: linear-gradient(135deg,#c0105f,#8a0a44); align-items: center; justify-content: center; text-align: center; }
+.ig-6 { background: linear-gradient(145deg,#0f0b16,#1a0520); justify-content: flex-end; }
+.ig-h { font-family: 'DM Serif Display', serif; font-size: clamp(11px,2.2vw,18px); color: #f5f0fa; line-height: 1.2; position: relative; z-index: 1; }
+.ig-num { font-family: 'DM Serif Display', serif; font-size: clamp(22px,5vw,42px); color: #f0147a; line-height: 1; }
+
+/* ══ BACK COVER ══ */
+.s-back { background: #08060c; }
+.s-back::before { content: ''; position: absolute; top: -80px; left: -80px; width: 300px; height: 300px; background: radial-gradient(circle,rgba(240,20,122,0.2) 0%,transparent 65%); border-radius: 50%; pointer-events: none; }
+.s-back .slide-inner { align-items: center; justify-content: center; gap: 16px; text-align: center; }
+.back-logo { font-family: 'DM Serif Display', serif; font-size: clamp(28px,6vw,52px); color: #f5f0fa; }
+.back-logo em { color: #f0147a; font-style: italic; }
+.back-line { width: 40px; height: 1px; background: #f0147a; }
+.back-url { font-size: clamp(11px,1.8vw,14px); color: rgba(245,240,250,0.35); letter-spacing: 2px; }
+
+/* CONTROLS */
+.controls { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 20px; width: 100%; max-width: 600px; }
+.ctrl-btn { width: 46px; height: 46px; border-radius: 50%; background: rgba(21,15,30,0.95); border: 1px solid rgba(240,20,122,0.25); color: #f5f0fa; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+.ctrl-btn:hover:not(:disabled) { background: rgba(240,20,122,0.15); border-color: rgba(240,20,122,0.55); transform: scale(1.05); }
+.ctrl-btn:disabled { opacity: 0.2; cursor: not-allowed; }
+.ctrl-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dots { display: flex; gap: 7px; flex-wrap: wrap; justify-content: center; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(240,20,122,0.2); cursor: pointer; transition: all 0.25s; }
+.dot.active { background: #f0147a; transform: scale(1.4); }
+.page-ctr { font-size: 12px; color: #b8a8cc; min-width: 44px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h2 class="stage-title">Brand manuál — <em>listujte</em></h2>
+<p class="stage-sub">Šipky · tečky · swipe na mobilu · klávesy ← →</p>
+
+<div class="carousel-wrap">
+  <div class="carousel-outer">
+    <div class="carousel-track" id="track">
+
+      <!-- 1 COVER -->
+      <div class="slide s-cover">
+        <div class="slide-inner">
+          <div class="cover-tag-txt">Brand Manuál · 2026</div>
+          <div>
+            <div class="cover-h">Janyskova<br><em>Digital</em></div>
+            <div class="cover-sub-txt">Webdesign &amp; Grafika · Nový Jičín</div>
+          </div>
+          <div class="cover-foot">
+            <div class="cover-author"><strong>Gabriela Janýšková</strong>janyskovadigital.cz</div>
+            <div class="cover-year">2026</div>
+          </div>
+        </div>
+        <span class="pn" style="color:#f5f0fa;">1 / 7</span>
+      </div>
+
+      <!-- 2 LOGO -->
+      <div class="slide s-logo">
+        <div class="slide-inner">
+          <div class="stag">01 — Logo</div>
+          <div class="stitle">Wordmark<br>a jeho <em>varianty.</em></div>
+          <div class="logo-grid">
+            <div class="lb lb-dk"><div class="wm"><div class="m">Janyskova <em>Digital</em></div><div class="s">Webdesign &amp; Grafika</div></div></div>
+            <div class="lb lb-lt"><div class="wm lgt"><div class="m">Janyskova <em>Digital</em></div><div class="s">Webdesign &amp; Grafika</div></div></div>
+            <div class="lb lb-pk"><div class="wm wht"><div class="m">Janyskova <em>Digital</em></div><div class="s">Webdesign &amp; Grafika</div></div></div>
+            <div class="lb lb-gr"><div class="wm"><div class="m">Janyskova <em>Digital</em></div><div class="s">Webdesign &amp; Grafika</div></div></div>
+          </div>
+        </div>
+        <span class="pn" style="color:#0f0b16;">2 / 7</span>
+      </div>
+
+      <!-- 3 BARVY -->
+      <div class="slide s-colors">
+        <div class="slide-inner">
+          <div class="stag">02 — Barvy</div>
+          <div class="stitle stitle" style="color:#f5f0fa;">Barevná<br><em>paleta.</em></div>
+          <div class="swatches">
+            <div><div class="sw-block" style="background:#f0147a;"></div><div class="sw-info"><div class="sw-name">Pink Primary</div><div class="sw-hex">#f0147a</div></div></div>
+            <div><div class="sw-block" style="background:#c0105f;"></div><div class="sw-info"><div class="sw-name">Pink Dark</div><div class="sw-hex">#c0105f</div></div></div>
+            <div><div class="sw-block" style="background:#08060c;"></div><div class="sw-info"><div class="sw-name">Black</div><div class="sw-hex">#08060c</div></div></div>
+            <div><div class="sw-block" style="background:#150f1e;"></div><div class="sw-info"><div class="sw-name">Dark Purple</div><div class="sw-hex">#150f1e</div></div></div>
+            <div><div class="sw-block" style="background:#f5f0fa;border:1px solid #e0d8ee;"></div><div class="sw-info"><div class="sw-name">Off White</div><div class="sw-hex">#f5f0fa</div></div></div>
+          </div>
+          <div class="tonal">
+            <div style="background:#f0147a;"></div><div style="background:#c8106a;"></div><div style="background:#a00d55;"></div>
+            <div style="background:#780a40;"></div><div style="background:#50062b;"></div><div style="background:#280315;"></div>
+            <div style="background:#08060c;"></div>
+          </div>
+        </div>
+        <span class="pn" style="color:#f5f0fa;">3 / 7</span>
+      </div>
+
+      <!-- 4 TYPOGRAFIE -->
+      <div class="slide s-type">
+        <div class="slide-inner">
+          <div class="stag">03 — Typografie</div>
+          <div class="stitle" style="color:#0f0b16;">Fonty a jejich<br><em>hierarchie.</em></div>
+          <div class="type-rows">
+            <div class="type-r">
+              <span class="type-lbl">Display</span>
+              <span style="font-family:'DM Serif Display',serif;font-size:clamp(24px,5.5vw,48px);color:#0f0b16;letter-spacing:-1px;line-height:1;">DM Serif</span>
+            </div>
+            <div class="type-r">
+              <span class="type-lbl">Italic</span>
+              <span style="font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(24px,5.5vw,48px);color:#f0147a;letter-spacing:-1px;line-height:1;">Digital</span>
+            </div>
+            <div class="type-r">
+              <span class="type-lbl">Body</span>
+              <span style="font-size:clamp(13px,2.5vw,18px);color:#3a2e50;">Plus Jakarta Sans</span>
+            </div>
+            <div class="type-r">
+              <span class="type-lbl">Bold</span>
+              <span style="font-size:clamp(13px,2.5vw,18px);font-weight:700;color:#0f0b16;">Bold 700 — tlačítka</span>
+            </div>
+            <div class="type-r">
+              <span class="type-lbl">Label</span>
+              <span style="font-size:clamp(9px,1.5vw,12px);font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#f0147a;">Sekce · Tagy</span>
+            </div>
+          </div>
+        </div>
+        <span class="pn" style="color:#0f0b16;">4 / 7</span>
+      </div>
+
+      <!-- 5 VIZITKY -->
+      <div class="slide s-cards">
+        <div class="slide-inner">
+          <div class="stag">04 — Aplikace</div>
+          <div class="stitle" style="color:#f5f0fa;">Vizitky —<br><em>návrh.</em></div>
+          <div class="cards-g">
+            <div class="bc bc-dk">
+              <div class="bc-logo-t">Janyskova <em>Digital</em></div>
+              <div class="bc-bot"><div class="bc-name">Gabriela Janýšková</div><div class="bc-role">Webdesign &amp; Grafika</div><div class="bc-ct">info@janyskovadigital.cz<br>+420 739 395 800</div></div>
+            </div>
+            <div class="bc bc-dk bc-center">
+              <div class="bc-big">Janyskova <em>Digital</em></div>
+              <div style="width:24px;height:1px;background:#f0147a;margin:8px auto;"></div>
+              <div style="font-size:clamp(6px,1vw,9px);letter-spacing:2px;text-transform:uppercase;color:rgba(245,240,250,0.3);">Webdesign &amp; Grafika</div>
+            </div>
+            <div class="bc bc-lt">
+              <div class="bc-logo-t">Janyskova <em>Digital</em></div>
+              <div class="bc-bot"><div class="bc-name">Gabriela Janýšková</div><div class="bc-role">Webdesign &amp; Grafika</div><div class="bc-ct">info@janyskovadigital.cz<br>+420 739 395 800</div></div>
+            </div>
+            <div class="bc bc-lt bc-center">
+              <div class="bc-big">Janyskova <em>Digital</em></div>
+              <div style="width:24px;height:1px;background:#c0105f;margin:8px auto;"></div>
+              <div style="font-size:clamp(6px,1vw,9px);letter-spacing:2px;text-transform:uppercase;color:#b8a8cc;">Webdesign &amp; Grafika</div>
+            </div>
+          </div>
+        </div>
+        <span class="pn" style="color:#f5f0fa;">5 / 7</span>
+      </div>
+
+      <!-- 6 INSTAGRAM -->
+      <div class="slide s-ig">
+        <div class="slide-inner">
+          <div class="stag">05 — Sociální sítě</div>
+          <div class="stitle" style="color:#f5f0fa;">Instagram<br><em>feed.</em></div>
+          <div class="ig-grid">
+            <div class="ig-post ig-1">
+              <div class="ig-h" style="position:relative;z-index:1;">Web, který<br><em style="color:#f0147a;">prodává.</em></div>
+              <div style="font-size:clamp(7px,1.4vw,11px);color:#b8a8cc;margin-top:4px;position:relative;z-index:1;">@janyskovadigital</div>
+            </div>
+            <div class="ig-post ig-2">
+              <div class="ig-num">75%</div>
+              <div style="font-size:clamp(7px,1.4vw,11px);font-weight:700;color:#f5f0fa;margin-top:4px;padding:0 2px;">lidí posuzuje firmu podle webu</div>
+            </div>
+            <div class="ig-post ig-3">
+              <div style="font-size:clamp(6px,1.1vw,10px);letter-spacing:2px;text-transform:uppercase;color:#f0147a;font-weight:700;">Tip #1</div>
+              <div class="ig-h">Proč váš web nenachází Google?</div>
+              <div style="font-size:clamp(6px,1vw,9px);color:#b8a8cc;">JANYSKOVADIGITAL.CZ</div>
+            </div>
+            <div class="ig-post ig-4">
+              <div class="ig-h" style="font-size:clamp(9px,1.8vw,15px);">Web bez SEO je jako výloha v <em style="color:#f0147a;">tmavé uličce.</em></div>
+            </div>
+            <div class="ig-post ig-5">
+              <div style="font-size:clamp(6px,1.1vw,9px);letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.6);font-weight:700;margin-bottom:6px;">Přijímám zakázky</div>
+              <div class="ig-h" style="color:white;font-size:clamp(10px,2vw,17px);">Nové weby<br>na červen.</div>
+              <div style="background:white;color:#c0105f;font-size:clamp(7px,1.2vw,10px);font-weight:700;padding:5px 12px;border-radius:100px;margin-top:8px;">Napište mi →</div>
+            </div>
+            <div class="ig-post ig-6">
+              <div style="font-size:clamp(6px,1.1vw,10px);letter-spacing:2px;text-transform:uppercase;color:#f0147a;font-weight:700;margin-bottom:4px;position:relative;z-index:1;">Reference</div>
+              <div class="ig-h" style="position:relative;z-index:1;">Podívejte se<br>na mé <em style="color:#f0147a;">projekty.</em></div>
+            </div>
+          </div>
+        </div>
+        <span class="pn" style="color:#f5f0fa;">6 / 7</span>
+      </div>
+
+      <!-- 7 BACK COVER -->
+      <div class="slide s-back">
+        <div class="slide-inner">
+          <div class="back-logo">Janyskova <em>Digital</em></div>
+          <div class="back-line"></div>
+          <div class="back-url">janyskovadigital.cz</div>
+          <div style="font-size:10px;color:rgba(245,240,250,0.2);letter-spacing:2px;margin-top:6px;">BRAND MANUÁL · 2026</div>
+        </div>
+        <span class="pn" style="color:#f5f0fa;">7 / 7</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <button class="ctrl-btn" id="btnPrev" disabled aria-label="Předchozí">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="dots" id="dots"></div>
+  <span class="page-ctr" id="ctr">1 / 7</span>
+  <button class="ctrl-btn" id="btnNext" aria-label="Další">
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<script>
+const track = document.getElementById('track');
+const slides = track.querySelectorAll('.slide');
+const btnPrev = document.getElementById('btnPrev');
+const btnNext = document.getElementById('btnNext');
+const ctr = document.getElementById('ctr');
+const dotsWrap = document.getElementById('dots');
+const total = slides.length;
+let cur = 0;
+
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(d);
+});
+
+function updateUI() {
+  track.style.transform = `translateX(-${cur * 100}%)`;
+  document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+  ctr.textContent = `${cur+1} / ${total}`;
+  btnPrev.disabled = cur === 0;
+  btnNext.disabled = cur === total - 1;
+}
+
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  cur = n;
+  updateUI();
+}
+
+btnNext.addEventListener('click', () => goTo(cur+1));
+btnPrev.addEventListener('click', () => goTo(cur-1));
+
+let tx = null;
+track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+track.addEventListener('touchend', e => {
+  if (tx === null) return;
+  const diff = tx - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) diff > 0 ? goTo(cur+1) : goTo(cur-1);
+  tx = null;
+}, {passive:true});
+
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight') goTo(cur+1);
+  if (e.key==='ArrowLeft') goTo(cur-1);
+});
+
+updateUI();
+</script>
+</body>
+</html>
