@@ -299,15 +299,25 @@ nav { padding: 26px 0; position: relative; z-index: 100; border-bottom: 1px soli
 
 /* REFERENCE */
 .ref-section { padding: 100px 0; position: relative; z-index: 1; }
-.ref-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 1.2fr 1fr; backdrop-filter: blur(10px); }
-.ref-img { background: var(--bg2); padding: 40px; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--border); }
+.ref-slider-wrap { position: relative; }
+.ref-track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; padding: 4px 4px 8px; margin: 0 -4px; }
+.ref-track::-webkit-scrollbar { display: none; }
+.ref-card { scroll-snap-align: start; flex: 0 0 calc(50% - 12px); min-width: 0; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(10px); }
+.ref-img { background: var(--bg2); padding: 32px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
 .ref-img img { width: 100%; border-radius: 12px; }
-.ref-body { padding: 48px 40px; display: flex; flex-direction: column; justify-content: center; }
+.ref-body { padding: 32px 30px; display: flex; flex-direction: column; flex: 1; }
 .ref-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 12px; }
-.ref-body h3 { font-size: 26px; font-family: 'DM Serif Display', serif; color: var(--text); margin-bottom: 12px; }
-.ref-body p { font-size: 15px; color: var(--text-dim); line-height: 1.75; margin-bottom: 24px; }
+.ref-body h3 { font-size: 24px; font-family: 'DM Serif Display', serif; color: var(--text); margin-bottom: 12px; }
+.ref-body p { font-size: 14px; color: var(--text-dim); line-height: 1.75; margin-bottom: 20px; flex: 1; }
 .ref-link { color: var(--pink); font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
 .ref-link:hover { gap: 10px; }
+.ref-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 46px; height: 46px; border-radius: 50%; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.25s; z-index: 3; padding: 0; }
+.ref-arrow:hover { border-color: var(--pink); background: var(--pink-dim); }
+.ref-arrow svg { width: 18px; height: 18px; stroke: var(--text); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ref-arrow:hover svg { stroke: var(--pink); }
+.ref-arrow-prev { left: -23px; }
+.ref-arrow-next { right: -23px; }
+.ref-arrow:disabled { opacity: 0.25; cursor: default; pointer-events: none; }
 
 
 /* PROCESS */
@@ -468,9 +478,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   .about-inner { grid-template-columns: 1fr; gap: 50px; }
   .about-img-wrap { max-width: 200px; margin: 0 auto; }
   .about-badge { right: 0; }
-  .ref-card { grid-template-columns: 1fr; }
-  .ref-img { display: flex; border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
-  .ref-img img { max-height: 220px; width: auto; margin: 0 auto; }
+  .ref-card { flex: 0 0 100%; }
   .process-grid { grid-template-columns: 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
   .kalk-grid { grid-template-columns: 1fr; }
@@ -486,6 +494,10 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   .hero h1 { font-size: 38px; }
   .process-grid { grid-template-columns: 1fr; }
   .section-title { font-size: 30px; }
+  .ref-arrow { width: 38px; height: 38px; }
+  .ref-arrow svg { width: 15px; height: 15px; }
+  .ref-arrow-prev { left: -14px; }
+  .ref-arrow-next { right: -14px; }
 }
 </style>
 </head>
@@ -669,14 +681,29 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   <div class="container">
     <div class="section-tag">Reference</div>
     <h2 class="section-title">Weby, které jsem <em>postavila.</em></h2>
-    <div class="ref-card reveal">
-      <div class="ref-img"><img src="/img/nikola-desktop.webp" alt="Web hubackovafoto.cz" loading="lazy" decoding="async"></div>
-      <div class="ref-body">
-        <div class="ref-tag">Fotografie · Olomoucký kraj</div>
-        <h3>Nikola Hubáčková</h3>
-        <p>Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online poptávkovým formulářem.</p>
-        <a href="https://hubackovafoto.cz" target="_blank" rel="noopener noreferrer" class="ref-link">hubackovafoto.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    <div class="ref-slider-wrap">
+      <div class="ref-track" id="refTrack">
+        <div class="ref-card reveal">
+          <div class="ref-img"><img src="/img/nikola-desktop.webp" alt="Web hubackovafoto.cz" loading="lazy" decoding="async"></div>
+          <div class="ref-body">
+            <div class="ref-tag">Fotografie · Olomoucký kraj</div>
+            <h3>Nikola Hubáčková</h3>
+            <p>Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online poptávkovým formulářem.</p>
+            <a href="https://hubackovafoto.cz" target="_blank" rel="noopener noreferrer" class="ref-link">hubackovafoto.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          </div>
+        </div>
+        <div class="ref-card reveal">
+          <div class="ref-img"><img src="/img/slonek-desktop-v1.webp" alt="Web jaroslavslonek.cz" loading="lazy" decoding="async"></div>
+          <div class="ref-body">
+            <div class="ref-tag">Finanční poradce · Olomoucký kraj</div>
+            <h3>Ing. Jaroslav Slonek</h3>
+            <p>Finanční poradce z Olomouckého kraje. Web s přehlednými datovými kartami pro srovnání výnosů a kalkulací zhodnocení investic, postavený na čisté konverzi k nezávazné konzultaci.</p>
+            <a href="https://jaroslavslonek.cz" target="_blank" rel="noopener noreferrer" class="ref-link">jaroslavslonek.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          </div>
+        </div>
       </div>
+      <button class="ref-arrow ref-arrow-prev" id="refPrev" type="button" aria-label="Předchozí reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="ref-arrow ref-arrow-next" id="refNext" type="button" aria-label="Další reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 </section>
@@ -1120,6 +1147,25 @@ function switchRefresh(t) {
 
 const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+
+// REFERENCE SLIDER
+(function() {
+  const track = document.getElementById('refTrack');
+  const prevBtn = document.getElementById('refPrev');
+  const nextBtn = document.getElementById('refNext');
+  if (!track || !prevBtn || !nextBtn) return;
+  function update() {
+    const max = track.scrollWidth - track.clientWidth - 2;
+    prevBtn.disabled = track.scrollLeft <= 2;
+    nextBtn.disabled = max <= 2 || track.scrollLeft >= max;
+  }
+  prevBtn.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }));
+  nextBtn.addEventListener('click', () => track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }));
+  track.addEventListener('scroll', update);
+  window.addEventListener('resize', update);
+  update();
+})();
 
 
 // SCRAMBLE EFEKT na hero nadpis
