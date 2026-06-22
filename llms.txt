@@ -24,23 +24,24 @@ Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového 
 
 ## Kontakt
 
-- Web: https://janyskovadigital.cz
-- E-mail: info@janyskovadigital.cz
+- Web: [janyskovadigital.cz](https://janyskovadigital.cz)
+- E-mail: [info@janyskovadigital.cz](mailto:info@janyskovadigital.cz)
 - Telefon: +420 739 395 800
-- Instagram: https://www.instagram.com/JanyskovaDigital
-- LinkedIn: https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/
+- Instagram: [JanyskovaDigital](https://www.instagram.com/JanyskovaDigital)
+- LinkedIn: [Gabriela Janýšková](https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/)
 
 ## Lokality
 
 Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici a Příboře. Spolupráce probíhá online — pro klienty z celé České republiky.
 
-## Stránky
+## Stránky webu
 
-- /novy-jicin/ — Webdesign Nový Jičín
-- /ostrava/ — Webdesign Ostrava
-- /frydek-mistek/ — Webdesign Frýdek-Místek
-- /hranice/ — Webdesign Hranice
-- /koprivnice/ — Webdesign Kopřivnice
-- /pribor/ — Webdesign Příbor
-- /grafika.html — Grafika na míru
-- /blog.html — Blog o webdesignu a AI
+- [Hlavní stránka](https://janyskovadigital.cz/)
+- [Webdesign Nový Jičín](https://janyskovadigital.cz/novy-jicin/)
+- [Webdesign Ostrava](https://janyskovadigital.cz/ostrava/)
+- [Webdesign Frýdek-Místek](https://janyskovadigital.cz/frydek-mistek/)
+- [Webdesign Hranice](https://janyskovadigital.cz/hranice/)
+- [Webdesign Kopřivnice](https://janyskovadigital.cz/koprivnice/)
+- [Webdesign Příbor](https://janyskovadigital.cz/pribor/)
+- [Grafika na míru](https://janyskovadigital.cz/grafika.html)
+- [Blog o webdesignu a AI](https://janyskovadigital.cz/blog.html)
