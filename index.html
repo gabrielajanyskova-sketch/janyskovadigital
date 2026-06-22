@@ -762,6 +762,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100}
     if(btn){
       btn.addEventListener('mouseenter',initCal,{once:true,passive:true});
       btn.addEventListener('touchstart',initCal,{once:true,passive:true});
+      btn.addEventListener('click',function(){
+        if(!loaded){
+          initCal();
+          // Wait for Cal to load then re-trigger click
+          var interval=setInterval(function(){
+            if(window.Cal && window.Cal.ns && window.Cal.ns['15min']){
+              clearInterval(interval);
+              btn.click();
+            }
+          },50);
+        }
+      });
     }
   });
 })();
