@@ -50,18 +50,29 @@
     "url": "https://janyskovadigital.cz",
     "telephone": "+420739395800",
     "email": "info@janyskovadigital.cz",
-    "address": {"@type":"PostalAddress","streetAddress":"Starojická Lhota 45","addressLocality":"Starý Jičín","postalCode":"741 01","addressCountry":"CZ"},
-    "geo": {"@type":"GeoCoordinates","latitude":"49.6833","longitude":"18.3667"},
-    "areaServed": [{"@type":"City","name":"Frýdek-Místek"},
-{"@type":"City","name":"Třinec"},
-{"@type":"City","name":"Havířov"},
-{"@type":"City","name":"Moravskoslezský kraj"}],
-    "priceRange": "5900-12000 CZK",
-    "founder": {"@type":"Person","name":"Gabriela Janýšková"},
-    "sameAs": ["https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/","https://www.instagram.com/JanyskovaDigital"],
+    "address": {"@type": "PostalAddress", "streetAddress": "Starojická Lhota 45", "addressLocality": "Starý Jičín", "postalCode": "741 01", "addressCountry": "CZ"},
+    "geo": {"@type": "GeoCoordinates", "latitude": "49.6833", "longitude": "18.3667"},
+    "areaServed": [
+      {"@type": "City", "name": "Frýdek-Místek"},
+      {"@type": "City", "name": "Třinec"},
+      {"@type": "City", "name": "Havířov"},
+      {"@type": "AdministrativeArea", "name": "Frýdecko-Místecko"},
+      {"@type": "State", "name": "Moravskoslezský kraj"}
+    ],
+    "priceRange": "5900–14900 CZK",
+    "founder": {"@type": "Person", "name": "Gabriela Janýšková"},
+    "sameAs": ["https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/", "https://www.instagram.com/JanyskovaDigital"],
     "openingHours": "Mo-Fr 08:00-17:00",
-    "aggregateRating": {"@type":"AggregateRating","ratingValue":"5","reviewCount":"8","bestRating":"5","worstRating":"1"}
-  }]
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tvorba webových stránek Frýdek-Místek",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Start"}, "price": "5900", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Business"}, "price": "12000", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Care"}, "price": "490", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Refresh"}, "price": "8900", "priceCurrency": "CZK"}
+      ]
+    }
   },
   {
     "@context": "https://schema.org",
@@ -71,12 +82,12 @@
     "name": "Tvorba webových stránek Frýdek-Místek 2026 | Janyskova Digital",
     "description": "Tvorba webových stránek ve Frýdku-Místku na míru. Gabriela Janýšková — čistý kód, PageSpeed 100, hosting v ceně tvorby. Pro OSVČ a firmy z Frýdecko-Místecka.",
     "inLanguage": "cs",
-    "isPartOf": {"@id":"https://janyskovadigital.cz/#website"},
+    "isPartOf": {"@id": "https://janyskovadigital.cz/#website"},
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        {"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},
-        {"@type":"ListItem","position":2,"name":"Nový Jičín","item":"https://janyskovadigital.cz/frydek-mistek/"}
+        {"@type": "ListItem", "position": 1, "name": "Domů", "item": "https://janyskovadigital.cz/"},
+        {"@type": "ListItem", "position": 2, "name": "Frýdek-Místek", "item": "https://janyskovadigital.cz/frydek-mistek/"}
       ]
     }
   }
@@ -498,6 +509,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
       <a href="/#cenik">Ceník</a>
       <a href="/#reference">Reference</a>
       <a href="/blog.html">Blog</a>
+      <a href="/grafika.html">Grafika</a>
       <a href="#kontakt" class="cta">Napsat mi</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -512,6 +524,7 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
   <a href="/#reference" onclick="closeMenu()">Reference</a>
   <a href="/#o-mne" onclick="closeMenu()">O mně</a>
   <a href="/blog.html" onclick="closeMenu()">Blog</a>
+  <a href="/grafika.html" onclick="closeMenu()">Grafika</a>
   <a href="#kontakt" onclick="closeMenu()">Napsat mi</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
@@ -714,6 +727,37 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
           <ul class="features"><li>Platíte jen za odvedenou práci</li><li>Žádné měsíční závazky</li><li>Min. 30 minut za každou úpravu</li><li>Faktura po dokončení práce</li></ul>
         </div>
       </div>
+      <div class="price-card reveal">
+        <div class="price-card-tag">Konec WordPressu</div>
+        <h3>Web Refresh</h3>
+        <p>Máte starý web na WordPressu? Převedu ho na čistý kód — beze ztráty pozic.</p>
+        <div class="care-toggle" role="tablist">
+          <button onclick="switchRefresh('one')" id="refresh-btn-one" class="care-btn active" role="tab">Jednostránkový</button>
+          <button onclick="switchRefresh('multi')" id="refresh-btn-multi" class="care-btn" role="tab">Vícestránkový</button>
+        </div>
+        <div id="refresh-one">
+          <div class="price-amount">8 900 <small>Kč</small></div>
+          <div class="price-divider"></div>
+          <ul class="features">
+            <li>Export obsahu ze stávajícího WordPressu</li>
+            <li>Převod do čistého kódu — žádné šablony</li>
+            <li>301 přesměrování — beze ztráty pozic ve vyhledávačích</li>
+            <li>Načítání pod 1 sekundu, PageSpeed 95–100</li>
+            <li><strong style="color:var(--text);">Hosting v ceně — platíte jen doménu</strong></li>
+          </ul>
+        </div>
+        <div id="refresh-multi" style="display:none;">
+          <div class="price-amount"><small style="font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;">od</small> 14 900 <small>Kč</small></div>
+          <div class="price-divider"></div>
+          <ul class="features">
+            <li>Export obsahu ze všech podstránek</li>
+            <li>Převod do čistého kódu — žádný WordPress</li>
+            <li>301 přesměrování pro celou strukturu webu</li>
+            <li>Lokální SEO a analýza klíčových slov</li>
+            <li><strong style="color:var(--text);">Cena dle rozsahu — domluvená předem</strong></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <p style="text-align:center; font-size:14px; color:var(--text-dim); margin-top:28px; font-style:italic;">Ceny jsou orientační — finální nabídku vám ráda připravím na míru.</p>
   </div>
@@ -808,9 +852,12 @@ footer { background: #050408; padding: 60px 0 28px; border-top: 1px solid rgba(2
       <div>
         <div class="footer-heading">Kde působím</div>
         <ul class="footer-links-list">
-          <li><a href="/novy-jicin/">Tvorba webu Nový Jičín</a></li>
-          <li><a href="/pribor/">Tvorba webu Příbor</a></li>
-          <li><a href="/koprivnice/">Tvorba webu Kopřivnice</a></li>
+          <li><a href="/novy-jicin/">Webdesign Nový Jičín</a></li>
+          <li><a href="/ostrava/">Webdesign Ostrava</a></li>
+          <li><a href="/frydek-mistek/">Webdesign Frýdek-Místek</a></li>
+          <li><a href="/hranice/">Webdesign Hranice</a></li>
+          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
+          <li><a href="/pribor/">Webdesign Příbor</a></li>
         </ul>
       </div>
       <div>
@@ -861,6 +908,12 @@ function switchCare(t) {
   ['basic','active','hourly'].forEach(x => { document.getElementById('care-'+x).style.display='none'; document.getElementById('care-btn-'+x).classList.remove('active'); });
   document.getElementById('care-'+t).style.display='block';
   document.getElementById('care-btn-'+t).classList.add('active');
+}
+
+function switchRefresh(t) {
+  ['one','multi'].forEach(x => { document.getElementById('refresh-'+x).style.display='none'; document.getElementById('refresh-btn-'+x).classList.remove('active'); });
+  document.getElementById('refresh-'+t).style.display='block';
+  document.getElementById('refresh-btn-'+t).classList.add('active');
 }
 
 const revealObs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
