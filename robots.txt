@@ -28,4 +28,6 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
 Sitemap: https://janyskovadigital.cz/sitemap.xml
