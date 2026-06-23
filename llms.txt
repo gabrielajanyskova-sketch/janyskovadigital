@@ -1,10 +1,10 @@
 # Janyskova Digital — Tvorba webových stránek na míru
 
-> Gabriela Janýšková je webdesignerka z Nového Jičína specializující se na tvorbu webových stránek čistým kódem bez WordPressu. Weby pro OSVČ a firmy z Moravskoslezského a Olomouckého kraje.
+> Gabriela Janýšková je webdesignerka z Nového Jičína specializující se na tvorbu webových stránek čistým kódem bez WordPressu. Weby pro OSVČ a firmy z celé České republiky.
 
 ## O webu
 
-Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového Jičína (Moravskoslezský kraj, Česká republika). Nabízí tvorbu webových stránek na míru, grafický design a SEO optimalizaci.
+Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového Jičína (Moravskoslezský kraj, Česká republika). Nabízí tvorbu webových stránek na míru, grafický design a SEO/AEO optimalizaci.
 
 ## Služby
 
@@ -14,13 +14,18 @@ Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového 
 - SEO, AEO a GEO optimalizace
 - Web Care — správa a údržba webů
 - Web Refresh — převod z WordPressu na čistý kód
+- Profil firmy na Google — založení a optimalizace
+- AEO konzultace — viditelnost v ChatGPT, Perplexity, Google AI Overviews
 
 ## Ceny
 
 - Web Start (one-page): od 5 900 Kč
 - Web Business (vícestránkový): od 12 000 Kč
 - Web Care (správa): od 490 Kč/měs
-- Web Refresh (z WordPressu): od 8 900 Kč
+- Web Refresh (z WordPressu, one-page): od 8 900 Kč
+- Web Refresh (z WordPressu, vícestránkový): od 14 900 Kč
+- Profil firmy na Google: 790 Kč
+- AEO konzultace: od 1 490 Kč
 
 ## Kontakt
 
@@ -32,7 +37,7 @@ Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového 
 
 ## Lokality
 
-Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici a Příboře. Spolupráce probíhá online — pro klienty z celé České republiky.
+Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici, Příboře, Brně, Praze, Olomouci a Zlíně. Spolupráce probíhá online — pro klienty z celé České republiky.
 
 ## Stránky webu
 
@@ -43,5 +48,9 @@ Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici
 - [Webdesign Hranice](https://janyskovadigital.cz/hranice/)
 - [Webdesign Kopřivnice](https://janyskovadigital.cz/koprivnice/)
 - [Webdesign Příbor](https://janyskovadigital.cz/pribor/)
+- [Webdesign Brno](https://janyskovadigital.cz/brno/)
+- [Webdesign Praha](https://janyskovadigital.cz/praha/)
+- [Webdesign Olomouc](https://janyskovadigital.cz/olomouc/)
+- [Webdesign Zlín](https://janyskovadigital.cz/zlin/)
 - [Grafika na míru](https://janyskovadigital.cz/grafika.html)
 - [Blog o webdesignu a AI](https://janyskovadigital.cz/blog.html)
