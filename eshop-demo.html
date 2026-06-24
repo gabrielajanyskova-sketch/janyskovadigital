@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo e-shop | Čistý kód, žádný WordPress</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #08060c;
+  --pink: #f0147a;
+  --text: #f5f0fa;
+  --dim: #b8a8cc;
+  --border: rgba(240,20,122,0.15);
+  --card: rgba(21,15,30,0.9);
+  --green: #00e5a0;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,6,12,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); }
+.nav-logo em { font-style: italic; color: var(--pink); }
+.cart-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--pink); color: #fff;
+  border: none; border-radius: 50px;
+  padding: 9px 18px; font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: opacity 0.2s; font-family: inherit;
+}
+.cart-btn:hover { opacity: 0.85; }
+.cart-count {
+  background: #fff; color: var(--pink);
+  border-radius: 50%; width: 20px; height: 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 72px 28px 56px;
+  max-width: 700px; margin: 0 auto;
+}
+.hero-tag {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--pink); font-weight: 600; margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.1; margin-bottom: 16px;
+}
+.hero h1 em { font-style: italic; color: var(--pink); }
+.hero p { color: var(--dim); font-size: 17px; line-height: 1.7; }
+
+/* FILTERS */
+.filters {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  justify-content: center; padding: 0 28px 40px;
+}
+.filter-btn {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--dim); border-radius: 50px;
+  padding: 8px 18px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
+}
+.filter-btn:hover, .filter-btn.active {
+  border-color: var(--pink); color: var(--pink);
+  background: rgba(240,20,122,0.07);
+}
+
+/* GRID */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px; padding: 0 28px 80px;
+  max-width: 1100px; margin: 0 auto;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s;
+  display: flex; flex-direction: column;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(240,20,122,0.4);
+}
+.product-img {
+  width: 100%; aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 64px; position: relative;
+  overflow: hidden;
+}
+.product-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--pink); color: #fff;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  font-weight: 700; padding: 4px 10px; border-radius: 50px;
+}
+.product-body { padding: 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.product-cat {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--pink); font-weight: 600;
+}
+.product-name { font-size: 17px; font-weight: 700; line-height: 1.3; }
+.product-desc { font-size: 13px; color: var(--dim); line-height: 1.6; flex: 1; }
+.product-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 16px;
+}
+.product-price {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px; color: var(--text);
+}
+.product-price .old {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; color: var(--dim);
+  text-decoration: line-through; margin-left: 6px;
+}
+.add-btn {
+  background: var(--pink); color: #fff; border: none;
+  border-radius: 50px; padding: 10px 18px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-family: inherit; white-space: nowrap;
+}
+.add-btn:hover { opacity: 0.85; }
+.add-btn:active { transform: scale(0.95); }
+.add-btn.added { background: var(--green); color: #08060c; }
+
+/* CART DRAWER */
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  z-index: 200; opacity: 0; pointer-events: none;
+  transition: opacity 0.25s;
+}
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+
+.cart-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: min(420px, 100vw);
+  background: #0f0a18;
+  border-left: 1px solid var(--border);
+  z-index: 201; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+.cart-drawer.open { transform: translateX(0); }
+
+.cart-header {
+  padding: 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.cart-header h2 { font-family: 'DM Serif Display', serif; font-size: 22px; }
+.close-btn {
+  background: none; border: none; color: var(--dim);
+  font-size: 24px; cursor: pointer; line-height: 1; padding: 4px;
+}
+.close-btn:hover { color: var(--text); }
+
+.cart-items { flex: 1; overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+
+.cart-empty {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; color: var(--dim); padding: 40px;
+}
+.cart-empty svg { opacity: 0.3; }
+.cart-empty p { font-size: 15px; }
+
+.cart-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px;
+}
+.cart-item-emoji { font-size: 36px; min-width: 44px; text-align: center; }
+.cart-item-info { flex: 1; }
+.cart-item-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.cart-item-price { font-size: 13px; color: var(--dim); }
+.cart-item-qty {
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
+}
+.qty-btn {
+  background: rgba(240,20,122,0.1); border: 1px solid var(--border);
+  color: var(--text); width: 28px; height: 28px;
+  border-radius: 8px; font-size: 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-family: inherit;
+}
+.qty-btn:hover { background: rgba(240,20,122,0.2); }
+.qty-val { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
+.remove-btn {
+  background: none; border: none; color: var(--dim);
+  font-size: 18px; cursor: pointer; padding: 4px; line-height: 1;
+  align-self: flex-start;
+}
+.remove-btn:hover { color: var(--pink); }
+
+.cart-footer {
+  padding: 24px; border-top: 1px solid var(--border);
+}
+.cart-total {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 20px;
+}
+.cart-total span { color: var(--dim); font-size: 14px; }
+.cart-total strong {
+  font-family: 'DM Serif Display', serif; font-size: 28px;
+}
+.checkout-btn {
+  width: 100%; background: var(--pink); color: #fff;
+  border: none; border-radius: 50px; padding: 16px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  font-family: inherit; transition: opacity 0.2s;
+}
+.checkout-btn:hover { opacity: 0.85; }
+.checkout-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.cart-note { font-size: 12px; color: var(--dim); text-align: center; margin-top: 12px; }
+
+/* TOAST */
+.toast {
+  position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(80px);
+  background: var(--green); color: #08060c;
+  padding: 12px 24px; border-radius: 50px;
+  font-weight: 700; font-size: 14px;
+  z-index: 300; transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* HIDDEN */
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+  .hero { padding: 48px 20px 36px; }
+  .shop-grid { padding: 0 16px 60px; gap: 14px; }
+  nav { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Bylinkový <em>svět</em></div>
+  <button class="cart-btn" onclick="openCart()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    Košík
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Přírodní produkty · Česká republika</div>
+  <h1>Bylinky, čaje<br>a <em>přírodní kosmetika.</em></h1>
+  <p>Demo e-shopu v čistém HTML, CSS a JavaScriptu. Žádný WordPress, žádný plugin. Košík, filtry, správa množství — vše bez backendu.</p>
+</section>
+
+<div class="filters">
+  <button class="filter-btn active" onclick="filter('vse', this)">Vše</button>
+  <button class="filter-btn" onclick="filter('caje', this)">Čaje</button>
+  <button class="filter-btn" onclick="filter('kosmetika', this)">Kosmetika</button>
+  <button class="filter-btn" onclick="filter('tinktury', this)">Tinktury</button>
+  <button class="filter-btn" onclick="filter('sety', this)">Sety</button>
+</div>
+
+<div class="shop-grid" id="shopGrid"></div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Váš košík</h2>
+    <button class="close-btn" onclick="closeCart()">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <p>Košík je prázdný</p>
+    </div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Celkem s DPH</span>
+      <strong id="cartTotal">0 Kč</strong>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkout()">Přejít k pokladně</button>
+    <p class="cart-note">Doprava zdarma nad 800 Kč · Platba kartou nebo převodem</p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PRODUCTS = [
+  { id:1, name:'Relaxační čaj Lipa & levandule', cat:'caje', emoji:'🌿', price:189, desc:'Směs lípy, levandule a meduňky. Pomáhá uvolnit se před spaním.', badge:null },
+  { id:2, name:'Rakytníkový sirup BIO', cat:'tinktury', emoji:'🫐', price:249, desc:'Lisovaný za studena, bez konzervantů. 330 ml.', badge:'Bestseller' },
+  { id:3, name:'Arnikový krém na svaly', cat:'kosmetika', emoji:'🌼', price:199, desc:'Tradiční receptura s arnikou horskou. 100 ml.', badge:null },
+  { id:4, name:'Čaj pro imunitu — Echinacea+', cat:'caje', emoji:'🌱', price:159, desc:'Echinacea, šípek, zázvor. Pijte preventivně v zimním období.', badge:null },
+  { id:5, name:'Levandulový hydrolát', cat:'kosmetika', emoji:'💜', price:229, desc:'100% čistá levandulová voda z destilace. 200 ml.', badge:'Novinka' },
+  { id:6, name:'Tinktura z třezalky tečkované', cat:'tinktury', emoji:'⭐', price:279, desc:'Lihovodný extrakt 1:5. Tradičně pro dobrou náladu.', badge:null },
+  { id:7, name:'Startovací set — Čaje na rok', cat:'sety', emoji:'🎁', price:699, desc:'6 druhů čajů, 50 g každý. Ideální dárek nebo pro začátečníky.', badge:'Sleva', oldPrice:820 },
+  { id:8, name:'Mátový čaj Spearmint BIO', cat:'caje', emoji:'🍃', price:139, desc:'Jemná máta ze certified organic farmy. Skvělý po jídle.', badge:null },
+  { id:9, name:'Konopný balzám na rty', cat:'kosmetika', emoji:'🌿', price:119, desc:'S konopným olejem a včelím voskem. Bez parfemace.', badge:null },
+];
+
+let cart = {};
+let activeFilter = 'vse';
+
+function renderProducts() {
+  const grid = document.getElementById('shopGrid');
+  const filtered = activeFilter === 'vse' ? PRODUCTS : PRODUCTS.filter(p => p.cat === activeFilter);
+  grid.innerHTML = filtered.map(p => {
+    const inCart = cart[p.id] || 0;
+    return `
+    <div class="product-card" data-cat="${p.cat}">
+      <div class="product-img" style="background:rgba(240,20,122,0.05)">
+        ${p.badge ? `<div class="product-badge">${p.badge}</div>` : ''}
+        <span>${p.emoji}</span>
+      </div>
+      <div class="product-body">
+        <div class="product-cat">${catLabel(p.cat)}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-footer">
+          <div class="product-price">
+            ${p.price} Kč
+            ${p.oldPrice ? `<span class="old">${p.oldPrice} Kč</span>` : ''}
+          </div>
+          <button class="add-btn ${inCart ? 'added' : ''}" onclick="addToCart(${p.id})" id="btn-${p.id}">
+            ${inCart ? '✓ Přidáno' : 'Do košíku'}
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function catLabel(cat) {
+  return {caje:'Čaje',kosmetika:'Kosmetika',tinktury:'Tinktury',sety:'Sety'}[cat] || cat;
+}
+
+function filter(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProducts();
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  updateCartUI();
+  renderProducts();
+  const p = PRODUCTS.find(x => x.id === id);
+  showToast(`${p.emoji} ${p.name} přidán do košíku`);
+}
+
+function updateCartUI() {
+  const total = Object.values(cart).reduce((a,b) => a+b, 0);
+  document.getElementById('cartCount').textContent = total;
+
+  const totalPrice = Object.entries(cart).reduce((sum,[id,qty]) => {
+    const p = PRODUCTS.find(x => x.id === +id);
+    return sum + (p ? p.price * qty : 0);
+  }, 0);
+
+  document.getElementById('cartTotal').textContent = totalPrice.toLocaleString('cs-CZ') + ' Kč';
+  document.getElementById('checkoutBtn').disabled = total === 0;
+
+  // Render cart items
+  const container = document.getElementById('cartItems');
+  const empty = document.getElementById('cartEmpty');
+
+  if (total === 0) {
+    container.innerHTML = '';
+    container.appendChild(empty);
+    empty.classList.remove('hidden');
+    return;
+  }
+
+  empty.classList.add('hidden');
+  const items = Object.entries(cart).filter(([,qty]) => qty > 0).map(([id,qty]) => {
+    const p = PRODUCTS.find(x => x.id === +id);
+    return `
+    <div class="cart-item">
+      <div class="cart-item-emoji">${p.emoji}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">${p.price} Kč / ks</div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
+          <span class="qty-val">${qty}</span>
+          <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
+        </div>
+      </div>
+      <button class="remove-btn" onclick="removeItem(${p.id})" title="Odebrat">×</button>
+    </div>`;
+  }).join('');
+
+  container.innerHTML = items;
+  container.appendChild(empty);
+}
+
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  updateCartUI();
+  renderProducts();
+}
+
+function removeItem(id) {
+  delete cart[id];
+  updateCartUI();
+  renderProducts();
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').classList.add('open');
+  document.getElementById('cartDrawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').classList.remove('open');
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function checkout() {
+  showToast('🎉 Zde by přišla platební brána (GoPay / Stripe / Comgate)');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// Init
+renderProducts();
+updateCartUI();
+</script>
+</body>
+</html>
