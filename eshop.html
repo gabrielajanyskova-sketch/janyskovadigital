@@ -84,15 +84,6 @@
 .eshop-hero h1 em{font-style:italic;color:var(--pink);}
 .eshop-hero .hero-sub{color:var(--text-dim);font-size:17px;line-height:1.7;max-width:580px;margin:0 auto 36px;}
 
-.demo-wrap{margin:0 auto 56px;max-width:900px;background:rgba(21,15,30,0.6);border:1px solid var(--border);border-radius:24px;overflow:hidden;}
-.demo-bar{background:rgba(240,20,122,0.06);border-bottom:1px solid var(--border);padding:12px 20px;display:flex;align-items:center;gap:10px;}
-.demo-dots{display:flex;gap:7px;}
-.demo-dot{width:12px;height:12px;border-radius:50%;}
-.demo-dot:nth-child(1){background:#ff5f57;}
-.demo-dot:nth-child(2){background:#febc2e;}
-.demo-dot:nth-child(3){background:#28c840;}
-.demo-url{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:8px;padding:5px 14px;font-size:12px;color:var(--text-dim);text-align:center;}
-.demo-iframe{width:100%;height:520px;border:none;display:block;}
 
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px;}
 .why-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px;}
@@ -134,10 +125,52 @@
 .section-divider{height:1px;background:var(--border);margin:64px 0;}
 
 @media(max-width:700px){
-  .demo-iframe{height:380px;}
-  .compare-table{font-size:13px;}
+    .compare-table{font-size:13px;}
   .compare-table td,.compare-table th{padding:10px 12px;}
 }
+
+.demo-preview{margin-top:40px;}
+.demo-screens{display:grid;grid-template-columns:1.6fr 1fr;gap:20px;margin-bottom:36px;align-items:start;}
+.demo-screen{background:#0f0b07;border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.demo-screen-bar{background:rgba(200,169,110,0.05);border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.demo-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.1);}
+.demo-dots span:nth-child(1){background:#ff5f57;opacity:0.7;}
+.demo-dots span:nth-child(2){background:#febc2e;opacity:0.7;}
+.demo-dots span:nth-child(3){background:#28c840;opacity:0.7;}
+.demo-screen-content{padding:16px;}
+.ds-nav{display:flex;justify-content:space-between;align-items:center;padding:8px 0 14px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+.ds-logo{font-family:'DM Serif Display',serif;font-size:14px;color:var(--text);}
+.ds-logo em{font-style:italic;color:var(--pink);}
+.ds-cart-btn{font-size:11px;border:1px solid var(--border);padding:4px 10px;border-radius:20px;color:var(--text-dim);}
+.ds-cart-btn span{background:var(--pink);color:#fff;border-radius:50%;width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;margin-left:4px;}
+.ds-hero{text-align:center;padding:16px 0 20px;}
+.ds-eyebrow{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.ds-h1{font-family:'DM Serif Display',serif;font-size:18px;line-height:1.2;color:var(--text);}
+.ds-h1 em{font-style:italic;color:var(--pink);}
+.ds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.ds-card{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.ds-card-img{height:54px;}
+.ds-card-body{padding:8px;}
+.ds-card-name{font-size:9px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3;}
+.ds-card-price{font-size:10px;color:var(--pink);font-weight:700;}
+.ds-modal{display:grid;grid-template-columns:1fr 1fr;height:260px;}
+.ds-modal-img{height:100%;}
+.ds-modal-body{padding:14px;display:flex;flex-direction:column;gap:6px;overflow:hidden;}
+.ds-modal-cat{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);}
+.ds-modal-name{font-family:'DM Serif Display',serif;font-size:13px;color:var(--text);line-height:1.2;}
+.ds-modal-desc{font-size:9px;color:var(--text-dim);line-height:1.5;flex:1;}
+.ds-modal-attrs{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.ds-attr{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:5px 7px;font-size:8px;color:var(--text-dim);}
+.ds-attr strong{display:block;color:var(--text);font-size:9px;margin-top:1px;}
+.ds-modal-footer{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid var(--border);margin-top:auto;}
+.ds-modal-price{font-family:'DM Serif Display',serif;font-size:14px;color:var(--text);}
+.ds-add{background:var(--pink);color:#fff;font-size:8px;font-weight:700;padding:5px 8px;border-radius:5px;}
+.demo-cta-wrap{text-align:center;padding:32px 0 8px;}
+.demo-cta-text{font-size:15px;color:var(--text-dim);line-height:1.7;max-width:500px;margin:0 auto 24px;}
+.demo-open-btn{display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;font-weight:700;font-size:16px;padding:16px 36px;border-radius:50px;text-decoration:none;transition:opacity 0.2s;}
+.demo-open-btn:hover{opacity:0.85;text-decoration:none;}
+.demo-cta-note{display:block;font-size:12px;color:var(--text-dim);margin-top:12px;opacity:0.7;}
+@media(max-width:700px){.demo-screens{grid-template-columns:1fr;}.demo-screen--detail{display:none;}}
 </style>
 </head>
 <body>
@@ -187,16 +220,56 @@
     <div class="section-tag">Živá ukázka</div>
     <h2 class="section-title">Takhle to <em>vypadá v praxi.</em></h2>
     <p style="color:var(--text-dim);font-size:16px;line-height:1.7;max-width:600px;margin-bottom:32px;">Tohle není mockup. Je to funkční e-shop — přidejte si produkty do košíku, filtrujte, změňte množství. Vše běží bez backendu, bez databáze, bez WordPressu.</p>
-    <div class="demo-wrap">
-      <div class="demo-bar">
-        <div class="demo-dots">
-          <div class="demo-dot"></div>
-          <div class="demo-dot"></div>
-          <div class="demo-dot"></div>
+    <div class="demo-preview">
+      <div class="demo-screens">
+        <div class="demo-screen demo-screen--main">
+          <div class="demo-screen-bar">
+            <div class="demo-dots"><span></span><span></span><span></span></div>
+            <div class="demo-url">janyskovadigital.cz/eshop-demo</div>
+          </div>
+          <div class="demo-screen-content">
+            <div class="ds-nav">
+              <div class="ds-logo">Lumina <em>Candles</em></div>
+              <div class="ds-cart-btn">Košík <span>0</span></div>
+            </div>
+            <div class="ds-hero">
+              <div class="ds-eyebrow">Ruční výroba · Přírodní vosk</div>
+              <div class="ds-h1">Svíčky, které<br><em>mluví tiše.</em></div>
+            </div>
+            <div class="ds-grid">
+              <div class="ds-card"><div class="ds-card-img" style="background:linear-gradient(135deg,#2a1a0e,#3d2510)"></div><div class="ds-card-body"><div class="ds-card-name">Cedr & Tabák</div><div class="ds-card-price">389 Kč</div></div></div>
+              <div class="ds-card"><div class="ds-card-img" style="background:linear-gradient(135deg,#1e1508,#2e2010)"></div><div class="ds-card-body"><div class="ds-card-name">Vanilka & Santalové dřevo</div><div class="ds-card-price">389 Kč</div></div></div>
+              <div class="ds-card"><div class="ds-card-img" style="background:linear-gradient(135deg,#0e1a1a,#152525)"></div><div class="ds-card-body"><div class="ds-card-name">Bílý čaj & Bergamot</div><div class="ds-card-price">389 Kč</div></div></div>
+            </div>
+          </div>
         </div>
-        <div class="demo-url">janyskovadigital.cz/demo-eshop · živá ukázka</div>
+        <div class="demo-screen demo-screen--detail">
+          <div class="ds-modal">
+            <div class="ds-modal-img" style="background:linear-gradient(135deg,#1a1008,#2d1c0c)"></div>
+            <div class="ds-modal-body">
+              <div class="ds-modal-cat">Classic</div>
+              <div class="ds-modal-name">Cedr & Tabák</div>
+              <div class="ds-modal-desc">Teplá dřevitá vůně s jemným tónem tabáku…</div>
+              <div class="ds-modal-attrs">
+                <div class="ds-attr"><div>Objem</div><strong>200 ml</strong></div>
+                <div class="ds-attr"><div>Hoření</div><strong>45 hod</strong></div>
+              </div>
+              <div class="ds-modal-footer">
+                <div class="ds-modal-price">389 Kč</div>
+                <div class="ds-add">Přidat do košíku</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <iframe class="demo-iframe" src="/eshop-demo.html" title="Živá ukázka e-shopu" loading="lazy"></iframe>
+      <div class="demo-cta-wrap">
+        <p class="demo-cta-text">Tohle není mockup — je to funkční e-shop. Košík, filtrování, detail produktu, správa množství.</p>
+        <a href="/eshop-demo.html" target="_blank" class="demo-open-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 0 1 0h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Otevřít ukázkový e-shop
+        </a>
+        <span class="demo-cta-note">Otevře se v nové záložce · plná verze</span>
+      </div>
     </div>
   </div>
 </section>
