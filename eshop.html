@@ -130,15 +130,6 @@
 .pricing-cta.outline{background:transparent;border:2px solid var(--border);color:var(--text);}
 .pricing-cta.outline:hover{border-color:var(--pink);color:var(--pink);}
 
-.faq-list{display:flex;flex-direction:column;gap:2px;margin-top:40px;}
-.faq-item{border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-.faq-q{width:100%;background:transparent;border:none;color:var(--text);text-align:left;padding:20px 24px;font-size:16px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:inherit;transition:background 0.2s;}
-.faq-q:hover{background:rgba(240,20,122,0.04);}
-.faq-q svg{width:18px;height:18px;stroke:var(--pink);flex-shrink:0;transition:transform 0.25s;fill:none;stroke-width:2;stroke-linecap:round;}
-.faq-item.open .faq-q svg{transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
-.faq-a-inner{padding:0 24px 20px;color:var(--text-dim);font-size:15px;line-height:1.75;}
-.faq-item.open .faq-a{max-height:300px;}
 
 .section-divider{height:1px;background:var(--border);margin:64px 0;}
 
@@ -359,77 +350,82 @@
 
 <div class="section-divider"></div>
 
-<section>
+<section class="faq-section" id="faq" style="padding:100px 0; position:relative; z-index:1;">
   <div class="container">
-    <div class="section-tag">Časté otázky</div>
-    <h2 class="section-title">Na co se ptáte <em>nejčastěji.</em></h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          Kolik produktů e-shop zvládne?
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Pohodlně 10 až 200 produktů. Produkty jsou v JSON souboru — přidáváte je přes jednoduché rozhraní, žádné programování nepotřebujete. Pro katalogy nad 500 produktů doporučím jinou technologii a řeknám vám rovnou proč.</div></div>
+    <div class="section-tag" style="justify-content:center;">Časté otázky</div>
+    <h2 class="section-title" style="text-align:center;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <div class="faq-grid">
+      <div class="faq-item reveal">
+        <h3>Kolik produktů e-shop zvládne?</h3>
+        <div><p>Pohodlně 10 až 200 produktů. Produkty jsou v JSON souboru, který spravujete přes jednoduché rozhraní — bez kódu. Pro katalogy nad 500 produktů vám upřímně doporučím jinou technologii a vysvětlím proč.</p></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          Jak zákazník zaplatí?
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Napojím platební bránu GoPay, Comgate nebo Stripe — fungují úplně nezávisle na technologii webu. Zákazník platí kartou, převodem nebo Apple Pay. Peníze přijdou přímo na váš účet, já si z toho neberu nic.</div></div>
+      <div class="faq-item reveal">
+        <h3>Jak zákazník zaplatí?</h3>
+        <div><p>Napojím platební bránu GoPay, Comgate nebo Stripe. Zákazník platí kartou, převodem nebo Apple Pay. Peníze jdou přímo na váš účet — já si z transakcí neberu nic.</p></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          Potřebuji technické znalosti ke správě?
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Ne. Produkty spravujete přes jednoduché administrační rozhraní — přidáte produkt, změníte cenu, nahrajete fotku, skryjete vyprodaný kus. Žádné kódy, žádný FTP, žádný vývojář navíc.</div></div>
+      <div class="faq-item reveal">
+        <h3>Potřebuji technické znalosti ke správě?</h3>
+        <div><p>Ne. Produkty spravujete přes jednoduché administrační rozhraní — přidáte produkt, změníte cenu, nahrajete fotku, skryjete vyprodaný kus. Žádné kódy, žádný FTP, žádný vývojář navíc.</p></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          Jaký je rozdíl oproti Shoptetu?
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Shoptet je skvělý pro velké e-shopy se stovkami produktů a složitou logistikou. Pro malý e-shop do 100 produktů platíte 500–2 000 Kč měsíčně za funkce, které nikdy nevyužijete. Za 5 let je to 30–120 000 Kč navíc. Čistý kód tyhle náklady prostě nemá.</div></div>
+      <div class="faq-item reveal">
+        <h3>Jaký je rozdíl oproti Shoptetu?</h3>
+        <div><p>Shoptet je skvělý pro velké e-shopy se stovkami produktů a složitou logistikou. Pro malý e-shop do 100 produktů platíte 500–2 000 Kč měsíčně za funkce, které nikdy nevyužijete. Za 5 let je to 30–120 000 Kč navíc. Čistý kód tyhle náklady nemá.</p></div>
       </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">
-          Kdy se hodí raději Shoptet nebo WooCommerce?
-          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        </button>
-        <div class="faq-a"><div class="faq-a-inner">Když máte 500+ produktů, složité varianty (velikost × barva), napojení na sklad nebo ERP systém, nebo potřebujete věrnostní program a affiliate systém. Tohle vám řeknám rovnou při prvním hovoru — nemá smysl prodávat vám řešení, které vašim potřebám nevyhovuje.</div></div>
+      <div class="faq-item reveal">
+        <h3>Kdy se hodí raději Shoptet nebo WooCommerce?</h3>
+        <div><p>Když máte 500+ produktů, složité varianty (velikost × barva), napojení na sklad nebo ERP systém. Tohle vám řeknám rovnou při prvním hovoru — nemá smysl prodávat řešení, které vašim potřebám nevyhovuje.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <h3>Kolik e-shop stojí a co je v ceně?</h3>
+        <div><p>E-shop Start od 14 900 Kč, E-shop Pro od 22 900 Kč — vše jednorázově bez DPH. V ceně je hosting na Cloudflare Pages (platíte jen doménu ~250 Kč/rok), napojení platební brány, mobilní verze a SEO základy.</p></div>
       </div>
     </div>
   </div>
 </section>
-
 <div class="section-divider"></div>
 
 <section id="kontakt">
   <div class="container">
-    <div class="section-tag">Kontakt</div>
+    <div class="section-tag">Pojďme na to</div>
     <h2 class="section-title">Pojďme probrat<br><em>váš e-shop.</em></h2>
-    <p style="color:var(--text-dim);font-size:16px;line-height:1.7;max-width:560px;margin-bottom:40px;">Napište mi co prodáváte, kolik produktů máte a jak si e-shop představujete. Odpovím do 24 hodin s upřímným doporučením — i kdyby vám lépe seděl Shoptet.</p>
-    <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="7f8e2d1a-placeholder-web3forms">
-      <input type="hidden" name="subject" value="Poptávka e-shopu — Janyskova Digital">
-      <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="jmeno">Jméno</label>
-          <input type="text" id="jmeno" name="jmeno" placeholder="Jana Nováková" required>
-        </div>
-        <div class="form-group">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" name="email" placeholder="jana@example.cz" required>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p style="color:var(--text-dim);font-size:16px;line-height:1.8;margin-bottom:28px;">Napište mi co prodáváte, kolik produktů máte a jak si e-shop představujete. Odpovím do 24 hodin s upřímným doporučením — i kdyby vám lépe seděl Shoptet.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.6 16z"/></svg>
+            <a href="tel:+420739395800" style="color:var(--text-dim);text-decoration:none;font-size:15px;">+420 739 395 800</a>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--pink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;" style="color:var(--text-dim);text-decoration:none;font-size:15px;">info@janyskovadigital.cz</a>
+          </div>
         </div>
       </div>
-      <div class="form-group">
-        <label for="zprava">Co prodáváte a kolik produktů máte?</label>
-        <textarea id="zprava" name="zprava" rows="4" placeholder="Prodávám domácí bylinky, mám asi 30 produktů, hledám jednoduchý e-shop..." required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Odeslat poptávku</button>
-    </form>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
+        <input type="hidden" name="subject" value="Poptávka e-shopu — janyskovadigital.cz">
+        <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="jmeno">Jméno</label>
+            <input type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="vas@email.cz" required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="zprava">Co prodáváte a kolik produktů máte?</label>
+          <textarea id="zprava" name="message" placeholder="Prodávám domácí bylinky, mám asi 30 produktů, hledám jednoduchý e-shop bez měsíčních poplatků..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+          Odeslat poptávku
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -498,13 +494,6 @@ hamburger.addEventListener('click', () => {
   hamburger.setAttribute('aria-expanded', isOpen);
   mobileMenu.setAttribute('aria-hidden', !isOpen);
 });
-
-// FAQ
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen);
-}
 
 // Reveal on scroll
 const reveals = document.querySelectorAll('.reveal');
