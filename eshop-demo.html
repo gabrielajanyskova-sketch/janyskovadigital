@@ -13,319 +13,168 @@
   --card: #1a1309;
   --border: rgba(210,170,100,0.15);
   --gold: #c8a96e;
-  --gold-dim: rgba(200,169,110,0.12);
+  --gold-dim: rgba(200,169,110,0.1);
   --text: #f2ead8;
   --dim: #9a8a6a;
   --radius: 16px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
 /* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(14,11,8,0.95);
-  backdrop-filter: blur(20px);
+  background: rgba(14,11,8,0.96); backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
-  padding: 0 32px;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 64px;
+  padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px;
 }
-.nav-logo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 22px; letter-spacing: 0.5px;
-  color: var(--text);
-}
+.nav-logo { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); }
 .nav-logo em { font-style: italic; color: var(--gold); }
-.nav-right { display: flex; align-items: center; gap: 24px; }
-.nav-tagline { font-size: 12px; color: var(--dim); letter-spacing: 1px; text-transform: uppercase; }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.nav-tagline { font-size: 11px; color: var(--dim); letter-spacing: 1.5px; text-transform: uppercase; }
 .cart-btn {
   display: flex; align-items: center; gap: 9px;
-  background: transparent;
-  border: 1px solid var(--border);
+  background: transparent; border: 1px solid var(--border);
   color: var(--text); border-radius: 50px;
   padding: 9px 20px; font-size: 14px; font-weight: 600;
   cursor: pointer; transition: all 0.2s; font-family: inherit;
 }
 .cart-btn:hover { border-color: var(--gold); color: var(--gold); }
-.cart-count {
-  background: var(--gold); color: var(--bg);
-  border-radius: 50%; width: 20px; height: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
-}
-.cart-icon { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cart-count { background: var(--gold); color: var(--bg); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
 
 /* HERO */
-.hero {
-  padding: 80px 32px 64px;
-  max-width: 640px; margin: 0 auto;
-  text-align: center;
-}
-.hero-eyebrow {
-  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); font-weight: 600; margin-bottom: 20px;
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-}
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; flex: 1; max-width: 40px;
-  height: 1px; background: var(--gold); opacity: 0.4;
-}
-.hero h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(30px, 5vw, 46px);
-  line-height: 1.15; margin-bottom: 16px; font-weight: 400;
-}
+.hero { padding: 80px 32px 64px; max-width: 620px; margin: 0 auto; text-align: center; }
+.hero-eyebrow { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--gold); opacity: 0.4; }
+.hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(30px,5vw,46px); line-height: 1.15; margin-bottom: 16px; font-weight: 400; }
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero p { color: var(--dim); font-size: 16px; line-height: 1.8; }
 
 /* FILTERS */
-.filter-bar {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; flex-wrap: wrap;
-  padding: 0 32px 48px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 52px;
-}
-.filter-btn {
-  background: transparent; border: 1px solid var(--border);
-  color: var(--dim); border-radius: 6px;
-  padding: 7px 16px; font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: all 0.2s; font-family: inherit;
-  letter-spacing: 0.3px;
-}
+.filter-bar { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; padding: 0 32px 48px; border-bottom: 1px solid var(--border); margin-bottom: 52px; }
+.filter-btn { background: transparent; border: 1px solid var(--border); color: var(--dim); border-radius: 6px; padding: 7px 16px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: inherit; }
 .filter-btn:hover { border-color: rgba(200,169,110,0.4); color: var(--text); }
-.filter-btn.active {
-  border-color: var(--gold); color: var(--gold);
-  background: var(--gold-dim);
-}
+.filter-btn.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 
 /* GRID */
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 0 32px 100px;
-  max-width: 1100px; margin: 0 auto;
-}
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 24px; padding: 0 32px 100px; max-width: 1100px; margin: 0 auto; }
 
 /* PRODUCT CARD */
-.product-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-  display: flex; flex-direction: column;
-  cursor: default;
-}
-.product-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(200,169,110,0.35);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-}
-.product-img {
-  width: 100%; aspect-ratio: 4/3;
-  overflow: hidden; position: relative;
-  background: #1e1610;
-}
-.product-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.5s ease;
-  display: block;
-}
-.product-card:hover .product-img img { transform: scale(1.04); }
+.product-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; display: flex; flex-direction: column; cursor: pointer; }
+.product-card:hover { transform: translateY(-5px); border-color: rgba(200,169,110,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
 
-.product-badge {
-  position: absolute; top: 14px; right: 14px;
-  background: rgba(14,11,8,0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border);
-  color: var(--gold); font-size: 10px; letter-spacing: 1.5px;
-  text-transform: uppercase; font-weight: 700;
-  padding: 5px 12px; border-radius: 4px;
-}
-.product-badge.new { background: var(--gold); color: var(--bg); border-color: transparent; }
+.product-img { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; background: #1e1610; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
+.product-card:hover .product-img img { transform: scale(1.05); }
 
-.product-body {
-  padding: 22px 24px 24px;
-  flex: 1; display: flex; flex-direction: column; gap: 6px;
-}
-.product-cat {
-  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--dim); font-weight: 600;
-}
-.product-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 20px; line-height: 1.25; font-weight: 400;
-  color: var(--text);
-}
-.product-desc {
-  font-size: 13px; color: var(--dim); line-height: 1.7;
-  margin-top: 2px; flex: 1;
-}
-.product-meta {
-  display: flex; gap: 16px; margin-top: 10px;
-  font-size: 12px; color: var(--dim);
-}
+.product-badge { position: absolute; top: 14px; right: 14px; background: rgba(14,11,8,0.85); backdrop-filter: blur(8px); border: 1px solid var(--border); color: var(--gold); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 5px 12px; border-radius: 4px; }
+.product-badge.isnew { background: var(--gold); color: var(--bg); border-color: transparent; }
+
+.product-body { padding: 22px 24px 24px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.product-cat { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+.product-name { font-family: 'DM Serif Display', serif; font-size: 20px; line-height: 1.25; font-weight: 400; }
+.product-desc { font-size: 13px; color: var(--dim); line-height: 1.7; flex: 1; margin-top: 2px; }
+.product-meta { display: flex; gap: 16px; margin-top: 10px; font-size: 12px; color: var(--dim); }
 .product-meta span { display: flex; align-items: center; gap: 5px; }
-.product-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-top: 18px; padding-top: 18px;
-  border-top: 1px solid var(--border);
-}
-.product-price {
-  font-family: 'DM Serif Display', serif;
-  font-size: 24px; color: var(--text); line-height: 1;
-}
-.product-price .currency { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--dim); margin-left: 3px; }
-.product-price .old-price {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px; color: var(--dim);
-  text-decoration: line-through; display: block;
-  margin-bottom: 2px;
-}
+.product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--border); }
+.product-price { font-family: 'DM Serif Display', serif; font-size: 24px; line-height: 1; }
+.product-price .cur { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--dim); margin-left: 2px; }
+.product-price .old { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; color: var(--dim); text-decoration: line-through; display: block; margin-bottom: 2px; }
+.view-btn { background: transparent; border: 1px solid var(--border); color: var(--dim); border-radius: 8px; padding: 9px 16px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; letter-spacing: 0.5px; text-transform: uppercase; }
+.view-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
 
-.add-btn {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text); border-radius: 8px;
-  padding: 10px 18px; font-size: 13px; font-weight: 600;
-  cursor: pointer; transition: all 0.2s; font-family: inherit;
-  white-space: nowrap; letter-spacing: 0.3px;
+/* ===== DETAIL MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.82);
+  z-index: 300; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s; backdrop-filter: blur(6px);
 }
-.add-btn:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
-.add-btn.added { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  position: fixed; inset: 0; z-index: 301;
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; pointer-events: none;
+}
+.modal-box {
+  background: #160f08; border: 1px solid rgba(200,169,110,0.25);
+  border-radius: 24px; max-width: 860px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  pointer-events: none; transform: scale(0.95) translateY(20px);
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), opacity 0.3s;
+  opacity: 0;
+}
+.modal-overlay.open .modal-box { pointer-events: all; transform: scale(1) translateY(0); opacity: 1; }
+
+.modal-img { position: relative; overflow: hidden; border-radius: 22px 0 0 22px; min-height: 400px; }
+.modal-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.modal-img-badge { position: absolute; top: 18px; left: 18px; background: rgba(14,11,8,0.85); border: 1px solid var(--border); color: var(--gold); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; padding: 5px 12px; border-radius: 4px; }
+.modal-img-badge.isnew { background: var(--gold); color: var(--bg); border-color: transparent; }
+
+.modal-body { padding: 40px 36px; display: flex; flex-direction: column; gap: 16px; }
+.modal-close { position: absolute; top: 20px; right: 20px; background: rgba(14,11,8,0.9); border: 1px solid var(--border); color: var(--dim); width: 38px; height: 38px; border-radius: 10px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 2; }
+.modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.modal-cat { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.modal-name { font-family: 'DM Serif Display', serif; font-size: clamp(24px,3vw,32px); line-height: 1.2; font-weight: 400; }
+.modal-desc { font-size: 15px; color: var(--dim); line-height: 1.8; }
+.modal-attrs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-attr { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; }
+.modal-attr-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--dim); font-weight: 600; margin-bottom: 4px; }
+.modal-attr-val { font-size: 14px; font-weight: 600; }
+.modal-note { font-size: 12px; color: var(--dim); line-height: 1.6; padding: 14px; background: var(--gold-dim); border-radius: 10px; border: 1px solid rgba(200,169,110,0.15); }
+.modal-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.modal-price { font-family: 'DM Serif Display', serif; font-size: 32px; line-height: 1; }
+.modal-price .cur { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; color: var(--dim); margin-left: 3px; }
+.modal-price .old { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--dim); text-decoration: line-through; display: block; margin-bottom: 3px; }
+.modal-add-btn { background: var(--gold); color: var(--bg); border: none; border-radius: 10px; padding: 14px 28px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s; white-space: nowrap; }
+.modal-add-btn:hover { opacity: 0.85; }
+.modal-add-btn.added { background: #5a8a5a; color: #fff; }
 
 /* CART DRAWER */
-.cart-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-  z-index: 200; opacity: 0; pointer-events: none;
-  transition: opacity 0.3s;
-}
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
 .cart-overlay.open { opacity: 1; pointer-events: all; }
-
-.cart-drawer {
-  position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(440px, 100vw);
-  background: #120e09;
-  border-left: 1px solid var(--border);
-  z-index: 201; display: flex; flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-}
+.cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(440px,100vw); background: #120e09; border-left: 1px solid var(--border); z-index: 401; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
 .cart-drawer.open { transform: translateX(0); }
-
-.cart-header {
-  padding: 28px 28px 24px;
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-}
-.cart-header h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: 22px; font-weight: 400;
-}
-.close-btn {
-  background: none; border: 1px solid var(--border);
-  color: var(--dim); width: 36px; height: 36px;
-  border-radius: 8px; cursor: pointer; font-size: 20px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; line-height: 1;
-}
+.cart-header { padding: 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.cart-header h2 { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; }
+.close-btn { background: none; border: 1px solid var(--border); color: var(--dim); width: 36px; height: 36px; border-radius: 8px; cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
 .close-btn:hover { border-color: var(--gold); color: var(--gold); }
-
 .cart-items { flex: 1; overflow-y: auto; padding: 20px 28px; display: flex; flex-direction: column; gap: 14px; }
-
-.cart-empty {
-  flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 14px; color: var(--dim); padding: 40px; text-align: center;
-}
+.cart-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: var(--dim); padding: 40px; text-align: center; }
 .cart-empty svg { opacity: 0.2; }
 .cart-empty p { font-size: 15px; line-height: 1.6; }
-
-.cart-item {
-  display: flex; gap: 14px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--border); border-radius: 12px;
-  padding: 14px; align-items: flex-start;
-}
-.cart-item-img {
-  width: 64px; height: 64px; border-radius: 8px;
-  object-fit: cover; flex-shrink: 0;
-  background: var(--bg2);
-}
+.cart-item { display: flex; gap: 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 12px; padding: 14px; align-items: flex-start; }
+.cart-item-img { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--bg2); }
 .cart-item-info { flex: 1; }
 .cart-item-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
 .cart-item-sub { font-size: 12px; color: var(--dim); margin-bottom: 10px; }
-.cart-item-qty {
-  display: flex; align-items: center; gap: 10px;
-}
-.qty-btn {
-  background: rgba(200,169,110,0.08);
-  border: 1px solid var(--border); color: var(--text);
-  width: 28px; height: 28px; border-radius: 6px;
-  font-size: 15px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s; font-family: inherit; font-weight: 700;
-}
+.cart-item-qty { display: flex; align-items: center; gap: 10px; }
+.qty-btn { background: rgba(200,169,110,0.08); border: 1px solid var(--border); color: var(--text); width: 28px; height: 28px; border-radius: 6px; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; font-family: inherit; font-weight: 700; }
 .qty-btn:hover { border-color: var(--gold); color: var(--gold); }
 .qty-val { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
 .cart-item-price { font-size: 15px; font-weight: 700; color: var(--gold); white-space: nowrap; }
-.remove-btn {
-  background: none; border: none; color: var(--dim);
-  cursor: pointer; padding: 2px; font-size: 18px; line-height: 1;
-  transition: color 0.2s; align-self: flex-start;
-}
+.remove-btn { background: none; border: none; color: var(--dim); cursor: pointer; padding: 2px; font-size: 18px; line-height: 1; transition: color 0.2s; align-self: flex-start; }
 .remove-btn:hover { color: #e05555; }
-
 .cart-footer { padding: 20px 28px 28px; border-top: 1px solid var(--border); }
-.cart-shipping {
-  font-size: 12px; color: var(--dim); text-align: center;
-  padding: 10px; background: var(--gold-dim);
-  border-radius: 8px; margin-bottom: 16px;
-}
-.cart-shipping strong { color: var(--gold); }
-.cart-total {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: 16px;
-}
+.cart-shipping { font-size: 12px; color: var(--dim); text-align: center; padding: 10px; background: var(--gold-dim); border-radius: 8px; margin-bottom: 16px; border: 1px solid var(--border); }
+.cart-total { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
 .cart-total span { color: var(--dim); font-size: 14px; }
 .cart-total strong { font-family: 'DM Serif Display', serif; font-size: 28px; }
-.checkout-btn {
-  width: 100%; background: var(--gold); color: var(--bg);
-  border: none; border-radius: 10px; padding: 16px;
-  font-size: 15px; font-weight: 700; cursor: pointer;
-  font-family: inherit; transition: opacity 0.2s; letter-spacing: 0.3px;
-}
+.checkout-btn { width: 100%; background: var(--gold); color: var(--bg); border: none; border-radius: 10px; padding: 16px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
 .checkout-btn:hover { opacity: 0.88; }
 .checkout-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-.cart-secure {
-  display: flex; align-items: center; justify-content: center;
-  gap: 6px; font-size: 12px; color: var(--dim); margin-top: 12px;
-}
-.cart-secure svg { width: 12px; height: 12px; stroke: var(--dim); fill: none; stroke-width: 2; }
+.cart-secure { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: var(--dim); margin-top: 12px; }
 
 /* TOAST */
-.toast {
-  position: fixed; bottom: 32px; left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--card); border: 1px solid var(--gold);
-  color: var(--text); padding: 13px 24px;
-  border-radius: 10px; font-size: 14px; font-weight: 500;
-  z-index: 300; transition: transform 0.3s cubic-bezier(.4,0,.2,1);
-  white-space: nowrap; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-}
+.toast { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--card); border: 1px solid var(--gold); color: var(--text); padding: 13px 24px; border-radius: 10px; font-size: 14px; font-weight: 500; z-index: 500; transition: transform 0.3s cubic-bezier(.4,0,.2,1); white-space: nowrap; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
 .toast.show { transform: translateX(-50%) translateY(0); }
 
-@media(max-width:600px){
+@media(max-width:700px){
+  .modal-box { grid-template-columns: 1fr; }
+  .modal-img { min-height: 260px; border-radius: 22px 22px 0 0; }
+  .modal-body { padding: 28px 24px; }
   nav { padding: 0 20px; }
   .nav-tagline { display: none; }
   .hero { padding: 56px 20px 48px; }
@@ -341,7 +190,7 @@ nav {
   <div class="nav-right">
     <span class="nav-tagline">Sójové svíčky · ČR</span>
     <button class="cart-btn" onclick="openCart()">
-      <svg class="cart-icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       Košík
       <span class="cart-count" id="cartCount">0</span>
     </button>
@@ -363,6 +212,21 @@ nav {
 
 <div class="shop-grid" id="shopGrid"></div>
 
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-box" id="modalBox">
+      <div class="modal-img" id="modalImg">
+        <img id="modalImgEl" src="" alt="">
+        <div class="modal-img-badge" id="modalBadge" style="display:none"></div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-header">
@@ -377,13 +241,10 @@ nav {
   </div>
   <div class="cart-footer">
     <div class="cart-shipping" id="shippingMsg">Doprava zdarma od <strong>800 Kč</strong></div>
-    <div class="cart-total">
-      <span>Celkem</span>
-      <strong id="cartTotal">0 Kč</strong>
-    </div>
+    <div class="cart-total"><span>Celkem</span><strong id="cartTotal">0 Kč</strong></div>
     <button class="checkout-btn" id="checkoutBtn" disabled onclick="checkout()">Přejít k pokladně</button>
     <div class="cart-secure">
-      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       Bezpečná platba kartou nebo převodem
     </div>
   </div>
@@ -392,221 +253,200 @@ nav {
 <div class="toast" id="toast"></div>
 
 <script>
+// Pexels CDN — stabilní, bez rate limitu pro statické URL
 const PRODUCTS = [
-  {
-    id: 1, name: 'Cedr & Tabák', cat: 'classic',
-    desc: 'Teplá dřevitá vůně s jemným tónem tabáku. Dřevěný knot praskající jako oheň v krbu.',
-    price: 389, size: '200 ml', burn: '45 hod',
-    img: 'https://images.unsplash.com/photo-1602523961358-f9f03dd557db?w=600&q=80',
-    badge: null
-  },
-  {
-    id: 2, name: 'Vanilka & Santalové dřevo', cat: 'classic',
-    desc: 'Krémová vanilka s hloubkou santalového dřeva. Nejoblíbenější vůně z celé kolekce.',
-    price: 389, size: '200 ml', burn: '45 hod',
-    img: 'https://images.unsplash.com/photo-1569058242567-93de6f36f8eb?w=600&q=80',
-    badge: 'Bestseller'
-  },
-  {
-    id: 3, name: 'Bílý čaj & Bergamot', cat: 'classic',
-    desc: 'Svěží a čistý — jako ranní ticho. Lehká citrusová nóta s jemností bílého čaje.',
-    price: 389, size: '200 ml', burn: '45 hod',
-    img: 'https://images.unsplash.com/photo-1544207240-8d13082d4f5a?w=600&q=80',
-    badge: null
-  },
-  {
-    id: 4, name: 'Noir — Opium & Patchouli', cat: 'limitovana',
-    desc: 'Temná, smyslná, nezapomenutelná. Limitovaná edice pro ty, kteří nechtějí být nenápadní.',
-    price: 490, size: '250 ml', burn: '55 hod',
-    img: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=600&q=80',
-    badge: 'new'
-  },
-  {
-    id: 5, name: 'Soleil — Mimóza & Muskat', cat: 'limitovana',
-    desc: 'Jarní edice. Lehká, zlatá, vzdušná. Mimóza s jemným kořením muskátu.',
-    price: 490, oldPrice: 520, size: '250 ml', burn: '55 hod',
-    img: 'https://images.unsplash.com/photo-1608181831688-8b0a7ca5ba07?w=600&q=80',
-    badge: 'Sleva'
-  },
-  {
-    id: 6, name: 'Dárková sada Tři vůně', cat: 'darky',
-    desc: 'Tři svíčky Classic v dárkovém boxu s bavlněnou stužkou. Vlastní vzkaz na přání.',
-    price: 990, size: '3 × 200 ml', burn: '3 × 45 hod',
-    img: 'https://images.unsplash.com/photo-1519682577862-22b62b24cb12?w=600&q=80',
-    badge: null
-  },
-  {
-    id: 7, name: 'Vánoční set Zima', cat: 'darky',
-    desc: 'Skořice, pomeranč, jedle. Svíčka + vonný vosk + zápalky v lněném sáčku.',
-    price: 790, size: 'Set', burn: '—',
-    img: 'https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=600&q=80',
-    badge: null
-  },
-  {
-    id: 8, name: 'Fig & Fík', cat: 'classic',
-    desc: 'Zelený fík, dřevitá větev, trocha země. Přírodní a zemitá — jako zahrada po dešti.',
-    price: 389, size: '200 ml', burn: '45 hod',
-    img: 'https://images.unsplash.com/photo-1593253553634-4b42e5fcef82?w=600&q=80',
-    badge: null
-  },
+  { id:1, name:'Cedr & Tabák', cat:'classic',
+    desc:'Teplá dřevitá vůně s jemným tónem tabáku a kouře. Dřevěný knot praskající jako oheň v krbu. Ideální na podzimní večery.',
+    note:'Před zapálením ořízněte knot na 5 mm. První hoření nechte alespoň 2 hodiny.',
+    price:389, size:'200 ml', burn:'45 hod', weight:'280 g', badge:null,
+    img:'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&w=800' },
+  { id:2, name:'Vanilka & Santalové dřevo', cat:'classic',
+    desc:'Krémová vanilka s hloubkou santalového dřeva. Nejoblíbenější vůně z celé kolekce — teplá, útulná, bez přehnané sladkosti.',
+    note:'Sójový vosk je přirozeně bílý nebo krémový. Mírné vlny na povrchu jsou znakem přírodního materiálu.',
+    price:389, size:'200 ml', burn:'45 hod', weight:'280 g', badge:'Bestseller',
+    img:'https://images.pexels.com/photos/3765873/pexels-photo-3765873.jpeg?auto=compress&w=800' },
+  { id:3, name:'Bílý čaj & Bergamot', cat:'classic',
+    desc:'Svěží a čistý — jako ranní ticho. Lehká citrusová nóta s jemností bílého čaje. Skvělá do koupelny nebo pracovny.',
+    note:'Svíčku nepalte déle než 4 hodiny v kuse. Nechte vychladnout před dalším zapálením.',
+    price:389, size:'200 ml', burn:'45 hod', weight:'280 g', badge:null,
+    img:'https://images.pexels.com/photos/4202325/pexels-photo-4202325.jpeg?auto=compress&w=800' },
+  { id:4, name:'Noir — Opium & Patchouli', cat:'limitovana',
+    desc:'Temná, smyslná, nezapomenutelná. Orientální vůně s opiem, patchouli a jemnou kadidlovou základnou. Limitovaná edice.',
+    note:'Limitovaná série 50 kusů. Skleněná nádoba je po dohořání recyklovatelná.',
+    price:490, size:'250 ml', burn:'55 hod', weight:'340 g', badge:'new',
+    img:'https://images.pexels.com/photos/3755755/pexels-photo-3755755.jpeg?auto=compress&w=800' },
+  { id:5, name:'Soleil — Mimóza & Muskat', cat:'limitovana',
+    desc:'Jarní edice. Lehká, zlatá, vzdušná. Mimóza s jemným kořením muskátu a bílou pižmovou základnou.',
+    note:'Jarní edice dostupná do vyprodání zásob.',
+    price:450, oldPrice:490, size:'250 ml', burn:'55 hod', weight:'340 g', badge:'Sleva',
+    img:'https://images.pexels.com/photos/6621472/pexels-photo-6621472.jpeg?auto=compress&w=800' },
+  { id:6, name:'Dárková sada Tři vůně', cat:'darky',
+    desc:'Tři svíčky Classic dle vašeho výběru v dárkovém boxu s bavlněnou stužkou. Vlastní věnování na přání — napište do poznámky.',
+    note:'Výběr vůní upřesněte v poznámce k objednávce. Balení vhodné i bez dalšího přebalování.',
+    price:990, size:'3 × 200 ml', burn:'3 × 45 hod', weight:'3 × 280 g', badge:null,
+    img:'https://images.pexels.com/photos/5864208/pexels-photo-5864208.jpeg?auto=compress&w=800' },
+  { id:7, name:'Zimní set', cat:'darky',
+    desc:'Skořice & pomeranč, jedle & cedr — dvě svíčky v lněném sáčku s dřevěnými zápalkami a kartičkou s přáním.',
+    note:'Dostupné od října do konce prosince.',
+    price:790, size:'2 × 200 ml + příslušenství', burn:'2 × 45 hod', weight:'Set 700 g', badge:null,
+    img:'https://images.pexels.com/photos/5864747/pexels-photo-5864747.jpeg?auto=compress&w=800' },
+  { id:8, name:'Fig & Fík', cat:'classic',
+    desc:'Zelený fík, dřevitá větev, trocha země. Přírodní a zemitá — jako zahrada po dešti. Nenápadná, ale zapamatovatelná.',
+    note:'Vůně se plně rozvine po 30 minutách hoření.',
+    price:389, size:'200 ml', burn:'45 hod', weight:'280 g', badge:null,
+    img:'https://images.pexels.com/photos/4226869/pexels-photo-4226869.jpeg?auto=compress&w=800' },
 ];
 
 let cart = {};
 let activeFilter = 'vse';
 
-function catLabel(cat) {
-  return {classic:'Classic',limitovana:'Limitovaná edice',darky:'Dárková balení'}[cat] || cat;
-}
+function catLabel(c){ return {classic:'Classic',limitovana:'Limitovaná edice',darky:'Dárková balení'}[c]||c; }
 
-function renderProducts() {
+function renderProducts(){
   const grid = document.getElementById('shopGrid');
-  const filtered = activeFilter === 'vse' ? PRODUCTS : PRODUCTS.filter(p => p.cat === activeFilter);
-  grid.innerHTML = filtered.map(p => {
-    const inCart = cart[p.id] || 0;
-    const badgeHtml = p.badge
-      ? `<div class="product-badge ${p.badge === 'new' ? 'new' : ''}">${p.badge === 'new' ? 'Novinka' : p.badge}</div>`
-      : '';
+  const list = activeFilter==='vse' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeFilter);
+  grid.innerHTML = list.map(p=>{
+    const badge = p.badge ? `<div class="product-badge${p.badge==='new'?' isnew':''}">${p.badge==='new'?'Novinka':p.badge}</div>` : '';
     return `
-    <div class="product-card">
+    <div class="product-card" onclick="openModal(${p.id})">
       <div class="product-img">
-        <img src="${p.img}" alt="${p.name}" loading="lazy">
-        ${badgeHtml}
+        <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.background='#2a1f10';this.style.display='none'">
+        ${badge}
       </div>
       <div class="product-body">
         <div class="product-cat">${catLabel(p.cat)}</div>
         <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc}</div>
+        <div class="product-desc">${p.desc.substring(0,90)}…</div>
         <div class="product-meta">
-          <span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><path d="M12 8a4 4 0 0 0-4-4h0a4 4 0 0 1 8 0h0a4 4 0 0 0-4 4z"/></svg>
-            ${p.size}
-          </span>
-          <span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            ${p.burn}
-          </span>
+          <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${p.burn}</span>
+          <span><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>${p.size}</span>
         </div>
         <div class="product-footer">
           <div class="product-price">
-            ${p.oldPrice ? `<span class="old-price">${p.oldPrice} Kč</span>` : ''}
-            ${p.price}<span class="currency">Kč</span>
+            ${p.oldPrice?`<span class="old">${p.oldPrice} Kč</span>`:''}
+            ${p.price}<span class="cur">Kč</span>
           </div>
-          <button class="add-btn ${inCart ? 'added' : ''}" onclick="addToCart(${p.id})" id="btn-${p.id}">
-            ${inCart ? '✓ V košíku' : 'Přidat'}
-          </button>
+          <div class="view-btn">Zobrazit</div>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
-function filter(cat, btn) {
-  activeFilter = cat;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+function filter(cat,btn){
+  activeFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
   renderProducts();
 }
 
-function addToCart(id) {
-  cart[id] = (cart[id] || 0) + 1;
+// MODAL
+function openModal(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  if(!p) return;
+
+  // Image
+  document.getElementById('modalImgEl').src = p.img;
+  document.getElementById('modalImgEl').alt = p.name;
+
+  // Badge
+  const badge = document.getElementById('modalBadge');
+  if(p.badge){ badge.style.display=''; badge.textContent = p.badge==='new'?'Novinka':p.badge; badge.className='modal-img-badge'+(p.badge==='new'?' isnew':''); }
+  else { badge.style.display='none'; }
+
+  // Body
+  const inCart = cart[id]||0;
+  document.getElementById('modalBody').innerHTML = `
+    <div class="modal-cat">${catLabel(p.cat)}</div>
+    <div class="modal-name">${p.name}</div>
+    <div class="modal-desc">${p.desc}</div>
+    <div class="modal-attrs">
+      <div class="modal-attr"><div class="modal-attr-label">Objem</div><div class="modal-attr-val">${p.size}</div></div>
+      <div class="modal-attr"><div class="modal-attr-label">Doba hoření</div><div class="modal-attr-val">${p.burn}</div></div>
+      <div class="modal-attr"><div class="modal-attr-label">Váha</div><div class="modal-attr-val">${p.weight}</div></div>
+      <div class="modal-attr"><div class="modal-attr-label">Knot</div><div class="modal-attr-val">Dřevěný</div></div>
+    </div>
+    <div class="modal-note">${p.note}</div>
+    <div class="modal-footer">
+      <div class="modal-price">
+        ${p.oldPrice?`<span class="old">${p.oldPrice} Kč</span>`:''}
+        ${p.price}<span class="cur">Kč</span>
+      </div>
+      <button class="modal-add-btn ${inCart?'added':''}" id="modalAddBtn" onclick="addToCartFromModal(${id})">
+        ${inCart?'✓ V košíku':'Přidat do košíku'}
+      </button>
+    </div>
+  `;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function handleOverlayClick(e){
+  if(e.target===document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+function addToCartFromModal(id){
+  cart[id]=(cart[id]||0)+1;
   updateCartUI();
   renderProducts();
-  const p = PRODUCTS.find(x => x.id === id);
+  // Update modal button
+  const btn = document.getElementById('modalAddBtn');
+  if(btn){ btn.textContent='✓ V košíku'; btn.classList.add('added'); }
+  const p=PRODUCTS.find(x=>x.id===id);
   showToast(`${p.name} přidána do košíku`);
 }
 
-function updateCartUI() {
-  const totalQty = Object.values(cart).reduce((a,b) => a+b, 0);
-  const totalPrice = Object.entries(cart).reduce((sum,[id,qty]) => {
-    const p = PRODUCTS.find(x => x.id === +id);
-    return sum + (p ? p.price * qty : 0);
-  }, 0);
-
-  document.getElementById('cartCount').textContent = totalQty;
-  document.getElementById('cartTotal').textContent = totalPrice.toLocaleString('cs-CZ') + ' Kč';
-  document.getElementById('checkoutBtn').disabled = totalQty === 0;
-
-  const ship = document.getElementById('shippingMsg');
-  if (totalPrice >= 800) {
-    ship.innerHTML = '<strong style="color:var(--gold)">Doprava zdarma</strong> — splněno';
-    ship.style.borderColor = 'rgba(200,169,110,0.3)';
-  } else {
-    const diff = 800 - totalPrice;
-    ship.innerHTML = `Doprava zdarma od <strong>800 Kč</strong> — chybí ${diff} Kč`;
-    ship.style.borderColor = '';
-  }
-
-  const container = document.getElementById('cartItems');
-  const empty = document.getElementById('cartEmpty');
-
-  if (totalQty === 0) {
-    container.innerHTML = '';
-    container.appendChild(empty);
-    empty.style.display = 'flex';
-    return;
-  }
-
-  empty.style.display = 'none';
-  const items = Object.entries(cart).filter(([,qty]) => qty > 0).map(([id,qty]) => {
-    const p = PRODUCTS.find(x => x.id === +id);
-    return `
-    <div class="cart-item">
-      <img class="cart-item-img" src="${p.img}" alt="${p.name}">
+// CART
+function updateCartUI(){
+  const totalQty = Object.values(cart).reduce((a,b)=>a+b,0);
+  const totalPrice = Object.entries(cart).reduce((s,[id,q])=>{ const p=PRODUCTS.find(x=>x.id===+id); return s+(p?p.price*q:0); },0);
+  document.getElementById('cartCount').textContent=totalQty;
+  document.getElementById('cartTotal').textContent=totalPrice.toLocaleString('cs-CZ')+' Kč';
+  document.getElementById('checkoutBtn').disabled=totalQty===0;
+  const ship=document.getElementById('shippingMsg');
+  if(totalPrice>=800){ ship.innerHTML='<strong style="color:var(--gold)">Doprava zdarma</strong> — splněno'; }
+  else { const d=800-totalPrice; ship.innerHTML=`Doprava zdarma od <strong>800 Kč</strong> — chybí ${d} Kč`; }
+  const container=document.getElementById('cartItems');
+  const empty=document.getElementById('cartEmpty');
+  if(totalQty===0){ container.innerHTML=''; container.appendChild(empty); empty.style.display='flex'; return; }
+  empty.style.display='none';
+  container.innerHTML=Object.entries(cart).filter(([,q])=>q>0).map(([id,q])=>{
+    const p=PRODUCTS.find(x=>x.id===+id);
+    return `<div class="cart-item">
+      <img class="cart-item-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
       <div class="cart-item-info">
         <div class="cart-item-name">${p.name}</div>
         <div class="cart-item-sub">${p.size} · ${p.price} Kč/ks</div>
         <div class="cart-item-qty">
           <button class="qty-btn" onclick="changeQty(${p.id},-1)">−</button>
-          <span class="qty-val">${qty}</span>
+          <span class="qty-val">${q}</span>
           <button class="qty-btn" onclick="changeQty(${p.id},1)">+</button>
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-        <span class="cart-item-price">${(p.price * qty).toLocaleString('cs-CZ')} Kč</span>
-        <button class="remove-btn" onclick="removeItem(${p.id})" title="Odebrat">×</button>
+        <span class="cart-item-price">${(p.price*q).toLocaleString('cs-CZ')} Kč</span>
+        <button class="remove-btn" onclick="removeItem(${p.id})">×</button>
       </div>
     </div>`;
   }).join('');
-
-  container.innerHTML = items;
   container.appendChild(empty);
 }
 
-function changeQty(id, delta) {
-  cart[id] = (cart[id] || 0) + delta;
-  if (cart[id] <= 0) delete cart[id];
-  updateCartUI();
-  renderProducts();
-}
+function changeQty(id,d){ cart[id]=(cart[id]||0)+d; if(cart[id]<=0) delete cart[id]; updateCartUI(); renderProducts(); }
+function removeItem(id){ delete cart[id]; updateCartUI(); renderProducts(); }
+function openCart(){ document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartDrawer').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCart(){ document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartDrawer').classList.remove('open'); document.body.style.overflow=''; }
+function checkout(){ showToast('Zde by přišla platební brána — GoPay nebo Comgate'); }
 
-function removeItem(id) {
-  delete cart[id];
-  updateCartUI();
-  renderProducts();
-}
-
-function openCart() {
-  document.getElementById('cartOverlay').classList.add('open');
-  document.getElementById('cartDrawer').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart() {
-  document.getElementById('cartOverlay').classList.remove('open');
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function checkout() {
-  showToast('Zde by přišla platební brána — GoPay nebo Comgate');
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
 
 renderProducts();
 updateCartUI();
