@@ -28,6 +28,8 @@
 <meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M" />
 <meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="Gabriela Janýšková">
+<meta name="keywords" content="tvorba webových stránek, webdesign, Nový Jičín, Ostrava, čistý kód, SEO, AEO, webdesignerka">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
@@ -37,7 +39,7 @@
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
-<noscript></noscript>
+<noscript><div style="padding:20px;text-align:center;font-family:sans-serif;">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
 
 
 <script type="application/ld+json">
@@ -197,7 +199,7 @@
 
 <link rel="stylesheet" href="/style.css">
 <style>
-:root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.55);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
+:root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6}
 .hero{padding:90px 0 110px;position:relative;min-height:600px}
@@ -731,6 +733,7 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
         <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
         <input type="hidden" name="subject" value="Nová poptávka z webu — janyskovadigital.cz">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani.html">
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="form-group">
             <label for="jmeno">Jméno</label>
@@ -749,10 +752,12 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
           Odeslat zprávu
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
+        <div aria-live="polite" aria-atomic="true" id="form-status"></div>
       </form>
       <div style="text-align:center; margin-top:28px; padding-top:24px; border-top:1px solid rgba(240,20,122,0.1);">
         <p style="font-size:14px; color:var(--text-dim); margin-bottom:16px;">Nebo si rovnou rezervujte nezávaznou 30minutovou online schůzku.</p>
         <button
+          type="button"
           data-cal-link="gabriela-janyskova-87n2ym/15min"
           data-cal-namespace="15min"
           data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
