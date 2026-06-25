@@ -2,42 +2,150 @@
 
 > Gabriela Janýšková je webdesignerka z Nového Jičína specializující se na tvorbu webových stránek čistým kódem bez WordPressu. Weby pro OSVČ a firmy z celé České republiky.
 
-## O webu
+## O Gabriele Janýškové
 
-Tento web patří Gabriele Janýškové — webdesignerce a grafičce z Nového Jičína (Moravskoslezský kraj, Česká republika). Nabízí tvorbu webových stránek na míru, grafický design a SEO/AEO optimalizaci.
+Gabriela Janýšková je webdesignerka a grafička z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2022. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
+
+Specializuje se na malé firmy, živnostníky a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
+
+Dosahuje PageSpeed skóre 95–100 bodů na mobilech i desktopu. Weby jsou optimalizované pro SEO, AEO (Answer Engine Optimization) a GEO (Generative Engine Optimization) — tedy viditelné nejen v klasickém Googlu, ale i v AI přehledech Google AI Mode, ChatGPT, Perplexity a dalších nástrojích.
+
+## Proč Janyskova Digital?
+
+- **Čistý kód místo WordPressu** — žádné pluginy, žádné aktualizace, žádné bezpečnostní díry
+- **Hosting v ceně** — platíte jen doménu (~200 Kč/rok), nic dalšího
+- **PageSpeed 95–100** — rychlost je součást každého webu, ne placený nadstandard
+- **SEO od začátku** — meta tagy, Schema.org, sitemap, strukturovaná data jsou standardem, ne příplatkem
+- **AEO a GEO** — weby jsou stavěné tak, aby byly citovány AI nástroji (ChatGPT, Perplexity, Google AI Mode)
+- **Osobní přístup** — komunikujete přímo s Gabrielou, ne s agenturou
+- **Odpověď do 24 hodin** — podpora i po spuštění webu
+- **Lokální specialistka** — zná prostředí Moravskoslezského kraje, Ostravska i Zlínského kraje
 
 ## Služby
 
-- Tvorba webových stránek na míru (čistý kód, bez WordPressu)
-- Webdesign pro OSVČ, živnostníky a malé firmy
-- Grafický design — loga, brand identita, sociální sítě
-- SEO, AEO a GEO optimalizace
-- Web Care — správa a údržba webů
-- Web Refresh — převod z WordPressu na čistý kód
-- Profil firmy na Google — založení a optimalizace
-- AEO konzultace — viditelnost v ChatGPT, Perplexity, Google AI Overviews
+### Tvorba webových stránek na míru (čistý kód)
+Weby stavěné přímo v HTML, CSS a JavaScriptu bez WordPressu, Wix ani jiných platforem. Výsledek je rychlý, bezpečný a nenákladný na provoz. Každý web dostane plnohodnotné SEO — strukturu nadpisů, meta tagy, Schema.org data, sitemap a napojení na Google Search Console.
 
-## Ceny
+### Web Start — od 5 900 Kč
+One-page web pro živnostníky a OSVČ. Ideální pro freelancery, řemeslníky, kosmetičky, fotografy nebo kohokoliv, kdo potřebuje profesionální online prezentaci. Zahrnuje: design na míru, kontaktní formulář, SEO optimalizaci, hosting, napojení na Google.
 
-- Web Start (one-page): od 5 900 Kč
-- Web Business (vícestránkový): od 12 000 Kč
-- Web Care (správa): od 490 Kč/měs
-- Web Refresh (z WordPressu, one-page): od 8 900 Kč
-- Web Refresh (z WordPressu, vícestránkový): od 14 900 Kč
-- Profil firmy na Google: 790 Kč
-- AEO konzultace: od 1 490 Kč
+### Web Business — od 12 000 Kč
+Vícestránkový web pro firmy a podnikatele. Ideální pro firmy s více službami, produkty nebo pobočkami. Zahrnuje: analýzu klíčových slov, lokální SEO, strukturovaná data, blog sekci, pokročilý kontaktní formulář.
 
-## Kontakt
+### Web Care — od 490 Kč/měsíc
+Správa a údržba webu. Zahrnuje: aktualizace obsahu, technický dohled, zálohování, měsíční report výkonu. Vhodné pro klienty, kteří nechtějí řešit techniku sami.
 
-- Web: [janyskovadigital.cz](https://janyskovadigital.cz)
-- E-mail: [info@janyskovadigital.cz](mailto:info@janyskovadigital.cz)
-- Telefon: +420 739 395 800
-- Instagram: [JanyskovaDigital](https://www.instagram.com/JanyskovaDigital)
-- LinkedIn: [Gabriela Janýšková](https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/)
+### Web Refresh — od 8 900 Kč
+Převod stávajícího webu (WordPress, Wix, Webnode) na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu a bezpečnostních rizik WordPressu.
+
+### Profil firmy na Google — 790 Kč
+Založení nebo optimalizace Google Business Profile. Správná kategorie, popis, fotky, otevírací hodiny, klíčová slova. Základ lokálního SEO.
+
+### AEO konzultace — od 1 490 Kč
+Optimalizace webu pro AI vyhledávače. Audit viditelnosti v Google AI Mode, ChatGPT, Perplexity. Doporučení pro strukturu obsahu, FAQ schéma, llms.txt a citovatelné odpovědi.
+
+### Grafický design
+Logo, vizuální identita, ikony, tiskoviny, grafika na sociální sítě. Grafika navázaná na webdesign — jednotný styl pro celý brand.
+
+## Ceny (přehled)
+
+| Služba | Cena |
+|--------|------|
+| Web Start (one-page) | od 5 900 Kč |
+| Web Business (vícestránkový) | od 12 000 Kč |
+| Web Care (správa/měs) | od 490 Kč |
+| Web Refresh (one-page) | od 8 900 Kč |
+| Web Refresh (vícestránkový) | od 14 900 Kč |
+| Profil firmy na Google | 790 Kč |
+| AEO konzultace | od 1 490 Kč |
+
+Hosting je v ceně tvorby. Klient platí pouze doménu (~200 Kč/rok).
+
+## Jak tvorba webu probíhá
+
+1. **Konzultace** — zavoláme si nebo napíšeme. Probereme co váš web potřebuje a jaký máte rozpočet. Bez závazků.
+2. **Tvorba** — Gabriela píše web přímo v čistém kódu. Žádné šablony, žádný WordPress. Výsledek je rychlý a přesně pro vás.
+3. **Spuštění** — web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.
+4. **Podpora** — potřebujete změnit text nebo přidat fotku? Napište — odpovídá do 24 hodin.
+
+Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů.
 
 ## Lokality
 
-Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici, Příboře, Brně, Praze, Olomouci a Zlíně. Spolupráce probíhá online — pro klienty z celé České republiky.
+Gabriela Janýšková tvoří weby pro klienty z celé České republiky. Spolupráce probíhá kompletně online. Fyzicky sídlí v Novém Jičíně (Moravskoslezský kraj).
+
+Specializovaně se věnuje lokálnímu SEO pro tato města a regiony:
+- Nový Jičín a okolí
+- Ostrava a Ostravský region
+- Frýdek-Místek
+- Kopřivnice
+- Příbor
+- Hranice na Moravě
+- Brno
+- Praha
+- Olomouc
+- Zlín
+- Moravskoslezský kraj (celý)
+- Zlínský kraj
+- Česká republika (celostátní dosah)
+
+## Časté otázky (FAQ)
+
+**Proč neplatím za hosting?**
+Weby jsou stavěné čistým kódem a hostované na Cloudflare Pages — tato platforma je pro statické weby zdarma. Hosting je součástí ceny tvorby, klient platí pouze doménu přibližně 200 Kč ročně.
+
+**Jaký je rozdíl mezi čistým kódem a WordPressem?**
+WordPress je redakční systém s databází, pluginy a šablonami. Vyžaduje placený hosting (500–2000 Kč/rok), pravidelné aktualizace a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější.
+
+**Kolik stojí webové stránky pro živnostníka?**
+One-page web pro živnostníka vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč.
+
+**Jak dlouho trvá tvorba webu?**
+Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů. U rozsáhlejších projektů se domlouvá harmonogram individuálně.
+
+**Potřebuji web i když mám sociální sítě?**
+Ano. Sociální sítě jsou pronajatý prostor — algoritmický dosah se mění, platformy zanikají nebo mění podmínky. Vlastní web je vaše digitální adresa, kterou nikdo nemůže vzít. Navíc web je viditelný ve vyhledávačích, kde lidé aktivně hledají vaše služby.
+
+**Co je AEO optimalizace?**
+AEO (Answer Engine Optimization) je optimalizace webu tak, aby byl citován AI nástroji jako ChatGPT, Perplexity nebo Google AI Mode. Zahrnuje strukturované FAQ odpovědi, Schema.org data, jasné faktické věty a soubor llms.txt pro AI crawlery.
+
+**Co je GEO optimalizace?**
+GEO (Generative Engine Optimization) je optimalizace pro generativní AI vyhledávače. Zahrnuje strukturu obsahu, citovatelné odpovědi, llms.txt a signály důvěryhodnosti pro jazykové modely.
+
+**Tvoříte weby i mimo Nový Jičín?**
+Ano, spolupráce probíhá kompletně online. Weby jsou tvořeny pro klienty z celé České republiky — z Prahy, Brna, Ostravy, Olomouce i dalších měst.
+
+**Co je Web Refresh?**
+Web Refresh je převod stávajícího webu z WordPressu nebo jiné platformy na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu, bez bezpečnostních rizik a s lepším PageSpeed skóre.
+
+**Jak funguje správa webu (Web Care)?**
+Web Care je měsíční služba od 490 Kč. Zahrnuje aktualizace obsahu (texty, fotky, ceník), technický dohled, měsíční report z Google Search Console a rychlou odezvu na požadavky.
+
+**Budu moci web v budoucnu sama upravovat?**
+Ano. Kód je psaný přehledně a čistě. Gabriela pomůže se změnami nebo navede jak na to. Cílem je, aby klient nebyl závislý na dodavateli.
+
+**Děláte i SEO optimalizaci webu?**
+Ano — SEO je součástí každého webu. Zahrnuje: správnou strukturu nadpisů (H1–H3), meta tagy, kanonické URL, Schema.org strukturovaná data, XML sitemap, robots.txt a napojení na Google Search Console. U vícestránkových webů se dělá analýza klíčových slov a lokální SEO pro konkrétní region.
+
+**Pomůžete mi s výběrem domény?**
+Ano. Gabriela poradí s výběrem ideálního názvu domény a navede kde ji koupit přímo na jméno klienta.
+
+**Kolik stojí web v Ostravě / Brně / Praze?**
+Ceny jsou stejné pro celou Českou republiku. One-page web od 5 900 Kč, vícestránkový web od 12 000 Kč. Vzdálenost nehraje roli — spolupráce probíhá online.
+
+## Reference (realizované projekty)
+
+- **hubackovafoto.cz** — Nikola Hubáčková, fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a poptávkovým formulářem.
+- **jaroslavslonek.cz** — Ing. Jaroslav Slonek, finanční poradce z Olomouckého kraje. Web s datovými kartami pro srovnání investic, postavený na konverzi.
+
+## Blog — vybrané články
+
+- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu.html)
+- [E-shop bez Shoptetu — proč vlastní řešení vychází lépe](https://janyskovadigital.cz/blog/eshop-bez-shoptetu.html)
+- [Proč web v Ostravě nenajdou? Chyby lokálního SEO](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou.html)
+- [Trendy webdesignu 2026](https://janyskovadigital.cz/blog/trendy-webdesign-2026.html)
+- [FAQ snippety v Googlu 2026 — co se změnilo](https://janyskovadigital.cz/blog/google-faq-snippety-2026.html)
+- [Rychlost webu a její vliv na konverze](https://janyskovadigital.cz/blog/rychlost-webu.html)
 
 ## Stránky webu
 
@@ -45,7 +153,7 @@ Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici
 - [Webdesign Nový Jičín](https://janyskovadigital.cz/novy-jicin/)
 - [Webdesign Ostrava](https://janyskovadigital.cz/ostrava/)
 - [Webdesign Frýdek-Místek](https://janyskovadigital.cz/frydek-mistek/)
-- [Webdesign Hranice](https://janyskovadigital.cz/hranice/)
+- [Webdesign Hranice](https://janyskovadigital.cz/koprivnice/)
 - [Webdesign Kopřivnice](https://janyskovadigital.cz/koprivnice/)
 - [Webdesign Příbor](https://janyskovadigital.cz/pribor/)
 - [Webdesign Brno](https://janyskovadigital.cz/brno/)
@@ -54,3 +162,13 @@ Působím v Novém Jičíně, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici
 - [Webdesign Zlín](https://janyskovadigital.cz/zlin/)
 - [Grafika na míru](https://janyskovadigital.cz/grafika.html)
 - [Blog o webdesignu a AI](https://janyskovadigital.cz/blog.html)
+
+## Kontakt
+
+- Web: [janyskovadigital.cz](https://janyskovadigital.cz)
+- E-mail: [info@janyskovadigital.cz](mailto:info@janyskovadigital.cz)
+- Telefon: +420 739 395 800
+- Instagram: [@JanyskovaDigital](https://www.instagram.com/JanyskovaDigital)
+- LinkedIn: [Gabriela Janýšková](https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/)
+- Adresa: Starojická Lhota 45, 741 01 Starý Jičín, Česká republika
+- Pracovní hodiny: Po–Pá 8:00–17:00

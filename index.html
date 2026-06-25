@@ -71,6 +71,9 @@
     "founder": {"@type": "Person", "name": "Gabriela Janýšková"},
     "sameAs": ["https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/", "https://www.instagram.com/JanyskovaDigital"],
     "openingHours": "Mo-Fr 08:00-17:00",
+    "foundingDate": "2022",
+    "numberOfEmployees": {"@type": "QuantitativeValue", "value": 1},
+    "serviceType": ["Tvorba webových stránek", "Webdesign na míru", "SEO optimalizace", "AEO optimalizace", "GEO optimalizace", "Grafický design", "Správa webových stránek"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Tvorba webových stránek na míru",
@@ -79,6 +82,8 @@
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Business"}, "price": "12000", "priceCurrency": "CZK"},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Care"}, "price": "490", "priceCurrency": "CZK"},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Refresh"}, "price": "8900", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Refresh (one-page)"}, "price": "8900", "priceCurrency": "CZK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Web Refresh (vícestránkový)"}, "price": "14900", "priceCurrency": "CZK"},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Profil firmy na Google"}, "price": "790", "priceCurrency": "CZK"},
         {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "AEO konzultace"}, "price": "1490", "priceCurrency": "CZK"}
       ]
@@ -153,6 +158,36 @@
       "@type": "Question",
       "name": "Kolik stojí webové stránky v Novém Jičíně?",
       "acceptedAnswer": {"@type": "Answer", "text": "Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby."}
+    },
+    {
+      "@type": "Question",
+      "name": "Jaký je rozdíl mezi čistým kódem a WordPressem?",
+      "acceptedAnswer": {"@type": "Answer", "text": "WordPress vyžaduje placený hosting (500–2 000 Kč/rok), pravidelné aktualizace pluginů a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější. Weby v čistém kódu dosahují PageSpeed 95–100 bodů."}
+    },
+    {
+      "@type": "Question",
+      "name": "Potřebuji web i když mám sociální sítě?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Ano. Sociální sítě jsou pronajatý prostor — dosah závisí na algoritmu, platformy mění podmínky. Vlastní web je vaše digitální adresa, kterou nikdo nemůže vzít. Navíc je viditelný ve vyhledávačích, kde lidé aktivně hledají vaše služby."}
+    },
+    {
+      "@type": "Question",
+      "name": "Co je AEO optimalizace webu?",
+      "acceptedAnswer": {"@type": "Answer", "text": "AEO (Answer Engine Optimization) je optimalizace webu tak, aby byl citován AI nástroji jako ChatGPT, Perplexity nebo Google AI Mode. Zahrnuje strukturované FAQ odpovědi, Schema.org data, jasné faktické věty a soubor llms.txt pro AI crawlery."}
+    },
+    {
+      "@type": "Question",
+      "name": "Co je Web Refresh a kdy ho potřebuji?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Web Refresh je převod stávajícího webu z WordPressu nebo jiné platformy na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu a bezpečnostních rizik. One-page Web Refresh začíná od 8 900 Kč, vícestránkový od 14 900 Kč."}
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik stojí správa webu?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Správa webu (Web Care) začíná od 490 Kč měsíčně. Zahrnuje aktualizace obsahu, technický dohled a měsíční report z Google Search Console."}
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik stojí webové stránky pro živnostníka?",
+      "acceptedAnswer": {"@type": "Answer", "text": "One-page web pro živnostníka vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč. Hosting je vždy v ceně tvorby — živnostník platí pouze doménu přibližně 200 Kč ročně."}
     }
   ]
 }
@@ -592,6 +627,11 @@ body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans
       <div class="faq-item reveal"><h3>Děláte i SEO optimalizaci webu?</h3><p>Ano — SEO je součástí každého webu, který tvořím. Každá stránka dostane správnou strukturu nadpisů, meta tagy, Schema.org data a sitemap. U vícestránkových webů dělám i analýzu klíčových slov a lokální SEO optimalizaci pro váš region.</p></div>
       <div class="faq-item reveal"><h3>Tvoříte weby i mimo Nový Jičín?</h3><p>Ano, spolupráce probíhá kompletně online. Weby tvořím pro klienty z celé České republiky.</p></div>
       <div class="faq-item reveal"><h3>Kolik stojí webové stránky v Novém Jičíně?</h3><p>Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby.</p></div>
+      <div class="faq-item reveal"><h3>Jaký je rozdíl mezi čistým kódem a WordPressem?</h3><p>WordPress vyžaduje placený hosting, pravidelné aktualizace pluginů a je náchylnější k útokům. Čistý kód je rychlejší, levnější na provoz a bezpečnější — weby dosahují PageSpeed 95–100 bodů.</p></div>
+      <div class="faq-item reveal"><h3>Potřebuji web i když mám sociální sítě?</h3><p>Ano. Sociální sítě jsou pronajatý prostor — dosah závisí na algoritmu, platformy mění podmínky. Vlastní web je vaše digitální adresa viditelná ve vyhledávačích, kde lidé aktivně hledají vaše služby.</p></div>
+      <div class="faq-item reveal"><h3>Co je AEO optimalizace?</h3><p>AEO (Answer Engine Optimization) je optimalizace webu pro AI nástroje jako ChatGPT, Perplexity nebo Google AI Mode. Zahrnuje strukturované FAQ, Schema.org data a jasné citovatelné odpovědi.</p></div>
+      <div class="faq-item reveal"><h3>Co je Web Refresh?</h3><p>Převod stávajícího WordPressu nebo jiné platformy na čistý kód. Výsledkem je rychlejší web bez drahého hostingu a bezpečnostních rizik. Od 8 900 Kč.</p></div>
+      <div class="faq-item reveal"><h3>Kolik stojí správa webu?</h3><p>Web Care začíná od 490 Kč měsíčně. Zahrnuje aktualizace obsahu, technický dohled a měsíční report z Google Search Console.</p></div>
     </div>
   </div>
 </section>
