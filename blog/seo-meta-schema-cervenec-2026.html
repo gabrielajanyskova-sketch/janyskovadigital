@@ -195,7 +195,7 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
       <span>7 min čtení</span>
     </div>
     <article class="article-body">
-      <p>Červenec 2026 — a webový svět vypadá jinak, než vypadal před rokem. Google AI Overviews jsou v Česku standardem, Google AI Mode (plná konverzační verze) se pomalu rozjíždí i mimo USA a ChatGPT Search hlásí přes 150 milionů uživatelů měsíčně. Jestli máte web a chcete být vidět, tohle je chvíle na to sednout si a projít, co váš web AI robotům vůbec říká.</p>
+      <p>Červenec 2026 — a webový svět vypadá jinak, než vypadal před rokem. Google AI Overviews se v průběhu roku 2025 rozšířily celosvětově a dnes se zobrazují u více než 25 % všech hledání. Organická CTR na první pozici klesla o 61 % v případech, kdy se AI Overview zobrazí nad výsledky (Seer Interactive, 2025). U dotazů s AI Overview 80–83 % uživatelů nedokončí klik na žádný web. Jestli máte web a chcete být vidět, nestačí být v Googlu — musíte být zdrojem, ze kterého AI čerpá.</p>
       <p>V tomto článku provedu každou část — klíčová slova, meta tagy, schema.org, AEO a GEO — a ukážu konkrétně, co v roce 2026 funguje a co dělá většina webů špatně.</p>
 
       <h2>Klíčová slova v roce 2026: konec opakování, začátek kontextu</h2>
@@ -228,7 +228,7 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
       <p>Popis stránky, který se zobrazuje pod názvem ve výsledcích vyhledávání. Google ho někdy přepíše vlastním textem — ale pro AI čtečky a náhledy je stále klíčový. Ideální délka: <strong>140–160 znaků</strong>. Pište ho jako reklamu — co zákazník dostane a proč kliknout.</p>
 
       <h3>Open Graph tagy</h3>
-      <p>Sada meta tagů pro sociální sítě (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>). Pokud sdílíte články nebo stránky na Facebook, LinkedIn nebo Instagram, bez OG tagů dostanete náhodný obrázek a nesprávný popis. ChatGPT a Perplexity při zobrazení citací také čtou OG tagy.</p>
+      <p>Sada meta tagů pro sociální sítě (<code>og:title</code>, <code>og:description</code>, <code>og:image</code>). Pokud sdílíte články nebo stránky na Facebook, LinkedIn nebo Instagram, bez OG tagů dostanete náhodný obrázek a nesprávný popis. AI crawleři jako GPTBot (OpenAI), ClaudeBot (Anthropic) nebo PerplexityBot parsují celý HTML kód stránky včetně hlavičky — OG tagy čtou jako záložní popis v situacích, kdy chybí schema.org (a průmyslové audity ukazují, že schema pokrývá méně než 40 % stránek na internetu).</p>
 
       <div class="highlight">
         <strong>Co vidím nejčastěji:</strong> Weby bez meta description vůbec, nebo s description, která je zkopírovaná z H1. Google pak vygeneruje vlastní — a to bývá horší. Vždy pište description ručně.
@@ -236,13 +236,13 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
 
       <h2>Schema.org: jazyk, kterým mluvíte přímo s Google AI</h2>
       <p>Schema.org je strukturovaná data — kód v pozadí stránky, který říká Google (a všem AI systémům) přesně co jste, co nabízíte, kde sídlíte a jak vás kontaktovat. Ne jako volný text, ale jako přesně definovaná fakta.</p>
-      <p>Google AI Overviews, Gemini, ChatGPT Search i Perplexity čtou strukturovaná data jako první. Web bez schema.org mluví na AI jako cizinec bez slovníku — AI ho přečte, ale zbytečně si domýšlí.</p>
+      <p>Google AI Overviews, Gemini, ChatGPT Search i Perplexity čtou strukturovaná data přednostně. Stránky se správně implementovanou schema.org mají podle dostupných analýz 2,5× vyšší šanci na citaci v AI odpovědích než stránky bez ní. Web bez schema.org mluví na AI jako cizinec bez slovníku — AI ho přečte, ale musí si informace domýšlet z volného textu.</p>
 
       <h3>Co by měl mít každý lokální web v červenci 2026</h3>
       <ul>
         <li><strong>LocalBusiness nebo ProfessionalService schema</strong> — kdo jste, co děláte, kde sídlíte, jak vás kontaktovat</li>
         <li><strong>BreadcrumbList</strong> — hierarchie stránek webu pro lepší orientaci botů</li>
-        <li><strong>FAQPage</strong> — odpovědi na časté otázky přímo jako strukturovaná data (zobrazují se v AI Overviews)</li>
+        <li><strong>FAQPage</strong> — odpovědi na časté otázky přímo jako strukturovaná data. Pozor: Google v květnu 2026 zrušil FAQ rich snippety ve výsledcích vyhledávání — FAQPage schema ale stále slouží jako signál pro AI Overviews a pomáhá AI systémům extrahovat přesné Q&amp;A páry pro citaci</li>
         <li><strong>Person schema</strong> — pro OSVČ a freelancery: jméno, specializace, region působení</li>
         <li><strong>Review / AggregateRating</strong> — hodnocení od zákazníků (pokud máte opravdové recenze)</li>
         <li><strong>Offer schema</strong> — konkrétní produkty nebo služby s cenou</li>
@@ -257,30 +257,30 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
       <p><strong>AEO (Answer Engine Optimization)</strong> je optimalizace obsahu pro AI systémy, které odpovídají na otázky — Google AI Overviews, ChatGPT, Perplexity, Gemini. Cíl není jen „být v Google", ale být zdrojem, ze kterého AI čerpá při odpovídání.</p>
       <p>AEO stojí na třech pilířích:</p>
       <ul>
-        <li><strong>Autoritativní obsah</strong> — konkrétní fakta, přesná čísla, vaše vlastní zkušenosti. AI preferuje zdroje, které nejsou vágní.</li>
-        <li><strong>Přímé odpovědi na otázky</strong> — pište strukturovaně: „Kolik stojí web?" → přímá odpověď s číslem hned v prvním odstavci. Ne „záleží na spoustě faktorů..."</li>
-        <li><strong>Technická čistota webu</strong> — AI roboti preferují rychlé weby bez chyb. PageSpeed, bezpečnost, mobilní zobrazení — to vše signalizuje, jestli jste důvěryhodný zdroj.</li>
+        <li><strong>Autoritativní obsah</strong> — konkrétní fakta, přesná čísla, vaše vlastní zkušenosti. Analýza 83 670 AI citací ukázala, že 83 % citovaných stránek bylo aktualizováno v posledních 12 měsících, přes 60 % v posledních 6 měsících. Čerstvost obsahu je klíčový signál.</li>
+        <li><strong>Přímé odpovědi na otázky</strong> — pište strukturovaně: „Kolik stojí web?" → přímá odpověď s číslem hned v prvním odstavci. Odborníci doporučují otevírat každou klíčovou sekci 40–60 slovní odpovědí. Ne „záleží na spoustě faktorů..."</li>
+        <li><strong>Technická čistota webu</strong> — AI crawleři preferují rychlé, přístupné weby bez chyb. PageSpeed skóre, bezpečný HTTPS, správné mobilní zobrazení — to vše jsou důvěryhodnostní signály.</li>
       </ul>
 
       <div class="highlight">
-        <strong>Novinka červenec 2026:</strong> Google začal v AI Overviews výrazně více citovat weby s FAQPage schema. Pokud máte na webu sekci s otázkami a odpověďmi a je v kódu označená jako <code>FAQPage</code>, šance na citaci v AI Overviews roste několikanásobně.
+        <strong>Co data ukazují:</strong> Weby, které AI Overviews citují, mají podle studie ALM Corp (2026) o 35 % více organických kliků a o 91 % více placených kliků oproti necitovaným webům. Tedy být citovaným zdrojem AI se vyplatí víc než jen být na první stránce Googlu.
       </div>
 
       <h2>GEO — generativní optimalizace pro AI systémy</h2>
-      <p><strong>GEO (Generative Engine Optimization)</strong> je novější pojem pro to, co AEO řeší — ale specificky pro generativní AI systémy jako ChatGPT Search, Perplexity nebo Google Gemini. Zaměřuje se na to, aby AI při generování odpovědí vaše informace citovala.</p>
+      <p><strong>GEO (Generative Engine Optimization)</strong> je pojem, který vzešel z akademického výzkumu (Princeton University, 2024) a zaměřuje se specificky na viditelnost ve výstupech generativních AI systémů — ChatGPT Search, Perplexity, Google Gemini. Studie ukazují, že GEO přístup může zvýšit viditelnost obsahu v AI odpovědích až o 40 %. Analýza 6,8 milionu citací od společnosti Yext odhalila, že 86 % pochází ze zdrojů, které firma přímo kontroluje: vlastní web (44 %) a firemní profily jako GBP (42 %).</p>
       <p>Co dělá web GEO-ready:</p>
       <ul>
-        <li><strong>Jasné autorství</strong> — kdo článek nebo stránku napsal, s jakými zkušenostmi (Person schema, autor v meta tagu)</li>
-        <li><strong>Datová přesnost</strong> — konkrétní čísla, zdroje, aktuální datum. AI systémy preferují obsah s přesnými fakty před obecnými tvrzeními.</li>
-        <li><strong>Strukturovaný obsah</strong> — nadpisy H1–H3 v logické hierarchii, odrážky, přehledné odstavce. AI extrahuje informace snadněji ze strukturovaného textu.</li>
-        <li><strong>Llms.txt soubor</strong> — nový standard (podobný robots.txt) specificky pro AI roboty. Říká AI, co smí použít a co je o vás nejdůležitější.</li>
+        <li><strong>Jasné autorství</strong> — kdo stránku napsal, s jakými zkušenostmi (Person schema, autor v meta tagu). AI hodnotí důvěryhodnost zdroje.</li>
+        <li><strong>Datová přesnost</strong> — konkrétní čísla, zdroje, aktuální datum. Generativní AI preferuje fakta s kontextem před obecnými tvrzeními.</li>
+        <li><strong>Strukturovaný obsah</strong> — nadpisy H1–H3 v logické hierarchii, odrážky, přehledné odstavce. AI extrahuje informace snadněji ze strukturovaného textu než z volných bloků.</li>
+        <li><strong>Llms.txt soubor</strong> — soubor podobný robots.txt, navržený pro AI crawlery. Pozor: Google ho oficiálně nepodporuje (Gary Illyes, 2025) a většina AI botů ho zatím aktivně nečte — hlavní využití je pro AI kódovací nástroje (Cursor, Copilot). Přidat ho ale nezaškodí.</li>
       </ul>
 
       <h2>Lokální SEO + GEO: kombinace, která v roce 2026 vítězí</h2>
-      <p>Pro OSVČ a lokální firmy v Moravskoslezském kraji nebo kdekoliv jinde v ČR platí jedno — <strong>lokální signály jsou stále nejsilnější</strong>. AI systémy stále neumí suplovat skutečnou lokální relevanci.</p>
+      <p>Pro OSVČ a lokální firmy v Moravskoslezském kraji nebo kdekoliv jinde v ČR platí jedno — <strong>lokální signály jsou stále nejsilnější</strong>. AI systémy nedokáží nahradit skutečnou lokální relevanci — a právě tady mají malé firmy výhodu oproti národním hráčům.</p>
       <p>Co musí lokální web mít:</p>
       <ul>
-        <li><strong>Google Business Profile</strong> — aktivní profil s fotkami, otevírací dobou a aktuálními recenzemi. GBP je v AI odpovědích na lokální dotazy citován nejčastěji ze všeho.</li>
+        <li><strong>Google Business Profile</strong> — aktivní profil s fotkami, otevírací dobou a aktuálními recenzemi. Podle dat Yext tvoří firemní profily 42 % všech AI citací — GBP je tedy jeden z nejsilnějších signálů pro lokální AI odpovědi.</li>
         <li><strong>Geo meta tagy</strong> — <code>geo.region</code>, <code>geo.placename</code>, <code>geo.position</code> v hlavičce stránky. Stará technologie, která stále funguje.</li>
         <li><strong>Lokální klíčové slovo v title, H1 a schema</strong> — trojice musí být konzistentní.</li>
         <li><strong>Místní kontext v textu</strong> — přirozené zmínky o regionu, dopravní dostupnosti, místních zákaznících. Ne keyword stuffing, ale skutečný místní obsah.</li>
@@ -323,8 +323,8 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
       </div>
 
       <h2>Závěr: web jako datový zdroj pro AI</h2>
-      <p>Posun, který se děje v červenci 2026, je zásadní: web přestává být jen „vizitkou na internetu" a stává se <strong>datovým zdrojem, ze kterého AI systémy čtou a citují</strong>. Uživatel se nemusí ani dostat na váš web — AI mu odpoví z toho, co na webu máte.</p>
-      <p>To ale neznamená, že web ztratil smysl. Naopak — weby s jasným, strukturovaným a autoritativním obsahem jsou citovány víc než kdy dřív. Jen musíte vědět, jak s AI komunikovat. A to začíná přesně u věcí, o kterých jsem psala v tomto článku.</p>
+      <p>Posun, který se děje v roce 2026, je zásadní: web přestává být jen „vizitkou na internetu" a stává se <strong>datovým zdrojem, ze kterého AI systémy čtou a citují</strong>. Uživatel se nemusí ani dostat na váš web — AI mu odpoví z toho, co na webu máte. U více než čtvrtiny všech Google dotazů se dnes zobrazí AI Overview, a 80 % těchto uživatelů nikam neklikne.</p>
+      <p>To ale neznamená, že web ztratil smysl. Data ukazují pravý opak — weby, které AI cituje, mají výrazně vyšší klikatelnost i konverze. Klíč je přestat optimalizovat jen pro rankings a začít optimalizovat pro citovatelnost. A to začíná přesně u věcí, o kterých jsem psala v tomto článku: klíčová slova v kontextu, správné meta tagy, schema.org, AEO a GEO.</p>
 
       <div class="cta-box">
         <h3>Chcete web, který AI<br><em>čte a doporučuje?</em></h3>
