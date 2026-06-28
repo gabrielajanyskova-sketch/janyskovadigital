@@ -14,9 +14,7 @@
 </radialGradient>
 </defs>
 
-<!-- BG -->
-<circle cx="200" cy="200" r="200" fill="url(#bg)"/>
-<circle cx="200" cy="200" r="200" fill="url(#aura)"/>
+
 
 <!-- Outer decorative ring -->
 <circle cx="200" cy="200" r="178" fill="none" stroke="#f0147a" stroke-width="0.6" stroke-opacity="0.12" stroke-dasharray="3 9"/>
