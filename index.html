@@ -34,7 +34,6 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="/hero-network.webp" as="image" fetchpriority="high">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -214,7 +213,7 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .hero{padding:90px 0 110px;position:relative;min-height:600px}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-@media(min-width:901px){.hero-right{order:2}.hero-left{order:1}}@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:50px}.hero-right{order:-1}.hero-left{order:1}}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:50px}}
 .hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;color:#f5f0fa;margin-bottom:24px;font-family:'DM Serif Display',Georgia,serif}
 .hero h1 em{color:var(--pink);font-style:italic}
 #robot-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0.18}
@@ -315,9 +314,6 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
         </div>
       </div>
       <div class="hero-right">
-        <div style="display:flex;justify-content:center;margin-bottom:28px;">
-          <img src="/hero-network.webp" alt="Digitální síť — Janyskova Digital" width="340" height="340" fetchpriority="high" loading="eager" style="display:block;width:340px;height:340px;max-width:100%;">
-        </div>
         <div class="hero-card">
           <div class="hero-card-head">Výsledky mých webů</div>
           <div class="hero-card-row"><span class="hero-card-label">Načítání webu</span><span class="hero-card-val val-green">pod 1 s</span></div>
