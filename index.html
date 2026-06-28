@@ -196,19 +196,30 @@
 }
 </script>
 
-<link rel="stylesheet" href="/style.css">
+<link rel="preload" href="/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/style.css"></noscript>
 <style>
 :root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba(8,6,12,0.75);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;text-decoration:none;color:var(--text)}
+.logo em{font-style:italic;color:var(--pink)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--text)}
+@media(max-width:768px){.hamburger{display:flex}}
 .hero{padding:90px 0 110px;position:relative;min-height:600px}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:50px}.hero-right{order:2}}
-.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;color:#f5f0fa;margin-bottom:24px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:50px}.hero-right{order:2}}
+.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;color:#f5f0fa;margin-bottom:24px;font-family:'DM Serif Display',Georgia,serif}
+.hero h1 em{color:var(--pink);font-style:italic}
 #robot-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0.18}
 .mouse-glow{position:fixed;inset:0;z-index:0;pointer-events:none}
-.fullscreen-menu{visibility:hidden;opacity:0}
-.fullscreen-menu.open{visibility:visible;opacity:1}
+.fullscreen-menu{position:fixed;inset:0;z-index:1000;visibility:hidden;opacity:0;pointer-events:none}
+.fullscreen-menu.open{visibility:visible;opacity:1;pointer-events:all}
 </style>
 <script type="application/ld+json">
 {
