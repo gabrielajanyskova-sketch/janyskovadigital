@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Search Console teď ukazuje váš web v AI výsledcích — co to znamená? | Janyskova Digital</title>
+<meta name="description" content="Od 3. června 2026 Google Search Console zobrazuje, kolikrát se váš web objevil v AI Overviews a AI Mode. Co data znamenají a jak nový toggle opt-out použít?">
+<meta property="og:title" content="Google Search Console teď ukazuje váš web v AI výsledcích — co to znamená?">
+<meta property="og:description" content="Nová sekce v Search Console: impressions z AI Overviews a AI Mode od 3. června 2026. Průvodce od webdesignérky z Nového Jičína.">
+<meta property="og:url" content="https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-06-29">
+<meta property="article:author" content="Gabriela Janýšková">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Google Search Console teď ukazuje váš web v AI výsledcích">
+<meta name="twitter:description" content="Nová sekce v Search Console: impressions z AI Overviews a AI Mode. Co to znamená pro váš web?">
+<link rel="canonical" href="https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026.html">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
+<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
+<meta name="geo.region" content="CZ-80">
+<meta name="geo.placename" content="Nový Jičín">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Search Console teď ukazuje váš web v AI výsledcích — co to znamená?","description":"Od 3. června 2026 Google Search Console zobrazuje, kolikrát se váš web objevil v AI Overviews a AI Mode. Co data znamenají a jak nový toggle opt-out použít?","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-06-29","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026.html","keywords":"Google Search Console 2026, AI Overviews, AI Mode, generative AI impressions, SEO 2026, opt-out AI, webdesign Nový Jičín","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026.html"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Co jsou AI impressions v Google Search Console?","acceptedAnswer":{"@type":"Answer","text":"AI impressions jsou zobrazení vašeho webu v AI Overviews a AI Mode v Google Search. Od června 2026 je Google vykazuje odděleně v nové sekci Search Console — takže konečně víte, jak často vás AI cituje."}},{"@type":"Question","name":"Mám zapnout opt-out z AI výsledků?","acceptedAnswer":{"@type":"Answer","text":"Záleží na situaci. Pokud přichází provoz z AI a vede ke konverzím, opt-out nedoporučuji. Pokud AI váš obsah cituje, ale nikdo nekliká, může opt-out pomoci. Důležité: opt-out neovlivní vaše pozice v klasickém Google Search."}},{"@type":"Question","name":"Kdy bude nová sekce Search Console dostupná v ČR?","acceptedAnswer":{"@type":"Answer","text":"Google ji spustil 3. června 2026 v beta verzi nejprve pro část webů ve Velké Británii. Celosvětové rozšíření, včetně České republiky, Google plánuje, ale konkrétní datum zatím neoznámil."}}]}</script>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
+:root{--bg:#08060c;--pink:#f0147a;--text:#f5f0fa;--text-dim:#b8a8cc;--border:rgba(240,20,122,0.18);--card:rgba(21,15,30,0.9);--green:#00e5a0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.b1{width:550px;height:550px;background:radial-gradient(circle,rgba(240,20,122,0.3) 0%,transparent 65%);top:-15%;left:-15%;animation:bf1 18s ease-in-out infinite;}
+.b2{width:400px;height:400px;background:radial-gradient(circle,rgba(180,10,90,0.18) 0%,transparent 65%);bottom:5%;right:-10%;animation:bf2 22s ease-in-out infinite;}
+@keyframes bf1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(35px,-25px) scale(1.05);}}
+@keyframes bf2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-28px,22px) scale(1.07);}}
+nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba(8,6,12,0.75);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'DM Serif Display',serif;font-size:20px;text-decoration:none;color:var(--text);}
+.logo em{font-style:italic;color:var(--pink);}
+.nav-links{display:flex;align-items:center;}
+.nav-links a{margin-left:24px;text-decoration:none;color:var(--text-dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;transition:color 0.25s;}
+.nav-links a:hover{color:var(--pink);}
+.nav-links a.cta{color:var(--pink);border:1px solid rgba(240,20,122,0.3);padding:7px 18px;border-radius:100px;transition:all 0.25s;}
+.nav-links a.cta:hover{background:var(--pink);color:white;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100;}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fullscreen-menu{position:fixed;inset:0;background:rgba(8,6,12,0.98);backdrop-filter:blur(20px);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
+.fullscreen-menu.open{opacity:1;pointer-events:all;}
+.fullscreen-menu a{font-family:'DM Serif Display',serif;font-size:clamp(32px,8vw,60px);color:rgba(245,240,250,0.2);text-decoration:none;padding:6px 0;opacity:0;transform:translateY(20px);transition:color 0.2s,opacity 0.4s ease,transform 0.4s ease;}
+.fullscreen-menu.open a{opacity:1;transform:translateY(0);}
+.fullscreen-menu.open a:nth-child(1){transition-delay:0.05s;}
+.fullscreen-menu.open a:nth-child(2){transition-delay:0.1s;}
+.fullscreen-menu.open a:nth-child(3){transition-delay:0.15s;}
+.fullscreen-menu.open a:nth-child(4){transition-delay:0.2s;}
+.fullscreen-menu.open a:nth-child(5){transition-delay:0.25s;}
+.fullscreen-menu a:hover{color:var(--pink);}
+.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:28px;letter-spacing:1px;opacity:0;transition:opacity 0.4s ease 0.3s;}
+.fullscreen-menu.open .menu-sub{opacity:1;}
+@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+main{position:relative;z-index:1;padding:60px 0 100px;}
+.container{max-width:760px;margin:0 auto;padding:0 28px;}
+.back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
+.back:hover{color:var(--pink);}
+.back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+.article-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:16px;}
+.article-meta{font-size:13px;color:var(--text-dim);margin-bottom:48px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.article-meta span{opacity:0.4;}
+h1{font-size:clamp(32px,5vw,54px);line-height:1.15;letter-spacing:-0.5px;color:var(--text);margin-bottom:20px;}
+h1 em{color:var(--pink);font-style:italic;}
+h2{font-size:clamp(22px,3vw,30px);color:var(--text);margin:52px 0 18px;}
+h2 em{color:var(--pink);font-style:italic;}
+h3{font-size:18px;color:var(--text);margin:32px 0 12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;}
+p{font-size:16px;color:var(--text-dim);line-height:1.85;margin-bottom:20px;}
+p strong{color:var(--text);font-weight:700;}
+ul,ol{margin:0 0 20px 0;padding-left:22px;display:flex;flex-direction:column;gap:10px;}
+li{font-size:16px;color:var(--text-dim);line-height:1.75;}
+li strong{color:var(--text);}
+.intro-box{background:rgba(240,20,122,0.06);border:1px solid rgba(240,20,122,0.2);border-radius:16px;padding:28px 32px;margin-bottom:48px;}
+.intro-box p{margin:0;font-size:15px;}
+.highlight-box{background:rgba(0,229,160,0.05);border:1px solid rgba(0,229,160,0.18);border-radius:14px;padding:22px 26px;margin:32px 0;}
+.highlight-box p{margin:0;color:var(--green);font-size:15px;}
+.highlight-box strong{color:#fff;}
+.warn-box{background:rgba(255,180,0,0.05);border:1px solid rgba(255,180,0,0.18);border-radius:14px;padding:22px 26px;margin:32px 0;}
+.warn-box p{margin:0;color:rgba(255,200,80,0.9);font-size:15px;}
+.warn-box strong{color:#fff;}
+.data-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
+@media(max-width:600px){.data-grid{grid-template-columns:1fr;}}
+.data-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
+.data-card-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:8px;}
+.data-card-val{font-size:22px;font-family:'DM Serif Display',serif;color:var(--text);margin-bottom:6px;}
+.data-card-desc{font-size:13px;color:var(--text-dim);line-height:1.6;}
+.divider{height:1px;background:rgba(240,20,122,0.1);margin:48px 0;}
+.author-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;display:flex;gap:20px;align-items:flex-start;margin-top:64px;}
+.author-text h3{font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--text);margin:0 0 6px;}
+.author-text p{font-size:14px;margin:0 0 14px;}
+.author-text a{color:var(--pink);font-weight:700;text-decoration:none;font-size:14px;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);margin-bottom:40px;flex-wrap:wrap;}
+.breadcrumb a{color:var(--pink);text-decoration:none;}
+.breadcrumb span{opacity:0.4;}
+footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,122,0.1);position:relative;z-index:1;}
+.footer-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;color:rgba(245,240,250,0.5);}
+.footer-inner a{color:rgba(245,240,250,0.6);text-decoration:none;}
+.footer-inner a:hover{color:var(--pink);}
+.footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
+.footer-logo em{color:var(--pink);font-style:italic;}
+</style>
+</head>
+<body>
+<div class="blob b1" aria-hidden="true"></div>
+<div class="blob b2" aria-hidden="true"></div>
+
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="nav-inner container" style="max-width:1100px">
+    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="/#jak-to-funguje">Jak to funguje</a>
+      <a href="/#cenik">Ceník</a>
+      <a href="/#reference">Reference</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/grafika.html">Grafika</a>
+      <a href="/eshop.html">E-shop</a>
+      <a href="/#kontakt" class="cta">Napsat mi</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace">
+  <a href="/#jak-to-funguje">Jak to funguje</a>
+  <a href="/#cenik">Ceník</a>
+  <a href="/#reference">Reference</a>
+  <a href="/blog.html">Blog</a>
+  <a href="/grafika.html">Grafika</a>
+  <a href="/eshop.html">E-shop</a>
+  <a href="/#kontakt">Napsat mi</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
+
+<main>
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Domů</a>
+      <span>›</span>
+      <a href="/blog.html">Blog</a>
+      <span>›</span>
+      <span>Google Search Console a AI výsledky</span>
+    </nav>
+
+    <a href="/blog.html" class="back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Zpět na blog
+    </a>
+
+    <div class="article-tag">SEO · AI · Červen 2026</div>
+    <h1>Google Search Console teď ukazuje váš web v <em>AI výsledcích</em> — co to znamená?</h1>
+    <div class="article-meta">
+      <span>Gabriela Janýšková</span>
+      <span>·</span>
+      <span>29. června 2026</span>
+      <span>·</span>
+      <span>4 minuty čtení</span>
+    </div>
+
+    <div class="intro-box">
+      <p>Od <strong>3. června 2026</strong> Google spustil v Search Console novou sekci — Generative AI Performance Report. Poprvé v historii vidíte, kolikrát se váš web zobrazil uvnitř AI Overviews a AI Mode. A zároveň přibyl toggle, kterým můžete z AI výsledků <strong>úplně vystoupit</strong>. Co to všechno znamená pro váš web?</p>
+    </div>
+
+    <h2>Co je nová sekce <em>Generative AI Performance</em>?</h2>
+    <p>Dosud vám Google Search Console říkala, kolik lidí kliklo na váš web z klasického vyhledávání. Jenže AI Overviews a AI Mode fungují jinak — Google tam zodpoví dotaz přímo, váš web cituje, ale uživatel na odkaz neklikne. Tato zobrazení (impressions) byla vždy součástí celkového počtu, ale nikde viditelná zvlášť.</p>
+    <p>To se změnilo. <strong>Nová sekce odděluje AI impressions od klasického organického vyhledávání</strong> a dává vám pohled na to, jak moc vás AI vlastně využívá.</p>
+
+    <h2>Co přesně data ukazují?</h2>
+    <p>Nová sekce zobrazuje pět dimenzí:</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="data-card-label">Impressions</div>
+        <div class="data-card-val">Zobrazení v AI</div>
+        <div class="data-card-desc">Kolikrát se vaše stránky objevily v AI Overviews, AI Mode nebo AI Overviews v Discover.</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">Stránky</div>
+        <div class="data-card-val">Které URL</div>
+        <div class="data-card-desc">Přesně které stránky vašeho webu AI cituje nejčastěji.</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">Země</div>
+        <div class="data-card-val">Kde na světě</div>
+        <div class="data-card-desc">Z jakých zemí přicházejí AI impressions — užitečné pro lokální weby.</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-label">Datum</div>
+        <div class="data-card-val">Vývoj v čase</div>
+        <div class="data-card-desc">Hodinová, denní, týdenní i měsíční granularita — vidíte trendy a výkyvy.</div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <p>⚠️ <strong>Důležité omezení:</strong> Zatím vidíte pouze impressions — žádné kliky, CTR ani konkrétní dotazy, které AI zobrazení spustily. Google tato data plánuje přidat, ale datum neoznámil.</p>
+    </div>
+
+    <h2>Jak se dostat k datům?</h2>
+    <p>Sekce se jmenuje <strong>„Generative AI performance"</strong> a najdete ji v levém menu Search Console. Vypadá podobně jako klasická sekce Výkon, jen filtruje výhradně AI zobrazení.</p>
+    <p>Pozor — Google spustil tuto funkci <strong>beta verzí nejprve pro část webů ve Velké Británii</strong>. Celosvětové rozšíření, včetně České republiky, je v plánu, ale konkrétní datum zatím nebylo oznámeno. Pokud sekci v Search Console ještě nevidíte, bude dostupná brzy.</p>
+
+    <div class="divider"></div>
+
+    <h2>Nový toggle: <em>opt-out z AI výsledků</em></h2>
+    <p>Spolu s reportem Google přidal také přepínač, který umožňuje <strong>úplně vypnout zobrazení vašeho webu v AI Overviews, AI Mode a AI Overviews in Discover</strong>. Toggle je v Search Console ve stejné sekci a platí od 17. června 2026.</p>
+
+    <h3>Kdy opt-out použít?</h3>
+    <ul>
+      <li><strong>AI vás cituje, ale nikdo nekliká</strong> — pokud AI odpovídá za vás tak dobře, že uživatelé nepotřebují přejít na váš web, opt-out může přimět lidi hledat dál a kliknout.</li>
+      <li><strong>Chcete kontrolu nad tím, jak AI váš obsah prezentuje</strong> — AI může citovat obsah vytržený z kontextu nebo ho zkrátit způsobem, který vám nevyhovuje.</li>
+      <li><strong>Máte přísně chráněný obsah</strong> — e-shopy, právní kanceláře nebo zdravotnické weby mohou mít zájem o to, aby AI jejich specifický obsah nescrapovala do odpovědí.</li>
+    </ul>
+
+    <h3>Kdy opt-out nepoužívat?</h3>
+    <ul>
+      <li><strong>AI vám přivádí zákazníky</strong> — pokud z AI impressions vznikají návštěvy a poptávky, nechte to být.</li>
+      <li><strong>Chcete budovat autoritu</strong> — citace v AI Overviews zvyšují důvěryhodnost vašeho webu jako zdroje. To má dlouhodobou hodnotu.</li>
+      <li><strong>Jste malá firma nebo živnostník</strong> — pro lokální weby (webdesign Nový Jičín, účetnictví Ostrava…) je každé zobrazení v AI příležitost k brand awareness.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p>✅ <strong>Dobré vědět:</strong> Opt-out z AI výsledků <strong>neovlivní vaše pozice v klasickém Google Search</strong>. Pokud vypnete AI zobrazení, váš web bude dál indexovaný a rankovatelný v běžném organickém vyhledávání.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2>Co z toho plyne pro váš web?</h2>
+    <p>Tato novinka je důkaz, že <strong>AI vyhledávání se stává standardem</strong>, ne experiment. Google poprvé poskytl webmasterům transparentní data o tom, co se děje uvnitř AI — a to je velký krok.</p>
+    <p>Pro malé weby a živnostníky to znamená hlavně jedno: <strong>začněte sledovat, jestli vás AI vůbec cituje</strong>. Pokud ne, je čas zapracovat na obsahu — konkrétní, autoritativní, strukturovaný text s jasnou odpovědí na otázky zákazníků. Přesně to, co AI ráda přebírá jako zdroj.</p>
+    <p>Pokud ano, sledujte, které stránky AI preferuje. Ty pak rozšiřte, aktualizujte a propojte s ostatním obsahem na webu.</p>
+
+    <h3>Tři kroky co udělat hned</h3>
+    <ol>
+      <li>Přihlaste se do <strong>Google Search Console</strong> a zkontrolujte, zda sekce Generative AI performance je u vás dostupná.</li>
+      <li>Podívejte se, které stránky mají nejvíce AI impressions — to jsou vaše nejhodnotnější stránky pro AI éru.</li>
+      <li>Neměňte opt-out toggle jen tak. Před jakoukoliv změnou počkejte aspoň 30 dní dat a porovnejte, jestli AI impressions korelují s reálnými poptávkami.</li>
+    </ol>
+
+    <div class="divider"></div>
+
+    <div class="author-box">
+      <div class="author-text">
+        <h3>Gabriela Janýšková — Janyskova Digital</h3>
+        <p>Tvořím weby na míru pro živnostníky a malé firmy. Čistý kód, PageSpeed 100, SEO i AEO. Sídlím v Novém Jičíně, pracuji online po celé ČR.</p>
+        <a href="/#kontakt">Chcete web, který vás AI najde? Napište mi →</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Janyskova <em>Digital</em></a>
+    <span>© 2026 Gabriela Janýšková</span>
+    <div style="display:flex;gap:20px;">
+      <a href="/blog.html">Blog</a>
+      <a href="/gdpr.html">GDPR</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="/#kontakt">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const h=document.getElementById('hamburger'),m=document.getElementById('mobile-menu');
+if(h&&m){h.addEventListener('click',()=>{const o=h.classList.toggle('open');m.classList.toggle('open');h.setAttribute('aria-expanded',o);});m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{h.classList.remove('open');m.classList.remove('open');h.setAttribute('aria-expanded','false');}));}
+</script>
+</body>
+</html>
