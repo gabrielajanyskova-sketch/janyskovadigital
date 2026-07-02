@@ -197,7 +197,7 @@
 </script>
 
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=5">
 <style>
 .race-wrap{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
 .race-browser{flex:1;min-width:260px;max-width:380px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(21,15,30,0.8);}
@@ -987,24 +987,6 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 
 
 <script src="/main.js" defer></script>
-<script>
-// Animace skóre 0→100
-setTimeout(function(){
-  document.querySelectorAll('.score-num').forEach(function(el){
-    var target = parseInt(el.dataset.target, 10);
-    var startTime = performance.now();
-    var duration = 1400;
-    function tick(now){
-      var p = Math.min((now - startTime) / duration, 1);
-      var ease = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(ease * target);
-      if(p < 1) requestAnimationFrame(tick);
-      else el.textContent = target;
-    }
-    requestAnimationFrame(tick);
-  });
-}, 600);
-</script>
 </body>
 </html>
 
