@@ -1007,8 +1007,11 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
       requestAnimationFrame(tick);
     });
   }
-  // Zpoždění 800ms — uživatel vidí nuly, pak animaci
-  window.addEventListener('load', function(){ setTimeout(runScore, 800); });
+  if(document.readyState === 'complete'){
+    setTimeout(runScore, 800);
+  } else {
+    window.addEventListener('load', function(){ setTimeout(runScore, 800); });
+  }
 })();
 </script>
 </body>

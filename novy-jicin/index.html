@@ -747,7 +747,11 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
       requestAnimationFrame(tick);
     });
   }
-  window.addEventListener('load', function(){ setTimeout(runScore, 800); });
+  if(document.readyState === 'complete'){
+    setTimeout(runScore, 800);
+  } else {
+    window.addEventListener('load', function(){ setTimeout(runScore, 800); });
+  }
 })();
 
 const mouseGlow = document.querySelector('.mouse-glow');
