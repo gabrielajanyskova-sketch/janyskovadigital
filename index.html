@@ -198,6 +198,44 @@
 
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
 <link rel="stylesheet" href="/style.css?v=4">
+<style>
+.race-wrap{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.race-browser{flex:1;min-width:260px;max-width:380px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(21,15,30,0.8);}
+.race-bar-top{background:rgba(30,22,45,0.95);padding:10px 14px;display:flex;align-items:center;gap:10px;}
+.race-dots{display:flex;gap:5px;}
+.race-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.12);}
+.race-url{font-size:11px;color:var(--text-dim);background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 10px;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.race-screen{padding:20px;min-height:160px;position:relative;}
+.race-loading-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:20px;overflow:hidden;}
+.race-fill{height:100%;border-radius:2px;width:0;}
+.race-fill-slow{background:#ff6b6b;animation:fillSlow 3.8s ease-out infinite;}
+.race-fill-fast{background:var(--green);animation:fillFast 0.4s ease-out infinite;}
+@keyframes fillSlow{0%{width:0;}90%{width:85%;}100%{width:85%;}}
+@keyframes fillFast{0%{width:0;}60%{width:100%;}100%{width:100%;}}
+.race-skeleton{display:flex;flex-direction:column;gap:10px;opacity:0;animation:skelAppear 3.8s ease-out infinite;}
+@keyframes skelAppear{0%,85%{opacity:0;}90%,100%{opacity:1;}}
+.race-skel{height:12px;border-radius:6px;background:rgba(255,255,255,0.06);}
+.race-skel-h{width:70%;height:18px;}
+.race-skel-p{width:90%;}
+.race-skel-p.short{width:55%;}
+.race-skel-btn{width:40%;height:28px;border-radius:20px;background:rgba(240,20,122,0.12);margin-top:4px;}
+.race-content{display:flex;flex-direction:column;gap:10px;opacity:0;animation:contentAppear 0.4s ease-out infinite;}
+@keyframes contentAppear{0%{opacity:0;}50%,100%{opacity:1;}}
+.race-content-h{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);}
+.race-content-p{font-size:13px;color:var(--text-dim);}
+.race-content-btn{display:inline-block;background:var(--pink);color:white;font-size:13px;font-weight:700;padding:8px 18px;border-radius:50px;width:fit-content;margin-top:4px;}
+.race-time{position:absolute;top:20px;right:16px;font-size:12px;font-weight:700;}
+.race-time-slow{color:#ff6b6b;}
+.race-time-fast{color:var(--green);}
+.race-label{text-align:center;padding:12px;font-size:13px;font-weight:700;border-top:1px solid var(--border);}
+.race-label-bad{color:#ff6b6b;}
+.race-label-good{color:var(--green);}
+.race-score-badge{text-align:center;font-size:12px;font-weight:700;padding:6px;letter-spacing:1px;}
+.race-score-badge.bad{color:#ff6b6b;background:rgba(255,107,107,0.06);}
+.race-score-badge.good{color:var(--green);background:rgba(0,229,160,0.06);}
+.race-vs{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text-dim);opacity:0.4;flex-shrink:0;}
+@media(max-width:640px){.race-vs{display:none;}.race-browser{min-width:100%;}}
+</style>
 <style id="mobile-lcp">@media(max-width:900px){.hero{padding:30px 0 20px!important;min-height:0!important}.hero-right{display:none!important}.about-section{padding:30px 0!important}}</style>
 <style>
 :root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
@@ -327,10 +365,10 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
           <div class="hero-card-row"><span class="hero-card-label">Doména ročně</span><span class="hero-card-val val-white">~200 Kč</span></div>
           <div class="hero-card-row"><span class="hero-card-label">Dodání webu</span><span class="hero-card-val val-pink">7–10 dní</span></div>
           <div class="hero-scores">
-            <div class="score-pill"><span>100</span><small>Performance</small></div>
-            <div class="score-pill"><span>100</span><small>SEO</small></div>
-            <div class="score-pill"><span>100</span><small>Accessibility</small></div>
-            <div class="score-pill"><span>100</span><small>Best Practices</small></div>
+            <div class="score-pill"><span class="score-num" data-target="100">0</span><small>Performance</small></div>
+            <div class="score-pill"><span class="score-num" data-target="100">0</span><small>SEO</small></div>
+            <div class="score-pill"><span class="score-num" data-target="100">0</span><small>Accessibility</small></div>
+            <div class="score-pill"><span class="score-num" data-target="100">0</span><small>Best Practices</small></div>
           </div>
         </div>
       </div>
@@ -368,6 +406,58 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
   </div>
 </section>
 
+
+<div class="section-divider"></div>
+
+<section class="speed-race-section" style="padding: 90px 0; position:relative; z-index:1;">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center;">Rychlost rozhoduje</div>
+    <h2 class="section-title" style="text-align:center;">3 sekundy čekání = <em>polovina zákazníků odejde.</em></h2>
+    <p style="text-align:center; color:var(--text-dim); max-width:560px; margin:0 auto 56px; font-size:17px; line-height:1.7;">Google to ví. Zákazníci to cítí. Podívejte se na rozdíl živě.</p>
+    <div class="race-wrap">
+      <div class="race-browser race-slow">
+        <div class="race-bar-top">
+          <div class="race-dots"><span></span><span></span><span></span></div>
+          <div class="race-url">váš-starý-web.cz</div>
+        </div>
+        <div class="race-screen">
+          <div class="race-loading-bar"><div class="race-fill race-fill-slow"></div></div>
+          <div class="race-skeleton">
+            <div class="race-skel race-skel-h"></div>
+            <div class="race-skel race-skel-p"></div>
+            <div class="race-skel race-skel-p short"></div>
+            <div class="race-skel race-skel-btn"></div>
+          </div>
+          <div class="race-time race-time-slow">⏱ 3,8 s</div>
+        </div>
+        <div class="race-label race-label-bad">Starý web / WordPress</div>
+        <div class="race-score-badge bad">PageSpeed 52</div>
+      </div>
+      <div class="race-vs">VS</div>
+      <div class="race-browser race-fast">
+        <div class="race-bar-top">
+          <div class="race-dots"><span></span><span></span><span></span></div>
+          <div class="race-url">janyskovadigital.cz</div>
+        </div>
+        <div class="race-screen">
+          <div class="race-loading-bar"><div class="race-fill race-fill-fast"></div></div>
+          <div class="race-content">
+            <div class="race-content-h">Váš nový web</div>
+            <div class="race-content-p">Čistý kód · Žádný WordPress</div>
+            <div class="race-content-btn">Poptávka →</div>
+          </div>
+          <div class="race-time race-time-fast">⚡ 0,4 s</div>
+        </div>
+        <div class="race-label race-label-good">Web od Janýškové</div>
+        <div class="race-score-badge good">PageSpeed 100</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:40px; font-size:13px; color:var(--text-dim); font-style:italic;">Hodnoty jsou ilustrační. Průměrný WordPress web: PageSpeed 40–65. Moje weby: 95–100.</p>
+    <div style="text-align:center; margin-top:32px;">
+      <a href="#kontakt" class="btn-primary">Chci taky takový web →</a>
+    </div>
+  </div>
+</section>
 
 <div class="section-divider"></div>
 
@@ -897,6 +987,37 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 
 
 <script src="/main.js" defer></script>
+<script>
+// Animace skóre 0→100
+(function(){
+  const nums = document.querySelectorAll('.score-num');
+  if(!nums.length) return;
+  let started = false;
+  const scoreObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting && !started){
+        started = true;
+        nums.forEach(el => {
+          const target = parseInt(el.dataset.target, 10);
+          const start = performance.now();
+          const duration = 1400;
+          function tick(now){
+            const p = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(ease * target);
+            if(p < 1) requestAnimationFrame(tick);
+            else el.textContent = target;
+          }
+          requestAnimationFrame(tick);
+        });
+        scoreObs.disconnect();
+      }
+    });
+  }, {threshold: 0.5});
+  const scoreEl = document.querySelector('.hero-scores');
+  if(scoreEl) scoreObs.observe(scoreEl);
+})();
+</script>
 </body>
 </html>
 
