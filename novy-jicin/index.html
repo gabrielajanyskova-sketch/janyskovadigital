@@ -732,30 +732,22 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 (function(){
   const nums = document.querySelectorAll('.score-num');
   if(!nums.length) return;
-  let started = false;
-  const scoreObs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting && !started){
-        started = true;
-        nums.forEach(el => {
-          const target = parseInt(el.dataset.target, 10);
-          const duration = 1400;
-          const start = performance.now();
-          function tick(now){
-            const p = Math.min((now - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(ease * target);
-            if(p < 1) requestAnimationFrame(tick);
-            else el.textContent = target;
-          }
-          requestAnimationFrame(tick);
-        });
-        scoreObs.disconnect();
+  function runScore(){
+    nums.forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      const startTime = performance.now();
+      const duration = 1400;
+      function tick(now){
+        const p = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target);
+        if(p < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
       }
+      requestAnimationFrame(tick);
     });
-  }, {threshold: 0.5});
-  const scoreEl = document.querySelector('.hero-scores');
-  if(scoreEl) scoreObs.observe(scoreEl);
+  }
+  window.addEventListener('load', function(){ setTimeout(runScore, 800); });
 })();
 
 const mouseGlow = document.querySelector('.mouse-glow');
