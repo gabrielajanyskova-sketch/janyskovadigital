@@ -1,0 +1,24 @@
+# Přesměrování blog článků bez .html přípony na kanonické .html URL
+# Cloudflare Pages: 301 = trvalé přesměrování
+/blog/ai-vyhledavani                        /blog/ai-vyhledavani.html                        301
+/blog/cena-webu-novy-jicin                  /blog/cena-webu-novy-jicin.html                  301
+/blog/eshop-bez-shoptetu                    /blog/eshop-bez-shoptetu.html                    301
+/blog/google-ai-mode-miliarda-uzivatelu     /blog/google-ai-mode-miliarda-uzivatelu.html     301
+/blog/google-faq-snippety-2026              /blog/google-faq-snippety-2026.html              301
+/blog/google-search-console-ai-cerven-2026  /blog/google-search-console-ai-cerven-2026.html  301
+/blog/jak-vybrat-webdesignera               /blog/jak-vybrat-webdesignera.html               301
+/blog/muze-ai-vytvorit-web                  /blog/muze-ai-vytvorit-web.html                  301
+/blog/proc-nepotrebujes-wordpress           /blog/proc-nepotrebujes-wordpress.html           301
+/blog/proc-web-nikdo-nenajde                /blog/proc-web-nikdo-nenajde.html                301
+/blog/proc-web-v-ostrave-nenajdou           /blog/proc-web-v-ostrave-nenajdou.html           301
+/blog/rychlost-webu                         /blog/rychlost-webu.html                         301
+/blog/seo-meta-schema-cervenec-2026         /blog/seo-meta-schema-cervenec-2026.html         301
+/blog/trendy-webdesign-2026                 /blog/trendy-webdesign-2026.html                 301
+
+# Přesměrování ostatních stránek s .html příponou (pokud někdo přijde přes starou URL)
+/grafika                                    /grafika.html                                    301
+/eshop                                      /eshop.html                                      301
+/blog                                       /blog.html                                       301
+/ochrana-udaju                              /ochrana-udaju.html                              301
+/cookies                                    /cookies.html                                    301
+/gdpr                                       /gdpr.html                                       301
