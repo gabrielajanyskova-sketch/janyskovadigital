@@ -554,12 +554,6 @@
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Nastavení cookies">
-  <p class="cookie-text"><strong>Nastavení cookies.</strong> Tento web používá soubory cookies k měření návštěvnosti. Více v <a href="/ochrana-udaju.html">Ochraně osobních údajů</a>.</p>
-  <div class="cookie-btns">
-    <button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button>
-    <button id="cookie-accept" class="cookie-btn cookie-accept">Přijmout</button>
-  </div>
 </div>
 
 <a href="https://wa.me/420739395800" target="_blank" rel="noopener noreferrer" aria-label="Napište přes WhatsApp" style="position:fixed; bottom:28px; right:28px; width:54px; height:54px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:9998; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -567,11 +561,7 @@
 </a>
 
 <script>
-const GA_ID = 'G-TMSH0HC2SH';
-function loadGA() { if (window.ga_loaded) return; window.ga_loaded = true; const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(s); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', GA_ID); }
-const banner = document.getElementById('cookie-banner');
-function hideBanner() { banner.classList.remove('show'); setTimeout(() => { banner.style.display = 'none'; }, 400); }
-window.addEventListener('DOMContentLoaded', () => { const c = localStorage.getItem('cookie-consent'); if (c === 'accepted') { loadGA(); } else if (c !== 'rejected') { setTimeout(() => banner.classList.add('show'), 1200); } });
+
 document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBanner(); loadGA(); });
 document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBanner(); });
 

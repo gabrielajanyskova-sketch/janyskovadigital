@@ -185,14 +185,14 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
 .footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-dim);}
 .footer-bottom a{color:var(--text-dim);text-decoration:none;}
 .footer-bottom a:hover{color:var(--pink);}
-.cookie-banner{position:fixed;bottom:24px;left:24px;max-width:420px;background:rgba(18,12,28,0.97);border:1px solid rgba(240,20,122,0.25);border-radius:16px;padding:20px 24px;z-index:9999;display:none;flex-direction:column;gap:14px;backdrop-filter:blur(20px);box-shadow:0 8px 40px rgba(0,0,0,0.5);}
-.cookie-banner.show{display:flex;}
-.cookie-text{font-size:13px;color:rgba(245,240,250,0.8);line-height:1.5;}
+
+
+
 .cookie-text a{color:var(--pink);text-decoration:none;}
-.cookie-btns{display:flex;gap:10px;}
-.cookie-btn{padding:8px 18px;border-radius:100px;border:none;cursor:pointer;font-size:13px;font-weight:600;transition:all 0.2s;}
-.cookie-accept{background:var(--pink);color:white;}
-.cookie-reject{background:rgba(245,240,250,0.08);color:rgba(245,240,250,0.6);border:1px solid rgba(245,240,250,0.15);}
+
+
+
+
 </style>
 </head>
 <body>
@@ -363,12 +363,6 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   </div>
 </footer>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Nastavení cookies">
-  <p class="cookie-text"><strong>Nastavení cookies.</strong> Tento web používá soubory cookies k měření návštěvnosti. Více v <a href="/ochrana-udaju.html">Ochraně osobních údajů</a>.</p>
-  <div class="cookie-btns">
-    <button id="cookie-reject" class="cookie-btn cookie-reject">Odmítnout</button>
-    <button id="cookie-accept" class="cookie-btn cookie-accept">Přijmout</button>
-  </div>
 </div>
 
 <a href="https://wa.me/420739395800" target="_blank" rel="noopener noreferrer" aria-label="Napište přes WhatsApp" style="position:fixed; bottom:28px; right:28px; width:54px; height:54px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:9998; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
@@ -394,11 +388,7 @@ hamburger.addEventListener('click', () => {
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
 
-const GA_ID = 'G-TMSH0HC2SH';
-function loadGA() { if (window.ga_loaded) return; window.ga_loaded = true; const s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID; document.head.appendChild(s); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} window.gtag = gtag; gtag('js', new Date()); gtag('config', GA_ID); }
-const banner = document.getElementById('cookie-banner');
-function hideBanner() { banner.classList.remove('show'); setTimeout(() => { banner.style.display = 'none'; }, 400); }
-window.addEventListener('DOMContentLoaded', () => { const c = localStorage.getItem('cookie-consent'); if (c === 'accepted') { loadGA(); } else if (c !== 'rejected') { setTimeout(() => banner.classList.add('show'), 1200); } });
+
 document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBanner(); loadGA(); });
 document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBanner(); });
 </script>
