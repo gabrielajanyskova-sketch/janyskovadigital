@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proč váš web nepotřebuje cookie lištu — a co to znamená pro zákazníky | Janyskova Digital</title>
+<meta name="description" content="Většina webů otravuje návštěvníky cookie bannerem hned na vstupu. Existují weby, které ho nepotřebují vůbec. Jak to funguje a co z toho plyne pro váš business.">
+<meta property="og:title" content="Proč váš web nepotřebuje cookie lištu — a co to znamená pro zákazníky">
+<meta property="og:description" content="Většina webů otravuje návštěvníky cookie bannerem hned na vstupu. Existují weby, které ho nepotřebují vůbec. Jak to funguje a co z toho plyne.">
+<meta property="og:url" content="https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:alt" content="Proč váš web nepotřebuje cookie lištu — Janyskova Digital">
+<meta property="article:published_time" content="2026-07-05">
+<meta property="article:modified_time" content="2026-07-05">
+<meta property="article:author" content="Gabriela Janýšková">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Proč váš web nepotřebuje cookie lištu — a co to znamená pro zákazníky">
+<meta name="twitter:description" content="Většina webů otravuje návštěvníky cookie bannerem hned na vstupu. Existují weby, které ho nepotřebují vůbec.">
+<meta name="twitter:image" content="https://janyskovadigital.cz/og-image.png">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu.html">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
+<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
+<meta name="geo.region" content="CZ-80">
+<meta name="geo.placename" content="Nový Jičín">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Proč váš web nepotřebuje cookie lištu — a co to znamená pro zákazníky","description":"Většina webů otravuje návštěvníky cookie bannerem hned na vstupu. Existují weby, které ho nepotřebují vůbec. Jak to funguje a co z toho plyne pro váš business.","image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-07-05","dateModified":"2026-07-05","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu.html"},"keywords":"cookie lišta web, gdpr cookie banner, web bez cookie lišty, statický web gdpr, cookie souhlas zákon"}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Musí mít každý web cookie lištu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ne. Cookie lišta (souhlas s cookies) je povinná jen tehdy, když web skutečně používá sledovací nebo analytické cookies. Pokud web nepoužívá žádné třetí strany ani tracking skripty, cookie banner není potřeba — a je dokonce právně nesprávné ho zobrazovat, protože nemáte co žádat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co způsobuje nutnost cookie lišty?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cookie lištu vyžaduje použití Google Analytics, Meta Pixel (Facebook reklamy), YouTube embedů, Google Fonts načítaných z CDN, chat widgetů (Tawk, Intercom), reklamních sítí nebo jakéhokoli externího skriptu, který ukládá cookies do prohlížeče návštěvníka."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak mohu mít statistiky webu bez cookie lišty?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Existují analytické nástroje, které nepotřebují souhlas s cookies — například Fathom Analytics, Plausible nebo Cloudflare Web Analytics. Tato řešení měří návštěvnost bez ukládání cookies a jsou plně v souladu s GDPR. Cloudflare Analytics je navíc zdarma."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Je web bez cookie lišty horší z hlediska SEO?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ne, naopak. Google při hodnocení stránek zohledňuje rychlost načítání a uživatelský zážitek. Web bez cookie banneru se načte rychleji (žádné externí skripty) a zákazník hned vidí obsah — bez překážky v podobě vyskakovacího okna. To je pro SEO i konverze lepší."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Potřebuji na webu zásady ochrany osobních údajů, i když nemám cookies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Zásady ochrany osobních údajů (privacy policy) jsou povinné vždy, pokud zpracováváte jakékoli osobní údaje — například přes kontaktní formulář nebo e-mailový odkaz. Cookie lišta a privacy policy jsou dvě různé věci. Cookie banner může chybět, privacy policy ne."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Domů", "item": "https://janyskovadigital.cz/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://janyskovadigital.cz/blog.html"},
+    {"@type": "ListItem", "position": 3, "name": "Proč váš web nepotřebuje cookie lištu", "item": "https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu.html"}
+  ]
+}
+</script>
+<style>
+@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
+@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
+@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
+
+:root {
+  --bg: #08060c;
+  --bg2: #0f0b16;
+  --pink: #f0147a;
+  --text: #f5f0fa;
+  --text-dim: #b8a8cc;
+  --border: rgba(240,20,122,0.18);
+  --card: rgba(21,15,30,0.9);
+  --green: #00e5a0;
+  --term-bg: #0a0a0f;
+  --term-border: rgba(240,20,122,0.25);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;}
+.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+.b1{width:550px;height:550px;background:radial-gradient(circle,rgba(240,20,122,0.28) 0%,transparent 65%);top:-15%;left:-15%;animation:bf1 18s ease-in-out infinite;}
+.b2{width:400px;height:400px;background:radial-gradient(circle,rgba(180,10,90,0.15) 0%,transparent 65%);bottom:5%;right:-10%;animation:bf2 22s ease-in-out infinite;}
+@keyframes bf1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(35px,-25px) scale(1.05);}}
+@keyframes bf2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-28px,22px) scale(1.07);}}
+
+nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba(8,6,12,0.75);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-family:'DM Serif Display',serif;font-size:20px;text-decoration:none;color:var(--text);}
+.logo em{font-style:italic;color:var(--pink);}
+.nav-links{display:flex;align-items:center;}
+.nav-links a{margin-left:24px;text-decoration:none;color:var(--text-dim);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;transition:color 0.2s;}
+.nav-links a:hover{color:var(--pink);}
+.nav-links a.cta{color:var(--pink);border:1px solid rgba(240,20,122,0.3);padding:7px 18px;border-radius:100px;}
+.nav-links a.cta:hover{background:var(--pink);color:white;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100;}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--text);transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
+.fullscreen-menu{position:fixed;inset:0;background:rgba(8,6,12,0.98);backdrop-filter:blur(20px);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
+.fullscreen-menu.open{opacity:1;pointer-events:all;}
+.fullscreen-menu a{font-family:'DM Serif Display',serif;font-size:clamp(32px,8vw,60px);color:rgba(245,240,250,0.2);text-decoration:none;padding:6px 0;opacity:0;transform:translateY(20px);transition:color 0.2s,opacity 0.4s ease,transform 0.4s ease;}
+.fullscreen-menu.open a{opacity:1;transform:translateY(0);}
+.fullscreen-menu.open a:nth-child(1){transition-delay:0.05s;}
+.fullscreen-menu.open a:nth-child(2){transition-delay:0.1s;}
+.fullscreen-menu.open a:nth-child(3){transition-delay:0.15s;}
+.fullscreen-menu.open a:nth-child(4){transition-delay:0.2s;}
+.fullscreen-menu.open a:nth-child(5){transition-delay:0.25s;}
+.fullscreen-menu a:hover{color:var(--pink);}
+.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:28px;letter-spacing:1px;opacity:0;transition:opacity 0.4s ease 0.3s;}
+.fullscreen-menu.open .menu-sub{opacity:1;}
+@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+
+main{position:relative;z-index:1;padding:60px 0 100px;}
+.container{max-width:760px;margin:0 auto;padding:0 28px;}
+.back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
+.back:hover{color:var(--pink);}
+.back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.article-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:18px;}
+.article-tag::before{content:'';width:20px;height:1px;background:var(--pink);}
+.article-title{font-size:clamp(32px,5vw,54px);line-height:1.08;letter-spacing:-0.5px;margin-bottom:20px;}
+.article-title em{font-style:italic;color:var(--pink);}
+.article-meta{display:flex;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;color:var(--text-dim);margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid rgba(240,20,122,0.1);}
+.meta-dot{width:4px;height:4px;border-radius:50%;background:rgba(240,20,122,0.4);}
+
+.article-body p{font-size:16px;color:var(--text-dim);line-height:1.85;margin-bottom:22px;}
+.article-body p strong{color:var(--text);font-weight:600;}
+.article-body h2{font-size:26px;color:var(--text);margin:56px 0 16px;line-height:1.2;}
+.article-body h2::before{content:'';display:inline-block;width:4px;height:24px;background:var(--pink);border-radius:2px;margin-right:14px;vertical-align:middle;}
+.article-body ul{margin:0 0 22px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
+.article-body li{font-size:15px;color:var(--text-dim);line-height:1.7;padding-left:22px;position:relative;}
+.article-body ul li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:rgba(240,20,122,0.4);border:1px solid rgba(240,20,122,0.6);}
+.article-body a{color:var(--pink);text-decoration:none;}
+.article-body a:hover{text-decoration:underline;}
+
+.highlight{background:rgba(240,20,122,0.05);border:1px solid var(--border);border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:15px;color:var(--text-dim);line-height:1.75;}
+.highlight strong{color:var(--text);}
+
+/* Vizuální srovnání */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 32px 0;
+}
+.compare-card {
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.compare-card.bad {
+  background: rgba(255,59,48,0.06);
+  border: 1px solid rgba(255,59,48,0.2);
+}
+.compare-card.good {
+  background: rgba(0,229,160,0.05);
+  border: 1px solid rgba(0,229,160,0.2);
+}
+.compare-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.compare-card.bad  .compare-label { color: #ff3b30; }
+.compare-card.good .compare-label { color: var(--green); }
+.compare-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  color: var(--text);
+  line-height: 1.2;
+}
+.compare-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 0;
+}
+.compare-list li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.compare-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.compare-card.bad  .compare-list li::before { background: rgba(255,59,48,0.5); }
+.compare-card.good .compare-list li::before { background: rgba(0,229,160,0.5); }
+@media(max-width:560px){ .compare-grid { grid-template-columns: 1fr; } }
+
+/* Tip box */
+.tip-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+.tip-box-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 10px;
+}
+.tip-box p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 0 !important;
+}
+.tip-box p strong { color: var(--text); }
+
+/* Checker tool */
+.checker {
+  background: rgba(10,10,15,0.9);
+  border: 1px solid rgba(240,20,122,0.2);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 32px 0;
+}
+.checker-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  letter-spacing: 0.3px;
+}
+.checker-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+}
+.checker-item:last-child { border-bottom: none; }
+.checker-box {
+  width: 18px; height: 18px;
+  border: 1.5px solid rgba(240,20,122,0.4);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.checker-item.checked .checker-box {
+  background: var(--pink);
+  border-color: var(--pink);
+}
+.checker-item.checked .checker-box::after {
+  content: '✓';
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+.checker-text {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.checker-item.checked .checker-text {
+  color: rgba(184,168,204,0.45);
+  text-decoration: line-through;
+}
+.checker-note {
+  font-size: 12px;
+  color: rgba(240,20,122,0.7);
+  margin-top: 2px;
+}
+
+/* CTA */
+.article-cta{margin-top:72px;background:linear-gradient(135deg,rgba(240,20,122,0.08) 0%,rgba(180,10,90,0.04) 100%);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;}
+.article-cta h3{font-size:28px;margin-bottom:12px;}
+.article-cta p{color:var(--text-dim);font-size:15px;margin-bottom:28px;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:white;text-decoration:none;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;letter-spacing:0.3px;transition:opacity 0.2s;}
+.btn-primary:hover{opacity:0.88;text-decoration:none;}
+
+/* Related */
+.related{margin-top:72px;}
+.related-title{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px;text-decoration:none;transition:border-color 0.2s;}
+.related-card:hover{border-color:rgba(240,20,122,0.4);text-decoration:none;}
+.related-card-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.related-card-title{font-size:15px;color:var(--text);line-height:1.35;}
+@media(max-width:560px){.related-grid{grid-template-columns:1fr;}}
+
+footer{border-top:1px solid rgba(240,20,122,0.08);padding:40px 28px;text-align:center;position:relative;z-index:1;}
+footer p{font-size:13px;color:rgba(184,168,204,0.4);}
+footer a{color:var(--pink);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+
+<div class="fullscreen-menu" id="fullscreenMenu">
+  <a href="/">Domů</a>
+  <a href="/blog.html">Blog</a>
+  <a href="/#sluzby">Služby</a>
+  <a href="/#kontakt">Kontakt</a>
+  <span class="menu-sub">janyskovadigital.cz</span>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="/blog.html">Blog</a>
+      <a href="/#sluzby">Služby</a>
+      <a href="/#kontakt" class="cta">Napište mi</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="container">
+
+    <a href="/blog.html" class="back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Zpět na blog
+    </a>
+
+    <div class="article-tag">GDPR · Web</div>
+
+    <h1 class="article-title">
+      Proč váš web nepotřebuje<br>
+      <em>cookie lištu</em>
+    </h1>
+
+    <div class="article-meta">
+      <span>Gabriela Janýšková</span>
+      <div class="meta-dot"></div>
+      <span>5. července 2026</span>
+      <div class="meta-dot"></div>
+      <span>5 min čtení</span>
+    </div>
+
+    <div class="article-body">
+
+      <p>Otevřete téměř jakýkoli web a první, co uvidíte, je překryvné okno: <em>„Tento web používá cookies. Souhlasíte?"</em> Většina lidí klikne na „Přijmout vše" ještě dřív, než si přečte, co na stránce vlastně je. Zákazník je otravovaný, majitel webu si myslí, že je chráněný zákonem — a přitom ani jedna strana neví proč to tam vlastně je.</p>
+
+      <p>Tady je věc, kterou málokdo ví: <strong>cookie banner není povinný pro každý web. Je povinný jen tehdy, když web cookies skutečně používá.</strong> A to je rozdíl, který mění úplně všechno.</p>
+
+      <h2>Co cookie lišta vlastně řeší</h2>
+
+      <p>Cookie banner vznikl kvůli evropské směrnici a GDPR. Zákon říká: pokud chcete do prohlížeče zákazníka ukládat cookies (zejména sledovací a analytické), musíte o to nejdřív požádat a dostat souhlas.</p>
+
+      <p>Klíčové slovo je <strong>„pokud chcete"</strong>. Zákon nevyžaduje cookies — vyžaduje souhlas předtím, než je použijete. Pokud cookies nepoužíváte, souhlas žádat nemusíte. Je to tak jednoduché.</p>
+
+      <div class="highlight">
+        <strong>Zobrazovat cookie banner bez cookies je právně nesprávné.</strong> Žádáte zákazníka o souhlas s něčím, co neexistuje. Není to ochrana — je to zbytečná překážka, která zákazníka zdržuje a snižuje důvěru.
+      </div>
+
+      <h2>Co cookies na webu způsobuje</h2>
+
+      <p>Většina webů cookies používá — a jejich majitelé o tom mnohdy ani nevědí. Za cookie bannerem stojí nejčastěji tyto věci:</p>
+
+      <div class="compare-grid">
+        <div class="compare-card bad">
+          <div class="compare-label">Způsobuje cookie banner</div>
+          <div class="compare-title">Co ho přináší</div>
+          <ul class="compare-list">
+            <li>Google Analytics (GA4)</li>
+            <li>Meta Pixel (Facebook reklamy)</li>
+            <li>YouTube embed videa</li>
+            <li>Google Fonts z CDN</li>
+            <li>Chat widgety (Tawk, Crisp)</li>
+            <li>WordPress pluginy</li>
+            <li>Reklamní sítě</li>
+          </ul>
+        </div>
+        <div class="compare-card good">
+          <div class="compare-label">Bez cookie banneru</div>
+          <div class="compare-title">Jak to vypadá</div>
+          <ul class="compare-list">
+            <li>Žádné analytické skripty třetích stran</li>
+            <li>Fonty nahrané lokálně na serveru</li>
+            <li>Žádné reklamní pixely</li>
+            <li>Statický HTML web bez CMS</li>
+            <li>Cloudflare Analytics (cookie-free)</li>
+            <li>Kontakt přes e-mail nebo formulář bez trackingu</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Všimněte si — Google Fonts z CDN způsobují cookie banner. To je důvod, proč všechny weby, které stavím, mají fonty nahrané přímo na serveru. Nejen kvůli rychlosti, ale i kvůli soukromí zákazníka.</p>
+
+      <h2>Co tím zákazník získá</h2>
+
+      <p>Zákazník, který přijde na váš web a nevidí překryvné okno, zažívá něco, co je dnes vzácné: <strong>rovnou vidí obsah</strong>. Nemusí nic odklikat, nic rozhodovat, nic číst. Web prostě funguje.</p>
+
+      <p>To je malý detail s velkým dopadem. Každý krok navíc mezi příchodem zákazníka a jeho prvním kontaktem s vaším obsahem zvyšuje pravděpodobnost, že odejde. Cookie banner je přesně takový zbytečný krok.</p>
+
+      <div class="tip-box">
+        <div class="tip-box-label">Praktický dopad</div>
+        <p>Studie z roku 2023 ukázaly, že weby s agresivními cookie bannery (kde není snadné odmítnout) mají o 10–15 % vyšší míru okamžitého opuštění stránky. Zákazník odejde dřív, než vůbec uvidí, co nabízíte.</p>
+      </div>
+
+      <h2>A co statistiky? Jak vím, kolik lidí web navštívilo?</h2>
+
+      <p>To je nejčastější otázka. Odpověď: existují analytické nástroje, které cookies vůbec nepotřebují.</p>
+
+      <p><strong>Cloudflare Web Analytics</strong> je zdarma a měří návštěvnost bez jakýchkoli cookies. Vidíte počty návštěv, nejpopulárnější stránky, ze kterých zemí lidé přicházejí — a přitom nezpracováváte žádné osobní údaje a nepotřebujete souhlas.</p>
+
+      <p>Placené alternativy jako <strong>Plausible</strong> nebo <strong>Fathom</strong> nabízejí ještě detailnější data, opět bez cookies a plně v souladu s GDPR. Jsou to čisté nástroje pro lidi, kteří chtějí data, ne sledovací aparát.</p>
+
+      <h2>Je web bez cookies horší pro SEO?</h2>
+
+      <p>Není — naopak. Google při hodnocení stránek měří rychlost a uživatelský zážitek (Core Web Vitals). Web bez externích skriptů se načte rychleji, protože nemusí čekat na odpověď Google Analytics serverů, Facebook Pixelu nebo jiných třetích stran.</p>
+
+      <p>Navíc — zákazník, který hned vidí obsah bez překážky, déle zůstane na stránce. Nižší míra okamžitého opuštění je signál, který Google interpretuje jako „tenhle web je relevantní". To pomáhá pozicím.</p>
+
+      <h2>Potřebuji stále zásady ochrany osobních údajů?</h2>
+
+      <p>Ano — a tady je důležité rozlišit dvě různé věci. <strong>Cookie banner</strong> a <strong>zásady ochrany osobních údajů</strong> (privacy policy) jsou odlišné dokumenty s odlišnými povinnostmi.</p>
+
+      <p>Privacy policy potřebujete vždy, pokud na webu zpracováváte osobní údaje — například přes kontaktní formulář nebo e-mailový odkaz. E-mailová adresa je osobní údaj. Cookie banner ale chybět může, pokud cookies skutečně nepoužíváte.</p>
+
+      <div class="checker" id="checker">
+        <div class="checker-title">Checklist: potřebuje váš web cookie banner?</div>
+        <div class="checker-item" onclick="toggleCheck(this)">
+          <div class="checker-box"></div>
+          <div>
+            <div class="checker-text">Používám Google Analytics nebo jiný analytický nástroj třetí strany</div>
+            <div class="checker-note">→ cookie banner potřebujete</div>
+          </div>
+        </div>
+        <div class="checker-item" onclick="toggleCheck(this)">
+          <div class="checker-box"></div>
+          <div>
+            <div class="checker-text">Mám na webu Meta Pixel, TikTok Pixel nebo jiný reklamní skript</div>
+            <div class="checker-note">→ cookie banner potřebujete</div>
+          </div>
+        </div>
+        <div class="checker-item" onclick="toggleCheck(this)">
+          <div class="checker-box"></div>
+          <div>
+            <div class="checker-text">Načítám Google Fonts nebo jiné fonty z externího CDN</div>
+            <div class="checker-note">→ cookie banner potřebujete</div>
+          </div>
+        </div>
+        <div class="checker-item" onclick="toggleCheck(this)">
+          <div class="checker-box"></div>
+          <div>
+            <div class="checker-text">Mám na webu embed YouTube videa nebo jiný obsah třetí strany</div>
+            <div class="checker-note">→ cookie banner potřebujete</div>
+          </div>
+        </div>
+        <div class="checker-item" onclick="toggleCheck(this)">
+          <div class="checker-box"></div>
+          <div>
+            <div class="checker-text">Web stojí na WordPressu s pluginy</div>
+            <div class="checker-note">→ zkontrolujte každý plugin zvlášť</div>
+          </div>
+        </div>
+      </div>
+
+      <p>Pokud jste nezaškrtli nic — gratuluji, váš web cookie banner nepotřebuje. Pokud jste zaškrtli aspoň jednu položku, banner tam být musí. A musí být implementovaný správně — nejen vizuálně, ale funkčně (skripty se nesmějí spustit dřív, než zákazník souhlasí).</p>
+
+      <h2>Proč to takhle stavím</h2>
+
+      <p>Každý web, který pro klienty tvořím, je statický HTML soubor nasazený na Cloudflare. Žádný WordPress, žádné pluginy, žádné externí skripty. Fonty jsou nahrané lokálně. Analytics běží přes Cloudflare, bez cookies.</p>
+
+      <p>Výsledek: <strong>žádný cookie banner, PageSpeed 100, a zákazník vidí váš obsah okamžitě</strong> — bez překážek, bez vyskakovacích oken, bez čekání.</p>
+
+      <p>Není to náhoda. Je to rozhodnutí, které má dopad na každého, kdo váš web navštíví.</p>
+
+      <div class="article-cta">
+        <h3>Chcete web bez zbytečností?</h3>
+        <p>Rychlý, čistý, bez cookie banneru a bez měsíčních poplatků.<br>Napište mi a probereme, co váš web potřebuje.</p>
+        <a href="/#kontakt" class="btn-primary">Napsat mi →</a>
+      </div>
+
+      <div class="related">
+        <div class="related-title">Mohlo by vás zajímat</div>
+        <div class="related-grid">
+          <a href="/blog/proc-nepotrebujes-wordpress.html" class="related-card">
+            <div class="related-card-tag">Web</div>
+            <div class="related-card-title">Proč nepotřebujete WordPress — a co místo něj</div>
+          </a>
+          <a href="/blog/rychlost-webu.html" class="related-card">
+            <div class="related-card-tag">Výkon</div>
+            <div class="related-card-title">Rychlost webu: proč každá vteřina prodělávate zákazníky</div>
+          </a>
+          <a href="/blog/proc-web-nikdo-nenajde.html" class="related-card">
+            <div class="related-card-tag">SEO</div>
+            <div class="related-card-title">Proč váš web nikdo nenajde — a jak to změnit</div>
+          </a>
+          <a href="/blog/jak-vybrat-webdesignera.html" class="related-card">
+            <div class="related-card-tag">Průvodce</div>
+            <div class="related-card-title">Jak vybrat webdesignéra — 6 věcí na co se zeptat</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 <a href="/">Janyskova Digital</a> · <a href="/ochrana-udaju.html">Ochrana osobních údajů</a></p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('fullscreenMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      menu.classList.remove('open');
+    });
+  });
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+  }
+</script>
+</body>
+</html>
