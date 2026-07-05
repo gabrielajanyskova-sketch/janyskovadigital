@@ -387,10 +387,6 @@ hamburger.addEventListener('click', () => {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu(); });
-
-
-document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBanner(); loadGA(); });
-document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBanner(); });
 </script>
 </body>
 </html>
