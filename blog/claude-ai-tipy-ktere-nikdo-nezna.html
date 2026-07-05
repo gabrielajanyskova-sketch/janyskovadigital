@@ -629,7 +629,6 @@ Nedávej mi varianty, napiš rovnou jednu verzi a ptej se mě jen pokud čemukol
   </div>
 </footer>
 
-<script src="/main.js" defer></script>
 <script>
 function closeMenu(){var m=document.getElementById('mobile-menu');var h=document.getElementById('hamburger');if(m){m.classList.remove('open');m.setAttribute('aria-hidden','true');}if(h){h.classList.remove('open');h.setAttribute('aria-expanded','false');}}
 document.getElementById('hamburger')&&document.getElementById('hamburger').addEventListener('click',function(){var m=document.getElementById('mobile-menu');var open=m.classList.toggle('open');this.classList.toggle('open');m.setAttribute('aria-hidden',(!open).toString());this.setAttribute('aria-expanded',open.toString());});
