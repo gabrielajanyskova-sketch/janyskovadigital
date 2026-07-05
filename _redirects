@@ -1,9 +1,9 @@
+# City pages bez lomítka → s lomítkem
 /zlin /zlin/ 301
 /brno /brno/ 301
 /ostrava /ostrava/ 301
 /praha /praha/ 301
 /olomouc /olomouc/ 301
-/brno /brno/ 301
 /frenstat /frenstat/ 301
 /roznov /roznov/ 301
 /valasske-mezirici /valasske-mezirici/ 301
@@ -12,3 +12,21 @@
 /koprivnice /koprivnice/ 301
 /pribor /pribor/ 301
 /novy-jicin /novy-jicin/ 301
+
+# Blog články bez .html → s .html (zamezení duplicitního obsahu)
+/blog/ai-vyhledavani /blog/ai-vyhledavani.html 301
+/blog/cena-webu-novy-jicin /blog/cena-webu-novy-jicin.html 301
+/blog/claude-ai-tipy-ktere-nikdo-nezna /blog/claude-ai-tipy-ktere-nikdo-nezna.html 301
+/blog/eshop-bez-shoptetu /blog/eshop-bez-shoptetu.html 301
+/blog/google-ai-mode-miliarda-uzivatelu /blog/google-ai-mode-miliarda-uzivatelu.html 301
+/blog/google-faq-snippety-2026 /blog/google-faq-snippety-2026.html 301
+/blog/google-search-console-ai-cerven-2026 /blog/google-search-console-ai-cerven-2026.html 301
+/blog/jak-vybrat-webdesignera /blog/jak-vybrat-webdesignera.html 301
+/blog/muze-ai-vytvorit-web /blog/muze-ai-vytvorit-web.html 301
+/blog/proc-nepotrebujes-wordpress /blog/proc-nepotrebujes-wordpress.html 301
+/blog/proc-web-nepotrebuje-cookie-listu /blog/proc-web-nepotrebuje-cookie-listu.html 301
+/blog/proc-web-nikdo-nenajde /blog/proc-web-nikdo-nenajde.html 301
+/blog/proc-web-v-ostrave-nenajdou /blog/proc-web-v-ostrave-nenajdou.html 301
+/blog/rychlost-webu /blog/rychlost-webu.html 301
+/blog/seo-meta-schema-cervenec-2026 /blog/seo-meta-schema-cervenec-2026.html 301
+/blog/trendy-webdesign-2026 /blog/trendy-webdesign-2026.html 301
