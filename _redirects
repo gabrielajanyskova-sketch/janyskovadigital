@@ -16,6 +16,7 @@
 # Standalone stránky .html → čistá URL
 /blog.html /blog 301
 /eshop.html /eshop 301
+/seo.html /seo 301
 /grafika.html /grafika 301
 /ochrana-udaju.html /ochrana-udaju 301
 /cookies.html /cookies 301
