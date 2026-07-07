@@ -206,6 +206,29 @@
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
 <link rel="stylesheet" href="/style.css?v=6">
 <style>
+:root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
+nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba(8,6,12,0.75);position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;text-decoration:none;color:var(--text)}
+.logo em{font-style:italic;color:var(--pink)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--text)}
+.hero{padding:90px 0 110px;position:relative;z-index:1;min-height:600px}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;color:#f5f0fa;margin-bottom:24px;font-family:'DM Serif Display',Georgia,serif;display:block;width:100%;}
+.hero h1 em{color:var(--pink);font-style:italic}
+#robot-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0.18}
+.mouse-glow{position:fixed;inset:0;z-index:-1;pointer-events:none}
+.bg-blobs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.55}
+.fullscreen-menu{position:fixed;inset:0;z-index:1000;visibility:hidden;opacity:0;pointer-events:none}
+.fullscreen-menu.open{visibility:visible;opacity:1;pointer-events:all}
+.city-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color 0.25s,transform 0.25s;backdrop-filter:blur(10px);}
+.city-card:hover{border-color:rgba(240,20,122,0.45);transform:translateY(-3px);}
 .race-wrap{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
 .race-browser{flex:1;min-width:260px;max-width:380px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(21,15,30,0.8);}
 .race-bar-top{background:rgba(30,22,45,0.95);padding:10px 14px;display:flex;align-items:center;gap:10px;}
@@ -241,34 +264,9 @@
 .race-score-badge.bad{color:#ff6b6b;background:rgba(255,107,107,0.06);}
 .race-score-badge.good{color:var(--green);background:rgba(0,229,160,0.06);}
 .race-vs{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text-dim);opacity:0.4;flex-shrink:0;}
-@media(max-width:640px){.race-vs{display:none;}.race-browser{min-width:100%;}}
-</style>
-<style id="mobile-lcp">@media(max-width:900px){.hero{padding:30px 0 20px!important;min-height:0!important}.hero-right{display:none!important}.about-section{padding:30px 0!important}}</style>
-<style>
-:root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
-h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400}
-nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba(8,6,12,0.75);position:sticky;top:0;z-index:100}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-family:'DM Serif Display',serif;font-size:22px;text-decoration:none;color:var(--text)}
-.logo em{font-style:italic;color:var(--pink)}
-.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100}
-.hamburger span{display:block;width:24px;height:1.5px;background:var(--text)}
+@media(max-width:900px){.hero{padding:30px 0 20px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:50px}.hero-right{display:none}.about-section{padding:30px 0}}
 @media(max-width:768px){.hamburger{display:flex}}
-.hero{padding:90px 0 110px;position:relative;min-height:600px}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:50px}}
-.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;color:#f5f0fa;margin-bottom:24px;font-family:'DM Serif Display',Georgia,serif;display:block;width:100%;}
-.hero h1 em{color:var(--pink);font-style:italic}
-#robot-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0.18}
-.mouse-glow{position:fixed;inset:0;z-index:-1;pointer-events:none}
-.hero{padding:90px 0 110px;position:relative;z-index:1;min-height:600px}
-.bg-blobs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.55}
-.fullscreen-menu{position:fixed;inset:0;z-index:1000;visibility:hidden;opacity:0;pointer-events:none}
-.fullscreen-menu.open{visibility:visible;opacity:1;pointer-events:all}
+@media(max-width:640px){.race-vs{display:none;}.race-browser{min-width:100%;}}
 </style>
 <script type="application/ld+json">
 {
@@ -284,10 +282,6 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 
 
 <a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
-
-
-
-
 
 
 
@@ -413,7 +407,7 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
         <div class="section-tag">O mně</div>
         <h2 class="section-title">Ahoj, jsem Gabča —<br><em>webdesignerka</em><br>z Nového Jičína.</h2>
         <p>Pomáhám OSVČ, firmám i začínajícím projektům získat profesionální web, který je skvěle prezentuje. Specializuji se na <strong>webdesign a tvorbu webových stránek</strong> čistým kódem — jsem z <strong>Nového Jičína</strong>, ale díky moderním technologiím spolupracuji s klienty po celé ČR.</p>
-        <p style="font-size:14px;color:var(--text-dim);line-height:1.8;margin-top:16px;">Gabriela Janýšková je webdesignerka a SEO specialistka ze Starojické Lhoty u Nového Jičína. Webům se věnuje 5 let — začínala na WordPressu, ale pomalost a závislost na pluginech ji přivedly k čistému kódu. Dnes tvoří weby výhradně v HTML, CSS a JavaScriptu bez WordPressu a bez měsíčních poplatků. Je samouk, která se soustavně vzdělává — absolvovala rekvalifikační kurz Specialistka AI a Juniorní akademii od Holek z marketingu. Specializuje se na tvorbu webových stránek, SEO optimalizaci a grafický design pro firmy a OSVČ z okolí Nového Jičína i celé České republiky.</p>
+        <p style="font-size:13px;color:var(--text-dim);line-height:1.8;margin-top:20px;padding-top:16px;border-top:1px solid rgba(240,20,122,0.1);">Webům se věnuji 5 let. Začínala jsem na WordPressu, ale pomalost a závislost na pluginech mě přivedly k čistému kódu. Dnes tvořím weby výhradně v HTML, CSS a JavaScriptu — bez WordPressu, bez měsíčních poplatků. Jsem samouk, která se soustavně vzdělává: absolvovala jsem rekvalifikační kurz Specialistka AI a Juniorní akademii od Holek z marketingu. Ráda dělám weby, SEO a grafiku pro OSVČ a firmy z okolí Nového Jičína i celé ČR.</p>
         <div class="about-pills">
           <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Čistý kód, žádný WordPress</span>
           <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed 100/100</span>
@@ -842,55 +836,55 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
     <div class="section-tag" style="justify-content:center;">Kde působím</div>
     <h2 class="section-title" style="text-align:center;">Weby tvořím <em>po celé ČR.</em></h2>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-top:10px;">
-      <a href="/novy-jicin/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/novy-jicin/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Nový Jičín</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Nový Jičín →</span>
       </a>
-      <a href="/ostrava/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/ostrava/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Ostrava</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Ostrava →</span>
       </a>
-      <a href="/frydek-mistek/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/frydek-mistek/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Frýdek-Místek</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Frýdek-Místek →</span>
       </a>
-      <a href="/hranice/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/hranice/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Hranice</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Hranice →</span>
       </a>
-      <a href="/koprivnice/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/koprivnice/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Kopřivnice</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Kopřivnice →</span>
       </a>
-      <a href="/pribor/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/pribor/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Příbor</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Příbor →</span>
       </a>
-      <a href="/brno/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/brno/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Brno</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Brno →</span>
       </a>
-      <a href="/praha/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/praha/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Praha</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Praha →</span>
       </a>
-      <a href="/olomouc/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/olomouc/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Olomouc</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Olomouc →</span>
       </a>
-      <a href="/zlin/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/zlin/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Zlín</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Zlín →</span>
       </a>
-      <a href="/frenstat/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/frenstat/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Frenštát</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Frenštát →</span>
       </a>
-      <a href="/roznov/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/roznov/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Rožnov</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Rožnov →</span>
       </a>
-      <a href="/valasske-mezirici/" style="background:var(--card-bg); border:1px solid var(--border); border-radius:18px; padding:28px 24px; text-decoration:none; display:flex; flex-direction:column; gap:8px; transition:all 0.25s; backdrop-filter:blur(10px);" onmouseover="this.style.borderColor='rgba(240,20,122,0.45)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='rgba(240,20,122,0.18)';this.style.transform='translateY(0)'">
+      <a href="/valasske-mezirici/" class="city-card">
         <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Val. Meziříčí</span>
         <span style="font-size:13px; color:var(--text-dim);">Webdesign Val. Meziříčí →</span>
       </a>
