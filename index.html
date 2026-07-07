@@ -1024,6 +1024,92 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 
 
 <script src="/main.js" defer></script>
+
+<!-- Audit popup -->
+<div id="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title" style="
+  display:none;position:fixed;inset:0;z-index:99999;
+  background:rgba(5,4,10,0.75);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:24px;">
+  <div style="
+    background:#0E0F14;border:1px solid rgba(240,20,122,0.3);border-radius:24px;
+    max-width:480px;width:100%;padding:44px 40px 40px;position:relative;
+    box-shadow:0 24px 80px rgba(240,20,122,0.15),0 8px 32px rgba(0,0,0,0.6);">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0147a,rgba(240,20,122,0.3));border-radius:24px 24px 0 0;"></div>
+    <button id="audit-close" aria-label="Zavřít" style="
+      position:absolute;top:16px;right:16px;background:none;border:none;
+      color:rgba(245,240,250,0.4);font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;">✕</button>
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#f0147a;font-weight:600;margin-bottom:16px;">Zdarma · bez závazků</div>
+    <h2 id="audit-popup-title" style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,4vw,30px);font-weight:400;line-height:1.2;color:#f5f0fa;margin-bottom:16px;">
+      Jak rychlý je váš web<br>a je připravený na <em style="color:#f0147a;font-style:italic;">AI vyhledávače?</em>
+    </h2>
+    <p style="font-size:15px;color:rgba(245,240,250,0.65);line-height:1.7;margin-bottom:28px;">
+      Bezplatný audit rychlosti + AI připravenosti — dostanete konkrétní výsledky, ne obecné rady. Do 48 hodin.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        PageSpeed skóre a co ho brzdí
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Viditelnost v ChatGPT, Perplexity a Google AI
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        3 konkrétní doporučení co zlepšit
+      </div>
+    </div>
+    <a href="#kontakt" id="audit-cta" style="
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      background:#f0147a;color:#fff;font-weight:700;font-size:16px;
+      padding:16px 28px;border-radius:50px;text-decoration:none;
+      transition:opacity 0.2s;">
+      Chci bezplatný audit
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p style="font-size:12px;color:rgba(245,240,250,0.3);text-align:center;margin-top:16px;">Bez spamu · odpovím osobně</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = 'audit_popup_seen';
+  if(sessionStorage.getItem(KEY)) return;
+
+  var popup = document.getElementById('audit-popup');
+  var closeBtn = document.getElementById('audit-close');
+  var ctaBtn = document.getElementById('audit-cta');
+
+  function show(){
+    if(sessionStorage.getItem(KEY)) return;
+    popup.style.display = 'flex';
+    sessionStorage.setItem(KEY,'1');
+    popup.querySelector('[role]') && popup.focus && popup.focus();
+  }
+
+  function hide(){
+    popup.style.display = 'none';
+  }
+
+  closeBtn.addEventListener('click', hide);
+  ctaBtn.addEventListener('click', hide);
+  popup.addEventListener('click', function(e){ if(e.target===popup) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
+
+  // Exit intent (desktop)
+  var exitFired = false;
+  document.addEventListener('mouseleave', function(e){
+    if(e.clientY < 10 && !exitFired){
+      exitFired = true;
+      setTimeout(show, 300);
+    }
+  });
+
+  // Timer fallback — 25s (nebo 12s na mobilu)
+  var delay = /Mobi|Android/i.test(navigator.userAgent) ? 12000 : 25000;
+  setTimeout(show, delay);
+})();
+</script>
 </body>
 </html>
 
