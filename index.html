@@ -238,11 +238,11 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .race-url{font-size:11px;color:var(--text-dim);background:rgba(255,255,255,0.05);border-radius:6px;padding:3px 10px;flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .race-screen{padding:20px;min-height:160px;position:relative;}
 .race-loading-bar{height:3px;background:rgba(255,255,255,0.06);border-radius:2px;margin-bottom:20px;overflow:hidden;}
-.race-fill{height:100%;border-radius:2px;width:0;}
+.race-fill{height:100%;border-radius:2px;width:100%;transform:scaleX(0);transform-origin:left;}
 .race-fill-slow{background:#ff6b6b;animation:fillSlow 3.8s ease-out infinite;}
 .race-fill-fast{background:var(--green);animation:fillFast 0.4s ease-out infinite;}
-@keyframes fillSlow{0%{width:0;}90%{width:85%;}100%{width:85%;}}
-@keyframes fillFast{0%{width:0;}60%{width:100%;}100%{width:100%;}}
+@keyframes fillSlow{0%{transform:scaleX(0);}90%{transform:scaleX(.85);}100%{transform:scaleX(.85);}}
+@keyframes fillFast{0%{transform:scaleX(0);}60%{transform:scaleX(1);}100%{transform:scaleX(1);}}
 .race-skeleton{display:flex;flex-direction:column;gap:10px;opacity:0;animation:skelAppear 3.8s ease-out infinite;}
 @keyframes skelAppear{0%,85%{opacity:0;}90%,100%{opacity:1;}}
 .race-skel{height:12px;border-radius:6px;background:rgba(255,255,255,0.06);}
