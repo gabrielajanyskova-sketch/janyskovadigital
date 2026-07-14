@@ -145,15 +145,21 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   </div>
 </nav>
 
-<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace">
-  <a href="/#jak-to-funguje">Jak to funguje</a>
-  <a href="/#cenik">Ceník</a>
-  <a href="/#reference">Reference</a>
-  <a href="/blog">Blog</a>
-  <a href="/grafika">Grafika</a>
-  <a href="/eshop">E-shop</a>
-  <a href="/#kontakt">Mám zájem</a>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <a href="/#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+  <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="/#reference" onclick="closeMenu()">Reference</a>
+  <a href="/#o-mne" onclick="closeMenu()">O mně</a>
+  <a href="/blog" onclick="closeMenu()">Blog</a>
+  <div class="menu-services">
+    <a href="/grafika" onclick="closeMenu()">Grafika</a>
+    <a href="/eshop" onclick="closeMenu()">E-shop</a>
+    <a href="/seo" onclick="closeMenu()">SEO</a>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
+  </div>
+  <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
 </div>
 
 <main>
