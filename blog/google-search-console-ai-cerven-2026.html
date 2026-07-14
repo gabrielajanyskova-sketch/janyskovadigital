@@ -33,19 +33,8 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Google Search Console teď ukazuje váš web v AI výsledcích — co to znamená?","description":"Od 3. června 2026 Google Search Console zobrazuje, kolikrát se váš web objevil v AI Overviews a AI Mode. Co data znamenají a jak nový toggle opt-out použít?","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-06-29","dateModified":"2026-07-03","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026","keywords":"Google Search Console 2026, AI Overviews, AI Mode, generative AI impressions, SEO 2026, opt-out AI, webdesign Nový Jičín","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Co jsou AI impressions v Google Search Console?","acceptedAnswer":{"@type":"Answer","text":"AI impressions jsou zobrazení vašeho webu v AI Overviews a AI Mode v Google Search. Od června 2026 je Google vykazuje odděleně v nové sekci Search Console — takže konečně víte, jak často vás AI cituje."}},{"@type":"Question","name":"Mám zapnout opt-out z AI výsledků?","acceptedAnswer":{"@type":"Answer","text":"Záleží na situaci. Pokud přichází provoz z AI a vede ke konverzím, opt-out nedoporučuji. Pokud AI váš obsah cituje, ale nikdo nekliká, může opt-out pomoci. Důležité: opt-out neovlivní vaše pozice v klasickém Google Search."}},{"@type":"Question","name":"Kdy bude nová sekce Search Console dostupná v ČR?","acceptedAnswer":{"@type":"Answer","text":"Google ji spustil 3. června 2026 v beta verzi nejprve pro část webů ve Velké Británii. Celosvětové rozšíření, včetně České republiky, Google plánuje, ale konkrétní datum zatím neoznámil."}}]}</script>
-<link rel="stylesheet" href="/style.css?v=8">
+<link rel="stylesheet" href="/style.css?v=9">
 <style>
-
-
-50%{transform:translate(35px,-25px) scale(1.05);}}
-50%{transform:translate(-28px,22px) scale(1.07);}}
-main{position:relative;z-index:1;padding:60px 0 100px;}
-.container{max-width:760px;margin:0 auto;padding:0 28px;}
-.back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
-.back:hover{color:var(--pink);}
-.back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
-.article-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:16px;}
-.author-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid rgba(240,20,122,0.45);flex-shrink:0;}.article-meta{font-size:13px;color:var(--text-dim);margin-bottom:48px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
 .article-meta span{opacity:0.4;}
 h1{font-size:clamp(32px,5vw,54px);line-height:1.15;letter-spacing:-0.5px;color:var(--text);margin-bottom:20px;}
 h1 em{color:var(--pink);font-style:italic;}
@@ -57,34 +46,20 @@ p strong{color:var(--text);font-weight:700;}
 ul,ol{margin:0 0 20px 0;padding-left:22px;display:flex;flex-direction:column;gap:10px;}
 li{font-size:16px;color:var(--text-dim);line-height:1.75;}
 li strong{color:var(--text);}
-.intro-box{background:rgba(240,20,122,0.06);border:1px solid rgba(240,20,122,0.2);border-radius:16px;padding:28px 32px;margin-bottom:48px;}
-.intro-box p{margin:0;font-size:15px;}
 .highlight-box{background:rgba(0,229,160,0.05);border:1px solid rgba(0,229,160,0.18);border-radius:14px;padding:22px 26px;margin:32px 0;}
 .highlight-box p{margin:0;color:var(--green);font-size:15px;}
 .highlight-box strong{color:#fff;}
-.warn-box{background:rgba(255,180,0,0.05);border:1px solid rgba(255,180,0,0.18);border-radius:14px;padding:22px 26px;margin:32px 0;}
-.warn-box p{margin:0;color:rgba(255,200,80,0.9);font-size:15px;}
-.warn-box strong{color:#fff;}
 .data-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
 @media(max-width:600px){.data-grid{grid-template-columns:1fr;}}
 .data-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
 .data-card-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:8px;}
 .data-card-val{font-size:22px;font-family:'DM Serif Display',serif;color:var(--text);margin-bottom:6px;}
 .data-card-desc{font-size:13px;color:var(--text-dim);line-height:1.6;}
-.divider{height:1px;background:rgba(240,20,122,0.1);margin:48px 0;}
 .author-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;display:flex;gap:20px;align-items:flex-start;margin-top:64px;}
 .author-text h3{font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--text);margin:0 0 6px;}
 .author-text p{font-size:14px;margin:0 0 14px;}
 .author-text a{color:var(--pink);font-weight:700;text-decoration:none;font-size:14px;}
-.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);margin-bottom:40px;flex-wrap:wrap;}
-.breadcrumb a{color:var(--pink);text-decoration:none;}
-.breadcrumb span{opacity:0.4;}
-footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,122,0.1);position:relative;z-index:1;}
-.footer-inner{max-width:1200px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;color:rgba(245,240,250,0.5);}
-.footer-inner a{color:rgba(245,240,250,0.6);text-decoration:none;}
-.footer-inner a:hover{color:var(--pink);}
-.footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
-.footer-logo em{color:var(--pink);font-style:italic;}</style>
+</style>
 </head>
 <body>
 <div class="blob b1" aria-hidden="true"></div>
@@ -127,7 +102,7 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
-<main>
+<main class="article-main">
   <div class="container">
     <nav aria-label="Breadcrumb" class="breadcrumb">
       <a href="/">Domů</a>

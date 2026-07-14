@@ -78,52 +78,13 @@
 }
 </script>
 
-<link rel="stylesheet" href="/style.css?v=8">
-<style>a{color:var(--pink);text-decoration:none;}
-a:hover{text-decoration:underline;}
-.container{max-width:760px;margin:0 auto;padding:0 24px;}
-nav.topnav{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:0;}
-nav.topnav .nav-inner{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);text-decoration:none;white-space:nowrap;}
-.nav-logo em{font-style:italic;color:var(--pink);}
-.nav-links{display:flex;gap:28px;font-size:14px;}
-.nav-links a{color:var(--text-dim);transition:color 0.2s;white-space:nowrap;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;text-decoration:none;margin-left:24px;}
-.nav-links a:hover{color:var(--pink);text-decoration:none;}
-main{padding:56px 0 80px;}
-.back{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--text-dim);margin-bottom:36px;transition:color 0.2s;}
-.back:hover{color:var(--pink);text-decoration:none;}
-.back svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.article-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:16px;}
-.article-title{font-family:'DM Serif Display',serif;font-size:clamp(28px,5vw,44px);line-height:1.15;margin-bottom:20px;color:var(--text);}
-.article-title em{font-style:italic;color:var(--pink);}
-.author-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid rgba(240,20,122,0.45);flex-shrink:0;}.article-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-dim);margin-bottom:48px;flex-wrap:wrap;}
-.meta-dot{width:4px;height:4px;border-radius:50%;background:var(--text-dim);opacity:0.4;}
-.article-body h2{font-family:'DM Serif Display',serif;font-size:clamp(20px,3vw,28px);margin:44px 0 16px;color:var(--text);line-height:1.25;}
-.article-body h3{font-size:17px;font-weight:700;margin:28px 0 10px;color:var(--text);}
-.article-body p{margin-bottom:20px;color:var(--text-dim);font-size:16px;line-height:1.8;}
-.article-body strong{color:var(--text);}
-.article-body ul,.article-body ol{margin:0 0 20px 0;padding-left:22px;}
-.article-body li{color:var(--text-dim);font-size:16px;line-height:1.8;margin-bottom:6px;}
-.highlight{background:rgba(240,20,122,0.07);border-left:3px solid var(--pink);padding:20px 24px;border-radius:0 12px 12px 0;margin:32px 0;font-size:15px;color:var(--text-dim);line-height:1.8;}
-.highlight strong{color:var(--text);}
-.example-box{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:24px;margin:32px 0;}
-.example-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:12px;}
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:32px 0;}
+<link rel="stylesheet" href="/style.css?v=9">
+<style>
 .stat-card{background:rgba(240,20,122,0.06);border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;}
 .stat-number{font-family:'DM Serif Display',serif;font-size:36px;color:var(--pink);line-height:1.1;margin-bottom:6px;}
-.stat-label{font-size:13px;color:var(--text-dim);line-height:1.5;}
-.cta-box{background:linear-gradient(135deg,rgba(240,20,122,0.1),rgba(240,20,122,0.04));border:1px solid rgba(240,20,122,0.3);border-radius:20px;padding:36px;margin:48px 0;text-align:center;}
-.cta-box h3{font-family:'DM Serif Display',serif;font-size:24px;margin-bottom:12px;}
-.cta-box p{font-size:15px;color:var(--text-dim);margin-bottom:24px;}
 .cta-btn{display:inline-block;background:var(--pink);color:#fff;font-weight:700;font-size:15px;padding:14px 32px;border-radius:50px;text-decoration:none;transition:opacity 0.2s;}
 .cta-btn:hover{opacity:0.88;text-decoration:none;}
-footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,122,0.1);}
-.footer-inner{max-width:1200px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:12px;color:rgba(245,240,250,0.3);}
-.footer-inner a{color:rgba(240,20,122,0.6);text-decoration:none;}
-.footer-inner a:hover{color:var(--pink);}
-.footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
-.footer-logo em{font-style:italic;color:var(--pink);}
-@media(max-width:600px){}</style>
+</style>
 </head>
 <body>
 
@@ -163,7 +124,7 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
-<main>
+<main class="article-main">
   <div class="container">
 
     <a href="/blog" class="back">

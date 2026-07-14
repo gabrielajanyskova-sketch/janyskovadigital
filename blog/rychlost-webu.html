@@ -28,66 +28,8 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Proč záleží na rychlosti webu?","description":"Pomalý web zákazníky odrazuje a Google ho řadí níže. Vysvětlím proč na rychlosti záleží, jak ji změřit a co s tím udělat.","image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-06-09","dateModified":"2026-07-02","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/rychlost-webu","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/rychlost-webu"}}</script>
-<link rel="stylesheet" href="/style.css?v=8">
-<style>
+<link rel="stylesheet" href="/style.css?v=9">
 
-
-50%{transform:translate(35px,-25px) scale(1.05);}}
-50%{transform:translate(-28px,22px) scale(1.07);}}
-main{position:relative;z-index:1;padding:60px 0 100px;}
-.container{max-width:760px;margin:0 auto;padding:0 28px;}
-.back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
-.back:hover{color:var(--pink);}
-.back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
-.article-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:18px;}
-.article-tag::before{content:'';width:20px;height:1px;background:var(--pink);}
-.article-title{font-size:clamp(34px,5vw,56px);line-height:1.08;letter-spacing:-0.5px;margin-bottom:20px;}
-.article-title em{font-style:italic;color:var(--pink);}
-.author-avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid rgba(240,20,122,0.45);flex-shrink:0;}.article-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--text-dim);margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid rgba(240,20,122,0.1);}
-.meta-dot{width:4px;height:4px;border-radius:50%;background:rgba(240,20,122,0.4);}
-.article-body p{font-size:16px;color:var(--text-dim);line-height:1.85;margin-bottom:22px;}
-.article-body p strong{color:var(--text);font-weight:600;}
-.article-body h2{font-size:26px;color:var(--text);margin:44px 0 14px;line-height:1.2;}
-.article-body h2::before{content:'';display:inline-block;width:4px;height:24px;background:var(--pink);border-radius:2px;margin-right:14px;vertical-align:middle;}
-.article-body ul{margin:0 0 22px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
-.article-body li{font-size:15px;color:var(--text-dim);line-height:1.7;padding-left:22px;position:relative;}
-.article-body ul li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:rgba(240,20,122,0.4);border:1px solid rgba(240,20,122,0.6);}
-.article-body a:not(.btn-primary){color:var(--pink);text-decoration:none;}
-.article-body a:hover{text-decoration:underline;}
-.highlight{background:rgba(240,20,122,0.05);border:1px solid var(--border);border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:15px;color:var(--text-dim);line-height:1.75;}
-.highlight strong{color:var(--text);}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;}
-.stat-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;backdrop-filter:blur(10px);}
-.stat-num{font-family:'DM Serif Display',serif;font-size:36px;color:var(--pink);line-height:1;}
-.stat-label{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.4;}
-@media(max-width:600px){.stat-grid{grid-template-columns:1fr;}}
-.cta-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;margin-top:56px;text-align:center;backdrop-filter:blur(10px);}
-.cta-box h3{font-size:26px;margin-bottom:12px;color:var(--text);}
-.cta-box h3 em{font-style:italic;color:var(--pink);}
-.cta-box p{font-size:15px;color:var(--text-dim);margin-bottom:26px;line-height:1.7;}
-.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--pink);color:#fff;padding:14px 32px;border-radius:100px;text-decoration:none;font-size:14px;font-weight:700;transition:all 0.3s;box-shadow:0 8px 24px rgba(240,20,122,0.3);}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(240,20,122,0.45);}
-.btn-primary svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
-footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122,0.1);position:relative;z-index:1;}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-size:12px;color:rgba(245,240,250,0.3);}
-.footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
-.footer-logo em{font-style:italic;color:var(--pink);}
-.footer-inner a{color:rgba(240,20,122,0.55);text-decoration:none;}
-
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-@media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:32px;}}
-.footer-logo-link{font-size:20px;font-weight:700;color:var(--text);text-decoration:none;font-family:'DM Serif Display',serif;display:block;margin-bottom:12px;}
-.footer-logo-link em{color:var(--pink);font-style:italic;}
-.footer-desc{font-size:13px;color:var(--text-dim);line-height:1.6;margin-top:8px;}
-.footer-heading{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-dim);margin-bottom:14px;}
-.footer-links-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.footer-links-list a{font-size:13px;color:var(--text-dim);text-decoration:none;transition:color 0.2s;}
-.footer-links-list a:hover{color:var(--pink);}
-.footer-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text-dim);}
-.footer-bottom a{color:var(--text-dim);text-decoration:none;}
-.footer-bottom a:hover{color:var(--pink);}
-
-.cookie-text .article-body a,.cta-box a{color:var(--pink);text-decoration:none}</style>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <script type="application/ld+json">
 {
@@ -150,7 +92,7 @@ footer{background:#050408;padding:36px 28px;border-top:1px solid rgba(240,20,122
   <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
-<main>
+<main class="article-main">
   <div class="container">
     <a href="/blog" class="back">
       <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
