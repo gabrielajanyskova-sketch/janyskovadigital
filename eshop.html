@@ -531,38 +531,7 @@
   </div>
 </footer>
 
-<script>
-// Mouse glow
-document.addEventListener('mousemove', e => {
-  document.querySelector('.mouse-glow').style.cssText =
-    `--mx:${e.clientX}px; --my:${e.clientY}px`;
-}, { passive: true });
-
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-function closeMenu() {
-  hamburger.classList.remove('open');
-  mobileMenu.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  mobileMenu.setAttribute('aria-hidden', 'true');
-}
-hamburger.addEventListener('click', () => {
-  const isOpen = hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  mobileMenu.setAttribute('aria-hidden', !isOpen);
-});
-
-// Reveal on scroll
-const reveals = document.querySelectorAll('.reveal');
-if (reveals.length) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-}
-</script>
+<script src="/main.js" defer></script>
 </body>
 </html>
 
