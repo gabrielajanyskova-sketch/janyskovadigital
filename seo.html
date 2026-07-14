@@ -148,24 +148,10 @@
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
-      <div class="nav-drop">
-        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">O Janyskova Digital <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="nav-drop-panel" role="menu">
-          <a href="/#o-mne" role="menuitem">O mně</a>
-          <a href="/#cenik" role="menuitem">Ceník</a>
-          <a href="/#jak-to-funguje" role="menuitem">Jak to funguje</a>
-          <a href="/#reference" role="menuitem">Reference</a>
-        </div>
-      </div>
-      <div class="nav-drop">
-        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Služby <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="nav-drop-panel" role="menu">
-          <a href="/grafika" role="menuitem">Grafika &amp; logo</a>
-          <a href="/eshop" role="menuitem">E-shop</a>
-          <a href="/seo" role="menuitem">SEO</a>
-          <a href="/barter" role="menuitem">Barter</a>
-        </div>
-      </div>
+      <a href="/#jak-to-funguje">Jak to funguje</a>
+      <a href="/#cenik">Ceník</a>
+      <a href="/#reference">Reference</a>
+      <a href="/#o-mne">O mně</a>
       <a href="/blog">Blog</a>
       <a href="#kontakt" class="cta">Mám zájem</a>
     </div>
@@ -458,7 +444,14 @@ function toggleFaq(btn) {
   document.querySelectorAll('.faq-item.open').forEach(el => { el.classList.remove('open'); el.querySelector('.faq-q').setAttribute('aria-expanded','false'); });
   if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
 }
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function closeMenu(){mobileMenu.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');mobileMenu.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+hamburger.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');hamburger.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);mobileMenu.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':'';});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classList.contains('open'))closeMenu();});
+const revealObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+(function(){const form=document.getElementById('contact-form');if(!form)return;const btn=form.querySelector('button[type="submit"]');const btnOrigHTML=btn.innerHTML;form.addEventListener('submit',async function(e){e.preventDefault();const jmeno=form.querySelector('#jmeno').value.trim();const email=form.querySelector('#email').value.trim();const zprava=form.querySelector('#zprava').value.trim();if(!jmeno||!email||!zprava){showMsg('Vyplňte prosím všechna pole.','error');return;}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){showMsg('Zadejte platnou e-mailovou adresu.','error');return;}btn.disabled=true;btn.innerHTML='Odesílám…';try{const data=new FormData(form);const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});const json=await res.json();if(json.success){window.location.href='https://janyskovadigital.cz/podekovani';}else{throw new Error();}}catch{showMsg('Něco se pokazilo. Zkuste to znovu nebo napište přímo na info@janyskovadigital.cz','error');btn.disabled=false;btn.innerHTML=btnOrigHTML;}});function showMsg(text,type){const old=form.querySelector('.form-msg');if(old)old.remove();const div=document.createElement('div');div.className='form-msg';div.style.cssText='margin-top:12px;padding:12px 18px;border-radius:10px;font-size:14px;'+(type==='error'?'background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);color:#ff7080;':'background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);color:var(--green);');div.textContent=text;form.appendChild(div);}})();
 </script>
-<script src="/main.js" defer></script>
 </body>
 </html>

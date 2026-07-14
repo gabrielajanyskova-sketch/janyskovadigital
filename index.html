@@ -203,7 +203,7 @@
 </script>
 
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
-<style>html,body{background:#08060c;color:#f5f0fa}.nav-links{display:flex;align-items:center;gap:32px}@media(max-width:768px){.nav-links{display:none}}.nav-drop{position:relative;display:flex;align-items:center}.nav-drop-btn{background:none;border:none;cursor:pointer;color:var(--text-dim);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;display:inline-flex;align-items:center;gap:6px;padding:0;font-family:inherit;transition:color .2s;white-space:nowrap}.nav-drop-btn:hover,.nav-drop.open .nav-drop-btn{color:var(--text)}.nav-drop-btn svg{opacity:.6;transition:transform .25s,opacity .2s}.nav-drop.open .nav-drop-btn svg{transform:rotate(180deg);opacity:1}.nav-drop-panel{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(4px);background:rgba(12,8,20,.97);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:6px;min-width:200px;display:flex;flex-direction:column;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease,visibility 0s linear .18s;z-index:300;box-shadow:0 24px 64px rgba(0,0,0,.6)}.nav-drop.open .nav-drop-panel{opacity:1;visibility:visible;pointer-events:all;transform:translateX(-50%) translateY(0);transition:opacity .18s ease,transform .18s ease,visibility 0s}.nav-drop-panel a{display:block;padding:10px 16px;border-radius:8px;color:rgba(245,240,250,.65);text-decoration:none;font-size:13px;font-weight:500;transition:background .12s,color .12s}.nav-drop-panel a:hover{background:rgba(240,20,122,.1);color:var(--text)}</style>
+<style>html,body{background:#08060c;color:#f5f0fa}</style>
 <link rel="stylesheet" href="/style.css?v=6">
 <style>
 :root{--bg:#0a0a0a;--text:#f5f0fa;--pink:#f0147a;--text-dim:rgba(245,240,250,0.65);--pink-dim:rgba(240,20,122,0.08);--pink-border:rgba(240,20,122,0.25)}
@@ -298,24 +298,10 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
-      <div class="nav-drop">
-        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">O Janyskova Digital <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="nav-drop-panel" role="menu">
-          <a href="#o-mne" role="menuitem">O mně</a>
-          <a href="#cenik" role="menuitem">Ceník</a>
-          <a href="#jak-to-funguje" role="menuitem">Jak to funguje</a>
-          <a href="#reference" role="menuitem">Reference</a>
-        </div>
-      </div>
-      <div class="nav-drop">
-        <button class="nav-drop-btn" aria-haspopup="true" aria-expanded="false">Služby <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button>
-        <div class="nav-drop-panel" role="menu">
-          <a href="/grafika" role="menuitem">Grafika &amp; logo</a>
-          <a href="/eshop" role="menuitem">E-shop</a>
-          <a href="/seo" role="menuitem">SEO</a>
-          <a href="/barter" role="menuitem">Barter</a>
-        </div>
-      </div>
+      <a href="#jak-to-funguje">Jak to funguje</a>
+      <a href="#cenik">Ceník</a>
+      <a href="#reference">Reference</a>
+      <a href="#o-mne">O mně</a>
       <a href="/blog">Blog</a>
       <a href="#kontakt" class="cta">Mám zájem</a>
     </div>
