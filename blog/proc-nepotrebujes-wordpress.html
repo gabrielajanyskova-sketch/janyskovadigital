@@ -137,9 +137,9 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
 <div class="blob b1" aria-hidden="true"></div>
 <div class="blob b2" aria-hidden="true"></div>
 
-<nav aria-label="Hlavní navigace">
-  <div class="nav-inner">
-    <a href="/" class="logo">Janyskova <em>Digital</em></a>
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
       <a href="/#jak-to-funguje">Jak to funguje</a>
       <a href="/#cenik">Ceník</a>
@@ -148,9 +148,11 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
       <a href="/blog">Blog</a>
       <a href="/grafika">Grafika</a>
       <a href="/eshop">E-shop</a>
+      <a href="/seo">SEO</a>
+      <a href="/barter">Barter</a>
       <a href="/#kontakt" class="cta">Mám zájem</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false">
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -330,28 +332,44 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
 </main>
 
 <footer>
-  <div class="footer-inner">
-    <a href="/" class="footer-logo">Janyskova <em>Digital</em></a>
-    <div class="footer-links">
-      <a href="/ochrana-udaju">Ochrana osobních údajů</a>
-      <a href="/cookies">Cookies</a>
-    </div>
-    <div>
-      <div class="footer-city-list">
-        <a href="/novy-jicin/">Webdesign Nový Jičín</a>
-        <a href="/ostrava/">Webdesign Ostrava</a>
-        <a href="/koprivnice/">Webdesign Kopřivnice</a>
-        <a href="/pribor/">Webdesign Příbor</a>
-        <a href="/brno/">Webdesign Brno</a>
-        <a href="/olomouc/">Webdesign Olomouc</a>
-        <a href="/zlin/">Webdesign Zlín</a>
-        <a href="/frydek-mistek/">Webdesign Frýdek-Místek</a>
-        <a href="/hranice/">Webdesign Hranice</a>
-        <a href="/praha/">Webdesign Praha</a>
-        <a href="/frenstat/">Webdesign Frenštát</a>
-        <a href="/roznov/">Webdesign Rožnov</a>
-        <a href="/valasske-mezirici/">Webdesign Val. Meziříčí</a>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
+        <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
+        <div style="margin-top:14px;"><a href="/blog" style="color:var(--pink); font-size:13px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a></div>
       </div>
+      <div>
+        <div class="footer-heading">Kde působím</div>
+        <ul class="footer-links-list">
+          <li><a href="/novy-jicin/">Webdesign Nový Jičín</a></li>
+          <li><a href="/ostrava/">Webdesign Ostrava</a></li>
+          <li><a href="/frydek-mistek/">Webdesign Frýdek-Místek</a></li>
+          <li><a href="/hranice/">Webdesign Hranice</a></li>
+          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
+          <li><a href="/pribor/">Webdesign Příbor</a></li>
+          <li><a href="/brno/">Webdesign Brno</a></li>
+          <li><a href="/praha/">Webdesign Praha</a></li>
+          <li><a href="/olomouc/">Webdesign Olomouc</a></li>
+          <li><a href="/zlin/">Webdesign Zlín</a></li>
+          <li><a href="/frenstat/">Webdesign Frenštát</a></li>
+          <li><a href="/roznov/">Webdesign Rožnov</a></li>
+          <li><a href="/valasske-mezirici/">Webdesign Val. Meziříčí</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kontakt</div>
+        <ul class="footer-links-list">
+          <li><a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;">info@janyskovadigital.cz</a></li>
+          <li><a href="tel:+420739395800">+420 739 395 800</a></li>
+          <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.linkedin.com/in/gabriela-jan%C3%BD%C5%A1kov%C3%A1-162567232/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín</span>
+      <a href="/ochrana-udaju">Ochrana osobních údajů</a>
     </div>
   </div>
 </footer>
