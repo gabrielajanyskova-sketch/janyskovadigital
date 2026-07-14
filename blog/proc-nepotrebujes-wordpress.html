@@ -146,10 +146,6 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
       <a href="/#reference">Reference</a>
       <a href="/#o-mne">O mně</a>
       <a href="/blog">Blog</a>
-      <a href="/grafika">Grafika</a>
-      <a href="/eshop">E-shop</a>
-      <a href="/seo">SEO</a>
-      <a href="/barter">Barter</a>
       <a href="/#kontakt" class="cta">Mám zájem</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -157,12 +153,24 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
     </button>
   </div>
 </nav>
-<div class="fullscreen-menu" id="fullscreen-menu" role="dialog" aria-modal="true" aria-label="Navigační menu">
-  <a href="/" onclick="closeMenu()">Domů</a>
-  <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <div class="menu-group">
+    <div class="menu-group-label">O Janyskova Digital</div>
+    <a href="/#o-mne" onclick="closeMenu()">O mně</a>
+    <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+    <a href="/#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+    <a href="/#reference" onclick="closeMenu()">Reference</a>
+  </div>
+  <div class="menu-group">
+    <div class="menu-group-label">Služby</div>
+    <a href="/grafika" onclick="closeMenu()">Grafika</a>
+    <a href="/eshop" onclick="closeMenu()">E-shop</a>
+    <a href="/seo" onclick="closeMenu()">SEO</a>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
+  </div>
   <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="/#kontakt" onclick="closeMenu()">Kontakt</a>
-  <p class="menu-sub">janyskovadigital.cz</p>
+  <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
 <main>
