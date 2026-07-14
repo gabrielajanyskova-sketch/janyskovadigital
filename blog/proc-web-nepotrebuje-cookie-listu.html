@@ -167,7 +167,7 @@ main{position:relative;z-index:1;padding:60px 0 100px;}
 .article-body ul{margin:0 0 22px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px;}
 .article-body li{font-size:15px;color:var(--text-dim);line-height:1.7;padding-left:22px;position:relative;}
 .article-body ul li::before{content:'';position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:50%;background:rgba(240,20,122,0.4);border:1px solid rgba(240,20,122,0.6);}
-.article-body a{color:var(--pink);text-decoration:none;}
+.article-body .article-body a,.cta-box a{color:var(--pink);text-decoration:none}
 .article-body a:hover{text-decoration:underline;}
 
 .highlight{background:rgba(240,20,122,0.05);border:1px solid var(--border);border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:20px 24px;margin:28px 0;font-size:15px;color:var(--text-dim);line-height:1.75;}
@@ -257,7 +257,7 @@ main{position:relative;z-index:1;padding:60px 0 100px;}
   font-size: 15px;
   color: var(--text-dim);
   line-height: 1.75;
-  margin-bottom: 0 !important;
+  margin-bottom:0;
 }
 .tip-box p strong { color: var(--text); }
 
@@ -323,7 +323,7 @@ main{position:relative;z-index:1;padding:60px 0 100px;}
 .article-cta{margin-top:72px;background:linear-gradient(135deg,rgba(240,20,122,0.08) 0%,rgba(180,10,90,0.04) 100%);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;}
 .article-cta h3{font-size:28px;margin-bottom:12px;}
 .article-cta p{color:var(--text-dim);font-size:15px;margin-bottom:28px;}
-a.btn-primary{color:white!important;}.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:white;text-decoration:none;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;letter-spacing:0.3px;transition:opacity 0.2s;}
+a.btn-primary{color:#fff;}.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:white;text-decoration:none;padding:14px 32px;border-radius:100px;font-weight:700;font-size:14px;letter-spacing:0.3px;transition:opacity 0.2s;}
 .btn-primary:hover{opacity:0.88;text-decoration:none;}
 
 /* Related */
@@ -338,7 +338,7 @@ a.btn-primary{color:white!important;}.btn-primary{display:inline-flex;align-item
 
 footer{border-top:1px solid rgba(240,20,122,0.08);padding:40px 28px;text-align:center;position:relative;z-index:1;}
 footer p{font-size:13px;color:rgba(184,168,204,0.4);}
-footer a{color:var(--pink);text-decoration:none;}</style>
+footer .article-body a,.cta-box a{color:var(--pink);text-decoration:none}</style>
 </head>
 <body>
 
@@ -573,7 +573,7 @@ footer a{color:var(--pink);text-decoration:none;}</style>
       <div>
         <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
         <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
-        <div style="margin-top:14px;"><a href="/blog" style="color:var(--pink); font-size:13px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a></div>
+        <div class="post-blog-wrap"><a href="/blog" class="post-blog-link">Blog o webdesignu a AI →</a></div>
       </div>
       <div>
         <div class="footer-heading">Kde působím</div>
