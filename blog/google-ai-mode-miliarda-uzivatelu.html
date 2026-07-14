@@ -78,15 +78,8 @@
 }
 </script>
 
-<style>
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
-:root{--bg:#08060c;--pink:#f0147a;--text:#f5f0fa;--text-dim:#b8a8cc;--border:rgba(240,20,122,0.18);--card:rgba(21,15,30,0.9);--green:#00e5a0;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;min-height:100vh;}
-a{color:var(--pink);text-decoration:none;}
+<link rel="stylesheet" href="/style.css?v=6">
+<style>a{color:var(--pink);text-decoration:none;}
 a:hover{text-decoration:underline;}
 .container{max-width:760px;margin:0 auto;padding:0 24px;}
 nav.topnav{padding:20px 0;border-bottom:1px solid var(--border);margin-bottom:0;}
@@ -130,8 +123,7 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
 .footer-inner a:hover{color:var(--pink);}
 .footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
 .footer-logo em{font-style:italic;color:var(--pink);}
-@media(max-width:600px){.nav-links{display:none;}}
-</style>
+@media(max-width:600px){}</style>
 </head>
 <body>
 
@@ -342,5 +334,6 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   </div>
 </footer>
 
+<script src="/main.js"></script>
 </body>
 </html>

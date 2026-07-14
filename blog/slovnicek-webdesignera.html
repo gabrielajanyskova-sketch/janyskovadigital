@@ -35,18 +35,8 @@
 <script type="application/ld+json">
 [{"@context":"https://schema.org","@type":"BlogPosting","headline":"Slovníček webdesignéra — co znamenají ta slova co vám píšu","description":"Doména, hosting, SSL, SEO, PageSpeed, responsive design... Co tato slova znamenají, vysvětleno krátce a bez žargonu.","image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-07-09","dateModified":"2026-07-09","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/slovnicek-webdesignera","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/slovnicek-webdesignera"},"keywords":"slovníček webdesignéra, co je doména, co je hosting, co je SSL, co je SEO, pojmy webdesign"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Co je doména?","acceptedAnswer":{"@type":"Answer","text":"Doména je adresa vašeho webu na internetu — například janyskovadigital.cz. Bez domény vás nikdo nenajde. Stojí přibližně 200 Kč ročně."}},{"@type":"Question","name":"Co je hosting?","acceptedAnswer":{"@type":"Answer","text":"Hosting je místo, kde web fyzicky žije — server, na kterém jsou uložené soubory vašeho webu. Bez hostingu web nikde neexistuje. U Janyskova Digital je hosting v ceně tvorby."}},{"@type":"Question","name":"Co je SSL?","acceptedAnswer":{"@type":"Answer","text":"SSL je zámeček vedle adresy webu v prohlížeči. Říká návštěvníkům, že je web bezpečný. Bez SSL vás Google schová ve výsledcích a prohlížeč zobrazí varování."}},{"@type":"Question","name":"Co je SEO?","acceptedAnswer":{"@type":"Answer","text":"SEO (Search Engine Optimization) je optimalizace pro vyhledávače. Jinými slovy — co děláme proto, aby vás zákazníci našli na Googlu, když hledají to, co nabízíte."}},{"@type":"Question","name":"Co je PageSpeed?","acceptedAnswer":{"@type":"Answer","text":"PageSpeed je skóre rychlosti webu od Googlu, na stupnici 0–100. Čím vyšší, tím lépe. Pomalý web odradí návštěvníky a Google ho řadí níž."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":"Slovníček webdesignéra","item":"https://janyskovadigital.cz/blog/slovnicek-webdesignera"}]}]
 </script>
-<style>
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
-:root{--bg:#08060c;--bg2:#0f0b16;--pink:#f0147a;--text:#f5f0fa;--text-dim:#b8a8cc;--border:rgba(240,20,122,0.18);--card:rgba(21,15,30,0.9);--green:#00e5a0;}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;}
-h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;}
-:focus-visible{outline:2px solid var(--pink);outline-offset:3px;}
-.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+<link rel="stylesheet" href="/style.css?v=6">
+<style>.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
 .b1{width:550px;height:550px;background:radial-gradient(circle,rgba(240,20,122,0.3) 0%,transparent 65%);top:-15%;left:-15%;animation:bf1 18s ease-in-out infinite;}
 .b2{width:400px;height:400px;background:radial-gradient(circle,rgba(180,10,90,0.18) 0%,transparent 65%);bottom:5%;right:-10%;animation:bf2 22s ease-in-out infinite;}
 @keyframes bf1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(35px,-25px) scale(1.05);}}
@@ -62,12 +52,12 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .nav-links a.cta:hover{background:var(--pink);color:white;}
 .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:1100;}
 .hamburger span{display:block;width:24px;height:1.5px;background:var(--text);}
-.fullscreen-menu{position:fixed;inset:0;background:rgba(8,6,12,.98);backdrop-filter:blur(20px);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;gap:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}.fullscreen-menu.open{opacity:1;visibility:visible;pointer-events:all;transition:opacity .3s ease,visibility 0s}.fullscreen-menu>*{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}.fullscreen-menu.open>:nth-child(1){opacity:1;transform:none;transition-delay:.06s}.fullscreen-menu.open>:nth-child(2){opacity:1;transform:none;transition-delay:.13s}.fullscreen-menu.open>:nth-child(3){opacity:1;transform:none;transition-delay:.2s}.fullscreen-menu.open>:nth-child(4){opacity:1;transform:none;transition-delay:.27s}.fullscreen-menu.open>:nth-child(5){opacity:1;transform:none;transition-delay:.34s}.fullscreen-menu>a{font-family:"DM Serif Display",serif;font-size:clamp(30px,7vw,48px);color:rgba(245,240,250,.7);text-decoration:none;padding:8px 0;display:block;text-align:center;transition:color .2s}.fullscreen-menu>a:hover{color:var(--pink)}.fullscreen-menu>a.menu-cta{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:700;background:var(--pink);color:#fff;padding:13px 36px;border-radius:100px;margin-top:20px;letter-spacing:.3px;transition:background .2s}.fullscreen-menu>a.menu-cta:hover{background:#d4116a}.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:24px;letter-spacing:1px;opacity:0;transition:opacity .4s ease .35s}.fullscreen-menu.open .menu-sub{opacity:1}.menu-group{display:flex;flex-direction:column;align-items:center;margin-bottom:18px;width:100%}.menu-group-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:700;opacity:.55;margin-bottom:10px;text-align:center}.menu-group a{font-family:"DM Serif Display",serif;font-size:clamp(26px,6vw,40px);color:rgba(245,240,250,.65);text-decoration:none;padding:5px 0;display:block;text-align:center;transition:color .2s;opacity:1;transform:none}.menu-group a:hover{color:var(--pink)}
+.fullscreen-menu.fullscreen-menu>.fullscreen-menu.open>:nth-child(1){opacity:1;transform:none;transition-delay:.06s}.fullscreen-menu.open>:nth-child(2){opacity:1;transform:none;transition-delay:.13s}.fullscreen-menu.open>:nth-child(3){opacity:1;transform:none;transition-delay:.2s}.fullscreen-menu.open>:nth-child(4){opacity:1;transform:none;transition-delay:.27s}.fullscreen-menu.open>:nth-child(5){opacity:1;transform:none;transition-delay:.34s}.fullscreen-menu>a{font-family:"DM Serif Display",serif;font-size:clamp(30px,7vw,48px);color:rgba(245,240,250,.7);text-decoration:none;padding:8px 0;display:block;text-align:center;transition:color .2s}.fullscreen-menu>a:hover{color:var(--pink)}.fullscreen-menu>a.menu-cta{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:700;background:var(--pink);color:#fff;padding:13px 36px;border-radius:100px;margin-top:20px;letter-spacing:.3px;transition:background .2s}.fullscreen-menu>a.menu-cta:hover{background:#d4116a}.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:24px;letter-spacing:1px;opacity:0;transition:opacity .4s ease .35s}.fullscreen-menu.open .menu-group a{font-family:"DM Serif Display",serif;font-size:clamp(26px,6vw,40px);color:rgba(245,240,250,.65);text-decoration:none;padding:5px 0;display:block;text-align:center;transition:color .2s;opacity:1;transform:none}.menu-group a:hover{color:var(--pink)}
 .fullscreen-menu.open{opacity:1;pointer-events:all;}
 .fullscreen-menu a{font-family:'DM Serif Display',serif;font-size:clamp(32px,8vw,56px);color:rgba(245,240,250,0.2);text-decoration:none;padding:6px 0;transition:color 0.2s;}
 .fullscreen-menu a:hover{color:var(--pink);}
 .fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:28px;letter-spacing:1px;}
-@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:768px){}
 main{position:relative;z-index:1;padding:60px 0 100px;}
 .container{max-width:760px;margin:0 auto;padding:0 28px;}
 .back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
@@ -107,8 +97,7 @@ footer{background:#050408;padding:40px 28px;border-top:1px solid rgba(240,20,122
 .footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
 .footer-logo em{font-style:italic;color:var(--pink);}
 .footer-inner a{color:rgba(240,20,122,0.55);text-decoration:none;}
-@media(max-width:600px){.cta-block{padding:28px 20px;}.glossary-term{font-size:19px;}}
-</style>
+@media(max-width:600px){.cta-block{padding:28px 20px;}.glossary-term{font-size:19px;}}</style>
 </head>
 <body>
 <div class="blob b1" aria-hidden="true"></div>
@@ -351,12 +340,6 @@ footer{background:#050408;padding:40px 28px;border-top:1px solid rgba(240,20,122
   </div>
 </footer>
 
-<script>
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('mobile-menu');
-function closeMenu(){menu.classList.remove('open');hamburger.setAttribute('aria-expanded','false');menu.setAttribute('aria-hidden','true');}
-hamburger.addEventListener('click',()=>{const open=menu.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);menu.setAttribute('aria-hidden',!open);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-</script>
+<script src="/main.js"></script>
 </body>
 </html>

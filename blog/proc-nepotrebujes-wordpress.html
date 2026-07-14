@@ -35,18 +35,8 @@
 <script type="application/ld+json">
 [{"@context":"https://schema.org","@type":"BlogPosting","headline":"Proč (možná) nepotřebujete WordPress — a co místo něj","description":"WordPress pohání 43 % webu. Ale pro živnostníka a malou firmu to nemusí být nejlepší volba. Porovnání: WordPress vs. čistý kód — rychlost, bezpečnost, náklady.","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":"2026-07-01","dateModified":"2026-07-03","inLanguage":"cs","url":"https://janyskovadigital.cz/blog/proc-nepotrebujes-wordpress","keywords":"wordpress alternativa, proč ne wordpress, web bez wordpressu, čistý kód, tvorba webových stránek, webdesign Nový Jičín, rychlost webu, bezpečnost webu","mainEntityOfPage":{"@type":"WebPage","@id":"https://janyskovadigital.cz/blog/proc-nepotrebujes-wordpress"}},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Je WordPress bezpečný?","acceptedAnswer":{"@type":"Answer","text":"WordPress samotný je bezpečný — problém jsou pluginy a šablony třetích stran. Podle bezpečnostní firmy Sucuri pochází přes 90 % napadených CMS webů z prostředí WordPressu, přičemž za většinou útoků stojí zastaralé pluginy nebo levné šablony. Čistý kód bez administračního panelu a databáze tento útočný prostor eliminuje."}},{"@type":"Question","name":"Kolik stojí WordPress ročně?","acceptedAnswer":{"@type":"Answer","text":"Hosting pro WordPress stojí typicky 1 200–3 600 Kč ročně (PHP + MySQL + SSL). K tomu přičtěte prémiovou šablonu (0–3 000 Kč jednorázově), prémiové pluginy jako Yoast SEO Premium (2 500 Kč/rok) nebo WP Rocket (1 400 Kč/rok) a případné vývojářské hodiny na opravy po aktualizacích. Web v čistém kódu s hostingem v ceně tvorby platíte jen doménu — asi 250 Kč ročně."}},{"@type":"Question","name":"Kdy WordPress dává smysl?","acceptedAnswer":{"@type":"Answer","text":"WordPress má smysl při rozsáhlém redakčním systému s desítkami autorů, komplexním e-shopu nad 500 produktů (WooCommerce), nebo když potřebujete specifické funkce dostupné jako WordPress pluginy. Pro běžnou prezentaci živnostníka nebo malé firmy je ale čistý kód rychlejší, bezpečnější a levnější."}},{"@type":"Question","name":"Co je alternativa WordPressu pro malou firmu?","acceptedAnswer":{"@type":"Answer","text":"Nejlepší alternativa pro malou firmu je web psaný v čistém HTML, CSS a JavaScriptu — bez CMS, bez databáze, bez pluginů. Načítá se pod 1 sekundu, dosahuje PageSpeed 95–100, nepotřebuje drahý hosting a není kam útočit. Pokud chcete i možnost instalace na telefon jako appka, lze přidat PWA (Progressive Web App) — manifest.json a service worker."}}]},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":"Proč (možná) nepotřebujete WordPress","item":"https://janyskovadigital.cz/blog/proc-nepotrebujes-wordpress"}]}]
 </script>
-<style>
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap;}
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap;}
-:root{--bg:#08060c;--bg2:#0f0b16;--pink:#f0147a;--text:#f5f0fa;--text-dim:#b8a8cc;--border:rgba(240,20,122,0.18);--card:rgba(21,15,30,0.9);--green:#00e5a0;}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',system-ui,sans-serif;font-weight:400;line-height:1.65;overflow-x:hidden;}
-h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;}
-:focus-visible{outline:2px solid var(--pink);outline-offset:3px;}
-.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
+<link rel="stylesheet" href="/style.css?v=6">
+<style>.blob{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;}
 .b1{width:550px;height:550px;background:radial-gradient(circle,rgba(240,20,122,0.3) 0%,transparent 65%);top:-15%;left:-15%;animation:bf1 18s ease-in-out infinite;}
 .b2{width:400px;height:400px;background:radial-gradient(circle,rgba(180,10,90,0.18) 0%,transparent 65%);bottom:5%;right:-10%;animation:bf2 22s ease-in-out infinite;}
 @keyframes bf1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(35px,-25px) scale(1.05);}}
@@ -65,7 +55,7 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px);}
 .hamburger.open span:nth-child(2){opacity:0;}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px);}
-.fullscreen-menu{position:fixed;inset:0;background:rgba(8,6,12,.98);backdrop-filter:blur(20px);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;gap:0;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s ease,visibility 0s linear .3s}.fullscreen-menu.open{opacity:1;visibility:visible;pointer-events:all;transition:opacity .3s ease,visibility 0s}.fullscreen-menu>*{opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}.fullscreen-menu.open>:nth-child(1){opacity:1;transform:none;transition-delay:.06s}.fullscreen-menu.open>:nth-child(2){opacity:1;transform:none;transition-delay:.13s}.fullscreen-menu.open>:nth-child(3){opacity:1;transform:none;transition-delay:.2s}.fullscreen-menu.open>:nth-child(4){opacity:1;transform:none;transition-delay:.27s}.fullscreen-menu.open>:nth-child(5){opacity:1;transform:none;transition-delay:.34s}.fullscreen-menu>a{font-family:"DM Serif Display",serif;font-size:clamp(30px,7vw,48px);color:rgba(245,240,250,.7);text-decoration:none;padding:8px 0;display:block;text-align:center;transition:color .2s}.fullscreen-menu>a:hover{color:var(--pink)}.fullscreen-menu>a.menu-cta{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:700;background:var(--pink);color:#fff;padding:13px 36px;border-radius:100px;margin-top:20px;letter-spacing:.3px;transition:background .2s}.fullscreen-menu>a.menu-cta:hover{background:#d4116a}.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:24px;letter-spacing:1px;opacity:0;transition:opacity .4s ease .35s}.fullscreen-menu.open .menu-sub{opacity:1}.menu-group{display:flex;flex-direction:column;align-items:center;margin-bottom:18px;width:100%}.menu-group-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:700;opacity:.55;margin-bottom:10px;text-align:center}.menu-group a{font-family:"DM Serif Display",serif;font-size:clamp(26px,6vw,40px);color:rgba(245,240,250,.65);text-decoration:none;padding:5px 0;display:block;text-align:center;transition:color .2s;opacity:1;transform:none}.menu-group a:hover{color:var(--pink)}
+.fullscreen-menu.fullscreen-menu>.fullscreen-menu.open>:nth-child(1){opacity:1;transform:none;transition-delay:.06s}.fullscreen-menu.open>:nth-child(2){opacity:1;transform:none;transition-delay:.13s}.fullscreen-menu.open>:nth-child(3){opacity:1;transform:none;transition-delay:.2s}.fullscreen-menu.open>:nth-child(4){opacity:1;transform:none;transition-delay:.27s}.fullscreen-menu.open>:nth-child(5){opacity:1;transform:none;transition-delay:.34s}.fullscreen-menu>a{font-family:"DM Serif Display",serif;font-size:clamp(30px,7vw,48px);color:rgba(245,240,250,.7);text-decoration:none;padding:8px 0;display:block;text-align:center;transition:color .2s}.fullscreen-menu>a:hover{color:var(--pink)}.fullscreen-menu>a.menu-cta{font-family:"Plus Jakarta Sans",sans-serif;font-size:15px;font-weight:700;background:var(--pink);color:#fff;padding:13px 36px;border-radius:100px;margin-top:20px;letter-spacing:.3px;transition:background .2s}.fullscreen-menu>a.menu-cta:hover{background:#d4116a}.fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:24px;letter-spacing:1px;opacity:0;transition:opacity .4s ease .35s}.fullscreen-menu.open .menu-group a{font-family:"DM Serif Display",serif;font-size:clamp(26px,6vw,40px);color:rgba(245,240,250,.65);text-decoration:none;padding:5px 0;display:block;text-align:center;transition:color .2s;opacity:1;transform:none}.menu-group a:hover{color:var(--pink)}
 .fullscreen-menu.open{opacity:1;pointer-events:all;}
 .fullscreen-menu a{font-family:'DM Serif Display',serif;font-size:clamp(32px,8vw,60px);color:rgba(245,240,250,0.2);text-decoration:none;padding:6px 0;opacity:0;transform:translateY(20px);transition:color 0.2s,opacity 0.4s ease,transform 0.4s ease;}
 .fullscreen-menu.open a{opacity:1;transform:translateY(0);}
@@ -76,8 +66,8 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .fullscreen-menu.open a:nth-child(5){transition-delay:0.25s;}
 .fullscreen-menu a:hover{color:var(--pink);}
 .fullscreen-menu .menu-sub{font-size:13px;color:var(--text-dim);margin-top:28px;letter-spacing:1px;opacity:0;transition:opacity 0.4s ease 0.3s;}
-.fullscreen-menu.open .menu-sub{opacity:1;}
-@media(max-width:768px){.nav-links{display:none;}.hamburger{display:flex;}}
+.fullscreen-menu.open 
+@media(max-width:768px){}
 main{position:relative;z-index:1;padding:60px 0 100px;}
 .container{max-width:760px;margin:0 auto;padding:0 28px;}
 .back{display:flex;width:fit-content;align-items:center;gap:8px;color:var(--text-dim);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:32px;transition:color 0.2s;}
@@ -130,8 +120,7 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
 .footer-logo{font-family:'DM Serif Display',serif;font-size:18px;color:var(--text);text-decoration:none;}
 .footer-logo em{color:var(--pink);font-style:italic;}
 .footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
-.footer-city-list{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;}
-</style>
+.footer-city-list{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;}</style>
 </head>
 <body>
 <div class="blob b1" aria-hidden="true"></div>
@@ -382,12 +371,6 @@ footer{background:#050408;padding:40px 0 24px;border-top:1px solid rgba(240,20,1
   </div>
 </footer>
 
-<script>
-const hamburger=document.getElementById('hamburger');
-const menu=document.getElementById('fullscreen-menu');
-function closeMenu(){hamburger.classList.remove('open');menu.classList.remove('open');hamburger.setAttribute('aria-expanded','false');}
-hamburger.addEventListener('click',()=>{const open=menu.classList.toggle('open');hamburger.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
-</script>
+<script src="/main.js"></script>
 </body>
 </html>
