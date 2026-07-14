@@ -424,11 +424,11 @@
     <div class="contact-wrap reveal">
       <div class="section-tag centered">Kontakt</div>
       <h2 class="section-title centered">Pojďme probrat <em>váš e-shop.</em></h2>
-      <p style="text-align:center; color:var(--text-dim); font-size:16px; max-width:480px; margin:-20px auto 36px; line-height:1.7;">Napište mi co prodáváte a kolik produktů máte. Odpovím do 24 hodin.</p>
-      <div style="display:flex; justify-content:center; margin-bottom:32px;">
-        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(240,20,122,0.08); border:1px solid rgba(240,20,122,0.25); border-radius:100px; padding:8px 16px;">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f0147a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span style="font-size:13px; color:var(--text-dim);"><strong>Zdarma:</strong> upřímné doporučení — i kdyby vám lépe seděl Shoptet</span>
+      <p class="section-lead text-center" style="max-width:480px;margin:-20px auto 36px;">Napište mi co prodáváte a kolik produktů máte. Odpovím do 24 hodin.</p>
+      <div class="section-cta--sm">
+        <div class="hero-guarantee">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Zdarma:</strong> upřímné doporučení — i kdyby vám lépe seděl Shoptet</span>
         </div>
       </div>
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
@@ -449,7 +449,7 @@
           <label for="zprava">Zpráva</label>
           <textarea id="zprava" name="message" placeholder="Co prodáváte, kolik produktů máte, jak si e-shop představujete..." required></textarea>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">
+        <button type="submit" class="btn-primary btn-submit">
           Odeslat zprávu
           <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </button>
@@ -476,7 +476,7 @@
       <div>
         <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
         <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
-        <div style="margin-top:14px;"><a href="/blog" style="color:var(--pink); font-size:13px; text-decoration:none; font-weight:600;">Blog o webdesignu a AI →</a></div>
+        <div class="post-blog-wrap"><a href="/blog" class="post-blog-link">Blog o webdesignu a AI →</a></div>
       </div>
       <div>
         <div class="footer-heading">Kde působím</div>
