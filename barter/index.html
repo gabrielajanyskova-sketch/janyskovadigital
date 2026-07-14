@@ -359,13 +359,6 @@
   </div>
 </footer>
 
-<script>
-const mobileMenu=document.getElementById('mobile-menu');
-const hamburger=document.getElementById('hamburger');
-function closeMenu(){mobileMenu.classList.remove('open');hamburger.classList.remove('open');hamburger.setAttribute('aria-expanded','false');mobileMenu.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-hamburger.addEventListener('click',()=>{const open=mobileMenu.classList.toggle('open');hamburger.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);mobileMenu.setAttribute('aria-hidden',!open);document.body.style.overflow=open?'hidden':'';});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mobileMenu.classList.contains('open'))closeMenu();});
-</script>
 <script src="/main.js" defer></script>
 </body>
 </html>
