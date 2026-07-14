@@ -272,6 +272,11 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
 .nav-links a.cta{background:var(--pink);color:#fff!important;border:none;padding:9px 22px;border-radius:100px;font-weight:700;}
 .nav-links a.cta:hover{background:#d4116a;box-shadow:0 0 24px rgba(240,20,122,.4);}
 /* Floating CTA */
+.menu-services{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0;}
+.menu-services a{font-family:"Plus Jakarta Sans",system-ui,sans-serif!important;font-size:13px!important;color:rgba(245,240,250,.5)!important;padding:7px 16px!important;border:1px solid rgba(240,20,122,.2);border-radius:100px;transform:none!important;transition:color .2s,border-color .2s!important;}
+.menu-services a:hover{color:var(--pink)!important;border-color:var(--pink)!important;text-shadow:none!important;}
+.fullscreen-menu .menu-cta{font-family:"Plus Jakarta Sans",system-ui,sans-serif!important;font-size:15px!important;font-weight:700;background:var(--pink);color:#fff!important;padding:14px 36px!important;border-radius:100px;margin-top:8px;text-shadow:none!important;}
+.fullscreen-menu .menu-cta:hover{background:#d4116a;color:#fff!important;text-shadow:none!important;}
 .float-cta{position:fixed;bottom:28px;right:28px;z-index:500;display:flex;align-items:center;gap:10px;background:var(--pink);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 24px;border-radius:100px;box-shadow:0 8px 32px rgba(240,20,122,.45);transition:all .25s;white-space:nowrap;}
 .float-cta:hover{background:#d4116a;transform:translateY(-2px);box-shadow:0 12px 40px rgba(240,20,122,.6);}
 .float-cta svg{flex-shrink:0;}
@@ -325,11 +330,13 @@ nav{padding:22px 0;border-bottom:1px solid rgba(240,20,122,0.08);background:rgba
   <a href="#reference" onclick="closeMenu()">Reference</a>
   <a href="#o-mne" onclick="closeMenu()">O mně</a>
   <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="/grafika" onclick="closeMenu()">Grafika</a>
-  <a href="/eshop" onclick="closeMenu()">E-shop</a>
-  <a href="/seo" onclick="closeMenu()">SEO</a>
-  <a href="/barter" onclick="closeMenu()">Barter</a>
-  <a href="#kontakt" onclick="closeMenu()">Mám zájem</a>
+  <div class="menu-services">
+    <a href="/grafika" onclick="closeMenu()">Grafika</a>
+    <a href="/eshop" onclick="closeMenu()">E-shop</a>
+    <a href="/seo" onclick="closeMenu()">SEO</a>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
+  </div>
+  <a href="#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
