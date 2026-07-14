@@ -69,7 +69,7 @@
 ]
 </script>
 
-<link rel="stylesheet" href="/style.css?v=7">
+<link rel="stylesheet" href="/style.css?v=8">
 <style>
 .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:50px}
 .hero-stat{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:22px 20px;text-align:center;backdrop-filter:blur(10px);transition:border-color 0.25s,transform 0.25s}
@@ -125,8 +125,6 @@
 .extra-icon{width:38px;height:38px;border-radius:10px;background:var(--pink-dim);border:1px solid var(--pink-border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .extra-icon svg{width:17px;height:17px;stroke:var(--pink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .extra-price{font-size:14px;font-weight:700;color:var(--pink);white-space:nowrap;flex-shrink:0}
-.wa-btn{position:fixed;bottom:24px;right:24px;width:54px;height:54px;border-radius:50%;background:#25d366;color:white;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4);z-index:200;transition:transform 0.2s,box-shadow 0.2s}
-.wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
 @media(max-width:900px){
   .services-grid{grid-template-columns:1fr}
   .process-grid{grid-template-columns:1fr 1fr}
@@ -556,12 +554,6 @@
 </a>
 
 <script src="/main.js" defer></script>
-
-<script>
-
-document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'accepted'); hideBanner(); loadGA(); });
-document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem('cookie-consent', 'rejected'); hideBanner(); });
-</script>
 </body>
 </html>
 
