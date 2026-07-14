@@ -217,6 +217,11 @@
 #robot-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1;opacity:0;transition:opacity 0.8s}
 .city-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color 0.25s,transform 0.25s;backdrop-filter:blur(10px)}
 .city-card:hover{border-color:rgba(240,20,122,0.45);transform:translateY(-3px)}
+.city-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:10px}
+.city-card-name{font-size:19px;font-family:"DM Serif Display",serif;color:var(--text)}
+.city-card-link{font-size:13px;color:var(--text-dim)}
+.price-note{color:var(--pink);font-size:12px}
+.btn-card{display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px}
 .race-wrap{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
 .race-browser{flex:1;min-width:260px;max-width:380px;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:rgba(21,15,30,0.8)}
 .race-bar-top{background:rgba(30,22,45,0.95);padding:10px 14px;display:flex;align-items:center;gap:10px}
@@ -336,7 +341,7 @@
           <div class="eyebrow-dot"></div>
           <span class="eyebrow-text">Gabriela Janýšková · webdesignerka z Nového Jičína</span>
         </div>
-        <header style="width:100%;max-width:560px;">
+        <header class="hero-header">
           <h1>Dělám weby,<br>které vás <em>zviditelní</em><br>v&nbsp;online světě.</h1>
           <p class="hero-sub">Jsem Gabriela — stavím weby sama, čistým kódem, bez WordPressu. Žádné měsíční poplatky za hosting a za 48 hodin vidíte první náhled.</p>
         </header>
@@ -351,16 +356,16 @@
           </a>
           <a href="#jak-to-funguje" class="btn-outline">Jak to funguje</a>
         </div>
-        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(240,20,122,0.08); border:1px solid rgba(240,20,122,0.25); border-radius:100px; padding:8px 16px; margin-top:4px;">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f0147a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span style="font-size:13px; color:var(--text-dim);"><strong>Zdarma:</strong> zhodnocení vašeho stávajícího webu při každé poptávce</span>
+        <div class="hero-guarantee">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Zdarma:</strong> zhodnocení vašeho stávajícího webu při každé poptávce</span>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;">
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:100px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-dim);">Web na míru</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:100px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-dim);">Grafika</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:100px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-dim);">SEO</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:100px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-dim);">E-shop</span>
-          <span style="font-size:12px;font-weight:600;letter-spacing:0.06em;padding:6px 14px;border-radius:100px;background:var(--card-bg);border:1px solid var(--border);color:var(--text-dim);">Správa webu</span>
+        <div class="hero-tags">
+          <span class="hero-tag">Web na míru</span>
+          <span class="hero-tag">Grafika</span>
+          <span class="hero-tag">SEO</span>
+          <span class="hero-tag">E-shop</span>
+          <span class="hero-tag">Správa webu</span>
           <span style="font-size:12px;color:var(--text-dim);padding:6px 4px;align-self:center;">— vše na jednom místě.</span>
         </div>
       </div>
@@ -403,7 +408,7 @@
         <div class="section-tag">O mně</div>
         <h2 class="section-title">Ahoj, jsem Gabča —<br><em>webdesignerka</em><br>z Nového Jičína.</h2>
         <p>Dělám weby, které vás zviditelní v online světě — a jdu do toho naplno. Každý web stavím sama, čistým kódem, bez šablon a bez WordPressu. Jsem z <strong>Nového Jičína</strong>, ale klienty mám po celé ČR.</p>
-        <p style="font-size:13px;color:var(--text-dim);line-height:1.8;margin-top:20px;padding-top:16px;border-top:1px solid rgba(240,20,122,0.1);">Webdesignu se věnuji 5 let. Začínala jsem na WordPressu, ale frustrace z pomalých webů závislých na pluginech mě přivedla k čistému HTML, CSS a JavaScriptu. Dneska díky tomu dostanete web, který se načte pod vteřinu a nic vám extra neplatíte. Jsem samouk — a jsem na to hrdá. Absolvovala jsem kurz Specialistka AI a Juniorní akademii od Holek z marketingu a pořád se učím.</p>
+        <p class="about-bio">Webdesignu se věnuji 5 let. Začínala jsem na WordPressu, ale frustrace z pomalých webů závislých na pluginech mě přivedla k čistému HTML, CSS a JavaScriptu. Dneska díky tomu dostanete web, který se načte pod vteřinu a nic vám extra neplatíte. Jsem samouk — a jsem na to hrdá. Absolvovala jsem kurz Specialistka AI a Juniorní akademii od Holek z marketingu a pořád se učím.</p>
         <div class="about-pills">
           <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Čistý kód, žádný WordPress</span>
           <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed 100/100</span>
@@ -421,8 +426,8 @@
 <section class="speed-race-section section--race">
   <div class="container">
     <div class="section-tag centered">Rychlost rozhoduje</div>
-    <h2 class="section-title" style="text-align:center;">3 sekundy čekání = <em>polovina zákazníků odejde.</em></h2>
-    <p style="text-align:center; color:var(--text-dim); max-width:560px; margin:0 auto 56px; font-size:17px; line-height:1.7;">Věříte mi? Nemusíte. Podívejte se sami.</p>
+    <h2 class="section-title centered">3 sekundy čekání = <em>polovina zákazníků odejde.</em></h2>
+    <p class="section-lead text-center" style="max-width:560px;margin:0 auto 56px;">Věříte mi? Nemusíte. Podívejte se sami.</p>
     <div class="race-wrap">
       <div class="race-browser race-slow">
         <div class="race-bar-top">
@@ -461,7 +466,7 @@
         <div class="race-score-badge good">PageSpeed 100</div>
       </div>
     </div>
-    <p style="text-align:center; margin-top:40px; font-size:13px; color:var(--text-dim); font-style:italic;">Hodnoty jsou ilustrační. Průměrný WordPress web: PageSpeed 40–65. Moje weby: 95–100.</p>
+    <p class="section-note" style="margin-top:40px;">Hodnoty jsou ilustrační. Průměrný WordPress web: PageSpeed 40–65. Moje weby: 95–100.</p>
     <div>
       <a href="#kontakt" class="btn-primary">Chci taky takový web →</a>
     </div>
@@ -558,42 +563,42 @@
   <div class="container">
     <div class="section-tag">Recenze</div>
     <h2 class="section-title">Co říkají <em>klienti.</em></h2>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-top:40px;">
-      <div class="reveal" style="background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:32px;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
-          <div style="width:44px;height:44px;border-radius:50%;background:var(--pink);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px;flex-shrink:0;">J</div>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-head">
+          <div class="review-avatar" style="background:var(--pink);">J</div>
           <div>
-            <div style="font-weight:700;font-size:15px;">Jaroslav Slonek</div>
-            <div style="font-size:12px;color:var(--text-dim);">Finanční poradce</div>
+            <div class="review-name">Jaroslav Slonek</div>
+            <div class="review-role">Finanční poradce</div>
           </div>
-          <svg style="margin-left:auto;flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         </div>
-        <div style="display:flex;gap:2px;margin-bottom:16px;">
+        <div class="review-stars" aria-label="5 hvězdiček">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <p style="font-size:15px;line-height:1.7;color:var(--text-dim);">„Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a — co je pro mě jako finančního poradce klíčové — budí důvěru. Pokud hledáte webařku, která odvede poctivou práci a dá si na ní záležet, můžu Vám paní Janýškovou jen doporučit."</p>
+        <p class="review-text">„Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a — co je pro mě jako finančního poradce klíčové — budí důvěru. Pokud hledáte webařku, která odvede poctivou práci a dá si na ní záležet, můžu Vám paní Janýškovou jen doporučit."</p>
       </div>
-      <div class="reveal" style="background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:32px;">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
-          <div style="width:44px;height:44px;border-radius:50%;background:#8B5CF6;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:18px;flex-shrink:0;">N</div>
+      <div class="review-card reveal">
+        <div class="review-head">
+          <div class="review-avatar" style="background:#8B5CF6;">N</div>
           <div>
-            <div style="font-weight:700;font-size:15px;">Nika Hubáčková</div>
-            <div style="font-size:12px;color:var(--text-dim);">Fotografka</div>
+            <div class="review-name">Nika Hubáčková</div>
+            <div class="review-role">Fotografka</div>
           </div>
-          <svg style="margin-left:auto;flex-shrink:0;" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         </div>
-        <div style="display:flex;gap:2px;margin-bottom:16px;">
+        <div class="review-stars" aria-label="5 hvězdiček">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <p style="font-size:15px;line-height:1.7;color:var(--text-dim);">„S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"</p>
+        <p class="review-text">„S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"</p>
       </div>
     </div>
   </div>
@@ -606,7 +611,7 @@
 <section class="process-section" id="jak-to-funguje">
   <div class="container">
     <div class="section-tag centered">Jak to funguje</div>
-    <h2 class="section-title" style="text-align:center;">Spolupráce krok <em>za krokem.</em></h2>
+    <h2 class="section-title centered">Spolupráce krok <em>za krokem.</em></h2>
     <div class="process-grid reveal">
       <div class="process-card"><div class="process-num">01</div><h3>Napíšete mi</h3><p>Řeknete mi co potřebujete — já vám řeknu co by dávalo smysl a co to bude stát. Žádné technické řeči, žádné závazky.</p></div>
       <div class="process-card"><div class="process-num">02</div><h3>Dám se do práce</h3><p>Každý web dělám od nuly, v čistém kódu, přesně pro vás. Průběžně vám ukážu jak to vypadá — žádná překvapení na konci.</p></div>
@@ -626,8 +631,8 @@
 <section class="kalk-section" id="kalkulacka">
   <div class="container">
     <div class="section-tag centered">Kalkulačka úspor</div>
-    <h2 class="section-title" style="text-align:center;">Kolik vás stojí <em>váš současný web?</em></h2>
-    <p style="text-align:center; color:var(--text-dim); font-size:17px; max-width:520px; margin:-30px auto 50px; line-height:1.7;">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
+    <h2 class="section-title centered">Kolik vás stojí <em>váš současný web?</em></h2>
+    <p class="kalk-intro">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
     <div class="kalk-wrap reveal">
       <div class="kalk-grid">
         <div><div class="kalk-label">Hosting / rok <span id="k-hosting-out">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range" aria-label="Hosting za rok"></div>
@@ -644,8 +649,8 @@
         <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
         <div class="kalk-bar-track"><div class="kalk-bar-current" id="k-bar-ted"></div><div class="kalk-bar-jd" id="k-bar-jd"></div></div>
       </div>
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
-        <p class="kalk-note">Výpočet: (hosting + správa + doména) × roky vs. tvorba od 5 900 Kč + doména × roky. Hosting v ceně tvorby.* <br><small>* U Janyskova Digital je hosting zdarma v ceně tvorby. Správa webu (aktualizace obsahu, technický dohled) je volitelná — více v <a href="#cenik" style="color:var(--pink)">ceníku</a>.</small></p>
+      <div class="kalk-footer">
+        <p class="kalk-note">Výpočet: (hosting + správa + doména) × roky vs. tvorba od 5 900 Kč + doména × roky. Hosting v ceně tvorby.* <br><small>* U Janyskova Digital je hosting zdarma v ceně tvorby. Správa webu (aktualizace obsahu, technický dohled) je volitelná — více v <a href="#cenik">ceníku</a>.</small></p>
         <a href="#kontakt" class="btn-primary">Chci ušetřit</a>
       </div>
     </div>
@@ -757,9 +762,9 @@
           <li>Zásilkovna, Balíkovna a další dopravci na dotaz</li>
           <li>Mobilní verze, PageSpeed 95+</li>
           <li><strong>Hosting v ceně — platíte jen doménu</strong></li>
-          <li style="color:var(--pink);font-size:12px;">Cena dle rozsahu — složitější integrace = vyšší cena</li>
+          <li class="price-note">Cena dle rozsahu — složitější integrace = vyšší cena</li>
         </ul>
-        <a href="/eshop" class="btn-outline" style="display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px;">Zjistit víc o e-shopu →</a>
+        <a href="/eshop" class="btn-outline btn-card">Zjistit víc o e-shopu →</a>
       </div>
       <div class="price-card reveal">
         <div class="price-card-tag">SEO optimalizace</div>
@@ -774,7 +779,7 @@
           <li>Google Search Console — nastavení a monitoring</li>
           <li><strong>SEO Péče od 990 Kč/měs</strong></li>
         </ul>
-        <a href="/seo" class="btn-outline" style="display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px;">Zjistit víc o SEO →</a>
+        <a href="/seo" class="btn-outline btn-card">Zjistit víc o SEO →</a>
       </div>
     </div>
     <p>Ceny jsou orientační — finální nabídku vám ráda připravím na míru.</p>
@@ -789,7 +794,7 @@
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title" style="text-align:center; margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <h2 class="section-title centered" style="margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
     <div class="faq-grid">
       <div class="faq-item reveal"><h3>Proč neplatím za hosting?</h3><p>Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.</p></div>
       <div class="faq-item reveal"><h3>Budu moci web v budoucnu sama upravovat?</h3><p>Ano — ale ne přes složitý redakční systém. Drobné změny (text, fotka, cena) mi napište a udělám je obvykle do 24–48 hodin, v ceně pokud jsou malé. Na větší úpravy je tu <strong>Web Care od 490 Kč/měs</strong> — správu webu přebírám já a vy řešíte byznys. Čistý kód na rozdíl od WordPressu nevyžaduje aktualizace pluginů ani záplaty — web prostě funguje.</p></div>
@@ -831,59 +836,59 @@
 <section>
   <div class="container">
     <div class="section-tag centered">Kde působím</div>
-    <h2 class="section-title" style="text-align:center;">Weby tvořím <em>po celé ČR.</em></h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-top:10px;">
+    <h2 class="section-title centered">Weby tvořím <em>po celé ČR.</em></h2>
+    <div class="city-grid">
       <a href="/novy-jicin/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Nový Jičín</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Nový Jičín →</span>
+        <span class="city-card-name">Nový Jičín</span>
+        <span class="city-card-link">Webdesign Nový Jičín →</span>
       </a>
       <a href="/ostrava/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Ostrava</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Ostrava →</span>
+        <span class="city-card-name">Ostrava</span>
+        <span class="city-card-link">Webdesign Ostrava →</span>
       </a>
       <a href="/frydek-mistek/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Frýdek-Místek</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Frýdek-Místek →</span>
+        <span class="city-card-name">Frýdek-Místek</span>
+        <span class="city-card-link">Webdesign Frýdek-Místek →</span>
       </a>
       <a href="/hranice/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Hranice</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Hranice →</span>
+        <span class="city-card-name">Hranice</span>
+        <span class="city-card-link">Webdesign Hranice →</span>
       </a>
       <a href="/koprivnice/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Kopřivnice</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Kopřivnice →</span>
+        <span class="city-card-name">Kopřivnice</span>
+        <span class="city-card-link">Webdesign Kopřivnice →</span>
       </a>
       <a href="/pribor/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Příbor</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Příbor →</span>
+        <span class="city-card-name">Příbor</span>
+        <span class="city-card-link">Webdesign Příbor →</span>
       </a>
       <a href="/brno/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Brno</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Brno →</span>
+        <span class="city-card-name">Brno</span>
+        <span class="city-card-link">Webdesign Brno →</span>
       </a>
       <a href="/praha/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Praha</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Praha →</span>
+        <span class="city-card-name">Praha</span>
+        <span class="city-card-link">Webdesign Praha →</span>
       </a>
       <a href="/olomouc/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Olomouc</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Olomouc →</span>
+        <span class="city-card-name">Olomouc</span>
+        <span class="city-card-link">Webdesign Olomouc →</span>
       </a>
       <a href="/zlin/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Zlín</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Zlín →</span>
+        <span class="city-card-name">Zlín</span>
+        <span class="city-card-link">Webdesign Zlín →</span>
       </a>
       <a href="/frenstat/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Frenštát</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Frenštát →</span>
+        <span class="city-card-name">Frenštát</span>
+        <span class="city-card-link">Webdesign Frenštát →</span>
       </a>
       <a href="/roznov/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Rožnov</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Rožnov →</span>
+        <span class="city-card-name">Rožnov</span>
+        <span class="city-card-link">Webdesign Rožnov →</span>
       </a>
       <a href="/valasske-mezirici/" class="city-card">
-        <span style="font-size:19px; font-family:'DM Serif Display',serif; color:var(--text);">Val. Meziříčí</span>
-        <span style="font-size:13px; color:var(--text-dim);">Webdesign Val. Meziříčí →</span>
+        <span class="city-card-name">Val. Meziříčí</span>
+        <span class="city-card-link">Webdesign Val. Meziříčí →</span>
       </a>
     </div>
   </div>
@@ -900,12 +905,12 @@
   <div class="container">
     <div class="contact-wrap reveal">
       <div class="section-tag centered">Kontakt</div>
-      <h2 class="section-title" style="text-align:center;">Napište mi.<br><em>Uvidíte sami.</em></h2>
+      <h2 class="section-title centered">Napište mi.<br><em>Uvidíte sami.</em></h2>
       <p style="text-align:center; color:var(--text-dim); font-size:16px; max-width:480px; margin:-20px auto 36px; line-height:1.7;">Odpovím do 24 hodin — a rovnou vám řeknu, co by dávalo smysl pro váš web.</p>
       <div style="display:flex; justify-content:center; margin-bottom:32px;">
         <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(240,20,122,0.08); border:1px solid rgba(240,20,122,0.25); border-radius:100px; padding:8px 16px;">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f0147a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span style="font-size:13px; color:var(--text-dim);"><strong>Zdarma:</strong> zhodnocení vašeho stávajícího webu při každé poptávce</span>
+          <span class="city-card-link"><strong>Zdarma:</strong> zhodnocení vašeho stávajícího webu při každé poptávce</span>
         </div>
       </div>
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">

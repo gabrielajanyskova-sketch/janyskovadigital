@@ -78,10 +78,6 @@
 
 <link rel="stylesheet" href="/style.css?v=6">
 <style>
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
-@font-face{font-family:'Plus Jakarta Sans';src:url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'DM Serif Display';src:url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
 
 .eshop-hero{padding:80px 0 56px;text-align:center;}
 .eshop-hero .section-tag{justify-content:center;}
@@ -231,7 +227,7 @@
     <div class="section-tag">Nová služba</div>
     <h1>E-shop bez WordPressu,<br>pluginů <em>a měsíčních faktur.</em></h1>
     <p class="hero-sub">Tvorba e-shopu v čistém kódu — rychlý, bezpečný, váš. Košík, filtrování, platební brána. Bez WooCommerce, bez Shoptetu, bez poplatků za hosting. První náhled do 48 hodin.</p>
-    <a href="#kontakt" class="btn-primary" style="display:inline-block;background:var(--pink);color:#fff;font-weight:700;font-size:16px;padding:16px 36px;border-radius:50px;text-decoration:none;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Chci e-shop na míru</a>
+    <a href="#kontakt" class="btn-primary">Chci e-shop na míru</a>
   </div>
 </section>
 
@@ -384,7 +380,7 @@
 <section class="faq-section section" id="faq">
   <div class="container">
     <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title" style="text-align:center;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <h2 class="section-title centered">Na co se <em>ptáte nejčastěji.</em></h2>
     <div class="faq-grid">
       <div class="faq-item reveal">
         <h3>Kolik produktů e-shop zvládne?</h3>
@@ -427,7 +423,7 @@
   <div class="container">
     <div class="contact-wrap reveal">
       <div class="section-tag centered">Kontakt</div>
-      <h2 class="section-title" style="text-align:center;">Pojďme probrat <em>váš e-shop.</em></h2>
+      <h2 class="section-title centered">Pojďme probrat <em>váš e-shop.</em></h2>
       <p style="text-align:center; color:var(--text-dim); font-size:16px; max-width:480px; margin:-20px auto 36px; line-height:1.7;">Napište mi co prodáváte a kolik produktů máte. Odpovím do 24 hodin.</p>
       <div style="display:flex; justify-content:center; margin-bottom:32px;">
         <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(240,20,122,0.08); border:1px solid rgba(240,20,122,0.25); border-radius:100px; padding:8px 16px;">
@@ -517,38 +513,7 @@
   </div>
 </footer>
 
-<script>
-// Mouse glow
-document.addEventListener('mousemove', e => {
-  document.querySelector('.mouse-glow').style.cssText =
-    `--mx:${e.clientX}px; --my:${e.clientY}px`;
-}, { passive: true });
-
-// Hamburger
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
-function closeMenu() {
-  hamburger.classList.remove('open');
-  mobileMenu.classList.remove('open');
-  hamburger.setAttribute('aria-expanded', 'false');
-  mobileMenu.setAttribute('aria-hidden', 'true');
-}
-hamburger.addEventListener('click', () => {
-  const isOpen = hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  mobileMenu.setAttribute('aria-hidden', !isOpen);
-});
-
-// Reveal on scroll
-const reveals = document.querySelectorAll('.reveal');
-if (reveals.length) {
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-}
-</script>
+<script src="/main.js" defer></script>
 </body>
 </html>
 
