@@ -32,10 +32,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta San
 h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
 :focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
-.bg-blobs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.blob { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45; }
-.b1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(240,20,122,0.35) 0%, transparent 65%); top: -10%; left: -10%; animation: bf1 20s ease-in-out infinite; }
-@keyframes bf1 { 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(30px,-20px) scale(1.04);} }
 
 /* NAV */
 nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.75); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; }
@@ -94,8 +90,7 @@ footer { background: #050408; padding: 40px 0 24px; border-top: 1px solid rgba(2
 </style>
 </head>
 <body>
-<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
-<div class="bg-blobs" aria-hidden="true"><div class="blob b1"></div></div>
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a></div>
 <nav role="navigation" aria-label="Hlavní navigace">
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
