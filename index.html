@@ -214,6 +214,15 @@
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;margin-bottom:24px}
 .hero h1 em{color:var(--pink);font-style:italic;text-shadow:0 0 60px rgba(240,20,122,0.55),0 0 120px rgba(240,20,122,0.25)}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes showcaseFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 40px rgba(240,20,122,0.18),0 8px 32px rgba(0,0,0,0.35)}50%{box-shadow:0 0 70px rgba(240,20,122,0.38),0 8px 40px rgba(0,0,0,0.4)}}
+.hero-header{animation:heroFadeUp .7s ease both}
+.hero-btns{animation:heroFadeUp .7s .18s ease both}
+.hero-right{animation:heroFadeUp .7s .08s ease both}
+.hero-showcase{animation:showcaseFloat 5s ease-in-out infinite}
+.hero-showcase a{animation:glowPulse 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.hero-header,.hero-btns,.hero-right,.hero-showcase,.hero-showcase a{animation:none}}
 .city-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color 0.25s,transform 0.25s;backdrop-filter:blur(10px)}
 .city-card:hover{border-color:rgba(240,20,122,0.45);transform:translateY(-3px)}
 .city-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:10px}
