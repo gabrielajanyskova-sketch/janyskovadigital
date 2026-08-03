@@ -66,7 +66,7 @@ const FOOTER = `<footer>
   </div>
 </footer>`;
 
-const JS = `<script src="/main.js?v=12" defer></script>`;
+const JS = `<script src="/main.js?v=14" defer></script>`;
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -212,7 +212,7 @@ async function build() {
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":${JSON.stringify(data.title)},"description":${JSON.stringify(data.description || '')},"image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz"},"publisher":{"@type":"Organization","name":"Janyskova Digital","url":"https://janyskovadigital.cz"},"datePublished":${JSON.stringify(dateIso)},"inLanguage":"cs","url":${JSON.stringify(url)},"mainEntityOfPage":{"@type":"WebPage","@id":${JSON.stringify(url)}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":${JSON.stringify(data.title)},"item":${JSON.stringify(url)}}]}</script>
-<link rel="stylesheet" href="/style.css?v=12">
+<link rel="stylesheet" href="/style.css?v=14">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 </head>
 <body>
