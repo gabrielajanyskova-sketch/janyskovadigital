@@ -88,6 +88,8 @@ async function build() {
     return;
   }
 
+  const cards = [];
+
   for (const file of files) {
     const slug = basename(file, '.md');
     const raw = await readFile(join(srcDir, file), 'utf8');
@@ -169,6 +171,30 @@ ${JS}
     const outPath = join(outDir, `${slug}.html`);
     await writeFile(outPath, html, 'utf8');
     console.log(`✓ ${outPath}`);
+
+    // Připrav blog kartu
+    const monthCs = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
+    const d = new Date(data.date || new Date());
+    const dateLabel = `${d.getDate()}. ${monthCs[d.getMonth()]} ${d.getFullYear()}`;
+    cards.push({ slug, date: d, card: `<a href="/blog/${slug}" class="blog-card" role="listitem">
+        <div class="blog-card-tag">${data.tag || 'Blog'} · ${dateLabel}</div>
+        <h2>${data.title}</h2>
+        <p>${data.description || ''}</p>
+        <span class="read">Číst článek →</span>
+      </a>` });
+  }
+
+  // Aktualizuj blog.html — vlož nové karty na začátek
+  if (cards.length > 0) {
+    cards.sort((a, b) => b.date - a.date);
+    const cardsHtml = cards.map(c => c.card).join('\n      ');
+    let blogHtml = await readFile('blog.html', 'utf8');
+    blogHtml = blogHtml.replace(
+      /<!-- CMS:START -->.*?<!-- CMS:END -->/s,
+      `<!-- CMS:START -->\n      ${cardsHtml}\n      <!-- CMS:END -->`
+    );
+    await writeFile('blog.html', blogHtml, 'utf8');
+    console.log(`✓ blog.html aktualizován (${cards.length} nových karet)`);
   }
 
   console.log(`\nHotovo — převedeno ${files.length} příspěvků.`);
