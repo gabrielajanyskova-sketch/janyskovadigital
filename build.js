@@ -1,8 +1,9 @@
-import { readdir, readFile, writeFile, mkdir } from 'fs/promises';
+import { readdir, readFile, writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join, basename } from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import { parse as parseYaml } from 'yaml';
 
 const NAV = `<nav role="navigation" aria-label="Hlavní navigace">
   <div class="container nav-inner">
@@ -85,7 +86,6 @@ async function build() {
 
   if (files.length === 0) {
     console.log('Žádné .md soubory k převodu.');
-    return;
   }
 
   const cards = [];
@@ -195,6 +195,22 @@ ${JS}
     );
     await writeFile('blog.html', blogHtml, 'utf8');
     console.log(`✓ blog.html aktualizován (${cards.length} nových karet)`);
+  }
+
+  // Aktualizuj index.html podle content/hlavni-stranka.yml
+  const ymlPath = 'content/hlavni-stranka.yml';
+  if (existsSync(ymlPath)) {
+    const ymlRaw = await readFile(ymlPath, 'utf8');
+    const data = parseYaml(ymlRaw);
+    let indexHtml = await readFile('index.html', 'utf8');
+    for (const [key, val] of Object.entries(data)) {
+      indexHtml = indexHtml.replace(
+        new RegExp(`<!--CMS:${key}-->.*?<!--/CMS:${key}-->`, 's'),
+        `<!--CMS:${key}-->${val}<!--/CMS:${key}-->`
+      );
+    }
+    await writeFile('index.html', indexHtml, 'utf8');
+    console.log('✓ index.html aktualizován');
   }
 
   console.log(`\nHotovo — převedeno ${files.length} příspěvků.`);

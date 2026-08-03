@@ -10,6 +10,18 @@ media_folder: images/uploads
 public_folder: /images/uploads
 
 collections:
+  - name: hlavni_stranka
+    label: Hlavní stránka
+    files:
+      - name: obsah
+        label: Texty na hlavní stránce
+        file: content/hlavni-stranka.yml
+        fields:
+          - { label: "Hero — hlavní nadpis", name: hero_title, widget: string, hint: "Nadpis v hero sekci. HTML tagy jsou povoleny (<em>, <br>)." }
+          - { label: "Hero — podnadpis", name: hero_sub, widget: string }
+          - { label: "O mně — úvodní odstavec", name: about_intro, widget: text }
+          - { label: "O mně — bio", name: about_bio, widget: text }
+
   - name: blog
     label: Blogové příspěvky
     label_singular: Příspěvek
