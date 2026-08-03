@@ -1,0 +1,26 @@
+backend:
+  name: github
+  repo: gabrielajanyskova-sketch/janyskovadigital
+  branch: main
+  base_url: https://janyskovadigital.cz
+  auth_endpoint: /api/auth
+
+locale: cs
+media_folder: images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: blog
+    label: Blogové příspěvky
+    label_singular: Příspěvek
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    fields:
+      - { label: Nadpis, name: title, widget: string }
+      - { label: Datum vydání, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD. MM. YYYY", time_format: false }
+      - { label: Kategorie, name: tag, widget: string, hint: "Např. SEO · Webdesign" }
+      - { label: Perex (meta description), name: description, widget: text, hint: "Krátký popis pro Google, max 160 znaků" }
+      - { label: Doba čtení, name: read_time, widget: string, default: "5 min čtení" }
+      - { label: Obsah článku, name: body, widget: markdown }

@@ -1,6 +1,12 @@
 {
+  "type": "module",
+  "scripts": {
+    "build": "node build.js"
+  },
   "devDependencies": {
     "csso-cli": "^4.0.2",
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.7",
     "terser": "^5.49.0"
   }
 }
