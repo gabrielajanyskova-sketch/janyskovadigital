@@ -988,14 +988,17 @@
 <script>
 (function(){
   var KB=[
-    {keys:['cen','kolik','stoj','cena','cenu','cenov'],a:'One-page web startuje od 5 900 Kč, vícestránkový web od 12 000 Kč. Hosting je vždy v ceně tvorby — platíš jen doménu (~200 Kč/rok). Přesnou cenu si spočítáš v kalkulačce na téhle stránce.'},
-    {keys:['dlouho','trvá','trva','kdy','lhůt','lhut','týden','tyden','doba','čas'],a:'První náhled máš do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáš podklady.'},
-    {keys:['barter','výměn','vymeni','výměna','bez peněz','bez penez','výmena'],a:'Barter je výměna — web za tvé produkty nebo služby. Hodí se pro kadeřnice, kosmetičky, cukrářky a další. Bez peněz, bez kompromisů na kvalitě.'},
-    {keys:['funguj','postup','proces','jak to','krok','výroba','vyroba','začín','zacin'],a:'Vyplníš formulář → domluvíme se na obsahu → do 48 h máš první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.'},
+    {keys:['cen','kolik','stoj','cena','cenu','cenov','price'],a:'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíš jen doménu ~200 Kč/rok.'},
+    {keys:['dlouho','trvá','trva','kdy','lhůt','lhut','týden','tyden','doba','čas','rychle'],a:'První náhled máš do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáš podklady.'},
+    {keys:['barter','výměn','vymeni','výměna','bez peněz','bez penez','výmena'],a:'Barter je výměna — web za tvé produkty nebo služby. Hodí se třeba pro kadeřnice, kosmetičky nebo cukrářky. Kvalita stejná jako u placené zakázky, jen bez peněz.'},
+    {keys:['funguj','postup','proces','jak to','krok','výroba','vyroba','začín','zacin','spoluprac'],a:'Vyplníš formulář → domluvíme se na obsahu a designu → do 48 h máš první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.'},
     {keys:['kontakt','email','telefon','napsat','napíš','napiss','zavolat','mail','spojit'],a:'Napiš na info@janyskovadigital.cz nebo zavolej na +420 739 395 800. Nebo vyplň formulář níže — ozveme se do 24 hodin.'},
-    {keys:['wordpress','wp','šablona','sablona','template'],a:'Nepracuju s WordPressem ani šablonami. Každý web píšu v čistém kódu — proto mají PageSpeed skóre 100 a nenačítají balast.'},
-    {keys:['hosting','doména','domena','domain','server'],a:'Hosting je v ceně na 1 rok. Pak stojí přibližně 1 000–1 500 Kč/rok. Doménu si přeregistrujeme na tebe nebo koupíme novou.'},
-    {keys:['seo','vyhledava','google','pozice','hledá'],a:'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Přidám i Google Search Console a základní nastavení pro vyhledávače.'},
+    {keys:['wordpress','wp','šablona','sablona','template','wix','squarespace'],a:'Nepracuju s WordPressem ani šablonami — každý web píšu v čistém kódu. Proto mají PageSpeed skóre 100 a neplatíš za hosting ani drahé pluginy.'},
+    {keys:['hosting','doména','domena','domain','server','provoz','platit'],a:'Hosting je navždy v ceně tvorby — neplatíš nic navíc. Dál platíš jen doménu, přibližně 200 Kč ročně.'},
+    {keys:['seo','vyhledava','google','pozice','hledá','najde'],a:'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Přidám i napojení na Google Search Console.'},
+    {keys:['refresh','předelat','predělat','předělat','převést','prevest','existujici','existující','stávajíc'],a:'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.'},
+    {keys:['správa','sprava','care','aktualizac','update','obsah','změn'],a:'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.'},
+    {keys:['google','firem','firma','maps','mapa','místní','mistni','profil'],a:'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže ti být vidět ve výsledcích pro místní vyhledávání.'},
   ];
   var FALLBACK='To přesně nevím, ale ráda odpovím osobně. Napiš mi na info@janyskovadigital.cz nebo vyplň formulář — ozveme se do 24 hodin.';
   var CHIPS=[
