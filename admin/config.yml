@@ -17,10 +17,167 @@ collections:
         label: Texty na hlavní stránce
         file: content/hlavni-stranka.yml
         fields:
-          - { label: "Hero — hlavní nadpis", name: hero_title, widget: string, hint: "Nadpis v hero sekci. HTML tagy jsou povoleny (<em>, <br>)." }
-          - { label: "Hero — podnadpis", name: hero_sub, widget: string }
-          - { label: "O mně — úvodní odstavec", name: about_intro, widget: text }
-          - { label: "O mně — bio", name: about_bio, widget: text }
+          - label: "Hero — hlavní nadpis"
+            name: hero_title
+            widget: string
+            hint: "HTML tagy povoleny (<em>, <br>, &nbsp;)"
+          - label: "Hero — podnadpis"
+            name: hero_sub
+            widget: string
+
+          - label: "O mně — úvodní odstavec"
+            name: about_intro
+            widget: text
+            hint: "HTML tagy povoleny (<strong> apod.)"
+          - label: "O mně — bio"
+            name: about_bio
+            widget: text
+
+          - label: "Proč já — karta 1: nadpis"
+            name: trust1_h3
+            widget: string
+          - label: "Proč já — karta 1: text"
+            name: trust1_p
+            widget: text
+          - label: "Proč já — karta 2: nadpis"
+            name: trust2_h3
+            widget: string
+          - label: "Proč já — karta 2: text"
+            name: trust2_p
+            widget: text
+          - label: "Proč já — karta 3: nadpis"
+            name: trust3_h3
+            widget: string
+          - label: "Proč já — karta 3: text"
+            name: trust3_p
+            widget: text
+          - label: "Proč já — karta 4: nadpis"
+            name: trust4_h3
+            widget: string
+          - label: "Proč já — karta 4: text"
+            name: trust4_p
+            widget: text
+          - label: "Proč já — karta 5: nadpis"
+            name: trust5_h3
+            widget: string
+          - label: "Proč já — karta 5: text"
+            name: trust5_p
+            widget: text
+            hint: "HTML tagy povoleny (odkaz na /novy-jicin/ je tam zabudovaný)"
+          - label: "Proč já — karta 6: nadpis"
+            name: trust6_h3
+            widget: string
+          - label: "Proč já — karta 6: text"
+            name: trust6_p
+            widget: text
+
+          - label: "Recenze 1 — text"
+            name: review1_text
+            widget: text
+            hint: "Text recenze Jaroslava Slonka"
+          - label: "Recenze 2 — text"
+            name: review2_text
+            widget: text
+            hint: "Text recenze Niky Hubáčkové"
+
+          - label: "Postup — krok 1: nadpis"
+            name: process1_h3
+            widget: string
+          - label: "Postup — krok 1: text"
+            name: process1_p
+            widget: text
+          - label: "Postup — krok 2: nadpis"
+            name: process2_h3
+            widget: string
+          - label: "Postup — krok 2: text"
+            name: process2_p
+            widget: text
+          - label: "Postup — krok 3: nadpis"
+            name: process3_h3
+            widget: string
+          - label: "Postup — krok 3: text"
+            name: process3_p
+            widget: text
+          - label: "Postup — krok 4: nadpis"
+            name: process4_h3
+            widget: string
+          - label: "Postup — krok 4: text"
+            name: process4_p
+            widget: text
+
+          - label: "FAQ 1 — otázka"
+            name: faq1_q
+            widget: string
+          - label: "FAQ 1 — odpověď"
+            name: faq1_a
+            widget: text
+          - label: "FAQ 2 — otázka"
+            name: faq2_q
+            widget: string
+          - label: "FAQ 2 — odpověď"
+            name: faq2_a
+            widget: text
+            hint: "HTML tagy povoleny (<strong> apod.)"
+          - label: "FAQ 3 — otázka"
+            name: faq3_q
+            widget: string
+          - label: "FAQ 3 — odpověď"
+            name: faq3_a
+            widget: text
+          - label: "FAQ 4 — otázka"
+            name: faq4_q
+            widget: string
+          - label: "FAQ 4 — odpověď"
+            name: faq4_a
+            widget: text
+          - label: "FAQ 5 — otázka"
+            name: faq5_q
+            widget: string
+          - label: "FAQ 5 — odpověď"
+            name: faq5_a
+            widget: text
+          - label: "FAQ 6 — otázka"
+            name: faq6_q
+            widget: string
+          - label: "FAQ 6 — odpověď"
+            name: faq6_a
+            widget: text
+          - label: "FAQ 7 — otázka"
+            name: faq7_q
+            widget: string
+          - label: "FAQ 7 — odpověď"
+            name: faq7_a
+            widget: text
+          - label: "FAQ 8 — otázka"
+            name: faq8_q
+            widget: string
+          - label: "FAQ 8 — odpověď"
+            name: faq8_a
+            widget: text
+          - label: "FAQ 9 — otázka"
+            name: faq9_q
+            widget: string
+          - label: "FAQ 9 — odpověď"
+            name: faq9_a
+            widget: text
+          - label: "FAQ 10 — otázka"
+            name: faq10_q
+            widget: string
+          - label: "FAQ 10 — odpověď"
+            name: faq10_a
+            widget: text
+          - label: "FAQ 11 — otázka"
+            name: faq11_q
+            widget: string
+          - label: "FAQ 11 — odpověď"
+            name: faq11_a
+            widget: text
+          - label: "FAQ 12 — otázka"
+            name: faq12_q
+            widget: string
+          - label: "FAQ 12 — odpověď"
+            name: faq12_a
+            widget: text
 
   - name: blog
     label: Blogové příspěvky
