@@ -3,7 +3,7 @@
   if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch devices
   var glow = document.createElement('div');
   glow.id = 'cursor-glow';
-  glow.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(240,20,122,0.13) 0%,transparent 65%);transform:translate(-50%,-50%);transition:opacity .4s;top:0;left:0;will-change:transform';
+  glow.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(240,20,122,0.28) 0%,rgba(240,20,122,0.08) 40%,transparent 70%);transform:translate(-50%,-50%);transition:opacity .4s;top:0;left:0;will-change:transform;mix-blend-mode:screen';
   document.body.appendChild(glow);
   var tx = -1000, ty = -1000, cx = -1000, cy = -1000;
   document.addEventListener('mousemove', function(e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
