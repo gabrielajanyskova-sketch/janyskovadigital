@@ -231,17 +231,25 @@
 .price-note{color:var(--pink);font-size:12px}
 .btn-card{display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px}
 @media(max-width:900px){.hero{padding:30px 0 20px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:30px}.hero-right{display:none}}
-.browser-mockup{border-radius:14px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.55),0 0 0 1px rgba(240,20,122,.2),0 0 60px rgba(240,20,122,.1);animation:showcaseFloat 5s ease-in-out infinite}
-.browser-bar{background:#1a1225;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
-.browser-dots{display:flex;gap:6px;flex-shrink:0}
-.browser-dots span{width:11px;height:11px;border-radius:50%}
-.browser-dots span:nth-child(1){background:#ff5f57}
-.browser-dots span:nth-child(2){background:#febc2e}
-.browser-dots span:nth-child(3){background:#28c840}
-.browser-url{background:rgba(255,255,255,.06);border-radius:6px;padding:4px 12px;font-size:12px;color:rgba(245,240,250,.5);flex:1;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:monospace}
-.browser-screen{height:460px;overflow:hidden;position:relative;background:#08060c}
-.browser-scroll-img{width:100%;height:auto;display:block;animation:browserScroll 18s linear 1.5s infinite}
-@keyframes browserScroll{0%{transform:translateY(0)}85%{transform:translateY(calc(-100% + 460px))}90%{transform:translateY(calc(-100% + 460px))}100%{transform:translateY(0)}}
+.browser-mockup{border-radius:10px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.6),0 0 0 1px rgba(240,20,122,.18),0 0 50px rgba(240,20,122,.08);animation:showcaseFloat 5s ease-in-out infinite}
+.browser-chrome{background:#dee1e6;padding:0}
+.browser-tabs{display:flex;align-items:flex-end;padding:8px 8px 0;gap:0;background:#c8cbd0}
+.browser-tab{background:#dee1e6;border-radius:8px 8px 0 0;padding:6px 14px 6px 10px;font-size:11px;color:#3c3c3c;display:flex;align-items:center;gap:7px;max-width:180px;white-space:nowrap;overflow:hidden}
+.browser-tab-favicon{width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,#1a1225,#f0147a);flex-shrink:0}
+.browser-tab-title{overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.browser-tab-close{margin-left:auto;color:#888;font-size:13px;line-height:1;padding-left:6px;flex-shrink:0}
+.browser-toolbar{background:#dee1e6;padding:6px 10px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #bfc2c8}
+.browser-nav-btns{display:flex;gap:2px}
+.browser-nav-btns button{width:26px;height:26px;border-radius:50%;border:0;background:0 0;color:#666;cursor:default;font-size:16px;display:flex;align-items:center;justify-content:center;line-height:1}
+.browser-nav-btns button:hover{background:rgba(0,0,0,.08)}
+.browser-omnibox{flex:1;background:#fff;border-radius:20px;padding:5px 14px;font-size:12px;color:#333;display:flex;align-items:center;gap:6px;border:1px solid #ccc;box-shadow:inset 0 1px 2px rgba(0,0,0,.06)}
+.browser-omnibox-lock{color:#5f6368;font-size:13px}
+.browser-omnibox-url{color:#333;font-family:sans-serif}
+.browser-screen{height:440px;overflow-y:scroll;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#bbb #f0f0f0}
+.browser-screen::-webkit-scrollbar{width:8px}
+.browser-screen::-webkit-scrollbar-track{background:#f0f0f0}
+.browser-screen::-webkit-scrollbar-thumb{background:#bbb;border-radius:4px}
+.browser-scroll-img{width:100%;height:auto;display:block;cursor:ns-resize}
 </style>
 <script type="application/ld+json">
 {
@@ -315,9 +323,25 @@
       </div>
       <div class="hero-right">
         <div class="browser-mockup">
-          <div class="browser-bar">
-            <div class="browser-dots"><span></span><span></span><span></span></div>
-            <div class="browser-url">jaroslavslonek.cz</div>
+          <div class="browser-chrome">
+            <div class="browser-tabs">
+              <div class="browser-tab">
+                <div class="browser-tab-favicon"></div>
+                <span class="browser-tab-title">Ing. Jaroslav Slonek</span>
+                <span class="browser-tab-close">×</span>
+              </div>
+            </div>
+            <div class="browser-toolbar">
+              <div class="browser-nav-btns">
+                <button aria-hidden="true">‹</button>
+                <button aria-hidden="true">›</button>
+                <button aria-hidden="true" style="font-size:13px">↻</button>
+              </div>
+              <div class="browser-omnibox">
+                <span class="browser-omnibox-lock">🔒</span>
+                <span class="browser-omnibox-url">jaroslavslonek.cz</span>
+              </div>
+            </div>
           </div>
           <div class="browser-screen">
             <a href="https://jaroslavslonek.cz" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web jaroslavslonek.cz">
