@@ -988,19 +988,19 @@
 <script>
 (function(){
   var KB=[
-    {keys:['cen','kolik','stoj','cena','cenu','cenov','price'],a:'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíš jen doménu ~200 Kč/rok.'},
-    {keys:['dlouho','trvá','trva','kdy','lhůt','lhut','týden','tyden','doba','čas','rychle'],a:'První náhled máš do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáš podklady.'},
-    {keys:['barter','výměn','vymeni','výměna','bez peněz','bez penez','výmena'],a:'Barter je výměna — web za tvoje produkty nebo služby. Hodí se třeba pro kadeřnice, kosmetičky nebo cukrářky. Kvalita stejná jako u placené zakázky, jen bez peněz.'},
-    {keys:['funguj','postup','proces','jak to','krok','výroba','vyroba','začín','zacin','spoluprac'],a:'Vyplníš formulář → domluvíme se na obsahu a designu → do 48 h máš první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.'},
-    {keys:['kontakt','email','telefon','napsat','napíš','napiss','zavolat','mail','spojit'],a:'Napiš na info@janyskovadigital.cz nebo zavolej na +420 739 395 800. Nebo vyplň formulář níže — ozveme se do 24 hodin.'},
-    {keys:['wordpress','wp','šablona','sablona','template','wix','squarespace'],a:'Nepracujeme s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 100 a neplatíš za hosting ani drahé pluginy.'},
-    {keys:['hosting','doména','domena','domain','server','provoz','platit'],a:'Hosting je navždy v ceně tvorby — neplatíš nic navíc. Dál platíš jen doménu, přibližně 200 Kč ročně.'},
+    {keys:['cen','kolik','stoj','cena','cenu','cenov','price'],a:'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíte jen doménu ~200 Kč/rok.'},
+    {keys:['dlouho','trvá','trva','kdy','lhůt','lhut','týden','tyden','doba','čas','rychle'],a:'První náhled máte do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáte podklady.'},
+    {keys:['barter','výměn','vymeni','výměna','bez peněz','bez penez','výmena'],a:'Barter je výměna — web za vaše produkty nebo služby. Hodí se třeba pro kadeřnice, kosmetičky nebo cukrářky. Kvalita stejná jako u placené zakázky, jen bez peněz.'},
+    {keys:['funguj','postup','proces','jak to','krok','výroba','vyroba','začín','zacin','spoluprac'],a:'Vyplníte formulář → domluvíme se na obsahu a designu → do 48 h máte první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.'},
+    {keys:['kontakt','email','telefon','napsat','napíš','napiss','zavolat','mail','spojit'],a:'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozveme se do 24 hodin.'},
+    {keys:['wordpress','wp','šablona','sablona','template','wix','squarespace'],a:'Nepracujeme s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 100 a neplatíte za hosting ani drahé pluginy.'},
+    {keys:['hosting','doména','domena','domain','server','provoz','platit'],a:'Hosting je navždy v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.'},
     {keys:['seo','vyhledava','google','pozice','hledá','najde'],a:'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Součástí je i napojení na Google Search Console.'},
     {keys:['refresh','předelat','predělat','předělat','převést','prevest','existujici','existující','stávajíc'],a:'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.'},
     {keys:['správa','sprava','care','aktualizac','update','obsah','změn'],a:'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.'},
-    {keys:['google','firem','firma','maps','mapa','místní','mistni','profil'],a:'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže ti být vidět ve výsledcích pro místní vyhledávání.'},
+    {keys:['google','firem','firma','maps','mapa','místní','mistni','profil'],a:'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže vám být vidět ve výsledcích pro místní vyhledávání.'},
   ];
-  var FALLBACK='To přesně nevím, ale rádi odpovíme osobně. Napiš na info@janyskovadigital.cz nebo vyplň formulář níže — ozveme se do 24 hodin.';
+  var FALLBACK='To přesně nevím, ale rádi odpovíme osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozveme se do 24 hodin.';
   var CHIPS=[
     {label:'Kolik stojí web?',idx:0},
     {label:'Jak dlouho trvá výroba?',idx:1},
@@ -1089,7 +1089,7 @@
     iconClose.style.display=open?'':'none';
     if(open&&!initialized){
       initialized=true;
-      addMsg('Ahoj! Jsem automatický chatbot se základními informacemi. Pro osobní odpověď napiš na info@janyskovadigital.cz nebo zavolej na +420 739 395 800. Co tě zajímá?','bot');
+      addMsg('Dobrý den! Jsem automatický chatbot se základními informacemi. Pro osobní odpověď napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Co vás zajímá?','bot');
       setTimeout(addChips,200);
     }
     if(open) setTimeout(function(){input.focus();},300);
