@@ -1,3 +1,39 @@
+// Cursor glow
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return; // skip touch devices
+  var glow = document.createElement('div');
+  glow.id = 'cursor-glow';
+  glow.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(240,20,122,0.13) 0%,transparent 65%);transform:translate(-50%,-50%);transition:opacity .4s;top:0;left:0;will-change:transform';
+  document.body.appendChild(glow);
+  var tx = -1000, ty = -1000, cx = -1000, cy = -1000;
+  document.addEventListener('mousemove', function(e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  document.addEventListener('mouseleave', function() { glow.style.opacity = '0'; });
+  document.addEventListener('mouseenter', function() { glow.style.opacity = '1'; });
+  (function tick() {
+    cx += (tx - cx) * 0.08;
+    cy += (ty - cy) * 0.08;
+    glow.style.left = cx + 'px';
+    glow.style.top  = cy + 'px';
+    requestAnimationFrame(tick);
+  })();
+}());
+
+// Magnetic buttons
+(function() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  document.querySelectorAll('.btn-primary, .nav-links a.cta').forEach(function(btn) {
+    btn.addEventListener('mousemove', function(e) {
+      var r = btn.getBoundingClientRect();
+      var dx = e.clientX - (r.left + r.width / 2);
+      var dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = 'translate(' + dx * 0.22 + 'px,' + dy * 0.22 + 'px) translateY(-1px)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      btn.style.transform = '';
+    });
+  });
+}());
+
 // Nav / hamburger
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
