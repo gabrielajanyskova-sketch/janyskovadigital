@@ -204,7 +204,7 @@
 
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=12">
+<link rel="stylesheet" href="/style.css?v=13">
 <style>
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
@@ -230,36 +230,7 @@
 .city-card-link{font-size:13px;color:var(--text-dim)}
 .price-note{color:var(--pink);font-size:12px}
 .btn-card{display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px}
-.float-wa{position:fixed;bottom:28px;left:28px;z-index:500;display:flex;align-items:center;justify-content:center;width:56px;height:56px;background:#25D366;color:#fff;text-decoration:none;border-radius:50%;box-shadow:0 8px 32px rgba(37,211,102,.45);transition:all .25s}
-.float-wa:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,211,102,.6)}
-.chat-toggle{position:fixed;bottom:28px;right:28px;z-index:9999;width:58px;height:58px;background:var(--pink);color:#fff;border:0;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(240,20,122,.5);transition:all .25s}
-.chat-toggle:hover{background:#d4116a;transform:translateY(-2px);box-shadow:0 12px 40px rgba(240,20,122,.65)}
-.chat-panel{position:fixed;bottom:100px;right:28px;z-index:9998;width:330px;background:#150f1e;border:1px solid rgba(240,20,122,.25);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.55);display:flex;flex-direction:column;max-height:520px;transform:translateY(14px) scale(.96);opacity:0;pointer-events:none;transition:all .28s cubic-bezier(.16,1,.3,1)}
-.chat-panel.open{transform:none;opacity:1;pointer-events:all}
-.chat-header{background:rgba(240,20,122,.1);border-bottom:1px solid rgba(240,20,122,.15);padding:14px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}
-.chat-avatar{width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.chat-name{font-size:14px;font-weight:700;color:var(--text)}
-.chat-status{font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:5px;margin-top:2px}
-.chat-dot{width:7px;height:7px;border-radius:50%;background:#00e5a0;display:inline-block;flex-shrink:0}
-.chat-messages{flex:1;overflow-y:auto;padding:16px 16px 8px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(240,20,122,.2) transparent}
-.chat-messages::-webkit-scrollbar{width:4px}
-.chat-messages::-webkit-scrollbar-thumb{background:rgba(240,20,122,.2);border-radius:2px}
-.chat-bubble{font-size:13.5px;line-height:1.65;padding:10px 14px;border-radius:14px;max-width:88%}
-.chat-bubble--bot{background:rgba(255,255,255,.06);color:var(--text-dim);align-self:flex-start;border-radius:4px 14px 14px 14px}
-.chat-bubble--user{background:rgba(240,20,122,.18);color:#f5c0d8;align-self:flex-end;border-radius:14px 4px 14px 14px;text-align:right}
-.chat-chips{display:flex;flex-direction:column;gap:6px;margin-top:4px}
-.chat-chip{background:0 0;border:1px solid rgba(240,20,122,.3);color:var(--text);font-family:"Plus Jakarta Sans",sans-serif;font-size:12.5px;font-weight:600;padding:8px 14px;border-radius:100px;cursor:pointer;text-align:left;transition:all .2s}
-.chat-chip:hover{background:rgba(240,20,122,.12);border-color:var(--pink);color:var(--pink)}
-.chat-cta-inline{display:inline-block;background:var(--pink);color:#fff;padding:9px 16px;border-radius:8px;font-size:12.5px;font-weight:700;text-decoration:none;margin-top:6px;transition:background .2s}
-.chat-cta-inline:hover{background:#d4116a}
-.chat-input-row{display:flex;gap:8px;padding:10px 14px 14px;border-top:1px solid rgba(240,20,122,.12);flex-shrink:0}
-.chat-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:9px 16px;color:var(--text);font-family:"Plus Jakarta Sans",sans-serif;font-size:13px;outline:0;transition:border-color .2s}
-.chat-input::placeholder{color:var(--text-dim);opacity:.6}
-.chat-input:focus{border-color:rgba(240,20,122,.5)}
-.chat-send{width:36px;height:36px;border-radius:50%;background:var(--pink);color:#fff;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s}
-.chat-send:hover{background:#d4116a}
 @media(max-width:900px){.hero{padding:30px 0 20px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:30px}.hero-right{display:block}}
-@media(max-width:600px){.chat-panel{width:calc(100vw - 32px);right:16px;bottom:88px;max-height:70vh}.chat-toggle{bottom:20px;right:16px}.float-wa{width:50px;height:50px;bottom:20px;left:16px}}
 </style>
 <script type="application/ld+json">
 {
@@ -877,7 +848,7 @@
 
 
 
-<script src="/main.js?v=12" defer></script>
+<script src="/main.js?v=13" defer></script>
 
 <!-- Audit popup -->
 <div id="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title" style="
@@ -925,45 +896,6 @@
   </div>
 </div>
 
-<script>
-(function(){
-  var KEY = 'audit_popup_seen';
-  if(sessionStorage.getItem(KEY)) return;
-
-  var popup = document.getElementById('audit-popup');
-  var closeBtn = document.getElementById('audit-close');
-  var ctaBtn = document.getElementById('audit-cta');
-
-  function show(){
-    if(sessionStorage.getItem(KEY)) return;
-    popup.style.display = 'flex';
-    sessionStorage.setItem(KEY,'1');
-    popup.querySelector('[role]') && popup.focus && popup.focus();
-  }
-
-  function hide(){
-    popup.style.display = 'none';
-  }
-
-  closeBtn.addEventListener('click', hide);
-  ctaBtn.addEventListener('click', hide);
-  popup.addEventListener('click', function(e){ if(e.target===popup) hide(); });
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') hide(); });
-
-  // Exit intent (desktop)
-  var exitFired = false;
-  document.addEventListener('mouseleave', function(e){
-    if(e.clientY < 10 && !exitFired){
-      exitFired = true;
-      setTimeout(show, 300);
-    }
-  });
-
-  // Timer fallback — 25s (nebo 12s na mobilu)
-  var delay = /Mobi|Android/i.test(navigator.userAgent) ? 12000 : 25000;
-  setTimeout(show, delay);
-})();
-</script>
 <a href="https://wa.me/420739395800" class="float-wa" target="_blank" rel="noopener" aria-label="Napište na WhatsApp">
   <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.43-2.01A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 0 1-6.747-1.833l-.484-.287-5.003 1.193 1.237-4.872-.317-.5A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.86c-.398-.199-2.355-1.162-2.72-1.295-.366-.132-.632-.199-.898.199-.265.398-1.03 1.295-1.263 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.984-2.362-2.217-2.76-.232-.398-.025-.614.175-.812.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.132-.265.066-.498-.033-.697-.1-.199-.898-2.165-1.23-2.963-.325-.778-.655-.672-.898-.684l-.765-.013c-.265 0-.697.1-1.063.498-.365.398-1.396 1.362-1.396 3.322s1.43 3.853 1.63 4.118c.199.265 2.814 4.297 6.818 6.027.953.411 1.696.657 2.276.841.956.305 1.826.262 2.514.159.767-.114 2.355-.963 2.688-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/></svg>
 </a>
@@ -987,123 +919,6 @@
     </button>
   </div>
 </div>
-<script>
-(function(){
-  var KB=[
-    {keys:['cen','kolik','stoj','cena','cenu','cenov','price'],a:'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíte jen doménu ~200 Kč/rok.'},
-    {keys:['dlouho','trvá','trva','kdy','lhůt','lhut','týden','tyden','doba','čas','rychle'],a:'První náhled máte do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáte podklady.'},
-    {keys:['barter','výměn','vymeni','výměna','bez peněz','bez penez','výmena'],a:'Barter je výměna — web za vaše produkty nebo služby. Hodí se třeba pro kadeřnice, kosmetičky nebo cukrářky. Kvalita stejná jako u placené zakázky, jen bez peněz.'},
-    {keys:['funguj','postup','proces','jak to','krok','výroba','vyroba','začín','zacin','spoluprac'],a:'Vyplníte formulář → domluvíme se na obsahu a designu → do 48 h máte první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.'},
-    {keys:['kontakt','email','telefon','napsat','napíš','napiss','zavolat','mail','spojit'],a:'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozveme se do 24 hodin.'},
-    {keys:['wordpress','wp','šablona','sablona','template','wix','squarespace'],a:'Nepracujeme s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 100 a neplatíte za hosting ani drahé pluginy.'},
-    {keys:['hosting','doména','domena','domain','server','provoz','platit'],a:'Hosting je navždy v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.'},
-    {keys:['seo','vyhledava','google','pozice','hledá','najde'],a:'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Součástí je i napojení na Google Search Console.'},
-    {keys:['refresh','předelat','predělat','předělat','převést','prevest','existujici','existující','stávajíc'],a:'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.'},
-    {keys:['správa','sprava','care','aktualizac','update','obsah','změn'],a:'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.'},
-    {keys:['google','firem','firma','maps','mapa','místní','mistni','profil'],a:'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže vám být vidět ve výsledcích pro místní vyhledávání.'},
-  ];
-  var FALLBACK='To přesně nevím, ale rádi odpovíme osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozveme se do 24 hodin.';
-  var CHIPS=[
-    {label:'Kolik stojí web?',idx:0},
-    {label:'Jak dlouho trvá výroba?',idx:1},
-    {label:'Co je barter?',idx:2},
-    {label:'Jak to funguje?',idx:3},
-    {label:'Jak vás kontaktovat?',idx:4},
-  ];
-
-  var toggle=document.getElementById('chat-toggle');
-  var panel=document.getElementById('chat-panel');
-  var iconOpen=document.getElementById('chat-icon-open');
-  var iconClose=document.getElementById('chat-icon-close');
-  var messages=document.getElementById('chat-messages');
-  var input=document.getElementById('chat-input');
-  var sendBtn=document.getElementById('chat-send');
-
-  function addMsg(text,type,withCTA){
-    var el=document.createElement('div');
-    el.className='chat-bubble chat-bubble--'+type;
-    el.textContent=text;
-    messages.appendChild(el);
-    if(withCTA){
-      var a=document.createElement('a');
-      a.href='#kontakt';
-      a.className='chat-cta-inline';
-      a.textContent='Mám zájem o web →';
-      a.addEventListener('click',closePanel);
-      messages.appendChild(a);
-    }
-    messages.scrollTop=messages.scrollHeight;
-  }
-
-  function addChips(){
-    var wrap=document.createElement('div');
-    wrap.className='chat-chips';
-    CHIPS.forEach(function(c){
-      var btn=document.createElement('button');
-      btn.className='chat-chip';
-      btn.textContent=c.label;
-      btn.addEventListener('click',function(){
-        wrap.remove();
-        addMsg(c.label,'user');
-        setTimeout(function(){addMsg(KB[c.idx].a,'bot',true);},320);
-      });
-      wrap.appendChild(btn);
-    });
-    messages.appendChild(wrap);
-    messages.scrollTop=messages.scrollHeight;
-  }
-
-  function getAnswer(text){
-    var t=text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-    for(var i=0;i<KB.length;i++){
-      for(var j=0;j<KB[i].keys.length;j++){
-        if(t.indexOf(KB[i].keys[j])!==-1) return KB[i].a;
-      }
-    }
-    return null;
-  }
-
-  function sendMessage(){
-    var val=input.value.trim();
-    if(!val) return;
-    input.value='';
-    addMsg(val,'user');
-    setTimeout(function(){
-      var ans=getAnswer(val);
-      addMsg(ans||FALLBACK,'bot',!!ans);
-    },350);
-  }
-
-  function closePanel(){
-    panel.classList.remove('open');
-    toggle.setAttribute('aria-expanded','false');
-    panel.setAttribute('aria-hidden','true');
-    iconOpen.style.display='';
-    iconClose.style.display='none';
-  }
-
-  var initialized=false;
-  toggle.addEventListener('click',function(){
-    var open=panel.classList.toggle('open');
-    toggle.setAttribute('aria-expanded',open);
-    panel.setAttribute('aria-hidden',!open);
-    iconOpen.style.display=open?'none':'';
-    iconClose.style.display=open?'':'none';
-    if(open&&!initialized){
-      initialized=true;
-      addMsg('Dobrý den! Jsem automatický chatbot se základními informacemi. Pro osobní odpověď napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Co vás zajímá?','bot');
-      setTimeout(addChips,200);
-    }
-    if(open) setTimeout(function(){input.focus();},300);
-  });
-
-  sendBtn.addEventListener('click',sendMessage);
-  input.addEventListener('keydown',function(e){if(e.key==='Enter') sendMessage();});
-  document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'&&panel.classList.contains('open')) closePanel();
-  });
-})();
-</script>
 </body>
 </html>
 
