@@ -73,22 +73,103 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+const monthCs = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
+function dateLabel(d) {
+  return `${d.getDate()}. ${monthCs[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+// Načte metadata z existujících blog HTML souborů (datum, tag, title, description)
+async function readExistingBlogMeta(outDir) {
+  const htmlFiles = (await readdir(outDir)).filter(f => f.endsWith('.html'));
+  const articles = [];
+  for (const file of htmlFiles) {
+    const slug = basename(file, '.html');
+    const html = await readFile(join(outDir, file), 'utf8');
+    const dateMatch = html.match(/<meta property="article:published_time" content="([^"]+)"/);
+    const titleMatch = html.match(/<title>([^<]+)<\/title>/);
+    const descMatch = html.match(/<meta name="description" content="([^"]+)"/);
+    const tagMatch = html.match(/class="article-tag">([^<]+)</);
+    const blogTagMatch = html.match(/class="blog-card-tag">([^<]+)</);
+    if (!dateMatch) continue;
+    const date = new Date(dateMatch[1]);
+    const title = titleMatch ? titleMatch[1].replace(/\s*[|—].*$/, '').trim() : slug;
+    const description = descMatch ? descMatch[1] : '';
+    const tag = tagMatch ? tagMatch[1].trim() : (blogTagMatch ? blogTagMatch[1].split('·')[0].trim() : 'Blog');
+    articles.push({ slug, date, title, description, tag });
+  }
+  return articles;
+}
+
+async function updateSitemap(newSlugs, newDates) {
+  let xml = await readFile('sitemap.xml', 'utf8');
+  const existingSlugs = new Set([...xml.matchAll(/blog\/([^<]+)<\/loc>/g)].map(m => m[1]));
+  let additions = '';
+  for (let i = 0; i < newSlugs.length; i++) {
+    if (!existingSlugs.has(newSlugs[i])) {
+      additions += `  <url><loc>https://janyskovadigital.cz/blog/${newSlugs[i]}</loc><lastmod>${newDates[i]}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+    }
+  }
+  if (additions) {
+    xml = xml.replace('</urlset>', additions + '</urlset>');
+    await writeFile('sitemap.xml', xml, 'utf8');
+    console.log(`✓ sitemap.xml aktualizován (+${newSlugs.length} nových URL)`);
+  }
+}
+
+async function updateRedirects(newSlugs) {
+  let redirects = await readFile('_redirects', 'utf8');
+  let added = 0;
+  for (const slug of newSlugs) {
+    const line = `/blog/${slug}.html /blog/${slug} 301`;
+    if (!redirects.includes(line)) {
+      redirects += `\n${line}`;
+      added++;
+    }
+  }
+  if (added > 0) {
+    await writeFile('_redirects', redirects, 'utf8');
+    console.log(`✓ _redirects aktualizován (+${added} nových přesměrování)`);
+  }
+}
+
+async function updateHomepageBlog(outDir) {
+  const articles = await readExistingBlogMeta(outDir);
+  articles.sort((a, b) => b.date - a.date);
+  const top3 = articles.slice(0, 3);
+
+  const cardsHtml = top3.map(a => {
+    const label = `${a.tag} · ${dateLabel(a.date).replace(/\. /g, '. ').split(' ').slice(1).join(' ')}`;
+    return `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${new Date(a.date).toLocaleDateString('cs-CZ', { month: 'long', year: 'numeric' }).replace(/^./, c => c.toUpperCase())}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`;
+  }).join('\n      ');
+
+  let indexHtml = await readFile('index.html', 'utf8');
+  indexHtml = indexHtml.replace(
+    /<!-- HOMEBLOG:START -->.*?<!-- HOMEBLOG:END -->/s,
+    `<!-- HOMEBLOG:START -->\n      ${cardsHtml}\n      <!-- HOMEBLOG:END -->`
+  );
+  await writeFile('index.html', indexHtml, 'utf8');
+  console.log('✓ index.html — 3 nejnovější články aktualizovány');
+}
+
 async function build() {
   const srcDir = 'content/blog';
   const outDir = 'blog';
 
   if (!existsSync(srcDir)) {
-    console.log('Žádné markdown soubory v content/blog/');
-    return;
+    console.log('Adresář content/blog neexistuje.');
   }
 
-  const files = (await readdir(srcDir)).filter(f => f.endsWith('.md'));
+  const files = existsSync(srcDir)
+    ? (await readdir(srcDir)).filter(f => f.endsWith('.md'))
+    : [];
 
   if (files.length === 0) {
     console.log('Žádné .md soubory k převodu.');
   }
 
   const cards = [];
+  const newSlugs = [];
+  const newDates = [];
 
   for (const file of files) {
     const slug = basename(file, '.md');
@@ -172,16 +253,16 @@ ${JS}
     await writeFile(outPath, html, 'utf8');
     console.log(`✓ ${outPath}`);
 
-    // Připrav blog kartu
-    const monthCs = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
     const d = new Date(data.date || new Date());
-    const dateLabel = `${d.getDate()}. ${monthCs[d.getMonth()]} ${d.getFullYear()}`;
     cards.push({ slug, date: d, card: `<a href="/blog/${slug}" class="blog-card" role="listitem">
-        <div class="blog-card-tag">${data.tag || 'Blog'} · ${dateLabel}</div>
+        <div class="blog-card-tag">${data.tag || 'Blog'} · ${dateLabel(d)}</div>
         <h2>${data.title}</h2>
         <p>${data.description || ''}</p>
         <span class="read">Číst článek →</span>
       </a>` });
+
+    newSlugs.push(slug);
+    newDates.push(dateIso);
   }
 
   // Aktualizuj blog.html — vlož nové karty na začátek
@@ -197,6 +278,12 @@ ${JS}
     console.log(`✓ blog.html aktualizován (${cards.length} nových karet)`);
   }
 
+  // Aktualizuj sitemap.xml a _redirects pro nové články
+  if (newSlugs.length > 0) {
+    await updateSitemap(newSlugs, newDates);
+    await updateRedirects(newSlugs);
+  }
+
   // Aktualizuj index.html podle content/hlavni-stranka.yml
   const ymlPath = 'content/hlavni-stranka.yml';
   if (existsSync(ymlPath)) {
@@ -210,10 +297,13 @@ ${JS}
       );
     }
     await writeFile('index.html', indexHtml, 'utf8');
-    console.log('✓ index.html aktualizován');
+    console.log('✓ index.html — texty aktualizovány');
   }
 
-  console.log(`\nHotovo — převedeno ${files.length} příspěvků.`);
+  // Aktualizuj 3 nejnovější články na hlavní stránce
+  await updateHomepageBlog(outDir);
+
+  console.log(`\nHotovo — zpracováno ${files.length} příspěvků z CMS.`);
 }
 
 build().catch(console.error);
