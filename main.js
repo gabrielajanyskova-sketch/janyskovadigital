@@ -353,8 +353,8 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     return b;
   }
 
-  var navLinks = document.querySelector('.nav-links');
-  if (navLinks) navLinks.appendChild(makeBtn());
+  var hamburgerBtn = document.getElementById('hamburger');
+  if (hamburgerBtn) hamburgerBtn.parentNode.insertBefore(makeBtn(), hamburgerBtn);
 
   var fullMenu = document.getElementById('mobile-menu');
   if (fullMenu) {
