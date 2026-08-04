@@ -32,8 +32,8 @@ function switchRefresh(tab) {
 if (hamburger && mobileMenu) {
   // Close button inside the menu (hamburger is behind z-index of overlay)
   var closeBtn = document.createElement('button');
+  closeBtn.className = 'menu-close';
   closeBtn.setAttribute('aria-label', 'Zavřít menu');
-  closeBtn.style.cssText = 'position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text-dim);cursor:pointer;padding:8px;opacity:1;transform:none;line-height:1;';
   closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
   closeBtn.addEventListener('click', closeMenu);
   mobileMenu.appendChild(closeBtn);
