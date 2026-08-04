@@ -317,3 +317,65 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     if (e.key === 'Escape' && panel.classList.contains('open')) closePanel();
   });
 }());
+
+// Scroll progress bar
+(function() {
+  var bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.prepend(bar);
+  window.addEventListener('scroll', function() {
+    var s = document.documentElement;
+    bar.style.width = (s.scrollTop / (s.scrollHeight - s.clientHeight) * 100) + '%';
+  }, { passive: true });
+}());
+
+// Dark / light theme toggle
+(function() {
+  var sunSvg  = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+  var moonSvg = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+  var theme = localStorage.getItem('jd-theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+
+  function makeBtn() {
+    var b = document.createElement('button');
+    b.className = 'theme-toggle';
+    b.setAttribute('aria-label', 'Přepnout světl\xe9/tmav\xe9 t\xe9ma');
+    b.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
+    b.addEventListener('click', function() {
+      theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('jd-theme', theme);
+      document.querySelectorAll('.theme-toggle').forEach(function(tb) {
+        tb.innerHTML = theme === 'dark' ? sunSvg : moonSvg;
+      });
+    });
+    return b;
+  }
+
+  var navLinks = document.querySelector('.nav-links');
+  if (navLinks) navLinks.appendChild(makeBtn());
+
+  var fullMenu = document.getElementById('mobile-menu');
+  if (fullMenu) {
+    var mb = makeBtn();
+    mb.style.cssText = 'margin:20px auto 0;width:44px;height:44px;';
+    fullMenu.appendChild(mb);
+  }
+}());
+
+// Sticky CTA on mobile
+(function() {
+  var cta = document.createElement('div');
+  cta.className = 'sticky-mobile-cta';
+  cta.innerHTML = '<a href="#kontakt">M\xe1m z\xe1jem <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>';
+  document.body.appendChild(cta);
+  var shown = false;
+  var kontakt = document.getElementById('kontakt');
+  window.addEventListener('scroll', function() {
+    var past   = window.scrollY > 500;
+    var atCta  = kontakt && kontakt.getBoundingClientRect().top < window.innerHeight * 0.85;
+    var should = past && !atCta;
+    if (should !== shown) { shown = should; cta.classList.toggle('visible', shown); }
+  }, { passive: true });
+}());
