@@ -28,9 +28,9 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
 <meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -102,18 +102,52 @@
   ]
 }
 </script>
+<noscript><div style="padding:20px;text-align:center;font-family:sans-serif;">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
+<link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
+<style>html,body{background:#08060c;color:#f5f0fa}</style>
+<style>
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.nav-links a.cta{background:var(--pink);color:#fff;border:none;padding:9px 22px;border-radius:100px;font-weight:700}
+.nav-links a.cta:hover{background:#d4116a;box-shadow:0 0 24px rgba(240,20,122,.4)}
+.hero{padding:90px 0 110px;position:relative;z-index:1;min-height:600px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero h1{font-size:clamp(40px,5.5vw,70px);line-height:1.25;letter-spacing:-1.5px;margin-bottom:24px}
+.hero h1 em{color:var(--pink);font-style:italic;text-shadow:0 0 60px rgba(240,20,122,0.55),0 0 120px rgba(240,20,122,0.25)}
+@keyframes heroFadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes showcaseFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 40px rgba(240,20,122,0.18),0 8px 32px rgba(0,0,0,0.35)}50%{box-shadow:0 0 70px rgba(240,20,122,0.38),0 8px 40px rgba(0,0,0,0.4)}}
+.hero-header{animation:heroFadeUp .7s ease both}
+.hero-btns{animation:heroFadeUp .7s .18s ease both}
+.hero-right{animation:heroFadeUp .7s .08s ease both}
+.hero-showcase{animation:showcaseFloat 5s ease-in-out infinite}
+.hero-showcase a{animation:glowPulse 4s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.hero-header,.hero-btns,.hero-right,.hero-showcase,.hero-showcase a{animation:none}}
+.city-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color 0.25s,transform 0.25s;backdrop-filter:blur(10px)}
+.city-card:hover{border-color:rgba(240,20,122,0.45);transform:translateY(-3px)}
+.city-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:10px}
+.city-card-name{font-size:19px;font-family:"DM Serif Display",serif;color:var(--text)}
+.city-card-link{font-size:13px;color:var(--text-dim)}
+.price-note{color:var(--pink);font-size:12px}
+.btn-card{display:block;text-align:center;margin-top:16px;padding:12px 24px;border-radius:50px;text-decoration:none;font-weight:700;font-size:15px}
+@media(max-width:900px){.hero{padding:30px 0 20px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:30px}.hero-right{display:block}}
+</style>
 </head>
 <body>
 <div class="bg-blobs" aria-hidden="true"></div>
 
+
 <a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+
+
 
 <nav role="navigation" aria-label="Hlavní navigace">
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
       <a href="#o-mne">O mně</a>
-      <a href="/#cenik">Ceník</a>      <a href="/barter">Barter</a>
+      <a href="#cenik">Ceník</a>
+      <a href="/barter">Barter</a>
       <a href="/blog">Blog</a>
       <a href="#kontakt" class="cta">Mám zájem</a>
     </div>
@@ -123,14 +157,16 @@
   </div>
 </nav>
 
+
 <div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
   <div class="menu-group">
     <div class="menu-group-label">O Janyskova Digital</div>
     <a href="#o-mne" onclick="closeMenu()">O mně</a>
-    <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+    <a href="#cenik" onclick="closeMenu()">Ceník</a>
   </div>
   <div class="menu-group">
-    <div class="menu-group-label">Služby</div>    <a href="/barter" onclick="closeMenu()">Barter</a>
+    <div class="menu-group-label">Služby</div>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
   </div>
   <a href="/blog" onclick="closeMenu()">Blog</a>
   <a href="#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
@@ -139,25 +175,22 @@
 
 <main id="main">
 
+
+
 <section class="hero">
   <div class="container">
-    <nav class="breadcrumb" style="display:none;" aria-label="Drobečková navigace">
-      <a href="/">Domů</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">Valašské Meziříčí</span>
-    </nav>
     <div class="hero-inner">
       <div>
-        <span class="eyebrow-text">Webdesignérka · Tvorba webových stránek · Valašské Meziříčí</span>
-        </div>
-        <h1>Tvorba webových stránek<br><em>Valašské Meziříčí</em> — weby,<br>které vás zviditelní v online světě.</h1>
-        <p class="hero-sub">Tvořím webové stránky na míru pro podnikatele z Valašského Meziříčí — čistým kódem, bez WordPressu, bez měsíčních poplatků za hosting.</p>
+        <header class="hero-header">
+          <h1><!--CMS:hero_title-->Dělám weby,<br>které vás <em>zviditelní</em><br>v&nbsp;online světě.<!--/CMS:hero_title--></h1>
+          <p class="hero-sub"><!--CMS:hero_sub-->Stavím weby čistým kódem, bez WordPressu a bez měsíčních poplatků. Za 48 hodin máte první náhled. Tvořím i pro klienty z Valašského Meziříčí.<!--/CMS:hero_sub--></p>
+        </header>
         <div class="hero-btns">
           <a href="#kontakt" class="btn-primary">
-            Napište mi
+            Pojďme na to
             <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <a href="/#jak-to-funguje" class="btn-outline">Jak to funguje</a>
+          <a href="#jak-to-funguje" class="btn-outline">Jak to funguje</a>
         </div>
       </div>
       <div class="hero-right">
@@ -169,29 +202,45 @@
           <span class="hero-showcase-name">jaroslavslonek.cz</span>
         </div>
       </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
+
 <div class="section-divider"></div>
 
-<section>
+
+<section class="about-section" id="o-mne">
   <div class="container">
-    <div class="local-intro reveal">
-      <h2>Tvorba webových stránek ve Valašském Meziříčí — od webdesignérky, která rozumí vašemu regionu</h2>
-      <p>Valašské Meziříčí je jedno z největších měst na Valašsku — živé podnikání, školy, průmysl, gastro. Zákazníci tu hledají vše na Googlu. Web, který se zobrazí na první stránce a načte se za sekundu, je silná konkurenční výhoda.</p>
-      <p style="margin-top:16px;">Valašské Meziříčí má silnou komunitu podnikatelů, firem a organizací. Web postavený v čistém kódu jim pomůže být vidět online — rychle, bez měsíčních poplatků a bez závislosti na WordPressu.</p>
-      <div class="local-note">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Spolupráce probíhá online. Osobní schůzku domluvíme ve Valašském Meziříčí nebo okolí.
+    <div class="about-inner">
+      <div class="about-img-wrap">
+        <img src="gabca.webp"
+          srcset="gabca-mobilni-verze.webp 400w, gabca.webp 800w"
+          sizes="(max-width: 600px) 400px, 800px"
+          alt="Gabriela Janýšková — webdesignerka z Nového Jičína"
+          width="400" height="533" loading="eager" fetchpriority="high" decoding="async">
+        <div class="about-badge"><span>Sídlím v</span><strong>Novém Jičíně</strong></div>
+      </div>
+      <div class="about-text reveal">
+        <div class="section-tag">O mně</div>
+        <h2 class="section-title">Ahoj, jsem Gabča —<br><em>webdesignerka</em><br>z Nového Jičína.</h2>
+        <p><!--CMS:about_intro-->Dělám weby, které vás zviditelní v online světě — a jdu do toho naplno. Každý web stavím sama, čistým kódem, bez šablon a bez WordPressu. Jsem z <strong>Nového Jičína</strong>, ale klienty mám po celé ČR.<!--/CMS:about_intro--></p>
+        <p class="about-bio"><!--CMS:about_bio-->Webdesignu se věnuji 5 let. Začínala jsem na WordPressu, ale frustrace z pomalých webů závislých na pluginech mě přivedla k čistému HTML, CSS a JavaScriptu. Dneska díky tomu dostanete web, který se načte pod vteřinu a nic vám extra neplatíte. Jsem samouk — a jsem na to hrdá. Absolvovala jsem kurz Specialistka AI a Juniorní akademii od Holek z marketingu a pořád se učím.<!--/CMS:about_bio--></p>
+        <div class="about-pills">
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Čistý kód, žádný WordPress</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed 100/100</span>
+          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>SEO + AEO + GEO</span>
+        </div>
+        <a href="#kontakt" class="btn-primary">Pojďme se poznat <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
     </div>
   </div>
 </section>
 
+
 <div class="section-divider"></div>
+
+
 
 <section class="trust-section" id="proc-ja">
   <div class="container">
@@ -200,75 +249,180 @@
     <div class="trust-grid">
       <div class="trust-card reveal">
         <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Rychlost, která prodává</h3>
-        <p>Tři sekundy načítání a polovina návštěvníků odejde. Moje weby se načítají pod sekundu — a Google to odměňuje lepšími pozicemi pro dotazy jako <em>webové stránky Valašské Meziříčí</em>.</p>
+        <h3><!--CMS:trust1_h3-->Rychlost, která prodává<!--/CMS:trust1_h3--></h3>
+        <p><!--CMS:trust1_p-->Tři sekundy načítání a polovina návštěvníků odejde. Moje weby se načítají pod sekundu — a Google to odměňuje lepšími pozicemi.<!--/CMS:trust1_p--></p>
       </div>
       <div class="trust-card reveal">
         <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <h3>Žádné měsíční faktury</h3>
-        <p>U jiných platíte za hosting 2–5 tisíc ročně. U mě je hosting v ceně webu. Dál platíte jen doménu — přibližně 200 Kč ročně.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
-        <h3>Lokální SEO pro Valašskomeziříčsko</h3>
-        <p>Web optimalizuji tak, aby vás zákazníci z Valašského Meziříčí a okolí skutečně našli. Lokální klíčová slova, Google Business Profile a Schema.org jsou samozřejmostí.</p>
-      </div>
-      <div class="trust-card reveal">
-        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
-        <h3>Najdou vás i AI vyhledávače</h3>
-        <p>Každý web stavím tak, aby vás našel nejen Google, ale i ChatGPT nebo Perplexity. Lokální SEO pro Valašské Meziříčí je u mě samozřejmostí.</p>
+        <h3><!--CMS:trust2_h3-->Žádné měsíční faktury<!--/CMS:trust2_h3--></h3>
+        <p><!--CMS:trust2_p-->U jiných platíte za hosting 2–5 tisíc ročně. U mě je hosting v ceně webu. Dál platíte jen doménu — přibližně 200 Kč ročně.<!--/CMS:trust2_p--></p>
       </div>
       <div class="trust-card reveal">
         <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <h3>Web bez starostí</h3>
-        <p>Čistý kód bez WordPressu nepotřebuje neustálé aktualizace a záplaty. Spustím web a vy se věnujete byznysu.</p>
+        <h3><!--CMS:trust3_h3-->Web bez starostí<!--/CMS:trust3_h3--></h3>
+        <p><!--CMS:trust3_p-->WordPress potřebuje neustálé aktualizace a záplaty. Čistý kód nic z toho nepotřebuje. Spustím web a vy se věnujete byznysu.<!--/CMS:trust3_p--></p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+        <h3><!--CMS:trust4_h3-->Najdou vás i AI vyhledávače<!--/CMS:trust4_h3--></h3>
+        <p><!--CMS:trust4_p-->Každý web stavím tak, aby vás našel nejen Google, ale i ChatGPT nebo Perplexity. Většina webdesignerů tohle ještě neřeší. Já ano.<!--/CMS:trust4_p--></p>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3><!--CMS:trust5_h3-->Lokální znalost<!--/CMS:trust5_h3--></h3>
+        <p><!--CMS:trust5_p-->Vím, jak funguje podnikání v regionu. Vaše zákazníky hledám tam, kde jsou — v <a href="/novy-jicin/" style="color:var(--pink);font-weight:600;">Novém Jičíně</a>, Ostravě, Frýdku-Místku, Hranicích, Kopřivnici, Příboře i okolí.<!--/CMS:trust5_p--></p>
       </div>
       <div class="trust-card reveal">
         <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <h3>Jsem tu i po spuštění</h3>
-        <p>Potřebujete změnit cenu nebo přidat fotku? Napište — odpovídám do 24 hodin. Nejste číslo ve frontě, jste klient.</p>
+        <h3><!--CMS:trust6_h3-->Jsem tu i po spuštění<!--/CMS:trust6_h3--></h3>
+        <p><!--CMS:trust6_p-->Potřebujete změnit cenu nebo přidat fotku? Napište — odpovídám do 24 hodin. Nejste číslo ve frontě, jste klient.<!--/CMS:trust6_p--></p>
       </div>
     </div>
   </div>
 </section>
 
+
 <div class="section-divider"></div>
+
+
+<section class="ref-section" id="reference">
+  <div class="container">
+    <div class="section-tag">Reference</div>
+    <h2 class="section-title">Weby, které jsem <em>postavila.</em></h2>
+    <div class="ref-slider-wrap">
+      <div class="ref-track" id="refTrack">
+        <div class="ref-card reveal">
+          <div class="ref-img"><img src="/img/nikola-desktop.webp" alt="Web hubackovafoto.cz" loading="lazy" decoding="async" width="612" height="408"></div>
+          <div class="ref-body">
+            <div class="ref-tag">Fotografie · Olomoucký kraj</div>
+            <h3>Nikola Hubáčková</h3>
+            <p>Fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a online poptávkovým formulářem.</p>
+            <a href="https://hubackovafoto.cz" target="_blank" rel="noopener noreferrer" class="ref-link">hubackovafoto.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          </div>
+        </div>
+        <div class="ref-card reveal">
+          <div class="ref-img"><img src="/img/slonek-desktop-v1.webp" alt="Web jaroslavslonek.cz" loading="lazy" decoding="async" width="612" height="408"></div>
+          <div class="ref-body">
+            <div class="ref-tag">Finanční poradce · Olomoucký kraj</div>
+            <h3>Ing. Jaroslav Slonek</h3>
+            <p>Finanční poradce z Olomouckého kraje. Web s přehlednými datovými kartami pro srovnání výnosů a kalkulací zhodnocení investic, postavený na čisté konverzi k nezávazné konzultaci.</p>
+            <a href="https://jaroslavslonek.cz" target="_blank" rel="noopener noreferrer" class="ref-link">jaroslavslonek.cz <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <button class="ref-arrow ref-arrow-prev" id="refPrev" type="button" aria-label="Předchozí reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="ref-arrow ref-arrow-next" id="refNext" type="button" aria-label="Další reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<section class="section--sm">
+  <div class="container">
+    <div class="section-tag">Recenze</div>
+    <h2 class="section-title">Co říkají <em>klienti.</em></h2>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="review-head">
+          <div class="review-avatar" style="background:var(--pink);">J</div>
+          <div>
+            <div class="review-name">Jaroslav Slonek</div>
+            <div class="review-role">Finanční poradce</div>
+          </div>
+          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
+        <div class="review-stars" aria-label="5 hvězdiček">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-text"><!--CMS:review1_text-->„Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a — co je pro mě jako finančního poradce klíčové — budí důvěru. Pokud hledáte webařku, která odvede poctivou práci a dá si na ní záležet, můžu Vám paní Janýškovou jen doporučit."<!--/CMS:review1_text--></p>
+      </div>
+      <div class="review-card reveal">
+        <div class="review-head">
+          <div class="review-avatar" style="background:#8B5CF6;">N</div>
+          <div>
+            <div class="review-name">Nika Hubáčková</div>
+            <div class="review-role">Fotografka</div>
+          </div>
+          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </div>
+        <div class="review-stars" aria-label="5 hvězdiček">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="review-text"><!--CMS:review2_text-->„S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"<!--/CMS:review2_text--></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
 
 <section class="process-section" id="jak-to-funguje">
   <div class="container">
     <div class="section-tag centered">Jak to funguje</div>
     <h2 class="section-title centered">Spolupráce krok <em>za krokem.</em></h2>
     <div class="process-grid reveal">
-      <div class="process-card">
-        <div class="process-num">01</div>
-        <h3>Konzultace</h3>
-        <p>Zavoláme si nebo napíšeme — probereme co váš web potřebuje. Schůzku domluvíme online nebo osobně ve Valašském Meziříčí.</p>
-      </div>
-      <div class="process-card">
-        <div class="process-num">02</div>
-        <h3>Tvorba</h3>
-        <p>Píšu web přímo v čistém kódu — žádné šablony, žádný WordPress. Výsledek je rychlý, moderní a přesně pro vás.</p>
-      </div>
-      <div class="process-card">
-        <div class="process-num">03</div>
-        <h3>Spuštění</h3>
-        <p>Web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.</p>
-      </div>
-      <div class="process-card">
-        <div class="process-num">04</div>
-        <h3>Podpora</h3>
-        <p>Potřebujete změnit text nebo přidat fotku? Napište mi — odpovídám do 24 hodin. Nejste číslo ve frontě.</p>
-      </div>
+      <div class="process-card"><div class="process-num">01</div><h3><!--CMS:process1_h3-->Napíšete mi<!--/CMS:process1_h3--></h3><p><!--CMS:process1_p-->Řeknete mi co potřebujete — já vám řeknu co by dávalo smysl a co to bude stát. Žádné technické řeči, žádné závazky.<!--/CMS:process1_p--></p></div>
+      <div class="process-card"><div class="process-num">02</div><h3><!--CMS:process2_h3-->Dám se do práce<!--/CMS:process2_h3--></h3><p><!--CMS:process2_p-->Každý web dělám od nuly, v čistém kódu, přesně pro vás. Průběžně vám ukážu jak to vypadá — žádná překvapení na konci.<!--/CMS:process2_p--></p></div>
+      <div class="process-card"><div class="process-num">03</div><h3><!--CMS:process3_h3-->Spustíme to<!--/CMS:process3_h3--></h3><p><!--CMS:process3_p-->Předám vám přístupy, propojím web s Googlem a jdeme na to. Od teď vás zákazníci najdou.<!--/CMS:process3_p--></p></div>
+      <div class="process-card"><div class="process-num">04</div><h3><!--CMS:process4_h3-->Jsem tu dál<!--/CMS:process4_h3--></h3><p><!--CMS:process4_p-->Potřebujete něco změnit nebo přidat? Napište mi. Odpovídám do 24 hodin a nejste číslo ve frontě.<!--/CMS:process4_p--></p></div>
     </div>
     <div>
-      <a href="#kontakt" class="btn-primary">Napište mi</a>
+      <a href="#kontakt" class="btn-primary">Napište mi — je to nezávazné</a>
     </div>
   </div>
 </section>
 
+
 <div class="section-divider"></div>
 
-<section class="pricing-section section section--bg" id="cenik">
+
+<section class="kalk-section" id="kalkulacka">
+  <div class="container">
+    <div class="section-tag centered">Kalkulačka úspor</div>
+    <h2 class="section-title centered">Kolik vás stojí <em>váš současný web?</em></h2>
+    <p class="kalk-intro">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
+    <div class="kalk-wrap reveal">
+      <div class="kalk-grid">
+        <div><div class="kalk-label">Hosting / rok <span id="k-hosting-out">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range" aria-label="Hosting za rok"></div>
+        <div><div class="kalk-label">Správa webu / rok <span id="k-sprava-out">2 000 Kč</span></div><input type="range" id="k-sprava" min="0" max="20000" step="100" value="2000" class="kalk-range" aria-label="Správa webu za rok"></div>
+        <div><div class="kalk-label">Doména / rok <span id="k-domena-out">250 Kč</span></div><input type="range" id="k-domena" min="100" max="1000" step="50" value="250" class="kalk-range" aria-label="Doména za rok"></div>
+        <div><div class="kalk-label">Počet let <span id="k-roky-out">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range" aria-label="Počet let"></div>
+      </div>
+      <div class="kalk-results">
+        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">25 250 Kč</div></div>
+        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">6 250 Kč</div></div>
+        <div class="kalk-box save"><div class="kalk-box-label">Ušetříte</div><div class="kalk-box-val" id="k-uspora">19 000 Kč</div></div>
+      </div>
+      <div class="kalk-bar-wrap">
+        <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
+        <div class="kalk-bar-track"><div class="kalk-bar-current" id="k-bar-ted"></div><div class="kalk-bar-jd" id="k-bar-jd"></div></div>
+      </div>
+      <div class="kalk-footer">
+        <p class="kalk-note">Výpočet: (hosting + správa + doména) × roky vs. tvorba od 5 900 Kč + doména × roky. Hosting v ceně tvorby.* <br><small>* U Janyskova Digital je hosting zdarma v ceně tvorby. Správa webu (aktualizace obsahu, technický dohled) je volitelná — více v <a href="#cenik">ceníku</a>.</small></p>
+        <a href="#kontakt" class="btn-primary">Chci ušetřit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="section-divider"></div>
+
+
+<section class="pricing-section" id="cenik">
   <div class="container">
     <div class="section-tag">Ceník</div>
     <h2 class="section-title">Transparentní <em>ceny.</em><br>Žádná překvapení.</h2>
@@ -276,32 +430,32 @@
       <div class="price-card reveal">
         <div class="price-card-tag">One-page web</div>
         <h3>Web Start</h3>
-        <p>Pro každého kdo chce být vidět online.</p>
+        <p>Vaše online vizitka — web, který funguje a nic extra nestojí.</p>
         <div class="price-amount">5 900 <small>Kč</small></div>
         <div class="price-divider"></div>
         <ul class="features">
-          <li>Web na míru — žádné šablony, žádný WordPress</li>
-          <li>Načítání pod 1 sekundu, PageSpeed 95–100</li>
-          <li>SEO, Schema.org, sitemap, meta tagy</li>
-          <li>Mobilní verze, SSL, kontaktní formulář</li>
-          <li>Propojení s Google Search Console a Seznam</li>
-          <li><strong>Hosting v ceně — platíte jen doménu</strong></li>
+          <li>Váš web, ne šablona z internetu — design přesně pro vás</li>
+          <li>Načte se dřív než zákazník stihne odejít (pod 1 sekundu)</li>
+          <li>Google vás najde — technické SEO, meta tagy, sitemap v ceně</li>
+          <li>Funguje na mobilu, tabletu i počítači</li>
+          <li>Kontaktní formulář, SSL, propojení s Google a Seznamem</li>
+          <li><strong>Hosting v ceně — platíte jen doménu ~200 Kč/rok</strong></li>
         </ul>
       </div>
       <div class="price-card popular reveal">
         <div class="popular-badge">Nejvýhodnější</div>
         <div class="price-card-tag">Vícestránkový web</div>
         <h3>Web Business</h3>
-        <p>Pro firmy a podnikatele, kteří chtějí růst.</p>
+        <p>Víc stránek, víc zákazníků z Googlu — pro firmy co to myslí vážně.</p>
         <div class="price-amount"><small>od</small> 12 000 <small>Kč</small></div>
         <div class="price-divider"></div>
         <ul class="features">
-          <li>Vícestránkový web na míru</li>
-          <li>Analýza klíčových slov a lokální SEO</li>
-          <li>Google Search Console</li>
-          <li>WhatsApp tlačítko, cookie lišta</li>
-          <li>Hosting v ceně — platíte jen doménu</li>
-          <li><strong>Cena dle rozsahu — domluvená předem</strong></li>
+          <li>Celý web pro vaši firmu — úvodní, služby, o nás, kontakt</li>
+          <li>Zákazníci z Googlu, ne jen z doporučení — lokální SEO v ceně</li>
+          <li>Vidíte kdo vás hledá a odkud přichází (Google Search Console)</li>
+          <li>Zákazníci vám napíší nebo zavolají jedním kliknutím</li>
+          <li>Hosting v ceně — platíte jen doménu ~200 Kč/rok</li>
+          <li><strong>Cena 12 000–20 000 Kč dle rozsahu — vždy jasná předem</strong></li>
         </ul>
       </div>
       <div class="price-card reveal">
@@ -362,31 +516,28 @@
   </div>
 </section>
 
+
+
 <div class="section-divider"></div>
 
-<section class="faq-section section" id="faq">
+
+<section class="faq-section" id="faq">
   <div class="container">
     <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title centered">Na co se <em>ptáte nejčastěji.</em></h2>
+    <h2 class="section-title centered" style="margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
     <div class="faq-list">
-      <details class="faq-item reveal"><summary>Kolik stojí tvorba webových stránek ve Valašském Meziříčí?</summary>
-        <p>Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu, přibližně 200 Kč ročně. Žádné skryté poplatky.</p>
-      </details>
-      <details class="faq-item reveal"><summary>Děláte SEO optimalizaci pro Valašské Meziříčí?</summary>
-        <p>Každý web stavím s lokálním SEO pro Valašské Meziříčí — správná klíčová slova, Schema.org, propojení s Google Search Console. SEO Valašské Meziříčí a tvorba webu Valašské Meziříčí jsou neoddělitelné.</p>
-      </details>
-      <details class="faq-item reveal"><summary>Tvoříte weby pro klienty z Valašského Meziříčí?</summary>
-        <p>Ano, spolupráce probíhá online — vzdálenost nehraje roli. Pokud chcete osobní schůzku, domluvíme se ve Valašském Meziříčí nebo online přes videohovor. Klienty mám z celé ČR.</p>
-      </details>
-      <details class="faq-item reveal"><summary>Proč neplatím za hosting?</summary>
-        <p>Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně. WordPress weby toto neumožňují.</p>
-      </details>
-      <details class="faq-item reveal"><summary>Jak dlouho trvá tvorba webu?</summary>
-        <p>Menší weby mívám hotové do 7–10 dnů od chvíle, kdy dostanu podklady. U rozsáhlejších projektů se domluvíme na harmonogramu.</p>
-      </details>
-      <details class="faq-item reveal"><summary>Budu moci web v budoucnu sama upravovat?</summary>
-        <p>Ano. Kód píšu přehledně a čistě. Pokud chcete změnit texty nebo přidat fotku, buď vám pomůžu, nebo vás navedu jak na to.</p>
-      </details>
+      <details class="faq-item reveal"><summary><!--CMS:faq1_q-->Proč neplatím za hosting?<!--/CMS:faq1_q--></summary><p><!--CMS:faq1_a-->Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.<!--/CMS:faq1_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq2_q-->Budu moci web v budoucnu sama upravovat?<!--/CMS:faq2_q--></summary><p><!--CMS:faq2_a-->Ano — ale ne přes složitý redakční systém. Drobné změny (text, fotka, cena) mi napište a udělám je obvykle do 24–48 hodin, v ceně pokud jsou malé. Na větší úpravy je tu <strong>Web Care od 490 Kč/měs</strong> — správu webu přebírám já a vy řešíte byznys. Čistý kód na rozdíl od WordPressu nevyžaduje aktualizace pluginů ani záplaty — web prostě funguje.<!--/CMS:faq2_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq3_q-->Jak dlouho trvá tvorba webu?<!--/CMS:faq3_q--></summary><p><!--CMS:faq3_a-->Menší weby mívám hotové do 7–10 dnů od chvíle, kdy dostanu podklady. U rozsáhlejších projektů se domluvíme na harmonogramu.<!--/CMS:faq3_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq4_q-->Pomůžete mi s výběrem domény?<!--/CMS:faq4_q--></summary><p><!--CMS:faq4_a-->Jasně! Společně vymyslíme ideální název a ukážu vám, kde a jak ji nejvýhodněji koupit přímo na vaše jméno.<!--/CMS:faq4_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq5_q-->Děláte i SEO optimalizaci webu?<!--/CMS:faq5_q--></summary><p><!--CMS:faq5_a-->Ano — SEO je součástí každého webu, který tvořím. Každá stránka dostane správnou strukturu nadpisů, meta tagy, Schema.org data a sitemap. U vícestránkových webů dělám i analýzu klíčových slov a lokální SEO optimalizaci pro váš region.<!--/CMS:faq5_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq6_q-->Tvoříte weby i mimo Nový Jičín?<!--/CMS:faq6_q--></summary><p><!--CMS:faq6_a-->Ano, spolupráce probíhá kompletně online. Weby tvořím pro klienty z celé České republiky.<!--/CMS:faq6_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq7_q-->Kolik stojí webové stránky v Novém Jičíně?<!--/CMS:faq7_q--></summary><p><!--CMS:faq7_a-->Tvorba webových stránek začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby.<!--/CMS:faq7_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq8_q-->Jaký je rozdíl mezi čistým kódem a WordPressem?<!--/CMS:faq8_q--></summary><p><!--CMS:faq8_a-->WordPress vyžaduje placený hosting, pravidelné aktualizace pluginů a je náchylnější k útokům. Čistý kód je rychlejší, levnější na provoz a bezpečnější — weby dosahují PageSpeed 95–100 bodů.<!--/CMS:faq8_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq9_q-->Potřebuji web i když mám sociální sítě?<!--/CMS:faq9_q--></summary><p><!--CMS:faq9_a-->Ano. Sociální sítě jsou pronajatý prostor — dosah závisí na algoritmu, platformy mění podmínky. Vlastní web je vaše digitální adresa viditelná ve vyhledávačích, kde lidé aktivně hledají vaše služby.<!--/CMS:faq9_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq10_q-->Co je AEO optimalizace?<!--/CMS:faq10_q--></summary><p><!--CMS:faq10_a-->AEO (Answer Engine Optimization) je optimalizace webu pro AI nástroje jako ChatGPT, Perplexity nebo Google AI Mode. Zahrnuje strukturované FAQ, Schema.org data a jasné citovatelné odpovědi.<!--/CMS:faq10_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq11_q-->Co je Web Refresh?<!--/CMS:faq11_q--></summary><p><!--CMS:faq11_a-->Převod stávajícího WordPressu nebo jiné platformy na čistý kód. Výsledkem je rychlejší web bez drahého hostingu a bezpečnostních rizik. Od 8 900 Kč.<!--/CMS:faq11_a--></p></details>
+      <details class="faq-item reveal"><summary><!--CMS:faq12_q-->Kolik stojí správa webu?<!--/CMS:faq12_q--></summary><p><!--CMS:faq12_a-->Web Care začíná od 490 Kč měsíčně. Zahrnuje aktualizace obsahu, technický dohled a měsíční report z Google Search Console.<!--/CMS:faq12_a--></p></details>
     </div>
   </div>
 </section>
@@ -394,110 +545,149 @@
 
 <div class="section-divider"></div>
 
-<section class="about-section" id="o-mne">
+
+<section class="blog-section">
   <div class="container">
-    <div class="about-inner">
-      <div class="about-img-wrap">
-        <img src="/gabca.webp"
-          srcset="/gabca-mobilni-verze.webp 400w, /gabca.webp 800w"
-          sizes="(max-width: 600px) 400px, 800px"
-          alt="Gabriela Janýšková — webdesignerka z Nového Jičína"
-          width="400" height="533" loading="lazy" decoding="async">
-        <div class="about-badge"><span>Sídlím v</span><strong>Novém Jičíně</strong></div>
-      </div>
-      <div class="about-text reveal">
-        <div class="section-tag">O mně</div>
-        <h2 class="section-title">Ahoj, jsem Gabča —<br><em>webdesignerka</em><br>z Nového Jičína.</h2>
-        <p>Pomáhám klientům z Valašského Meziříčí i celé ČR získat profesionální web, který skutečně přivádí zákazníky. Specializuji se na <strong>webdesign a tvorbu webových stránek</strong> čistým kódem — bez WordPressu, bez zbytečných poplatků.</p>
-        <div class="about-pills">
-          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Čistý kód, žádný WordPress</span>
-          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed 100/100</span>
-          <span class="about-pill"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>SEO + AEO + GEO</span>
-        </div>
-        <a href="#kontakt" class="btn-primary">Pojďme se poznat <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
+    <div class="section-tag">Blog</div>
+    <h2 class="section-title">Tipy ze světa <em>webdesignu a AI.</em></h2>
+    <div class="blog-grid">
+      <!-- HOMEBLOG:START -->
+      <a href="/blog/kde-je-hostovany-vas-web" class="blog-card reveal"><div class="blog-tag">Hosting · Bezpečnost · Červenec 2026</div><h3>Kde je hostovaný váš web a jak je zabezpečený?</h3><p>Weby od Janyskova Digital běží na Cloudflare Pages — nejrychlejší a nejbezpečnější hosting, jaký existuje. HTTPS zdarma, DDoS ochrana, žádné pluginy k hacknutí.</p><span>Číst článek →</span></a>
+      <a href="/blog/eshop-bez-programatora" class="blog-card reveal"><div class="blog-tag">E-shop &amp; podnikání · Červenec 2026</div><h3>E-shop bez programátora</h3><p>Shoptet, Shopify nebo web na míru? Upřímně: kdy e-shop bez programátora funguje a kdy přijdete draho. Srovnání nákladů na 1, 3 a 5 let.</p><span>Číst článek →</span></a>
+      <a href="/blog/slovnicek-webdesignera" class="blog-card reveal"><div class="blog-tag">Webdesign &amp; pojmy · Červenec 2026</div><h3>Slovníček webdesignéra</h3><p>Doména, hosting, SSL, SEO, PageSpeed... Co tím myslím, když vám to píšu. Krátce, lidsky, bez zbytečného žargonu.</p><span>Číst článek →</span></a>
+      <!-- HOMEBLOG:END -->
     </div>
+    <div><a href="/blog" class="btn-outline">Všechny články</a></div>
   </div>
 </section>
+
 
 <div class="section-divider"></div>
 
 
-<div class="section-divider"></div>
-
-<section class="section--sm">
+<section>
   <div class="container">
-    <div class="section-tag">Recenze</div>
-    <h2 class="section-title">Co říkají <em>klienti.</em></h2>
-    <div class="review-grid">
-      <div class="review-card reveal">
-        <div class="review-head">
-          <div class="review-avatar" style="background:var(--pink);">J</div>
-          <div>
-            <div class="review-name">Jaroslav Slonek</div>
-            <div class="review-role">Finanční poradce</div>
-          </div>
-          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        </div>
-        <div class="review-stars" aria-label="5 hvězdiček">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="review-text">„Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a — co je pro mě jako finančního poradce klíčové — budí důvěru. Pokud hledáte webařku, která odvede poctivou práci a dá si na ní záležet, můžu Vám paní Janýškovou jen doporučit."</p>
-      </div>
-      <div class="review-card reveal">
-        <div class="review-head">
-          <div class="review-avatar" style="background:#8B5CF6;">N</div>
-          <div>
-            <div class="review-name">Nika Hubáčková</div>
-            <div class="review-role">Fotografka</div>
-          </div>
-          <svg class="review-logo" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-label="Google recenze"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        </div>
-        <div class="review-stars" aria-label="5 hvězdiček">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#F0147A" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <p class="review-text">„S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"</p>
-      </div>
+    <div class="section-tag centered">Kde působím</div>
+    <h2 class="section-title centered">Weby tvořím <em>po celé ČR.</em></h2>
+    <div class="city-grid">
+      <a href="/novy-jicin/" class="city-card">
+        <span class="city-card-name">Nový Jičín</span>
+        <span class="city-card-link">Webdesign Nový Jičín →</span>
+      </a>
+      <a href="/ostrava/" class="city-card">
+        <span class="city-card-name">Ostrava</span>
+        <span class="city-card-link">Webdesign Ostrava →</span>
+      </a>
+      <a href="/frydek-mistek/" class="city-card">
+        <span class="city-card-name">Frýdek-Místek</span>
+        <span class="city-card-link">Webdesign Frýdek-Místek →</span>
+      </a>
+      <a href="/hranice/" class="city-card">
+        <span class="city-card-name">Hranice</span>
+        <span class="city-card-link">Webdesign Hranice →</span>
+      </a>
+      <a href="/koprivnice/" class="city-card">
+        <span class="city-card-name">Kopřivnice</span>
+        <span class="city-card-link">Webdesign Kopřivnice →</span>
+      </a>
+      <a href="/pribor/" class="city-card">
+        <span class="city-card-name">Příbor</span>
+        <span class="city-card-link">Webdesign Příbor →</span>
+      </a>
+      <a href="/brno/" class="city-card">
+        <span class="city-card-name">Brno</span>
+        <span class="city-card-link">Webdesign Brno →</span>
+      </a>
+      <a href="/praha/" class="city-card">
+        <span class="city-card-name">Praha</span>
+        <span class="city-card-link">Webdesign Praha →</span>
+      </a>
+      <a href="/olomouc/" class="city-card">
+        <span class="city-card-name">Olomouc</span>
+        <span class="city-card-link">Webdesign Olomouc →</span>
+      </a>
+      <a href="/zlin/" class="city-card">
+        <span class="city-card-name">Zlín</span>
+        <span class="city-card-link">Webdesign Zlín →</span>
+      </a>
+      <a href="/frenstat/" class="city-card">
+        <span class="city-card-name">Frenštát</span>
+        <span class="city-card-link">Webdesign Frenštát →</span>
+      </a>
+      <a href="/roznov/" class="city-card">
+        <span class="city-card-name">Rožnov</span>
+        <span class="city-card-link">Webdesign Rožnov →</span>
+      </a>
+      <a href="/valasske-mezirici/" class="city-card">
+        <span class="city-card-name">Val. Meziříčí</span>
+        <span class="city-card-link">Webdesign Val. Meziříčí →</span>
+      </a>
     </div>
   </div>
 </section>
 
-<section class="contact-section section" id="kontakt">
+
+</main>
+
+
+<div class="section-divider"></div>
+
+
+<section class="contact-section" id="kontakt">
   <div class="container">
-    <div class="section-tag centered">Kontakt</div>
-    <h2 class="section-title centered" style="margin-bottom:40px;">Pojďme postavit <em>váš web ve Valašském Meziříčí.</em></h2>
     <div class="contact-wrap reveal">
-      <h3 style="font-size:26px; margin-bottom:8px; font-family:'DM Serif Display','DM Serif Display Fallback',Georgia,serif; font-weight:400; color:var(--text);">Napište mi</h3>
-      <p style="font-size:16px; color:var(--text-dim); margin-bottom:34px; line-height:1.7;">Ráda si o vašem webu popovídám. Odpovídám do 24 hodin.</p>
-      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <div class="section-tag centered">Kontakt</div>
+      <h2 class="section-title centered">Napište mi.<br><em>Uvidíte sami.</em></h2>
+      <p style="text-align:center; color:var(--text-dim); font-size:16px; max-width:480px; margin:-20px auto 36px; line-height:1.7;">Odpovím do 24 hodin — a rovnou vám řeknu, co by dávalo smysl pro váš web.</p>
+      <div class="section-cta--sm">
+        <div class="hero-guarantee">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f0147a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Zdarma:</strong> zhodnocení vašeho webu při každé poptávce</span>
+        </div>
+      </div>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
         <input type="hidden" name="subject" value="Nová poptávka z webu — Valašské Meziříčí">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
         <div class="form-row">
-          <div class="form-group"><label for="jmeno">Vaše jméno</label><input type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="name"></div>
-          <div class="form-group"><label for="email">E-mail</label><input type="email" id="email" name="email" placeholder="E-mail" required autocomplete="email"></div>
+          <div class="form-group">
+            <label for="jmeno">Jméno</label>
+            <input type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="vas@email.cz" required autocomplete="email">
+          </div>
         </div>
-        <div class="form-group"><label for="zprava">Zpráva</label><textarea id="zprava" name="zprava" placeholder="Co potřebujete na svém webu vyřešit?" required></textarea></div>
-        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Odeslat nezávaznou poptávku <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        <div class="form-group">
+          <label for="web">Adresa vašeho webu</label>
+          <input type="url" id="web" name="web" placeholder="https://vas-web.cz (nepovinné)">
+        </div>
+        <div class="form-group">
+          <label for="zprava">Zpráva</label>
+          <textarea id="zprava" name="message" placeholder="Řekněte mi něco o svém projektu — čím více víte, tím lépe se připravím." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-submit">
+          Odeslat zprávu
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div aria-live="polite" aria-atomic="true" id="form-status"></div>
       </form>
       <div class="contact-info">
-        <a href="tel:+420739395800" aria-label="Zavolejte"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+420 739 395 800</a>
-        <a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@janyskovadigital.cz</a>
-        <a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>@JanyskovaDigital</a>
+        <a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          info@janyskovadigital.cz
+        </a>
+        <a href="tel:+420739395800">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.1 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
+          +420 739 395 800
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-</main>
 
 <footer>
   <div class="container">
@@ -514,13 +704,14 @@
           <li><a href="/ostrava/">Webdesign Ostrava</a></li>
           <li><a href="/frydek-mistek/">Webdesign Frýdek-Místek</a></li>
           <li><a href="/hranice/">Webdesign Hranice</a></li>
-          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
           <li><a href="/pribor/">Webdesign Příbor</a></li>
+          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
           <li><a href="/brno/">Webdesign Brno</a></li>
           <li><a href="/praha/">Webdesign Praha</a></li>
           <li><a href="/olomouc/">Webdesign Olomouc</a></li>
           <li><a href="/zlin/">Webdesign Zlín</a></li>
           <li><a href="/frenstat/">Webdesign Frenštát</a></li>
+          <li><a href="/jicin/">Webdesign Jičín</a></li>
           <li><a href="/jicin/">Webdesign Jičín</a></li>
           <li><a href="/roznov/">Webdesign Rožnov</a></li>
           <li><a href="/valasske-mezirici/">Webdesign Val. Meziříčí</a></li>
@@ -537,16 +728,86 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín</span>
-      <a href="/ochrana-udaju">Ochrana osobních údajů</a>
+      <span>© 2026 Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín</span>
+      <a href="ochrana-udaju.html">Ochrana osobních údajů</a>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/420739395800" target="_blank" rel="noopener" aria-label="Napište přes WhatsApp" class="wa-btn">
-  <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.43-2.01A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 0 1-6.747-1.833l-.484-.287-5.003 1.193 1.237-4.872-.317-.5A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.86c-.398-.199-2.355-1.162-2.72-1.295-.366-.132-.632-.199-.898.199-.265.398-1.03 1.295-1.263 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.984-2.362-2.217-2.76-.232-.398-.025-.614.175-.812.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.132-.265.066-.498-.033-.697-.1-.199-.898-2.165-1.23-2.963-.325-.778-.655-.672-.898-.684l-.765-.013c-.265 0-.697.1-1.063.498-.365.398-1.396 1.362-1.396 3.322s1.43 3.853 1.63 4.118c.199.265 2.814 4.297 6.818 6.027.953.411 1.696.657 2.276.841.956.305 1.826.262 2.514.159.767-.114 2.355-.963 2.688-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/></svg>
-</a>
+
+
+
+
 
 <script src="/main.js?v=14" defer></script>
+
+<!-- Audit popup -->
+<div id="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title" style="
+  display:none;position:fixed;inset:0;z-index:99999;
+  background:rgba(5,4,10,0.75);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:24px;">
+  <div style="
+    background:#0E0F14;border:1px solid rgba(240,20,122,0.3);border-radius:24px;
+    max-width:480px;width:100%;padding:44px 40px 40px;position:relative;
+    box-shadow:0 24px 80px rgba(240,20,122,0.15),0 8px 32px rgba(0,0,0,0.6);">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0147a,rgba(240,20,122,0.3));border-radius:24px 24px 0 0;"></div>
+    <button id="audit-close" aria-label="Zavřít" style="
+      position:absolute;top:16px;right:16px;background:none;border:none;
+      color:rgba(245,240,250,0.4);font-size:20px;cursor:pointer;line-height:1;padding:4px 8px;">✕</button>
+    <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#f0147a;font-weight:600;margin-bottom:16px;">Zdarma · bez závazků</div>
+    <h2 id="audit-popup-title" style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,4vw,30px);font-weight:400;line-height:1.2;color:#f5f0fa;margin-bottom:16px;">
+      Jak rychlý je váš web<br>a je připravený na <em style="color:#f0147a;font-style:italic;">AI vyhledávače?</em>
+    </h2>
+    <p style="font-size:15px;color:rgba(245,240,250,0.65);line-height:1.7;margin-bottom:28px;">
+      Bezplatný audit rychlosti + AI připravenosti — dostanete konkrétní výsledky, ne obecné rady. Do 48 hodin.
+    </p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        PageSpeed skóre a co ho brzdí
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Viditelnost v ChatGPT, Perplexity a Google AI
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,0.7);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        3 konkrétní doporučení co zlepšit
+      </div>
+    </div>
+    <a href="#kontakt" id="audit-cta" style="
+      display:flex;align-items:center;justify-content:center;gap:10px;
+      background:#f0147a;color:#fff;font-weight:700;font-size:16px;
+      padding:16px 28px;border-radius:50px;text-decoration:none;
+      transition:opacity 0.2s;">
+      Chci bezplatný audit
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p style="font-size:12px;color:rgba(245,240,250,0.3);text-align:center;margin-top:16px;">Bez spamu · odpovím osobně</p>
+  </div>
+</div>
+
+<a href="https://wa.me/420739395800" class="float-wa" target="_blank" rel="noopener" aria-label="Napište na WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.43-2.01A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 0 1-6.747-1.833l-.484-.287-5.003 1.193 1.237-4.872-.317-.5A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.86c-.398-.199-2.355-1.162-2.72-1.295-.366-.132-.632-.199-.898.199-.265.398-1.03 1.295-1.263 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.984-2.362-2.217-2.76-.232-.398-.025-.614.175-.812.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.132-.265.066-.498-.033-.697-.1-.199-.898-2.165-1.23-2.963-.325-.778-.655-.672-.898-.684l-.765-.013c-.265 0-.697.1-1.063.498-.365.398-1.396 1.362-1.396 3.322s1.43 3.853 1.63 4.118c.199.265 2.814 4.297 6.818 6.027.953.411 1.696.657 2.276.841.956.305 1.826.262 2.514.159.767-.114 2.355-.963 2.688-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/></svg>
+</a>
+<button id="chat-toggle" class="chat-toggle" aria-label="Otevřít chatbot" aria-expanded="false">
+  <svg id="chat-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <svg id="chat-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+</button>
+<div id="chat-panel" class="chat-panel" role="dialog" aria-label="Chatbot" aria-hidden="true">
+  <div class="chat-header">
+    <div class="chat-avatar">G</div>
+    <div>
+      <div class="chat-name">Gabriela</div>
+      <div class="chat-status"><span class="chat-dot"></span>Online</div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages"></div>
+  <div class="chat-input-row">
+    <input id="chat-input" class="chat-input" type="text" placeholder="Napiš otázku…" autocomplete="off" aria-label="Zpráva">
+    <button id="chat-send" class="chat-send" aria-label="Odeslat">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    </button>
+  </div>
+</div>
 </body>
-</html>
