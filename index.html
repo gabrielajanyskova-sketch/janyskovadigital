@@ -204,7 +204,7 @@
 
 <link rel="preload" href="/gabca-mobilni-verze.webp" as="image" fetchpriority="high">
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=17">
+<link rel="stylesheet" href="/style.css?v=18">
 <style>
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
@@ -482,11 +482,35 @@
   <div class="container">
     <div class="section-tag centered">Jak to funguje</div>
     <h2 class="section-title centered">Spolupráce krok <em>za krokem.</em></h2>
-    <div class="process-grid reveal">
-      <div class="process-card"><div class="process-num">01</div><h3><!--CMS:process1_h3-->Napíšete mi<!--/CMS:process1_h3--></h3><p><!--CMS:process1_p-->Řeknete mi co potřebujete — já vám řeknu co by dávalo smysl a co to bude stát. Žádné technické řeči, žádné závazky.<!--/CMS:process1_p--></p></div>
-      <div class="process-card"><div class="process-num">02</div><h3><!--CMS:process2_h3-->Dám se do práce<!--/CMS:process2_h3--></h3><p><!--CMS:process2_p-->Každý web dělám od nuly, v čistém kódu, přesně pro vás. Průběžně vám ukážu jak to vypadá — žádná překvapení na konci.<!--/CMS:process2_p--></p></div>
-      <div class="process-card"><div class="process-num">03</div><h3><!--CMS:process3_h3-->Spustíme to<!--/CMS:process3_h3--></h3><p><!--CMS:process3_p-->Předám vám přístupy, propojím web s Googlem a jdeme na to. Od teď vás zákazníci najdou.<!--/CMS:process3_p--></p></div>
-      <div class="process-card"><div class="process-num">04</div><h3><!--CMS:process4_h3-->Jsem tu dál<!--/CMS:process4_h3--></h3><p><!--CMS:process4_p-->Potřebujete něco změnit nebo přidat? Napište mi. Odpovídám do 24 hodin a nejste číslo ve frontě.<!--/CMS:process4_p--></p></div>
+    <div class="process-focus-wrap">
+      <div class="process-focus" id="process-focus">
+        <div class="process-focus-card active" data-step="0">
+          <div class="process-num">01</div>
+          <h3>Napíšete mi</h3>
+          <p>Řeknete mi co potřebujete — já vám řeknu co by dávalo smysl a co to bude stát. Žádné technické řeči, žádné závazky.</p>
+        </div>
+        <div class="process-focus-card" data-step="1">
+          <div class="process-num">02</div>
+          <h3>Dám se do práce</h3>
+          <p>Každý web dělám od nuly, v čistém kódu, přesně pro vás. Za 48 hodin máte první náhled — žádná překvapení na konci.</p>
+        </div>
+        <div class="process-focus-card" data-step="2">
+          <div class="process-num">03</div>
+          <h3>Spustíme to</h3>
+          <p>Předám vám přístupy, propojím web s Googlem a jdeme na to. Od teď vás zákazníci najdou.</p>
+        </div>
+        <div class="process-focus-card" data-step="3">
+          <div class="process-num">04</div>
+          <h3>Jsem tu dál</h3>
+          <p>Potřebujete něco změnit nebo přidat? Napište mi. Odpovídám do 24 hodin a nejste číslo ve frontě.</p>
+        </div>
+      </div>
+      <div class="process-dots">
+        <button class="process-dot active" onclick="setStep(0)" aria-label="Krok 1"></button>
+        <button class="process-dot" onclick="setStep(1)" aria-label="Krok 2"></button>
+        <button class="process-dot" onclick="setStep(2)" aria-label="Krok 3"></button>
+        <button class="process-dot" onclick="setStep(3)" aria-label="Krok 4"></button>
+      </div>
     </div>
     <div>
       <a href="#kontakt" class="btn-primary">Napište mi — je to nezávazné</a>
@@ -848,7 +872,7 @@
 
 
 
-<script src="/main.js?v=16" defer></script>
+<script src="/main.js?v=18" defer></script>
 
 <!-- Audit popup -->
 <div id="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title" style="

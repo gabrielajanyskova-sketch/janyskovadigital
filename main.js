@@ -387,3 +387,29 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     if (should !== shown) { shown = should; cta.classList.toggle('visible', shown); }
   }, { passive: true });
 }());
+
+// Process focus carousel
+(function() {
+  var cards = document.querySelectorAll('.process-focus-card');
+  var dots = document.querySelectorAll('.process-dot');
+  if (!cards.length) return;
+  var current = 0;
+  var timer;
+
+  window.setStep = function(n) {
+    cards[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = n;
+    cards[current].classList.add('active');
+    dots[current].classList.add('active');
+    resetTimer();
+  };
+
+  cards.forEach(function(c, i) {
+    c.addEventListener('click', function() { if (i !== current) setStep(i); });
+  });
+
+  function next() { setStep((current + 1) % cards.length); }
+  function resetTimer() { clearInterval(timer); timer = setInterval(next, 3200); }
+  resetTimer();
+}());
