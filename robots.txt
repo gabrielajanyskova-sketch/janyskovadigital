@@ -11,6 +11,9 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: GeminiBot
+Allow: /
+
 User-agent: Googlebot
 Allow: /
 
