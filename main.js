@@ -424,16 +424,24 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
 // ─── Process carousel ────────────────────────────────────────────────────────
 
 (function() {
-  const cards = document.querySelectorAll('.process-focus-card');
-  const dots  = document.querySelectorAll('.process-dot');
+  var cards = document.querySelectorAll('.process-focus-card');
+  var dots  = document.querySelectorAll('.process-dot');
   if (!cards.length) return;
 
-  let current = 0;
-  let timer;
+  var current = 0;
+  var timer;
+  var focusEl = document.getElementById('process-focus');
+
+  function slide(n) {
+    if (!focusEl || window.innerWidth > 768) return;
+    var wrap = focusEl.parentElement;
+    var cardW = cards[0].offsetWidth;
+    var gap = parseFloat(getComputedStyle(focusEl).gap) || 14;
+    var offset = -n * (cardW + gap) + (wrap.offsetWidth - cardW) / 2;
+    focusEl.style.transform = 'translateX(' + offset + 'px)';
+  }
 
   function advance() { window.setStep((current + 1) % cards.length); }
-
-  var focusEl = document.getElementById('process-focus');
 
   window.setStep = function(n) {
     cards[current].classList.remove('active');
@@ -441,13 +449,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     current = n;
     cards[current].classList.add('active');
     dots[current].classList.add('active');
-    if (focusEl && window.innerWidth <= 768) {
-      var wrap = focusEl.parentElement;
-      var cardW = cards[0].offsetWidth;
-      var gap = 14;
-      var offset = -n * (cardW + gap) + (wrap.offsetWidth - cardW) / 2;
-      focusEl.style.transform = 'translateX(' + offset + 'px)';
-    }
+    slide(n);
     clearInterval(timer);
     timer = setInterval(advance, 3200);
   };
@@ -455,6 +457,10 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   cards.forEach(function(card, i) {
     card.addEventListener('click', function() { if (i !== current) window.setStep(i); });
   });
+
+  // init position
+  slide(0);
+  window.addEventListener('resize', function() { slide(current); });
 
   timer = setInterval(advance, 3200);
 }());
