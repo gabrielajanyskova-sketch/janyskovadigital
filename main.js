@@ -433,14 +433,17 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
 
   function advance() { window.setStep((current + 1) % cards.length); }
 
+  var focusEl = document.getElementById('process-focus');
+
   window.setStep = function(n) {
     cards[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = n;
-    var activeCard = cards[current];
-    activeCard.classList.add('active');
+    cards[current].classList.add('active');
     dots[current].classList.add('active');
-    activeCard.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    if (focusEl && window.innerWidth <= 768) {
+      focusEl.style.transform = 'translateX(' + (-n * 100) + '%)';
+    }
     clearInterval(timer);
     timer = setInterval(advance, 3200);
   };
