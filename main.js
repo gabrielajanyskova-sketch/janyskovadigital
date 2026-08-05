@@ -442,7 +442,11 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     cards[current].classList.add('active');
     dots[current].classList.add('active');
     if (focusEl && window.innerWidth <= 768) {
-      focusEl.style.transform = 'translateX(' + (-n * 100) + '%)';
+      var wrap = focusEl.parentElement;
+      var cardW = cards[0].offsetWidth;
+      var gap = 14;
+      var offset = -n * (cardW + gap) + (wrap.offsetWidth - cardW) / 2;
+      focusEl.style.transform = 'translateX(' + offset + 'px)';
     }
     clearInterval(timer);
     timer = setInterval(advance, 3200);
