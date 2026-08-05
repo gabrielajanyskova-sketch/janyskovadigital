@@ -433,11 +433,14 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   var focusEl = document.getElementById('process-focus');
 
   function slide(n) {
-    if (!focusEl || window.innerWidth > 768) return;
+    if (!focusEl) return;
+    if (window.innerWidth > 768) { focusEl.style.transform = ''; return; }
     var wrap = focusEl.parentElement;
-    var cardW = cards[0].offsetWidth;
-    var gap = parseFloat(getComputedStyle(focusEl).gap) || 14;
-    var offset = -n * (cardW + gap) + (wrap.offsetWidth - cardW) / 2;
+    var cardW = cards[0].getBoundingClientRect().width;
+    var wrapW = wrap.getBoundingClientRect().width;
+    if (!cardW || !wrapW) return;
+    var gap = parseFloat(getComputedStyle(focusEl).columnGap || getComputedStyle(focusEl).gap) || 14;
+    var offset = -n * (cardW + gap) + (wrapW - cardW) / 2;
     focusEl.style.transform = 'translateX(' + offset + 'px)';
   }
 
@@ -458,8 +461,8 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     card.addEventListener('click', function() { if (i !== current) window.setStep(i); });
   });
 
-  // init position
-  slide(0);
+  // init position after layout
+  requestAnimationFrame(function() { requestAnimationFrame(function() { slide(0); }); });
   window.addEventListener('resize', function() { slide(current); });
 
   timer = setInterval(advance, 3200);
