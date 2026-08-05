@@ -437,8 +437,15 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     cards[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = n;
-    cards[current].classList.add('active');
+    var activeCard = cards[current];
+    activeCard.classList.add('active');
     dots[current].classList.add('active');
+    var wrap = activeCard.parentElement;
+    if (wrap && wrap.scrollWidth > wrap.clientWidth) {
+      var cardLeft = activeCard.offsetLeft;
+      var cardCenter = cardLeft + activeCard.offsetWidth / 2;
+      wrap.scrollTo({ left: cardCenter - wrap.clientWidth / 2, behavior: 'smooth' });
+    }
     clearInterval(timer);
     timer = setInterval(advance, 3200);
   };
