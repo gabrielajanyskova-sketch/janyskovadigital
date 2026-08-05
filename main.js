@@ -440,12 +440,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     var activeCard = cards[current];
     activeCard.classList.add('active');
     dots[current].classList.add('active');
-    var wrap = activeCard.parentElement;
-    if (wrap && wrap.scrollWidth > wrap.clientWidth) {
-      var cardLeft = activeCard.offsetLeft;
-      var cardCenter = cardLeft + activeCard.offsetWidth / 2;
-      wrap.scrollTo({ left: cardCenter - wrap.clientWidth / 2, behavior: 'smooth' });
-    }
+    activeCard.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
     clearInterval(timer);
     timer = setInterval(advance, 3200);
   };
