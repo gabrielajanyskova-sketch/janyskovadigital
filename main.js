@@ -433,15 +433,12 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   var focusEl = document.getElementById('process-focus');
 
   function slide(n) {
-    if (!focusEl) return;
-    if (window.innerWidth > 768) { focusEl.style.transform = ''; return; }
-    var wrap = focusEl.parentElement;
-    var cardW = cards[0].getBoundingClientRect().width;
-    var wrapW = wrap.getBoundingClientRect().width;
-    if (!cardW || !wrapW) return;
-    var gap = parseFloat(getComputedStyle(focusEl).columnGap || getComputedStyle(focusEl).gap) || 14;
-    var offset = -n * (cardW + gap) + (wrapW - cardW) / 2;
-    focusEl.style.transform = 'translateX(' + offset + 'px)';
+    if (!focusEl || window.innerWidth > 768) return;
+    var card = cards[n];
+    var containerW = focusEl.clientWidth;
+    var cardW = card.offsetWidth;
+    var target = card.offsetLeft - (containerW - cardW) / 2;
+    focusEl.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
   }
 
   function advance() { window.setStep((current + 1) % cards.length); }
