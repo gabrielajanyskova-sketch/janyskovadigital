@@ -430,16 +430,6 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
 
   var current = 0;
   var timer;
-  var focusEl = document.getElementById('process-focus');
-
-  function slide(n) {
-    if (!focusEl || window.innerWidth > 768) return;
-    var card = cards[n];
-    var containerW = focusEl.clientWidth;
-    var cardW = card.offsetWidth;
-    var target = card.offsetLeft - (containerW - cardW) / 2;
-    focusEl.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
-  }
 
   function advance() { window.setStep((current + 1) % cards.length); }
 
@@ -449,7 +439,6 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     current = n;
     cards[current].classList.add('active');
     dots[current].classList.add('active');
-    slide(n);
     clearInterval(timer);
     timer = setInterval(advance, 3200);
   };
@@ -457,10 +446,6 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   cards.forEach(function(card, i) {
     card.addEventListener('click', function() { if (i !== current) window.setStep(i); });
   });
-
-  // init position after layout
-  requestAnimationFrame(function() { requestAnimationFrame(function() { slide(0); }); });
-  window.addEventListener('resize', function() { slide(current); });
 
   timer = setInterval(advance, 3200);
 }());
