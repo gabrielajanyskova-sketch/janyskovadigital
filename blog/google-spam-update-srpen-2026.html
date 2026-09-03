@@ -40,15 +40,57 @@
 </script>
 <link rel="stylesheet" href="/style.css?v=40">
 <style>
-.stat-row{display:flex;gap:20px;margin:32px 0;flex-wrap:wrap;}
-.stat-box{flex:1;min-width:160px;background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:24px 20px;text-align:center;}
-.stat-num{font-family:'DM Serif Display',Georgia,serif;font-size:40px;color:var(--pink);line-height:1;}
-.stat-label{font-size:13px;color:var(--text-dim);margin-top:8px;line-height:1.5;}
-.tip-box{background:rgba(240,20,122,0.07);border-left:3px solid var(--pink);border-radius:0 12px 12px 0;padding:18px 22px;margin:24px 0;font-size:15px;color:var(--text-dim);line-height:1.7;}
-.tip-box strong{color:var(--text);}
-.checklist{list-style:none;padding:0;margin:20px 0;display:flex;flex-direction:column;gap:12px;}
-.checklist li{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--text-dim);line-height:1.6;}
-.checklist li::before{content:"✓";color:var(--pink);font-weight:700;flex-shrink:0;margin-top:2px;}
+/* ── Stats ── */
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+@media(max-width:600px){.stat-row{grid-template-columns:1fr;}}
+.stat-box{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 20px;text-align:center;}
+.stat-num{font-family:'DM Serif Display',Georgia,serif;font-size:44px;color:var(--pink);line-height:1;letter-spacing:-1px;}
+.stat-label{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+
+/* ── Highlight box ── */
+.hl-box{border-radius:18px;padding:28px 28px;margin:28px 0;line-height:1.75;font-size:15px;}
+.hl-box.warning{background:rgba(240,20,122,0.07);border-left:4px solid var(--pink);}
+.hl-box.good{background:rgba(34,197,94,0.08);border-left:4px solid #16a34a;}
+.hl-box strong{color:var(--text);}
+.hl-box a{color:var(--pink);}
+
+/* ── Timeline ── */
+.timeline{display:flex;flex-direction:column;gap:0;margin:32px 0;}
+.tl-item{display:flex;gap:20px;padding-bottom:28px;position:relative;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--border);}
+.tl-dot{width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;position:relative;z-index:1;}
+.tl-body{padding-top:8px;}
+.tl-date{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--pink);margin-bottom:4px;}
+.tl-text{font-size:15px;color:var(--text-dim);line-height:1.65;}
+.tl-text strong{color:var(--text);}
+
+/* ── YesNo ── */
+.yesno{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+@media(max-width:540px){.yesno{grid-template-columns:1fr;}}
+.yn-card{border-radius:18px;padding:24px 22px;}
+.yn-card.no{background:rgba(240,20,122,0.07);border:1px solid rgba(240,20,122,0.2);}
+.yn-card.yes{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.25);}
+.yn-title{font-weight:700;font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.yn-title .badge{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:900;flex-shrink:0;}
+.badge-x{background:var(--pink);}
+.badge-ok{background:#16a34a;}
+.yn-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+.yn-list li{font-size:14px;color:var(--text-dim);line-height:1.55;padding-left:16px;position:relative;}
+.yn-list li::before{content:'·';position:absolute;left:4px;color:var(--text-dim);}
+
+/* ── Steps ── */
+.steps{display:flex;flex-direction:column;gap:16px;margin:28px 0;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--pink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{font-size:15px;color:var(--text-dim);line-height:1.65;}
+.step-body strong{color:var(--text);}
+
+/* ── CTA box ── */
+.cta-box{margin-top:56px;background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:40px 36px;text-align:center;}
+.cta-box .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;}
+.cta-box h2{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;margin:0 0 14px;line-height:1.25;}
+.cta-box p{color:var(--text-dim);font-size:15px;max-width:420px;margin:0 auto 28px;line-height:1.75;}
+@media(max-width:500px){.cta-box{padding:28px 20px;}}
 </style>
 </head>
 <body>
@@ -95,8 +137,8 @@
         <div class="blog-tag-line">SEO · Google · Září 2026</div>
       </div>
 
-      <h1 class="blog-h1">Google Spam Update<br><em>srpen 2026</em></h1>
-      <p class="blog-perex">18. srpna 2026 Google spustil další Spam Update — tentokrát třetí v roce. Weby, které porušovaly pravidla nebo sázely na AI-generovaný obsah bez přidané hodnoty, ztratily pozice přes noc. Někdy i navždy. Vysvětlím co se stalo, koho to zasáhlo a jestli se to týká i vás.</p>
+      <h1 class="blog-h1">Google v srpnu<br><em>vyčistil výsledky.</em></h1>
+      <p class="blog-perex">18. srpna 2026 Google spustil velkou aktualizaci — a každý šestý web z první stránky výsledků přišel přes noc o pozice. Někdy úplně. Vysvětlím co se stalo, jestli se to týká i vás a co dělat dál.</p>
 
       <div class="blog-author-row">
         <div class="blog-author-avatar">G</div>
@@ -106,69 +148,113 @@
         </div>
       </div>
 
-      <h2>Co se vlastně stalo?</h2>
-      <p>Google vydal Spam Update 18. srpna 2026 ve 12:30 ET — globálně, všechny jazyky, všechny trhy. Celý rollout trval necelé tři dny a skončil 21. srpna. Jde o třetí spam update v roce 2026.</p>
-      <p>Současně s ním Google od 22. srpna spouštěl také Core Update, který se dotočil 7. září. Dvě velké aktualizace najednou — to se na výsledcích vyhledávání pořádně projevilo.</p>
+      <h2>Co se stalo?</h2>
+      <p>Google jednou za čas prochází internet a „čistí" výsledky vyhledávání. Odstraňuje weby, které tam nepatří — ty, co lidi nepomáhají, ale jen plní prostor. Srpnový update byl v tomto roce třetí takový úklid.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot">1</div>
+          <div class="tl-body">
+            <div class="tl-date">18. srpna 2026</div>
+            <div class="tl-text"><strong>Google spustil Spam Update</strong> — globálně, pro všechny jazyky najednou.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">2</div>
+          <div class="tl-body">
+            <div class="tl-date">18.–21. srpna</div>
+            <div class="tl-text">Aktualizace se „dotočila" za 3 dny. Weby, které porušovaly pravidla, <strong>ztratily pozice nebo zmizely úplně</strong>.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot">3</div>
+          <div class="tl-body">
+            <div class="tl-date">22. srpna – 7. září</div>
+            <div class="tl-text">Google současně spustil i druhý typ aktualizace — Core Update. <strong>Dvě velké změny najednou</strong> způsobily viditelné pohyby ve výsledcích.</div>
+          </div>
+        </div>
+      </div>
 
       <div class="stat-row">
         <div class="stat-box">
           <div class="stat-num">16,7 %</div>
-          <div class="stat-label">webů z top 10 spadlo za stránku 100 během updatu</div>
+          <div class="stat-label">webů z první stránky Googlu přišlo o pozice</div>
         </div>
         <div class="stat-box">
           <div class="stat-num">3 dny</div>
-          <div class="stat-label">trval rollout aktualizace (18.–21. srpna 2026)</div>
+          <div class="stat-label">trval rollout — pak bylo hotovo</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">3.</div>
-          <div class="stat-label">spam update v pořadí v roce 2026</div>
+          <div class="stat-num">3×</div>
+          <div class="stat-label">už potřetí v letošním roce Google takto čistil</div>
         </div>
       </div>
 
-      <p>Studie 100 000 klíčových slov napříč 20 odvětvími ukázala, že <strong>každý šestý web z první stránky výsledků přišel o pozice</strong> — v mnoha případech úplně. Ne o pár míst. Za stránku 100.</p>
+      <h2>Jaké weby Google odstranil?</h2>
+      <p>Tahle aktualizace necílila na normální weby firem a živnostníků. Zaměřila se na konkrétní typy „šmejdů" na internetu:</p>
 
-      <h2>Co Google Spam Update cílil?</h2>
-      <p>Spam Update necílí na "normální" weby malých firem. Zaměřuje se na konkrétní praktiky, které Google označuje jako spam:</p>
-
-      <ul class="checklist">
-        <li><strong>Scaled content abuse</strong> — weby, které ve velkém generují stránky pomocí AI bez přidané hodnoty. Stovky nebo tisíce článků napsané automaticky, jen aby sebraly klíčová slova.</li>
-        <li><strong>Manipulativní praktiky</strong> — nakupování odkazů, skryté texty, přesměrování, cloaking (zobrazování Googlu jiného obsahu než návštěvníkům).</li>
-        <li><strong>Programatické stránky</strong> — automaticky generované landing pages pro každé město, každé klíčové slovo, bez reálného obsahu.</li>
-        <li><strong>Thin content</strong> — stránky, které existují jen proto, aby existovaly. Žádná skutečná informace, žádná přidaná hodnota.</li>
-      </ul>
-
-      <div class="tip-box">
-        <strong>Zasáhlo to vás?</strong> Otevřete <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" style="color:var(--pink);">Google Search Console</a> → Performance → porovnejte data kolem 18.–21. srpna se stejným obdobím předchozího měsíce. Pokud vidíte náhlý propad impresí nebo kliknutí — update vás zasáhl.
+      <div class="yesno">
+        <div class="yn-card no">
+          <div class="yn-title"><span class="badge badge-x">✕</span> Kdo přišel o pozice</div>
+          <ul class="yn-list">
+            <li>Weby, co automaticky generují stovky článků pomocí AI — bez jakékoliv kontroly nebo úpravy</li>
+            <li>Stránky, kde je obsah jen pro Google, ne pro lidi — prázdné, bez skutečné informace</li>
+            <li>Weby, které nakupovaly falešné zpětné odkazy nebo používaly skryté triky</li>
+            <li>„Farmy obsahu" — weby, které existují jen proto, aby sebraly kliknutí z Googlu</li>
+          </ul>
+        </div>
+        <div class="yn-card yes">
+          <div class="yn-title"><span class="badge badge-ok">✓</span> Kdo se nemusí bát</div>
+          <ul class="yn-list">
+            <li>Weby řemeslníků, živnostníků a malých firem s upřímnými informacemi o službách</li>
+            <li>Weby psané skutečným člověkem o oboru, kterému rozumí</li>
+            <li>Stránky, kde obsah vznikl proto, aby pomohl — ne proto, aby oklamal Google</li>
+            <li>Weby bez černých triků a bez nakoupených odkazů</li>
+          </ul>
+        </div>
       </div>
 
-      <h2>Proč to „normálních" webů většinou netýká</h2>
-      <p>Pokud máte web řemeslníka, fotografa, malé firmy nebo živnostníka — a ten web obsahuje skutečné informace o vás, vašich službách a vaší lokalitě — tohle update s největší pravděpodobností přešel kolem vás bez povšimnutí.</p>
-      <p>Spam Update cílí na průmyslové farmy obsahu a manipulátory. Ne na web instalatéra z Nového Jičína, který má jednu stránku o svých službách a kontakt.</p>
-      <p>Naopak — pokud jste konkurenti těchto spamových webů ztráceli pozice, <strong>vaše pozice se mohly zlepšit</strong>. Google odstraní spam a web s kvalitním obsahem se posune výš.</p>
+      <div class="hl-box good">
+        <strong>Dobrá zpráva:</strong> Pokud váš web obsahuje poctivé informace o vás a vašich službách, tahle aktualizace vám pravděpodobně naopak pomohla. Google odstranil konkurenci ze špatných webů — a vy jste se posunuli výš.
+      </div>
+
+      <h2>Jestli vás to zasáhlo — jak to zjistit</h2>
+      <p>Jednoduchý test: otevřete si <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" style="color:var(--pink);">Google Search Console</a> (bezplatný nástroj od Googlu — pokud ho ještě nemáte, nastavím vám ho při tvorbě webu automaticky).</p>
+
+      <div class="hl-box warning">
+        <strong>Kam se podívat:</strong> Performance → porovnejte data kolem 18.–21. srpna se stejným obdobím předchozího měsíce. Vidíte náhlý propad? Update vás zasáhl. Žádná změna nebo nárůst? Jste v pohodě.
+      </div>
 
       <h2>Co dělat, pokud vás update zasáhl</h2>
-      <p>Zotavení po Spam Updatu trvá dlouho — Google sám říká „mnoho měsíců". Systém nehodnotí weby kontinuálně, ale v pravidelných intervalech. Rychlá oprava nestačí — musíte změnu udržet.</p>
+      <p>Nelžu vám — zotavení trvá dlouho. Google sám říká „mnoho měsíců". Neexistuje rychlá oprava. Co ale udělat můžete:</p>
 
-      <ul class="checklist">
-        <li>Zkontrolujte Google Search Console — identifikujte které stránky ztratily pozice</li>
-        <li>Odstraňte nebo přepište stránky s tenkým obsahem — pokud stránka neřekne nic užitečného, nepomáhá vám</li>
-        <li>Přestaňte publikovat AI obsah bez úprav a kontroly — AI je pomocník, ne autor</li>
-        <li>Zkontrolujte odkazový profil — toxické zpětné odkazy odstraňte nebo disavowujte</li>
-        <li>Zaměřte se na E-E-A-T: zkušenost, expertízu, autoritu a důvěryhodnost</li>
-      </ul>
-
-      <div class="tip-box">
-        <strong>Praktická rada:</strong> Lepší jeden dobrý článek za měsíc než deset průměrných. Google v roce 2026 jasně preferuje kvalitu a autorskou zkušenost před objemem. Píšete o oboru, ve kterém skutečně pracujete? Pak jste na správné cestě.
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Najděte problematické stránky</strong> — v Search Console uvidíte, které konkrétní stránky ztratily pozice. Začněte od nich.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Přepište nebo smažte prázdné stránky</strong> — pokud stránka neříká nic užitečného, nepomáhá vám. Buď ji přepište, nebo odstraňte úplně.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>Přestaňte publikovat AI obsah bez kontroly</strong> — AI je skvělý pomocník, ale obsah musí projít vaší kontrolou. Nesmí vypadat, jako by ho nikdo nečetl.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><strong>Pište o tom, čemu rozumíte</strong> — jeden dobrý článek za měsíc je lepší než deset průměrných. Google v roce 2026 jasně odměňuje odbornost a autenticitu.</div>
+        </div>
       </div>
 
-      <h2>Co z toho vyplývá pro váš web</h2>
-      <p>Srpnový update potvrzuje směr, kterým Google jde už roky: chce weby, které <strong>skutečně pomáhají lidem</strong>. Ne weby, které existují jen proto, aby sebraly kliknutí.</p>
-      <p>Weby v čistém kódu s poctivým obsahem, které stavím, jsou přesně tím, co Google odměňuje. Žádné šablony generující prázdné stránky pro každé klíčové slovo. Žádný obsah bez autora. Jen to, co o vás a vašich službách je pravda.</p>
+      <h2>Co z toho plyne pro váš web</h2>
+      <p>Srpnová aktualizace potvrzuje, co Google hlásá roky: chce weby, které lidem <strong>skutečně pomáhají</strong>. Weby instalatérů, kadeřnic, fotografů, cukrářů — weby, za kterými stojí skutečný člověk s poctivou prací — jsou přesně to, co Google odměňuje.</p>
+      <p>Pokud máte takový web a přesto se bojíte — napište mi. Podívám se na to zdarma.</p>
 
-      <div style="margin-top:48px;background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:32px;text-align:center;">
-        <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:12px;">Nevíte jak na tom váš web je?</div>
-        <h2 style="font-family:'DM Serif Display',Georgia,serif;font-size:26px;font-weight:400;margin:0 0 14px;">Bezplatný audit webu</h2>
-        <p style="color:var(--text-dim);font-size:15px;max-width:440px;margin:0 auto 24px;line-height:1.7;">Podívám se na váš web a řeknu vám rovnou — jestli je v pořádku, nebo jestli jsou věci, které by Googlu vadily. Zdarma, bez závazku.</p>
+      <div class="cta-box">
+        <div class="eyebrow">Nevíte jak na tom váš web je?</div>
+        <h2>Bezplatný audit webu</h2>
+        <p>Podívám se na váš web a řeknu vám rovnou — jestli je v pořádku, nebo jestli jsou věci, které by Googlu vadily. Zdarma, bez závazku.</p>
         <a href="/#kontakt" class="btn-primary">Chci audit zdarma →</a>
       </div>
 
