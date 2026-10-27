@@ -75,29 +75,33 @@
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
-<main>
-  <article class="blog-article">
-    <div class="container blog-container">
+<main class="article-main">
+  <div class="container">
 
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-          <li><a href="/">Domů</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li aria-current="page">7 varovných signálů špatného webdesignéra</li>
-        </ol>
-      </nav>
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Domů</a>
+      <span>›</span>
+      <a href="/blog">Blog</a>
+      <span>›</span>
+      <span>7 varovných signálů špatného webdesignéra</span>
+    </nav>
 
-      <header class="article-header">
-        <div class="blog-tag-top">Webdesign · Průvodce · Říjen 2026</div>
-        <h1>7 varovných signálů<br><em>špatného webdesignéra.</em></h1>
-        <p class="article-perex">Špatný webdesignér vás může stát dvojnásob — nejdřív zaplatíte za web, pak za jeho opravu nebo za nový. Tady je 7 signálů, podle kterých ho poznáte dřív než podepíšete smlouvu.</p>
-        <div class="article-meta">
-          <img src="/gabca.webp" alt="Gabriela Janýšková" width="36" height="36" loading="lazy">
-          <span>Gabriela Janýšková · 27. října 2026 · 6 min čtení</span>
-        </div>
-      </header>
+    <a href="/blog" class="back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Zpět na blog
+    </a>
 
-      <div class="article-body">
+    <div class="article-tag">Webdesign · Průvodce · Říjen 2026</div>
+    <h1 class="article-title">7 varovných signálů špatného webdesignéra —<br><em>poznejte ho dřív než zaplatíte</em></h1>
+    <div class="article-meta">
+      <img src="/gabca-mobilni-verze.webp" alt="Gabriela Janýšková" class="author-avatar" width="34" height="34" loading="lazy"><span>Gabriela Janýšková</span>
+      <div class="meta-dot"></div>
+      <span>27. října 2026</span>
+      <div class="meta-dot"></div>
+      <span>6 min čtení</span>
+    </div>
+
+    <article class="article-body">
 
         <p>Každý týden mi napíše aspoň jeden člověk s podobným příběhem: zaplatil za web, dostal něco co nefunguje, a teď neví co s tím. Webdesignéra buď nemůže sehnat, nebo ten web opravit nestojí — je levnější začít znovu.</p>
 
@@ -218,38 +222,27 @@
           <p>Ne. Nikdo nemůže garantovat konkrétní pozici v Googlu — Google algoritmus rozhoduje sám a mění se. Poctivý webdesignér dokáže vysvětlit co SEO zahrnuje a jaké výsledky jsou realistické. Garance první pozice je vždy podvod.</p>
         </details>
 
+    </article>
+
+    <nav class="related-posts" aria-label="Mohlo by vás zajímat">
+      <h2 class="related-title">Mohlo by vás zajímat</h2>
+      <div class="related-grid">
+        <a href="/blog/jak-vybrat-webdesignera" class="related-card">
+          <div class="related-tag">Webdesign · Průvodce</div>
+          <h3>Jak vybrat webdesignéra — 6 otázek, které musíte položit</h3>
+        </a>
+        <a href="/blog/proc-nepotrebujes-wordpress" class="related-card">
+          <div class="related-tag">Webdesign</div>
+          <h3>Proč (možná) nepotřebujete WordPress — a co místo něj</h3>
+        </a>
+        <a href="/blog/proc-web-nikdo-nenajde" class="related-card">
+          <div class="related-tag">SEO & Webdesign</div>
+          <h3>Proč váš web nikdo na Googlu nenajde? 7 nejčastějších chyb</h3>
+        </a>
       </div>
+    </nav>
 
-      <div class="article-footer-author">
-        <div class="author-box">
-          <img src="/gabca.webp" alt="Gabriela Janýšková" width="72" height="72" loading="lazy">
-          <div>
-            <strong>Gabriela Janýšková</strong>
-            <p>Webdesignérka ze Starojické Lhoty u Nového Jičína. Dělám weby v čistém kódu — bez WordPressu, bez měsíčních poplatků. Píšu o webdesignu a AI tak, aby to dávalo smysl i lidem mimo obor.</p>
-          </div>
-        </div>
-      </div>
-
-      <nav class="related-posts" aria-label="Mohlo by vás zajímat">
-        <h2 class="related-title">Mohlo by vás zajímat</h2>
-        <div class="related-grid">
-          <a href="/blog/jak-vybrat-webdesignera" class="related-card">
-            <div class="related-tag">Webdesign · Průvodce</div>
-            <h3>Jak vybrat webdesignéra — 6 otázek, které musíte položit</h3>
-          </a>
-          <a href="/blog/proc-nepotrebujes-wordpress" class="related-card">
-            <div class="related-tag">Webdesign</div>
-            <h3>Proč (možná) nepotřebujete WordPress — a co místo něj</h3>
-          </a>
-          <a href="/blog/proc-web-nikdo-nenajde" class="related-card">
-            <div class="related-tag">SEO & Webdesign</div>
-            <h3>Proč váš web nikdo na Googlu nenajde? 7 nejčastějších chyb</h3>
-          </a>
-        </div>
-      </nav>
-
-    </div>
-  </article>
+  </div>
 </main>
 
 <footer role="contentinfo">
