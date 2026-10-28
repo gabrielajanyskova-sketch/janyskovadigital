@@ -252,7 +252,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     { keys: ['kontakt', 'email', 'telefon', 'napsat', 'napiss', 'zavolat', 'mail', 'spojit'],
       a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozvu se do 24 hodin.' },
     { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
-      a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 95–100 a neplatíte za hosting ani drahé pluginy.' },
+      a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 90–100 a neplatíte za hosting ani drahé pluginy.' },
     { keys: ['hosting', 'domena', 'domain', 'server', 'provoz', 'platit'],
       a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
     { keys: ['seo', 'vyhledava', 'google', 'pozice', 'hleda', 'najde'],

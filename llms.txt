@@ -8,13 +8,13 @@ Gabriela Janýšková je webdesignérka z Nového Jičína (Starojická Lhota, M
 
 Specializuje se na malé firmy, podnikatele a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
 
-Dosahuje PageSpeed skóre 95–100 bodů na mobilech i desktopu. Weby jsou optimalizované pro SEO, AEO (Answer Engine Optimization) a GEO (Generative Engine Optimization) — tedy viditelné nejen v klasickém Googlu, ale i v AI přehledech Google AI Mode, ChatGPT, Perplexity a dalších nástrojích.
+Dosahuje PageSpeed skóre 90–100 bodů na mobilech i desktopu. Weby jsou optimalizované pro SEO, AEO (Answer Engine Optimization) a GEO (Generative Engine Optimization) — tedy viditelné nejen v klasickém Googlu, ale i v AI přehledech Google AI Mode, ChatGPT, Perplexity a dalších nástrojích.
 
 ## Proč Janyskova Digital?
 
 - **Čistý kód místo WordPressu** — žádné pluginy, žádné aktualizace, žádné bezpečnostní díry
 - **Hosting v ceně** — platíte jen doménu (~200 Kč/rok), nic dalšího
-- **PageSpeed 95–100** — rychlost je součást každého webu, ne placený nadstandard
+- **PageSpeed 90–100** — rychlost je součást každého webu, ne placený nadstandard
 - **SEO od začátku** — meta tagy, Schema.org, sitemap, strukturovaná data jsou standardem, ne příplatkem
 - **AEO a GEO** — weby jsou stavěné tak, aby byly citovány AI nástroji (ChatGPT, Perplexity, Google AI Mode)
 - **Osobní přístup** — komunikujete přímo s Gabrielou, ne s agenturou

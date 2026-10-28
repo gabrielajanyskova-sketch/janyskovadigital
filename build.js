@@ -40,7 +40,7 @@ const FOOTER = `<footer>
     <div class="footer-grid">
       <div>
         <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
-        <p class="footer-desc">Tvorba webů v čistém kódu. PageSpeed 100, hosting v ceně.</p>
+        <p class="footer-desc">Tvorba webů v čistém kódu. PageSpeed 90–100, hosting v ceně.</p>
       </div>
       <div>
         <div class="footer-heading">Navigace</div>
@@ -66,7 +66,7 @@ const FOOTER = `<footer>
   </div>
 </footer>`;
 
-const JS = `<script src="/main.js?v=43" defer></script>`;
+const JS = `<script src="/main.js?v=44" defer></script>`;
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
