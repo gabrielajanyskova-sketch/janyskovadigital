@@ -69,8 +69,10 @@ for (const [f, s] of html) {
   // Kompatibilita s CSP: žádný inline JavaScript ani inline styly mimo povolené hashe
   if (/\son[a-z]+="/.test(s)) err(f, 'inline obsluha události (onclick=…) — patří do src/js');
   if (/href="javascript:/.test(s)) err(f, 'odkaz javascript:');
-  for (const [, attrs] of s.matchAll(/<script(\s[^>]*)?>(?!<\/script>)/g)) {
-    if (!/type="application\/ld\+json"/.test(attrs || '')) err(f, 'inline <script> — patří do src/js');
+  for (const [, attrs, js] of s.matchAll(/<script(\s[^>]*)?>(.*?)<\/script>/gs)) {
+    if (!js || /type="application\/ld\+json"/.test(attrs || '')) continue;
+    const h = `'sha256-${createHash('sha256').update(js).digest('base64')}'`;
+    if (!csp.includes(h)) err(f, 'inline <script> není povolený v CSP — patří do src/js');
   }
   if (/<[a-z][^>]*\sstyle="/i.test(s)) err(f, 'atribut style="…" — patří do CSS');
   for (const [, css] of s.matchAll(/<style>(.*?)<\/style>/gs)) {

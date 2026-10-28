@@ -1,4 +1,4 @@
-# ZDROJ: src/_headers — soubor _headers v kořeni generuje build.js (doplní hashe inline stylů do CSP)
+# ZDROJ: src/_headers — soubor _headers v kořeni generuje build.js (doplní hashe inline skriptů a stylů do CSP)
 
 /*
   X-Frame-Options: SAMEORIGIN
@@ -6,7 +6,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self' 'sha256-+7REhQcwF0PhcjCMpfqhXwO0JHTVx9uvFmMbyjUGLvE='; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com; form-action 'self' https://api.web3forms.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-jp3mjGPYFxmeMDZuCkg74VJHVFWanFOJXxybTUsrDMM=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-0RtQhWUNB6FYEpW2/aJUuZ0jXxMmq8Ck5EtitpPzmJY='; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com; form-action 'self' https://api.web3forms.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
 /
   Link: </sitemap.xml>; rel="sitemap", </llms.txt>; rel="describedby"

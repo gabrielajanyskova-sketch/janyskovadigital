@@ -209,8 +209,9 @@ async function bundleJs() {
   return result.outputFiles[0].text;
 }
 
-function collectInlineStyles(html, set) {
-  for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs)) set.add(css);
+function collectInline(html, { styles, scripts }) {
+  for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs)) styles.add(css);
+  for (const [, js] of html.matchAll(/<script>(.*?)<\/script>/gs)) scripts.add(js);
 }
 
 // ── Sestavení ────────────────────────────────────────────────────────────────
@@ -235,7 +236,7 @@ async function build() {
     homeBlog: await homeBlogCards(6),
   };
   const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
-  const inlineStyles = new Set();
+  const inline = { styles: new Set(), scripts: new Set() };
 
   let count = 0;
   for (const file of await walk('src/pages')) {
@@ -246,7 +247,7 @@ async function build() {
       html = html.replace('</head>', pagesLink + '</head>').replace('<body>', `<body class="${scope}">`);
       if (!html.includes(`class="${scope}"`)) throw new Error(`${rel}: chybí <body> pro třídu ${scope}`);
     }
-    collectInlineStyles(html, inlineStyles);
+    collectInline(html, inline);
     await write(rel, html);
     count++;
   }
@@ -267,13 +268,16 @@ async function build() {
     };
     const where = `${city.slug}/index.html`;
     const html = syncFaqSchema(await render(template, cityCtx, where), where);
-    collectInlineStyles(html, inlineStyles);
+    collectInline(html, inline);
     await write(where, html);
     count++;
   }
 
-  // CSP povolí jen přesně ty inline <style>, které na webu jsou (kritický styl v hlavičce)
-  const headers = (await read('src/_headers')).replace('{{cspStyleHashes}}', [...inlineStyles].map(cspHash).join(' '));
+  // CSP povolí jen přesně ty inline <style> a <script>, které na webu jsou
+  // (kritický styl a nastavení motivu před vykreslením v hlavičce)
+  const headers = (await read('src/_headers'))
+    .replace('{{cspStyleHashes}}', [...inline.styles].map(cspHash).join(' '))
+    .replace('{{cspScriptHashes}}', [...inline.scripts].map(cspHash).join(' '));
   await write('_headers', headers);
 
   console.log(`✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), pages.css (${scoped.size} stránek), main.js (${ctx.jsv})`);

@@ -39,7 +39,7 @@ npm test         # obojí
 Web posílá přísnou Content-Security-Policy: skripty a styly jen z vlastní domény.
 
 - Žádné `onclick="…"`, `<script>` bez `src` ani `style="…"` v HTML. Chování patří do `src/js/`, vzhled do CSS.
-- Výjimkou je kritický `<style>` v hlavičce. Jeho hash do CSP doplní build sám.
+- Výjimkou je kritický `<style>` a krátký `<script>` v hlavičce, který před vykreslením nastaví světlý/tmavý motiv (jinak by stránka problikla). Jejich hashe do CSP doplní build sám.
 - Data pro Google (`<script type="application/ld+json">`) CSP neblokuje.
 
 `npm run check` porušení těchto pravidel najde.
