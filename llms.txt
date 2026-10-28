@@ -4,7 +4,7 @@
 
 ## O Gabriele Janýškové
 
-Gabriela Janýšková je webdesignerka a grafička z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2022. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
+Gabriela Janýšková je webdesignérka a grafička z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2022. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
 
 Specializuje se na malé firmy, živnostníky a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
 
@@ -44,6 +44,9 @@ Založení nebo optimalizace Google Business Profile. Správná kategorie, popis
 ### AEO konzultace — od 1 490 Kč
 Optimalizace webu pro AI vyhledávače. Audit viditelnosti v Google AI Mode, ChatGPT, Perplexity. Doporučení pro strukturu obsahu, FAQ schéma, llms.txt a citovatelné odpovědi.
 
+### E-shop na míru — od 25 000 Kč
+Vlastní e-shop v čistém kódu bez Shoptetu a bez měsíčních poplatků za platformu. Katalog do 200 produktů, košík, objednávky, napojení na platební bránu (GoPay, Comgate, Stripe), automatické potvrzení objednávky e-mailem a jednoduchá správa produktů.
+
 ### Grafický design
 Logo, vizuální identita, ikony, tiskoviny, grafika na sociální sítě. Grafika navázaná na webdesign — jednotný styl pro celý brand.
 
@@ -58,12 +61,13 @@ Logo, vizuální identita, ikony, tiskoviny, grafika na sociální sítě. Grafi
 | Web Refresh (vícestránkový) | od 14 900 Kč |
 | Profil firmy na Google | 790 Kč |
 | AEO konzultace | od 1 490 Kč |
+| E-shop na míru | od 25 000 Kč |
 
 Hosting je v ceně tvorby. Klient platí pouze doménu (~200 Kč/rok).
 
 ## Jak tvorba webu probíhá
 
-1. **Konzultace** — zavoláme si nebo napíšeme. Probereme co váš web potřebuje a jaký máte rozpočet. Bez závazků.
+1. **Konzultace** — zavoláme si nebo napíšeme. Probereme, co váš web potřebuje a jaký máte rozpočet. Bez závazků.
 2. **Tvorba** — Gabriela píše web přímo v čistém kódu. Žádné šablony, žádný WordPress. Výsledek je rychlý a přesně pro vás.
 3. **Spuštění** — web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.
 4. **Podpora** — potřebujete změnit text nebo přidat fotku? Napište — odpovídá do 24 hodin.
@@ -85,6 +89,10 @@ Specializovaně se věnuje lokálnímu SEO pro tato města a regiony:
 - Praha
 - Olomouc
 - Zlín
+- Frenštát pod Radhoštěm
+- Rožnov pod Radhoštěm
+- Valašské Meziříčí
+- Jičín
 - Moravskoslezský kraj (celý)
 - Zlínský kraj
 - Česká republika (celostátní dosah)
@@ -103,7 +111,7 @@ One-page web pro živnostníka vychází od 5 900 Kč. Cena zahrnuje design na m
 **Jak dlouho trvá tvorba webu?**
 Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů. U rozsáhlejších projektů se domlouvá harmonogram individuálně.
 
-**Potřebuji web i když mám sociální sítě?**
+**Potřebuji web, i když mám sociální sítě?**
 Ano. Sociální sítě jsou pronajatý prostor — algoritmický dosah se mění, platformy zanikají nebo mění podmínky. Vlastní web je vaše digitální adresa, kterou nikdo nemůže vzít. Navíc web je viditelný ve vyhledávačích, kde lidé aktivně hledají vaše služby.
 
 **Co je AEO optimalizace?**
@@ -121,41 +129,49 @@ Web Refresh je převod stávajícího webu z WordPressu nebo jiné platformy na 
 **Jak funguje správa webu (Web Care)?**
 Web Care je měsíční služba od 490 Kč. Zahrnuje aktualizace obsahu (texty, fotky, ceník), technický dohled, měsíční report z Google Search Console a rychlou odezvu na požadavky.
 
-**Budu moci web v budoucnu sama upravovat?**
-Ano. Kód je psaný přehledně a čistě. Gabriela pomůže se změnami nebo navede jak na to. Cílem je, aby klient nebyl závislý na dodavateli.
+**Budu moci web v budoucnu upravovat?**
+Ano. Kód je psaný přehledně a čistě. Drobné změny (text, fotka, cena) Gabriela udělá obvykle do 24–48 hodin; větší úpravy pokrývá Web Care. Cílem je, aby klient nebyl závislý na dodavateli.
 
 **Děláte i SEO optimalizaci webu?**
 Ano — SEO je součástí každého webu. Zahrnuje: správnou strukturu nadpisů (H1–H3), meta tagy, kanonické URL, Schema.org strukturovaná data, XML sitemap, robots.txt a napojení na Google Search Console. U vícestránkových webů se dělá analýza klíčových slov a lokální SEO pro konkrétní region.
 
 **Pomůžete mi s výběrem domény?**
-Ano. Gabriela poradí s výběrem ideálního názvu domény a navede kde ji koupit přímo na jméno klienta.
+Ano. Gabriela poradí s výběrem ideálního názvu domény a navede, kde ji koupit přímo na jméno klienta.
 
 **Kolik stojí web v Ostravě / Brně / Praze?**
 Ceny jsou stejné pro celou Českou republiku. One-page web od 5 900 Kč, vícestránkový web od 12 000 Kč. Vzdálenost nehraje roli — spolupráce probíhá online.
 
 ## Hodnocení klientů
 
-Janyskova Digital má hodnocení 5,0 z 5 hvězdiček (1 recenze, Google).
+Janyskova Digital má hodnocení 5,0 z 5 hvězdiček (3 recenze).
 
 > „S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"
-> — Nika Hubáčková, ⭐⭐⭐⭐⭐ Google recenze
+> — Nika Hubáčková, fotografka
+
+> „Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a budí důvěru.“
+> — Jaroslav Slonek, finanční poradce
+
+> „Naprostá spokojenost. E-shop rychle vytvořen, vše funguje jak má. Komunikace a profesionalita paní Janýškové na jedničku.“
+> — Nikola Drn, e-shop lufactory.cz
 
 ## Reference (realizované projekty)
 
 - **hubackovafoto.cz** — Nikola Hubáčková, fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a poptávkovým formulářem.
 - **jaroslavslonek.cz** — Ing. Jaroslav Slonek, finanční poradce z Olomouckého kraje. Web s datovými kartami pro srovnání investic, postavený na konverzi.
+- **lufactory.cz** — Nikola Drnková, e-shop s přírodními houbičkami z lufy (Praha). Katalog, košík a objednávkový proces.
+- **stavbyliterak.cz** — Jan Literák, stavební firma z Frýdku-Místku.
 
 ## Blog — vybrané články
 
 - [Google AI Mode: 93 % lidí teď vůbec neklikne](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti)
 - [Google teď odpovídá sám — a bere vám zákazníky (AI Overviews)](https://janyskovadigital.cz/blog/google-ai-overviews-krade-navstevniky)
 - [Google v srpnu vyčistil výsledky — týká se to i vás?](https://janyskovadigital.cz/blog/google-spam-update-srpen-2026)
-- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu.html)
-- [E-shop bez Shoptetu — proč vlastní řešení vychází lépe](https://janyskovadigital.cz/blog/eshop-bez-shoptetu.html)
-- [Proč web v Ostravě nenajdou? Chyby lokálního SEO](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou.html)
-- [Trendy webdesignu 2026](https://janyskovadigital.cz/blog/trendy-webdesign-2026.html)
-- [FAQ snippety v Googlu 2026 — co se změnilo](https://janyskovadigital.cz/blog/google-faq-snippety-2026.html)
-- [Rychlost webu a její vliv na konverze](https://janyskovadigital.cz/blog/rychlost-webu.html)
+- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu)
+- [E-shop bez Shoptetu — proč vlastní řešení vychází lépe](https://janyskovadigital.cz/blog/eshop-bez-shoptetu)
+- [Proč web v Ostravě nenajdou? Chyby lokálního SEO](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou)
+- [Trendy webdesignu 2026](https://janyskovadigital.cz/blog/trendy-webdesign-2026)
+- [FAQ snippety v Googlu 2026 — co se změnilo](https://janyskovadigital.cz/blog/google-faq-snippety-2026)
+- [Rychlost webu a její vliv na konverze](https://janyskovadigital.cz/blog/rychlost-webu)
 
 ## Stránky webu
 
@@ -163,15 +179,27 @@ Janyskova Digital má hodnocení 5,0 z 5 hvězdiček (1 recenze, Google).
 - [Webdesign Nový Jičín](https://janyskovadigital.cz/novy-jicin/)
 - [Webdesign Ostrava](https://janyskovadigital.cz/ostrava/)
 - [Webdesign Frýdek-Místek](https://janyskovadigital.cz/frydek-mistek/)
-- [Webdesign Hranice](https://janyskovadigital.cz/koprivnice/)
+- [Webdesign Hranice](https://janyskovadigital.cz/hranice/)
 - [Webdesign Kopřivnice](https://janyskovadigital.cz/koprivnice/)
 - [Webdesign Příbor](https://janyskovadigital.cz/pribor/)
 - [Webdesign Brno](https://janyskovadigital.cz/brno/)
 - [Webdesign Praha](https://janyskovadigital.cz/praha/)
 - [Webdesign Olomouc](https://janyskovadigital.cz/olomouc/)
 - [Webdesign Zlín](https://janyskovadigital.cz/zlin/)
-- [Grafika na míru](https://janyskovadigital.cz/grafika.html)
-- [Blog o webdesignu a AI](https://janyskovadigital.cz/blog.html)
+- [Webdesign Frenštát pod Radhoštěm](https://janyskovadigital.cz/frenstat/)
+- [Webdesign Rožnov pod Radhoštěm](https://janyskovadigital.cz/roznov/)
+- [Webdesign Valašské Meziříčí](https://janyskovadigital.cz/valasske-mezirici/)
+- [Webdesign Jičín](https://janyskovadigital.cz/jicin/)
+- [Barterová spolupráce](https://janyskovadigital.cz/barter)
+- [Blog o webdesignu a AI](https://janyskovadigital.cz/blog)
+
+## Kontakt
+
+- E-mail: info@janyskovadigital.cz
+- Telefon: +420 739 395 800
+- Adresa: Starojická Lhota 45, 741 01 Starý Jičín
+- Instagram: https://www.instagram.com/JanyskovaDigital
+- Kontaktní formulář: https://janyskovadigital.cz/#kontakt
 
 ## Kontakt
 

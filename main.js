@@ -181,7 +181,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
       const res  = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
       const data = await res.json();
       if (!data.success) throw new Error(data.message || 'Chyba serveru');
-      window.location.href = 'https://janyskovadigital.cz/podekovani.html';
+      window.location.href = 'https://janyskovadigital.cz/podekovani';
     } catch {
       showMsg('Něco se pokazilo. Zkuste to znovu nebo mi napište přímo na info@janyskovadigital.cz', 'error');
       submitBtn.disabled = false;
@@ -200,15 +200,22 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   const closeBtn = document.getElementById('audit-close');
   const ctaBtn   = document.getElementById('audit-cta');
   let shown = false;
+  let lastFocus = null;
 
   function show() {
     if (shown || sessionStorage.getItem(KEY)) return;
     shown = true;
+    lastFocus = document.activeElement;
     popup.style.display = 'flex';
     sessionStorage.setItem(KEY, '1');
+    if (closeBtn) closeBtn.focus();
   }
 
-  function hide() { popup.style.display = 'none'; }
+  function hide() {
+    if (popup.style.display === 'none') return;
+    popup.style.display = 'none';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
 
   if (closeBtn) closeBtn.addEventListener('click', hide);
   if (ctaBtn)   ctaBtn.addEventListener('click', hide);
@@ -219,7 +226,15 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   document.addEventListener('mouseleave', function(e) {
     if (e.clientY < 10 && !exitFired) { exitFired = true; setTimeout(show, 300); }
   });
-  setTimeout(show, /Mobi|Android/i.test(navigator.userAgent) ? 12000 : 25000);
+  // Na mobilu žádný časovač (rušivý interstitial) — popup až když návštěvník dočte víc než polovinu stránky
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    window.addEventListener('scroll', function onScroll() {
+      const depth = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (depth > 0.6) { window.removeEventListener('scroll', onScroll); show(); }
+    }, { passive: true });
+  } else {
+    setTimeout(show, 25000);
+  }
 }());
 
 // ─── Chatbot ──────────────────────────────────────────────────────────────────
@@ -229,15 +244,15 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     { keys: ['cen', 'kolik', 'stoj', 'cena', 'cenu', 'cenov', 'price'],
       a: 'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíte jen doménu ~200 Kč/rok.' },
     { keys: ['dlouho', 'trva', 'kdy', 'lhut', 'tyden', 'doba', 'rychle'],
-      a: 'První náhled máte do 48 hodin od schůzky. Hotový web je obvykle do 7–14 dní — záleží na rozsahu a jak rychle dodáte podklady.' },
+      a: 'První náhled máte do 48 hodin od schůzky. Menší web je obvykle hotový do 7–10 dnů — záleží na rozsahu a na tom, jak rychle dodáte podklady.' },
     { keys: ['barter', 'vymeni', 'bez penez', 'vymena'],
-      a: 'Barter je výměna — web za vaše produkty nebo služby. Hodí se třeba pro kadeřnice, kosmetičky nebo cukrářky. Kvalita stejná jako u placené zakázky, jen bez peněz.' },
+      a: 'Barter je výměna — web za pobyt. Aktuálně hledám kemp u přehrady nebo jezera s místem pro karavan (červen–září). Kvalita webu je stejná jako u placené zakázky. Podrobnosti najdete na stránce Barter.' },
     { keys: ['funguj', 'postup', 'proces', 'jak to', 'krok', 'vyroba', 'zacin', 'spoluprac'],
       a: 'Vyplníte formulář → domluvíme se na obsahu a designu → do 48 h máte první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.' },
     { keys: ['kontakt', 'email', 'telefon', 'napsat', 'napiss', 'zavolat', 'mail', 'spojit'],
-      a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozveme se do 24 hodin.' },
+      a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozvu se do 24 hodin.' },
     { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
-      a: 'Nepracujeme s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 100 a neplatíte za hosting ani drahé pluginy.' },
+      a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 95–100 a neplatíte za hosting ani drahé pluginy.' },
     { keys: ['hosting', 'domena', 'domain', 'server', 'provoz', 'platit'],
       a: 'Hosting je navždy v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
     { keys: ['seo', 'vyhledava', 'google', 'pozice', 'hleda', 'najde'],
@@ -250,7 +265,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
       a: 'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže vám být vidět ve výsledcích pro místní vyhledávání.' }
   ];
 
-  const FALLBACK = 'To přesně nevím, ale rádi odpovíme osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozveme se do 24 hodin.';
+  const FALLBACK = 'Tohle vám přesně neřeknu, ale ráda odpovím osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozvu se do 24 hodin.';
   const CHIPS = [
     { label: 'Kolik stojí web?',        idx: 0 },
     { label: 'Jak dlouho trvá výroba?', idx: 1 },
