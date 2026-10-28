@@ -6,7 +6,7 @@
 
 Gabriela Janýšková je webdesignérka z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2020. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
 
-Specializuje se na malé firmy, živnostníky a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
+Specializuje se na malé firmy, podnikatele a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
 
 Dosahuje PageSpeed skóre 95–100 bodů na mobilech i desktopu. Weby jsou optimalizované pro SEO, AEO (Answer Engine Optimization) a GEO (Generative Engine Optimization) — tedy viditelné nejen v klasickém Googlu, ale i v AI přehledech Google AI Mode, ChatGPT, Perplexity a dalších nástrojích.
 
@@ -27,7 +27,7 @@ Dosahuje PageSpeed skóre 95–100 bodů na mobilech i desktopu. Weby jsou optim
 Weby stavěné přímo v HTML, CSS a JavaScriptu bez WordPressu, Wix ani jiných platforem. Výsledek je rychlý, bezpečný a nenákladný na provoz. Každý web dostane plnohodnotné SEO — strukturu nadpisů, meta tagy, Schema.org data, sitemap a napojení na Google Search Console.
 
 ### Web Start — od 5 900 Kč
-One-page web pro živnostníky a OSVČ. Ideální pro freelancery, řemeslníky, kosmetičky, fotografy nebo kohokoliv, kdo potřebuje profesionální online prezentaci. Zahrnuje: design na míru, kontaktní formulář, SEO optimalizaci, hosting, napojení na Google.
+One-page web pro podnikatele a malé firmy. Ideální pro freelancery, řemeslníky, kosmetičky, fotografy nebo kohokoliv, kdo potřebuje profesionální online prezentaci. Zahrnuje: design na míru, kontaktní formulář, SEO optimalizaci, hosting, napojení na Google.
 
 ### Web Business — od 12 000 Kč
 Vícestránkový web pro firmy a podnikatele. Ideální pro firmy s více službami, produkty nebo pobočkami. Zahrnuje: analýzu klíčových slov, lokální SEO, strukturovaná data, blog sekci, pokročilý kontaktní formulář.
@@ -94,8 +94,8 @@ Weby jsou stavěné čistým kódem a hostované na Cloudflare Pages — tato pl
 **Jaký je rozdíl mezi čistým kódem a WordPressem?**
 WordPress je redakční systém s databází, pluginy a šablonami. Vyžaduje placený hosting, pravidelné aktualizace a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější.
 
-**Kolik stojí webové stránky pro živnostníka?**
-One-page web pro živnostníka vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč.
+**Kolik stojí webové stránky pro malou firmu?**
+One-page web vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč.
 
 **Jak dlouho trvá tvorba webu?**
 Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů. U rozsáhlejších projektů se domlouvá harmonogram individuálně.
