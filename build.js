@@ -60,13 +60,13 @@ const FOOTER = `<footer>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín</span>
+      <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín · IČO 19616295</span>
       <a href="/ochrana-udaju">Ochrana osobních údajů</a>
     </div>
   </div>
 </footer>`;
 
-const JS = `<script src="/main.js?v=44" defer></script>`;
+const JS = `<script src="/main.js?v=45" defer></script>`;
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);
@@ -213,7 +213,7 @@ async function build() {
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":${JSON.stringify(data.title)},"description":${JSON.stringify(data.description || '')},"image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","@id":"https://janyskovadigital.cz/#person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz/#o-mne"},"publisher":{"@type":"Organization","@id":"https://janyskovadigital.cz/#business","name":"Janyskova Digital","url":"https://janyskovadigital.cz","logo":{"@type":"ImageObject","url":"https://janyskovadigital.cz/web-app-manifest-512x512.png","width":512,"height":512}},"datePublished":${JSON.stringify(dateIso)},"dateModified":${JSON.stringify(dateIso)},"inLanguage":"cs","url":${JSON.stringify(url)},"mainEntityOfPage":{"@type":"WebPage","@id":${JSON.stringify(url)}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":${JSON.stringify(data.title)},"item":${JSON.stringify(url)}}]}</script>
-<link rel="stylesheet" href="/style.css?v=45">
+<link rel="stylesheet" href="/style.css?v=48">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 </head>
 <body>

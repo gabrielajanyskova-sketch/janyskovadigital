@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stránka nenalezena | Janyskova Digital</title>
+<meta name="description" content="Tahle stránka neexistuje. Pokračujte na hlavní stránku, blog nebo ceník.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Plus Jakarta Sans'; src: url('/fonts/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/dm-serif-display-latin-regular.woff2') format('woff2'); }
+@font-face { font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('/fonts/dm-serif-display-latin-italic.woff2') format('woff2'); }
+:root { --bg: #08060c; --pink: #f0147a; --pink-light: #f855a0; --pink-dim: rgba(240,20,122,0.15); --pink-border: rgba(240,20,122,0.25); --text: #f5f0fa; --text-dim: #b8a8cc; --border: rgba(240,20,122,0.18); --green: #00e5a0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
+h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+:focus-visible { outline: 2px solid var(--pink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+/* NAV */
+nav { padding: 22px 0; border-bottom: 1px solid rgba(240,20,122,0.08); background: rgba(8,6,12,0.75); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 100; }
+.nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: 'DM Serif Display', serif; font-size: 22px; text-decoration: none; color: var(--text); }
+.logo em { font-style: italic; color: var(--pink); }
+.nav-links { display: flex; align-items: center; }
+.nav-links a { margin-left: 28px; text-decoration: none; color: var(--text-dim); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.25s; }
+.nav-links a:hover { color: var(--pink); }
+.nav-links a.cta { color: var(--pink); border: 1px solid rgba(240,20,122,0.3); padding: 8px 20px; border-radius: 100px; transition: all 0.25s; }
+.nav-links a.cta:hover { background: var(--pink); color: white; box-shadow: 0 0 24px rgba(240,20,122,0.4); }
+/* HAMBURGER */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100; }
+.hamburger span { display: block; width: 24px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+/* FULLSCREEN MENU */
+.fullscreen-menu { position: fixed; inset: 0; background: rgba(8,6,12,0.98); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; opacity: 0; pointer-events: none; transition: opacity 0.35s ease; }
+.fullscreen-menu.open { opacity: 1; pointer-events: all; }
+.fullscreen-menu a { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 8vw, 62px); color: rgba(245,240,250,0.2); text-decoration: none; padding: 6px 0; opacity: 0; transform: translateY(20px); transition: color 0.2s, opacity 0.4s ease, transform 0.4s ease; }
+.fullscreen-menu.open a { opacity: 1; transform: translateY(0); }
+.fullscreen-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.fullscreen-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+.fullscreen-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.fullscreen-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+.fullscreen-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+.fullscreen-menu.open a:nth-child(6) { transition-delay: 0.3s; }
+.fullscreen-menu a:hover { color: var(--pink); text-shadow: 0 0 40px rgba(240,20,122,0.5); }
+.fullscreen-menu .menu-sub { font-size: 13px; color: var(--text-dim); margin-top: 30px; letter-spacing: 1px; opacity: 0; transition: opacity 0.4s ease 0.38s; }
+.fullscreen-menu.open .menu-sub { opacity: 1; }
+
+main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 28px; position: relative; z-index: 1; }
+.wrap { max-width: 680px; width: 100%; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px; }
+.eyebrow-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: pulseDot 2s infinite; }
+@keyframes pulseDot { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+.eyebrow-text { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); font-weight: 600; }
+.heading-block { margin-bottom: 48px; position: relative; }
+.big-heading { font-size: clamp(52px, 9vw, 96px); line-height: 0.95; letter-spacing: -3px; margin-bottom: 0; }
+.big-heading .line1 { display: block; color: var(--text); }
+.big-heading .line2 { display: block; color: transparent; -webkit-text-stroke: 1px rgba(240,20,122,0.6); }
+.big-heading .line3 { display: block; font-style: italic; color: var(--pink); text-shadow: 0 0 60px rgba(240,20,122,0.4); }
+.heading-deco { position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.deco-line { height: 1px; background: linear-gradient(90deg, transparent, var(--pink)); animation: linePulse 2s ease-in-out infinite; }
+.deco-line:nth-child(1) { width: 60px; animation-delay: 0s; }
+.deco-line:nth-child(2) { width: 40px; animation-delay: 0.3s; }
+.deco-line:nth-child(3) { width: 80px; animation-delay: 0.6s; }
+.deco-line:nth-child(4) { width: 30px; animation-delay: 0.9s; }
+@keyframes linePulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+.perex { font-size: 17px; color: var(--text-dim); line-height: 1.8; margin-bottom: 40px; max-width: 520px; }
+.steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 44px; }
+.step { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(240,20,122,0.08); align-items: flex-start; }
+.step:last-child { border-bottom: none; }
+.step-num { font-family: 'DM Serif Display', serif; font-size: 40px; color: rgba(240,20,122,0.2); line-height: 1; flex-shrink: 0; width: 48px; transition: color 0.3s; }
+.step:hover .step-num { color: rgba(240,20,122,0.55); }
+.step-content h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.step-content p { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+.btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 15px 34px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; transition: all 0.3s; box-shadow: 0 8px 28px rgba(240,20,122,0.35); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgba(240,20,122,0.5); background: var(--pink-light); }
+.btn-primary svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+footer { background: #050408; padding: 40px 0 24px; border-top: 1px solid rgba(240,20,122,0.1); position: relative; z-index: 1; }
+.footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3); }
+.footer-inner a { color: rgba(240,20,122,0.6); text-decoration: none; transition: color 0.2s; }
+.footer-inner a:hover { color: var(--pink); }
+.footer-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none; }
+.footer-logo em { font-style: italic; color: var(--pink); }
+
+@media(max-width: 600px) { .big-heading { font-size: 52px; letter-spacing: -2px; } .heading-deco { display: none; } .btns { flex-direction: column; } .btn-primary { justify-content: center; } }
+</style>
+</head>
+<body>
+<div class="bg-blobs" aria-hidden="true"></div>
+<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na úvod">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="#o-mne">O mně</a>
+      <a href="/#cenik">Ceník</a>      <a href="/barter">Barter</a>
+      <a href="/blog">Blog</a>
+      <a href="#kontakt" class="cta">Mám zájem</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <a href="/#jak-to-funguje" onclick="closeMenu()">Jak to funguje</a>
+  <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+  <a href="/#reference" onclick="closeMenu()">Reference</a>
+  <a href="/#o-mne" onclick="closeMenu()">O mně</a>
+  <a href="/blog" onclick="closeMenu()">Blog</a>
+  <div class="menu-services">    <a href="/barter" onclick="closeMenu()">Barter</a>
+  </div>
+</div>
+<main id="main">
+  <div class="wrap">
+    <div class="heading-block">
+      <div class="eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-text">Chyba 404</span>
+      </div>
+      <h1 class="big-heading">
+        <span class="line1">Tahle</span>
+        <span class="line2">stránka</span>
+        <span class="line3">tu není.</span>
+      </h1>
+      <div class="heading-deco" aria-hidden="true">
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+        <div class="deco-line"></div>
+      </div>
+    </div>
+    <p class="perex">Odkaz je možná starý, nebo se v adrese objevil překlep. Zkuste některou z těchto stránek:</p>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num" aria-hidden="true">01</span>
+        <div class="step-content">
+          <h3><a href="/" style="color:inherit">Hlavní stránka</a></h3>
+          <p>Tvorba webových stránek na míru, reference a ceník.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num" aria-hidden="true">02</span>
+        <div class="step-content">
+          <h3><a href="/blog" style="color:inherit">Blog</a></h3>
+          <p>Tipy ze světa webdesignu, SEO a AI vyhledávání.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num" aria-hidden="true">03</span>
+        <div class="step-content">
+          <h3><a href="/#kontakt" style="color:inherit">Kontakt</a></h3>
+          <p>Napište mi, co hledáte — odpovím do 24 hodin.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btns">
+      <a href="/" class="btn-primary">
+        Zpět na hlavní stránku
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-inner">
+    <a href="/" class="footer-logo">Janyskova <em>Digital</em></a>
+    <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín · IČO 19616295</span>
+    <a href="/ochrana-udaju">Ochrana osobních údajů</a>
+  </div>
+</footer>
+<script>
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+if (hamburger) {
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    mobileMenu.setAttribute('aria-hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+}
+function closeMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  mobileMenu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) closeMenu(); });
+
+</script>
+</body>
+</html>

@@ -9,6 +9,7 @@ function closeMenu() {
   hamburger.classList.remove('open');
   hamburger.setAttribute('aria-expanded', 'false');
   mobileMenu.setAttribute('aria-hidden', 'true');
+  mobileMenu.inert = true;
   document.body.style.overflow = '';
 }
 
@@ -19,12 +20,14 @@ if (hamburger && mobileMenu) {
   closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
   closeBtn.addEventListener('click', closeMenu);
   mobileMenu.appendChild(closeBtn);
+  mobileMenu.inert = true;
 
   hamburger.addEventListener('click', function() {
     const open = mobileMenu.classList.toggle('open');
     hamburger.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', open);
     mobileMenu.setAttribute('aria-hidden', !open);
+    mobileMenu.inert = !open;
     document.body.style.overflow = open ? 'hidden' : '';
   });
 
@@ -275,6 +278,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
   const toggle = document.getElementById('chat-toggle');
   const panel  = document.getElementById('chat-panel');
   if (!toggle || !panel) return;
+  panel.inert = true;
 
   const iconOpen  = document.getElementById('chat-icon-open');
   const iconClose = document.getElementById('chat-icon-close');
@@ -341,6 +345,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     panel.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
     panel.setAttribute('aria-hidden', 'true');
+    panel.inert = true;
     if (iconOpen)  iconOpen.style.display  = '';
     if (iconClose) iconClose.style.display = 'none';
   }
@@ -350,6 +355,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     const open = panel.classList.toggle('open');
     toggle.setAttribute('aria-expanded', open);
     panel.setAttribute('aria-hidden', !open);
+    panel.inert = !open;
     if (iconOpen)  iconOpen.style.display  = open ? 'none' : '';
     if (iconClose) iconClose.style.display = open ? ''     : 'none';
     if (open && !initialized) {
