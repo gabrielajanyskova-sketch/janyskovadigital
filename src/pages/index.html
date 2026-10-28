@@ -639,10 +639,10 @@
         </div>
       </div>
       <div class="process-dots">
-        <button class="process-dot active" onclick="setStep(0)" aria-label="Krok 1"></button>
-        <button class="process-dot" onclick="setStep(1)" aria-label="Krok 2"></button>
-        <button class="process-dot" onclick="setStep(2)" aria-label="Krok 3"></button>
-        <button class="process-dot" onclick="setStep(3)" aria-label="Krok 4"></button>
+        <button type="button" class="process-dot active" aria-label="Krok 1"></button>
+        <button type="button" class="process-dot" aria-label="Krok 2"></button>
+        <button type="button" class="process-dot" aria-label="Krok 3"></button>
+        <button type="button" class="process-dot" aria-label="Krok 4"></button>
       </div>
     </div>
     <div class="section-cta">
@@ -725,19 +725,19 @@
         <h3>Web Care</h3>
         <p>Nechte správu webu na mně.</p>
         <div class="care-toggle" role="tablist">
-          <button onclick="switchCare('basic')" id="care-btn-basic" class="care-btn active" role="tab">Základní</button>
-          <button onclick="switchCare('active')" id="care-btn-active" class="care-btn" role="tab">Standard</button>
-          <button onclick="switchCare('hourly')" id="care-btn-hourly" class="care-btn" role="tab">Hodinově</button>
+          <button type="button" id="care-btn-basic" class="care-btn active" role="tab" aria-selected="true" data-tab-group="care" data-tab="basic">Základní</button>
+          <button type="button" id="care-btn-active" class="care-btn" role="tab" aria-selected="false" data-tab-group="care" data-tab="active">Standard</button>
+          <button type="button" id="care-btn-hourly" class="care-btn" role="tab" aria-selected="false" data-tab-group="care" data-tab="hourly">Hodinově</button>
         </div>
         <div id="care-basic">
           <div class="price-amount">490 <small>Kč/měs</small></div>
           <ul class="features"><li>Monitoring dostupnosti webu</li><li>1 úprava obsahu měsíčně</li><li>Kontrola funkčnosti formulářů</li><li>Reakce do 48 hodin</li></ul>
         </div>
-        <div id="care-active" style="display:none;">
+        <div id="care-active" hidden>
           <div class="price-amount">990 <small>Kč/měs</small></div>
           <ul class="features"><li>Vše ze Základního balíčku</li><li>Až 2 hodiny práce měsíčně</li><li>Přidání článků, referencí, akcí</li><li>Měsíční report z Google Search Console</li><li>Reakce do 24 hodin</li></ul>
         </div>
-        <div id="care-hourly" style="display:none;">
+        <div id="care-hourly" hidden>
           <div class="price-amount">850 <small>Kč/hod</small></div>
           <ul class="features"><li>Platíte jen za odvedenou práci</li><li>Žádné měsíční závazky</li><li>Min. 30 minut za každou úpravu</li><li>Faktura po dokončení práce</li></ul>
         </div>
@@ -747,8 +747,8 @@
         <h3>Web Refresh</h3>
         <p>Máte starý web na WordPressu? Převedu ho na čistý kód — beze ztráty pozic.</p>
         <div class="care-toggle" role="tablist">
-          <button onclick="switchRefresh('one')" id="refresh-btn-one" class="care-btn active" role="tab">Jednostránkový</button>
-          <button onclick="switchRefresh('multi')" id="refresh-btn-multi" class="care-btn" role="tab">Vícestránkový</button>
+          <button type="button" id="refresh-btn-one" class="care-btn active" role="tab" aria-selected="true" data-tab-group="refresh" data-tab="one">Jednostránkový</button>
+          <button type="button" id="refresh-btn-multi" class="care-btn" role="tab" aria-selected="false" data-tab-group="refresh" data-tab="multi">Vícestránkový</button>
         </div>
         <div id="refresh-one">
           <div class="price-amount">8 900 <small>Kč</small></div>
@@ -761,7 +761,7 @@
             <li><strong>Hosting v ceně — platíte jen doménu</strong></li>
           </ul>
         </div>
-        <div id="refresh-multi" style="display:none;">
+        <div id="refresh-multi" hidden>
           <div class="price-amount"><small>od</small> 14 900 <small>Kč</small></div>
           <div class="price-divider"></div>
           <ul class="features">
@@ -773,13 +773,13 @@
           </ul>
         </div>
       </div>
-      <div class="price-card reveal" style="grid-column:1/-1;">
+      <div class="price-card price-card--wide reveal">
         <div class="price-card-tag">E-shop na míru</div>
         <h3>E-shop</h3>
         <p>Vlastní e-shop bez Shoptetu a bez měsíčních poplatků za platformu. Katalog do 200 produktů, košík, objednávky — vaše pravidla.</p>
         <div class="price-amount"><small>od</small> 25 000 <small>Kč</small></div>
         <div class="price-divider"></div>
-        <ul class="features" style="columns:2;gap:24px;">
+        <ul class="features features--2col">
           <li>Žádné měsíční poplatky za platformu — jen vaše pravidla</li>
           <li>Katalog produktů, košík a objednávkový formulář</li>
           <li>Napojení na platební bránu</li>
@@ -800,7 +800,7 @@
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title centered" style="margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <h2 class="section-title centered section-title--flush">Na co se <em>ptáte nejčastěji.</em></h2>
     <div class="faq-list">
       <details class="faq-item reveal"><summary>{{cms.faq1_q}}</summary><p>{{cms.faq1_a}}</p></details>
       <details class="faq-item reveal"><summary>{{cms.faq2_q}}</summary><p>{{cms.faq2_a}}</p></details>

@@ -97,181 +97,10 @@
     }
   ]
 }</script>
-<style>
-/* Vizuální srovnání */
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 32px 0;
-}
-.compare-card {
-  border-radius: 16px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.compare-card.bad {
-  background: rgba(255,59,48,0.06);
-  border: 1px solid rgba(255,59,48,0.2);
-}
-.compare-card.good {
-  background: rgba(0,229,160,0.05);
-  border: 1px solid rgba(0,229,160,0.2);
-}
-.compare-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-}
-.compare-card.bad  .compare-label { color: #ff3b30; }
-.compare-card.good .compare-label { color: var(--green); }
-.compare-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: 18px;
-  color: var(--text);
-  line-height: 1.2;
-}
-.compare-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin: 0;
-}
-.compare-list li {
-  font-size: 13px;
-  color: var(--text-dim);
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.compare-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 7px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
-.compare-card.bad  .compare-list li::before { background: rgba(255,59,48,0.5); }
-.compare-card.good .compare-list li::before { background: rgba(0,229,160,0.5); }
-@media(max-width:560px){ .compare-grid { grid-template-columns: 1fr; } }
-/* Tip box */
-.tip-box {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px 28px;
-  margin: 32px 0;
-}
-.tip-box-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--pink);
-  margin-bottom: 10px;
-}
-.tip-box p {
-  font-size: 15px;
-  color: var(--text-dim);
-  line-height: 1.75;
-  margin-bottom:0;
-}
-.tip-box p strong { color: var(--text); }
-/* Checker tool */
-.checker {
-  background: rgba(10,10,15,0.9);
-  border: 1px solid rgba(240,20,122,0.2);
-  border-radius: 16px;
-  padding: 24px;
-  margin: 32px 0;
-}
-.checker-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 16px;
-  letter-spacing: 0.3px;
-}
-.checker-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  cursor: pointer;
-}
-.checker-item:last-child { border-bottom: none; }
-.checker-box {
-  width: 18px; height: 18px;
-  border: 1.5px solid rgba(240,20,122,0.4);
-  border-radius: 4px;
-  flex-shrink: 0;
-  margin-top: 1px;
-  transition: all 0.2s;
-  display: flex; align-items: center; justify-content: center;
-}
-.checker-item.checked .checker-box {
-  background: var(--pink);
-  border-color: var(--pink);
-}
-.checker-item.checked .checker-box::after {
-  content: '✓';
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-}
-.checker-text {
-  font-size: 14px;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
-.checker-item.checked .checker-text {
-  color: rgba(184,168,204,0.45);
-  text-decoration: line-through;
-}
-.checker-note {
-  font-size: 12px;
-  color: rgba(240,20,122,0.7);
-  margin-top: 2px;
-}
-/* CTA */
-.article-cta{margin-top:72px;background:linear-gradient(135deg,rgba(240,20,122,0.08) 0%,rgba(180,10,90,0.04) 100%);border:1px solid var(--border);border-radius:24px;padding:44px;text-align:center;}
-.article-cta h3{font-size:28px;margin-bottom:12px;}
-.article-cta p{color:var(--text-dim);font-size:15px;margin-bottom:28px;}
-/* Related */
-.related{margin-top:72px;}
-.related-title{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:20px;}
-@media(max-width:560px){.related-grid{grid-template-columns:1fr;}}
-footer p{font-size:13px;color:rgba(184,168,204,0.4);}
-</style>
 </head>
 <body>
 <!-- @include body-start -->
 
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-
-<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
-  <div class="menu-group">
-    <div class="menu-group-label">O Janyskova Digital</div>
-    <a href="/#o-mne" onclick="closeMenu()">O mně</a>
-    <a href="/#cenik" onclick="closeMenu()">Ceník</a>
-  </div>
-  <div class="menu-group">
-    <div class="menu-group-label">Služby</div>
-    <a href="/barter" onclick="closeMenu()">Barter</a>
-  </div>
-  <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
-  <div class="menu-sub">info@janyskovadigital.cz</div>
-</div>
 
 <!-- @include nav about="/#o-mne" cenik="/#cenik" kontakt="/#kontakt" -->
 <main id="main" class="article-main">
@@ -388,35 +217,35 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
 
       <div class="checker" id="checker">
         <div class="checker-title">Checklist: potřebuje váš web cookie banner?</div>
-        <div class="checker-item" onclick="toggleCheck(this)">
+        <div class="checker-item" role="checkbox" aria-checked="false" tabindex="0">
           <div class="checker-box"></div>
           <div>
             <div class="checker-text">Používám Google Analytics nebo jiný analytický nástroj třetí strany</div>
             <div class="checker-note">→ cookie banner potřebujete</div>
           </div>
         </div>
-        <div class="checker-item" onclick="toggleCheck(this)">
+        <div class="checker-item" role="checkbox" aria-checked="false" tabindex="0">
           <div class="checker-box"></div>
           <div>
             <div class="checker-text">Mám na webu Meta Pixel, TikTok Pixel nebo jiný reklamní skript</div>
             <div class="checker-note">→ cookie banner potřebujete</div>
           </div>
         </div>
-        <div class="checker-item" onclick="toggleCheck(this)">
+        <div class="checker-item" role="checkbox" aria-checked="false" tabindex="0">
           <div class="checker-box"></div>
           <div>
             <div class="checker-text">Načítám Google Fonts nebo jiné fonty z externího CDN</div>
             <div class="checker-note">→ GDPR riziko (přenos IP adresy na cizí server), doporučujeme fonty hostovat lokálně</div>
           </div>
         </div>
-        <div class="checker-item" onclick="toggleCheck(this)">
+        <div class="checker-item" role="checkbox" aria-checked="false" tabindex="0">
           <div class="checker-box"></div>
           <div>
             <div class="checker-text">Mám na webu embed YouTube videa nebo jiný obsah třetí strany</div>
             <div class="checker-note">→ cookie banner potřebujete</div>
           </div>
         </div>
-        <div class="checker-item" onclick="toggleCheck(this)">
+        <div class="checker-item" role="checkbox" aria-checked="false" tabindex="0">
           <div class="checker-box"></div>
           <div>
             <div class="checker-text">Web stojí na WordPressu s pluginy</div>

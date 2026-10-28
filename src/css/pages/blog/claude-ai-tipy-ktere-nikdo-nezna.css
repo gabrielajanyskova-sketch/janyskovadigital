@@ -1,0 +1,137 @@
+/* FEATURE CARD — číslovaný tip */
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px 28px;
+  margin: 32px 0;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pink), transparent);
+}
+.feature-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.feature-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.feature-card h3 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+.feature-card h3 em { color: var(--pink); font-style: italic; }
+.feature-card > p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+/* PROMPT CARD — terminálový styl */
+.prompt-wrap {
+  position: relative;
+  margin-top: 20px;
+}
+.prompt-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(240,20,122,0.7);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.prompt-label svg {
+  width: 12px;
+  height: 12px;
+  stroke: rgba(240,20,122,0.7);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.prompt-box {
+  background: var(--term-bg);
+  border: 1px solid var(--term-border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #d4c8e8;
+  white-space: pre-wrap;
+  word-break: break-word;
+  position: relative;
+}
+.prompt-box .ph {
+  color: rgba(240,20,122,0.8);
+  font-style: italic;
+}
+.copy-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(240,20,122,0.12);
+  border: 1px solid rgba(240,20,122,0.25);
+  border-radius: 8px;
+  color: var(--pink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+.copy-btn:hover {
+  background: rgba(240,20,122,0.22);
+}
+.copy-btn.copied {
+  color: var(--green);
+  border-color: rgba(0,229,160,0.3);
+  background: rgba(0,229,160,0.08);
+}
+/* SOUBORY GRID */
+.file-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.file-chip {
+  background: rgba(240,20,122,0.08);
+  border: 1px solid rgba(240,20,122,0.2);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--pink);
+  letter-spacing: 0.5px;
+  font-family: 'Courier New', monospace;
+}
+@media(max-width:600px){.related-grid{grid-template-columns:1fr;}}
+.related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.related-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.4;}
+p.prompt-availability { margin-top: 18px; font-size: 14px; color: var(--text-dim); }

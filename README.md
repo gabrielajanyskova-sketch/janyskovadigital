@@ -12,10 +12,12 @@ Statický web (HTML/CSS/JS) hostovaný na Cloudflare Pages. Obsah hlavní strán
 | `src/data/cities.json` | Texty a data jednotlivých měst |
 | `src/data/schema-business.json` | Společná strukturovaná data firmy (JSON-LD) |
 | `src/css/` | Styly – spojí se do `style.css`, hero styly do `landing.css` |
+| `src/css/pages/` | Styly jedné stránky (např. `blog/clanek.css` platí jen pro `/blog/clanek`) → `pages.css` |
+| `src/js/` | JavaScript rozdělený podle funkcí (menu, formuláře, chatbot…) → `main.js` |
+| `src/_headers` | HTTP hlavičky pro Cloudflare včetně Content-Security-Policy → `_headers` |
 | `content/hlavni-stranka.yml` | Texty upravované přes CMS |
-| `main.js` | Veškerý JavaScript webu |
 
-Soubory `*.html` v kořeni a ve složkách, `style.css` a `landing.css` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
+Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js` a `_headers` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
 
 ## Práce s webem
 
@@ -30,12 +32,25 @@ npm test         # obojí
 - Proměnné: `{{cms.hero_title}}` (z CMS), `{{city.name}}` (městské stránky). Chybějící proměnná build zastaví.
 - FAQ strukturovaná data (FAQPage) se generují automaticky z viditelných otázek na stránce.
 - CSS a JS dostávají v odkazu otisk obsahu (`?v=…`), takže se po změně nenačte stará verze z cache.
+- JS i CSS minifikuje [esbuild](https://esbuild.github.io/).
 
-`npm run check` hlídá: nenahrazené proměnné, title/description/canonical, jeden `h1`, IČO v patičce, platnost JSON-LD, rozbité interní odkazy a kotvy a obsah `sitemap.xml`. Stejná kontrola běží na GitHubu při každém pushi.
+### Bezpečnost (CSP)
 
-**Po úpravě v CMS** je potřeba spustit `npm run build` a výsledek commitnout (kontrola na GitHubu na to upozorní).
+Web posílá přísnou Content-Security-Policy: skripty a styly jen z vlastní domény.
+
+- Žádné `onclick="…"`, `<script>` bez `src` ani `style="…"` v HTML. Chování patří do `src/js/`, vzhled do CSS.
+- Výjimkou je kritický `<style>` v hlavičce. Jeho hash do CSP doplní build sám.
+- Data pro Google (`<script type="application/ld+json">`) CSP neblokuje.
+
+`npm run check` porušení těchto pravidel najde.
+
+`npm run check` hlídá: nenahrazené proměnné, title/description/canonical, jeden `h1`, IČO v patičce, platnost JSON-LD, rozbité interní odkazy, kotvy a soubory, duplicitní `id`, soulad s CSP a obsah `sitemap.xml`.
+
+### Automatické sestavení
+
+Při každém pushi na `main` (i po uložení v CMS) GitHub Action web sestaví, zkontroluje a sestavené soubory commitne. Cloudflare Pages pak nasadí výsledek. Pokud kontrola selže, nic se necommitne a na webu zůstane poslední funkční verze. Na ostatních větvích a v pull requestech se jen kontroluje.
 
 ## Nový článek / město
 
-- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho, přidejte do `blog.html`, `sitemap.xml` a `llms.txt`. Karta na hlavní stránce se doplní sama.
+- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`), přidejte do `blog.html`, `sitemap.xml` a `llms.txt`. Karta na hlavní stránce se doplní sama.
 - Město: přidejte záznam do `src/data/cities.json` a URL do `sitemap.xml`.

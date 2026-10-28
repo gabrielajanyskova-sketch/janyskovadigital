@@ -5,6 +5,9 @@
 //   src/partials/    sdílené části: <!-- @include název klíč="hodnota" -->
 //   src/data/        data (města, základ schématu firmy)
 //   src/css/         styly → style.css a landing.css
+//   src/css/pages/   styly jedné stránky (cesta = cesta stránky) → pages.css, omezené na danou stránku
+//   src/js/          JavaScript (moduly) → main.js
+//   src/_headers     HTTP hlavičky pro Cloudflare (CSP se doplní automaticky) → _headers
 //   content/         texty spravované přes CMS (/admin)
 //
 // Proměnné se píšou {{název}} nebo {{objekt.vlastnost}}. Chybějící proměnná build zastaví.
@@ -13,18 +16,23 @@ import { readFile, writeFile, readdir, mkdir } from 'fs/promises';
 import { createHash } from 'crypto';
 import path from 'path';
 import { parse as parseYaml } from 'yaml';
+import * as esbuild from 'esbuild';
 
 const read = p => readFile(p, 'utf8');
 const hash = s => createHash('sha256').update(s).digest('hex').slice(0, 10);
+const cspHash = s => `'sha256-${createHash('sha256').update(s).digest('base64')}'`;
 
-async function walk(dir) {
+// Prohlížeče, pro které se CSS a JS překládá (vnořené CSS se rozbalí, moderní JS zůstane)
+const TARGET = ['chrome90', 'safari14', 'firefox90'];
+
+async function walk(dir, ext = '.html') {
   const out = [];
   for (const e of await readdir(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) out.push(...await walk(p));
-    else if (e.name.endsWith('.html')) out.push(p);
+    if (e.isDirectory()) out.push(...await walk(p, ext));
+    else if (e.name.endsWith(ext)) out.push(p);
   }
-  return out;
+  return out.sort();
 }
 
 async function write(file, content) {
@@ -168,28 +176,77 @@ function cityJsonLd(city, business) {
   return JSON.stringify([biz, page], null, 2);
 }
 
+// ── CSS a JS ────────────────────────────────────────────────────────────────
+
+async function minifyCss(css) {
+  return (await esbuild.transform(css, { loader: 'css', minify: true, target: TARGET })).code;
+}
+
+// Styly jedné stránky (src/css/pages/blog/clanek.css) se obalí :where(.page-blog-clanek),
+// takže platí jen na té stránce a nemění specifičnost selektorů.
+async function pageStyles() {
+  const scoped = new Map();
+  const parts = [];
+  for (const file of await walk('src/css/pages', '.css')) {
+    const page = path.relative('src/css/pages', file).slice(0, -4);
+    const scope = 'page-' + page.replaceAll('/', '-');
+    scoped.set(page, scope);
+    parts.push(`/* ${page} */\n:where(.${scope}){\n${await read(file)}\n}`);
+  }
+  return { css: await minifyCss(parts.join('\n')), scoped };
+}
+
+async function bundleJs() {
+  const result = await esbuild.build({
+    entryPoints: ['src/js/main.js'],
+    bundle: true,
+    minify: true,
+    format: 'iife',
+    target: TARGET,
+    write: false,
+    legalComments: 'none',
+  });
+  return result.outputFiles[0].text;
+}
+
+function collectInlineStyles(html, set) {
+  for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs)) set.add(css);
+}
+
 // ── Sestavení ────────────────────────────────────────────────────────────────
 
 async function build() {
   // Styly a skript (verze = otisk obsahu, takže prohlížeč nikdy nedrží starou verzi)
-  const styleCss = (await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n');
-  const landingCss = await read('src/css/landing.css');
+  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n'));
+  const landingCss = await minifyCss(await read('src/css/landing.css'));
+  const { css: pagesCss, scoped } = await pageStyles();
+  const mainJs = await bundleJs();
   await write('style.css', styleCss);
   await write('landing.css', landingCss);
+  await write('pages.css', pagesCss);
+  await write('main.js', mainJs);
 
   const cms = parseYaml(await read('content/hlavni-stranka.yml'));
   const ctx = {
     cssv: hash(styleCss),
     landingv: hash(landingCss),
-    jsv: hash(await read('main.js')),
+    jsv: hash(mainJs),
     cms,
     homeBlog: await homeBlogCards(6),
   };
+  const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
+  const inlineStyles = new Set();
 
   let count = 0;
   for (const file of await walk('src/pages')) {
     const rel = path.relative('src/pages', file);
-    const html = syncFaqSchema(await render(await read(file), ctx, rel), rel);
+    let html = syncFaqSchema(await render(await read(file), ctx, rel), rel);
+    const scope = scoped.get(rel.slice(0, -5));
+    if (scope) {
+      html = html.replace('</head>', pagesLink + '</head>').replace('<body>', `<body class="${scope}">`);
+      if (!html.includes(`class="${scope}"`)) throw new Error(`${rel}: chybí <body> pro třídu ${scope}`);
+    }
+    collectInlineStyles(html, inlineStyles);
     await write(rel, html);
     count++;
   }
@@ -209,11 +266,17 @@ async function build() {
       faqJsonLd: JSON.stringify(faqSchema(faq.map(([q, a]) => [htmlToText(q), htmlToText(a)])), null, 2),
     };
     const where = `${city.slug}/index.html`;
-    await write(where, syncFaqSchema(await render(template, cityCtx, where), where));
+    const html = syncFaqSchema(await render(template, cityCtx, where), where);
+    collectInlineStyles(html, inlineStyles);
+    await write(where, html);
     count++;
   }
 
-  console.log(`✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), main.js (${ctx.jsv})`);
+  // CSP povolí jen přesně ty inline <style>, které na webu jsou (kritický styl v hlavičce)
+  const headers = (await read('src/_headers')).replace('{{cspStyleHashes}}', [...inlineStyles].map(cspHash).join(' '));
+  await write('_headers', headers);
+
+  console.log(`✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), pages.css (${scoped.size} stránek), main.js (${ctx.jsv})`);
 }
 
 build().catch(err => { console.error('✗', err.message); process.exit(1); });

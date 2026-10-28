@@ -1,0 +1,9 @@
+.glossary{display:flex;flex-direction:column;gap:0;}
+.glossary-item{border-bottom:1px solid rgba(240,20,122,0.08);padding:26px 0;}
+.glossary-item:last-child{border-bottom:none;}
+.glossary-term{font-family:'DM Serif Display',serif;font-size:22px;color:var(--text);margin-bottom:6px;display:flex;align-items:baseline;gap:12px;}
+.glossary-term .tag{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:700;opacity:0.7;}
+.glossary-def{font-size:15px;color:var(--text-dim);line-height:1.75;}
+.glossary-def strong{color:var(--text);}
+.glossary-note{display:block;margin-top:8px;font-size:12px;color:rgba(240,20,122,0.6);font-style:italic;}
+@media(max-width:600px){.cta-block{padding:28px 20px;}.glossary-term{font-size:19px;}}

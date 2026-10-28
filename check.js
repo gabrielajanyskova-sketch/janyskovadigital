@@ -4,6 +4,7 @@
 
 import { readFile, readdir, access } from 'fs/promises';
 import path from 'path';
+import { createHash } from 'crypto';
 
 const SKIP_DIRS = new Set(['node_modules', 'src', 'admin', '.git', 'functions']);
 const errors = [];
@@ -35,13 +36,20 @@ async function resolve(urlPath) {
 const redirects = (await readFile('_redirects', 'utf8')).split('\n')
   .map(l => l.trim().split(/\s+/)).filter(l => l[0] && !l[0].startsWith('#')).map(l => l[0]);
 
+const headers = await readFile('_headers', 'utf8');
+const csp = (headers.match(/^\/\*\n(?:  .*\n)*?  Content-Security-Policy: (.*)$/m) || [])[1] || '';
+if (!csp) err('_headers', 'chybí Content-Security-Policy pro /*');
+
 const files = (await walk('.')).filter(f => f !== 'cookies.html');
 const ids = new Map();
 const html = new Map();
 for (const f of files) {
   const s = await readFile(f, 'utf8');
   html.set(f, s);
-  ids.set(f, new Set([...s.matchAll(/\sid="([^"]+)"/g)].map(m => m[1])));
+  const list = [...s.matchAll(/\sid="([^"]+)"/g)].map(m => m[1]);
+  ids.set(f, new Set(list));
+  const dup = list.filter((id, i) => list.indexOf(id) !== i);
+  if (dup.length) err(f, `duplicitní id: ${[...new Set(dup)].join(', ')}`);
 }
 
 for (const [f, s] of html) {
@@ -57,6 +65,23 @@ for (const [f, s] of html) {
   const h1 = (body.match(/<h1[\s>]/g) || []).length;
   if (h1 !== 1) err(f, `${h1}× <h1> (má být 1)`);
   if (!body.includes('IČO 19616295')) err(f, 'v patičce chybí IČO');
+
+  // Kompatibilita s CSP: žádný inline JavaScript ani inline styly mimo povolené hashe
+  if (/\son[a-z]+="/.test(s)) err(f, 'inline obsluha události (onclick=…) — patří do src/js');
+  if (/href="javascript:/.test(s)) err(f, 'odkaz javascript:');
+  for (const [, attrs] of s.matchAll(/<script(\s[^>]*)?>(?!<\/script>)/g)) {
+    if (!/type="application\/ld\+json"/.test(attrs || '')) err(f, 'inline <script> — patří do src/js');
+  }
+  if (/<[a-z][^>]*\sstyle="/i.test(s)) err(f, 'atribut style="…" — patří do CSS');
+  for (const [, css] of s.matchAll(/<style>(.*?)<\/style>/gs)) {
+    const h = `'sha256-${createHash('sha256').update(css).digest('base64')}'`;
+    if (!csp.includes(h)) err(f, 'inline <style> není povolený v CSP (spusťte npm run build)');
+  }
+
+  // Lokální soubory (obrázky, skripty, styly) existují
+  for (const [, url] of s.matchAll(/\s(?:src|href)="(\/[^"#?]*\.(?:css|js|webp|png|jpe?g|svg|ico|woff2?|webmanifest|xml|txt))(?:\?[^"]*)?"/g)) {
+    if (!await exists(url.slice(1))) err(f, `chybí soubor ${url}`);
+  }
 
   for (const [, json] of head.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)) {
     try { JSON.parse(json); } catch (e) { err(f, `neplatné JSON-LD: ${e.message}`); }

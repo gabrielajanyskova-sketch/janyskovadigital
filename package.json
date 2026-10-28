@@ -8,6 +8,7 @@
     "test": "node build.js && node check.js"
   },
   "devDependencies": {
+    "esbuild": "0.25.10",
     "yaml": "^2.9.0"
   }
 }

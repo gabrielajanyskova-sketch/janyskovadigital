@@ -57,3 +57,28 @@
 /* Drobnosti dříve psané přímo v HTML */
 .faq-title{margin-bottom:0}
 .hero-note-icon{flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ── Pomocné třídy (dříve inline style="…") ───────────────────────────────── */
+.is-hidden{display:none!important}
+.form-hp{display:none}
+.review-avatar--pink{background:var(--pink)}
+.review-avatar--violet{background:#8B5CF6}
+.review-avatar--green{background:#059669}
+a.link-accent{color:var(--pink);font-weight:600}
+a.link-accent--bold{font-weight:700}
+a.link-pink{color:var(--pink)}
+a.link-inherit{color:inherit}
+.price-card.price-card--wide{grid-column:1/-1}
+.features.features--2col{columns:2;gap:24px}
+.section-title.section-title--flush{margin-bottom:0}
+/* Tlačítko motivu v mobilním menu: nesmí se schovat s animací položek menu */
+.theme-toggle.theme-toggle--menu{margin:20px auto 0;width:44px;height:44px;opacity:1!important;transform:none!important}
+.form-msg{margin-top:12px;padding:12px 18px;border-radius:10px;font-size:14px}
+.form-msg--error{background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);color:#ff7080}
+.form-msg--ok{background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);color:var(--green)}
+section.nearby-cities{padding:80px 0 20px}
+p.nearby-cities-lead{color:var(--text-dim);max-width:600px;margin-bottom:32px;line-height:1.7}
+p.nearby-cities-lead--loose{line-height:1.8}
+.city-grid.city-grid--compact{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+/* Kalkulačka: na mobilu se tři výsledky nevejdou vedle sebe (box „Ušetříte“ vyčníval z obrazovky) */
+@media(max-width:600px){.kalk-results{grid-template-columns:1fr;gap:12px}.kalk-box{padding:18px}}

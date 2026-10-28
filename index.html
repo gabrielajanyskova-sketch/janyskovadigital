@@ -39,8 +39,8 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=7788434245">
-<link rel="stylesheet" href="/landing.css?v=4c58b7098f">
+<link rel="stylesheet" href="/style.css?v=041cdba54d">
+<link rel="stylesheet" href="/landing.css?v=1cc4c39f0f">
 <script type="application/ld+json">[
   {
     "@context": "https://schema.org",
@@ -454,15 +454,15 @@
 <div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
   <div class="menu-group">
     <div class="menu-group-label">O Janyskova Digital</div>
-    <a href="#o-mne" onclick="closeMenu()">O mně</a>
-    <a href="#cenik" onclick="closeMenu()">Ceník</a>
+    <a href="#o-mne">O mně</a>
+    <a href="#cenik">Ceník</a>
   </div>
   <div class="menu-group">
     <div class="menu-group-label">Služby</div>
-    <a href="/barter" onclick="closeMenu()">Barter</a>
+    <a href="/barter">Barter</a>
   </div>
-  <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
+  <a href="/blog">Blog</a>
+  <a href="#kontakt" class="menu-cta">Mám zájem</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
@@ -656,7 +656,7 @@
     <div class="review-grid">
         <div class="review-card">
           <div class="review-head">
-            <div class="review-avatar" style="background:var(--pink);">J</div>
+            <div class="review-avatar review-avatar--pink">J</div>
             <div>
               <div class="review-name">Jaroslav Slonek</div>
               <div class="review-role">Finanční poradce</div>
@@ -674,7 +674,7 @@
         </div>
         <div class="review-card">
           <div class="review-head">
-            <div class="review-avatar" style="background:#8B5CF6;">N</div>
+            <div class="review-avatar review-avatar--violet">N</div>
             <div>
               <div class="review-name">Nika Hubáčková</div>
               <div class="review-role">Fotografka</div>
@@ -692,7 +692,7 @@
         </div>
         <div class="review-card">
           <div class="review-head">
-            <div class="review-avatar" style="background:#059669;">N</div>
+            <div class="review-avatar review-avatar--green">N</div>
             <div>
               <div class="review-name">Nikola Drn</div>
               <div class="review-role">E-shop</div>
@@ -742,10 +742,10 @@
         </div>
       </div>
       <div class="process-dots">
-        <button class="process-dot active" onclick="setStep(0)" aria-label="Krok 1"></button>
-        <button class="process-dot" onclick="setStep(1)" aria-label="Krok 2"></button>
-        <button class="process-dot" onclick="setStep(2)" aria-label="Krok 3"></button>
-        <button class="process-dot" onclick="setStep(3)" aria-label="Krok 4"></button>
+        <button type="button" class="process-dot active" aria-label="Krok 1"></button>
+        <button type="button" class="process-dot" aria-label="Krok 2"></button>
+        <button type="button" class="process-dot" aria-label="Krok 3"></button>
+        <button type="button" class="process-dot" aria-label="Krok 4"></button>
       </div>
     </div>
     <div class="section-cta">
@@ -828,19 +828,19 @@
         <h3>Web Care</h3>
         <p>Nechte správu webu na mně.</p>
         <div class="care-toggle" role="tablist">
-          <button onclick="switchCare('basic')" id="care-btn-basic" class="care-btn active" role="tab">Základní</button>
-          <button onclick="switchCare('active')" id="care-btn-active" class="care-btn" role="tab">Standard</button>
-          <button onclick="switchCare('hourly')" id="care-btn-hourly" class="care-btn" role="tab">Hodinově</button>
+          <button type="button" id="care-btn-basic" class="care-btn active" role="tab" aria-selected="true" data-tab-group="care" data-tab="basic">Základní</button>
+          <button type="button" id="care-btn-active" class="care-btn" role="tab" aria-selected="false" data-tab-group="care" data-tab="active">Standard</button>
+          <button type="button" id="care-btn-hourly" class="care-btn" role="tab" aria-selected="false" data-tab-group="care" data-tab="hourly">Hodinově</button>
         </div>
         <div id="care-basic">
           <div class="price-amount">490 <small>Kč/měs</small></div>
           <ul class="features"><li>Monitoring dostupnosti webu</li><li>1 úprava obsahu měsíčně</li><li>Kontrola funkčnosti formulářů</li><li>Reakce do 48 hodin</li></ul>
         </div>
-        <div id="care-active" style="display:none;">
+        <div id="care-active" hidden>
           <div class="price-amount">990 <small>Kč/měs</small></div>
           <ul class="features"><li>Vše ze Základního balíčku</li><li>Až 2 hodiny práce měsíčně</li><li>Přidání článků, referencí, akcí</li><li>Měsíční report z Google Search Console</li><li>Reakce do 24 hodin</li></ul>
         </div>
-        <div id="care-hourly" style="display:none;">
+        <div id="care-hourly" hidden>
           <div class="price-amount">850 <small>Kč/hod</small></div>
           <ul class="features"><li>Platíte jen za odvedenou práci</li><li>Žádné měsíční závazky</li><li>Min. 30 minut za každou úpravu</li><li>Faktura po dokončení práce</li></ul>
         </div>
@@ -850,8 +850,8 @@
         <h3>Web Refresh</h3>
         <p>Máte starý web na WordPressu? Převedu ho na čistý kód — beze ztráty pozic.</p>
         <div class="care-toggle" role="tablist">
-          <button onclick="switchRefresh('one')" id="refresh-btn-one" class="care-btn active" role="tab">Jednostránkový</button>
-          <button onclick="switchRefresh('multi')" id="refresh-btn-multi" class="care-btn" role="tab">Vícestránkový</button>
+          <button type="button" id="refresh-btn-one" class="care-btn active" role="tab" aria-selected="true" data-tab-group="refresh" data-tab="one">Jednostránkový</button>
+          <button type="button" id="refresh-btn-multi" class="care-btn" role="tab" aria-selected="false" data-tab-group="refresh" data-tab="multi">Vícestránkový</button>
         </div>
         <div id="refresh-one">
           <div class="price-amount">8 900 <small>Kč</small></div>
@@ -864,7 +864,7 @@
             <li><strong>Hosting v ceně — platíte jen doménu</strong></li>
           </ul>
         </div>
-        <div id="refresh-multi" style="display:none;">
+        <div id="refresh-multi" hidden>
           <div class="price-amount"><small>od</small> 14 900 <small>Kč</small></div>
           <div class="price-divider"></div>
           <ul class="features">
@@ -876,13 +876,13 @@
           </ul>
         </div>
       </div>
-      <div class="price-card reveal" style="grid-column:1/-1;">
+      <div class="price-card price-card--wide reveal">
         <div class="price-card-tag">E-shop na míru</div>
         <h3>E-shop</h3>
         <p>Vlastní e-shop bez Shoptetu a bez měsíčních poplatků za platformu. Katalog do 200 produktů, košík, objednávky — vaše pravidla.</p>
         <div class="price-amount"><small>od</small> 25 000 <small>Kč</small></div>
         <div class="price-divider"></div>
-        <ul class="features" style="columns:2;gap:24px;">
+        <ul class="features features--2col">
           <li>Žádné měsíční poplatky za platformu — jen vaše pravidla</li>
           <li>Katalog produktů, košík a objednávkový formulář</li>
           <li>Napojení na platební bránu</li>
@@ -903,7 +903,7 @@
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title centered" style="margin-bottom:0;">Na co se <em>ptáte nejčastěji.</em></h2>
+    <h2 class="section-title centered section-title--flush">Na co se <em>ptáte nejčastěji.</em></h2>
     <div class="faq-list">
       <details class="faq-item reveal"><summary>Proč neplatím za hosting?</summary><p>Weby stavím čistým kódem bez WordPressu. Hosting je součástí ceny tvorby — platíte jen doménu, přibližně 200 Kč ročně.</p></details>
       <details class="faq-item reveal"><summary>Budu moci web v budoucnu upravovat?</summary><p>Ano — ale ne přes složitý redakční systém. Drobné změny (text, fotka, cena) mi napište a udělám je obvykle do 24–48 hodin, v ceně, pokud jsou malé. Na větší úpravy je tu <strong>Web Care od 490 Kč/měs</strong> — správu webu přebírám já a vy řešíte byznys. Čistý kód na rozdíl od WordPressu nevyžaduje aktualizace pluginů ani záplaty — web prostě funguje.</p></details>
@@ -1022,7 +1022,7 @@
         <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
         <input type="hidden" name="subject" value="Nová poptávka z webu — janyskovadigital.cz">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
-        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="text" name="website" class="form-hp" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="form-group">
             <label for="jmeno">Jméno</label>
@@ -1104,7 +1104,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=e1330d7308" defer></script>
+<script src="/main.js?v=37a1922b46" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>
@@ -1133,7 +1133,7 @@
 </a>
 <button id="chat-toggle" class="chat-toggle" aria-label="Otevřít chatbot" aria-expanded="false">
   <svg id="chat-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-  <svg id="chat-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  <svg id="chat-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" class="is-hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
 </button>
 <div id="chat-panel" class="chat-panel" role="dialog" aria-label="Chatbot" aria-hidden="true">
   <div class="chat-header">

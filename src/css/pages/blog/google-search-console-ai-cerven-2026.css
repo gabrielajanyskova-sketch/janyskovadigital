@@ -1,0 +1,9 @@
+.metric-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:24px 0;}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center;}
+.metric-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.metric-value{font-family:'DM Serif Display',serif;font-size:28px;color:var(--text);line-height:1;}
+.metric-desc{font-size:12px;color:var(--text-dim);margin-top:6px;line-height:1.5;}
+@media(max-width:600px){.metric-row{grid-template-columns:1fr;} .related-grid{grid-template-columns:1fr;}}
+.related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
+.related-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.4;}
+.hl-box.update-box { background: rgba(240,20,122,0.07); border-left: 4px solid var(--pink); border-radius: 14px; padding: 20px 24px; margin: 0 0 32px; }

@@ -1,0 +1,8 @@
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;margin:28px 0;backdrop-filter:blur(10px);}
+.price-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:10px;}
+.price-card h3{font-size:22px;color:var(--text);margin-bottom:8px;}
+.price-amount{font-family:'DM Serif Display',serif;font-size:44px;color:var(--pink);line-height:1;margin-bottom:18px;}
+.price-amount small{font-size:18px;font-family:'Plus Jakarta Sans',sans-serif;color:var(--text-dim);font-weight:400;}
+.features{list-style:none;display:flex;flex-direction:column;gap:9px;padding:0;}
+.features li{font-size:14px;color:var(--text-dim);padding-left:20px;position:relative;line-height:1.5;}
+.features li::before{content:'✓';position:absolute;left:0;color:var(--pink);font-weight:700;}

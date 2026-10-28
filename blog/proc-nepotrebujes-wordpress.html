@@ -34,7 +34,7 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=7788434245">
+<link rel="stylesheet" href="/style.css?v=041cdba54d">
 <script type="application/ld+json">[
   {
     "@context": "https://schema.org",
@@ -132,41 +132,9 @@
     ]
   }
 ]</script>
-<style>
-.article-meta span{opacity:0.4;}
-h1{font-size:clamp(32px,5vw,52px);line-height:1.15;letter-spacing:-0.5px;color:var(--text);margin-bottom:20px;}
-h1 em{color:var(--pink);font-style:italic;}
-h2{font-size:clamp(22px,3vw,30px);color:var(--text);margin:52px 0 18px;}
-h2 em{color:var(--pink);font-style:italic;}
-h3{font-size:18px;color:var(--text);margin:32px 0 12px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;}
-p{font-size:16px;color:var(--text-dim);line-height:1.85;margin-bottom:20px;}
-p strong{color:var(--text);font-weight:700;}
-ul,ol{margin:0 0 20px 0;padding-left:22px;display:flex;flex-direction:column;gap:10px;}
-li{font-size:16px;color:var(--text-dim);line-height:1.75;}
-li strong{color:var(--text);}
-.highlight-box{background:rgba(0,229,160,0.05);border:1px solid rgba(0,229,160,0.18);border-radius:14px;padding:22px 26px;margin:32px 0;}
-.highlight-box p{margin:0;color:var(--green);font-size:15px;}
-.highlight-box strong{color:#fff;}
-.chyba-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin:28px 0;}
-.chyba-num{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:10px;}
-.chyba-card h3{margin:0 0 12px;font-size:20px;}
-.chyba-card p{margin:0;font-size:15px;}
-.compare-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:15px;}
-.compare-table th{text-align:left;padding:14px 16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--border);color:var(--text-dim);}
-.compare-table td{padding:14px 16px;border-bottom:1px solid rgba(240,20,122,0.06);color:var(--text-dim);vertical-align:top;}
-.compare-table td:first-child{color:var(--text);font-weight:600;}
-.compare-table .good{color:var(--green);}
-.compare-table .bad{color:#ff6b6b;}
-.compare-table .mid{color:rgba(255,200,80,0.9);}
-.author-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:30px;display:flex;gap:20px;align-items:flex-start;margin-top:64px;}
-.author-text h3{font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--text);margin:0 0 6px;}
-.author-text p{font-size:14px;margin:0 0 14px;}
-.author-text a{color:var(--pink);font-weight:700;text-decoration:none;font-size:14px;}
-.footer-links{display:flex;flex-wrap:wrap;gap:8px 20px;}
-.footer-city-list{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;}
-</style>
+<link rel="stylesheet" href="/pages.css?v=4eaff3ed51">
 </head>
-<body>
+<body class="page-blog-proc-nepotrebujes-wordpress">
 <noscript><div class="noscript-msg">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
 <div class="bg-blobs" aria-hidden="true"></div>
 <a href="#main" class="skip-link">Přeskočit na obsah</a>
@@ -191,15 +159,15 @@ li strong{color:var(--text);}
 <div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
   <div class="menu-group">
     <div class="menu-group-label">O Janyskova Digital</div>
-    <a href="/#o-mne" onclick="closeMenu()">O mně</a>
-    <a href="/#cenik" onclick="closeMenu()">Ceník</a>
+    <a href="/#o-mne">O mně</a>
+    <a href="/#cenik">Ceník</a>
   </div>
   <div class="menu-group">
     <div class="menu-group-label">Služby</div>
-    <a href="/barter" onclick="closeMenu()">Barter</a>
+    <a href="/barter">Barter</a>
   </div>
-  <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
+  <a href="/blog">Blog</a>
+  <a href="/#kontakt" class="menu-cta">Mám zájem</a>
   <div class="menu-sub">info@janyskovadigital.cz</div>
 </div>
 
@@ -261,14 +229,14 @@ li strong{color:var(--text);}
       <div class="chyba-num">Problém 03</div>
       <h3>Skryté roční náklady, které nikdo neřekne předem</h3>
       <p>WordPress je zdarma — ale provoz ne. Spočítejme reálné roční náklady pro malý firemní web:</p>
-      <ul style="margin-top:14px;">
+      <ul class="spaced-top">
         <li>Hosting (PHP + MySQL + SSL): <strong>1 200–3 600 Kč/rok</strong></li>
         <li>Prémiová šablona: 0–3 000 Kč jednorázově</li>
         <li>Yoast SEO Premium (SEO plugin): cca 2 700 Kč/rok</li>
         <li>WP Rocket (kešování): cca 1 000–1 400 Kč/rok</li>
         <li>Vývojář na opravy po aktualizacích: 0–5 000 Kč/rok</li>
       </ul>
-      <p style="margin-top:14px;">Celkem: <strong>5 000–15 000 Kč ročně jen na provoz</strong>, bez tvorby. Web v čistém kódu s hostingem v ceně tvorby platíte jen doménu — přibližně <strong>250–300 Kč ročně</strong>.</p>
+      <p class="spaced-top">Celkem: <strong>5 000–15 000 Kč ročně jen na provoz</strong>, bez tvorby. Web v čistém kódu s hostingem v ceně tvorby platíte jen doménu — přibližně <strong>250–300 Kč ročně</strong>.</p>
     </div>
 
     <div class="chyba-card">
@@ -363,7 +331,7 @@ li strong{color:var(--text);}
     <h2>Shrnutí — <em>co si odnést</em></h2>
     <p>WordPress není špatný. Je to jen špatná volba pro určitý typ webu — konkrétně pro prezentační web malé firmy nebo podnikatele, kde nepotřebujete rozsáhlý redakční systém ani komplexní e-shop.</p>
     <p>Čistý kód vám dá rychlejší web, nižší provozní náklady a klidnější spaní bez strachu z hacknutého pluginu. A pokud budete chtít web i jako appku na telefonu — to jde vyřešit PWA bez nativního vývoje.</p>
-    <p>Máte web na WordPressu a přemýšlíte o přechodu? Nebo chcete nový web rovnou bez WordPressu? <a href="/#kontakt" style="color:var(--pink);font-weight:700;">Napište mi</a> — podívám se na váš konkrétní případ a řeknu vám upřímně, zda se přechod vyplatí.</p>
+    <p>Máte web na WordPressu a přemýšlíte o přechodu? Nebo chcete nový web rovnou bez WordPressu? <a href="/#kontakt" class="link-accent link-accent--bold">Napište mi</a> — podívám se na váš konkrétní případ a řeknu vám upřímně, zda se přechod vyplatí.</p>
 
     <div class="author-box">
       <div class="author-text">
@@ -441,7 +409,7 @@ li strong{color:var(--text);}
   </div>
 </footer>
 
-<script src="/main.js?v=e1330d7308" defer></script>
+<script src="/main.js?v=37a1922b46" defer></script>
 <a href="https://wa.me/420739395800" class="float-wa" target="_blank" rel="noopener" aria-label="Napište na WhatsApp">
   <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.43-2.01A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 0 1-6.747-1.833l-.484-.287-5.003 1.193 1.237-4.872-.317-.5A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.86c-.398-.199-2.355-1.162-2.72-1.295-.366-.132-.632-.199-.898.199-.265.398-1.03 1.295-1.263 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.984-2.362-2.217-2.76-.232-.398-.025-.614.175-.812.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.132-.265.066-.498-.033-.697-.1-.199-.898-2.165-1.23-2.963-.325-.778-.655-.672-.898-.684l-.765-.013c-.265 0-.697.1-1.063.498-.365.398-1.396 1.362-1.396 3.322s1.43 3.853 1.63 4.118c.199.265 2.814 4.297 6.818 6.027.953.411 1.696.657 2.276.841.956.305 1.826.262 2.514.159.767-.114 2.355-.963 2.688-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/></svg>
 </a>
