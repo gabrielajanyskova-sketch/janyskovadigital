@@ -66,7 +66,7 @@ const FOOTER = `<footer>
   </div>
 </footer>`;
 
-const JS = `<script src="/main.js?v=42" defer></script>`;
+const JS = `<script src="/main.js?v=43" defer></script>`;
 
 function formatDate(dateStr) {
   const d = new Date(dateStr);

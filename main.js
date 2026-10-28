@@ -254,7 +254,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
       a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 95–100 a neplatíte za hosting ani drahé pluginy.' },
     { keys: ['hosting', 'domena', 'domain', 'server', 'provoz', 'platit'],
-      a: 'Hosting je navždy v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
+      a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
     { keys: ['seo', 'vyhledava', 'google', 'pozice', 'hleda', 'najde'],
       a: 'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Součástí je i napojení na Google Search Console.' },
     { keys: ['refresh', 'predelat', 'prevest', 'existujici', 'stavajic'],
