@@ -137,7 +137,7 @@ async function updateRedirects(newSlugs) {
 async function updateHomepageBlog(outDir) {
   const articles = await readExistingBlogMeta(outDir);
   articles.sort((a, b) => b.date - a.date);
-  const top3 = articles.slice(0, 5);
+  const top3 = articles.slice(0, 6);
 
   const cardsHtml = top3.map(a => {
     return `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${new Date(a.date).toLocaleDateString('cs-CZ', { month: 'long', year: 'numeric' }).replace(/^./, c => c.toUpperCase())}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`;
@@ -149,7 +149,7 @@ async function updateHomepageBlog(outDir) {
     `<!-- HOMEBLOG:START -->\n      ${cardsHtml}\n      <!-- HOMEBLOG:END -->`
   );
   await writeFile('index.html', indexHtml, 'utf8');
-  console.log('✓ index.html — 5 nejnovějších článků aktualizováno');
+  console.log('✓ index.html — 6 nejnovějších článků aktualizováno');
 }
 
 async function build() {
@@ -213,7 +213,7 @@ async function build() {
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":${JSON.stringify(data.title)},"description":${JSON.stringify(data.description || '')},"image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","@id":"https://janyskovadigital.cz/#person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz/#o-mne"},"publisher":{"@type":"Organization","@id":"https://janyskovadigital.cz/#business","name":"Janyskova Digital","url":"https://janyskovadigital.cz","logo":{"@type":"ImageObject","url":"https://janyskovadigital.cz/web-app-manifest-512x512.png","width":512,"height":512}},"datePublished":${JSON.stringify(dateIso)},"dateModified":${JSON.stringify(dateIso)},"inLanguage":"cs","url":${JSON.stringify(url)},"mainEntityOfPage":{"@type":"WebPage","@id":${JSON.stringify(url)}}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":${JSON.stringify(data.title)},"item":${JSON.stringify(url)}}]}</script>
-<link rel="stylesheet" href="/style.css?v=44">
+<link rel="stylesheet" href="/style.css?v=45">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 </head>
 <body>
