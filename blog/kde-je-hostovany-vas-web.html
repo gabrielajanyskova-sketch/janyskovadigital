@@ -56,7 +56,7 @@
       "name": "Je web na Cloudflare Pages bezpečný?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ano. Cloudflare automaticky zajišťuje HTTPS certifikát, DDoS ochranu a firewall. Navíc weby jsou psané v čistém kódu bez WordPressu a pluginů — neexistuje software, který by útočník mohl zneužít."
+        "text": "Ano. Cloudflare automaticky zajišťuje HTTPS certifikát, DDoS ochranu a firewall. Navíc weby jsou psané v čistém kódu bez WordPressu a pluginů — útočník má minimum míst, kudy se dostat dovnitř."
       }
     },
     {
@@ -64,7 +64,7 @@
       "name": "Co se stane, když Cloudflare spadne?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cloudflare je jedna z největších infrastruktur na internetu. Díky globální CDN je prakticky nemožné, aby všechny servery vypadly najednou. Web servíruje vždy nejbližší dostupný server."
+        "text": "I Cloudflare občas vypadne — například 18. listopadu 2025 měl globální výpadek, který na několik hodin omezil i velké služby jako X nebo ChatGPT. Takové výpadky jsou ale vzácné a krátké a Cloudflare je řeší rychle. Žádný hosting na světě nemá dostupnost 100 %."
       }
     }
   ]
@@ -153,11 +153,11 @@
     </div>
     <article class="article-body">
 
-      <p>Weby, které stavím, běží na <strong>Cloudflare Pages</strong>. Cloudflare je síťová infrastruktura, na které běží zhruba pětina všech webů na světě. Má přes 300 datových center — jedno z nich je v Praze. Když si někdo z Česka otevře váš web, soubory nepřijedou z Ameriky, ale přímo z Prahy.</p>
+      <p>Weby, které stavím, běží na <strong>Cloudflare Pages</strong>. Cloudflare je síťová infrastruktura, na které běží zhruba pětina všech webů na světě. Má přes 300 datových center — jedno z nich je v Praze. Když si někdo z Česka otevře váš web, soubory nepřijedou z Ameriky, ale z nejbližšího datového centra — typicky z Prahy.</p>
 
       <h2>Hosting je v ceně — neplatíte nic navíc</h2>
       <p>Cloudflare Pages je pro statické weby zdarma. To znamená, že za hosting neplatíte měsíčně ani ročně — je součástí ceny tvorby. Platíte jen doménu, což vychází na přibližně 200 Kč ročně.</p>
-      <p>Pro srovnání: sdílený hosting u Wedosu nebo Active24 stojí 500–2 000 Kč ročně, je pomalejší a nemá DDoS ochranu v základu.</p>
+      <p>Pro srovnání: sdílený hosting u Wedosu nebo Active24 stojí 500–2 000 Kč ročně, a web běží na jednom serveru, ne v globální síti.</p>
 
       <div class="stat-grid">
         <div class="stat-box">
@@ -175,28 +175,28 @@
       </div>
 
       <h2>HTTPS jde automaticky</h2>
-      <p>Každý web má HTTPS — ten zelený zámek v prohlížeči. Certifikát vydává Cloudflare přes Let's Encrypt, obnovuje se automaticky každé tři měsíce. Nemusíte nic platit ani hlídat.</p>
+      <p>Každý web má HTTPS — tu ikonku zámku v prohlížeči. Certifikát Cloudflare vydá i obnovuje automaticky. Nemusíte nic platit ani hlídat.</p>
       <p>Web bez HTTPS dnes prohlížeče označují jako „Nezabezpečeno“ — většina lidí ho hned zavře. A Google ho řadí níže než weby s HTTPS.</p>
 
       <h2>Sdílený hosting a jeho problém</h2>
       <p>Na sdíleném hostingu běží na jednom serveru stovky webů najednou. Pokud jeden z nich dostane nával návštěvníků nebo je napaden, může to zpomalit nebo shodit i ten váš — aniž byste cokoliv udělali.</p>
       <p>Cloudflare Pages tohle nemá. Každý web je izolovaný a obsluhovaný z globální sítě, takže výpadek jednoho serveru nic nezmění — požadavky přebere nejbližší dostupný.</p>
 
-      <h2>Proč weby v čistém kódu prakticky nejdou hacknout</h2>
+      <h2>Proč je web v čistém kódu tak těžké napadnout</h2>
       <p>WordPress web je databáze, adminský panel, desítky pluginů. Každý plugin je software napsaný někým jiným — a software má zranitelnosti. Útočníci je hledají automatizovaně, neustále. Proto se WordPress weby hackují tak snadno a tak často.</p>
-      <p>Weby, které stavím, jsou soubory — HTML, CSS, trocha JavaScriptu. Žádná databáze, žádný adminský panel, žádné pluginy. Není co napadnout. Útočník nemá vstupní bod.</p>
+      <p>Weby, které stavím, jsou soubory — HTML, CSS, trocha JavaScriptu. Žádná databáze, žádný adminský panel, žádné pluginy. Útočník má minimum míst, kudy se dostat dovnitř.</p>
 
       <div class="highlight">
         <strong>Konkrétně:</strong> Klient přišel s WordPress webem, který přesměrovával na podvodné stránky. Google ho označil jako nebezpečný, výpadek trval několik dní. Příčina byl plugin pro kontaktní formulář, naposledy aktualizovaný před dvěma lety.
       </div>
 
-      <p>Na statickém webu v čistém kódu tohle není možné — jednoduše proto, že neexistuje software, který by někdo mohl zneužít.</p>
+      <p>Na statickém webu v čistém kódu tenhle typ útoku nehrozí — nejsou tam pluginy, které by šlo zneužít.</p>
 
       <h2>Kdo ještě Cloudflare používá</h2>
-      <p>Cloudflare není nástroj jen pro malé weby. Patří mezi ně <strong>Discord</strong> (komunikační platforma), <strong>Shopify</strong> (e-commerce platforma pohánějící miliony obchodů) nebo <strong>Canva</strong> (grafický nástroj s miliardou vyexportovaných designů ročně). Všechny tři mají veřejně publikované case studies přímo na webu Cloudflare.</p>
+      <p>Cloudflare není nástroj jen pro malé weby. Patří mezi ně <strong>Discord</strong> (komunikační platforma), <strong>Shopify</strong> (e-commerce platforma pohánějící miliony obchodů) nebo <strong>Canva</strong> (grafický nástroj). Všechny tři mají veřejně publikované case studies přímo na webu Cloudflare.</p>
       <p>Pro váš web to znamená totéž co pro ně — globální doručení, DDoS ochrana a HTTPS. Jen bez jejich IT oddělení a bez měsíčního účtu za enterprise plán.</p>
 
-      <p>Výsledkem je web, který se načítá rychle, má zelený zámek, běží bez výpadků a nemusíte se bát, že ho někdo prolomí. A nic z toho neplatíte navíc — je to standard u každého webu, který stavím.</p>
+      <p>Výsledkem je web, který se načítá rychle, má zabezpečené spojení, výpadky má jen výjimečně a riziko napadení je minimální. A nic z toho neplatíte navíc — je to standard u každého webu, který stavím.</p>
 
       <section class="article-faq" aria-labelledby="faq-title">
       <h2 id="faq-title">Časté otázky</h2>
@@ -211,11 +211,11 @@
       </details>
       <details class="faq-item">
         <summary>Je web na Cloudflare Pages bezpečný?</summary>
-        <p>Ano. Cloudflare automaticky zajišťuje HTTPS certifikát, DDoS ochranu a firewall. Navíc weby jsou psané v čistém kódu bez WordPressu a pluginů — neexistuje software, který by útočník mohl zneužít.</p>
+        <p>Ano. Cloudflare automaticky zajišťuje HTTPS certifikát, DDoS ochranu a firewall. Navíc weby jsou psané v čistém kódu bez WordPressu a pluginů — útočník má minimum míst, kudy se dostat dovnitř.</p>
       </details>
       <details class="faq-item">
         <summary>Co se stane, když Cloudflare spadne?</summary>
-        <p>Cloudflare je jedna z největších infrastruktur na internetu. Díky globální CDN je prakticky nemožné, aby všechny servery vypadly najednou. Web servíruje vždy nejbližší dostupný server.</p>
+        <p>I Cloudflare občas vypadne — například 18. listopadu 2025 měl globální výpadek, který na několik hodin omezil i velké služby jako X nebo ChatGPT. Takové výpadky jsou ale vzácné a krátké a Cloudflare je řeší rychle. Žádný hosting na světě nemá dostupnost 100 %.</p>
       </details>
       </div>
     </section>

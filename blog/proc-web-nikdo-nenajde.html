@@ -53,7 +53,7 @@
       "name": "Jak dlouho trvá, než Google zaindexuje nový web?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Google obvykle zaindexuje nový web do 1–4 týdnů od spuštění, pokud máte sitemap.xml a web je přístupný Googlebotu. Odeslání sitemapě přes Google Search Console proces urychlí."
+        "text": "Google obvykle zaindexuje nový web do 1–4 týdnů od spuštění, pokud máte sitemap.xml a web je přístupný Googlebotu. Odeslání sitemapy přes Google Search Console proces urychlí."
       }
     },
     {
@@ -178,9 +178,9 @@
 
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 1</div>
-        <h3>PageSpeed skóre pod 50 — Google vás trestá</h3>
-        <p>Rychlost načítání je přímý ranking faktor od roku 2021. Google měří Core Web Vitals — LCP (největší viditelný prvek), CLS (posun layoutu) a INP (odezva na interakci). Weby s nízkým skóre se zobrazují níže ve výsledcích, bez ohledu na obsah.</p>
-        <p>Weby na WordPressu s desítkami pluginů dosahují na mobilu běžně 20–40 bodů. Weby v čistém kódu bez zbytečného JavaScriptu a obrázků bez komprese dosahují 90–100.</p>
+        <h3>Pomalý web odrazuje lidi i Google</h3>
+        <p>Od roku 2021 jsou Core Web Vitals — LCP (největší viditelný prvek), CLS (posun layoutu) a INP (odezva na interakci) — jedním ze signálů, které Google hodnotí. Obsah má sice větší váhu, ale pomalý web navíc odrazuje návštěvníky dřív, než ho vůbec uvidí.</p>
+        <p>Weby přetížené pluginy bývají na mobilu hodně pomalé. Weby v čistém kódu bez zbytečného JavaScriptu a obrázků bez komprese dosahují 90–100.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Otestujte váš web na pagespeed.web.dev. Skóre pod 70 na mobilu je problém. Řešení: komprimovat obrázky (WebP formát), odstranit nepoužívané skripty, přejít na rychlejší hosting.</div>
       </div>
 
@@ -200,7 +200,7 @@
         <div class="chyba-num">Chyba č. 3</div>
         <h3>Lokální zákazníci vás nevidí ani v Maps</h3>
         <p>Pro místní podnikání — instalatér, účetní, kadeřnice, webdesignérka — je Google Business Profile klíčový. Zobrazuje se v lokálních výsledcích vyhledávání a v Google Maps. Zákazník napíše "webdesignér Nový Jičín" a vidí firmy na mapě. Bez profilu tam nejste.</p>
-        <p>Google Business Profile je zdarma. Přesto ho má nastavené méně než polovina podnikatelů. Kompletní profil s fotkami, popisem a recenzemi zvyšuje viditelnost výrazně.</p>
+        <p>Google Business Profile je zdarma. Kompletní profil s fotkami, popisem a recenzemi výrazně pomáhá v lokálním vyhledávání.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Vytvořte si profil na business.google.com. Vyplňte vše — kategorie, popis, otevírací dobu, fotky. Požádejte spokojené zákazníky o recenze.</div>
       </div>
 
@@ -209,8 +209,8 @@
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 4</div>
         <h3>Google nerozumí kontextu vašeho obsahu</h3>
-        <p>Schema.org strukturovaná data jsou kód, který Googlu říká, co stránka obsahuje — jestli je to článek, firma, produkt, FAQ nebo recept. Bez nich musí Google obsah stránky hádat. Se schema daty ho přesně informujete a zvyšujete šanci na rich snippets — rozšířené výsledky s hvězdičkami, FAQ, cenou nebo časem.</p>
-        <p>LocalBusiness schema sděluje Googlu váš název, adresu, telefon a oblast působení. FAQPage schema zobrazuje otázky a odpovědi přímo ve výsledcích hledání — bez kliknutí.</p>
+        <p>Schema.org strukturovaná data jsou kód, který Googlu říká, co stránka obsahuje — jestli je to článek, firma, produkt, FAQ nebo recept. Bez nich musí Google obsah stránky hádat. Se schema daty ho přesně informujete a zvyšujete šanci na rozšířené výsledky — třeba s cenou nebo hodnocením.</p>
+        <p>LocalBusiness schema sděluje Googlu váš název, adresu, telefon a oblast působení. FAQPage schema jednoznačně označí otázky a odpovědi na stránce (jako rozbalovací blok ve výsledcích se ale od května 2026 už nezobrazuje).</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Přidejte minimálně LocalBusiness schema na hlavní stránku. Pro blog použijte BlogPosting, pro produkty Product schema. Ověřte validitu na search.google.com/test/rich-results.</div>
       </div>
 
@@ -239,7 +239,7 @@
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 7</div>
         <h3>Google váš web buď nezná, nebo ho ignoruje</h3>
-        <p>Sitemap.xml je soubor, který Googlu říká, jaké stránky na webu existují a kdy byly naposledy aktualizovány. Bez sitemapě Google stránky objevuje pomaleji a může některé přeskočit. Sitemap odešlete přes Google Search Console.</p>
+        <p>Sitemap.xml je soubor, který Googlu říká, jaké stránky na webu existují a kdy byly naposledy aktualizovány. Bez sitemapy Google stránky objevuje pomaleji a může některé přeskočit. Sitemap odešlete přes Google Search Console.</p>
         <p>Druhý problém je opačný — stránka má v HTML tag <code>noindex</code>, který Googlu říká "tuto stránku neindexuj". Pokud ho má omylem hlavní stránka nebo klíčové podstránky, Google je nezobrazí ve výsledcích vůbec.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Zkontrolujte v Google Search Console, zda máte odeslanou sitemap. V HTML každé důležité stránky ověřte, že meta robots tag říká "index, follow" — ne "noindex".</div>
       </div>
@@ -262,7 +262,7 @@
 
       <details class="faq-item">
         <summary>Jak dlouho trvá, než Google zaindexuje nový web?</summary>
-        <p>Google obvykle zaindexuje nový web do 1–4 týdnů od spuštění, pokud máte sitemap.xml a web je přístupný Googlebotu. Odeslání sitemapě přes Google Search Console proces urychlí.</p>
+        <p>Google obvykle zaindexuje nový web do 1–4 týdnů od spuštění, pokud máte sitemap.xml a web je přístupný Googlebotu. Odeslání sitemapy přes Google Search Console proces urychlí.</p>
       </details>
 
       <details class="faq-item">

@@ -45,7 +45,7 @@
       "name": "Musí mít každý web cookie lištu?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ne. Cookie lišta (souhlas s cookies) je povinná jen tehdy, když web skutečně používá sledovací nebo analytické cookies. Pokud web nepoužívá žádné třetí strany ani tracking skripty, cookie banner není potřeba — a je dokonce právně nesprávné ho zobrazovat, protože nemáte co žádat."
+        "text": "Ne. Cookie lišta (souhlas s cookies) je povinná jen tehdy, když web skutečně používá sledovací nebo analytické cookies. Pokud web nepoužívá žádné třetí strany ani tracking skripty, cookie banner není potřeba — zobrazovat ho bez cookies je zbytečné a matoucí."
       }
     },
     {
@@ -53,7 +53,7 @@
       "name": "Co způsobuje nutnost cookie lišty?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cookie lištu vyžaduje použití Google Analytics, Meta Pixel (Facebook reklamy), YouTube embedů, Google Fonts načítaných z CDN, chat widgetů (Tawk, Intercom), reklamních sítí nebo jakéhokoli externího skriptu, který ukládá cookies do prohlížeče návštěvníka."
+        "text": "Cookie lištu vyžaduje použití Google Analytics, Meta Pixel (Facebook reklamy), YouTube embedů, chat widgetů (Tawk, Intercom), reklamních sítí nebo jakéhokoli externího skriptu, který ukládá cookies do prohlížeče návštěvníka."
       }
     },
     {
@@ -61,7 +61,7 @@
       "name": "Jak mohu mít statistiky webu bez cookie lišty?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Existují analytické nástroje, které nepotřebují souhlas s cookies — například Fathom Analytics, Plausible nebo Cloudflare Web Analytics. Tato řešení měří návštěvnost bez ukládání cookies a jsou plně v souladu s GDPR. Cloudflare Analytics je navíc zdarma."
+        "text": "Existují analytické nástroje, které nepotřebují souhlas s cookies — například Fathom Analytics, Plausible nebo Cloudflare Web Analytics. Tato řešení měří návštěvnost bez ukládání cookies a jsou navržené s ohledem na GDPR. Cloudflare Analytics je navíc zdarma."
       }
     },
     {
@@ -377,7 +377,7 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
         </div>
       </div>
 
-      <p>Všimněte si — Google Fonts z CDN způsobují cookie banner. To je důvod, proč všechny weby, které stavím, mají fonty nahrané přímo na serveru. Nejen kvůli rychlosti, ale i kvůli soukromí zákazníka.</p>
+      <p>Pozor na Google Fonts z CDN — cookies sice neukládají, ale posílají IP adresu návštěvníka na servery Googlu, což je podle GDPR riziko (v Německu za to soud v roce 2022 přiznal odškodné). Proto všechny weby, které stavím, mají fonty nahrané přímo na serveru. Nejen kvůli rychlosti, ale i kvůli soukromí zákazníka.</p>
 
       <h2>Co tím zákazník získá</h2>
 
@@ -394,15 +394,15 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
 
       <p>To je nejčastější otázka. Odpověď: existují analytické nástroje, které cookies vůbec nepotřebují.</p>
 
-      <p><strong>Cloudflare Web Analytics</strong> je zdarma a měří návštěvnost bez jakýchkoli cookies. Vidíte počty návštěv, nejpopulárnější stránky, ze kterých zemí lidé přicházejí — a přitom nezpracováváte žádné osobní údaje a nepotřebujete souhlas.</p>
+      <p><strong>Cloudflare Web Analytics je zdarma a měří návštěvnost bez cookies. Vidíte počty návštěv, nejpopulárnější stránky, ze kterých zemí lidé přicházejí — a nesledujete jednotlivé lidi napříč weby.</p>
 
-      <p>Placené alternativy jako <strong>Plausible</strong> nebo <strong>Fathom</strong> nabízejí ještě detailnější data, opět bez cookies a plně v souladu s GDPR. Jsou to čisté nástroje pro lidi, kteří chtějí data, ne sledovací aparát.</p>
+      <p>Placené alternativy jako <strong>Plausible</strong> nebo <strong>Fathom</strong> nabízejí ještě detailnější data, opět bez cookies a navržené s ohledem na GDPR. Jsou to čisté nástroje pro lidi, kteří chtějí data, ne sledovací aparát.</p>
 
       <h2>Je web bez cookies horší pro SEO?</h2>
 
       <p>Není — naopak. Google při hodnocení stránek měří rychlost a uživatelský zážitek (Core Web Vitals). Web bez externích skriptů se načte rychleji, protože nemusí čekat na odpověď Google Analytics serverů, Facebook Pixelu nebo jiných třetích stran.</p>
 
-      <p>Navíc — zákazník, který hned vidí obsah bez překážky, déle zůstane na stránce. Nižší míra okamžitého opuštění je signál, který Google interpretuje jako „tenhle web je relevantní“. To pomáhá pozicím.</p>
+      <p>Navíc — zákazník, který hned vidí obsah bez překážky, déle zůstane na stránce. A to je dobré pro vás — víc lidí se dostane k vaší nabídce.</p>
 
       <h2>Potřebuji stále zásady ochrany osobních údajů?</h2>
 
@@ -455,7 +455,7 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
 
       <p>Každý web, který pro klienty tvořím, je statický HTML soubor nasazený na Cloudflare. Žádný WordPress, žádné pluginy, žádné externí skripty. Fonty jsou nahrané lokálně. Analytics běží přes Cloudflare, bez cookies.</p>
 
-      <p>Výsledek: <strong>žádný cookie banner, PageSpeed 100, a zákazník vidí váš obsah okamžitě</strong> — bez překážek, bez vyskakovacích oken, bez čekání.</p>
+      <p>Výsledek: žádný cookie banner, PageSpeed 95–100, a zákazník vidí váš obsah okamžitě</strong> — bez překážek, bez vyskakovacích oken, bez čekání.</p>
 
       <p>Není to náhoda. Je to rozhodnutí, které má dopad na každého, kdo váš web navštíví.</p>
 
@@ -474,7 +474,7 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
           </a>
           <a href="/blog/rychlost-webu" class="related-card">
             <div class="related-card-tag">Výkon</div>
-            <div class="related-card-title">Rychlost webu: proč každá vteřina prodělávate zákazníky</div>
+            <div class="related-card-title">Rychlost webu: proč vám každá vteřina bere zákazníky</div>
           </a>
           <a href="/blog/proc-web-nikdo-nenajde" class="related-card">
             <div class="related-card-tag">SEO</div>
@@ -494,15 +494,15 @@ footer p{font-size:13px;color:rgba(184,168,204,0.4);}
       <div class="faq-list">
       <details class="faq-item">
         <summary>Musí mít každý web cookie lištu?</summary>
-        <p>Ne. Cookie lišta (souhlas s cookies) je povinná jen tehdy, když web skutečně používá sledovací nebo analytické cookies. Pokud web nepoužívá žádné třetí strany ani tracking skripty, cookie banner není potřeba — a je dokonce právně nesprávné ho zobrazovat, protože nemáte co žádat.</p>
+        <p>Ne. Cookie lišta (souhlas s cookies) je povinná jen tehdy, když web skutečně používá sledovací nebo analytické cookies. Pokud web nepoužívá žádné třetí strany ani tracking skripty, cookie banner není potřeba — zobrazovat ho bez cookies je zbytečné a matoucí.</p>
       </details>
       <details class="faq-item">
         <summary>Co způsobuje nutnost cookie lišty?</summary>
-        <p>Cookie lištu vyžaduje použití Google Analytics, Meta Pixel (Facebook reklamy), YouTube embedů, Google Fonts načítaných z CDN, chat widgetů (Tawk, Intercom), reklamních sítí nebo jakéhokoli externího skriptu, který ukládá cookies do prohlížeče návštěvníka.</p>
+        <p>Cookie lištu vyžaduje použití Google Analytics, Meta Pixel (Facebook reklamy), YouTube embedů, chat widgetů (Tawk, Intercom), reklamních sítí nebo jakéhokoli externího skriptu, který ukládá cookies do prohlížeče návštěvníka.</p>
       </details>
       <details class="faq-item">
         <summary>Jak mohu mít statistiky webu bez cookie lišty?</summary>
-        <p>Existují analytické nástroje, které nepotřebují souhlas s cookies — například Fathom Analytics, Plausible nebo Cloudflare Web Analytics. Tato řešení měří návštěvnost bez ukládání cookies a jsou plně v souladu s GDPR. Cloudflare Analytics je navíc zdarma.</p>
+        <p>Existují analytické nástroje, které nepotřebují souhlas s cookies — například Fathom Analytics, Plausible nebo Cloudflare Web Analytics. Tato řešení měří návštěvnost bez ukládání cookies a jsou navržené s ohledem na GDPR. Cloudflare Analytics je navíc zdarma.</p>
       </details>
       <details class="faq-item">
         <summary>Je web bez cookie lišty horší z hlediska SEO?</summary>

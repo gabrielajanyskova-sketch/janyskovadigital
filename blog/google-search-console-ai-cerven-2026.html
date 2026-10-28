@@ -45,7 +45,7 @@
       "name": "Co jsou AI Overviews v Google Search Console?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "AI Overviews jsou výsledky, kde Google zobrazuje souhrn generovaný AI místo klasických odkazů. Od června 2026 Search Console ukazuje impressions z těchto AI bloků zvlášť — vidíte, kolikrát váš web figuroval v AI odpovědi, i když na něj nikdo neklikl."
+        "text": "AI Overviews jsou výsledky, kde Google zobrazuje souhrn generovaný AI místo klasických odkazů. Od června 2026 Search Console ukazuje zobrazení z AI Overviews a AI Mode zvlášť — vidíte, kolikrát váš web figuroval v AI odpovědi, i když na něj nikdo neklikl."
       }
     },
     {
@@ -53,7 +53,7 @@
       "name": "Jak optimalizovat web pro AI Overviews?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Klíčové je: jasná struktura obsahu (H2/H3 headings jako otázky), konkrétní odpovědi na otázky zákazníků, schema.org strukturovaná data (FAQPage, HowTo), autoritativní obsah bez keyword stuffingu a přístup pro AI crawlery (GPTBot, ClaudeBot) v robots.txt."
+        "text": "Klíčové je: jasná struktura obsahu (H2/H3 headings jako otázky), konkrétní odpovědi na otázky zákazníků, schema.org strukturovaná data (FAQPage, Article), autoritativní obsah bez keyword stuffingu a přístup pro AI crawlery (GPTBot, ClaudeBot) v robots.txt."
       }
     },
     {
@@ -165,9 +165,9 @@
 
     <article class="article-body">
 
-      <p>Otevřete Google Search Console, kliknete na Performance — a najednou vidíte nová čísla. Impressions z AI Overviews. Kliknutí z AI výsledků. Metriky, které tam před pár měsíci nebyly.</p>
+      <p>Otevřete Google Search Console — a v menu Výkon najdete nový přehled Generative AI. Zobrazení z AI Overviews a AI Mode. Čísla, která tam před pár měsíci nebyla.</p>
 
-      <p>Google v červnu 2026 přidal do Search Console oddělená data pro AI Overviews — generativní odpovědi, které se zobrazují nad klasickými výsledky vyhledávání. Tady je, co ta čísla znamenají a co s nimi dělat.</p>
+      <p>Google 3. června 2026 přidal do Search Console oddělená data pro AI Overviews a AI Mode — generativní odpovědi, které se zobrazují nad klasickými výsledky vyhledávání. Tady je, co ta čísla znamenají a co s nimi dělat.</p>
 
       <div class="highlight">
         <strong>Proč je to důležité:</strong> Váš web se může v AI výsledcích zobrazovat stovkykrát — a vy o tom nevíte, protože nikdo neklikl. Nová data to konečně ukazují.
@@ -185,7 +185,7 @@
 
       <h2>Jak číst nová data v Search Console</h2>
 
-      <p>V sekci Performance najdete nový filtr „Search type“, kde vedle Web, Image a Video přibyla možnost AI Overviews. Po zapnutí vidíte:</p>
+      <p>Přehled najdete v levém menu pod Výkon → Generative AI (zatím Beta). Google ho zpřístupňuje postupně. Vidíte v něm:</p>
 
       <div class="metric-row">
         <div class="metric-card">
@@ -194,18 +194,11 @@
           <div class="metric-desc">Kolikrát váš web figuroval v AI odpovědi — i bez kliknutí</div>
         </div>
         <div class="metric-card">
-          <div class="metric-label">Clicks</div>
-          <div class="metric-value">→</div>
-          <div class="metric-desc">Kolik uživatelů kliklo z AI odpovědi na váš web</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">CTR</div>
-          <div class="metric-value">%</div>
-          <div class="metric-desc">Poměr kliknutí k zobrazení — u AI výsledků bývá nízký</div>
+          <div class="metric-name">Stránky</div><div class="metric-icon">↗</div><div class="metric-desc">Které stránky AI cituje nejčastěji</div></div><div class="metric-card"><div class="metric-name">Země, zařízení, dny</div><div class="metric-icon">◷</div><div class="metric-desc">Odkud a kdy vás AI ukazuje</div>
         </div>
       </div>
 
-      <p>Typické číslo: web s 1 000 AI impressions dostane 20–80 kliknutí. CTR 2–8 % je pro AI Overviews normální — uživatelé čtou odpověď přímo a neklikají. Porovnejte to s klasickým SEO, kde CTR pro první pozici bývá 25–35 %.</p>
+      <p>Pozor: přehled ukazuje jen zobrazení. Kliknutí ani konkrétní dotazy v něm nevidíte. Pro představu o proklicích: podle Pew Research lidé při zobrazení AI shrnutí kliknou na výsledek v 8 % případů, bez něj v 15 %.</p>
 
       <h2>Co to znamená pro váš web</h2>
 
@@ -213,7 +206,7 @@
 
       <p><strong>Žádné AI impressions</strong> — váš obsah se nedostává do AI odpovědí vůbec. Buď nemáte strukturovaná data, obsah není konkrétní, nebo AI crawlery nemají přístup k vašemu webu.</p>
 
-      <p><strong>Vysoké kliknutí z AI</strong> — uživatel přečetl AI odpověď a chce více. Tohle nastává u obsahu, kde AI odpověď nestačí — komplexní témata, lokální služby, e-shopy.</p>
+      <p><strong>Rostoucí zobrazení</strong> — AI vás bere jako zdroj čím dál častěji. Kliknutí z nich pak hledejte v běžném přehledu Výkon.</p>
 
       <h2>Jak optimalizovat pro AI výsledky</h2>
 
@@ -221,9 +214,9 @@
 
       <p><strong>Jasná struktura odpovědí.</strong> AI preferuje obsah organizovaný jako přímé odpovědi na otázky. H2 heading jako otázka, odpověď v prvním odstavci, konkrétní čísla a fakta.</p>
 
-      <p><strong>Schema.org strukturovaná data.</strong> FAQPage, HowTo, Article — tato schémata Googlu explicitně říkají, co váš obsah obsahuje. Web bez strukturovaných dat závisí na tom, jak dobře AI obsah pochopí sama.</p>
+      <p><strong>Schema.org strukturovaná data.</strong> FAQPage, Article, LocalBusiness — tato schémata Googlu jednoznačně říkají, co váš obsah obsahuje. Web bez strukturovaných dat závisí na tom, jak dobře AI obsah pochopí sama.</p>
 
-      <p><strong>Přístup pro AI crawlery.</strong> Zkontrolujte robots.txt — blokujete GPTBot, ClaudeBot nebo GoogleOther? Pokud ano, AI nemůže váš obsah číst.</p>
+      <p><strong>Přístup pro AI crawlery.</strong> Zkontrolujte robots.txt — blokujete Googlebot, GPTBot, OAI-SearchBot, ClaudeBot nebo PerplexityBot? Zablokovaný bot váš obsah nepřečte.</p>
 
       <p><strong>Autoritativní obsah.</strong> AI dává přednost webům, které jsou citovány jinými autoritativními zdroji. Zpětné odkazy a zmínky v odborných článcích zvyšují šanci na citaci v AI odpovědích.</p>
 
@@ -240,12 +233,12 @@
 
       <details class="faq-item">
         <summary>Co jsou AI Overviews v Google Search Console?</summary>
-        <p>AI Overviews jsou výsledky, kde Google zobrazuje souhrn generovaný AI místo klasických odkazů. Od června 2026 Search Console ukazuje impressions z těchto AI bloků zvlášť — vidíte, kolikrát váš web figuroval v AI odpovědi, i když na něj nikdo neklikl.</p>
+        <p>AI Overviews jsou výsledky, kde Google zobrazuje souhrn generovaný AI místo klasických odkazů. Od června 2026 Search Console ukazuje zobrazení z AI Overviews a AI Mode zvlášť — vidíte, kolikrát váš web figuroval v AI odpovědi, i když na něj nikdo neklikl.</p>
       </details>
 
       <details class="faq-item">
         <summary>Jak optimalizovat web pro AI Overviews?</summary>
-        <p>Klíčové je: jasná struktura obsahu (H2/H3 headings jako otázky), konkrétní odpovědi na otázky zákazníků, schema.org strukturovaná data (FAQPage, HowTo), autoritativní obsah bez keyword stuffingu a přístup pro AI crawlery (GPTBot, ClaudeBot) v robots.txt.</p>
+        <p>Klíčové je: jasná struktura obsahu (H2/H3 headings jako otázky), konkrétní odpovědi na otázky zákazníků, schema.org strukturovaná data (FAQPage, Article), autoritativní obsah bez keyword stuffingu a přístup pro AI crawlery (GPTBot, ClaudeBot) v robots.txt.</p>
       </details>
 
       <details class="faq-item">

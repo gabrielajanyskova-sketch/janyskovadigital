@@ -99,7 +99,7 @@
         "name": "Co je alternativa WordPressu pro malou firmu?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nejlepší alternativa pro malou firmu je web psaný v čistém HTML, CSS a JavaScriptu — bez CMS, bez databáze, bez pluginů. Načítá se pod 1 sekundu, dosahuje PageSpeed 95–100, nepotřebuje drahý hosting a není kam útočit. Pokud chcete i možnost instalace na telefon jako appka, lze přidat PWA (Progressive Web App) — manifest.json a service worker."
+          "text": "Nejlepší alternativa pro malou firmu je web psaný v čistém HTML, CSS a JavaScriptu — bez CMS, bez databáze, bez pluginů. Načítá se pod 1 sekundu, dosahuje PageSpeed 95–100, nepotřebuje drahý hosting a útočník má minimum míst, kudy se dostat dovnitř. Pokud chcete i možnost instalace na telefon jako appka, lze přidat PWA (Progressive Web App) — manifest.json a service worker."
         }
       }
     ]
@@ -224,7 +224,7 @@ li strong{color:var(--text);}
     </div>
 
     <div class="intro-box">
-      <p>WordPress pohání <strong>43,5 % všech webových stránek na světě</strong> (W3Techs, 2026). Jenže popularita ještě neznamená, že je to správná volba pro vás. Pro malou firmu nebo podnikatele existuje alternativa, která je rychlejší, bezpečnější — a vyjde levněji.</p>
+      <p>WordPress pohání zhruba 43 % všech webů na světě (W3Techs). Jenže popularita ještě neznamená, že je to správná volba pro vás. Pro malou firmu nebo podnikatele existuje alternativa, která je rychlejší, bezpečnější — a vyjde levněji.</p>
     </div>
 
     <h2>Kdy <em>WordPress dává smysl</em></h2>
@@ -243,13 +243,13 @@ li strong{color:var(--text);}
     <div class="chyba-card">
       <div class="chyba-num">Problém 01</div>
       <h3>Pomalé načítání = horší pozice na Googlu</h3>
-      <p>Průměrný WordPress web s typickými pluginy dosahuje PageSpeed skóre 40–65. To přitom v březnu 2026 Google zpřísnil metriku LCP (Largest Contentful Paint) — stránka by se měla načíst do 2 sekund. Pluginy jako sliders, cookie bannery nebo page buildery přidávají desítky nevyžádaných CSS a JS souborů. Kešovací pluginy (WP Rocket, LiteSpeed Cache) část problému řeší, ale stále jde o záplatování problému, ne o jeho odstranění.</p>
+      <p>WordPress web s mnoha pluginy bývá na mobilu pomalý. Google přitom doporučuje, aby se hlavní obsah stránky (LCP) načetl do 2,5 sekundy. Pluginy jako sliders, cookie bannery nebo page buildery přidávají desítky nevyžádaných CSS a JS souborů. Kešovací pluginy (WP Rocket, LiteSpeed Cache) část problému řeší, ale stále jde o záplatování problému, ne o jeho odstranění.</p>
     </div>
 
     <div class="chyba-card">
       <div class="chyba-num">Problém 02</div>
       <h3>Bezpečnostní riziko skrz pluginy a šablony</h3>
-      <p>WordPress sám o sobě je bezpečný a aktivně udržovaný projekt. Problém jsou pluginy a šablony třetích stran. Podle bezpečnostní firmy Sucuri (Security Report 2023 — nejnovější veřejně dostupná data) pocházelo přes <strong>90 % kompromitovaných CMS webů</strong> z prostředí WordPressu, přičemž za většinou útoků stály zastaralé nebo levné pluginy a šablony. Každý nainstalovaný plugin je potenciální vstupní bod pro útočníka. Průměrný WordPress web jich má 20+.</p>
+      <p>WordPress sám o sobě je bezpečný a aktivně udržovaný projekt. Problém jsou pluginy a šablony třetích stran. Podle bezpečnostní firmy Sucuri (Security Report 2023 — nejnovější veřejně dostupná data) pocházelo přes <strong>90 % kompromitovaných CMS webů</strong> z prostředí WordPressu, přičemž za většinou útoků stály zastaralé nebo levné pluginy a šablony. Každý nainstalovaný plugin je potenciální vstupní bod pro útočníka. Běžný WordPress web jich má i desítky.</p>
     </div>
 
     <div class="chyba-card">
@@ -293,7 +293,7 @@ li strong{color:var(--text);}
       <tbody>
         <tr>
           <td>PageSpeed (typicky)</td>
-          <td class="mid">40–70</td>
+          <td class="mid">často pod 70 na mobilu</td>
           <td class="good">95–100</td>
         </tr>
         <tr>
@@ -338,7 +338,7 @@ li strong{color:var(--text);}
     <h2>Co místo WordPressu — <em>konkrétní alternativy</em></h2>
 
     <h3>1. Čistý HTML/CSS/JavaScript (co dělám já)</h3>
-    <p>Web psaný ručně bez žádného CMS nebo frameworku. Žádná databáze, žádný admin panel, žádné pluginy. Výsledek: PageSpeed 95–100, načítání pod 1 sekundu, nulové bezpečnostní riziko ze strany CMS. Hosting je soubor na serveru — jednoduché, levné, spolehlivé.</p>
+    <p>Web psaný ručně bez žádného CMS nebo frameworku. Žádná databáze, žádný admin panel, žádné pluginy. Výsledek: PageSpeed 95–100, načítání pod 1 sekundu, žádné riziko z CMS a pluginů. Hosting je soubor na serveru — jednoduché, levné, spolehlivé.</p>
     <p><strong>Vhodné pro:</strong> prezentační weby podnikatelů, firem, landing pages, e-shopy do 200 produktů.</p>
 
     <h3>2. Astro nebo Eleventy (statické generátory)</h3>
@@ -363,7 +363,7 @@ li strong{color:var(--text);}
     <div class="author-box">
       <div class="author-text">
         <h3>Gabriela Janýšková</h3>
-        <p>Webdesignérka z Novojičínska. Dělám weby v čistém kódu — bez WordPressu, bez šablon, bez měsíčních poplatků za pluginy. PageSpeed 100, hosting v ceně tvorby.</p>
+        <p>Webdesignérka z Novojičínska. Dělám weby v čistém kódu — bez WordPressu, bez šablon, bez měsíčních poplatků za pluginy. PageSpeed 95–100, hosting v ceně tvorby.</p>
         <a href="/">→ janyskovadigital.cz</a>
       </div>
     </div>
@@ -385,7 +385,7 @@ li strong{color:var(--text);}
       </details>
       <details class="faq-item">
         <summary>Co je alternativa WordPressu pro malou firmu?</summary>
-        <p>Nejlepší alternativa pro malou firmu je web psaný v čistém HTML, CSS a JavaScriptu — bez CMS, bez databáze, bez pluginů. Načítá se pod 1 sekundu, dosahuje PageSpeed 95–100, nepotřebuje drahý hosting a není kam útočit. Pokud chcete i možnost instalace na telefon jako appka, lze přidat PWA (Progressive Web App) — manifest.json a service worker.</p>
+        <p>Nejlepší alternativa pro malou firmu je web psaný v čistém HTML, CSS a JavaScriptu — bez CMS, bez databáze, bez pluginů. Načítá se pod 1 sekundu, dosahuje PageSpeed 95–100, nepotřebuje drahý hosting a útočník má minimum míst, kudy se dostat dovnitř. Pokud chcete i možnost instalace na telefon jako appka, lze přidat PWA (Progressive Web App) — manifest.json a service worker.</p>
       </details>
       </div>
     </section>
