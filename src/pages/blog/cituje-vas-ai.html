@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cituje vás AI? Jak to zjistit — ukázka na mém webu</title>
+<meta name="description" content="Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.">
+<meta property="og:title" content="Cituje vás AI? Jak to zjistit — ukázka na mém webu">
+<meta property="og:description" content="Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.">
+<meta property="og:url" content="https://janyskovadigital.cz/blog/cituje-vas-ai">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="article:published_time" content="2026-10-28">
+<meta property="article:modified_time" content="2026-10-28">
+<meta property="article:author" content="Gabriela Janýšková">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://janyskovadigital.cz/og-image.png">
+<meta name="twitter:image:alt" content="Janyskova Digital — blog o webdesignu a AI">
+<meta name="twitter:title" content="Cituje vás AI? Jak to zjistit — ukázka na mém webu">
+<meta name="twitter:description" content="Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.">
+<meta name="geo.region" content="CZ-80">
+<meta name="geo.placename" content="Nový Jičín">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://janyskovadigital.cz/blog/cituje-vas-ai">
+<!-- @include head-common -->
+<script type="application/ld+json">[
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Cituje vás AI? Jak to zjistit — ukázka na mém webu",
+    "description": "Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.",
+    "image": [
+      "https://janyskovadigital.cz/img/gsc-ai-report.webp",
+      "https://janyskovadigital.cz/og-image.png"
+    ],
+    "author": {
+      "@type": "Person",
+      "@id": "https://janyskovadigital.cz/#person",
+      "name": "Gabriela Janýšková",
+      "url": "https://janyskovadigital.cz/#o-mne"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://janyskovadigital.cz/#business",
+      "name": "Janyskova Digital",
+      "url": "https://janyskovadigital.cz",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://janyskovadigital.cz/web-app-manifest-512x512.png",
+        "width": 512,
+        "height": 512
+      }
+    },
+    "datePublished": "2026-10-28",
+    "dateModified": "2026-10-28",
+    "inLanguage": "cs",
+    "url": "https://janyskovadigital.cz/blog/cituje-vas-ai",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://janyskovadigital.cz/blog/cituje-vas-ai"
+    },
+    "keywords": "cituje mě ai, ai přehled google, search console generative ai, ai mode, aeo, geo, jak se dostat do ai odpovědí"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Kde v Search Console zjistím, jestli mě cituje AI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "V Search Console otevřete Výkon a pod ním přehled Generative AI (beta). Google ho spustil v červnu 2026 a ukazuje, kolikrát se váš web zobrazil v Přehledu od AI a v AI Mode. Pokud ho ještě nevidíte, Google ho zpřístupňuje postupně."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ukazuje report i kliknutí z AI odpovědí?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ne. Report ukazuje jen zobrazení — kolikrát vás AI uvedla jako zdroj. Kolik lidí pak kliklo, z něj nevyčtete. Nevidíte v něm ani konkrétní dotazy, jen stránky, země, zařízení a dny."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jak se dostat do AI odpovědí Googlu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Záruku nedá nikdo, Google to neprozrazuje. Pomáhá mít na webu jasně napsané, kdo jste, co děláte, kde a za kolik, odpovědi na časté otázky přímo na stránce a vyplněný profil firmy na Googlu. AI čerpá hlavně ze zdrojů, které má firma pod kontrolou — z webu a firemních profilů."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Domů",
+        "item": "https://janyskovadigital.cz/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://janyskovadigital.cz/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Cituje vás AI?",
+        "item": "https://janyskovadigital.cz/blog/cituje-vas-ai"
+      }
+    ]
+  }
+]</script>
+<style>
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:36px 0;}
+@media(max-width:600px){.stat-row{grid-template-columns:1fr;}}
+.stat-box{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:28px 20px;text-align:center;}
+.stat-num{font-family:'DM Serif Display',Georgia,serif;font-size:44px;color:var(--pink);line-height:1;letter-spacing:-1px;}
+.stat-label{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.5;}
+
+.hl-box{border-radius:18px;padding:28px 28px;margin:28px 0;line-height:1.75;font-size:15px;}
+.hl-box.warning{background:rgba(240,20,122,0.07);border-left:4px solid var(--pink);}
+.hl-box.good{background:rgba(34,197,94,0.08);border-left:4px solid #16a34a;}
+.hl-box strong{color:var(--text);}
+.hl-box a{color:var(--pink);}
+
+.timeline{display:flex;flex-direction:column;gap:0;margin:32px 0;}
+.tl-item{display:flex;gap:20px;padding-bottom:28px;position:relative;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--border);}
+.tl-dot{width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;position:relative;z-index:1;}
+.tl-body{padding-top:8px;}
+.tl-date{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--pink);margin-bottom:4px;}
+.tl-text{font-size:15px;color:var(--text-dim);line-height:1.65;}
+.tl-text strong{color:var(--text);}
+
+.yesno{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:32px 0;}
+@media(max-width:540px){.yesno{grid-template-columns:1fr;}}
+.yn-card{border-radius:18px;padding:24px 22px;}
+.yn-card.no{background:rgba(240,20,122,0.07);border:1px solid rgba(240,20,122,0.2);}
+.yn-card.yes{background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.25);}
+.yn-title{font-weight:700;font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.yn-title .badge{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;font-weight:900;flex-shrink:0;}
+.badge-x{background:var(--pink);}
+.badge-ok{background:#16a34a;}
+.yn-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;}
+.yn-list li{font-size:14px;color:var(--text-dim);line-height:1.55;padding-left:16px;position:relative;}
+.yn-list li::before{content:'·';position:absolute;left:4px;color:var(--text-dim);}
+
+.steps{display:flex;flex-direction:column;gap:16px;margin:28px 0;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--pink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-body{font-size:15px;color:var(--text-dim);line-height:1.65;}
+.step-body strong{color:var(--text);}
+
+.cta-box{margin-top:56px;background:var(--card-bg);border:1px solid var(--border);border-radius:24px;padding:40px 36px;text-align:center;}
+.cta-box .eyebrow{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--pink);margin-bottom:14px;}
+.cta-box h2{font-family:'DM Serif Display',Georgia,serif;font-size:28px;font-weight:400;margin:0 0 14px;line-height:1.25;}
+.cta-box p{color:var(--text-dim);font-size:15px;max-width:420px;margin:0 auto 28px;line-height:1.75;}
+@media(max-width:500px){.cta-box{padding:28px 20px;}}
+.img-fig{margin:32px 0}.img-fig img{width:100%;height:auto;border-radius:14px;border:1px solid var(--border);background:#fff}.img-fig figcaption{font-size:13px;color:var(--text-dim);margin-top:10px;line-height:1.6}
+.data-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:15px}.data-table th,.data-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--border)}.data-table th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--pink)}.data-table td:last-child,.data-table th:last-child{text-align:right}
+</style>
+</head>
+<body>
+<!-- @include body-start -->
+
+<!-- @include nav about="/#o-mne" cenik="/#cenik" kontakt="/#kontakt" -->
+
+<main id="main" class="article-main">
+  <div class="container">
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="/">Domů</a>
+      <span>›</span>
+      <a href="/blog">Blog</a>
+      <span>›</span>
+      <span>Cituje vás AI?</span>
+    </nav>
+
+    <a href="/blog" class="back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Zpět na blog
+    </a>
+    <div class="article-tag">AI · SEO · Říjen 2026</div>
+    <h1 class="article-title">Cituje vás AI?<br><em>Ukážu to na svém webu.</em></h1>
+    <div class="article-meta">
+      <img src="/gabca-mobilni-verze.webp" alt="Gabriela Janýšková" class="author-avatar" width="34" height="34" loading="lazy">
+      <span>Gabriela Janýšková</span>
+      <div class="meta-dot"></div>
+      <span>28. října 2026</span>
+      <div class="meta-dot"></div>
+      <span>5 min čtení</span>
+    </div>
+    <article class="article-body">
+
+      <p class="blog-perex">Za poslední tři měsíce mě Google ukázal v AI odpovědích 204krát. Nevím to z odhadu ani z nějakého placeného nástroje — je to přímo v Search Console. Ukážu vám, kde to najdete, co z těch čísel vyčtete a co ne. A jak si to ověřit u vlastního webu.</p>
+
+      <h2>Kde to v Search Console najdete</h2>
+      <p>Google v červnu 2026 přidal do Search Console <a href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">nový přehled Generative AI</a>. Najdete ho v levém menu pod <strong>Výkon → Generative AI</strong> (zatím s označením Beta). Ukazuje, kolikrát se váš web objevil jako zdroj v <strong>Přehledu od AI</strong> (AI Overviews) a v <strong>AI Mode</strong>.</p>
+      <p>Když jsem o tomhle přehledu <a href="/blog/google-search-console-ai-cerven-2026">psala v červnu</a>, byla to novinka. Teď mám za sebou tři měsíce vlastních dat, tak se na ně pojďme podívat.</p>
+
+      <div class="hl-box warning">
+        <strong>Co v přehledu uvidíte:</strong> počet zobrazení a jejich rozdělení podle stránek, zemí, zařízení a dnů.<br>
+        <strong>Co v něm neuvidíte:</strong> kliknutí ani konkrétní dotazy, které lidé zadali. Je to tedy počet „kolikrát vás AI uvedla“, ne „kolik lidí přišlo“.
+      </div>
+
+      <h2>Moje čísla za 3 měsíce</h2>
+      <figure class="img-fig">
+        <img src="/img/gsc-ai-report.webp" alt="Graf zobrazení webu janyskovadigital.cz v AI odpovědích Googlu za 3 měsíce — celkem 204" width="1584" height="444" loading="lazy">
+        <figcaption>Search Console → Generative AI, posledních 3 měsíců (konec července až konec října 2026).</figcaption>
+      </figure>
+
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-num">204</div>
+          <div class="stat-label">zobrazení v AI odpovědích za 3 měsíce</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">~2</div>
+          <div class="stat-label">zobrazení denně v průměru</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">47</div>
+          <div class="stat-label">z nich připadá na hlavní stránku</div>
+        </div>
+      </div>
+
+      <p>A tohle jsou stránky, které AI cituje nejčastěji:</p>
+      <table class="data-table">
+        <thead><tr><th>Stránka</th><th>Zobrazení</th></tr></thead>
+        <tbody>
+          <tr><td>Hlavní stránka</td><td>47</td></tr>
+          <tr><td><a href="/frenstat/">Webdesign Frenštát pod Radhoštěm</a></td><td>16</td></tr>
+          <tr><td><a href="/blog/claude-ai-tipy-ktere-nikdo-nezna">Článek o Claude AI</a></td><td>15</td></tr>
+          <tr><td><a href="/blog/geo-generative-engine-optimization">Článek o GEO</a></td><td>13</td></tr>
+          <tr><td><a href="/novy-jicin/">Webdesign Nový Jičín</a></td><td>13</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Co z toho čtu</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Hlavní stránka vede.</strong> AI si z ní bere základní informace o mně — co dělám, kde a za kolik. Proto je důležité mít je napsané jasně a na jednom místě.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Frenštát předběhl Nový Jičín.</strong> Přitom v Novém Jičíně sídlím. Vysvětlení je nejspíš jednoduché: v menším městě je menší konkurence, takže AI má z čeho vybírat méně.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>AI mě cituje u témat o AI.</strong> Články o Claude AI a o GEO jsou hned za hlavní stránkou. Píšu o věcech, se kterými denně pracuji — a je to vidět.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><strong>Zobrazení nejsou návštěvy.</strong> 204 zobrazení neznamená 204 zákazníků. Je to ale signál, že mě Google bere jako důvěryhodný zdroj.</div>
+        </div>
+      </div>
+
+      <h2>Ověření v praxi: Frenštát</h2>
+      <p>Čísla jsou jedna věc, tak jsem to zkusila naostro. V anonymním okně prohlížeče jsem zadala do Googlu <strong>„webdesign Frenštát pod Radhoštěm“</strong>. V Přehledu od AI jsem byla mezi prvními uvedenými firmami — s odkazem na web a s tímhle popisem:</p>
+      <figure class="img-fig">
+        <img src="/img/ai-prehled-frenstat.webp" alt="Přehled od AI v Googlu pro dotaz webdesign Frenštát pod Radhoštěm s odkazem na Janyskova Digital" width="660" height="169" loading="lazy">
+        <figcaption>Výřez z Přehledu od AI, 28. října 2026. Ostatní uvedené firmy jsem z obrázku vynechala.</figcaption>
+      </figure>
+      <p>Všimněte si, co AI o mně napsala: čistý kód, bez WordPressu, bez měsíčních poplatků, hosting a SEO v ceně, první náhled do 48 hodin. <strong>Přesně to, co mám na webu.</strong> AI si nic nevymýšlí — skládá odpověď z toho, co najde. Když to na webu nemáte jasně napsané, nemá z čeho brát.</p>
+      <p>Mimochodem, od poloviny října 2026 Google v AI odpovědích <a href="https://www.searchenginejournal.com/google-says-links-will-be-more-visible-in-ai-overviews" target="_blank" rel="noopener">zobrazuje odkazy výrazněji</a> — přímo u vět, ke kterým patří. Být citovaný se tak vyplácí víc než dřív.</p>
+
+      <h2>Jak si to ověřit u svého webu</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body"><strong>Otevřete Search Console</strong> → Výkon → Generative AI a nastavte 3 měsíce. Pokud přehled nevidíte, Google ho zpřístupňuje postupně.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body"><strong>Zkuste dotaz naostro.</strong> V anonymním okně zadejte službu a město, třeba „kadeřnictví Kopřivnice“. Zobrazí se Přehled od AI? Jste v něm?</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body"><strong>Zeptejte se ChatGPT nebo Perplexity.</strong> Třeba „kdo dělá [vaše služba] v [vaše město]“. Každý nástroj odpovídá trochu jinak, tak zkuste víc z nich.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body"><strong>Píše o vás AI nesmysl? Opravte zdroj.</strong> Podle <a href="https://searchengineland.com/ai-search-citations-brand-controlled-sources-463166" target="_blank" rel="noopener">studie Yext</a> pochází většina AI citací ze zdrojů, které má firma pod kontrolou — z webu (44 %) a firemních profilů, jako je profil na Googlu (42 %). Co opravíte tam, to se časem propíše i do AI.</div>
+        </div>
+      </div>
+
+      <h2>Co mám na webu já</h2>
+      <p>Na rovinu: Google neprozrazuje, podle čeho vybírá zdroje pro AI odpovědi. Nemůžu vám tedy říct „udělejte tohle a AI vás bude citovat“. Můžu vám ale říct, co na svém webu mám:</p>
+      <div class="hl-box good">
+        <strong>Jasné základní informace</strong> — kdo jsem, co dělám, kde působím a kolik to stojí. Na hlavní stránce i na stránkách měst.<br>
+        <strong>Odpovědi na časté otázky</strong> — viditelné přímo na stránce, ne schované jen v kódu.<br>
+        <strong>Strukturovaná data</strong> — Google díky nim přesně ví, že jde o firmu, kde sídlí a jaké má recenze.<br>
+        <strong>Konkrétní fakta místo frází</strong> — reference, ceny, doba realizace. Žádné „jsme profesionálové s dlouholetou praxí“.<br>
+        <strong>Články o tom, čemu opravdu rozumím</strong> — s ověřenými čísly a odkazy na zdroje.
+      </div>
+      <p>Nic z toho není trik. Je to jen web, na kterém AI i člověk rychle najde odpověď. A přesně takové weby stavím i pro klienty.</p>
+
+      <div class="cta-box">
+        <div class="eyebrow">Chcete vědět, jak je na tom váš web?</div>
+        <h2>Podívám se, jestli vás AI vidí</h2>
+        <p>Projdu váš web, Search Console i AI odpovědi pro vaše služby a město — a řeknu vám rovnou, co zlepšit. Bez závazku, zdarma.</p>
+        <a href="/#kontakt" class="btn-primary">Chci bezplatný audit →</a>
+      </div>
+
+      <section class="article-faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Časté otázky</h2>
+      <div class="faq-list">
+      <details class="faq-item">
+        <summary>Kde v Search Console zjistím, jestli mě cituje AI?</summary>
+        <p>V Search Console otevřete Výkon a pod ním přehled Generative AI (beta). Google ho spustil v červnu 2026 a ukazuje, kolikrát se váš web zobrazil v Přehledu od AI a v AI Mode. Pokud ho ještě nevidíte, Google ho zpřístupňuje postupně.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Ukazuje report i kliknutí z AI odpovědí?</summary>
+        <p>Ne. Report ukazuje jen zobrazení — kolikrát vás AI uvedla jako zdroj. Kolik lidí pak kliklo, z něj nevyčtete. Nevidíte v něm ani konkrétní dotazy, jen stránky, země, zařízení a dny.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Jak se dostat do AI odpovědí Googlu?</summary>
+        <p>Záruku nedá nikdo, Google to neprozrazuje. Pomáhá mít na webu jasně napsané, kdo jste, co děláte, kde a za kolik, odpovědi na časté otázky přímo na stránce a vyplněný profil firmy na Googlu. AI čerpá hlavně ze zdrojů, které má firma pod kontrolou — z webu a firemních profilů.</p>
+      </details>
+      </div>
+    </section>
+    <div class="related-posts"><h3>Mohlo by vás zajímat</h3><div class="related-grid"><a href="/blog/google-search-console-ai-cerven-2026" class="related-card"><div class="related-card-tag">SEO</div><div class="related-card-title">Search Console ukazuje web v AI výsledcích</div></a><a href="/blog/geo-generative-engine-optimization" class="related-card"><div class="related-card-tag">AI</div><div class="related-card-title">GEO: jak vás najde i ChatGPT</div></a><a href="/blog/google-ai-overviews-krade-navstevniky" class="related-card"><div class="related-card-tag">SEO</div><div class="related-card-title">Google teď odpovídá sám</div></a></div></div>
+    </article>
+  </div>
+</main>
+
+<div class="section-divider"></div>
+
+<!-- @include footer -->
+
+<!-- @include scripts -->
+<!-- @include whatsapp -->
+</body>
+</html>

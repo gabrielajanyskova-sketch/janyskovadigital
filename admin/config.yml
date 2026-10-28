@@ -79,6 +79,10 @@ collections:
             name: review2_text
             widget: text
             hint: "Text recenze Niky Hubáčkové"
+          - label: "Recenze 3 — text"
+            name: review3_text
+            widget: text
+            hint: "Text recenze Nikoly Drn (e-shop lufactory)"
 
           - label: "Postup — krok 1: nadpis"
             name: process1_h3

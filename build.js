@@ -1,310 +1,219 @@
-import { readdir, readFile, writeFile } from 'fs/promises';
-import { existsSync } from 'fs';
-import { join, basename } from 'path';
-import matter from 'gray-matter';
-import { marked } from 'marked';
+// Sestavení webu: ze zdrojů v src/ vyrobí hotové stránky do kořene repozitáře.
+//
+//   src/pages/       zdrojové stránky (cesta = výsledná cesta na webu)
+//   src/templates/   šablony generovaných stránek (městské stránky)
+//   src/partials/    sdílené části: <!-- @include název klíč="hodnota" -->
+//   src/data/        data (města, základ schématu firmy)
+//   src/css/         styly → style.css a landing.css
+//   content/         texty spravované přes CMS (/admin)
+//
+// Proměnné se píšou {{název}} nebo {{objekt.vlastnost}}. Chybějící proměnná build zastaví.
+
+import { readFile, writeFile, readdir, mkdir } from 'fs/promises';
+import { createHash } from 'crypto';
+import path from 'path';
 import { parse as parseYaml } from 'yaml';
 
-const NAV = `<nav role="navigation" aria-label="Hlavní navigace">
-  <div class="container nav-inner">
-    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
-    <div class="nav-links">
-      <a href="/#o-mne">O mně</a>
-      <a href="/#cenik">Ceník</a>
-      <a href="/barter">Barter</a>
-      <a href="/blog">Blog</a>
-      <a href="/#kontakt" class="cta">Mám zájem</a>
-    </div>
-    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
-  <div class="menu-group">
-    <div class="menu-group-label">O Janyskova Digital</div>
-    <a href="/#o-mne" onclick="closeMenu()">O mně</a>
-    <a href="/#cenik" onclick="closeMenu()">Ceník</a>
-  </div>
-  <div class="menu-group">
-    <div class="menu-group-label">Služby</div>
-    <a href="/barter" onclick="closeMenu()">Barter</a>
-  </div>
-  <a href="/blog" onclick="closeMenu()">Blog</a>
-  <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
-  <div class="menu-sub">info@janyskovadigital.cz</div>
-</div>`;
+const read = p => readFile(p, 'utf8');
+const hash = s => createHash('sha256').update(s).digest('hex').slice(0, 10);
 
-const FOOTER = `<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
-        <p class="footer-desc">Tvorba webů v čistém kódu. PageSpeed 90–100, hosting v ceně.</p>
-      </div>
-      <div>
-        <div class="footer-heading">Navigace</div>
-        <ul class="footer-links-list">
-          <li><a href="/#o-mne">O mně</a></li>
-          <li><a href="/#cenik">Ceník</a></li>
-          <li><a href="/barter">Barter</a></li>
-          <li><a href="/blog">Blog</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Kontakt</div>
-        <ul class="footer-links-list">
-          <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
-          <li><a href="tel:+420739395800">+420 739 395 800</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Gabriela Janýšková · Starojická Lhota 45, 741 01 Starý Jičín · IČO 19616295</span>
-      <a href="/ochrana-udaju">Ochrana osobních údajů</a>
-    </div>
-  </div>
-</footer>`;
-
-const JS = `<script src="/main.js?v=45" defer></script>`;
-
-function formatDate(dateStr) {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+async function walk(dir) {
+  const out = [];
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    const p = path.join(dir, e.name);
+    if (e.isDirectory()) out.push(...await walk(p));
+    else if (e.name.endsWith('.html')) out.push(p);
+  }
+  return out;
 }
 
-const monthCs = ['ledna','února','března','dubna','května','června','července','srpna','září','října','listopadu','prosince'];
-function dateLabel(d) {
-  return `${d.getDate()}. ${monthCs[d.getMonth()]} ${d.getFullYear()}`;
+async function write(file, content) {
+  await mkdir(path.dirname(file), { recursive: true });
+  await writeFile(file, content, 'utf8');
 }
 
-// Načte metadata z existujících blog HTML souborů (datum, tag, title, description)
-async function readExistingBlogMeta(outDir) {
-  const htmlFiles = (await readdir(outDir)).filter(f => f.endsWith('.html'));
+// ── Šablonovací jádro ────────────────────────────────────────────────────────
+
+const partialCache = new Map();
+async function partial(name) {
+  if (!partialCache.has(name)) partialCache.set(name, await read(`src/partials/${name}.html`));
+  return partialCache.get(name);
+}
+
+const INCLUDE = /<!-- @include ([a-z0-9-]+)((?:\s+[a-zA-Z]+="[^"]*")*)\s*-->\n?/g;
+
+async function expandIncludes(text, depth = 0) {
+  if (depth > 10) throw new Error('Příliš hluboké vnoření @include');
+  const found = [...text.matchAll(INCLUDE)];
+  if (!found.length) return text;
+  const parts = await Promise.all(found.map(async ([, name, attrs]) => {
+    let body = await partial(name);
+    for (const [, k, v] of attrs.matchAll(/([a-zA-Z]+)="([^"]*)"/g)) body = body.replaceAll(`{{${k}}}`, v);
+    return expandIncludes(body, depth + 1);
+  }));
+  let i = 0;
+  return text.replace(INCLUDE, () => parts[i++]);
+}
+
+function fillVars(text, ctx, where) {
+  return text.replace(/\{\{\s*([a-zA-Z0-9_.]+)\s*\}\}/g, (_, key) => {
+    const val = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), ctx);
+    if (val === undefined || val === null) throw new Error(`${where}: chybí proměnná {{${key}}}`);
+    return String(val);
+  });
+}
+
+async function render(text, ctx, where) {
+  return fillVars(await expandIncludes(text), ctx, where);
+}
+
+// ── Pomocné funkce ───────────────────────────────────────────────────────────
+
+const ENTITIES = { '&nbsp;': ' ', '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };
+function htmlToText(html) {
+  return html
+    .replace(/<!--.*?-->/gs, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&[a-z#0-9]+;/g, e => ENTITIES[e] ?? e)
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// FAQ ve strukturovaných datech musí odpovídat FAQ viditelnému na stránce.
+// Proto se FAQPage vždy přegeneruje z viditelných otázek a odpovědí.
+function visibleFaq(html) {
+  const body = html.split('</head>')[1] || '';
+  const patterns = [
+    /<summary[^>]*>(.*?)<\/summary>\s*<p[^>]*>(.*?)<\/p>/gs,
+    /class="faq-q">(.*?)<\/div>\s*<p class="faq-a">(.*?)<\/p>/gs,
+  ];
+  return patterns.flatMap(re => [...body.matchAll(re)].map(m => [htmlToText(m[1]), htmlToText(m[2])]));
+}
+
+function faqSchema(pairs) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: pairs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+  };
+}
+
+function syncFaqSchema(html, where) {
+  const pairs = visibleFaq(html);
+  return html.replace(/(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs, (all, open, json, close) => {
+    let data;
+    try { data = JSON.parse(json); } catch (e) { throw new Error(`${where}: neplatné JSON-LD (${e.message})`); }
+    const list = Array.isArray(data) ? data : [data];
+    const i = list.findIndex(x => x['@type'] === 'FAQPage');
+    if (i < 0) return all;
+    if (!pairs.length) throw new Error(`${where}: FAQPage ve schématu, ale žádné viditelné FAQ`);
+    list[i] = { ...faqSchema(pairs), ...(list[i]['@context'] ? {} : { '@context': undefined }) };
+    if (!list[i]['@context']) list[i]['@context'] = 'https://schema.org';
+    const out = Array.isArray(data) ? list : list[0];
+    return open + JSON.stringify(out, null, json.includes('\n') ? 2 : 0) + close;
+  });
+}
+
+// ── Karty nejnovějších článků na hlavní stránce ──────────────────────────────
+
+const MONTHS = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
+
+async function homeBlogCards(count) {
   const articles = [];
-  for (const file of htmlFiles) {
-    const slug = basename(file, '.html');
-    const html = await readFile(join(outDir, file), 'utf8');
-    const dateMatch = html.match(/<meta property="article:published_time" content="([^"]+)"/);
-    const titleMatch = html.match(/<title>([^<]+)<\/title>/);
-    const descMatch = html.match(/<meta name="description" content="([^"]+)"/);
-    const tagMatch = html.match(/class="article-tag">([^<]+)</);
-    const blogTagMatch = html.match(/class="blog-card-tag">([^<]+)</);
-    if (!dateMatch) continue;
-    const date = new Date(dateMatch[1]);
-    const title = titleMatch ? titleMatch[1].replace(/\s*[|—].*$/, '').trim() : slug;
-    const description = descMatch ? descMatch[1] : '';
-    const rawTag = tagMatch ? tagMatch[1].trim() : (blogTagMatch ? blogTagMatch[1].split('·')[0].trim() : 'Blog');
-    // Tag v článku občas už obsahuje měsíc a rok — ten přidáváme sami, ať se neopakuje
+  for (const file of await walk('src/pages/blog')) {
+    const html = await read(file);
+    const date = html.match(/<meta property="article:published_time" content="([^"]+)"/);
+    if (!date) continue;
+    const title = html.match(/<title>([^<]+)<\/title>/)[1].replace(/\s*[|—].*$/, '').trim();
+    const description = html.match(/<meta name="description" content="([^"]+)"/)[1];
+    const rawTag = (html.match(/class="article-tag">([^<]+)</) || [, 'Blog'])[1].trim();
     const tag = rawTag.replace(/\s*·\s*\p{L}+\s+\d{4}\s*$/u, '');
-    articles.push({ slug, date, title, description, tag });
+    articles.push({ slug: path.basename(file, '.html'), date: new Date(date[1]), title, description, tag });
   }
-  return articles;
-}
-
-async function updateSitemap(newSlugs, newDates) {
-  let xml = await readFile('sitemap.xml', 'utf8');
-  const existingSlugs = new Set([...xml.matchAll(/blog\/([^<]+)<\/loc>/g)].map(m => m[1]));
-  let additions = '';
-  for (let i = 0; i < newSlugs.length; i++) {
-    if (!existingSlugs.has(newSlugs[i])) {
-      additions += `  <url><loc>https://janyskovadigital.cz/blog/${newSlugs[i]}</loc><lastmod>${newDates[i]}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
-    }
-  }
-  if (additions) {
-    xml = xml.replace('</urlset>', additions + '</urlset>');
-    await writeFile('sitemap.xml', xml, 'utf8');
-    console.log(`✓ sitemap.xml aktualizován (+${newSlugs.length} nových URL)`);
-  }
-}
-
-async function updateRedirects(newSlugs) {
-  let redirects = await readFile('_redirects', 'utf8');
-  let added = 0;
-  for (const slug of newSlugs) {
-    const line = `/blog/${slug}.html /blog/${slug} 301`;
-    if (!redirects.includes(line)) {
-      redirects += `\n${line}`;
-      added++;
-    }
-  }
-  if (added > 0) {
-    await writeFile('_redirects', redirects, 'utf8');
-    console.log(`✓ _redirects aktualizován (+${added} nových přesměrování)`);
-  }
-}
-
-async function updateHomepageBlog(outDir) {
-  const articles = await readExistingBlogMeta(outDir);
   articles.sort((a, b) => b.date - a.date);
-  const top3 = articles.slice(0, 6);
-
-  const cardsHtml = top3.map(a => {
-    return `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${new Date(a.date).toLocaleDateString('cs-CZ', { month: 'long', year: 'numeric' }).replace(/^./, c => c.toUpperCase())}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`;
-  }).join('\n      ');
-
-  let indexHtml = await readFile('index.html', 'utf8');
-  indexHtml = indexHtml.replace(
-    /<!-- HOMEBLOG:START -->.*?<!-- HOMEBLOG:END -->/s,
-    `<!-- HOMEBLOG:START -->\n      ${cardsHtml}\n      <!-- HOMEBLOG:END -->`
-  );
-  await writeFile('index.html', indexHtml, 'utf8');
-  console.log('✓ index.html — 6 nejnovějších článků aktualizováno');
+  return articles.slice(0, count).map(a =>
+    `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${MONTHS[a.date.getMonth()]} ${a.date.getFullYear()}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`
+  ).join('\n      ');
 }
+
+// ── Městské stránky ──────────────────────────────────────────────────────────
+
+function cityJsonLd(city, business) {
+  const s = city.schema;
+  const url = `https://janyskovadigital.cz/${city.slug}/`;
+  const biz = {
+    ...business,
+    description: s.businessDescription,
+    areaServed: s.areaServed,
+    ...(s.serviceArea ? { serviceArea: s.serviceArea } : {}),
+    hasOfferCatalog: { ...business.hasOfferCatalog, name: s.catalogName },
+  };
+  const page = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': url,
+    url,
+    name: s.pageName,
+    description: s.pageDescription,
+    inLanguage: 'cs',
+    isPartOf: { '@id': 'https://janyskovadigital.cz/#website' },
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://janyskovadigital.cz/' },
+        { '@type': 'ListItem', position: 2, name: s.breadcrumbName, item: url },
+      ],
+    },
+  };
+  return JSON.stringify([biz, page], null, 2);
+}
+
+// ── Sestavení ────────────────────────────────────────────────────────────────
 
 async function build() {
-  const srcDir = 'content/blog';
-  const outDir = 'blog';
+  // Styly a skript (verze = otisk obsahu, takže prohlížeč nikdy nedrží starou verzi)
+  const styleCss = (await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n');
+  const landingCss = await read('src/css/landing.css');
+  await write('style.css', styleCss);
+  await write('landing.css', landingCss);
 
-  if (!existsSync(srcDir)) {
-    console.log('Adresář content/blog neexistuje.');
+  const cms = parseYaml(await read('content/hlavni-stranka.yml'));
+  const ctx = {
+    cssv: hash(styleCss),
+    landingv: hash(landingCss),
+    jsv: hash(await read('main.js')),
+    cms,
+    homeBlog: await homeBlogCards(6),
+  };
+
+  let count = 0;
+  for (const file of await walk('src/pages')) {
+    const rel = path.relative('src/pages', file);
+    const html = syncFaqSchema(await render(await read(file), ctx, rel), rel);
+    await write(rel, html);
+    count++;
   }
 
-  const files = existsSync(srcDir)
-    ? (await readdir(srcDir)).filter(f => f.endsWith('.md'))
-    : [];
-
-  if (files.length === 0) {
-    console.log('Žádné .md soubory k převodu.');
+  const cities = JSON.parse(await read('src/data/cities.json'));
+  const { business } = JSON.parse(await read('src/data/schema-business.json'));
+  const template = await read('src/templates/city.html');
+  for (const city of cities) {
+    const faq = [[cms.faq1_q, cms.faq1_a], [cms.faq3_q, cms.faq3_a], ...city.faq.map(f => [f.q, f.a])];
+    const cityCtx = {
+      ...ctx,
+      city,
+      referencesHtml: (await Promise.all(city.references.map(r => partial(`ref-${r}`)))).join(''),
+      faqHtml: faq.map(([q, a]) => `      <details class="faq-item reveal"><summary>${q}</summary><p>${a}</p></details>\n`).join(''),
+      citiesSectionHtml: city.citiesSection || await partial('cities-grid'),
+      cityJsonLd: cityJsonLd(city, business),
+      faqJsonLd: JSON.stringify(faqSchema(faq.map(([q, a]) => [htmlToText(q), htmlToText(a)])), null, 2),
+    };
+    const where = `${city.slug}/index.html`;
+    await write(where, syncFaqSchema(await render(template, cityCtx, where), where));
+    count++;
   }
 
-  const cards = [];
-  const newSlugs = [];
-  const newDates = [];
-
-  for (const file of files) {
-    const slug = basename(file, '.md');
-    const raw = await readFile(join(srcDir, file), 'utf8');
-    const { data, content } = matter(raw);
-    const bodyHtml = marked.parse(content);
-
-    const url = `https://janyskovadigital.cz/blog/${slug}`;
-    const dateIso = data.date ? new Date(data.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0];
-    const dateReadable = formatDate(data.date || new Date());
-
-    const html = `<!DOCTYPE html>
-<html lang="cs">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${data.title} | Janyskova Digital</title>
-<meta name="description" content="${data.description || ''}">
-<meta property="og:title" content="${data.title}">
-<meta property="og:description" content="${data.description || ''}">
-<meta property="og:url" content="${url}">
-<meta property="og:type" content="article">
-<meta property="og:locale" content="cs_CZ">
-<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
-<meta property="article:published_time" content="${dateIso}">
-<meta property="article:author" content="Gabriela Janýšková">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="${url}">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
-<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
-<meta name="geo.region" content="CZ-80">
-<meta name="geo.placename" content="Nový Jičín">
-<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":${JSON.stringify(data.title)},"description":${JSON.stringify(data.description || '')},"image":"https://janyskovadigital.cz/og-image.png","author":{"@type":"Person","@id":"https://janyskovadigital.cz/#person","name":"Gabriela Janýšková","url":"https://janyskovadigital.cz/#o-mne"},"publisher":{"@type":"Organization","@id":"https://janyskovadigital.cz/#business","name":"Janyskova Digital","url":"https://janyskovadigital.cz","logo":{"@type":"ImageObject","url":"https://janyskovadigital.cz/web-app-manifest-512x512.png","width":512,"height":512}},"datePublished":${JSON.stringify(dateIso)},"dateModified":${JSON.stringify(dateIso)},"inLanguage":"cs","url":${JSON.stringify(url)},"mainEntityOfPage":{"@type":"WebPage","@id":${JSON.stringify(url)}}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Domů","item":"https://janyskovadigital.cz/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://janyskovadigital.cz/blog"},{"@type":"ListItem","position":3,"name":${JSON.stringify(data.title)},"item":${JSON.stringify(url)}}]}</script>
-<link rel="stylesheet" href="/style.css?v=48">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-</head>
-<body>
-<div class="bg-blobs" aria-hidden="true"></div>
-${NAV}
-<main class="article-main">
-  <div class="container">
-    <a href="/blog" class="back">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-      Zpět na blog
-    </a>
-    <div class="article-tag">${data.tag || 'Blog'}</div>
-    <h1 class="article-title">${data.title}</h1>
-    <div class="article-meta">
-      <img src="/gabca-mobilni-verze.webp" alt="Gabriela Janýšková" class="author-avatar" width="34" height="34" loading="lazy">
-      <span>Gabriela Janýšková</span>
-      <div class="meta-dot"></div>
-      <span>${dateReadable}</span>
-      <div class="meta-dot"></div>
-      <span>${data.read_time || '5 min čtení'}</span>
-    </div>
-    <article class="article-body">
-      ${bodyHtml}
-    </article>
-    <div class="cta-box" style="margin-top:56px">
-      <h3>Chcete web, <em>který funguje?</em></h3>
-      <p>Napište mi — první náhled máte do 48 hodin.</p>
-      <a href="/#kontakt" class="btn-primary">Mám zájem o web</a>
-    </div>
-  </div>
-</main>
-${FOOTER}
-${JS}
-</body>
-</html>`;
-
-    const outPath = join(outDir, `${slug}.html`);
-    await writeFile(outPath, html, 'utf8');
-    console.log(`✓ ${outPath}`);
-
-    const d = new Date(data.date || new Date());
-    cards.push({ slug, date: d, card: `<a href="/blog/${slug}" class="blog-card" role="listitem">
-        <div class="blog-card-tag">${data.tag || 'Blog'} · ${dateLabel(d)}</div>
-        <h2>${data.title}</h2>
-        <p>${data.description || ''}</p>
-        <span class="read">Číst článek →</span>
-      </a>` });
-
-    newSlugs.push(slug);
-    newDates.push(dateIso);
-  }
-
-  // Aktualizuj blog.html — vlož nové karty na začátek
-  if (cards.length > 0) {
-    cards.sort((a, b) => b.date - a.date);
-    const cardsHtml = cards.map(c => c.card).join('\n      ');
-    let blogHtml = await readFile('blog.html', 'utf8');
-    blogHtml = blogHtml.replace(
-      /<!-- CMS:START -->.*?<!-- CMS:END -->/s,
-      `<!-- CMS:START -->\n      ${cardsHtml}\n      <!-- CMS:END -->`
-    );
-    await writeFile('blog.html', blogHtml, 'utf8');
-    console.log(`✓ blog.html aktualizován (${cards.length} nových karet)`);
-  }
-
-  // Aktualizuj sitemap.xml a _redirects pro nové články
-  if (newSlugs.length > 0) {
-    await updateSitemap(newSlugs, newDates);
-    await updateRedirects(newSlugs);
-  }
-
-  // Aktualizuj index.html podle content/hlavni-stranka.yml
-  const ymlPath = 'content/hlavni-stranka.yml';
-  if (existsSync(ymlPath)) {
-    const ymlRaw = await readFile(ymlPath, 'utf8');
-    const data = parseYaml(ymlRaw);
-    let indexHtml = await readFile('index.html', 'utf8');
-    for (const [key, val] of Object.entries(data)) {
-      indexHtml = indexHtml.replace(
-        new RegExp(`<!--CMS:${key}-->.*?<!--/CMS:${key}-->`, 's'),
-        `<!--CMS:${key}-->${val}<!--/CMS:${key}-->`
-      );
-    }
-    await writeFile('index.html', indexHtml, 'utf8');
-    console.log('✓ index.html — texty aktualizovány');
-  }
-
-  // Aktualizuj 3 nejnovější články na hlavní stránce
-  await updateHomepageBlog(outDir);
-
-  console.log(`\nHotovo — zpracováno ${files.length} příspěvků z CMS.`);
+  console.log(`✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), main.js (${ctx.jsv})`);
 }
 
-build().catch(console.error);
+build().catch(err => { console.error('✗', err.message); process.exit(1); });

@@ -1,0 +1,29 @@
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="{{about}}">O mně</a>
+      <a href="{{cenik}}">Ceník</a>
+      <a href="/barter">Barter</a>
+      <a href="/blog">Blog</a>
+      <a href="{{kontakt}}" class="cta">Mám zájem</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <div class="menu-group">
+    <div class="menu-group-label">O Janyskova Digital</div>
+    <a href="{{about}}" onclick="closeMenu()">O mně</a>
+    <a href="{{cenik}}" onclick="closeMenu()">Ceník</a>
+  </div>
+  <div class="menu-group">
+    <div class="menu-group-label">Služby</div>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
+  </div>
+  <a href="/blog" onclick="closeMenu()">Blog</a>
+  <a href="{{kontakt}}" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>

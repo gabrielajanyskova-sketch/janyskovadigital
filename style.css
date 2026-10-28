@@ -11,4 +11,124 @@
 .good-box{background:rgba(34,197,94,0.07);border-left:4px solid #16a34a;border-radius:0 14px 14px 0;padding:20px 24px;margin:28px 0;font-size:15px;line-height:1.75;color:var(--text-dim);}
 .good-box strong{color:var(--text);}
 
-.tip-note{margin-top:18px;font-size:14px;color:var(--text-dim);}@media(max-width:768px){.local-grid{grid-template-columns:1fr!important;}}.article-faq{margin:56px auto 0;max-width:820px}.article-faq h2{font-size:clamp(24px,3vw,32px);margin-bottom:0}.article-faq .faq-list{margin-top:24px}.form-note{margin-top:14px;font-size:12px;color:var(--text-dim);text-align:center;line-height:1.6}.form-note a{color:var(--pink);text-decoration:underline}.local-section{position:relative;z-index:1}.local-section p{color:var(--text-dim);font-size:16px;line-height:1.8}.local-section p+p{margin-top:18px}.info-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:18px 22px}.info-card-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:6px}.info-card-value{font-size:17px;font-weight:700;color:var(--text)}.price-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}.price-mini-note{margin-top:22px;color:var(--text-dim);font-size:15px;line-height:1.7}.price-mini-note a{color:var(--pink);font-weight:700;white-space:nowrap}@media(max-width:900px){.price-mini{grid-template-columns:1fr 1fr}}@media(max-width:480px){.price-mini{grid-template-columns:1fr}}.contact-wrap .section-cta--sm{margin:0 0 28px}.form-row{row-gap:0}.form-group{margin-bottom:16px}.btn-submit{margin-top:10px}.blog-grid+div{margin-top:44px;text-align:center}.ref-track{scroll-behavior:auto}.article-body p a,.article-body li a,.article-body td a,.hl-box a,.step-body a{text-decoration:underline;text-underline-offset:3px}.breadcrumb span{opacity:1;color:var(--text-dim)}.article-body :is(p,li,td) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}.article-body :is(.step-body,.hl-box,.tl-text,.yn-list) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
+.tip-note{margin-top:18px;font-size:14px;color:var(--text-dim);}@media(max-width:768px){.local-grid{grid-template-columns:1fr!important;}}
+
+/* Komponenty a úpravy z auditu 10/2026 */
+.article-faq{margin:56px auto 0;max-width:820px}
+.article-faq h2{font-size:clamp(24px,3vw,32px);margin-bottom:0}
+.article-faq .faq-list{margin-top:24px}
+.form-note{margin-top:14px;font-size:12px;color:var(--text-dim);text-align:center;line-height:1.6}
+.form-note a{color:var(--pink);text-decoration:underline}
+.local-section{position:relative;z-index:1}
+.local-section p{color:var(--text-dim);font-size:16px;line-height:1.8}
+.local-section p+p{margin-top:18px}
+.info-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:18px 22px}
+.info-card-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:6px}
+.info-card-value{font-size:17px;font-weight:700;color:var(--text)}
+.price-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.price-mini-note{margin-top:22px;color:var(--text-dim);font-size:15px;line-height:1.7}
+.price-mini-note a{color:var(--pink);font-weight:700;white-space:nowrap}
+@media(max-width:900px){.price-mini{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.price-mini{grid-template-columns:1fr}}
+.contact-wrap .section-cta--sm{margin:0 0 28px}
+.form-row{row-gap:0}
+.form-group{margin-bottom:16px}
+.btn-submit{margin-top:10px}
+.blog-grid+div{margin-top:44px;text-align:center}
+.ref-track{scroll-behavior:auto}
+.article-body p a,.article-body li a,.article-body td a,.hl-box a,.step-body a{text-decoration:underline;text-underline-offset:3px}
+.breadcrumb span{opacity:1;color:var(--text-dim)}
+.article-body :is(p,li,td) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
+.article-body :is(.step-body,.hl-box,.tl-text,.yn-list) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
+
+/* Odkaz „Přeskočit na obsah“ a hláška bez JavaScriptu */
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--pink);color:#fff;padding:8px 16px;z-index:99999;font-size:14px}
+.skip-link:focus{left:0}
+.noscript-msg{padding:20px;text-align:center;font-family:sans-serif}
+
+/* Kontakt */
+.contact-wrap .contact-lead{text-align:center;color:var(--text-dim);font-size:16px;max-width:480px;margin:0 auto 28px;line-height:1.7}
+
+/* Lokální sekce na městských stránkách */
+.local-section{padding:80px 0}
+.local-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+.local-cards{display:flex;flex-direction:column;gap:20px}
+@media(max-width:768px){.local-grid{grid-template-columns:1fr}}
+
+/* Vyskakovací okno s nabídkou auditu */
+.audit-popup{display:none;position:fixed;inset:0;z-index:99999;background:rgba(5,4,10,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px}
+.audit-box{background:#0E0F14;border:1px solid rgba(240,20,122,.3);border-radius:24px;max-width:480px;width:100%;padding:44px 40px 40px;position:relative;box-shadow:0 24px 80px rgba(240,20,122,.15),0 8px 32px rgba(0,0,0,.6)}
+.audit-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0147a,rgba(240,20,122,.3));border-radius:24px 24px 0 0}
+.audit-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(245,240,250,.6);font-size:20px;cursor:pointer;line-height:1;padding:4px 8px}
+.audit-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0147a;font-weight:600;margin-bottom:16px}
+.audit-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,4vw,30px);font-weight:400;line-height:1.2;color:#f5f0fa;margin-bottom:16px}
+.audit-title em{color:#f0147a;font-style:italic}
+.audit-lead{font-size:15px;color:rgba(245,240,250,.65);line-height:1.7;margin-bottom:28px}
+.audit-list{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px}
+.audit-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,.7)}
+.audit-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:#f0147a;color:#fff;font-weight:700;font-size:16px;padding:16px 28px;border-radius:50px;text-decoration:none;transition:opacity .2s}
+.audit-note{font-size:12px;color:rgba(245,240,250,.5);text-align:center;margin-top:16px}
+
+/* Drobnosti dříve psané přímo v HTML */
+.faq-title{margin-bottom:0}
+.hero-note-icon{flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* Samostatné stránky: Ochrana osobních údajů, Poděkování, 404 */
+/* ochrana-udaju.html */
+.page-legal h1,.page-legal h2,.page-legal h3{font-family: 'DM Serif Display', Georgia, serif; font-weight: 400;}
+.page-legal{flex: 1; padding: 60px 0 100px; position: relative; z-index: 1;}
+.page-legal .container{max-width: 760px; margin: 0 auto; padding: 0 28px;}
+.page-legal .page-tag{font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;}
+.page-legal .page-tag::before{content: ''; width: 20px; height: 1px; background: var(--pink); flex-shrink: 0;}
+.page-legal h1{font-size: clamp(32px, 4vw, 50px); line-height: 1.1; margin-bottom: 40px;}
+.page-legal h1 em{font-style: italic; color: var(--pink);}
+.page-legal .info-card{background: rgba(240,20,122,0.05); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 44px; font-size: 15px; color: var(--text-dim); line-height: 1.75;}
+.page-legal .info-card strong{color: var(--text); font-weight: 600; display: block; margin-bottom: 8px;}
+.page-legal h2{font-size: 21px; color: var(--text); margin: 40px 0 12px; display: flex; align-items: center; gap: 12px;}
+.page-legal h2::before{content: ''; display: inline-block; width: 4px; height: 22px; background: var(--pink); border-radius: 2px; flex-shrink: 0;}
+.page-legal p{font-size: 15px; color: var(--text-dim); line-height: 1.85; margin-bottom: 16px;}
+.page-legal p strong{color: var(--text);}
+.page-legal a{color: var(--pink); text-decoration: none; transition: opacity 0.2s;}
+.page-legal a:hover{opacity: 0.8; text-decoration: underline;}
+
+/* podekovani.html */
+.page-thanks h1,.page-thanks h2,.page-thanks h3{font-family: 'DM Serif Display', Georgia, serif; font-weight: 400;}
+.page-thanks{flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 28px; position: relative; z-index: 1;}
+.page-thanks .wrap{max-width: 680px; width: 100%;}
+.page-thanks .eyebrow{display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;}
+.page-thanks .eyebrow-dot{width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: thanksPulseDot 2s infinite;}
+@keyframes thanksPulseDot{ 0%,100%{opacity:0.5;} 50%{opacity:1;} }
+.page-thanks .eyebrow-text{font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); font-weight: 600;}
+.page-thanks .heading-block{margin-bottom: 48px; position: relative;}
+.page-thanks .big-heading{font-size: clamp(52px, 9vw, 96px); line-height: 0.95; letter-spacing: -3px; margin-bottom: 0;}
+.page-thanks .big-heading .line1{display: block; color: var(--text);}
+.page-thanks .big-heading .line2{display: block; color: transparent; -webkit-text-stroke: 1px rgba(240,20,122,0.6);}
+.page-thanks .big-heading .line3{display: block; font-style: italic; color: var(--pink); text-shadow: 0 0 60px rgba(240,20,122,0.4);}
+.page-thanks .heading-deco{position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; align-items: flex-end;}
+.page-thanks .deco-line{height: 1px; background: linear-gradient(90deg, transparent, var(--pink)); animation: thanksLinePulse 2s ease-in-out infinite;}
+.page-thanks .deco-line:nth-child(1){width: 60px; animation-delay: 0s;}
+.page-thanks .deco-line:nth-child(2){width: 40px; animation-delay: 0.3s;}
+.page-thanks .deco-line:nth-child(3){width: 80px; animation-delay: 0.6s;}
+.page-thanks .deco-line:nth-child(4){width: 30px; animation-delay: 0.9s;}
+@keyframes thanksLinePulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+.page-thanks .perex{font-size: 17px; color: var(--text-dim); line-height: 1.8; margin-bottom: 40px; max-width: 520px;}
+.page-thanks .steps{display: flex; flex-direction: column; gap: 0; margin-bottom: 44px;}
+.page-thanks .step{display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(240,20,122,0.08); align-items: flex-start;}
+.page-thanks .step:last-child{border-bottom: none;}
+.page-thanks .step-num{font-family: 'DM Serif Display', serif; font-size: 40px; color: rgba(240,20,122,0.2); line-height: 1; flex-shrink: 0; width: 48px; transition: color 0.3s;}
+.page-thanks .step:hover .step-num{color: rgba(240,20,122,0.55);}
+.page-thanks .step-content h3{font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;}
+.page-thanks .step-content p{font-size: 14px; color: var(--text-dim); line-height: 1.6;}
+.page-thanks .btns{display: flex; gap: 14px; flex-wrap: wrap;}
+.page-thanks .btn-primary{display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 15px 34px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; transition: all 0.3s; box-shadow: 0 8px 28px rgba(240,20,122,0.35);}
+.page-thanks .btn-primary:hover{transform: translateY(-1px); box-shadow: 0 12px 36px rgba(240,20,122,0.5); background: var(--pink-light);}
+.page-thanks .btn-primary svg{width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
+.page-thanks .footer-inner{max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3);}
+.page-thanks .footer-inner a{color: rgba(240,20,122,0.6); text-decoration: none; transition: color 0.2s;}
+.page-thanks .footer-inner a:hover{color: var(--pink);}
+.page-thanks .footer-logo{font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none;}
+.page-thanks .footer-logo em{font-style: italic; color: var(--pink);}
+@media(max-width: 600px){.page-thanks .big-heading{font-size: 52px; letter-spacing: -2px;}
+.page-thanks .heading-deco{display: none;}
+.page-thanks .btns{flex-direction: column;}
+.page-thanks .btn-primary{justify-content: center;}}

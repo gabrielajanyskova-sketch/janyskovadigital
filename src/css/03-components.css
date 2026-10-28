@@ -1,0 +1,59 @@
+/* Komponenty a úpravy z auditu 10/2026 */
+.article-faq{margin:56px auto 0;max-width:820px}
+.article-faq h2{font-size:clamp(24px,3vw,32px);margin-bottom:0}
+.article-faq .faq-list{margin-top:24px}
+.form-note{margin-top:14px;font-size:12px;color:var(--text-dim);text-align:center;line-height:1.6}
+.form-note a{color:var(--pink);text-decoration:underline}
+.local-section{position:relative;z-index:1}
+.local-section p{color:var(--text-dim);font-size:16px;line-height:1.8}
+.local-section p+p{margin-top:18px}
+.info-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:18px 22px}
+.info-card-label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);font-weight:700;margin-bottom:6px}
+.info-card-value{font-size:17px;font-weight:700;color:var(--text)}
+.price-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.price-mini-note{margin-top:22px;color:var(--text-dim);font-size:15px;line-height:1.7}
+.price-mini-note a{color:var(--pink);font-weight:700;white-space:nowrap}
+@media(max-width:900px){.price-mini{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.price-mini{grid-template-columns:1fr}}
+.contact-wrap .section-cta--sm{margin:0 0 28px}
+.form-row{row-gap:0}
+.form-group{margin-bottom:16px}
+.btn-submit{margin-top:10px}
+.blog-grid+div{margin-top:44px;text-align:center}
+.ref-track{scroll-behavior:auto}
+.article-body p a,.article-body li a,.article-body td a,.hl-box a,.step-body a{text-decoration:underline;text-underline-offset:3px}
+.breadcrumb span{opacity:1;color:var(--text-dim)}
+.article-body :is(p,li,td) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
+.article-body :is(.step-body,.hl-box,.tl-text,.yn-list) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
+
+/* Odkaz „Přeskočit na obsah“ a hláška bez JavaScriptu */
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--pink);color:#fff;padding:8px 16px;z-index:99999;font-size:14px}
+.skip-link:focus{left:0}
+.noscript-msg{padding:20px;text-align:center;font-family:sans-serif}
+
+/* Kontakt */
+.contact-wrap .contact-lead{text-align:center;color:var(--text-dim);font-size:16px;max-width:480px;margin:0 auto 28px;line-height:1.7}
+
+/* Lokální sekce na městských stránkách */
+.local-section{padding:80px 0}
+.local-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+.local-cards{display:flex;flex-direction:column;gap:20px}
+@media(max-width:768px){.local-grid{grid-template-columns:1fr}}
+
+/* Vyskakovací okno s nabídkou auditu */
+.audit-popup{display:none;position:fixed;inset:0;z-index:99999;background:rgba(5,4,10,.75);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:24px}
+.audit-box{background:#0E0F14;border:1px solid rgba(240,20,122,.3);border-radius:24px;max-width:480px;width:100%;padding:44px 40px 40px;position:relative;box-shadow:0 24px 80px rgba(240,20,122,.15),0 8px 32px rgba(0,0,0,.6)}
+.audit-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f0147a,rgba(240,20,122,.3));border-radius:24px 24px 0 0}
+.audit-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(245,240,250,.6);font-size:20px;cursor:pointer;line-height:1;padding:4px 8px}
+.audit-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f0147a;font-weight:600;margin-bottom:16px}
+.audit-title{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,4vw,30px);font-weight:400;line-height:1.2;color:#f5f0fa;margin-bottom:16px}
+.audit-title em{color:#f0147a;font-style:italic}
+.audit-lead{font-size:15px;color:rgba(245,240,250,.65);line-height:1.7;margin-bottom:28px}
+.audit-list{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px}
+.audit-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,.7)}
+.audit-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:#f0147a;color:#fff;font-weight:700;font-size:16px;padding:16px 28px;border-radius:50px;text-decoration:none;transition:opacity .2s}
+.audit-note{font-size:12px;color:rgba(245,240,250,.5);text-align:center;margin-top:16px}
+
+/* Drobnosti dříve psané přímo v HTML */
+.faq-title{margin-bottom:0}
+.hero-note-icon{flex-shrink:0;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}

@@ -1,0 +1,1144 @@
+[
+  {
+    "slug": "brno",
+    "name": "Brno",
+    "title": "Webové stránky Brno | od 5 900 Kč | Bez WordPressu a poplatků",
+    "description": "Tvorba webových stránek Brno od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Brno | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Brno od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Brno",
+    "geoRegion": "CZ-64",
+    "geoPlacename": "Brno",
+    "geoPosition": "49.1951;16.6068",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Brně.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Brna.</em>",
+    "localP1": "Ve velkém městě nestačí cílit na „webové stránky Brno“ — tam se přetahují desítky firem. Víc přinese konkrétní dotaz, třeba „instalatér Brno-Královo Pole“. Hledá ho méně lidí, ale skoro každý z nich je zákazník. Proto stavím web tak, aby každá služba a čtvrť, kde působíte, měla na webu své místo.",
+    "localP2": "Spolupráce na dálku funguje stejně jako osobně — moje klienty najdete v Moravskoslezském a Olomouckém kraji i v Praze. Ukázky jsou níž mezi referencemi.",
+    "meet": "Online",
+    "references": [
+      "hubackova",
+      "slonek",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "v Brně",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Brně?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Brně?",
+        "a": "Tvorba webových stránek v Brně začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Brno",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Brně a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Brno"
+        },
+        {
+          "@type": "State",
+          "name": "Jihomoravský kraj"
+        },
+        {
+          "@type": "Country",
+          "name": "Česká republika"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Brno",
+      "pageName": "Tvorba webových stránek Brno | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Brně na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Jihomoravského kraje.",
+      "breadcrumbName": "Brno"
+    }
+  },
+  {
+    "slug": "frenstat",
+    "name": "Frenštát pod Radhoštěm",
+    "title": "Tvorba webových stránek Frenštát pod Radhoštěm | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Frenštát pod Radhoštěm od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "ogTitle": "Tvorba webových stránek Frenštát pod Radhoštěm | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Frenštát pod Radhoštěm od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Frenštát pod Radhoštěm",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Frenštát pod Radhoštěm",
+    "geoPosition": "49.5494;18.2136",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek ve&nbsp;<em>Frenštátě.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Frenštátu pod Radhoštěm.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Nejbližší reference: web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku. Je na něm hned vidět, co firma dělá — zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu pomůže.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "ve Frenštátě",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Frenštátu?",
+        "a": "Ano, když je to potřeba — po Moravskoslezském kraji jezdím. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Jak se dostat na Google ve Frenštátě pod Radhoštěm?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek ve Frenštátě?",
+        "a": "Tvorba webových stránek ve Frenštátě začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Frenštát pod Radhoštěm",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru ve Frenštátu pod Radhoštěm a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Frenštát pod Radhoštěm"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Frenštátsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Frenštát pod Radhoštěm",
+      "pageName": "Tvorba webových stránek Frenštát pod Radhoštěm | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek ve Frenštátu pod Radhoštěm na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Frenštátsko.",
+      "breadcrumbName": "Frenštát pod Radhoštěm"
+    }
+  },
+  {
+    "slug": "frydek-mistek",
+    "name": "Frýdek-Místek",
+    "title": "Tvorba webových stránek Frýdek-Místek | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Frýdek-Místek od 5 900 Kč. Webdesign a SEO optimalizace v ceně, reference Stavby Literák. Online, nebo osobně po MS kraji.",
+    "ogTitle": "Webdesign Frýdek-Místek | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek ve Frýdku-Místku. Webdesign a SEO optimalizace v ceně, reference Stavby Literák. Online, nebo osobně po MS kraji.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Frýdek-Místek",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Frýdek-Místek",
+    "geoPosition": "49.6833;18.3667",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>ve&nbsp;<em>Frýdku-Místku.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://stavbyliterak.cz",
+      "aria": "Web stavbyliterak.cz",
+      "img": "/img/literak-desktop.webp",
+      "alt": "Web stavbyliterak.cz — stavební firma z Frýdku-Místku",
+      "width": "612",
+      "height": "408",
+      "label": "stavbyliterak.cz · Frýdek-Místek"
+    },
+    "localH2": "Web pro firmu<br><em>z Frýdku-Místku.</em>",
+    "localP1": "Když někdo hledá stavební firmu, kadeřnici nebo účetní, napíše do Googlu službu a město — třeba „lešení Frýdek-Místek“. Aby vás našel, musí mít web službu i město na správných místech: v titulku, v nadpisu, v popisu pro Google a v profilu firmy na Googlu. Tohle nastavím u každého webu.",
+    "localP2": "Pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku jsem udělala web, na kterém je hned vidět, co firma dělá — termovize, zemní práce, lešení, hliníkový program i zednické práce. Zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu firma pomůže.",
+    "meet": "Online, osobně po MS kraji",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "ve Frýdku-Místku",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Frýdku-Místku?",
+        "a": "Ano, když je to potřeba — po Moravskoslezském kraji jezdím. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Máte referenci z Frýdku-Místku?",
+        "a": "Ano — web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\">Stavby Literák</a>, stavební firmu z Frýdku-Místku. Najdete ho výš mezi referencemi."
+      },
+      {
+        "q": "Jak se dostat na Google ve Frýdku-Místku?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek ve Frýdku-Místku?",
+        "a": "Tvorba webových stránek ve Frýdku-Místku začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Frýdek-Místek",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru ve Frýdku-Místku a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Frýdek-Místek"
+        },
+        {
+          "@type": "City",
+          "name": "Třinec"
+        },
+        {
+          "@type": "City",
+          "name": "Havířov"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Frýdecko-Místecko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Frýdek-Místek",
+      "pageName": "Tvorba webových stránek Frýdek-Místek | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek ve Frýdku-Místku na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Frýdecko-Místecka.",
+      "breadcrumbName": "Frýdek-Místek"
+    }
+  },
+  {
+    "slug": "hranice",
+    "name": "Hranice",
+    "title": "Tvorba webových stránek Hranice | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Hranice od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Hranice | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Hranice od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Hranice",
+    "geoRegion": "CZ-71",
+    "geoPlacename": "Hranice",
+    "geoPosition": "49.5478;17.7197",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Hranicích.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz · Olomoucký kraj"
+    },
+    "localH2": "Web pro firmu<br><em>z Hranic.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Z Olomouckého kraje mám dvě reference: web pro finančního poradce <a href=\"https://jaroslavslonek.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Ing. Jaroslava Slonka</a> a pro <a href=\"https://hubackovafoto.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">fotografku Nikolu Hubáčkovou</a>. Oba najdete níž mezi referencemi.",
+    "meet": "Online, osobně v MS kraji",
+    "references": [
+      "slonek",
+      "hubackova",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "v Hranicích",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Hranicích?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Máte reference z Olomouckého kraje?",
+        "a": "Ano — web pro finančního poradce <a href=\"https://jaroslavslonek.cz\" target=\"_blank\" rel=\"noopener noreferrer\">Ing. Jaroslava Slonka</a> a pro fotografku <a href=\"https://hubackovafoto.cz\" target=\"_blank\" rel=\"noopener noreferrer\">Nikolu Hubáčkovou</a>."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Hranicích?",
+        "a": "Tvorba webových stránek v Hranicích začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Hranice",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Hranicích a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Hranice"
+        },
+        {
+          "@type": "City",
+          "name": "Lipník nad Bečvou"
+        },
+        {
+          "@type": "City",
+          "name": "Přerov"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Přerovsko"
+        },
+        {
+          "@type": "State",
+          "name": "Olomoucký kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Hranice",
+      "pageName": "Tvorba webových stránek Hranice | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Hranicích na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Hranic a Přerovska.",
+      "breadcrumbName": "Hranice"
+    }
+  },
+  {
+    "slug": "jicin",
+    "name": "Jičín",
+    "title": "Tvorba webových stránek Jičín | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Jičín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Jičín | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Jičín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Jičín",
+    "geoRegion": "CZ-52",
+    "geoPlacename": "Jičín",
+    "geoPosition": "50.4369;15.3601",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Jičíně.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Hledáte web v Jičíně, ne v Novém Jičíně? Jste správně. Pracuji online, takže na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Jičína.</em>",
+    "localP1": "Jičín a Nový Jičín si Google i lidé často pletou. Proto musí mít váš web jasně uvedené „Jičín“ a okolí, kde působíte — Jičínsko, Český ráj, okolní obce. Pak vás Google ukáže těm správným lidem. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Spolupráce na dálku funguje stejně jako osobně — moje klienty najdete v Moravskoslezském a Olomouckém kraji i v Praze. Ukázky jsou níž mezi referencemi.",
+    "meet": "Online",
+    "references": [
+      "hubackova",
+      "slonek",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "v Jičíně",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Jičíně?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Děláte weby v Jičíně, nebo v Novém Jičíně?",
+        "a": "Obojí. Sídlím u Nového Jičína na Moravě, ale weby dělám online pro celou ČR — klienty z Jičína a Jičínska taky."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Jičíně?",
+        "a": "Tvorba webových stránek v Jičíně začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Jičín",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Jičíně a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Hradec Králové"
+        },
+        {
+          "@type": "City",
+          "name": "Příbor"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Jičínsko"
+        },
+        {
+          "@type": "State",
+          "name": "Královéhradecký kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Jičín",
+      "pageName": "Tvorba webových stránek Jičín | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Jičíně na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Jičínska.",
+      "breadcrumbName": "Jičín"
+    }
+  },
+  {
+    "slug": "koprivnice",
+    "name": "Kopřivnice",
+    "title": "Tvorba webových stránek Kopřivnice | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Kopřivnice od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "ogTitle": "Tvorba webových stránek Kopřivnice | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Kopřivnice od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Kopřivnice",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Kopřivnice",
+    "geoPosition": "49.5978;18.1502",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Kopřivnici.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Kopřivnice.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Nejbližší reference: web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku. Je na něm hned vidět, co firma dělá — zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu pomůže.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Kopřivnici",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Kopřivnice?",
+        "a": "Ano, když je to potřeba — po Moravskoslezském kraji jezdím. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Jak se dostat na Google v Kopřivnici?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Kopřivnici?",
+        "a": "Tvorba webových stránek v Kopřivnici začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": "<section style=\"padding:80px 0 20px\">\n  <div class=\"container\">\n    <div class=\"section-tag\">Kopřivnicko a okolí</div>\n    <h2 class=\"section-title\">Tvořím weby i pro <em>okolní města.</em></h2>\n    <p style=\"color:var(--text-dim);max-width:600px;margin-bottom:32px;line-height:1.7;\">Weby dělám pro firmy z celého Kopřivnicka — ze Štramberka, Příbora i Nového Jičína. Když je potřeba, přijedu osobně.</p>\n    <div class=\"city-grid\">\n      <a href=\"/novy-jicin/\" class=\"city-card\">\n        <span class=\"city-card-name\">Nový Jičín</span>\n        <span class=\"city-card-link\">Webdesign Nový Jičín →</span>\n        <span class=\"price-note\">~10 km</span>\n      </a>\n      <a href=\"/pribor/\" class=\"city-card\">\n        <span class=\"city-card-name\">Příbor</span>\n        <span class=\"city-card-link\">Webdesign Příbor →</span>\n        <span class=\"price-note\">~7 km</span>\n      </a>\n      <a href=\"/frenstat/\" class=\"city-card\">\n        <span class=\"city-card-name\">Frenštát p. R.</span>\n        <span class=\"city-card-link\">Webdesign Frenštát →</span>\n        <span class=\"price-note\">~12 km</span>\n      </a>\n      <a href=\"/roznov/\" class=\"city-card\">\n        <span class=\"city-card-name\">Rožnov p. R.</span>\n        <span class=\"city-card-link\">Webdesign Rožnov →</span>\n        <span class=\"price-note\">~20 km</span>\n      </a>\n      <a href=\"/valasske-mezirici/\" class=\"city-card\">\n        <span class=\"city-card-name\">Val. Meziříčí</span>\n        <span class=\"city-card-link\">Webdesign Val. Meziříčí →</span>\n        <span class=\"price-note\">~25 km</span>\n      </a>\n      <a href=\"/hranice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Hranice</span>\n        <span class=\"city-card-link\">Webdesign Hranice →</span>\n        <span class=\"price-note\">~30 km</span>\n      </a>\n    </div>\n  </div>\n</section>",
+    "subject": "Kopřivnice",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Kopřivnici a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Kopřivnice"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Příbor"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Kopřivnicko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Kopřivnice",
+      "pageName": "Tvorba webových stránek Kopřivnice | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Kopřivnici na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Kopřivnicka.",
+      "breadcrumbName": "Kopřivnice"
+    }
+  },
+  {
+    "slug": "novy-jicin",
+    "name": "Nový Jičín",
+    "title": "Tvorba webových stránek Nový Jičín | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Nový Jičín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "ogTitle": "Tvorba webových stránek a SEO Nový Jičín | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Nový Jičín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Nový Jičín",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Nový Jičín",
+    "geoPosition": "49.5933;18.0139",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Novém Jičíně.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Nového Jičína.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Sídlím ve Starojické Lhotě, kousek od Nového Jičína, takže se klidně potkáme osobně. Nejbližší reference: web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku. Je na něm hned vidět, co firma dělá — zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu pomůže.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Novém Jičíně",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Nového Jičína?",
+        "a": "Ano. Sídlím ve Starojické Lhotě, kousek od Nového Jičína, takže se klidně potkáme osobně. Většinu ale vyřešíme online, abyste se mnou neztráceli čas."
+      },
+      {
+        "q": "Jak se dostat na Google v Novém Jičíně?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Novém Jičíně?",
+        "a": "Tvorba webových stránek v Novém Jičíně začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      },
+      {
+        "q": "Jak si vybrat webdesignéra v Novém Jičíně?",
+        "a": "Klíčová jsou tři kritéria: ukázky práce (portfolio), rychlost a dostupnost webu (PageSpeed skóre), a transparentní ceník bez skrytých poplatků. Doporučuji ptát se na technologii — WordPress vyžaduje drahý hosting a pravidelnou péči, čistý kód je levnější a bezpečnější. Místní webdesignér z Nového Jičína nebo okolí navíc zná místní trh a s první schůzkou přijede osobně."
+      },
+      {
+        "q": "Podnikám v Novém Jičíně — kde vzít první zákazníky online?",
+        "a": "Základ je mít vlastní web, který Google najde pro lokální dotazy jako „[vaše služba] Nový Jičín“. K tomu pomáhá <strong>Google Business Profile</strong> — zdarma, zobrazí se přímo na mapě. Web stavím s lokálním SEO od začátku: správné struktury, Schema.org data a cílení na klíčová slova z vašeho regionu."
+      }
+    ],
+    "citiesSection": "<section>\n  <div class=\"container\">\n    <div class=\"section-tag\">Novojičínsko a okolí</div>\n    <h2 class=\"section-title\">Tvořím weby i pro <em>okolní města.</em></h2>\n    <p style=\"color:var(--text-dim);max-width:600px;line-height:1.8;margin-bottom:32px;\">Sídlím ve Starojické Lhotě kousek od Nového Jičína, takže schůzku domluvíme osobně nebo online. Webové stránky dělám i pro firmy a podnikatele z Kopřivnice, Příboru, Frenštátu nebo Hranic.</p>\n    <div class=\"city-grid\" style=\"grid-template-columns:repeat(auto-fit,minmax(160px,1fr));\">\n      <a href=\"/koprivnice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Kopřivnice</span>\n        <span class=\"city-card-link\">10 km · Webdesign Kopřivnice →</span>\n      </a>\n      <a href=\"/pribor/\" class=\"city-card\">\n        <span class=\"city-card-name\">Příbor</span>\n        <span class=\"city-card-link\">9 km · Webdesign Příbor →</span>\n      </a>\n      <a href=\"/frenstat/\" class=\"city-card\">\n        <span class=\"city-card-name\">Frenštát p. R.</span>\n        <span class=\"city-card-link\">15 km · Webdesign Frenštát →</span>\n      </a>\n      <a href=\"/hranice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Hranice</span>\n        <span class=\"city-card-link\">25 km · Webdesign Hranice →</span>\n      </a>\n      <a href=\"/roznov/\" class=\"city-card\">\n        <span class=\"city-card-name\">Rožnov p. R.</span>\n        <span class=\"city-card-link\">20 km · Webdesign Rožnov →</span>\n      </a>\n      <a href=\"/valasske-mezirici/\" class=\"city-card\">\n        <span class=\"city-card-name\">Val. Meziříčí</span>\n        <span class=\"city-card-link\">25 km · Webdesign Val. Meziříčí →</span>\n      </a>\n    </div>\n  </div>\n</section>",
+    "subject": "Nový Jičín",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Novém Jičíně a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Příbor"
+        },
+        {
+          "@type": "City",
+          "name": "Kopřivnice"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Novojičínsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Nový Jičín",
+      "pageName": "Tvorba webových stránek Nový Jičín | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Novém Jičíně na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Novojičínska.",
+      "breadcrumbName": "Nový Jičín"
+    }
+  },
+  {
+    "slug": "olomouc",
+    "name": "Olomouc",
+    "title": "Webové stránky Olomouc | od 5 900 Kč | Bez poplatků | SEO v ceně",
+    "description": "Tvorba webových stránek Olomouc od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Olomouc | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Olomouc od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Olomouc",
+    "geoRegion": "CZ-71",
+    "geoPlacename": "Olomouc",
+    "geoPosition": "49.5938;17.2509",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Olomouci.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz · Olomoucký kraj"
+    },
+    "localH2": "Web pro firmu<br><em>z Olomouce.</em>",
+    "localP1": "Když někdo hledá službu, napíše do Googlu službu a město — třeba „svatební fotograf Olomouc“. Aby vás našel, musí mít web obojí na správných místech: v titulku, v nadpisu, v popisu pro Google a v profilu firmy na Googlu. Tohle nastavím u každého webu.",
+    "localP2": "Z Olomouckého kraje mám dvě reference: web pro finančního poradce <a href=\"https://jaroslavslonek.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Ing. Jaroslava Slonka</a> a pro <a href=\"https://hubackovafoto.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">fotografku Nikolu Hubáčkovou</a>. Oba najdete níž mezi referencemi.",
+    "meet": "Online",
+    "references": [
+      "slonek",
+      "hubackova",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "v Olomouci",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Olomouci?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Máte reference z Olomouckého kraje?",
+        "a": "Ano — web pro finančního poradce <a href=\"https://jaroslavslonek.cz\" target=\"_blank\" rel=\"noopener noreferrer\">Ing. Jaroslava Slonka</a> a pro fotografku <a href=\"https://hubackovafoto.cz\" target=\"_blank\" rel=\"noopener noreferrer\">Nikolu Hubáčkovou</a>."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Olomouci?",
+        "a": "Tvorba webových stránek v Olomouci začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Olomouc",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Olomouci a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Olomouc"
+        },
+        {
+          "@type": "State",
+          "name": "Olomoucký kraj"
+        },
+        {
+          "@type": "Country",
+          "name": "Česká republika"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Olomouc",
+      "pageName": "Tvorba webových stránek Olomouc | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Olomouci na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Olomouckého kraje.",
+      "breadcrumbName": "Olomouc"
+    }
+  },
+  {
+    "slug": "ostrava",
+    "name": "Ostrava",
+    "title": "Webové stránky Ostrava | od 5 900 Kč | Zákazníci vás najdou",
+    "description": "Tvorba webových stránek Ostrava od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "ogTitle": "Tvorba webových stránek Ostrava | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Ostrava od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Ostrava",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Ostrava",
+    "geoPosition": "49.8209;18.2625",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Ostravě.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Ostravy.</em>",
+    "localP1": "Ve velkém městě nestačí cílit na „webové stránky Ostrava“ — tam se přetahují desítky firem. Víc přinese konkrétní dotaz, třeba „elektrikář Ostrava-Poruba“. Hledá ho méně lidí, ale skoro každý z nich je zákazník. Proto stavím web tak, aby každá služba a čtvrť, kde působíte, měla na webu své místo.",
+    "localP2": "Nejbližší reference: web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku. Je na něm hned vidět, co firma dělá — zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu pomůže.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Ostravě",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Ostravy?",
+        "a": "Ano, když je to potřeba — po Moravskoslezském kraji jezdím. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Jak se dostat na Google v Ostravě?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Ostravě?",
+        "a": "Tvorba webových stránek Ostrava začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Ostrava",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Ostravě a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Ostrava"
+        },
+        {
+          "@type": "City",
+          "name": "Opava"
+        },
+        {
+          "@type": "City",
+          "name": "Havířov"
+        },
+        {
+          "@type": "City",
+          "name": "Karviná"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Moravská Ostrava"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Poruba"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Vítkovice"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Ostravsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "49.8209",
+          "longitude": "18.2625"
+        },
+        "geoRadius": "30000"
+      },
+      "catalogName": "Tvorba webových stránek Ostrava",
+      "pageName": "Tvorba webových stránek Ostrava | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Ostravě na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Ostravy a okolí.",
+      "breadcrumbName": "Ostrava"
+    }
+  },
+  {
+    "slug": "praha",
+    "name": "Praha",
+    "title": "Webové stránky Praha | od 5 900 Kč | Bez WordPressu | Hotovo rychle",
+    "description": "Tvorba webových stránek Praha od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Praha | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Praha od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Praha",
+    "geoRegion": "CZ-10",
+    "geoPlacename": "Praha",
+    "geoPosition": "50.0755;14.4378",
+    "h1": "Tvorba webových stránek v&nbsp;<em>Praze.</em>",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://lufactory.cz",
+      "aria": "E-shop lufactory.cz",
+      "img": "/img/lufactory-desktop.webp",
+      "alt": "E-shop lufactory.cz z Prahy",
+      "width": "612",
+      "height": "408",
+      "label": "lufactory.cz · Praha"
+    },
+    "localH2": "Web pro firmu<br><em>z Prahy.</em>",
+    "localP1": "Ve velkém městě nestačí cílit na „webové stránky Praha“ — tam se přetahují desítky firem. Víc přinese konkrétní dotaz, třeba „kosmetický salon Praha 5“. Hledá ho méně lidí, ale skoro každý z nich je zákazník. Proto stavím web tak, aby každá služba a čtvrť, kde působíte, měla na webu své místo.",
+    "localP2": "Z Prahy je moje reference e-shop <a href=\"https://lufactory.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">lufactory</a> — přírodní houbičky z lufy. Celá spolupráce proběhla online, od návrhu po spuštění.",
+    "meet": "Online",
+    "references": [
+      "lufactory",
+      "hubackova",
+      "slonek",
+      "literak"
+    ],
+    "priceIn": "v Praze",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Praze?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Máte referenci z Prahy?",
+        "a": "Ano — e-shop <a href=\"https://lufactory.cz\" target=\"_blank\" rel=\"noopener noreferrer\">lufactory.cz</a> s přírodními houbičkami z lufy. Celá spolupráce proběhla online."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Praze?",
+        "a": "Tvorba webových stránek v Praze začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Praha",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Praze a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Praha"
+        },
+        {
+          "@type": "State",
+          "name": "Praha"
+        },
+        {
+          "@type": "Country",
+          "name": "Česká republika"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Praha",
+      "pageName": "Tvorba webových stránek Praha | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Praze na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Prahy.",
+      "breadcrumbName": "Praha"
+    }
+  },
+  {
+    "slug": "pribor",
+    "name": "Příbor",
+    "title": "Tvorba webových stránek Příbor | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Příbor od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "ogTitle": "Tvorba webových stránek Příbor | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Příbor od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Online i osobně.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Příbor",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Příbor",
+    "geoPosition": "49.6400;18.1467",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Příboře.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Příbora.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Nejbližší reference: web pro <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"color:var(--pink);font-weight:600;\">Stavby Literák</a> z Frýdku-Místku. Je na něm hned vidět, co firma dělá — zákazník nemusí nic hledat ani volat, aby zjistil, jestli mu pomůže.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Příboře",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Příbora?",
+        "a": "Ano, když je to potřeba — po Moravskoslezském kraji jezdím. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Jak se dostat na Google v Příboře?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Příboře?",
+        "a": "Tvorba webových stránek v Příboře začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Příbor",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Příboře a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Příbor"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Kopřivnice"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Příborsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Příbor",
+      "pageName": "Tvorba webových stránek Příbor | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Příboře na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Příborska.",
+      "breadcrumbName": "Příbor"
+    }
+  },
+  {
+    "slug": "roznov",
+    "name": "Rožnov pod Radhoštěm",
+    "title": "Tvorba webových stránek Rožnov pod Radhoštěm | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Rožnov pod Radhoštěm od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Rožnov pod Radhoštěm | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Rožnov pod Radhoštěm od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Rožnov pod Radhoštěm",
+    "geoRegion": "CZ-72",
+    "geoPlacename": "Rožnov pod Radhoštěm",
+    "geoPosition": "49.4578;18.1439",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Rožnově.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Rožnova pod Radhoštěm.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Spolupráce na dálku funguje stejně jako osobně — moje klienty najdete v Moravskoslezském a Olomouckém kraji i v Praze. Ukázky jsou níž mezi referencemi.",
+    "meet": "Online, osobně v MS kraji",
+    "references": [
+      "hubackova",
+      "slonek",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "v Rožnově",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google v Rožnově pod Radhoštěm?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Rožnově?",
+        "a": "Tvorba webových stránek v Rožnově začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Rožnov pod Radhoštěm",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru v Rožnově pod Radhoštěm a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Rožnov pod Radhoštěm"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Rožnovsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Rožnov pod Radhoštěm",
+      "pageName": "Tvorba webových stránek Rožnov pod Radhoštěm | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek v Rožnově pod Radhoštěm na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Rožnovsko.",
+      "breadcrumbName": "Rožnov pod Radhoštěm"
+    }
+  },
+  {
+    "slug": "valasske-mezirici",
+    "name": "Valašské Meziříčí",
+    "title": "Tvorba webových stránek Valašské Meziříčí | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Valašské Meziříčí od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Valašské Meziříčí | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Valašské Meziříčí od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Valašské Meziříčí",
+    "geoRegion": "CZ-72",
+    "geoPlacename": "Valašské Meziříčí",
+    "geoPosition": "49.4712;17.9714",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>ve&nbsp;<em>Valašském Meziříčí.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>z Valašského Meziříčí.</em>",
+    "localP1": "V menším městě je konkurence na Googlu menší. Web, který má službu a město v titulku a nadpisu, spolu s vyplněným profilem firmy na Googlu často stačí na první stránku. Zákazníci tu hledají i podle okolních obcí — proto je na webu uvedu taky.",
+    "localP2": "Spolupráce na dálku funguje stejně jako osobně — moje klienty najdete v Moravskoslezském a Olomouckém kraji i v Praze. Ukázky jsou níž mezi referencemi.",
+    "meet": "Online, osobně v MS kraji",
+    "references": [
+      "hubackova",
+      "slonek",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "ve Valašském Meziříčí",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google ve Valašském Meziříčí?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek ve Valašském Meziříčí?",
+        "a": "Tvorba webových stránek ve Valašském Meziříčí začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Valašské Meziříčí",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru ve Valašském Meziříčí a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Valašské Meziříčí"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Valašskomeziříčsko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Valašské Meziříčí",
+      "pageName": "Tvorba webových stránek Valašské Meziříčí | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek ve Valašském Meziříčí na míru. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru z Valašskomeziříčsko.",
+      "breadcrumbName": "Valašské Meziříčí"
+    }
+  },
+  {
+    "slug": "zlin",
+    "name": "Zlín",
+    "title": "Tvorba webových stránek Zlín | od 5 900 Kč | Janyskova Digital",
+    "description": "Tvorba webových stránek Zlín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "ogTitle": "Tvorba webových stránek Zlín | Janyskova Digital",
+    "ogDescription": "Tvorba webových stránek Zlín od 5 900 Kč. Webdesign a SEO optimalizace v ceně, bez WordPressu a měsíčních poplatků. Spolupráce online.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Zlín",
+    "geoRegion": "CZ-72",
+    "geoPlacename": "Zlín",
+    "geoPosition": "49.2262;17.6628",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>ve&nbsp;<em>Zlíně.</em><!--/CMS:hero_title-->",
+    "heroSub": "Vy se věnujte svému byznysu, já vám přivedu zákazníky z Googlu. Webové stránky na míru se SEO optimalizací v ceně — bez WordPressu a bez měsíčních poplatků.",
+    "heroNote": "Všechno vyřešíme online — e-mailem nebo krátkým hovorem, ať se mnou neztrácíte čas. Na vzdálenosti nezáleží.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro firmu<br><em>ze Zlína.</em>",
+    "localP1": "Když někdo hledá službu, napíše do Googlu službu a město — třeba „fyzioterapie Zlín“. Aby vás našel, musí mít web obojí na správných místech: v titulku, v nadpisu, v popisu pro Google a v profilu firmy na Googlu. Tohle nastavím u každého webu.",
+    "localP2": "Spolupráce na dálku funguje stejně jako osobně — moje klienty najdete v Moravskoslezském a Olomouckém kraji i v Praze. Ukázky jsou níž mezi referencemi.",
+    "meet": "Online",
+    "references": [
+      "hubackova",
+      "slonek",
+      "lufactory",
+      "literak"
+    ],
+    "priceIn": "ve Zlíně",
+    "faq": [
+      {
+        "q": "Musíme se kvůli webu potkat osobně?",
+        "a": "Ne. Všechno vyřešíme online — e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas. Osobní schůzky dělám v Moravskoslezském kraji."
+      },
+      {
+        "q": "Jak se dostat na Google ve Zlíně?",
+        "a": "Základ jsou tři věci: web, který má službu a město v titulku i nadpisu, vyplněný profil firmy na Googlu a skutečné recenze od zákazníků. Web a profil vám nastavím, recenze pak sbíráte od spokojených zákazníků."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek ve Zlíně?",
+        "a": "Tvorba webových stránek ve Zlíně začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Zlín",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří webové stránky na míru ve Zlíně a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Zlín"
+        },
+        {
+          "@type": "State",
+          "name": "Zlínský kraj"
+        },
+        {
+          "@type": "Country",
+          "name": "Česká republika"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Zlín",
+      "pageName": "Tvorba webových stránek Zlín | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek ve Zlíně na míru. Gabriela Janýšková — čistý kód, PageSpeed 90–100, hosting v ceně tvorby. Tvorba webů na míru ze Zlínského kraje.",
+      "breadcrumbName": "Zlín"
+    }
+  }
+]

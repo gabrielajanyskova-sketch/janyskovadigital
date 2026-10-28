@@ -426,7 +426,9 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
 (function() {
   const cta = document.createElement('div');
   cta.className = 'sticky-mobile-cta';
-  cta.innerHTML = '<a href="#kontakt">Mám zájem <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>';
+  // Na stránkách bez kontaktního formuláře vede tlačítko na formulář na hlavní stránce
+  const kontaktHref = document.getElementById('kontakt') ? '#kontakt' : '/#kontakt';
+  cta.innerHTML = '<a href="' + kontaktHref + '">Mám zájem <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>';
   document.body.appendChild(cta);
 
   let shown = false;

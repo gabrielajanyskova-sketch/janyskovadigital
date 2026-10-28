@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{city.title}}</title>
+<meta name="description" content="{{city.description}}">
+<meta property="og:title" content="{{city.ogTitle}}">
+<meta property="og:description" content="{{city.ogDescription}}">
+<meta property="og:url" content="https://janyskovadigital.cz/{{city.slug}}/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{city.imageAlt}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://janyskovadigital.cz/og-image.png">
+<meta name="twitter:image:alt" content="{{city.imageAlt}}">
+<meta name="twitter:title" content="{{city.ogTitle}}">
+<meta name="twitter:description" content="{{city.ogDescription}}">
+<meta name="geo.region" content="{{city.geoRegion}}">
+<meta name="geo.placename" content="{{city.geoPlacename}}">
+<meta name="geo.position" content="{{city.geoPosition}}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://janyskovadigital.cz/{{city.slug}}/">
+<!-- @include head-common -->
+<link rel="stylesheet" href="/landing.css?v={{landingv}}">
+<script type="application/ld+json">{{cityJsonLd}}</script>
+<script type="application/ld+json">{{faqJsonLd}}</script>
+</head>
+<body>
+<!-- @include body-start -->
+<!-- @include nav about="/#o-mne" cenik="#cenik" kontakt="#kontakt" -->
+
+<main id="main">
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <header class="hero-header">
+          <h1>{{city.h1}}</h1>
+          <p class="hero-sub">{{city.heroSub}}</p>
+        </header>
+        <div class="hero-note">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" class="hero-note-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          {{city.heroNote}}
+        </div>
+        <div class="hero-btns">
+          <a href="#kontakt" class="btn-primary">
+            Pojďme na to
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#reference" class="btn-outline">Ukázky práce</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-showcase">
+          <div class="hero-showcase-label">Ukázka práce</div>
+          <a href="{{city.showcase.url}}" target="_blank" rel="noopener noreferrer" aria-label="{{city.showcase.aria}}">
+            <img src="{{city.showcase.img}}" alt="{{city.showcase.alt}}" width="{{city.showcase.width}}" height="{{city.showcase.height}}" loading="eager" fetchpriority="high" decoding="async">
+          </a>
+          <span class="hero-showcase-name">{{city.showcase.label}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="local-section">
+  <div class="container">
+    <div class="section-tag">Webdesign {{city.name}}</div>
+    <h2 class="section-title">{{city.localH2}}</h2>
+    <div class="local-grid">
+      <div>
+        <p>{{city.localP1}}</p>
+        <p>{{city.localP2}}</p>
+      </div>
+      <div class="local-cards">
+        <div class="info-card"><div class="info-card-label">Schůzky</div><div class="info-card-value">{{city.meet}}</div></div>
+        <div class="info-card"><div class="info-card-label">Doba realizace</div><div class="info-card-value">7–10 dnů od podkladů</div></div>
+        <div class="info-card"><div class="info-card-label">Cena webu {{city.name}}</div><div class="info-card-value">od 5 900 Kč jednorázově</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="ref-section" id="reference">
+  <div class="container">
+    <div class="section-tag">Reference</div>
+    <h2 class="section-title">Weby, které jsem <em>postavila.</em></h2>
+    <div class="ref-slider-wrap">
+      <div class="ref-track" id="refTrack">
+{{referencesHtml}}      </div>
+      <button class="ref-arrow ref-arrow-prev" id="refPrev" type="button" aria-label="Předchozí reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="ref-arrow ref-arrow-next" id="refNext" type="button" aria-label="Další reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- @include reviews -->
+
+<div class="section-divider"></div>
+
+<!-- @include about-short -->
+
+<div class="section-divider"></div>
+
+<section class="pricing-section" id="cenik">
+  <div class="container">
+    <div class="section-tag">Ceník</div>
+    <h2 class="section-title">Kolik stojí <em>web {{city.priceIn}}?</em></h2>
+    <div class="price-mini">
+      <div class="info-card"><div class="info-card-label">Web Start · one-page</div><div class="info-card-value">5 900 Kč</div></div>
+      <div class="info-card"><div class="info-card-label">Web Business · vícestránkový</div><div class="info-card-value">od 12 000 Kč</div></div>
+      <div class="info-card"><div class="info-card-label">E-shop na míru</div><div class="info-card-value">od 25 000 Kč</div></div>
+      <div class="info-card"><div class="info-card-label">Web Care · správa</div><div class="info-card-value">od 490 Kč/měs</div></div>
+    </div>
+    <p class="price-mini-note">Cena platí stejně pro celou ČR. Hosting je v ceně, platíte jen doménu — přibližně 200 Kč ročně. <a href="/#cenik">Kompletní ceník se všemi službami →</a></p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-tag centered">Časté otázky</div>
+    <h2 class="section-title centered faq-title">Na co se <em>ptáte nejčastěji.</em></h2>
+    <div class="faq-list">
+{{faqHtml}}    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+{{citiesSectionHtml}}
+</main>
+
+<div class="section-divider"></div>
+
+<!-- @include contact subject="{{city.subject}}" -->
+<!-- @include footer -->
+<!-- @include scripts -->
+<!-- @include audit-popup -->
+<!-- @include whatsapp -->
+<!-- @include chat -->
+</body>
+</html>

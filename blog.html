@@ -21,17 +21,21 @@
 <meta name="twitter:description" content="Praktické tipy o webdesignu, SEO a AI vyhledávání pro všechny, kdo chtějí být vidět online.">
 <meta name="twitter:image" content="https://janyskovadigital.cz/og-image.png">
 <meta name="twitter:image:alt" content="Blog Janyskova Digital — webdesign a AI">
-<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
-<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <link rel="canonical" href="https://janyskovadigital.cz/blog">
+<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
+<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>html,body{background:#08060c;color:#f5f0fa}</style>
+<link rel="stylesheet" href="/style.css?v=7788434245">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "Blog",
@@ -171,7 +175,6 @@
     }
   ]
 }</script>
-<link rel="stylesheet" href="/style.css?v=48">
 <style>.page-tag{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--pink);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}.page-tag::before{content:'';width:20px;height:1px;background:var(--pink);flex-shrink:0}h1{font-size:clamp(38px,5vw,60px);line-height:1.08;letter-spacing:-0.5px;margin-bottom:16px}h1 em{font-style:italic;color:var(--pink)}.hero-sub{font-size:17px;color:var(--text-dim);line-height:1.75;margin-bottom:60px;max-width:560px}.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}.blog-card{background:var(--card-bg);border:1px solid var(--border);border-radius:20px;padding:30px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:all 0.25s;backdrop-filter:blur(10px)}.blog-card:hover{border-color:rgba(240,20,122,0.45);transform:translateY(-3px);box-shadow:0 0 40px rgba(240,20,122,0.08)}.blog-card-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--pink);font-weight:600}.blog-card h2{font-size:20px;color:var(--text);line-height:1.3}.blog-card p{font-size:14px;color:var(--text-dim);line-height:1.7;flex:1}.blog-card .read{font-size:13px;font-weight:700;color:var(--pink);margin-top:auto;display:flex;align-items:center;gap:6px;transition:gap 0.2s}.blog-card:hover .read{gap:10px}@media(max-width:600px){.blog-grid{grid-template-columns:1fr}}</style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -203,7 +206,6 @@
     }
   ]
 }</script>
-<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -256,14 +258,16 @@
 }</script>
 </head>
 <body>
+<noscript><div class="noscript-msg">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
 <div class="bg-blobs" aria-hidden="true"></div>
-<a href="#main" style="position:absolute;left:-9999px;top:0;background:var(--pink);color:white;padding:8px 16px;z-index:99999;font-size:14px;" onfocus="this.style.left='0'">Přeskočit na obsah</a>
+<a href="#main" class="skip-link">Přeskočit na obsah</a>
 <nav role="navigation" aria-label="Hlavní navigace">
   <div class="container nav-inner">
     <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
     <div class="nav-links">
       <a href="/#o-mne">O mně</a>
-      <a href="/#cenik">Ceník</a>      <a href="/barter">Barter</a>
+      <a href="/#cenik">Ceník</a>
+      <a href="/barter">Barter</a>
       <a href="/blog">Blog</a>
       <a href="/#kontakt" class="cta">Mám zájem</a>
     </div>
@@ -279,7 +283,8 @@
     <a href="/#cenik" onclick="closeMenu()">Ceník</a>
   </div>
   <div class="menu-group">
-    <div class="menu-group-label">Služby</div>    <a href="/barter" onclick="closeMenu()">Barter</a>
+    <div class="menu-group-label">Služby</div>
+    <a href="/barter" onclick="closeMenu()">Barter</a>
   </div>
   <a href="/blog" onclick="closeMenu()">Blog</a>
   <a href="/#kontakt" onclick="closeMenu()" class="menu-cta">Mám zájem</a>
@@ -484,8 +489,8 @@
           <li><a href="/ostrava/">Webdesign Ostrava</a></li>
           <li><a href="/frydek-mistek/">Webdesign Frýdek-Místek</a></li>
           <li><a href="/hranice/">Webdesign Hranice</a></li>
-          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
           <li><a href="/pribor/">Webdesign Příbor</a></li>
+          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
           <li><a href="/brno/">Webdesign Brno</a></li>
           <li><a href="/praha/">Webdesign Praha</a></li>
           <li><a href="/olomouc/">Webdesign Olomouc</a></li>
@@ -499,7 +504,7 @@
       <div>
         <div class="footer-heading">Kontakt</div>
         <ul class="footer-links-list">
-          <li><a href="#" onclick="this.href='mai'+'lto:'+'info@janyskovadigital.cz'; return true;">info@janyskovadigital.cz</a></li>
+          <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
           <li><a href="tel:+420739395800">+420 739 395 800</a></li>
           <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
         </ul>
@@ -511,7 +516,8 @@
     </div>
   </div>
 </footer>
-<a href="https://wa.me/420739395800" target="_blank" rel="noopener" aria-label="Napište přes WhatsApp" class="wa-btn">
+<script src="/main.js?v=e1330d7308" defer></script>
+<a href="https://wa.me/420739395800" class="float-wa" target="_blank" rel="noopener" aria-label="Napište na WhatsApp">
   <svg width="26" height="26" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.736 5.469 2.027 7.77L0 32l8.43-2.01A15.938 15.938 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.267 13.267 0 0 1-6.747-1.833l-.484-.287-5.003 1.193 1.237-4.872-.317-.5A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.86c-.398-.199-2.355-1.162-2.72-1.295-.366-.132-.632-.199-.898.199-.265.398-1.03 1.295-1.263 1.56-.232.265-.465.298-.863.1-.398-.2-1.681-.62-3.203-1.977-1.184-1.057-1.984-2.362-2.217-2.76-.232-.398-.025-.614.175-.812.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.132-.265.066-.498-.033-.697-.1-.199-.898-2.165-1.23-2.963-.325-.778-.655-.672-.898-.684l-.765-.013c-.265 0-.697.1-1.063.498-.365.398-1.396 1.362-1.396 3.322s1.43 3.853 1.63 4.118c.199.265 2.814 4.297 6.818 6.027.953.411 1.696.657 2.276.841.956.305 1.826.262 2.514.159.767-.114 2.355-.963 2.688-1.893.332-.93.332-1.727.232-1.893-.099-.166-.365-.265-.763-.464z"/></svg>
 </a>
 </body>
