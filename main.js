@@ -260,9 +260,7 @@ document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el
     { keys: ['refresh', 'predelat', 'prevest', 'existujici', 'stavajic'],
       a: 'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.' },
     { keys: ['sprava', 'care', 'aktualizac', 'update', 'obsah', 'zmen'],
-      a: 'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.' },
-    { keys: ['firma', 'maps', 'mapa', 'mistni', 'profil'],
-      a: 'Nastavení Profilu firmy na Googlu (Google Maps) je za 790 Kč. Pomůže vám být vidět ve výsledcích pro místní vyhledávání.' }
+      a: 'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.' }
   ];
 
   const FALLBACK = 'Tohle vám přesně neřeknu, ale ráda odpovím osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozvu se do 24 hodin.';

@@ -4,7 +4,7 @@
 
 ## O Gabriele Janýškové
 
-Gabriela Janýšková je webdesignérka a grafička z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2022. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
+Gabriela Janýšková je webdesignérka z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2020. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
 
 Specializuje se na malé firmy, živnostníky a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
 
@@ -38,17 +38,8 @@ Správa a údržba webu. Zahrnuje: aktualizace obsahu, technický dohled, záloh
 ### Web Refresh — od 8 900 Kč
 Převod stávajícího webu (WordPress, Wix, Webnode) na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu a bezpečnostních rizik WordPressu.
 
-### Profil firmy na Google — 790 Kč
-Založení nebo optimalizace Google Business Profile. Správná kategorie, popis, fotky, otevírací hodiny, klíčová slova. Základ lokálního SEO.
-
-### AEO konzultace — od 1 490 Kč
-Optimalizace webu pro AI vyhledávače. Audit viditelnosti v Google AI Mode, ChatGPT, Perplexity. Doporučení pro strukturu obsahu, FAQ schéma, llms.txt a citovatelné odpovědi.
-
 ### E-shop na míru — od 25 000 Kč
 Vlastní e-shop v čistém kódu bez Shoptetu a bez měsíčních poplatků za platformu. Katalog do 200 produktů, košík, objednávky, napojení na platební bránu (GoPay, Comgate, Stripe), automatické potvrzení objednávky e-mailem a jednoduchá správa produktů.
-
-### Grafický design
-Logo, vizuální identita, ikony, tiskoviny, grafika na sociální sítě. Grafika navázaná na webdesign — jednotný styl pro celý brand.
 
 ## Ceny (přehled)
 
@@ -59,8 +50,6 @@ Logo, vizuální identita, ikony, tiskoviny, grafika na sociální sítě. Grafi
 | Web Care (správa/měs) | od 490 Kč |
 | Web Refresh (one-page) | od 8 900 Kč |
 | Web Refresh (vícestránkový) | od 14 900 Kč |
-| Profil firmy na Google | 790 Kč |
-| AEO konzultace | od 1 490 Kč |
 | E-shop na míru | od 25 000 Kč |
 
 Hosting je v ceně tvorby. Klient platí pouze doménu (~200 Kč/rok).
@@ -103,7 +92,7 @@ Specializovaně se věnuje lokálnímu SEO pro tato města a regiony:
 Weby jsou stavěné čistým kódem a hostované na Cloudflare Pages — tato platforma je pro statické weby zdarma. Hosting je součástí ceny tvorby, klient platí pouze doménu přibližně 200 Kč ročně.
 
 **Jaký je rozdíl mezi čistým kódem a WordPressem?**
-WordPress je redakční systém s databází, pluginy a šablonami. Vyžaduje placený hosting (500–2000 Kč/rok), pravidelné aktualizace a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější.
+WordPress je redakční systém s databází, pluginy a šablonami. Vyžaduje placený hosting, pravidelné aktualizace a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější.
 
 **Kolik stojí webové stránky pro živnostníka?**
 One-page web pro živnostníka vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč.
@@ -143,7 +132,7 @@ Ceny jsou stejné pro celou Českou republiku. One-page web od 5 900 Kč, víces
 
 ## Hodnocení klientů
 
-Janyskova Digital má hodnocení 5,0 z 5 hvězdiček (3 recenze).
+Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
 
 > „S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"
 > — Nika Hubáčková, fotografka
