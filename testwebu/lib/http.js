@@ -42,18 +42,28 @@ export function isPrivateIPv4(ip) {
     (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168) || (a === 198 && (b === 18 || b === 19));
 }
 
-// Ověří přes DNS-over-HTTPS, že doména míří na veřejné IP (ochrana proti doméně namířené dovnitř sítě).
+export function isPrivateIPv6(ip) {
+  const a = ip.toLowerCase();
+  if (a === '::' || a === '::1') return true;
+  if (/^f[cd]/.test(a) || /^fe[89ab]/.test(a)) return true;              // fc00::/7 (ULA), fe80::/10 (link-local)
+  const mapped = a.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
+  return mapped ? isPrivateIPv4(mapped[1]) : false;
+}
+
+// Ověří přes DNS-over-HTTPS, že doména míří na veřejné IP (IPv4 i IPv6) — ochrana proti doméně namířené dovnitř sítě.
 export async function assertPublicHost(host, fetchImpl) {
   if (/^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
-  const res = await fetchImpl(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=A`, {
+  const lookup = type => fetchImpl(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=${type}`, {
     headers: { accept: 'application/dns-json' },
     signal: AbortSignal.timeout(5000),
-  }).catch(() => null);
-  if (!res || !res.ok) return;                                            // DNS nedostupné: rozhodne až samotné stažení
-  const data = await res.json().catch(() => ({}));
-  if (data.Status === 3) throw new AuditError('Doména neexistuje. Zkontrolujte adresu.');
-  const ips = (data.Answer || []).filter(r => r.type === 1).map(r => r.data);
-  if (ips.some(isPrivateIPv4)) throw new AuditError('Tuto adresu nelze otestovat. Zadejte veřejný web.');
+  }).then(r => (r.ok ? r.json() : null)).catch(() => null);
+  const [v4, v6] = await Promise.all([lookup('A'), lookup('AAAA')]);
+  if (!v4 && !v6) return;                                                 // DNS nedostupné: rozhodne až samotné stažení
+  if (v4?.Status === 3) throw new AuditError('Doména neexistuje. Zkontrolujte adresu.');
+  const answers = [...(v4?.Answer || []), ...(v6?.Answer || [])];
+  if (answers.some(r => (r.type === 1 && isPrivateIPv4(r.data)) || (r.type === 28 && isPrivateIPv6(r.data)))) {
+    throw new AuditError('Tuto adresu nelze otestovat. Zadejte veřejný web.');
+  }
 }
 
 // Stáhne URL a ručně projde přesměrování (každý krok znovu ověří). Vrací řetěz přesměrování,

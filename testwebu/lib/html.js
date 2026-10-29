@@ -146,5 +146,7 @@ export function analyzeHtml(html, pageUrl) {
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
     email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)),
     forms: (body.match(/<form\b/gi) || []).length,
+    // IČO podnikatele (§ 435 občanského zákoníku): „IČO: 12345678“, „IČ 123 45 678“
+    ico: /I[ČC]O?\s*[:.]?\s*(\d\s?){8}/i.test(text(bodyNoScripts)),
   };
 }

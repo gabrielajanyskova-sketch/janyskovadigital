@@ -54,6 +54,7 @@
     </form>
     <p class="form-error" id="form-error" role="alert" hidden></p>
     <p class="hint">Test je zdarma a bez registrace. Neukládáme žádné osobní údaje.</p>
+    <p class="ai-hook"><strong>Novinka:</strong> zjistíte, jestli váš web smí číst ChatGPT, Claude a Perplexity a jestli mu rozumí. Bez toho vás AI asistenti těžko doporučí.</p>
   </section>
 
   <section class="progress wrap" id="progress" hidden aria-live="polite">
@@ -66,6 +67,14 @@
   </section>
 
   <section class="results wrap" id="results" hidden>
+    <div class="print-head" aria-hidden="true">
+      <p class="print-brand">Janyskova <em>Digital</em></p>
+      <p>Audit webu · testwebu.janyskovadigital.cz</p>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn-small" id="pdf">Stáhnout jako PDF</button>
+      <button type="button" class="btn-small btn-small--ghost" id="share">Zkopírovat odkaz na výsledek</button>
+    </div>
     <div class="summary">
       <div class="ring" id="overall" role="img" aria-label="Celkové skóre"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" id="ring-fg"/></svg><span id="overall-num">–</span></div>
       <div>
@@ -76,11 +85,26 @@
     </div>
     <div class="cats" id="cats"></div>
     <div id="checks"></div>
-    <aside class="cta">
+    <aside class="cta" id="audit">
       <h2>Chcete to mít <em>v pořádku?</em></h2>
-      <p>Automatický test najde technické chyby. Obsah, odkazy a to, proč web nepřivádí zákazníky, projdu osobně, zdarma a bez závazků.</p>
-      <a class="btn" id="cta-link" href="https://janyskovadigital.cz/#kontakt">Chci osobní audit zdarma</a>
-      <button type="button" class="btn-ghost" id="share">Zkopírovat odkaz na výsledek</button>
+      <p>Automatický test najde technické chyby. Obsah, odkazy a to, proč web nepřivádí zákazníky, projdu osobně, zdarma a bez závazků. Odpovím do 24 hodin.</p>
+      <form class="lead-form" id="lead-form" action="https://janyskovadigital.cz/api/contact" method="POST">
+        <input type="hidden" name="subject" id="lead-subject" value="Žádost o osobní audit z Testu webu">
+        <input type="hidden" name="web" id="lead-web">
+        <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="lead-row">
+          <label>Jméno<input type="text" name="jmeno" required autocomplete="name" maxlength="120"></label>
+          <label>E-mail<input type="email" name="email" required autocomplete="email" maxlength="254"></label>
+        </div>
+        <label>Zpráva<textarea name="zprava" id="lead-message" rows="3" required maxlength="5000"></textarea></label>
+        <button type="submit" class="btn">Chci osobní audit zdarma</button>
+        <p class="lead-note">Odesláním souhlasíte se <a href="https://janyskovadigital.cz/ochrana-udaju">zpracováním údajů</a> kvůli odpovědi. Raději telefon? <a href="tel:+420739395800">+420&nbsp;739&nbsp;395&nbsp;800</a></p>
+      </form>
+      <figure class="quote">
+        <blockquote>„Naprostá spokojenost. E-shop rychle vytvořen, vše funguje jak má. Komunikace a profesionalita paní Janýškové na jedničku.“</blockquote>
+        <figcaption>Nikola Drn, recenze na Googlu ★★★★★</figcaption>
+      </figure>
+      <p class="print-contact">Gabriela Janýšková · janyskovadigital.cz · info@janyskovadigital.cz · +420&nbsp;739&nbsp;395&nbsp;800</p>
     </aside>
   </section>
 
@@ -88,11 +112,22 @@
     <h2>Co test kontroluje</h2>
     <ul class="about-list">
       <li><strong>Rychlost</strong>: měření Google PageSpeed na mobilu i počítači a data od skutečných návštěvníků z Chrome.</li>
-      <li><strong>Technika a indexace</strong>: HTTPS, přesměrování, robots.txt, mapa webu, chybové stránky, mobilní zobrazení.</li>
-      <li><strong>Obsah a SEO</strong>: titulky, popisy, nadpisy, obrázky, náhledy pro sociální sítě a několik dalších stránek webu.</li>
+      <li><strong>Technika a indexace</strong>: HTTPS, přesměrování, robots.txt (včetně blokace Googlu a Seznamu), mapa webu, chybové stránky, mobilní zobrazení.</li>
+      <li><strong>Obsah a SEO</strong>: titulky, popisy, nadpisy, obrázky, nefunkční odkazy, náhledy pro sociální sítě a několik dalších stránek webu.</li>
       <li><strong>AI vyhledávače</strong>: strukturovaná data, přístup ChatGPT, Claude a Perplexity, llms.txt.</li>
-      <li><strong>Bezpečnost a GDPR</strong>: bezpečnostní hlavičky, Google Fonts, měřicí skripty bez souhlasu, zásady ochrany údajů.</li>
+      <li><strong>Bezpečnost, GDPR a důvěryhodnost</strong>: bezpečnostní hlavičky, Google Fonts, měřicí skripty bez souhlasu, zásady ochrany údajů, IČO podnikatele.</li>
     </ul>
+    <h2 class="sample-title">Takto vypadá výsledek</h2>
+    <div class="sample" aria-label="Ukázka výsledku testu">
+      <div class="sample-score"><span>72</span><small>z 100</small></div>
+      <ul class="sample-checks">
+        <li class="fail"><b>Problém</b> Robots.txt blokuje ChatGPT a Perplexity</li>
+        <li class="warn"><b>Zlepšit</b> Chybí popis stránky pro Google</li>
+        <li class="warn"><b>Zlepšit</b> Písma se načítají z Google Fonts (GDPR)</li>
+        <li class="pass"><b>V pořádku</b> Web běží na zabezpečeném HTTPS</li>
+      </ul>
+      <p class="sample-note">U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek si stáhnete jako PDF a pošlete třeba tomu, kdo vám web spravuje.</p>
+    </div>
     <p class="note">Automatický test nevidí všechno: kvalitu textů, zpětné odkazy ani chování návštěvníků. To patří do osobního auditu.</p>
   </section>
 </main>

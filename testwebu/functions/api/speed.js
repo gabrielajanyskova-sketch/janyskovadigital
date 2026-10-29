@@ -2,7 +2,7 @@
 
 import { runPsi } from '../../lib/psi.js';
 import { normalizeUrl } from '../../lib/http.js';
-import { speedChecks, a11yChecks } from '../../lib/checks.js';
+import { speedChecks, a11yChecks, lighthouseChecks } from '../../lib/checks.js';
 import { json, sameOrigin, rateLimited, cached, handleError } from '../../lib/api.js';
 
 export async function onRequestGet({ request, env }) {
@@ -19,7 +19,7 @@ export async function onRequestGet({ request, env }) {
       return {
         strategy,
         scores: psi.scores,
-        checks: [...speedChecks(strategy, psi), ...(strategy === 'mobile' ? a11yChecks(psi) : [])],
+        checks: [...speedChecks(strategy, psi), ...(strategy === 'mobile' ? [...a11yChecks(psi), ...lighthouseChecks(psi)] : [])],
       };
     });
     return json(data, 200, { 'x-cache': hit ? 'HIT' : 'MISS' });

@@ -52,6 +52,7 @@ async function run(url) {
   $('results').hidden = true;
   $('progress').hidden = false;
   $('submit').disabled = true;
+  $('pdf').disabled = true;
   ['audit', 'mobile', 'desktop'].forEach(s => setStep(s, 'running'));
   state = { audit: null, speed: {}, speedErrors: {} };
 
@@ -87,6 +88,7 @@ async function run(url) {
   }
   await Promise.allSettled([mobile, desktop]);
   $('submit').disabled = false;
+  $('pdf').disabled = false;
   $('progress').hidden = true;
 }
 
@@ -141,7 +143,14 @@ function render() {
   }).filter(Boolean);
   $('checks').replaceChildren(...groups);
 
-  $('cta-link').href = `https://janyskovadigital.cz/?web=${encodeURIComponent(a.finalUrl)}#kontakt`;
+  // Formulář pro osobní audit: adresa webu a výsledek se vyplní samy (zprávu lze upravit)
+  const host = new URL(a.finalUrl).hostname.replace(/^www\./, '');
+  $('lead-web').value = a.finalUrl;
+  $('lead-subject').value = `Žádost o osobní audit: ${host}`;
+  const message = $('lead-message');
+  if (!message.dataset.edited) {
+    message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Automatický test mu dal ${overall}/100.`;
+  }
 }
 
 function renderCheck(c) {
@@ -156,12 +165,37 @@ function renderCheck(c) {
     more);
 }
 
+$('lead-message').addEventListener('input', e => { e.target.dataset.edited = '1'; });
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   const value = input.value.trim();
   if (!value) { showError('Zadejte adresu webu, například vas-web.cz'); input.focus(); return; }
   run(value);
 });
+
+// PDF: tisková verze reportu (prohlížeč nabídne „Uložit jako PDF“). Před tiskem rozbalí všechna
+// vysvětlení a nastaví název souboru podle testovaného webu.
+let titleBeforePrint = document.title;
+let closedBeforePrint = [];
+let printing = false;
+window.addEventListener('beforeprint', () => {
+  if (printing) return;
+  printing = true;
+  closedBeforePrint = [...document.querySelectorAll('details.check:not([open])')];
+  closedBeforePrint.forEach(d => { d.open = true; });
+  titleBeforePrint = document.title;
+  if (state?.audit) {
+    const host = new URL(state.audit.finalUrl).hostname.replace(/^www\./, '');
+    document.title = `Audit webu ${host} ${new Date(state.audit.checkedAt).toLocaleDateString('cs-CZ')}`;
+  }
+});
+window.addEventListener('afterprint', () => {
+  printing = false;
+  closedBeforePrint.forEach(d => { d.open = false; });
+  document.title = titleBeforePrint;
+});
+$('pdf').addEventListener('click', () => window.print());
 
 $('share').addEventListener('click', async () => {
   try {

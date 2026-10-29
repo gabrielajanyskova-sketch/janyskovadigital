@@ -1,6 +1,6 @@
 # Test webu (testwebu.janyskovadigital.cz)
 
-Bezplatný automatický audit webu: rychlost (Google PageSpeed), technika a indexace, SEO, strukturovaná data a AI vyhledávače, bezpečnost a GDPR. Samostatný projekt v Cloudflare Pages se stejným repozitářem jako hlavní web.
+Bezplatný automatický audit webu: rychlost (Google PageSpeed), technika a indexace (včetně blokace Googlu a Seznamu), SEO (i nefunkční odkazy), strukturovaná data a AI vyhledávače, bezpečnost, GDPR a důvěryhodnost (IČO podle § 435 OZ). Výsledek jde stáhnout jako PDF (tisková verze stránky, `@media print` v `app.css`). Samostatný projekt v Cloudflare Pages se stejným repozitářem jako hlavní web.
 
 ## Struktura
 
@@ -39,3 +39,9 @@ Ve vývojovém serveru jsou fiktivní domény `spatny-web.test` (připravené ch
    - Jeden test = 3 požadavky (audit + rychlost mobil + počítač), takže běžný návštěvník limit nenarazí.
 
 Výsledky stejné adresy se hodinu berou z cache (šetří kvótu Googlu a testované weby).
+
+## Limity bezplatného tarifu Cloudflare
+
+- **10 ms procesoru na požadavek:** PageSpeed se proto volá s `fields` (bez snímků obrazovky a překladů). Kdyby Google výběr odmítl (400), dotaz se zopakuje bez něj.
+- **50 odchozích požadavků na volání:** audit má rozpočet 45 a kontrolu odkazů zkrátí podle zbývajícího rozpočtu.
+- **Odpovědi 502/504** Cloudflare nahrazuje vlastní chybovou stránkou, proto chyby měření vrací 424.

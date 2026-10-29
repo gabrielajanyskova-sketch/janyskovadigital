@@ -68,12 +68,36 @@ export function speedChecks(strategy, psi) {
         'Web nemá v Chrome dost návštěv, aby Google zveřejnil statistiky z reálného provozu.',
         'U menších webů je to běžné. Hodnotí se pak laboratorní měření výše.', '—'));
     }
+    if (psi.bytes) {
+      const mb = psi.bytes / 1048576;
+      out.push(check('speed', 'weight', 'medium', mb <= 1.5 ? 'pass' : mb <= 3 ? 'warn' : 'fail',
+        `Velikost stránky: ${mb.toFixed(1).replace('.', ',')} MB`, 'Kolik dat musí návštěvník stáhnout při otevření úvodní stránky.',
+        'Na mobilních datech je velká stránka pomalá a stojí návštěvníka peníze. Dobrá hodnota je do 1,5 MB.',
+        'Zmenšit obrázky (WebP, správné rozměry), odstranit nepoužívané skripty, písma a pluginy.'));
+    }
     if (psi.opportunities?.length) {
       out.push(check('speed', 'opportunities', 'low', 'info', 'Největší příležitosti ke zrychlení',
         psi.opportunities.map(o => `${o.title} (ušetří ~${fmtMs(o.savingsMs)})`).join(' · '),
         'Seřazeno podle toho, kolik času by oprava ušetřila.', 'Začít od první položky.'));
     }
   }
+  return out;
+}
+
+// Doporučené postupy a SEO podle Lighthouse (jen z mobilního měření, aby se neopakovaly)
+export function lighthouseChecks(psi) {
+  if (!psi || psi.error) return [];
+  const out = [];
+  const bp = psi.scores.bestPractices;
+  if (bp != null) out.push(check('security', 'best-practices', 'medium', bp >= 90 ? 'pass' : bp >= 70 ? 'warn' : 'fail',
+    `Doporučené postupy Google: ${bp}/100`,
+    psi.failedBestPractices.length ? `Nedostatky: ${psi.failedBestPractices.slice(0, 5).join(' · ')}` : 'Bez nedostatků.',
+    'Google hodnotí bezpečné připojení, chyby v konzoli prohlížeče, zastaralé technologie a poměr stran obrázků.', 'Opravit uvedené nedostatky.'));
+  const seo = psi.scores.seo;
+  if (seo != null) out.push(check('seo', 'lighthouse-seo', 'medium', seo >= 90 ? 'pass' : seo >= 70 ? 'warn' : 'fail',
+    `SEO podle Google Lighthouse: ${seo}/100`,
+    psi.failedSeo.length ? `Nedostatky: ${psi.failedSeo.slice(0, 5).join(' · ')}` : 'Základní technické SEO je v pořádku.',
+    'Základní technická kontrola SEO přímo od Googlu.', psi.failedSeo.length ? 'Opravit uvedené nedostatky.' : '—'));
   return out;
 }
 
@@ -126,9 +150,15 @@ export function siteChecks(r) {
     ? check('tech', 'noindex', 'high', 'fail', 'Úvodní stránka je skrytá před Googlem (noindex)', 'Stránka obsahuje pokyn „noindex“.', 'Google ji nezobrazí ve výsledcích vyhledávání.', 'Odstranit noindex (u WordPressu: Nastavení → Zobrazování → „Požádat vyhledávače…“ odškrtnout).')
     : check('tech', 'noindex', 'high', 'pass', 'Úvodní stránka smí do vyhledávání', 'Žádný zákaz indexace.', 'Google může stránku zobrazit ve výsledcích.', '—'));
 
+  if (r.robots.searchBlocked.length && !r.robots.blocksAll) out.push(check('tech', 'search-bots', 'high', 'fail',
+    `Robots.txt blokuje vyhledávač: ${r.robots.searchBlocked.join(', ')}`,
+    'Tento vyhledávač nesmí web procházet.', r.robots.searchBlocked.includes('SeznamBot')
+      ? 'Web se nezobrazí ve výsledcích Seznamu, který v Česku používá velká část lidí.' : 'Web se v tomto vyhledávači nezobrazí.',
+    'Odstranit zákaz (Disallow: /) pro tento vyhledávač z robots.txt.'));
+
   if (!r.robots.exists) out.push(check('tech', 'robots', 'low', 'warn', 'Chybí soubor robots.txt', `${url.origin}/robots.txt neexistuje.`, 'Robots.txt říká vyhledávačům a AI, co smí procházet, a odkazuje na mapu webu.', 'Vytvořit robots.txt s odkazem na sitemap.xml.'));
   else if (r.robots.blocksAll) out.push(check('tech', 'robots', 'high', 'fail', 'Robots.txt blokuje celý web', 'Obsahuje „Disallow: /“ pro všechny roboty.', 'Vyhledávače nesmí web procházet. Většinou zapomenuté nastavení z vývoje.', 'Odstranit „Disallow: /“ z robots.txt.'));
-  else out.push(check('tech', 'robots', 'low', 'pass', 'Soubor robots.txt je v pořádku', 'Existuje a neblokuje celý web.', 'Vyhledávače vědí, co smí procházet.', '—'));
+  else if (!r.robots.searchBlocked.length) out.push(check('tech', 'robots', 'low', 'pass', 'Soubor robots.txt je v pořádku', 'Existuje a neblokuje celý web.', 'Vyhledávače vědí, co smí procházet.', '—'));
 
   out.push(r.sitemap.urls > 0
     ? check('tech', 'sitemap', 'medium', 'pass', `Mapa webu (sitemap) obsahuje ${plural(r.sitemap.urls, 'stránku', 'stránky', 'stránek')}`, r.sitemap.url, 'Pomáhá Googlu najít všechny stránky, hlavně nové.', r.robots.sitemap ? '—' : 'Doplnit odkaz na sitemap do robots.txt.')
@@ -172,7 +202,7 @@ export function siteChecks(r) {
   const h1 = p.headings.filter(h => h.level === 1);
   out.push(check('seo', 'h1', 'medium', h1.length === 1 ? 'pass' : h1.length === 0 ? 'fail' : 'warn',
     h1.length === 1 ? 'Stránka má jeden hlavní nadpis (H1)' : h1.length === 0 ? 'Chybí hlavní nadpis (H1)' : `Stránka má ${h1.length} hlavních nadpisů (H1)`,
-    h1.map(h => `„${h.text}“`).slice(0, 3).join(', ') || '—',
+    h1.map(h => `„${h.text}“`).slice(0, 3).join(', ') || 'Stránka nemá žádný nadpis H1.',
     'Hlavní nadpis říká Googlu, AI i návštěvníkovi, o čem stránka je.', h1.length === 1 ? '—' : 'Mít na stránce právě jeden H1 s hlavním tématem.'));
 
   const skips = p.headings.filter((h, i) => i > 0 && h.level > p.headings[i - 1].level + 1).length;
@@ -211,6 +241,15 @@ export function siteChecks(r) {
       'Každá stránka by měla mít vlastní titulek, popis a jeden H1, aby mohla samostatně soutěžit ve vyhledávání.',
       issues.length ? 'Projít uvedené stránky a doplnit unikátní titulky a popisy.' : '—'));
   }
+
+  if (r.links && (r.links.checked || r.links.broken.length)) out.push(r.links.broken.length
+    ? check('seo', 'broken-links', 'medium', 'fail', `${plural(r.links.broken.length, 'nefunkční odkaz', 'nefunkční odkazy', 'nefunkčních odkazů')} na úvodní stránce`,
+      r.links.broken.slice(0, 5).map(l => `${l.status} ${decodeSafe(l.url)}`).join(' · '),
+      'Odkaz na neexistující stránku zklame návštěvníka a Googlu říká, že web není udržovaný.', 'Opravit nebo odstranit odkazy, případně přesměrovat staré adresy na nové.')
+    : check('seo', 'broken-links', 'medium', 'pass', 'Odkazy na úvodní stránce fungují', `Počet zkontrolovaných interních odkazů: ${r.links.checked}.`, 'Nefunkční odkazy zhoršují dojem i hodnocení u Googlu.', '—'));
+
+  if (!p.favicon) out.push(check('seo', 'favicon', 'low', 'warn', 'Chybí ikona webu (favicon)', 'Stránka neodkazuje na ikonu.',
+    'Ikona se zobrazuje v záložce prohlížeče a vedle odkazu ve výsledcích Googlu na mobilu.', 'Doplnit <link rel="icon"> s ikonou aspoň 48 × 48 px.'));
 
   // Strukturovaná data a AI vyhledávače
   const valid = p.jsonLd.filter(j => j.valid);
@@ -257,6 +296,10 @@ export function siteChecks(r) {
   if (r.platforms.includes('WordPress')) out.push(check('security', 'wordpress', 'low', 'info', 'Web běží na WordPressu', p.generator || 'Rozpoznáno podle souborů webu.', 'WordPress a jeho pluginy jsou nejčastějším cílem útoků. Bezpečnost stojí na pravidelných aktualizacích.', 'Aktualizovat jádro, šablonu i pluginy, odstranit nepoužívané pluginy, zálohovat.'));
 
   // GDPR a důvěryhodnost
+  out.push(p.ico
+    ? check('privacy', 'ico', 'medium', 'pass', 'Na webu je uvedené IČO', 'Údaje o podnikateli jsou dohledatelné.', 'Podnikatel musí na webu uvést své IČO (§ 435 občanského zákoníku). Zvyšuje to i důvěru zákazníků.', '—')
+    : check('privacy', 'ico', 'medium', 'warn', 'Na úvodní stránce nebylo nalezeno IČO', 'Typicky patří do patičky.', 'Podnikatel musí na webu uvést jméno nebo firmu, sídlo a IČO (§ 435 občanského zákoníku). Chybějící údaje snižují důvěru.', 'Doplnit do patičky název, sídlo a IČO (u firmy i zápis v obchodním rejstříku).'));
+
   if (p.googleFonts) out.push(check('privacy', 'google-fonts', 'medium', 'warn', 'Písma se načítají z Google Fonts', 'Prohlížeč návštěvníka posílá jeho IP adresu Googlu.', 'Soudy v EU to posoudily jako porušení GDPR bez souhlasu návštěvníka.', 'Stáhnout písma a hostovat je přímo na vlastním webu.'));
   const trackers = p.thirdParty.filter(n => !/vložené video|Mapy/.test(n));
   if (trackers.length) out.push(check('privacy', 'trackers', 'medium', p.cookieBanner ? 'info' : 'warn',
@@ -269,6 +312,10 @@ export function siteChecks(r) {
     'Kdo sbírá jméno nebo e-mail (formulář, newsletter), musí podle GDPR informovat, co s údaji dělá.', p.privacyLink ? '—' : 'Doplnit stránku se zásadami a odkaz v patičce a u formuláře.'));
 
   return out;
+}
+
+function decodeSafe(u) {
+  try { const x = new URL(u); return decodeURI(x.pathname + x.search); } catch { return u; }
 }
 
 function dupes(list) {

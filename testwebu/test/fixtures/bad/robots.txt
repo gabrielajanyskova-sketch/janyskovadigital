@@ -1,6 +1,9 @@
 User-agent: *
 Disallow: /wp-admin/
 
+User-agent: SeznamBot
+Disallow: /
+
 User-agent: GPTBot
 User-agent: CCBot
 Disallow: /

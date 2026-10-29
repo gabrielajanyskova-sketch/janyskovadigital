@@ -86,6 +86,8 @@ export function summarizePsi(data) {
     .slice(0, 8);
 
   return {
+    bytes: a['total-byte-weight']?.numericValue ?? null,
+    failedBestPractices: failed('best-practices'),
     scores: { performance: score('performance'), accessibility: score('accessibility'), bestPractices: score('best-practices'), seo: score('seo') },
     metrics: {
       fcp: metric('first-contentful-paint'), lcp: metric('largest-contentful-paint'),

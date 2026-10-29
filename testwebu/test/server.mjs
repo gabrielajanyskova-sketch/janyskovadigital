@@ -8,6 +8,7 @@ export function badSite(port) {
   return http.createServer((req, res) => {
     const p = req.url.split('?')[0];
     if (p === '/robots.txt') { res.writeHead(200, { 'content-type': 'text/plain' }); return res.end(fs.readFileSync(path.join(dir, 'robots.txt'))); }
+    if (p === '/stara-akce') { res.writeHead(404, { 'content-type': 'text/html' }); return res.end('Nenalezeno'); }
     if (p === '/sluzby' ) { res.writeHead(302, { location: '/sluzby/' }); return res.end(); }
     // soft 404: všechno ostatní vrací úvodní stránku se stavem 200
     res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'x-powered-by': 'PHP/7.4.33', server: 'Apache/2.4.41 (Ubuntu)' });

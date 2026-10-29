@@ -5,12 +5,19 @@ import { analyzeHtml } from './html.js';
 import { siteChecks, score, CATEGORIES } from './checks.js';
 
 const AI_BOTS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'];
+const SEARCH_BOTS = ['Googlebot', 'SeznamBot', 'Bingbot'];
 const SAMPLE_PAGES = 5;
+const MAX_LINKS = 15;
+// Bezplatný tarif Workers dovoluje 50 odchozích požadavků na jedno volání; necháme rezervu
+const SUBREQUEST_BUDGET = 45;
 
 export async function audit(input, { fetchImpl = fetch, checkHost = true } = {}) {
   const url = checkHost ? normalizeUrl(input) : new URL(input);
-  if (checkHost) await assertPublicHost(url.hostname, fetchImpl);
-  const opts = { fetchImpl, checkHost };
+  let used = 0;
+  const budgeted = (u, o) => (++used > SUBREQUEST_BUDGET ? Promise.reject(new Error('subrequest budget')) : fetchImpl(u, o));
+  const remaining = () => SUBREQUEST_BUDGET - used;
+  if (checkHost) await assertPublicHost(url.hostname, budgeted);
+  const opts = { fetchImpl: budgeted, checkHost };
 
   const main = await fetchPage(url.href, opts);
   if (!main.status) {
@@ -47,6 +54,20 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     return { url: res.url, status: res.status, title: a.title, description: a.description, h1: a.headings.filter(h => h.level === 1).length };
   });
 
+  // Nefunkční odkazy z úvodní stránky (jen interní; cizí weby automatické kontroly často blokují)
+  const known = new Map(pages.map(p => [p.url.replace(/\/$/, ''), p.status]));
+  const links = page.internalLinks
+    .filter(u => { try { return new URL(u).hostname === final.hostname && !/\.(pdf|jpe?g|png|webp|gif|svg|zip)$/i.test(new URL(u).pathname); } catch { return false; } })
+    .filter(u => u.replace(/\/$/, '') !== main.url.replace(/\/$/, ''))
+    .slice(0, Math.max(0, Math.min(MAX_LINKS, remaining() - 2)));
+  const linkResults = await Promise.all(links.map(async u => {
+    if (known.has(u.replace(/\/$/, ''))) return { url: u, status: known.get(u.replace(/\/$/, '')) };
+    let res = await fetchPage(u, { ...opts, method: 'HEAD' });
+    if ([403, 405, 501].includes(res.status)) res = await fetchPage(u, opts);   // server nepodporuje HEAD
+    return { url: u, status: res.status || 0 };
+  }));
+  const brokenLinks = linkResults.filter(l => l.status >= 400);
+
   const headers = Object.fromEntries([...main.headers.entries()].map(([k, v]) => [k.toLowerCase(), v]));
   const report = {
     url: url.href,
@@ -69,6 +90,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     llms: llmsRes?.status === 200 && /text\/(plain|markdown)/i.test(llmsRes.contentType) && llmsRes.body.trim().startsWith('#'),
     notFound: { url: probe, status: notFoundRes?.status || 0 },
     pages,
+    links: { checked: linkResults.filter(l => l.status).length, broken: brokenLinks },
   };
 
   const checks = siteChecks(report);
@@ -85,7 +107,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
 }
 
 export function parseRobots(text) {
-  if (text == null) return { exists: false, blocksAll: false, aiBlocked: [], sitemap: null };
+  if (text == null) return { exists: false, blocksAll: false, aiBlocked: [], searchBlocked: [], sitemap: null };
   const groups = [];
   let current = null;
   let lastWasAgent = false;
@@ -112,7 +134,10 @@ export function parseRobots(text) {
     const g = groups.find(x => x.agents.includes(agent.toLowerCase())) || groups.find(x => x.agents.includes('*'));
     return !!g && g.disallowAll && !g.allowAll;
   };
-  return { exists: true, blocksAll: blocked('Googlebot') && blocked('*'), aiBlocked: AI_BOTS.filter(blocked), sitemap };
+  return {
+    exists: true, blocksAll: blocked('Googlebot') && blocked('*'),
+    aiBlocked: AI_BOTS.filter(blocked), searchBlocked: SEARCH_BOTS.filter(blocked), sitemap,
+  };
 }
 
 async function readSitemap(url, opts, host, depth = 0) {
