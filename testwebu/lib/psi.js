@@ -31,9 +31,14 @@ export async function runPsi(url, strategy, { apiKey, fetchImpl, fields = FIELDS
   }
   if (!res.ok || !data?.lighthouseResult) {
     const reason = data?.error?.message || '';
-    if (res.status === 429) return { error: 'Měření Googlu je teď přetížené, zkuste to za chvíli.' };
-    if (/FAILED_DOCUMENT_REQUEST|ERRORED_DOCUMENT_REQUEST|NO_FCP/.test(reason)) return { error: 'Google se na web nedostal nebo se stránka nevykreslila.' };
-    return { error: 'Měření Googlu se nepodařilo.' };
+    // Technický důvod od Googlu (bez klíče) — pro diagnostiku, stránka aplikace ho neukazuje
+    const detail = `Google ${res.status}: ${reason.replace(/key=[^&\s]+/g, 'key=…').slice(0, 300)}`;
+    console.warn('PSI chyba', detail);
+    if (res.status === 429) return { error: 'Měření Googlu je teď přetížené, zkuste to za chvíli.', detail };
+    if (res.status === 400 && /API key|api_key|API_KEY/i.test(reason)) return { error: 'Měření Googlu odmítlo klíč aplikace.', detail };
+    if (res.status === 403) return { error: 'Google měření nepovolil (klíč nebo API není aktivní).', detail };
+    if (/FAILED_DOCUMENT_REQUEST|ERRORED_DOCUMENT_REQUEST|NO_FCP/.test(reason)) return { error: 'Google se na web nedostal nebo se stránka nevykreslila.', detail };
+    return { error: 'Měření Googlu se nepodařilo.', detail };
   }
   return summarizePsi(data);
 }

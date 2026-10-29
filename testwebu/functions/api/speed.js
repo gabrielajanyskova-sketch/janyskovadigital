@@ -15,7 +15,7 @@ export async function onRequestGet({ request, env }) {
     const origin = new URL(request.url).origin;
     const { data, hit } = await cached(`${origin}/__cache/speed?s=${strategy}&u=${encodeURIComponent(url.href)}`, async () => {
       const psi = await runPsi(url.href, strategy, { apiKey: env.PAGESPEED_API_KEY, fetchImpl: fetch });
-      if (psi.error) throw Object.assign(new Error(psi.error), { psiError: psi.error });
+      if (psi.error) throw Object.assign(new Error(psi.error), { psiError: psi.error, detail: psi.detail });
       return {
         strategy,
         scores: psi.scores,
@@ -24,7 +24,8 @@ export async function onRequestGet({ request, env }) {
     });
     return json(data, 200, { 'x-cache': hit ? 'HIT' : 'MISS' });
   } catch (e) {
-    if (e.psiError) return json({ error: e.psiError }, 502);
+    // 424, ne 502: odpovědi 502/504 Cloudflare nahrazuje vlastní chybovou stránkou a důvod by se ztratil
+    if (e.psiError) return json({ error: e.psiError, detail: e.detail }, 424);
     return handleError(e);
   }
 }

@@ -54,5 +54,5 @@ export async function cached(cacheKey, compute) {
 export function handleError(e) {
   if (e instanceof AuditError) return json({ error: e.message }, e.status);
   console.error(e);
-  return json({ error: 'Při testu nastala chyba. Zkuste to prosím znovu.' }, 500);
+  return json({ error: 'Při testu nastala chyba. Zkuste to prosím znovu.', detail: String(e?.message || e).slice(0, 200) }, 500);
 }
