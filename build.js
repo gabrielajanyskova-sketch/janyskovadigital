@@ -239,17 +239,6 @@ async function bundleTestWebu() {
     target: TARGET,
     legalComments: 'none',
   });
-  // PDF report: samostatný soubor, stahuje se až po kliknutí na „Stáhnout PDF“
-  await esbuild.build({
-    entryPoints: ['testwebu/src/pdf.js'],
-    outfile: 'testwebu/public/pdf.js',
-    bundle: true,
-    minify: true,
-    format: 'iife',
-    target: TARGET,
-    legalComments: 'none',
-    external: ['html2canvas', 'dompurify', 'canvg'],   // potřebné jen pro jsPDF.html(), které nepoužíváme
-  });
 }
 
 async function bundleJs() {

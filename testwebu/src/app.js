@@ -52,7 +52,6 @@ async function run(url) {
   $('results').hidden = true;
   $('progress').hidden = false;
   $('submit').disabled = true;
-  $('pdf').disabled = true;
   ['audit', 'mobile', 'desktop'].forEach(s => setStep(s, 'running'));
   state = { audit: null, speed: {}, speedErrors: {} };
 
@@ -88,7 +87,6 @@ async function run(url) {
   }
   await Promise.allSettled([mobile, desktop]);
   $('submit').disabled = false;
-  $('pdf').disabled = false;
   $('progress').hidden = true;
 }
 
@@ -112,7 +110,6 @@ function render() {
   const speedPending = !state.speed.mobile && !state.speedErrors.mobile;
   const values = Object.values(scores);
   const overall = values.length ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : 0;
-  state.view = { checks, scores, overall };
 
   $('overall-num').textContent = overall;
   $('overall').setAttribute('aria-label', `Celkové skóre ${overall} ze 100`);
@@ -191,7 +188,7 @@ form.addEventListener('submit', e => {
   run(value);
 });
 
-// PDF: tisková verze reportu (prohlížeč nabídne „Uložit jako PDF“). Před tiskem rozbalí všechna
+// Tisk (Ctrl+P): před tiskem rozbalí všechna
 // vysvětlení a nastaví název souboru podle testovaného webu.
 let titleBeforePrint = document.title;
 let closedBeforePrint = [];
@@ -212,59 +209,6 @@ window.addEventListener('afterprint', () => {
   closedBeforePrint.forEach(d => { d.open = false; });
   document.title = titleBeforePrint;
 });
-// Stáhnout PDF: skutečný soubor; knihovna (pdf.js) se načte až teď. Když selže, zbývá tisk do PDF.
-let pdfLib = null;
-function loadPdfLib() {
-  pdfLib ||= new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = '/pdf.js';
-    s.onload = () => resolve(window.TestWebuPdf);
-    s.onerror = () => { pdfLib = null; reject(new Error('nepodařilo se načíst pdf.js')); };
-    document.head.append(s);
-  });
-  return pdfLib;
-}
-
-$('pdf').addEventListener('click', async () => {
-  if (!state?.audit || !state.view) return;
-  const button = $('pdf');
-  const label = button.textContent;
-  button.disabled = true;
-  button.textContent = 'Připravuji PDF…';
-  $('pdf-error').hidden = true;
-  try {
-    const { buildPdf } = await loadPdfLib();
-    const a = state.audit;
-    const { checks, scores, overall } = state.view;
-    const host = new URL(a.finalUrl).hostname.replace(/^www\./, '');
-    const date = new Date(a.checkedAt);
-    const doc = await buildPdf({
-      url: a.finalUrl,
-      host,
-      date: date.toLocaleString('cs-CZ'),
-      overall,
-      verdict: $('result-title').textContent,
-      categories: Object.entries(CATEGORIES).map(([key, name]) => ({
-        name,
-        question: CATEGORY_QUESTIONS[key] || name,
-        score: scores[key],
-        checks: checks.filter(c => c.category === key).sort((x, y) => STATUS_ORDER[x.status] - STATUS_ORDER[y.status] || y.weight - x.weight),
-      })),
-    });
-    doc.save(`audit-webu-${host}-${date.toISOString().slice(0, 10)}.pdf`);
-  } catch (err) {
-    // Ukázat důvod (ať jde chyba nahlásit) a nabídnout tisk, kde jde zvolit „Uložit jako PDF“
-    const msg = $('pdf-error');
-    msg.replaceChildren(`PDF se nepodařilo vytvořit (${err?.message || err}). `,
-      el('button', { type: 'button', class: 'link-btn', id: 'pdf-print' }, 'Uložit přes tisk'), ' (v okně tisku zvolte „Uložit jako PDF“).');
-    msg.hidden = false;
-    $('pdf-print').addEventListener('click', () => window.print());
-  } finally {
-    button.disabled = false;
-    button.textContent = label;
-  }
-});
-
 $('share').addEventListener('click', async () => {
   try {
     await navigator.clipboard.writeText(location.href);

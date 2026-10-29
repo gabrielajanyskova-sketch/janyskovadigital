@@ -1,6 +1,6 @@
 # Test webu (testwebu.janyskovadigital.cz)
 
-Bezplatný automatický audit webu: rychlost (Google PageSpeed), technika a indexace (včetně blokace Googlu a Seznamu), SEO (i nefunkční odkazy), strukturovaná data a AI vyhledávače, bezpečnost, GDPR a důvěryhodnost (IČO podle § 435 OZ). Výsledek jde stáhnout jako PDF soubor (`src/pdf.js`, jsPDF s písmem s českými znaky; načítá se až po kliknutí). Tisk stránky (`@media print` v `app.css`) zůstává jako záloha. Samostatný projekt v Cloudflare Pages se stejným repozitářem jako hlavní web.
+Bezplatný automatický audit webu: rychlost (Google PageSpeed), technika a indexace (včetně blokace Googlu a Seznamu), SEO (i nefunkční odkazy), strukturovaná data a AI vyhledávače, bezpečnost, GDPR a důvěryhodnost (IČO podle § 435 OZ). Výsledek jde vytisknout (`@media print` v `app.css`). Samostatný projekt v Cloudflare Pages se stejným repozitářem jako hlavní web.
 
 ## Struktura
 

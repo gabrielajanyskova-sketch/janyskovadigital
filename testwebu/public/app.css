@@ -181,6 +181,3 @@ em{font-style:italic;color:var(--pink)}
 .faq-item p{padding:0 20px 18px;color:var(--dim);font-size:15px;line-height:1.6}
 @media print{.faq{display:none}}
 
-.pdf-error{margin:-8px 0 16px;text-align:right;font-size:14px;color:var(--fail)}
-.link-btn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
-@media print{.pdf-error{display:none}}
