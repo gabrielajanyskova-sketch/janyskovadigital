@@ -34,3 +34,10 @@ assert.equal(registrableDomain('testwebu.janyskovadigital.cz'), 'janyskovadigita
 assert.equal(registrableDomain('www.firma.co.uk'), 'firma.co.uk');
 assert.equal(registrableDomain('localhost'), null);
 console.log('✓ Kontrola e-mailu a domény (SPF, DMARC, DNSSEC, CAA, security.txt)');
+
+// E-mail schovaný Cloudflarem není nefunkční odkaz a počítá se jako kontakt
+import { analyzeHtml } from '../lib/html.js';
+const cf = analyzeHtml('<html><body><a href="/cdn-cgi/l/email-protection#a1b2">[email&#160;protected]</a><a href="/kontakt">Kontakt</a></body></html>', 'https://firma.cz/');
+assert.deepEqual(cf.internalLinks, ['https://firma.cz/kontakt']);
+assert.equal(cf.email, true);
+console.log('✓ Ochrana e-mailu Cloudflare (bez falešného nefunkčního odkazu)');

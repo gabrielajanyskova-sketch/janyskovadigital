@@ -102,7 +102,8 @@ export function analyzeHtml(html, pageUrl) {
     let u;
     try { u = new URL(a.href, base); } catch { continue; }
     if (!/^https?:$/.test(u.protocol)) continue;
-    if (u.hostname.replace(/^www\./, '') === base.hostname.replace(/^www\./, '')) { u.hash = ''; internal.add(u.href); }
+    // /cdn-cgi/ jsou služební adresy Cloudflare (např. ochrana e-mailů před spamem), ne stránky webu
+    if (u.hostname.replace(/^www\./, '') === base.hostname.replace(/^www\./, '') && !u.pathname.startsWith('/cdn-cgi/')) { u.hash = ''; internal.add(u.href); }
     else external++;
   }
 
@@ -144,7 +145,8 @@ export function analyzeHtml(html, pageUrl) {
     cookieBanner: /cookie[-_ ]?(consent|banner|bar|lišta|lista)|cookiebot|onetrust|cookieyes|complianz|cc-window|klaro/i.test(html),
     privacyLink: /ochrana[-_ ]osobních|ochrana[-_ ]osobnich|gdpr|zásady[-_ ]ochrany|zasady[-_ ]ochrany|privacy/i.test(bodyNoScripts),
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
-    email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)),
+    // e-mail schovaný před spamem přes Cloudflare (Email Address Obfuscation) se počítá taky
+    email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)) || /\/cdn-cgi\/l\/email-protection|__cf_email__/.test(body),
     forms: (body.match(/<form\b/gi) || []).length,
     // IČO podnikatele (§ 435 občanského zákoníku): „IČO: 12345678“, „IČ 123 45 678“
     ico: /I[ČC]O?\s*[:.]?\s*(\d\s?){8}/i.test(text(bodyNoScripts)),
