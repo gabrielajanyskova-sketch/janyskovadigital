@@ -13,6 +13,7 @@ const FIELDS = {
   misto: 'Místo',
   message: 'Zpráva',
   zprava: 'Zpráva',
+  vysledek: 'Výsledek testu webu',
 };
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {

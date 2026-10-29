@@ -151,6 +151,21 @@ function render() {
   if (!message.dataset.edited) {
     message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Automatický test mu dal ${overall}/100.`;
   }
+  $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending);
+}
+
+// Shrnutí výsledku do e-mailu s žádostí o osobní audit (aby bylo hned vidět, co na webu je špatně)
+function resultSummary(a, checks, scores, overall, speedPending) {
+  const lines = [`Celkové skóre: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : ''}`];
+  lines.push(Object.entries(CATEGORIES).filter(([k]) => scores[k] != null).map(([k, name]) => `${name}: ${scores[k]}`).join(' · '));
+  const list = status => checks.filter(c => c.status === status).map(c => `- ${c.title}${c.detail ? ` — ${c.detail}` : ''}`.slice(0, 220));
+  const fails = list('fail');
+  const warns = list('warn');
+  if (fails.length) lines.push('', 'Problémy:', ...fails);
+  if (warns.length) lines.push('', 'Ke zlepšení:', ...warns);
+  if (a.platforms.length) lines.push('', `Platforma: ${a.platforms.join(', ')}`);
+  lines.push('', `Celý výsledek: https://testwebu.janyskovadigital.cz/?url=${encodeURIComponent(a.finalUrl)}`);
+  return lines.join('\n').slice(0, 4900);
 }
 
 function renderCheck(c) {
