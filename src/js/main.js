@@ -8,6 +8,7 @@ import './score-counter.js';
 import './reveal.js';
 import './ref-slider.js';
 import './forms.js';
+import './prefill.js';
 import './audit-popup.js';
 import './chatbot.js';
 import './scroll-progress.js';

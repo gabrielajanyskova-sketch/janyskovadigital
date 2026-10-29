@@ -228,6 +228,19 @@ async function pageStyles() {
   return { css: await minifyCss(parts.join('\n')), scoped };
 }
 
+// Aplikace testwebu.janyskovadigital.cz (samostatný projekt v Cloudflare Pages, kořen testwebu/)
+async function bundleTestWebu() {
+  await esbuild.build({
+    entryPoints: ['testwebu/src/app.js'],
+    outfile: 'testwebu/public/app.js',
+    bundle: true,
+    minify: true,
+    format: 'iife',
+    target: TARGET,
+    legalComments: 'none',
+  });
+}
+
 async function bundleJs() {
   const result = await esbuild.build({
     entryPoints: ['src/js/main.js'],
@@ -263,6 +276,7 @@ async function build() {
   const landingCss = await minifyCss(await read('src/css/landing.css'));
   const { css: pagesCss, scoped } = await pageStyles();
   const mainJs = await bundleJs();
+  await bundleTestWebu();
   await write('style.css', styleCss);
   await write('landing.css', landingCss);
   await write('pages.css', pagesCss);

@@ -62,3 +62,7 @@ Při každém pushi na `main` (i po uložení v CMS) GitHub Action web sestaví,
 
 - Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`) a přidejte kartu do `src/pages/blog.html`. Karta na hlavní stránce, schéma blogu, `sitemap.xml` a `llms.txt` se doplní samy.
 - Město: přidejte záznam do `src/data/cities.json`, sitemap se doplní sama.
+
+## Test webu
+
+Aplikace na `testwebu.janyskovadigital.cz` je ve složce `testwebu/` (samostatný projekt v Cloudflare Pages). Popis a nasazení: [`testwebu/README.md`](testwebu/README.md). Odkaz „Chci osobní audit“ předvyplní adresu testovaného webu v kontaktním formuláři (`?web=…`, `src/js/prefill.js`).

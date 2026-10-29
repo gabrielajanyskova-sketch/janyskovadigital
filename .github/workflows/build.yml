@@ -25,6 +25,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run check
+      - run: npm run testwebu:test
 
       - name: Uložit sestavené soubory
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

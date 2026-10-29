@@ -5,7 +5,9 @@
   "scripts": {
     "build": "node build.js",
     "check": "node check.js",
-    "test": "node build.js && node check.js"
+    "test": "node build.js && node check.js",
+    "testwebu:test": "node testwebu/test/run.mjs && node testwebu/test/psi.mjs",
+    "testwebu:dev": "node testwebu/test/dev.mjs"
   },
   "devDependencies": {
     "esbuild": "0.25.10",

@@ -6,7 +6,7 @@ import { readFile, readdir, access } from 'fs/promises';
 import path from 'path';
 import { createHash } from 'crypto';
 
-const SKIP_DIRS = new Set(['node_modules', 'src', 'admin', '.git', 'functions']);
+const SKIP_DIRS = new Set(['node_modules', 'src', 'admin', '.git', 'functions', 'testwebu']);
 const errors = [];
 const err = (file, msg) => errors.push(`${file}: ${msg}`);
 

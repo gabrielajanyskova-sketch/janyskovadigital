@@ -59,3 +59,6 @@
 /seo / 301
 
 /blog/cituje-vas-ai.html /blog/cituje-vas-ai 301
+
+# Zdrojové soubory aplikace Test webu nemají být dostupné na hlavní doméně
+/testwebu/* https://testwebu.janyskovadigital.cz/ 301

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test webu zdarma: rychlost, SEO, AI a bezpečnost | Janyskova Digital</title>
+<meta name="description" content="Bezplatný test webu za minutu: rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Srozumitelně česky, s návodem na opravu.">
+<link rel="canonical" href="https://testwebu.janyskovadigital.cz/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://testwebu.janyskovadigital.cz/">
+<meta property="og:title" content="Test webu zdarma | Janyskova Digital">
+<meta property="og:description" content="Rychlost, SEO, AI vyhledávače, bezpečnost a GDPR za minutu. Česky a s návodem na opravu.">
+<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:locale" content="cs_CZ">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/app.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Test webu zdarma",
+  "url": "https://testwebu.janyskovadigital.cz/",
+  "description": "Bezplatný automatický audit webu: rychlost, SEO, AI vyhledávače, bezpečnost a GDPR.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "cs",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CZK" },
+  "provider": { "@type": "Person", "@id": "https://janyskovadigital.cz/#person", "name": "Gabriela Janýšková", "url": "https://janyskovadigital.cz/" }
+}</script>
+<script src="/app.js" defer></script>
+</head>
+<body>
+<a href="#main" class="skip-link">Přeskočit na obsah</a>
+<header class="top">
+  <div class="wrap top-inner">
+    <a href="https://janyskovadigital.cz/" class="logo">Janyskova <em>Digital</em></a>
+    <a href="https://janyskovadigital.cz/#kontakt" class="top-cta">Napsat mi</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero wrap">
+    <p class="eyebrow">Bezplatný test webu</p>
+    <h1>Jak si stojí <em>váš web?</em></h1>
+    <p class="lead">Rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Za minutu, česky a s návodem, co opravit.</p>
+    <form id="audit-form" class="audit-form" novalidate>
+      <label for="url" class="visually-hidden">Adresa webu</label>
+      <input id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
+      <button type="submit" id="submit">Otestovat web</button>
+    </form>
+    <p class="form-error" id="form-error" role="alert" hidden></p>
+    <p class="hint">Test je zdarma a bez registrace. Neukládáme žádné osobní údaje.</p>
+  </section>
+
+  <section class="progress wrap" id="progress" hidden aria-live="polite">
+    <h2 class="visually-hidden">Průběh testu</h2>
+    <ol class="steps">
+      <li data-step="audit"><span class="dot" aria-hidden="true"></span>Technika, SEO, AI a bezpečnost</li>
+      <li data-step="mobile"><span class="dot" aria-hidden="true"></span>Rychlost na mobilu (měří Google, 15–40 s)</li>
+      <li data-step="desktop"><span class="dot" aria-hidden="true"></span>Rychlost na počítači</li>
+    </ol>
+  </section>
+
+  <section class="results wrap" id="results" hidden>
+    <div class="summary">
+      <div class="ring" id="overall" role="img" aria-label="Celkové skóre"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" id="ring-fg"/></svg><span id="overall-num">–</span></div>
+      <div>
+        <h2 id="result-title">Výsledek</h2>
+        <p class="result-url" id="result-url"></p>
+        <p class="result-meta" id="result-meta"></p>
+      </div>
+    </div>
+    <div class="cats" id="cats"></div>
+    <div id="checks"></div>
+    <aside class="cta">
+      <h2>Chcete to mít <em>v pořádku?</em></h2>
+      <p>Automatický test najde technické chyby. Obsah, odkazy a to, proč web nepřivádí zákazníky, projdu osobně, zdarma a bez závazků.</p>
+      <a class="btn" id="cta-link" href="https://janyskovadigital.cz/#kontakt">Chci osobní audit zdarma</a>
+      <button type="button" class="btn-ghost" id="share">Zkopírovat odkaz na výsledek</button>
+    </aside>
+  </section>
+
+  <section class="about wrap">
+    <h2>Co test kontroluje</h2>
+    <ul class="about-list">
+      <li><strong>Rychlost</strong>: měření Google PageSpeed na mobilu i počítači a data od skutečných návštěvníků z Chrome.</li>
+      <li><strong>Technika a indexace</strong>: HTTPS, přesměrování, robots.txt, mapa webu, chybové stránky, mobilní zobrazení.</li>
+      <li><strong>Obsah a SEO</strong>: titulky, popisy, nadpisy, obrázky, náhledy pro sociální sítě a několik dalších stránek webu.</li>
+      <li><strong>AI vyhledávače</strong>: strukturovaná data, přístup ChatGPT, Claude a Perplexity, llms.txt.</li>
+      <li><strong>Bezpečnost a GDPR</strong>: bezpečnostní hlavičky, Google Fonts, měřicí skripty bez souhlasu, zásady ochrany údajů.</li>
+    </ul>
+    <p class="note">Automatický test nevidí všechno: kvalitu textů, zpětné odkazy ani chování návštěvníků. To patří do osobního auditu.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>Test připravila <a href="https://janyskovadigital.cz/">Gabriela Janýšková</a>, webdesignérka · IČO 19616295</p>
+    <p class="small">Zadaná adresa webu se kvůli zrychlení opakovaného testu uchovává nejvýš hodinu. Osobní údaje neukládáme. Testovaný web navštíví robot TestWebuBot a měření Google PageSpeed Insights.</p>
+  </div>
+</footer>
+</body>
+</html>
