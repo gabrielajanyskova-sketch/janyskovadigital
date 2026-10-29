@@ -150,18 +150,34 @@ Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
 - **lufactory.cz** — Nikola Drnková, e-shop s přírodními houbičkami z lufy (Praha). Katalog, košík a objednávkový proces.
 - **stavbyliterak.cz** — Jan Literák, stavební firma z Frýdku-Místku.
 
-## Blog — vybrané články
+## Blog — všechny články
 
-- [Cituje vás AI? Jak to zjistit — ukázka na mém webu](https://janyskovadigital.cz/blog/cituje-vas-ai)
-- [Google AI Mode: 93 % hledání skončí bez kliknutí](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti)
-- [Google teď odpovídá sám — a bere vám zákazníky (AI Overviews)](https://janyskovadigital.cz/blog/google-ai-overviews-krade-navstevniky)
-- [Google v srpnu vyčistil výsledky — týká se to i vás?](https://janyskovadigital.cz/blog/google-spam-update-srpen-2026)
-- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu)
-- [E-shop bez Shoptetu — proč vlastní řešení vychází lépe](https://janyskovadigital.cz/blog/eshop-bez-shoptetu)
-- [Proč web v Ostravě nenajdou? Chyby lokálního SEO](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou)
-- [Trendy webdesignu 2026](https://janyskovadigital.cz/blog/trendy-webdesign-2026)
-- [FAQ snippety v Googlu 2026 — co se změnilo](https://janyskovadigital.cz/blog/google-faq-snippety-2026)
-- [Rychlost webu a její vliv na konverze](https://janyskovadigital.cz/blog/rychlost-webu)
+- [Cituje vás AI? Jak to zjistit — ukázka na mém webu](https://janyskovadigital.cz/blog/cituje-vas-ai): Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.
+- [7 varovných signálů špatného webdesignéra — poznejte ho dřív než zaplatíte](https://janyskovadigital.cz/blog/jak-poznat-spatneho-webdesignera): 7 varovných signálů špatného webdesignéra — žádné portfolio, WordPress bez ptaní, garance pozic na Googlu. Ušetřete peníze.
+- [Zářijový spam update a falešní autoři: co se v říjnu 2026 změnilo](https://janyskovadigital.cz/blog/google-ai-detekuje-ai-spam): Zářijový spam update skončil po 13 dnech a Google varuje před falešným autorstvím. Co to znamená pro váš web?
+- [Google AI Mode: 93 % hledání skončí bez kliknutí](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti): Google spustil AI Mode — nový způsob hledání, kde 93 % hledání v AI Mode skončí bez jediného kliknutí na web (Semrush, 2025). Co to znamená pro vaši firmu a jak na to?
+- [Google teď odpovídá sám — a bere vám zákazníky](https://janyskovadigital.cz/blog/google-ai-overviews-krade-navstevniky): Google AI Overviews — nová funkce, která odpovídá na dotazy přímo ve výsledcích. Co to znamená pro váš web a co s tím dělat?
+- [Google Spam Update srpen 2026: co se stalo a jestli se vás to týká](https://janyskovadigital.cz/blog/google-spam-update-srpen-2026): Google Spam Update srpen 2026 — téměř 17 % URL z top 10 spadlo během updatu za 100. pozici. Co update cílil, koho zasáhl a jak se bránit.
+- [Co je GEO (Generative Engine Optimization) a proč ho potřebujete v roce 2026](https://janyskovadigital.cz/blog/geo-generative-engine-optimization): GEO = Generative Engine Optimization. Jak optimalizovat web tak, aby vás citoval ChatGPT, Gemini nebo Claude? Praktický průvodce pro rok 2026.
+- [Kde je hostovaný váš web a jak je zabezpečený?](https://janyskovadigital.cz/blog/kde-je-hostovany-vas-web): Weby od Janyskova Digital běží na Cloudflare Pages — rychlý hosting, HTTPS zdarma, DDoS ochrana, žádné pluginy k hacknutí.
+- [Proč váš web nikdo na Googlu nenajde? 7 nejčastějších chyb](https://janyskovadigital.cz/blog/proc-web-nikdo-nenajde): Proč váš web nikdo na Googlu nenajde? 7 konkrétních chyb — pomalé načítání, chybějící meta tagy, žádný Google Business Profile.
+- [E-shop bez programátora: kdy to dává smysl a kdy ne](https://janyskovadigital.cz/blog/eshop-bez-programatora): Shoptet, Shopify nebo web na míru? Upřímně: kdy e-shop bez programátora funguje a kdy přijdete draho. Srovnání nákladů na 1, 3 a 5 let.
+- [Slovníček webdesignéra — co znamenají slova, která vám píšu](https://janyskovadigital.cz/blog/slovnicek-webdesignera): Doména, hosting, SSL, SEO, PageSpeed... Co tím myslím, když vám to píšu. Krátce, lidsky, bez zbytečného žargonu.
+- [Proč váš web nepotřebuje cookie lištu — a co to znamená pro zákazníky](https://janyskovadigital.cz/blog/proc-web-nepotrebuje-cookie-listu): Většina webů otravuje cookie bannerem hned na vstupu. Existují weby, které ho nepotřebují vůbec. Jak to funguje a co z toho plyne pro váš byznys.
+- [4 věci, které Claude AI umí — a skoro nikdo o tom neví](https://janyskovadigital.cz/blog/claude-ai-tipy-ktere-nikdo-nezna): 4 reálné funkce Claude AI, které podnikatelé skoro nevyužívají — nahrávání souborů, analýza konkurence, psaní ve vašem hlase.
+- [Jak vybrat webdesignéra — 6 otázek, které musíte položit](https://janyskovadigital.cz/blog/jak-vybrat-webdesignera): Než zaplatíte, zeptejte se těchto 6 věcí. Poznáte dobrého webdesignéra od špatného — a ušetříte si čas, peníze i nervy.
+- [Proč (možná) nepotřebujete WordPress — a co místo něj](https://janyskovadigital.cz/blog/proc-nepotrebujes-wordpress): WordPress vs. čistý kód — rychlost, bezpečnost, náklady. Pro podnikatele nemusí být WordPress nejlepší volba. Weby od 5 900 Kč.
+- [SEO, meta tagy a schema v červenci 2026 — co Google AI opravdu čte](https://janyskovadigital.cz/blog/seo-meta-schema-cervenec-2026): Meta tagy, schema.org, AEO i GEO — jak nastavit SEO v roce 2026, aby vás Google AI našel a doporučil. Průvodce od webdesignérky z Nového Jičína.
+- [E-shop bez Shoptetu — kdy se to vyplatí?](https://janyskovadigital.cz/blog/eshop-bez-shoptetu): E-shop bez Shoptetu nebo WooCommerce — v čistém kódu, bez měsíčních poplatků, bez pluginů. Srovnání nákladů a rychlosti pro malé e-shopy.
+- [Proč váš web v Ostravě nenajdou — a jak to změnit](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou): Web máte, zákazníci nepřicházejí. Nejčastější důvody, proč ostravské weby nenajde Google — a co s tím udělat bez velkých investic.
+- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web?](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu): Google AI Mode překonal miliardu uživatelů. Návštěvnost webů klesá. Co to znamená pro podnikatele v Česku a jak se přizpůsobit.
+- [Google zrušil FAQ snippety — co to znamená pro váš web?](https://janyskovadigital.cz/blog/google-faq-snippety-2026): Google odstranil FAQ snippety z výsledků hledání. Platí to globálně i v ČR. Co to znamená pro váš web? Vysvětluje Gabriela Janýšková.
+- [Webdesign trendy: Co dělá web moderním a funkčním](https://janyskovadigital.cz/blog/trendy-webdesign-2026): Tmavý režim, AI design, rychlost nebo autenticita? Říkám rovnou, co z webdesign trendů 2026 má smysl pro malé firmy a co je jen hype.
+- [Může AI vytvořit web místo vás? Upřímná odpověď](https://janyskovadigital.cz/blog/muze-ai-vytvorit-web): Může AI vytvořit web místo vás? Upřímná odpověď — co AI zvládne, co nezvládne a kdy se vyplatí profesionál. Bez reklamních keců.
+- [Proč záleží na rychlosti webu?](https://janyskovadigital.cz/blog/rychlost-webu): Pomalý web zákazníky odrazuje a Google ho řadí níže. Vysvětlím, proč na rychlosti záleží, jak ji změřit a co s tím udělat.
+- [Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?](https://janyskovadigital.cz/blog/cena-webu-novy-jicin): Tvorba webu Nový Jičín od 5 900 Kč — bez měsíčních poplatků. Přesně z čeho se cena skládá a kde se při výběru přeplácí.
+- [Google Search Console ukazuje web v AI výsledcích — co to znamená?](https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026): Google Search Console od června 2026 ukazuje, jak váš web vypadá v AI výsledcích. Jak číst nová data a co optimalizovat pro AI vyhledávání.
+- [AI vyhledávání mění pravidla — je váš web připravený?](https://janyskovadigital.cz/blog/ai-vyhledavani): ChatGPT, Perplexity a Google AI Overviews odpovídají přímo. Co to znamená pro váš byznys a jak se připravit? Praktický průvodce.
 
 ## Stránky webu
 
@@ -185,17 +201,10 @@ Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
 
 ## Kontakt
 
-- E-mail: info@janyskovadigital.cz
-- Telefon: +420 739 395 800
-- Adresa: Starojická Lhota 45, 741 01 Starý Jičín
-- Instagram: https://www.instagram.com/JanyskovaDigital
-- Kontaktní formulář: https://janyskovadigital.cz/#kontakt
-
-## Kontakt
-
 - Web: [janyskovadigital.cz](https://janyskovadigital.cz)
 - E-mail: [info@janyskovadigital.cz](mailto:info@janyskovadigital.cz)
 - Telefon: +420 739 395 800
 - Instagram: [@JanyskovaDigital](https://www.instagram.com/JanyskovaDigital)
 - Adresa: Starojická Lhota 45, 741 01 Starý Jičín, Česká republika
 - Pracovní hodiny: Po–Pá 8:00–17:00
+- Kontaktní formulář: https://janyskovadigital.cz/#kontakt

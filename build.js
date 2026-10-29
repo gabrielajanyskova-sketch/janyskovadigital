@@ -7,6 +7,7 @@
 //   src/css/         styly → style.css a landing.css
 //   src/css/pages/   styly jedné stránky (cesta = cesta stránky) → pages.css, omezené na danou stránku
 //   src/js/          JavaScript (moduly) → main.js
+//   src/llms.txt     popis webu pro AI nástroje (seznam článků se doplní) → llms.txt
 //   src/_headers     HTTP hlavičky pro Cloudflare (CSP se doplní automaticky) → _headers
 //   content/         texty spravované přes CMS (/admin)
 //
@@ -126,7 +127,7 @@ function syncFaqSchema(html, where) {
 
 const MONTHS = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
 
-async function homeBlogCards(count) {
+async function readArticles() {
   const articles = [];
   for (const file of await walk('src/pages/blog')) {
     const html = await read(file);
@@ -136,12 +137,42 @@ async function homeBlogCards(count) {
     const description = html.match(/<meta name="description" content="([^"]+)"/)[1];
     const rawTag = (html.match(/class="article-tag">([^<]+)</) || [, 'Blog'])[1].trim();
     const tag = rawTag.replace(/\s*·\s*\p{L}+\s+\d{4}\s*$/u, '');
-    articles.push({ slug: path.basename(file, '.html'), date: new Date(date[1]), title, description, tag });
+    const slug = path.basename(file, '.html');
+    const headline = (html.match(/"@type": ?"BlogPosting",[^]*?"headline": ?"([^"]+)"/) || [, title])[1];
+    articles.push({ slug, url: `https://janyskovadigital.cz/blog/${slug}`, date: new Date(date[1]), title, headline, description, tag });
   }
-  articles.sort((a, b) => b.date - a.date);
+  return articles.sort((a, b) => b.date - a.date);
+}
+
+function homeBlogCards(articles, count) {
   return articles.slice(0, count).map(a =>
     `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${MONTHS[a.date.getMonth()]} ${a.date.getFullYear()}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`
   ).join('\n      ');
+}
+
+// Seznam článků ve schématu stránky Blog
+function blogPostsJson(articles) {
+  const posts = articles.map(a => ({
+    '@type': 'BlogPosting',
+    headline: a.headline,
+    url: a.url,
+    datePublished: a.date.toISOString().slice(0, 10),
+  }));
+  return JSON.stringify(posts, null, 2).replace(/\n/g, '\n  ');
+}
+
+// Článek bez obrázku ve schématu BlogPosting dostane svůj og:image (Google ho u článků vyžaduje)
+function articleSchemaImage(html) {
+  const og = html.match(/<meta property="og:image" content="([^"]+)"/);
+  if (!og) return html;
+  return html.replace(/(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs, (all, open, json, close) => {
+    const data = JSON.parse(json);
+    let changed = false;
+    for (const item of Array.isArray(data) ? data : [data]) {
+      if (item['@type'] === 'BlogPosting' && !item.image) { item.image = og[1]; changed = true; }
+    }
+    return changed ? open + JSON.stringify(data, null, json.includes('\n') ? 2 : 0) + close : all;
+  });
 }
 
 // ── Městské stránky ──────────────────────────────────────────────────────────
@@ -233,15 +264,17 @@ async function build() {
     landingv: hash(landingCss),
     jsv: hash(mainJs),
     cms,
-    homeBlog: await homeBlogCards(6),
   };
+  const articles = await readArticles();
+  ctx.homeBlog = homeBlogCards(articles, 6);
+  ctx.blogPostsJson = blogPostsJson(articles);
   const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
   const inline = { styles: new Set(), scripts: new Set() };
 
   let count = 0;
   for (const file of await walk('src/pages')) {
     const rel = path.relative('src/pages', file);
-    let html = syncFaqSchema(await render(await read(file), ctx, rel), rel);
+    let html = articleSchemaImage(syncFaqSchema(await render(await read(file), ctx, rel), rel));
     const scope = scoped.get(rel.slice(0, -5));
     if (scope) {
       html = html.replace('</head>', pagesLink + '</head>').replace('<body>', `<body class="${scope}">`);
@@ -272,6 +305,10 @@ async function build() {
     await write(where, html);
     count++;
   }
+
+  // llms.txt pro AI nástroje: seznam článků se doplní automaticky
+  const llmsArticles = articles.map(a => `- [${a.headline}](${a.url}): ${a.description}`).join('\n');
+  await write('llms.txt', (await read('src/llms.txt')).replace('{{llmsArticles}}', llmsArticles));
 
   // CSP povolí jen přesně ty inline <style> a <script>, které na webu jsou
   // (kritický styl a nastavení motivu před vykreslením v hlavičce)

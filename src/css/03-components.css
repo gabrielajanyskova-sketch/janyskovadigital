@@ -82,3 +82,9 @@ p.nearby-cities-lead--loose{line-height:1.8}
 .city-grid.city-grid--compact{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
 /* Kalkulačka: na mobilu se tři výsledky nevejdou vedle sebe (box „Ušetříte“ vyčníval z obrazovky) */
 @media(max-width:600px){.kalk-results{grid-template-columns:1fr;gap:12px}.kalk-box{padding:18px}}
+/* Tečky karuselu: viditelná tečka zůstává 8 px, klikací plocha má 24 × 24 px (WCAG 2.5.8) */
+.process-dots{gap:0}
+.process-dot{box-sizing:content-box;border:8px solid transparent;background-clip:padding-box;margin:-8px 0}
+.process-dot.active{border-radius:12px}
+/* Srovnávací tabulky v článcích: na mobilu se posouvají do strany místo uříznutí */
+@media(max-width:600px){table.compare-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}

@@ -4,7 +4,9 @@ const hostingEl = document.getElementById('k-hosting');
 
 if (hostingEl) {
   const $ = id => document.getElementById(id);
-  const fmt = n => Math.round(n).toLocaleString('cs-CZ') + '\u00a0Kč';
+  // Kladná celá čísla s mezerou mezi tisíci (26 250 Kč). Intl/toLocaleString by při načtení
+  // stránky inicializovaly české formátování a blokovaly procesor ~100 ms na pomalém telefonu.
+  const fmt = n => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + '\u00a0Kč';
 
   function calc() {
     const h = +hostingEl.value;

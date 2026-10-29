@@ -32,6 +32,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -40,7 +41,7 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('jd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>html,body{background:#08060c;color:#f5f0fa}html[data-theme=light],html[data-theme=light] body{background:#f8f5fc;color:#1a0d2e}</style>
-<link rel="stylesheet" href="/style.css?v=041cdba54d">
+<link rel="stylesheet" href="/style.css?v=8b6153e1be">
 <link rel="stylesheet" href="/landing.css?v=1cc4c39f0f">
 <script type="application/ld+json">[
   {
@@ -286,7 +287,7 @@
     },
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Nový Jičín",
+      "addressLocality": "Starý Jičín",
       "addressRegion": "Moravskoslezský kraj",
       "addressCountry": "CZ"
     },
@@ -489,7 +490,7 @@
         <div class="hero-showcase">
           <div class="hero-showcase-label">Ukázka práce</div>
           <a href="https://jaroslavslonek.cz" target="_blank" rel="noopener noreferrer" aria-label="Web jaroslavslonek.cz">
-            <img src="/img/slonek-laptop.webp" alt="Web jaroslavslonek.cz" width="600" height="400" loading="lazy" decoding="async">
+            <img src="/img/slonek-laptop.webp" srcset="/img/slonek-laptop-660.webp 660w, /img/slonek-laptop.webp 1200w" sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 1024px) 720px, 536px" alt="Web jaroslavslonek.cz" width="600" height="400" loading="lazy" decoding="async">
           </a>
           <span class="hero-showcase-name">jaroslavslonek.cz</span>
         </div>
@@ -533,7 +534,7 @@
       <div class="about-img-wrap">
         <img src="/gabca.webp"
           srcset="/gabca-mobilni-verze.webp 400w, /gabca.webp 800w"
-          sizes="(max-width: 600px) 400px, 800px"
+          sizes="(max-width: 600px) 200px, 447px"
           alt="Gabriela Janýšková — webdesignérka z Nového Jičína"
           width="400" height="533" loading="lazy" decoding="async">
         <div class="about-badge"><span>Sídlím v</span><strong>Novém Jičíně</strong></div>
@@ -615,7 +616,7 @@
           </div>
         </div>
         <div class="ref-card reveal">
-          <div class="ref-img"><img src="/img/slonek-laptop.webp" alt="Web jaroslavslonek.cz" loading="lazy" decoding="async" width="612" height="408"></div>
+          <div class="ref-img"><img src="/img/slonek-laptop.webp" srcset="/img/slonek-laptop-660.webp 660w, /img/slonek-laptop.webp 1200w" sizes="330px" alt="Web jaroslavslonek.cz" loading="lazy" decoding="async" width="612" height="408"></div>
           <div class="ref-body">
             <div class="ref-tag">Finanční poradce · Olomoucký kraj</div>
             <h3>Ing. Jaroslav Slonek</h3>
@@ -624,7 +625,7 @@
           </div>
         </div>
         <div class="ref-card reveal">
-          <div class="ref-img"><img src="/img/lufactory-desktop.webp" alt="E-shop lufactory.cz" loading="lazy" decoding="async" width="612" height="408"></div>
+          <div class="ref-img"><img src="/img/lufactory-desktop.webp" srcset="/img/lufactory-desktop-660.webp 660w, /img/lufactory-desktop.webp 1200w" sizes="330px" alt="E-shop lufactory.cz" loading="lazy" decoding="async" width="612" height="408"></div>
           <div class="ref-body">
             <div class="ref-tag">E-shop · Praha</div>
             <h3>Nikola Drnková — lufactory</h3>
@@ -633,7 +634,7 @@
           </div>
         </div>
         <div class="ref-card reveal">
-          <div class="ref-img"><img src="/img/literak-desktop.webp" alt="Web stavbyliterak.cz" loading="lazy" decoding="async" width="612" height="408"></div>
+          <div class="ref-img"><img src="/img/literak-desktop.webp" srcset="/img/literak-desktop-660.webp 660w, /img/literak-desktop.webp 1200w" sizes="330px" alt="Web stavbyliterak.cz" loading="lazy" decoding="async" width="612" height="408"></div>
           <div class="ref-body">
             <div class="ref-tag">Stavební firma · Frýdek-Místek</div>
             <h3>Jan Literák — Stavby Literák</h3>
@@ -770,9 +771,9 @@
         <div><div class="kalk-label">Počet let <span id="k-roky-out">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range" aria-label="Počet let"></div>
       </div>
       <div class="kalk-results">
-        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">25 250 Kč</div></div>
-        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">6 250 Kč</div></div>
-        <div class="kalk-box save"><div class="kalk-box-label">Ušetříte</div><div class="kalk-box-val" id="k-uspora">19 000 Kč</div></div>
+        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">26 250 Kč</div></div>
+        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">7 150 Kč</div></div>
+        <div class="kalk-box save"><div class="kalk-box-label">Ušetříte</div><div class="kalk-box-val" id="k-uspora">19 100 Kč</div></div>
       </div>
       <div class="kalk-bar-wrap">
         <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
@@ -1105,7 +1106,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=37a1922b46" defer></script>
+<script src="/main.js?v=9eaa06bc79" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>

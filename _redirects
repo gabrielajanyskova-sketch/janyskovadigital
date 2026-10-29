@@ -19,7 +19,8 @@
 /seo.html / 301
 /grafika.html / 301
 /ochrana-udaju.html /ochrana-udaju 301
-/cookies.html /cookies 301
+/cookies.html /ochrana-udaju 301
+/cookies /ochrana-udaju 301
 /podekovani.html /podekovani 301
 
 # Blog články .html → čistá URL

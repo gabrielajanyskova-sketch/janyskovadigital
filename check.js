@@ -40,7 +40,7 @@ const headers = await readFile('_headers', 'utf8');
 const csp = (headers.match(/^\/\*\n(?:  .*\n)*?  Content-Security-Policy: (.*)$/m) || [])[1] || '';
 if (!csp) err('_headers', 'chybí Content-Security-Policy pro /*');
 
-const files = (await walk('.')).filter(f => f !== 'cookies.html');
+const files = await walk('.');
 const ids = new Map();
 const html = new Map();
 for (const f of files) {
@@ -64,6 +64,8 @@ for (const [f, s] of html) {
   if (!noindex && !/rel="canonical"/.test(head)) err(f, 'chybí canonical');
   const h1 = (body.match(/<h1[\s>]/g) || []).length;
   if (h1 !== 1) err(f, `${h1}× <h1> (má být 1)`);
+  const levels = [...body.matchAll(/<h([1-6])[\s>]/g)].map(m => +m[1]);
+  levels.forEach((l, i) => { if (i && l > levels[i - 1] + 1) err(f, `přeskočená úroveň nadpisu h${levels[i - 1]} → h${l}`); });
   if (!body.includes('IČO 19616295')) err(f, 'v patičce chybí IČO');
 
   // Kompatibilita s CSP: žádný inline JavaScript ani inline styly mimo povolené hashe

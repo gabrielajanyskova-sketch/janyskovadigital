@@ -33,14 +33,15 @@
   height: 1px;
   background: var(--border);
 }
-.feature-card h3 {
+.feature-card h2 {
   font-family: 'DM Serif Display', serif;
   font-size: 22px;
+  font-weight: 700;
   color: var(--text);
   line-height: 1.25;
   margin-bottom: 14px;
 }
-.feature-card h3 em { color: var(--pink); font-style: italic; }
+.feature-card h2 em { color: var(--pink); font-style: italic; }
 .feature-card > p {
   font-size: 15px;
   color: var(--text-dim);
@@ -135,3 +136,6 @@
 .related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
 .related-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.4;}
 p.prompt-availability { margin-top: 18px; font-size: 14px; color: var(--text-dim); }
+/* Nadpisy tipů jsou h2 (hierarchie pod h1): bez dekorace obecného h2 v článku */
+.article-body .feature-card h2 { font-size: 22px; line-height: 1.25; margin: 32px 0 14px; }
+.article-body .feature-card h2::before { content: none; }

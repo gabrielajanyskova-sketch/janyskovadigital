@@ -42,7 +42,7 @@
 .page-thanks .step:last-child{border-bottom: none;}
 .page-thanks .step-num{font-family: 'DM Serif Display', serif; font-size: 40px; color: rgba(240,20,122,0.2); line-height: 1; flex-shrink: 0; width: 48px; transition: color 0.3s;}
 .page-thanks .step:hover .step-num{color: rgba(240,20,122,0.55);}
-.page-thanks .step-content h3{font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;}
+.page-thanks .step-content h2{font-family: "DM Serif Display", Georgia, serif; font-weight: 700; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;}
 .page-thanks .step-content p{font-size: 14px; color: var(--text-dim); line-height: 1.6;}
 .page-thanks .btns{display: flex; gap: 14px; flex-wrap: wrap;}
 .page-thanks .btn-primary{display: inline-flex; align-items: center; gap: 10px; background: var(--pink); color: white; padding: 15px 34px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; transition: all 0.3s; box-shadow: 0 8px 28px rgba(240,20,122,0.35);}

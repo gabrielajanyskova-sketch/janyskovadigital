@@ -15,9 +15,11 @@ Statický web (HTML/CSS/JS) hostovaný na Cloudflare Pages. Obsah hlavní strán
 | `src/css/pages/` | Styly jedné stránky (např. `blog/clanek.css` platí jen pro `/blog/clanek`) → `pages.css` |
 | `src/js/` | JavaScript rozdělený podle funkcí (menu, formuláře, chatbot…) → `main.js` |
 | `src/_headers` | HTTP hlavičky pro Cloudflare včetně Content-Security-Policy → `_headers` |
+| `src/llms.txt` | Popis webu pro AI nástroje; seznam článků doplní build → `llms.txt` |
+| `functions/api/` | Přihlášení do CMS přes GitHub (OAuth, ověřuje `state` a předává token jen vlastní doméně) |
 | `content/hlavni-stranka.yml` | Texty upravované přes CMS |
 
-Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js` a `_headers` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
+Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js`, `_headers` a `llms.txt` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
 
 ## Práce s webem
 
@@ -31,6 +33,7 @@ npm test         # obojí
 - Include: `<!-- @include nav about="/#about" -->` vloží `src/partials/nav.html`, atributy jsou dostupné jako `{{about}}`.
 - Proměnné: `{{cms.hero_title}}` (z CMS), `{{city.name}}` (městské stránky). Chybějící proměnná build zastaví.
 - FAQ strukturovaná data (FAQPage) se generují automaticky z viditelných otázek na stránce.
+- Seznam článků ve schématu stránky Blog, karty na hlavní stránce a `llms.txt` se generují z článků; článek bez obrázku ve schématu BlogPosting dostane svůj `og:image`.
 - CSS a JS dostávají v odkazu otisk obsahu (`?v=…`), takže se po změně nenačte stará verze z cache.
 - JS i CSS minifikuje [esbuild](https://esbuild.github.io/).
 
@@ -44,7 +47,7 @@ Web posílá přísnou Content-Security-Policy: skripty a styly jen z vlastní d
 
 `npm run check` porušení těchto pravidel najde.
 
-`npm run check` hlídá: nenahrazené proměnné, title/description/canonical, jeden `h1`, IČO v patičce, platnost JSON-LD, rozbité interní odkazy, kotvy a soubory, duplicitní `id`, soulad s CSP a obsah `sitemap.xml`.
+`npm run check` hlídá: nenahrazené proměnné, title/description/canonical, jeden `h1`, IČO v patičce, platnost JSON-LD, rozbité interní odkazy, kotvy a soubory, duplicitní `id`, přeskočené úrovně nadpisů, soulad s CSP a obsah `sitemap.xml`.
 
 ### Automatické sestavení
 
@@ -52,5 +55,5 @@ Při každém pushi na `main` (i po uložení v CMS) GitHub Action web sestaví,
 
 ## Nový článek / město
 
-- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`), přidejte do `blog.html`, `sitemap.xml` a `llms.txt`. Karta na hlavní stránce se doplní sama.
+- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`), přidejte kartu do `src/pages/blog.html` a URL do `sitemap.xml`. Karta na hlavní stránce, schéma blogu a `llms.txt` se doplní samy.
 - Město: přidejte záznam do `src/data/cities.json` a URL do `sitemap.xml`.
