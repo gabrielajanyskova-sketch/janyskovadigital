@@ -219,7 +219,7 @@ function loadPdfLib() {
     const s = document.createElement('script');
     s.src = '/pdf.js';
     s.onload = () => resolve(window.TestWebuPdf);
-    s.onerror = () => { pdfLib = null; reject(new Error('pdf.js')); };
+    s.onerror = () => { pdfLib = null; reject(new Error('nepodařilo se načíst pdf.js')); };
     document.head.append(s);
   });
   return pdfLib;
@@ -231,6 +231,7 @@ $('pdf').addEventListener('click', async () => {
   const label = button.textContent;
   button.disabled = true;
   button.textContent = 'Připravuji PDF…';
+  $('pdf-error').hidden = true;
   try {
     const { buildPdf } = await loadPdfLib();
     const a = state.audit;
@@ -251,8 +252,13 @@ $('pdf').addEventListener('click', async () => {
       })),
     });
     doc.save(`audit-webu-${host}-${date.toISOString().slice(0, 10)}.pdf`);
-  } catch {
-    window.print();
+  } catch (err) {
+    // Ukázat důvod (ať jde chyba nahlásit) a nabídnout tisk, kde jde zvolit „Uložit jako PDF“
+    const msg = $('pdf-error');
+    msg.replaceChildren(`PDF se nepodařilo vytvořit (${err?.message || err}). `,
+      el('button', { type: 'button', class: 'link-btn', id: 'pdf-print' }, 'Uložit přes tisk'), ' (v okně tisku zvolte „Uložit jako PDF“).');
+    msg.hidden = false;
+    $('pdf-print').addEventListener('click', () => window.print());
   } finally {
     button.disabled = false;
     button.textContent = label;

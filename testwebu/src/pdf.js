@@ -20,7 +20,7 @@ const clean = s => String(s ?? '').replace(/→/g, '->').replace(/←/g, '<-').r
 
 async function loadFont(doc, weight) {
   const buf = await fetch(`/fonts/plus-jakarta-sans-cs-${weight}.ttf`).then(r => {
-    if (!r.ok) throw new Error('font');
+    if (!r.ok) throw new Error(`písmo ${weight} se nenačetlo (${r.status})`);
     return r.arrayBuffer();
   });
   let bin = '';
