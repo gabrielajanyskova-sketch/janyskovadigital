@@ -454,3 +454,20 @@ export function emailChecks(dns, domain) {
   }
   return out;
 }
+
+// Zabezpečení domény: DNSSEC, CAA a security.txt (prvky, které hlídají i kontroly „kybernetické hygieny“ podle NIS2)
+export function domainChecks(dns, domain, securityTxt) {
+  const out = [];
+  if (dns?.ds != null) out.push(dns.ds > 0
+    ? check('security', 'dnssec', 'medium', 'pass', 'Doména je chráněná DNSSEC', `Záznamy domény ${domain} jsou digitálně podepsané.`, 'Útočník nemůže podvrhnout, kam doména vede, a přesměrovat návštěvníky nebo e-maily jinam.', '—')
+    : check('security', 'dnssec', 'medium', 'warn', 'Doména nemá zapnutý DNSSEC', `Záznamy domény ${domain} nejsou podepsané.`,
+      'DNSSEC brání podvržení adresy domény, aby návštěvníci ani e-maily neskončili u útočníka. V Česku ho má většina domén a patří k základům kybernetické bezpečnosti.',
+      'Zapnout DNSSEC u správce DNS (často jedno tlačítko, např. v Cloudflare DNS → Settings) a případně vložit záznam DS u registrátora domény.'));
+  if (dns?.caa != null) out.push(dns.caa > 0
+    ? check('security', 'caa', 'low', 'pass', 'Doména určuje, kdo smí vydat její certifikát (CAA)', 'Záznam CAA je nastavený.', 'Cizí certifikační autorita nevydá certifikát pro vaši doménu.', '—')
+    : check('security', 'caa', 'low', 'info', 'Doména nemá záznam CAA', 'Volitelné doporučení.', 'CAA určuje, které autority smí vydat SSL certifikát pro doménu. Je to doplňková ochrana proti podvrženým certifikátům.', 'Přidat záznam CAA pro autoritu, která certifikát vydává (např. letsencrypt.org). Pozor, chybný záznam zablokuje obnovu certifikátu.'));
+  out.push(securityTxt
+    ? check('security', 'security-txt', 'low', 'pass', 'Web má soubor security.txt', 'Kontakt pro nahlášení bezpečnostních chyb je na /.well-known/security.txt.', 'Kdo najde na webu zranitelnost, ví, komu ji nahlásit.', '—')
+    : check('security', 'security-txt', 'low', 'warn', 'Chybí soubor security.txt', 'Na /.well-known/security.txt není kontakt pro hlášení bezpečnostních chyb.', 'Standard RFC 9116: když někdo na webu najde zranitelnost, nemá ji komu nahlásit. Kontroly podle NIS2 ho hlídají.', 'Vytvořit /.well-known/security.txt s řádky Contact: mailto:vas@email.cz a Expires: (datum za rok).'));
+  return out;
+}

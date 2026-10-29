@@ -30,7 +30,8 @@ globalThis.fetch = async (input, init = {}) => {
     const name = url.searchParams.get('name'), type = url.searchParams.get('type');
     const good = name.endsWith('dobry-web.test');
     const answer = type === 'TXT' ? (!good ? [] : name.startsWith('_dmarc.') ? [{ type: 16, data: '"v=DMARC1; p=quarantine"' }] : [{ type: 16, data: '"v=spf1 include:spf.seznam.cz ~all"' }])
-      : type === 'MX' ? [{ type: 15, data: '10 mx.seznam.cz.' }] : [{ type: 1, data: '93.184.216.34' }];
+      : type === 'MX' ? [{ type: 15, data: '10 mx.seznam.cz.' }] : type === 'DS' ? (good ? [{ type: 43, data: '2371 13 2 abc' }] : []) : type === 'CAA' ? []
+      : [{ type: 1, data: '93.184.216.34' }];
     return new Response(JSON.stringify({ Status: 0, Answer: answer }));
   }
   const target = TARGETS[url.hostname];

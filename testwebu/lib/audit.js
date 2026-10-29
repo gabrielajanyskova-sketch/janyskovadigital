@@ -2,7 +2,7 @@
 
 import { normalizeUrl, assertPublicHost, fetchPage, AuditError } from './http.js';
 import { analyzeHtml } from './html.js';
-import { siteChecks, emailChecks, score, CATEGORIES } from './checks.js';
+import { siteChecks, emailChecks, domainChecks, score, CATEGORIES } from './checks.js';
 
 const AI_BOTS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'];
 const SEARCH_BOTS = ['Googlebot', 'SeznamBot', 'Bingbot'];
@@ -33,14 +33,15 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
 
   const otherHost = final.hostname.startsWith('www.') ? final.hostname.slice(4) : 'www.' + final.hostname;
   const probe = `${origin}/tato-stranka-neexistuje-${Math.random().toString(36).slice(2, 8)}`;
-  const mailDomain = final.hostname.replace(/^www\./, '');
-  const [httpVer, wwwVer, robotsRes, llmsRes, notFoundRes, mailDns] = await Promise.all([
+  const domain = registrableDomain(final.hostname);
+  const [httpVer, wwwVer, robotsRes, llmsRes, notFoundRes, securityTxt, dns] = await Promise.all([
     final.protocol === 'https:' ? fetchPage(`http://${final.host}${final.pathname}`, opts) : null,
     fetchPage(`${final.protocol}//${otherHost}${final.pathname}`, opts).catch(() => null),
     fetchPage(`${origin}/robots.txt`, opts),
     fetchPage(`${origin}/llms.txt`, opts),
     fetchPage(probe, opts),
-    mailDomain.includes('.') && !/^[\d.]+$/.test(mailDomain) ? readMailDns(mailDomain, budgeted) : null,
+    fetchPage(`${origin}/.well-known/security.txt`, opts),
+    domain ? readDomainDns(domain, budgeted) : null,
   ]);
 
   const robots = parseRobots(robotsRes?.status === 200 && /text\/plain/i.test(robotsRes.contentType) ? robotsRes.body : null);
@@ -89,13 +90,14 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     } : null,
     robots,
     sitemap: { url: sitemap.url, urls: sitemap.count },
+    securityTxt: securityTxt?.status === 200 && /text\/plain/i.test(securityTxt.contentType) && /^contact:/im.test(securityTxt.body),
     llms: llmsRes?.status === 200 && /text\/(plain|markdown)/i.test(llmsRes.contentType) && llmsRes.body.trim().startsWith('#'),
     notFound: { url: probe, status: notFoundRes?.status || 0 },
     pages,
     links: { checked: linkResults.filter(l => l.status).length, broken: brokenLinks },
   };
 
-  const checks = [...siteChecks(report), ...emailChecks(mailDns, mailDomain)];
+  const checks = [...siteChecks(report), ...domainChecks(dns, domain, report.securityTxt), ...emailChecks(dns, domain)];
   return {
     url: report.url,
     finalUrl: report.finalUrl,
@@ -153,15 +155,24 @@ async function readSitemap(url, opts, host, depth = 0) {
   return { url: res.url, count: locs.length, list: locs };
 }
 
-// Záznamy SPF (TXT domény), DMARC (TXT _dmarc) a MX přes DNS-over-HTTPS; null, když DNS neodpoví
-export async function readMailDns(domain, fetchImpl) {
+// Hlavní doména webu (www.shop.firma.cz → firma.cz, firma.co.uk zůstane celá); null pro localhost a IP
+export function registrableDomain(host) {
+  if (!host.includes('.') || /^[\d.]+$/.test(host) || host.includes(':')) return null;
+  const parts = host.split('.');
+  const n = /^(co|com|org|net|gov|edu|ac)$/.test(parts.at(-2)) && parts.at(-1).length === 2 ? 3 : 2;
+  return parts.slice(-n).join('.');
+}
+
+// Záznamy domény přes DNS-over-HTTPS: SPF (TXT), DMARC (TXT _dmarc), MX, DNSSEC (DS) a CAA; null, když DNS neodpoví
+export async function readDomainDns(domain, fetchImpl) {
   const lookup = (name, type) => fetchImpl(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(name)}&type=${type}`, {
     headers: { accept: 'application/dns-json' },
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  const [txt, dmarc, mx] = await Promise.all([lookup(domain, 'TXT'), lookup(`_dmarc.${domain}`, 'TXT'), lookup(domain, 'MX')]);
+  const [txt, dmarc, mx, ds, caa] = await Promise.all([lookup(domain, 'TXT'), lookup(`_dmarc.${domain}`, 'TXT'), lookup(domain, 'MX'), lookup(domain, 'DS'), lookup(domain, 'CAA')]);
   if (!txt || !dmarc) return null;
   // TXT může být rozdělený na víc řetězců v uvozovkách: "v=spf1 …" "… ~all"
   const texts = (res, type) => (res.Answer || []).filter(a => a.type === type).map(a => a.data.replace(/"\s*"/g, '').replace(/^"|"$/g, '').trim());
-  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: (mx?.Answer || []).filter(a => a.type === 15).length };
+  const count = (res, type) => (res ? (res.Answer || []).filter(a => a.type === type).length : null);
+  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: count(mx, 15) || 0, ds: count(ds, 43), caa: count(caa, 257) };
 }
