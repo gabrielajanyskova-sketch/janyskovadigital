@@ -17,6 +17,70 @@ function check(category, id, weight, status, title, detail, why, fix) {
   return { category, id, weight: WEIGHT[weight], status, title, detail, why, fix };
 }
 
+// Doporučení Googlu (Lighthouse) přeložená do řeči majitele webu
+const OPPORTUNITIES = {
+  'legacy-javascript': { title: 'zastaralý JavaScript',
+    what: 'Web posílá kód upravený pro staré prohlížeče (a doplňky pro funkce, které dnešní prohlížeče už umí).',
+    why: 'Prohlížeč stahuje a zpracovává zbytečný kód, hlavně na mobilu to zdržuje.',
+    fix: 'Sestavovat skripty pro moderní prohlížeče. Často jde o skripty pluginů, šablony nebo služeb třetích stran.' },
+  'render-blocking': { title: 'soubory blokující zobrazení',
+    what: 'Styly a skripty, které musí prohlížeč stáhnout dřív, než vůbec něco ukáže.',
+    why: 'Návštěvník mezitím kouká na prázdnou stránku.',
+    fix: 'Nezbytné styly vložit přímo do stránky, ostatní skripty načítat odloženě (defer/async).' },
+  'render-blocking-resources': { title: 'soubory blokující zobrazení',
+    what: 'Styly a skripty, které musí prohlížeč stáhnout dřív, než vůbec něco ukáže.',
+    why: 'Návštěvník mezitím kouká na prázdnou stránku.',
+    fix: 'Nezbytné styly vložit přímo do stránky, ostatní skripty načítat odloženě (defer/async).' },
+  'cache': { title: 'krátká doba uložení v prohlížeči',
+    what: 'Některé soubory si prohlížeč smí pamatovat jen krátce, takže je při další návštěvě stahuje znovu.',
+    why: 'Opakovaná návštěva je pomalejší, než by musela být.',
+    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma.' },
+  'long-cache-ttl': { title: 'krátká doba uložení v prohlížeči',
+    what: 'Některé soubory si prohlížeč smí pamatovat jen krátce, takže je při další návštěvě stahuje znovu.',
+    why: 'Opakovaná návštěva je pomalejší, než by musela být.',
+    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma.' },
+  'image-delivery': { title: 'zbytečně velké obrázky',
+    what: 'Obrázky jsou větší nebo v horším formátu, než je potřeba.',
+    why: 'Obrázky tvoří obvykle největší část dat stránky.',
+    fix: 'Převést obrázky do WebP/AVIF, zmenšit je na zobrazovanou velikost a použít srcset pro mobil.' },
+  'responsive-images': { title: 'zbytečně velké obrázky',
+    what: 'Obrázky se posílají ve větším rozlišení, než v jakém se zobrazují.', why: 'Mobil stahuje zbytečná data.',
+    fix: 'Připravit menší varianty obrázků (srcset).' },
+  'image-formats': { title: 'obrázky ve starém formátu',
+    what: 'Obrázky jsou v JPG/PNG místo moderního WebP nebo AVIF.', why: 'Moderní formáty mají při stejné kvalitě o 30–50 % menší velikost.',
+    fix: 'Převést obrázky do WebP nebo AVIF.' },
+  'offscreen-images': { title: 'obrázky mimo obrazovku se načítají hned',
+    what: 'Obrázky, které návštěvník zatím nevidí, se stahují hned při otevření.', why: 'Zdržují načtení toho, co je vidět.',
+    fix: 'Přidat obrázkům mimo první obrazovku loading="lazy".' },
+  'unused-javascript': { title: 'nepoužívaný JavaScript',
+    what: 'Stránka stahuje skripty, které na ní nic nedělají.', why: 'Zbytečná data a práce procesoru, typicky z pluginů a šablon.',
+    fix: 'Odstranit nebo načítat jen tam, kde jsou potřeba (pluginy, slidery, chaty).' },
+  'unused-css-rules': { title: 'nepoužívané styly',
+    what: 'Stránka stahuje CSS styly, které nepoužívá.', why: 'Zdržují první zobrazení stránky.',
+    fix: 'Odstranit nepoužívané styly, u šablon vypnout nepotřebné moduly.' },
+  'document-latency': { title: 'pomalé načtení samotné stránky',
+    what: 'Server odpovídá pomalu, přesměrovává nebo neposílá stránku zkomprimovanou.', why: 'Na tom závisí všechno ostatní.',
+    fix: 'Rychlejší hosting nebo cache stránek, komprese (gzip/brotli), odstranit zbytečná přesměrování.' },
+  'text-compression': { title: 'chybí komprese',
+    what: 'Server posílá soubory nezkomprimované.', why: 'Data jsou zbytečně několikanásobně větší.',
+    fix: 'Zapnout na serveru kompresi gzip nebo brotli.' },
+  'font-display': { title: 'písma zdržují text',
+    what: 'Text se nezobrazí, dokud se nestáhne písmo.', why: 'Návštěvník chvíli vidí prázdná místa místo textu.',
+    fix: 'Nastavit u písem font-display: swap a hostovat je na vlastním webu.' },
+  'lcp-discovery': { title: 'hlavní obrázek se najde pozdě',
+    what: 'Prohlížeč se o hlavním obrázku stránky dozví až pozdě.', why: 'Zdržuje to okamžik, kdy návštěvník uvidí hlavní obsah.',
+    fix: 'Hlavní obrázek nenačítat líně (bez loading="lazy") a přidat mu fetchpriority="high".' },
+  'third-parties': { title: 'skripty cizích služeb',
+    what: 'Chaty, měření, reklamy nebo vložená videa zdržují stránku.', why: 'Na jejich rychlost nemáte vliv.',
+    fix: 'Omezit počet služeb a načítat je až po zobrazení stránky nebo po kliknutí.' },
+  'dom-size': { title: 'příliš složitá stránka',
+    what: 'Stránka má velké množství prvků (typické pro page buildery).', why: 'Prohlížeč s ní dlouho počítá, hlavně na mobilu.',
+    fix: 'Zjednodušit strukturu stránky, méně vnořených bloků.' },
+  'network-dependency-tree': { title: 'řetězení načítání',
+    what: 'Soubory se načítají jeden po druhém, protože na sobě závisí.', why: 'Každý krok čeká na předchozí.',
+    fix: 'Důležité soubory (písma, hlavní styly) načítat dopředu pomocí preload/preconnect.' },
+};
+
 const fmtMs = ms => (ms >= 1000 ? `${(ms / 1000).toFixed(1).replace('.', ',')} s` : `${Math.round(ms)} ms`);
 const plural = (n, one, few, many) => `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`;
 
@@ -75,10 +139,13 @@ export function speedChecks(strategy, psi) {
         'Na mobilních datech je velká stránka pomalá a stojí návštěvníka peníze. Dobrá hodnota je do 1,5 MB.',
         'Zmenšit obrázky (WebP, správné rozměry), odstranit nepoužívané skripty, písma a pluginy.'));
     }
-    if (psi.opportunities?.length) {
-      out.push(check('speed', 'opportunities', 'low', 'info', 'Největší příležitosti ke zrychlení',
-        psi.opportunities.map(o => `${o.title} (ušetří ~${fmtMs(o.savingsMs)})`).join(' · '),
-        'Seřazeno podle toho, kolik času by oprava ušetřila.', 'Začít od první položky.'));
+    for (const o of psi.opportunities || []) {
+      const t = OPPORTUNITIES[o.id] || OPPORTUNITIES[o.id.replace(/^(uses-|modern-)/, '')];
+      out.push(check('speed', `opp-${o.id}`, 'low', 'info',
+        `Zrychlení: ${t?.title || o.title} (ušetří ~${fmtMs(o.savingsMs)})`,
+        t?.what || `Doporučení Googlu: ${o.title}.`,
+        t?.why || 'Google odhaduje, o kolik by se načítání zrychlilo po opravě.',
+        t?.fix || 'Podrobnosti ukáže PageSpeed Insights (pagespeed.web.dev) u této položky.'));
     }
   }
   return out;

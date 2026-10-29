@@ -71,13 +71,13 @@ export function summarizePsi(data) {
   // Novější Lighthouse má „insights“ a starší „opportunities“ s podobným obsahem: bereme jen jednu sadu
   const entries = Object.entries(a);
   const insights = entries.filter(([id]) => id.endsWith('-insight') && id !== 'lcp-breakdown-insight');
-  const pool = (insights.length ? insights : entries.filter(([, x]) => x.details?.type === 'opportunity')).map(([, x]) => x);
+  const pool = (insights.length ? insights : entries.filter(([, x]) => x.details?.type === 'opportunity')).map(([id, x]) => ({ ...x, id }));
   const opportunities = pool
     .filter(x => x.score !== null && x.score < 0.9 && savings(x) >= 100)
     .sort((x, y) => savings(y) - savings(x))
     .filter(x => !seen.has(x.title) && seen.add(x.title))
     .slice(0, 5)
-    .map(x => ({ title: x.title, savingsMs: Math.round(savings(x)) }));
+    .map(x => ({ id: x.id.replace(/-insight$/, ''), title: x.title, savingsMs: Math.round(savings(x)) }));
 
   // Neúspěšné kontroly přístupnosti a SEO (pro detail)
   const failed = cat => (lh.categories?.[cat]?.auditRefs || [])

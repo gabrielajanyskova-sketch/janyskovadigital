@@ -38,7 +38,7 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('jd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>html,body{background:#08060c;color:#f5f0fa}html[data-theme=light],html[data-theme=light] body{background:#f8f5fc;color:#1a0d2e}</style>
-<link rel="stylesheet" href="/style.css?v=814c73d674">
+<link rel="stylesheet" href="/style.css?v=62d53dae4e">
 <link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[
   {
@@ -243,6 +243,7 @@
       <a href="#cenik">Ceník</a>
       <a href="/barter">Barter</a>
       <a href="/blog">Blog</a>
+      <a href="https://testwebu.janyskovadigital.cz/">Test webu</a>
       <a href="#kontakt" class="cta">Mám zájem</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -259,6 +260,7 @@
   <div class="menu-group">
     <div class="menu-group-label">Služby</div>
     <a href="/barter">Barter</a>
+    <a href="https://testwebu.janyskovadigital.cz/">Test webu zdarma</a>
   </div>
   <a href="/blog">Blog</a>
   <a href="#kontakt" class="menu-cta">Mám zájem</a>
@@ -466,6 +468,24 @@
   </div>
 </section>
 
+<section class="webtest" aria-labelledby="webtest-title">
+  <div class="container">
+    <div class="webtest-box reveal">
+      <div class="webtest-text">
+        <div class="section-tag">Bezplatný test webu</div>
+        <h2 class="section-title" id="webtest-title">Jak si stojí <em>váš web?</em></h2>
+        <p>Za minutu zjistíte rychlost na mobilu, chyby v SEO, bezpečnost, GDPR a hlavně jestli váš web smí číst <strong>ChatGPT, Claude a Perplexity</strong>. Česky, s návodem co opravit, a výsledek si stáhnete jako PDF.</p>
+      </div>
+      <form class="webtest-form" action="https://testwebu.janyskovadigital.cz/" method="GET">
+        <label for="webtest-url" class="visually-hidden">Adresa vašeho webu</label>
+        <input id="webtest-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
+        <button type="submit" class="btn-primary">Otestovat web zdarma</button>
+      </form>
+      <p class="webtest-note">Bez registrace · výsledek za minutu · <a href="https://testwebu.janyskovadigital.cz/">testwebu.janyskovadigital.cz</a></p>
+    </div>
+  </div>
+</section>
+
 <div class="section-divider"></div>
 
 <section class="pricing-section" id="cenik">
@@ -626,6 +646,7 @@
         <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
         <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
         <div class="post-blog-wrap"><a href="/blog" class="post-blog-link">Blog o webdesignu a AI →</a></div>
+        <div class="post-blog-wrap"><a href="https://testwebu.janyskovadigital.cz/" class="post-blog-link">Test webu zdarma →</a></div>
       </div>
       <div>
         <div class="footer-heading">Kde působím</div>
@@ -671,18 +692,22 @@
       Jak rychlý je váš web<br>a je připravený na <em>AI vyhledávače?</em>
     </h2>
     <p class="audit-lead">
-      Bezplatný audit rychlosti + AI připravenosti — dostanete konkrétní výsledky, ne obecné rady. Do 48 hodin.
+      Otestujte si web zdarma hned teď. Za minutu uvidíte konkrétní výsledky a návod, co opravit. Nebo vám ho projdu osobně.
     </p>
     <ul class="audit-list">
       <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>PageSpeed skóre a co ho brzdí</li>
       <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Viditelnost v ChatGPT, Perplexity a Google AI</li>
       <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f0147a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>3 konkrétní doporučení, co zlepšit</li>
     </ul>
-    <a href="#kontakt" id="audit-cta" class="audit-cta">
-      Chci bezplatný audit
+    <a href="https://testwebu.janyskovadigital.cz/" class="audit-cta">
+      Otestovat web hned
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>
-    <p class="audit-note">Bez spamu · odpovím osobně</p>
+    <a href="/#kontakt" id="audit-cta" class="audit-cta-secondary">
+      Chci osobní audit (do 48 hodin)
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <p class="audit-note">Zdarma · bez registrace · bez spamu</p>
   </div>
 </div>
 <a href="https://wa.me/420739395800" class="float-wa" target="_blank" rel="noopener" aria-label="Napište na WhatsApp">

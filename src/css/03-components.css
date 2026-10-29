@@ -51,7 +51,7 @@
 .audit-lead{font-size:15px;color:rgba(245,240,250,.65);line-height:1.7;margin-bottom:28px}
 .audit-list{list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:10px}
 .audit-list li{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,240,250,.7)}
-.audit-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:#f0147a;color:#fff;font-weight:700;font-size:16px;padding:16px 28px;border-radius:50px;text-decoration:none;transition:opacity .2s}
+.audit-cta{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--pink-strong);color:#fff;font-weight:700;font-size:16px;padding:16px 28px;border-radius:50px;text-decoration:none;transition:opacity .2s}
 .audit-note{font-size:12px;color:rgba(245,240,250,.5);text-align:center;margin-top:16px}
 
 /* Drobnosti dříve psané přímo v HTML */
@@ -92,3 +92,28 @@ p.nearby-cities-lead--loose{line-height:1.8}
 .process-num::before{content:attr(data-num)}
 /* Štítek u „Mohlo by vás zajímat“ (článek ho může přestylovat ve vlastním CSS) */
 .related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink-text);margin-bottom:8px}
+
+/* Vyskakovací okno: druhá volba (osobní audit) jako odkaz pod hlavním tlačítkem */
+.audit-cta-secondary{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;color:var(--text);font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.audit-cta-secondary svg{width:14px;height:14px}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Propagace Testu webu (testwebu.janyskovadigital.cz) */
+.webtest{padding:40px 0 80px;position:relative;z-index:1}
+.webtest-box{background:linear-gradient(135deg,rgba(240,20,122,.12),rgba(120,40,200,.08));border:1px solid var(--border);border-radius:28px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:20px 48px;align-items:center}
+.webtest-text p{color:var(--text-dim);font-size:16px;line-height:1.75}
+.webtest-text p strong{color:var(--text)}
+.webtest-text .section-title{margin-bottom:14px}
+.webtest-form{display:flex;flex-direction:column;gap:12px}
+.webtest-form input{background:rgba(8,6,12,.55);border:1px solid var(--border);border-radius:100px;color:var(--text);font:inherit;font-size:17px;padding:15px 22px;outline:0}
+.webtest-form input:focus{border-color:var(--pink)}
+.webtest-form .btn-primary{justify-content:center}
+.webtest-note{grid-column:1/-1;font-size:13px;color:var(--text-dim)}
+.webtest-note a{color:var(--pink-text)}
+[data-theme="light"] .webtest-form input{background:#fff}
+@media(max-width:800px){.webtest-box{grid-template-columns:1fr;padding:28px 22px}}
+.webtest-inline{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;background:rgba(240,20,122,.06);border:1px solid var(--border);border-radius:16px;padding:18px 22px;margin:40px 0 0}
+.webtest-inline p{margin:0;color:var(--text-dim);font-size:15px;flex:1 1 320px}
+.webtest-inline strong{color:var(--text)}
+a.webtest-inline-link{color:var(--pink-text);font-weight:700;text-decoration:none;white-space:nowrap}
+a.webtest-inline-link:hover{text-decoration:underline}

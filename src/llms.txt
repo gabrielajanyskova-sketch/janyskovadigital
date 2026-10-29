@@ -150,6 +150,10 @@ Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
 - **lufactory.cz** — Nikola Drnková, e-shop s přírodními houbičkami z lufy (Praha). Katalog, košík a objednávkový proces.
 - **stavbyliterak.cz** — Jan Literák, stavební firma z Frýdku-Místku.
 
+## Nástroje
+
+- [Test webu zdarma](https://testwebu.janyskovadigital.cz/): bezplatný automatický audit webu — rychlost (Google PageSpeed), technika a indexace, SEO, strukturovaná data a přístup AI vyhledávačů (ChatGPT, Claude, Perplexity), bezpečnost, GDPR a IČO. Česky, s návodem na opravu a výsledkem v PDF.
+
 ## Blog — všechny články
 
 {{llmsArticles}}
