@@ -35,9 +35,14 @@ function setStep(name, status) {
 
 async function getJson(url, options) {
   const res = await fetch(url, { ...options, signal: controller.signal });
-  const data = await res.json().catch(() => ({ error: 'Neočekávaná odpověď serveru.' }));
-  if (!res.ok) throw new Error(data.error || 'Test se nepodařil.');
-  return data;
+  const data = await res.json().catch(() => null);
+  if (res.ok && data) return data;
+  if (data?.error) throw new Error(data.error);
+  // Odpověď není od aplikace (chybová stránka Cloudflaru): ukázat srozumitelný důvod a kód
+  const reason = res.status === 429 ? 'Příliš mnoho testů za krátkou dobu, zkuste to za minutu.'
+    : res.status >= 520 ? 'Měření trvalo příliš dlouho nebo spadlo, zkuste to znovu.'
+    : 'Neočekávaná odpověď serveru.';
+  throw new Error(`${reason} (kód ${res.status})`);
 }
 
 async function run(url) {
@@ -122,9 +127,10 @@ function render() {
   const cats = $('cats');
   cats.replaceChildren(...Object.entries(CATEGORIES).map(([key, name]) => {
     const pending = scores[key] == null;
+    const running = pending && ['speed', 'a11y'].includes(key) && !state.speedErrors.mobile;
     const level = pending ? ' pending' : scores[key] >= 90 ? ' good' : scores[key] >= 50 ? ' mid' : ' bad';
     return el('a', { class: `cat${level}`, href: `#group-${key}` },
-      el('strong', {}, pending ? '…' : String(scores[key])), el('span', {}, name));
+      el('strong', {}, pending ? (running ? '…' : '–') : String(scores[key])), el('span', {}, name));
   }));
 
   const groups = Object.entries(CATEGORIES).map(([key, name]) => {
