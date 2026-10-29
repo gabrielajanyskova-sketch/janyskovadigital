@@ -239,6 +239,14 @@ async function bundleTestWebu() {
     target: TARGET,
     legalComments: 'none',
   });
+  // Otisk obsahu v adrese app.js a app.css: stránka a skript se nikdy nerozejdou (stará verze z cache)
+  const page = 'testwebu/public/index.html';
+  let html = await read(page);
+  for (const file of ['app.js', 'app.css']) {
+    const v = hash(await read(`testwebu/public/${file}`));
+    html = html.replace(new RegExp(`/${file.replace('.', '\\.')}(\\?v=\\w+)?"`, 'g'), `/${file}?v=${v}"`);
+  }
+  await write(page, html);
 }
 
 async function bundleJs() {
