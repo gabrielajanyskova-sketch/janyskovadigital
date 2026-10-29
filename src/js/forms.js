@@ -1,10 +1,10 @@
-// Odesílání formulářů přes Web3Forms (kontaktní formulář a barter)
+// Odesílání formulářů přes vlastní endpoint /api/contact (Resend) — kontaktní formulář a barter
 
-const ENDPOINT = 'https://api.web3forms.com/submit';
+const ENDPOINT = '/api/contact';
 const THANKS   = '/podekovani';
 
 async function submit(form) {
-  const res  = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form) });
+  const res  = await fetch(ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
   const data = await res.json();
   if (!data.success) throw new Error(data.message || 'Chyba serveru');
   window.location.href = THANKS;
