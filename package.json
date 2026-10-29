@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "esbuild": "0.25.10",
+    "jspdf": "4.2.1",
     "yaml": "^2.9.0"
   }
 }
