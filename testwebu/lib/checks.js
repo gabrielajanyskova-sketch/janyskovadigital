@@ -7,8 +7,21 @@ export const CATEGORIES = {
   seo: 'Obsah a SEO',
   ai: 'Strukturovaná data a AI vyhledávače',
   security: 'Bezpečnost',
+  email: 'Ochrana e-mailu',
   privacy: 'GDPR a důvěryhodnost',
   a11y: 'Přístupnost',
+};
+
+// Nadpisy skupin ve výsledku: otázky, kterým rozumí i laik
+export const CATEGORY_QUESTIONS = {
+  speed: 'Načte se web rychle i na mobilu?',
+  tech: 'Najde a správně načte Google celý web?',
+  seo: 'Najdou vás zákazníci ve vyhledávání?',
+  ai: 'Rozumí vašemu webu ChatGPT a další AI?',
+  security: 'Je web bezpečný pro návštěvníky?',
+  email: 'Může někdo poslat e-mail vaším jménem?',
+  privacy: 'Splňuje web GDPR a působí důvěryhodně?',
+  a11y: 'Zvládne web i člověk se zdravotním omezením?',
 };
 
 const WEIGHT = { high: 3, medium: 2, low: 1 };
@@ -402,4 +415,42 @@ export function score(checks) {
     result[cat] = Math.round((got / total) * 100);
   }
   return result;
+}
+
+// Ochrana domény před podvrženými e-maily (SPF a DMARC podle záznamů v DNS).
+// dns = { txt: [...], dmarc: [...], mx: počet MX záznamů } nebo null, když DNS nešlo přečíst.
+export function emailChecks(dns, domain) {
+  if (!dns) return [];
+  const out = [];
+  const spf = dns.txt.filter(t => /^v=spf1(\s|$)/i.test(t));
+  const receives = dns.mx > 0;
+  const where = 'Záznam se přidává v DNS domény (u registrátora nebo v Cloudflare). Hodnotu vám řekne poskytovatel e-mailu.';
+  if (spf.length > 1) {
+    out.push(check('email', 'spf', 'high', 'fail', 'Doména má víc záznamů SPF najednou', `Nalezeno ${spf.length} záznamů začínajících v=spf1.`, 'Při více záznamech SPF je ochrana neplatná a poštovní servery ji ignorují.', 'Sloučit vše do jednoho záznamu SPF.'));
+  } else if (!spf.length) {
+    out.push(check('email', 'spf', 'high', receives ? 'fail' : 'warn', 'Chybí záznam SPF', `Doména ${domain} neurčuje, které servery smí posílat její e-maily.`,
+      'Kdokoli pak může snáz rozeslat podvodný e-mail, který vypadá, že je od vás, a vaše skutečné e-maily častěji padají do spamu.',
+      receives ? `Přidat TXT záznam SPF podle poskytovatele e-mailu (např. Seznam: v=spf1 include:spf.seznam.cz ~all). ${where}` : 'Doména e-maily nepoužívá: stačí TXT záznam v=spf1 -all, který posílání jejím jménem zakáže.'));
+  } else {
+    const all = (spf[0].match(/\s([~?+-])?all\b/i) || [])[1];
+    const ok = all === '-' || all === '~';
+    out.push(check('email', 'spf', 'high', ok ? 'pass' : 'warn', ok ? 'Doména má platný záznam SPF' : 'Záznam SPF nic nezakazuje',
+      spf[0].length > 160 ? spf[0].slice(0, 160) + '…' : spf[0],
+      'SPF říká poštovním serverům, kdo smí posílat e-maily vaším jménem.',
+      ok ? '—' : 'Ukončit záznam SPF pravidlem ~all nebo -all, jinak nemá žádný účinek.'));
+  }
+  const dmarc = dns.dmarc.find(t => /^v=DMARC1/i.test(t));
+  const policy = dmarc && (dmarc.match(/;\s*p\s*=\s*(\w+)/i) || [])[1]?.toLowerCase();
+  if (!dmarc) {
+    out.push(check('email', 'dmarc', 'high', 'fail', 'Chybí záznam DMARC', `Na _dmarc.${domain} není žádné pravidlo.`,
+      'DMARC říká poštovním schránkám, co dělat s e-mailem, který se za vás jen vydává. Bez něj podvodné zprávy klidně dorazí, a Gmail i Seznam čím dál víc vyžadují DMARC i od běžných odesílatelů.',
+      `Přidat TXT záznam _dmarc s hodnotou v=DMARC1; p=none; rua=mailto:vas@email.cz a po pár týdnech bez problémů zpřísnit na p=quarantine. ${where}`));
+  } else if (policy === 'none') {
+    out.push(check('email', 'dmarc', 'high', 'warn', 'DMARC jen sleduje, nechrání', dmarc,
+      'Pravidlo p=none podvodné e-maily nezastaví, jen o nich podává hlášení. Je to dobrý první krok.',
+      'Když hlášení ukazují, že vaše e-maily procházejí, změnit p=none na p=quarantine (nebo p=reject).'));
+  } else {
+    out.push(check('email', 'dmarc', 'high', 'pass', 'Doména je chráněná pravidlem DMARC', dmarc, 'Podvodné e-maily vaším jménem skončí ve spamu nebo je schránky odmítnou.', '—'));
+  }
+  return out;
 }

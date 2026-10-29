@@ -70,7 +70,8 @@ em{font-style:italic;color:var(--pink)}
 .cat.pending strong{color:var(--dim)}
 
 .group{margin-bottom:28px;scroll-margin-top:16px}
-.group h3{font-size:24px;margin-bottom:12px}
+.group h3{font-size:24px;margin-bottom:2px}
+.group-name{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
 .check{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--info);border-radius:14px;margin-bottom:10px}
 .check.pass{border-left-color:var(--pass)}.check.warn{border-left-color:var(--warn)}.check.fail{border-left-color:var(--fail)}
 .check summary{list-style:none;cursor:pointer;padding:14px 18px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}

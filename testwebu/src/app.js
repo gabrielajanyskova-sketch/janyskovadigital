@@ -1,7 +1,7 @@
 // Stránka testu webu: spustí audit a dvě měření rychlosti souběžně a průběžně vykresluje výsledky.
 // Data z testovaného webu se vkládají jen jako text (textContent), nikdy jako HTML.
 
-import { CATEGORIES, score } from '../lib/checks.js';
+import { CATEGORIES, CATEGORY_QUESTIONS, score } from '../lib/checks.js';
 
 const $ = id => document.getElementById(id);
 const form = $('audit-form');
@@ -139,7 +139,8 @@ function render() {
   const groups = Object.entries(CATEGORIES).map(([key, name]) => {
     const list = checks.filter(c => c.category === key).sort((x, y) => STATUS_ORDER[x.status] - STATUS_ORDER[y.status] || y.weight - x.weight);
     if (!list.length) return null;
-    return el('section', { class: 'group', id: `group-${key}` }, el('h3', {}, name), ...list.map(renderCheck));
+    return el('section', { class: 'group', id: `group-${key}` },
+      el('h3', {}, CATEGORY_QUESTIONS[key] || name), el('p', { class: 'group-name' }, name), ...list.map(renderCheck));
   }).filter(Boolean);
   $('checks').replaceChildren(...groups);
 

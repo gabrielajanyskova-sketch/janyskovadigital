@@ -11,6 +11,7 @@ Test provozuje Gabriela Janýšková, webdesignérka a SEO specialistka (IČO 19
 - SEO: titulek, meta popis, nadpisy, alt texty obrázků, kanonická adresa, Open Graph, nefunkční odkazy, kontrola až 5 dalších podstránek
 - AI vyhledávače (GEO/AEO): přístup GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot a dalších, strukturovaná data schema.org, llms.txt
 - Bezpečnost: HSTS, CSP, X-Frame-Options a další hlavičky, smíšený obsah
+- E-mail: záznamy SPF a DMARC, které chrání doménu před podvrženými e-maily
 - GDPR a důvěryhodnost: Google Fonts, měřicí skripty bez souhlasu, cookie lišta, zásady ochrany údajů, IČO, kontakt
 - Přístupnost: hlavní body z Lighthouse
 

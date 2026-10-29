@@ -25,7 +25,14 @@ globalThis.fetch = async (input, init = {}) => {
     if (process.env.PSI_FAIL) return new Response(JSON.stringify({ error: { code: 429, message: 'Quota exceeded' } }), { status: 429 });
     return new Response(JSON.stringify({ lighthouseResult: lighthouse }), { headers: { 'content-type': 'application/json' } });
   }
-  if (url.hostname === 'cloudflare-dns.com') return new Response(JSON.stringify({ Status: 0, Answer: [{ type: 1, data: '93.184.216.34' }] }));
+  if (url.hostname === 'cloudflare-dns.com') {
+    // dobry-web.test má SPF i DMARC, spatny-web.test jen MX bez ochrany
+    const name = url.searchParams.get('name'), type = url.searchParams.get('type');
+    const good = name.endsWith('dobry-web.test');
+    const answer = type === 'TXT' ? (!good ? [] : name.startsWith('_dmarc.') ? [{ type: 16, data: '"v=DMARC1; p=quarantine"' }] : [{ type: 16, data: '"v=spf1 include:spf.seznam.cz ~all"' }])
+      : type === 'MX' ? [{ type: 15, data: '10 mx.seznam.cz.' }] : [{ type: 1, data: '93.184.216.34' }];
+    return new Response(JSON.stringify({ Status: 0, Answer: answer }));
+  }
   const target = TARGETS[url.hostname];
   if (target) return realFetch(target + url.pathname + url.search, init);
   return new Response('offline', { status: 502 });
