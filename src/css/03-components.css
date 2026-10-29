@@ -27,7 +27,7 @@
 .article-body :is(.step-body,.hl-box,.tl-text,.yn-list) a:not(.btn-primary){text-decoration:underline;text-underline-offset:3px}
 
 /* Odkaz „Přeskočit na obsah“ a hláška bez JavaScriptu */
-.skip-link{position:absolute;left:-9999px;top:0;background:var(--pink);color:#fff;padding:8px 16px;z-index:99999;font-size:14px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--pink-strong);color:#fff;padding:8px 16px;z-index:99999;font-size:14px}
 .skip-link:focus{left:0}
 .noscript-msg{padding:20px;text-align:center;font-family:sans-serif}
 
@@ -88,3 +88,7 @@ p.nearby-cities-lead--loose{line-height:1.8}
 .process-dot.active{border-radius:12px}
 /* Srovnávací tabulky v článcích: na mobilu se posouvají do strany místo uříznutí */
 @media(max-width:600px){table.compare-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+/* Dekorativní čísla kroků jsou v CSS, ne v textu: nečtou je čtečky ani kontrola kontrastu */
+.process-num::before{content:attr(data-num)}
+/* Štítek u „Mohlo by vás zajímat“ (článek ho může přestylovat ve vlastním CSS) */
+.related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink-text);margin-bottom:8px}

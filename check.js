@@ -104,6 +104,11 @@ for (const [f, s] of html) {
   }
 }
 
+// security.txt nesmí propadnout (RFC 9116: Expires nejvýš rok dopředu)
+const securityTxt = await readFile('.well-known/security.txt', 'utf8').catch(() => '');
+const expires = new Date((securityTxt.match(/^Expires: (.+)$/m) || [])[1]);
+if (!(expires > new Date(Date.now() + 30 * 864e5))) err('.well-known/security.txt', 'chybí nebo do 30 dnů vyprší Expires — prodlužte o rok');
+
 // Sitemap: všechny URL existují a nejsou noindex
 const sitemap = await readFile('sitemap.xml', 'utf8');
 for (const [, loc] of sitemap.matchAll(/<loc>https:\/\/janyskovadigital\.cz(\/[^<]*)<\/loc>/g)) {

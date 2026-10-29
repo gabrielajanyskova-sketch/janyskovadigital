@@ -58,7 +58,7 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: rgba(240,20,122,0.7);
+  color: var(--pink-text);
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -67,7 +67,7 @@
 .prompt-label svg {
   width: 12px;
   height: 12px;
-  stroke: rgba(240,20,122,0.7);
+  stroke: var(--pink-text);
   fill: none;
   stroke-width: 2;
   stroke-linecap: round;
@@ -86,7 +86,7 @@
   position: relative;
 }
 .prompt-box .ph {
-  color: rgba(240,20,122,0.8);
+  color: var(--pink-text);
   font-style: italic;
 }
 .copy-btn {

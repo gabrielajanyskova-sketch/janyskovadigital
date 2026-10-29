@@ -16,7 +16,7 @@
 .timeline{display:flex;flex-direction:column;gap:0;margin:32px 0;}
 .tl-item{display:flex;gap:20px;padding-bottom:28px;position:relative;}
 .tl-item:not(:last-child)::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--border);}
-.tl-dot{width:40px;height:40px;border-radius:50%;background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;position:relative;z-index:1;}
+.tl-dot{width:40px;height:40px;border-radius:50%;background:var(--pink-strong);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;position:relative;z-index:1;}
 .tl-body{padding-top:8px;}
 .tl-date{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--pink);margin-bottom:4px;}
 .tl-text{font-size:15px;color:var(--text-dim);line-height:1.65;}
@@ -39,7 +39,7 @@
 /* ── Steps ── */
 .steps{display:flex;flex-direction:column;gap:16px;margin:28px 0;}
 .step{display:flex;gap:16px;align-items:flex-start;}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--pink);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--pink-strong);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
 .step-body{font-size:15px;color:var(--text-dim);line-height:1.65;}
 .step-body strong{color:var(--text);}
 

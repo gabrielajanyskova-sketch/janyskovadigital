@@ -38,8 +38,8 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('jd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>html,body{background:#08060c;color:#f5f0fa}html[data-theme=light],html[data-theme=light] body{background:#f8f5fc;color:#1a0d2e}</style>
-<link rel="stylesheet" href="/style.css?v=8b6153e1be">
-<link rel="stylesheet" href="/landing.css?v=1cc4c39f0f">
+<link rel="stylesheet" href="/style.css?v=814c73d674">
+<link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[
   {
     "@context": "https://schema.org",
@@ -126,6 +126,14 @@
     "openingHours": [
       "Mo-Fr 08:00-17:00"
     ],
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://janyskovadigital.cz/web-app-manifest-512x512.png",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://janyskovadigital.cz/og-image.png",
+    "taxID": "19616295",
     "description": "Gabriela Janýšková tvoří webové stránky na míru ve Valašském Meziříčí a okolí. Čistý kód, PageSpeed 90–100, hosting v ceně tvorby.",
     "areaServed": [
       {
@@ -573,7 +581,8 @@
         <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
         <input type="hidden" name="subject" value="Nová poptávka z webu — Valašské Meziříčí">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
-        <input type="text" name="website" class="form-hp" tabindex="-1" autocomplete="off">
+        <!-- Past na roboty: Web3Forms odmítne odeslání, když je pole zaškrtnuté -->
+        <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-row">
           <div class="form-group">
             <label for="jmeno">Jméno</label>
@@ -654,7 +663,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=9eaa06bc79" defer></script>
+<script src="/main.js?v=2e9909562d" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>

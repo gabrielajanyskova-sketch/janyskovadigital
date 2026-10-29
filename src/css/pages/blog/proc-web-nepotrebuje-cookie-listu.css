@@ -138,7 +138,7 @@
 }
 .checker-note {
   font-size: 12px;
-  color: rgba(240,20,122,0.7);
+  color: var(--pink-text);
   margin-top: 2px;
 }
 /* CTA */

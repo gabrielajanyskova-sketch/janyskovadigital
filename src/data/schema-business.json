@@ -82,6 +82,14 @@
     },
     "openingHours": [
       "Mo-Fr 08:00-17:00"
-    ]
+    ],
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://janyskovadigital.cz/web-app-manifest-512x512.png",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://janyskovadigital.cz/og-image.png",
+    "taxID": "19616295"
   }
 }

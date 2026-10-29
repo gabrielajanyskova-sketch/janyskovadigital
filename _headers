@@ -4,7 +4,9 @@
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), bluetooth=(), hid=(), midi=(), magnetometer=(), gyroscope=(), accelerometer=(), browsing-topics=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-jp3mjGPYFxmeMDZuCkg74VJHVFWanFOJXxybTUsrDMM=' https://static.cloudflareinsights.com; style-src 'self' 'sha256-0RtQhWUNB6FYEpW2/aJUuZ0jXxMmq8Ck5EtitpPzmJY='; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com https://cloudflareinsights.com; form-action 'self' https://api.web3forms.com; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
@@ -23,12 +25,15 @@
 /*.html
   X-Robots-Tag: noindex, nofollow
 
-# Správa obsahu (Decap CMS) načítá skripty z unpkg.com a identity.netlify.com — přísná CSP by ji rozbila
+# Správa obsahu (Decap CMS) načítá skript z unpkg.com a přihlašuje se přes vyskakovací okno (window.opener) —
+# přísná CSP ani izolace oken (COOP) by ji rozbily
 /admin
   ! Content-Security-Policy
+  ! Cross-Origin-Opener-Policy
 
 /admin/*
   ! Content-Security-Policy
+  ! Cross-Origin-Opener-Policy
 
 # CSS a JS se odkazují s ?v=<otisk obsahu>, takže je lze cacheovat natrvalo
 /main.js

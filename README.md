@@ -11,7 +11,7 @@ Statický web (HTML/CSS/JS) hostovaný na Cloudflare Pages. Obsah hlavní strán
 | `src/templates/city.html` | Šablona městských stránek |
 | `src/data/cities.json` | Texty a data jednotlivých měst |
 | `src/data/schema-business.json` | Společná strukturovaná data firmy (JSON-LD) |
-| `src/css/` | Styly – spojí se do `style.css`, hero styly do `landing.css` |
+| `src/css/` | Styly – `01-base` až `05-light` se spojí do `style.css`, hero styly do `landing.css`. `05-light.css` obsahuje opravy kontrastu pro světlý motiv. |
 | `src/css/pages/` | Styly jedné stránky (např. `blog/clanek.css` platí jen pro `/blog/clanek`) → `pages.css` |
 | `src/js/` | JavaScript rozdělený podle funkcí (menu, formuláře, chatbot…) → `main.js` |
 | `src/_headers` | HTTP hlavičky pro Cloudflare včetně Content-Security-Policy → `_headers` |
@@ -19,7 +19,7 @@ Statický web (HTML/CSS/JS) hostovaný na Cloudflare Pages. Obsah hlavní strán
 | `functions/api/` | Přihlášení do CMS přes GitHub (OAuth, ověřuje `state` a předává token jen vlastní doméně) |
 | `content/hlavni-stranka.yml` | Texty upravované přes CMS |
 
-Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js`, `_headers` a `llms.txt` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
+Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js`, `_headers`, `sitemap.xml` a `llms.txt` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
 
 ## Práce s webem
 
@@ -37,10 +37,15 @@ npm test         # obojí
 - CSS a JS dostávají v odkazu otisk obsahu (`?v=…`), takže se po změně nenačte stará verze z cache.
 - JS i CSS minifikuje [esbuild](https://esbuild.github.io/).
 
+### Přístupnost a světlý motiv
+
+Barvy textu musí mít kontrast aspoň 4,5:1 (WCAG AA) v tmavém i světlém motivu. Barvy natvrdo napsané pro tmavé pozadí (neonová zelená, žlutá, bílá) potřebují ve světlém motivu přebití v `src/css/05-light.css`. Pro malý růžový text na tmavém pozadí je `--pink-text`. Dekorativní čísla (01, 02…) se vkládají přes CSS (`data-num`), aby je nečetly čtečky.
+
 ### Bezpečnost (CSP)
 
-Web posílá přísnou Content-Security-Policy: skripty a styly jen z vlastní domény.
+Web posílá přísnou Content-Security-Policy (skripty a styly jen z vlastní domény), izolaci oken (COOP) a omezení funkcí prohlížeče (Permissions-Policy). Kontakt pro hlášení zranitelností je v `/.well-known/security.txt`, jeho platnost (`Expires`) je potřeba jednou ročně prodloužit. `npm run check` na to upozorní 30 dní předem.
 
+- Formuláře (Web3Forms) mají past na roboty: skryté pole `botcheck`.
 - Žádné `onclick="…"`, `<script>` bez `src` ani `style="…"` v HTML. Chování patří do `src/js/`, vzhled do CSS.
 - Výjimkou je kritický `<style>` a krátký `<script>` v hlavičce, který před vykreslením nastaví světlý/tmavý motiv (jinak by stránka problikla). Jejich hashe do CSP doplní build sám.
 - Data pro Google (`<script type="application/ld+json">`) CSP neblokuje.
@@ -55,5 +60,5 @@ Při každém pushi na `main` (i po uložení v CMS) GitHub Action web sestaví,
 
 ## Nový článek / město
 
-- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`), přidejte kartu do `src/pages/blog.html` a URL do `sitemap.xml`. Karta na hlavní stránce, schéma blogu a `llms.txt` se doplní samy.
-- Město: přidejte záznam do `src/data/cities.json` a URL do `sitemap.xml`.
+- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`) a přidejte kartu do `src/pages/blog.html`. Karta na hlavní stránce, schéma blogu, `sitemap.xml` a `llms.txt` se doplní samy.
+- Město: přidejte záznam do `src/data/cities.json`, sitemap se doplní sama.

@@ -41,8 +41,8 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('jd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>html,body{background:#08060c;color:#f5f0fa}html[data-theme=light],html[data-theme=light] body{background:#f8f5fc;color:#1a0d2e}</style>
-<link rel="stylesheet" href="/style.css?v=8b6153e1be">
-<link rel="stylesheet" href="/landing.css?v=1cc4c39f0f">
+<link rel="stylesheet" href="/style.css?v=814c73d674">
+<link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[
   {
     "@context": "https://schema.org",
@@ -270,7 +270,15 @@
           "priceCurrency": "CZK"
         }
       ]
-    }
+    },
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://janyskovadigital.cz/web-app-manifest-512x512.png",
+      "width": 512,
+      "height": 512
+    },
+    "image": "https://janyskovadigital.cz/og-image.png",
+    "taxID": "19616295"
   },
   {
     "@context": "https://schema.org",
@@ -302,7 +310,8 @@
     ],
     "sameAs": [
       "https://www.instagram.com/JanyskovaDigital"
-    ]
+    ],
+    "image": "https://janyskovadigital.cz/gabca.webp"
   },
   {
     "@context": "https://schema.org",
@@ -723,22 +732,22 @@
     <div class="process-focus-wrap">
       <div class="process-focus" id="process-focus">
         <div class="process-focus-card active" data-step="0">
-          <div class="process-num" aria-hidden="true">01</div>
+          <div class="process-num" data-num="01" aria-hidden="true"></div>
           <h3>Napíšete mi</h3>
           <p>Řeknete mi, co potřebujete — já vám řeknu, co by dávalo smysl a co to bude stát. Žádné technické řeči, žádné závazky.</p>
         </div>
         <div class="process-focus-card" data-step="1">
-          <div class="process-num" aria-hidden="true">02</div>
+          <div class="process-num" data-num="02" aria-hidden="true"></div>
           <h3>Dám se do práce</h3>
           <p>Každý web dělám od nuly, v čistém kódu, přesně pro vás. Za 48 hodin máte první náhled — žádná překvapení na konci.</p>
         </div>
         <div class="process-focus-card" data-step="2">
-          <div class="process-num" aria-hidden="true">03</div>
+          <div class="process-num" data-num="03" aria-hidden="true"></div>
           <h3>Spustíme to</h3>
           <p>Předám vám přístupy, propojím web s Googlem a jdeme na to. Od teď vás zákazníci najdou.</p>
         </div>
         <div class="process-focus-card" data-step="3">
-          <div class="process-num" aria-hidden="true">04</div>
+          <div class="process-num" data-num="04" aria-hidden="true"></div>
           <h3>Jsem tu dál</h3>
           <p>Potřebujete něco změnit nebo přidat? Napište mi. Odpovídám do 24 hodin a nejste číslo ve frontě.</p>
         </div>
@@ -1024,7 +1033,8 @@
         <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
         <input type="hidden" name="subject" value="Nová poptávka z webu — janyskovadigital.cz">
         <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
-        <input type="text" name="website" class="form-hp" tabindex="-1" autocomplete="off">
+        <!-- Past na roboty: Web3Forms odmítne odeslání, když je pole zaškrtnuté -->
+        <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-row">
           <div class="form-group">
             <label for="jmeno">Jméno</label>
@@ -1106,7 +1116,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=9eaa06bc79" defer></script>
+<script src="/main.js?v=2e9909562d" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>

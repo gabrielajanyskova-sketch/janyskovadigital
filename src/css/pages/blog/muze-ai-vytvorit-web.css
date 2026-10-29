@@ -4,7 +4,7 @@
 .compare-table tr:last-child td{border-bottom:none;}
 .compare-table td:first-child{color:var(--text);font-weight:600;}
 .good{color:#22c55e !important;}
-.bad{color:rgba(240,20,122,0.8) !important;}
+.bad{color:var(--pink-text) !important;}
 @media(max-width:600px){.compare-table{font-size:13px;} .compare-table th,.compare-table td{padding:10px 12px;} .related-grid{grid-template-columns:1fr;}}
 .related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}
 .related-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.4;}

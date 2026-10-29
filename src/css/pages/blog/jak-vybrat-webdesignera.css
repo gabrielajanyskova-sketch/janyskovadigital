@@ -3,7 +3,7 @@
 .question-card h3{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text);margin-bottom:12px;line-height:1.2;}
 .question-card p{font-size:14px;color:var(--text-dim);line-height:1.75;margin:0;}
 .question-card p strong{color:var(--text);}
-.red-flag{background:rgba(240,20,122,0.06);border:1px solid rgba(240,20,122,0.2);border-radius:10px;padding:10px 14px;margin-top:12px;font-size:13px;color:rgba(240,20,122,0.85);display:flex;gap:8px;align-items:flex-start;line-height:1.6;}
+.red-flag{background:rgba(240,20,122,0.06);border:1px solid rgba(240,20,122,0.2);border-radius:10px;padding:10px 14px;margin-top:12px;font-size:13px;color:var(--pink-text);display:flex;gap:8px;align-items:flex-start;line-height:1.6;}
 .red-flag::before{content:'⚠';flex-shrink:0;}
 @media(max-width:600px){.related-grid{grid-template-columns:1fr;}}
 .related-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pink);margin-bottom:8px;}

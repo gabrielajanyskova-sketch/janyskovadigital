@@ -1,0 +1,24 @@
+/* ── Světlý motiv: barvy navržené pro tmavé pozadí ──────────────────────────
+   Neonová zelená, žlutá, světle červená a bílý text mají na světlém pozadí
+   kontrast pod 4,5:1 (WCAG AA). Tady jsou jejich tmavší varianty a světlé
+   pozadí boxů, které měly tmavou barvu natvrdo. Tmavý motiv se nemění. */
+
+[data-theme="light"]{--green:#047857}
+
+/* Boxy s tmavým pozadím natvrdo */
+[data-theme="light"] .barter-side,
+[data-theme="light"] .barter-card,
+[data-theme="light"] .checklist,
+[data-theme="light"] .checker{background:var(--card-bg)}
+
+/* Text psaný pro tmavé pozadí */
+[data-theme="light"] .prompt-box,
+[data-theme="light"] .highlight-box strong,
+[data-theme="light"] .warn-box strong{color:var(--text)}
+[data-theme="light"] .warn-box p,
+[data-theme="light"] .compare-table .mid{color:#92400e}
+[data-theme="light"] td.col-bad,
+[data-theme="light"] .compare-table .bad,
+[data-theme="light"] .compare-card.bad .compare-label{color:#b91c1c}
+[data-theme="light"] .page-blog-eshop-bez-shoptetu .col-bad{opacity:.85}
+[data-theme="light"] .page-blog-muze-ai-vytvorit-web .good{color:#047857!important}

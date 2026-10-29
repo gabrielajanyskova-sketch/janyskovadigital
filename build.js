@@ -7,6 +7,7 @@
 //   src/css/         styly → style.css a landing.css
 //   src/css/pages/   styly jedné stránky (cesta = cesta stránky) → pages.css, omezené na danou stránku
 //   src/js/          JavaScript (moduly) → main.js
+//   (sitemap.xml se generuje z indexovatelných stránek)
 //   src/llms.txt     popis webu pro AI nástroje (seznam článků se doplní) → llms.txt
 //   src/_headers     HTTP hlavičky pro Cloudflare (CSP se doplní automaticky) → _headers
 //   content/         texty spravované přes CMS (/admin)
@@ -240,6 +241,15 @@ async function bundleJs() {
   return result.outputFiles[0].text;
 }
 
+function collectSitemap(html, list) {
+  const head = html.split('</head>')[0];
+  if (/name="robots" content="[^"]*noindex/.test(head)) return;
+  const loc = (head.match(/rel="canonical" href="([^"]+)"/) || [])[1];
+  if (!loc) return;
+  const dates = [...head.matchAll(/"date(?:Modified|Published)": ?"(\d{4}-\d{2}-\d{2})/g)].map(m => m[1]).sort();
+  list.push({ loc, lastmod: dates.pop() });
+}
+
 function collectInline(html, { styles, scripts }) {
   for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs)) styles.add(css);
   for (const [, js] of html.matchAll(/<script>(.*?)<\/script>/gs)) scripts.add(js);
@@ -249,7 +259,7 @@ function collectInline(html, { styles, scripts }) {
 
 async function build() {
   // Styly a skript (verze = otisk obsahu, takže prohlížeč nikdy nedrží starou verzi)
-  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n'));
+  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages', '05-light'].map(f => read(`src/css/${f}.css`)))).join('\n'));
   const landingCss = await minifyCss(await read('src/css/landing.css'));
   const { css: pagesCss, scoped } = await pageStyles();
   const mainJs = await bundleJs();
@@ -270,6 +280,7 @@ async function build() {
   ctx.blogPostsJson = blogPostsJson(articles);
   const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
   const inline = { styles: new Set(), scripts: new Set() };
+  const sitemap = [];
 
   let count = 0;
   for (const file of await walk('src/pages')) {
@@ -281,6 +292,7 @@ async function build() {
       if (!html.includes(`class="${scope}"`)) throw new Error(`${rel}: chybí <body> pro třídu ${scope}`);
     }
     collectInline(html, inline);
+    collectSitemap(html, sitemap);
     await write(rel, html);
     count++;
   }
@@ -302,9 +314,19 @@ async function build() {
     const where = `${city.slug}/index.html`;
     const html = syncFaqSchema(await render(template, cityCtx, where), where);
     collectInline(html, inline);
+    collectSitemap(html, sitemap);
     await write(where, html);
     count++;
   }
+
+  // Sitemap: všechny indexovatelné stránky; lastmod jen tam, kde ho známe (datum úpravy článku),
+  // hlavní stránka a blog podle nejnovějšího článku (zobrazují jeho kartu)
+  const newest = sitemap.filter(p => p.lastmod).map(p => p.lastmod).sort().pop();
+  for (const p of sitemap) if (/^https:\/\/janyskovadigital\.cz\/(blog)?$/.test(p.loc)) p.lastmod = newest;
+  const order = p => (p.loc.endsWith('.cz/') ? 0 : p.loc.endsWith('/blog') ? 1 : p.loc.includes('/blog/') ? 2 : 3);
+  sitemap.sort((a, b) => order(a) - order(b) || (b.lastmod || '').localeCompare(a.lastmod || '') || a.loc.localeCompare(b.loc));
+  await write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+    sitemap.map(p => `  <url><loc>${p.loc}</loc>${p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : ''}</url>`).join('\n') + '\n</urlset>\n');
 
   // llms.txt pro AI nástroje: seznam článků se doplní automaticky
   const llmsArticles = articles.map(a => `- [${a.headline}](${a.url}): ${a.description}`).join('\n');
