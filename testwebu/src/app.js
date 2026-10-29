@@ -120,7 +120,8 @@ function render() {
   $('result-url').textContent = a.finalUrl;
   const meta = [`Otestováno ${new Date(a.checkedAt).toLocaleString('cs-CZ')}`];
   if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
-  if (a.pages.length) meta.push(`+ ${a.pages.length} ${a.pages.length === 1 ? 'další stránka' : a.pages.length <= 4 ? 'další stránky' : 'dalších stránek'}`);
+  const n = a.pages.length;
+  meta.push(n ? `Zkontrolována úvodní stránka a ${n} ${n === 1 ? 'další stránka' : n <= 4 ? 'další stránky' : 'dalších stránek'}` : 'Zkontrolována úvodní stránka');
   if (speedPending) meta.push('Rychlost se ještě měří…');
   $('result-meta').textContent = meta.join(' · ');
 

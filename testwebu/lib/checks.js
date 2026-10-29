@@ -206,7 +206,8 @@ export function siteChecks(r) {
     if (broken.length) issues.push(`${broken.length}× chyba ${broken.map(b => b.status).join(', ')}`);
     out.push(check('seo', 'subpages', 'medium', issues.length ? 'warn' : 'pass',
       `Kontrola ${plural(r.pages.length, 'další stránky', 'dalších stránek', 'dalších stránek')}`,
-      issues.length ? issues.join(' · ') : 'Titulky, popisy a nadpisy jsou v pořádku.',
+      (issues.length ? issues.join(' · ') : 'Titulky, popisy a nadpisy jsou v pořádku.') +
+        ` Stránky: ${r.pages.map(x => { try { return decodeURI(new URL(x.url).pathname); } catch { return x.url; } }).join(', ')}`,
       'Každá stránka by měla mít vlastní titulek, popis a jeden H1, aby mohla samostatně soutěžit ve vyhledávání.',
       issues.length ? 'Projít uvedené stránky a doplnit unikátní titulky a popisy.' : '—'));
   }
