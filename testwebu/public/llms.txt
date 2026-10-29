@@ -1,0 +1,21 @@
+# Test webu zdarma (Janyskova Digital)
+
+> Bezplatný automatický audit webu v češtině na https://testwebu.janyskovadigital.cz/. Za 30–60 sekund zkontroluje rychlost na mobilu i počítači (Google PageSpeed Insights), techniku a indexaci, SEO, připravenost na AI vyhledávače (ChatGPT, Claude, Perplexity), bezpečnost, GDPR a přístupnost. Ke každému problému vysvětlí, proč na něm záleží a jak ho opravit. Výsledek lze stáhnout jako PDF.
+
+Test provozuje Gabriela Janýšková, webdesignérka a SEO specialistka (IČO 19616295), https://janyskovadigital.cz/. Je zdarma, bez registrace a neukládá osobní údaje.
+
+## Co test kontroluje
+
+- Rychlost: skóre a Core Web Vitals (LCP, CLS, TBT) z Google PageSpeed, data skutečných návštěvníků z Chrome, velikost stránky a konkrétní doporučení
+- Technika a indexace: HTTPS a přesměrování, robots.txt (včetně blokace Googlebot, SeznamBot a Bingbot), sitemap.xml, chybová stránka 404, mobilní zobrazení, favicon
+- SEO: titulek, meta popis, nadpisy, alt texty obrázků, kanonická adresa, Open Graph, nefunkční odkazy, kontrola až 5 dalších podstránek
+- AI vyhledávače (GEO/AEO): přístup GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot a dalších, strukturovaná data schema.org, llms.txt
+- Bezpečnost: HSTS, CSP, X-Frame-Options a další hlavičky, smíšený obsah
+- GDPR a důvěryhodnost: Google Fonts, měřicí skripty bez souhlasu, cookie lišta, zásady ochrany údajů, IČO, kontakt
+- Přístupnost: hlavní body z Lighthouse
+
+## Odkazy
+
+- [Test webu](https://testwebu.janyskovadigital.cz/): spuštění testu
+- [Janyskova Digital](https://janyskovadigital.cz/): tvorba webů, SEO a optimalizace pro AI vyhledávače
+- [Osobní audit a kontakt](https://janyskovadigital.cz/#kontakt): podrobný ruční audit do 48 hodin

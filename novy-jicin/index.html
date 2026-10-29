@@ -38,7 +38,7 @@
 <link rel="preload" href="/fonts/dm-serif-display-latin-italic.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{var t=localStorage.getItem('jd-theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>html,body{background:#08060c;color:#f5f0fa}html[data-theme=light],html[data-theme=light] body{background:#f8f5fc;color:#1a0d2e}</style>
-<link rel="stylesheet" href="/style.css?v=62d53dae4e">
+<link rel="stylesheet" href="/style.css?v=efc80a044b">
 <link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[
   {
@@ -263,7 +263,7 @@
       <a href="#cenik">Ceník</a>
       <a href="/barter">Barter</a>
       <a href="/blog">Blog</a>
-      <a href="https://testwebu.janyskovadigital.cz/">Test webu</a>
+      <a href="https://testwebu.janyskovadigital.cz/" class="nav-test">Test webu <span class="nav-badge">zdarma</span></a>
       <a href="#kontakt" class="cta">Mám zájem</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -308,6 +308,10 @@
           </a>
           <a href="#reference" class="btn-outline">Ukázky práce</a>
         </div>
+        <a href="https://testwebu.janyskovadigital.cz/" class="hero-test">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Už web máte? <strong>Otestujte ho zdarma za minutu</strong> →</span>
+        </a>
       </div>
       <div class="hero-right">
         <div class="hero-showcase">
@@ -323,6 +327,24 @@
 </section>
 
 <div class="section-divider"></div>
+
+<section class="webtest" aria-labelledby="webtest-title">
+  <div class="container">
+    <div class="webtest-box reveal">
+      <div class="webtest-text">
+        <div class="section-tag">Bezplatný test webu</div>
+        <h2 class="section-title" id="webtest-title">Jak si stojí <em>váš web?</em></h2>
+        <p>Za minutu zjistíte rychlost na mobilu, chyby v SEO, bezpečnost, GDPR a hlavně jestli váš web smí číst <strong>ChatGPT, Claude a Perplexity</strong>. Česky, s návodem co opravit, a výsledek si stáhnete jako PDF.</p>
+      </div>
+      <form class="webtest-form" action="https://testwebu.janyskovadigital.cz/" method="GET">
+        <label for="webtest-url" class="visually-hidden">Adresa vašeho webu</label>
+        <input id="webtest-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
+        <button type="submit" class="btn-primary">Otestovat web zdarma</button>
+      </form>
+      <p class="webtest-note">Bez registrace · výsledek za minutu · <a href="https://testwebu.janyskovadigital.cz/">testwebu.janyskovadigital.cz</a></p>
+    </div>
+  </div>
+</section>
 
 <section class="local-section">
   <div class="container">
@@ -484,24 +506,6 @@
         </div>
         <a href="#kontakt" class="btn-primary">Pojďme se poznat <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="webtest" aria-labelledby="webtest-title">
-  <div class="container">
-    <div class="webtest-box reveal">
-      <div class="webtest-text">
-        <div class="section-tag">Bezplatný test webu</div>
-        <h2 class="section-title" id="webtest-title">Jak si stojí <em>váš web?</em></h2>
-        <p>Za minutu zjistíte rychlost na mobilu, chyby v SEO, bezpečnost, GDPR a hlavně jestli váš web smí číst <strong>ChatGPT, Claude a Perplexity</strong>. Česky, s návodem co opravit, a výsledek si stáhnete jako PDF.</p>
-      </div>
-      <form class="webtest-form" action="https://testwebu.janyskovadigital.cz/" method="GET">
-        <label for="webtest-url" class="visually-hidden">Adresa vašeho webu</label>
-        <input id="webtest-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
-        <button type="submit" class="btn-primary">Otestovat web zdarma</button>
-      </form>
-      <p class="webtest-note">Bez registrace · výsledek za minutu · <a href="https://testwebu.janyskovadigital.cz/">testwebu.janyskovadigital.cz</a></p>
     </div>
   </div>
 </section>

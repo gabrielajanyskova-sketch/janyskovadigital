@@ -117,3 +117,11 @@ p.nearby-cities-lead--loose{line-height:1.8}
 .webtest-inline strong{color:var(--text)}
 a.webtest-inline-link{color:var(--pink-text);font-weight:700;text-decoration:none;white-space:nowrap}
 a.webtest-inline-link:hover{text-decoration:underline}
+
+/* Odkaz na Test webu v úvodu stránky a štítek v menu */
+.hero-test{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:10px 16px;border:1px solid var(--border);border-radius:14px;background:rgba(240,20,122,.06);color:var(--text-dim);font-size:14px;text-decoration:none;transition:border-color .2s,background .2s}
+.hero-test strong{color:var(--text)}
+.hero-test svg{flex-shrink:0;fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.hero-test:hover{border-color:rgba(240,20,122,.45);background:rgba(240,20,122,.1)}
+.nav-links a.nav-test{display:inline-flex;align-items:center;gap:6px}
+.nav-badge{font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--pink-strong);padding:2px 6px;border-radius:6px;line-height:1.4}
