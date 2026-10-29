@@ -32,26 +32,26 @@ function check(category, id, weight, status, title, detail, why, fix) {
 
 // Doporučení Googlu (Lighthouse) přeložená do řeči majitele webu
 const OPPORTUNITIES = {
-  'legacy-javascript': { title: 'zastaralý JavaScript',
-    what: 'Web posílá kód upravený pro staré prohlížeče (a doplňky pro funkce, které dnešní prohlížeče už umí).',
-    why: 'Prohlížeč stahuje a zpracovává zbytečný kód, hlavně na mobilu to zdržuje.',
-    fix: 'Sestavovat skripty pro moderní prohlížeče. Často jde o skripty pluginů, šablony nebo služeb třetích stran.' },
-  'render-blocking': { title: 'soubory blokující zobrazení',
-    what: 'Styly a skripty, které musí prohlížeč stáhnout dřív, než vůbec něco ukáže.',
-    why: 'Návštěvník mezitím kouká na prázdnou stránku.',
+  'legacy-javascript': { title: 'kód navíc pro staré prohlížeče',
+    what: 'Část kódu webu je napsaná i pro staré prohlížeče, které dnes skoro nikdo nepoužívá. Telefon ho přesto musí stáhnout a zpracovat.',
+    why: 'Je to zbytečná práce navíc, která hlavně levnější mobily trochu zdrží.',
+    fix: 'Sestavovat skripty pro moderní prohlížeče. Často jde o kód pluginů nebo cizích služeb (měření návštěvnosti, chat). U cizích služeb to ovlivnit nejde a nevadí to.' },
+  'render-blocking': { title: 'soubory, na které stránka čeká',
+    what: 'Než telefon stránku ukáže, musí stáhnout soubory se vzhledem (styly) a někdy i skripty. Do té doby je obrazovka prázdná.',
+    why: 'Čím víc takových souborů a čím jsou větší, tím déle návštěvník kouká na bílou obrazovku. Pár malých souborů se vzhledem má každý web.',
     fix: 'Nezbytné styly vložit přímo do stránky, ostatní skripty načítat odloženě (defer/async).' },
-  'render-blocking-resources': { title: 'soubory blokující zobrazení',
-    what: 'Styly a skripty, které musí prohlížeč stáhnout dřív, než vůbec něco ukáže.',
-    why: 'Návštěvník mezitím kouká na prázdnou stránku.',
+  'render-blocking-resources': { title: 'soubory, na které stránka čeká',
+    what: 'Než telefon stránku ukáže, musí stáhnout soubory se vzhledem (styly) a někdy i skripty. Do té doby je obrazovka prázdná.',
+    why: 'Čím víc takových souborů a čím jsou větší, tím déle návštěvník kouká na bílou obrazovku. Pár malých souborů se vzhledem má každý web.',
     fix: 'Nezbytné styly vložit přímo do stránky, ostatní skripty načítat odloženě (defer/async).' },
-  'cache': { title: 'krátká doba uložení v prohlížeči',
-    what: 'Některé soubory si prohlížeč smí pamatovat jen krátce, takže je při další návštěvě stahuje znovu.',
-    why: 'Opakovaná návštěva je pomalejší, než by musela být.',
-    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma.' },
-  'long-cache-ttl': { title: 'krátká doba uložení v prohlížeči',
-    what: 'Některé soubory si prohlížeč smí pamatovat jen krátce, takže je při další návštěvě stahuje znovu.',
-    why: 'Opakovaná návštěva je pomalejší, než by musela být.',
-    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma.' },
+  'cache': { title: 'prohlížeč si soubory pamatuje krátce',
+    what: 'Když se návštěvník na web vrátí, telefon by měl obrázky a další soubory vzít z paměti. Některé si ale smí pamatovat jen krátce, a tak je stahuje znovu.',
+    why: 'Týká se jen opakovaných návštěv: web se při nich načte o něco pomaleji, než by musel.',
+    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma. Soubory cizích služeb (měření návštěvnosti, chat) nastavit nejde a nevadí to.' },
+  'long-cache-ttl': { title: 'prohlížeč si soubory pamatuje krátce',
+    what: 'Když se návštěvník na web vrátí, telefon by měl obrázky a další soubory vzít z paměti. Některé si ale smí pamatovat jen krátce, a tak je stahuje znovu.',
+    why: 'Týká se jen opakovaných návštěv: web se při nich načte o něco pomaleji, než by musel.',
+    fix: 'Nastavit na serveru dlouhou platnost cache (Cache-Control) pro obrázky, styly, skripty a písma. Soubory cizích služeb (měření návštěvnosti, chat) nastavit nejde a nevadí to.' },
   'image-delivery': { title: 'zbytečně velké obrázky',
     what: 'Obrázky jsou větší nebo v horším formátu, než je potřeba.',
     why: 'Obrázky tvoří obvykle největší část dat stránky.',
@@ -66,10 +66,10 @@ const OPPORTUNITIES = {
     what: 'Obrázky, které návštěvník zatím nevidí, se stahují hned při otevření.', why: 'Zdržují načtení toho, co je vidět.',
     fix: 'Přidat obrázkům mimo první obrazovku loading="lazy".' },
   'unused-javascript': { title: 'nepoužívaný JavaScript',
-    what: 'Stránka stahuje skripty, které na ní nic nedělají.', why: 'Zbytečná data a práce procesoru, typicky z pluginů a šablon.',
+    what: 'Stránka stahuje kód, který na ní nic nedělá, typicky z pluginů a šablon.', why: 'Návštěvník stahuje zbytečná data a telefon zbytečně pracuje.',
     fix: 'Odstranit nebo načítat jen tam, kde jsou potřeba (pluginy, slidery, chaty).' },
   'unused-css-rules': { title: 'nepoužívané styly',
-    what: 'Stránka stahuje CSS styly, které nepoužívá.', why: 'Zdržují první zobrazení stránky.',
+    what: 'Stránka stahuje popis vzhledu (styly) i pro prvky, které na ní vůbec nejsou.', why: 'Zdržuje to první zobrazení stránky.',
     fix: 'Odstranit nepoužívané styly, u šablon vypnout nepotřebné moduly.' },
   'document-latency': { title: 'pomalé načtení samotné stránky',
     what: 'Server odpovídá pomalu, přesměrovává nebo neposílá stránku zkomprimovanou.', why: 'Na tom závisí všechno ostatní.',
@@ -83,16 +83,23 @@ const OPPORTUNITIES = {
   'lcp-discovery': { title: 'hlavní obrázek se najde pozdě',
     what: 'Prohlížeč se o hlavním obrázku stránky dozví až pozdě.', why: 'Zdržuje to okamžik, kdy návštěvník uvidí hlavní obsah.',
     fix: 'Hlavní obrázek nenačítat líně (bez loading="lazy") a přidat mu fetchpriority="high".' },
-  'third-parties': { title: 'skripty cizích služeb',
-    what: 'Chaty, měření, reklamy nebo vložená videa zdržují stránku.', why: 'Na jejich rychlost nemáte vliv.',
+  'third-parties': { title: 'cizí služby zdržují stránku',
+    what: 'Chat, měření návštěvnosti, reklamy nebo vložená videa se načítají z cizích serverů a stránka na ně čeká.', why: 'Na jejich rychlost nemáte vliv a každá další služba web zpomalí.',
     fix: 'Omezit počet služeb a načítat je až po zobrazení stránky nebo po kliknutí.' },
   'dom-size': { title: 'příliš složitá stránka',
-    what: 'Stránka má velké množství prvků (typické pro page buildery).', why: 'Prohlížeč s ní dlouho počítá, hlavně na mobilu.',
+    what: 'Stránka je poskládaná z obrovského množství drobných kousků (typické pro page buildery jako Elementor).', why: 'Telefon s ní dlouho počítá a stránka pak reaguje pomaleji.',
     fix: 'Zjednodušit strukturu stránky, méně vnořených bloků.' },
   'network-dependency-tree': { title: 'řetězení načítání',
-    what: 'Soubory se načítají jeden po druhém, protože na sobě závisí.', why: 'Každý krok čeká na předchozí.',
+    what: 'Telefon zjistí, co má stáhnout, až postupně: soubor po souboru, jako když čekáte ve frontě.', why: 'Každý krok čeká na ten předchozí, takže se zdržení sčítá.',
     fix: 'Důležité soubory (písma, hlavní styly) načítat dopředu pomocí preload/preconnect.' },
 };
+
+// Co úspora znamená pro skutečného návštěvníka (odhad Googlu je pro pomalý mobil)
+function visitorImpact(ms, speedScore) {
+  if (ms < 300 || (speedScore >= 90 && ms < 1000)) return `Pro návštěvníka: rozdíl prakticky nepozná, je to jen jemné doladění${speedScore >= 90 ? ' už rychlého webu' : ''}.`;
+  if (ms < 1000) return 'Pro návštěvníka: na pomalejším mobilu se stránka ukáže o kousek dřív.';
+  return `Pro návštěvníka: na mobilu čeká zbytečně o ${fmtMs(ms)} déle a část lidí mezitím odejde.`;
+}
 
 const fmtMs = ms => (ms >= 1000 ? `${(ms / 1000).toFixed(1).replace('.', ',')} s` : `${Math.round(ms)} ms`);
 const plural = (n, one, few, many) => `${n} ${n === 1 ? one : n >= 2 && n <= 4 ? few : many}`;
@@ -141,9 +148,9 @@ export function speedChecks(strategy, psi) {
         'Tohle jsou skutečné zkušenosti vašich zákazníků. Přesně tato data Google používá pro hodnocení Core Web Vitals.',
         st === 'pass' ? 'Nic, jen to udržet.' : 'Zaměřit se na metriku, která je nejhorší (viz doporučení níže).'));
     } else {
-      out.push(check('speed', 'field', 'high', 'info', 'Data od skutečných návštěvníků nejsou k dispozici',
-        'Web nemá v Chrome dost návštěv, aby Google zveřejnil statistiky z reálného provozu.',
-        'U menších webů je to běžné. Hodnotí se pak laboratorní měření výše.', '—'));
+      out.push(check('speed', 'field', 'high', 'info', 'Google zatím nemá data od skutečných návštěvníků',
+        'Statistiky z reálného provozu zveřejňuje jen u webů s větší návštěvností. Nejde o chybu, rychlost jsme změřili jinak (výše).',
+        'U menších a nových webů je to běžné. Data se objeví sama, až web bude mít víc návštěv.', '—'));
     }
     if (psi.bytes) {
       const mb = psi.bytes / 1048576;
@@ -155,8 +162,8 @@ export function speedChecks(strategy, psi) {
     for (const o of psi.opportunities || []) {
       const t = OPPORTUNITIES[o.id] || OPPORTUNITIES[o.id.replace(/^(uses-|modern-)/, '')];
       out.push(check('speed', `opp-${o.id}`, 'low', 'info',
-        `Zrychlení: ${t?.title || o.title} (ušetří ~${fmtMs(o.savingsMs)})`,
-        t?.what || `Doporučení Googlu: ${o.title}.`,
+        `Tip na zrychlení: ${t?.title || o.title} (~${fmtMs(o.savingsMs)})`,
+        `${t?.what || `Doporučení Googlu: ${o.title}.`} ${visitorImpact(o.savingsMs, s)}`,
         t?.why || 'Google odhaduje, o kolik by se načítání zrychlilo po opravě.',
         t?.fix || 'Podrobnosti ukáže PageSpeed Insights (pagespeed.web.dev) u této položky.'));
     }
