@@ -20,6 +20,8 @@ export function json(data, status = 200, extra = {}) {
 export function sameOrigin(request) {
   const origin = request.headers.get('origin');
   const site = request.headers.get('sec-fetch-site');
+  // Otevření adresy API přímo v prohlížeči (i z odkazu) je v pořádku — cizí stránky ale nesmí API volat skriptem
+  if (request.headers.get('sec-fetch-mode') === 'navigate') return true;
   if (site && !['same-origin', 'none'].includes(site)) return false;
   return !origin || origin === new URL(request.url).origin;
 }

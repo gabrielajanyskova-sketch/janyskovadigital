@@ -24,7 +24,7 @@ const plural = (n, one, few, many) => `${n} ${n === 1 ? one : n >= 2 && n <= 4 ?
 
 export function speedChecks(strategy, psi) {
   const label = strategy === 'mobile' ? 'mobilu' : 'počítači';
-  if (!psi || psi.error) {
+  if (!psi || psi.error || psi.scores.performance == null) {
     return [check('speed', `psi-${strategy}`, 'high', 'info', `Rychlost na ${label}`, psi?.error || 'Měření se nepodařilo.',
       'Rychlost měří Google stejným nástrojem jako PageSpeed Insights.', 'Zkuste test spustit znovu za chvíli.')];
   }
@@ -78,7 +78,7 @@ export function speedChecks(strategy, psi) {
 }
 
 export function a11yChecks(psi) {
-  if (!psi || psi.error) return [];
+  if (!psi || psi.error || psi.scores.accessibility == null) return [];
   const s = psi.scores.accessibility;
   return [check('a11y', 'a11y-score', 'medium', s >= 90 ? 'pass' : s >= 70 ? 'warn' : 'fail',
     `Přístupnost: ${s}/100`,
