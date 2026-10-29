@@ -3,14 +3,11 @@
 const ENDPOINT = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 
-// Jen údaje, které aplikace používá (partial response). Celá odpověď má i přes 1 MB včetně snímků
-// obrazovky a její zpracování by překročilo limit 10 ms procesoru na bezplatném tarifu Cloudflaru.
-const FIELDS = [
-  'lighthouseResult(finalUrl,finalDisplayedUrl,categories/*(score,auditRefs(id,weight)),' +
-    'audits/*(title,score,numericValue,displayValue,metricSavings,details/type,details/overallSavingsMs))',
-  'loadingExperience(overall_category,metrics)',
-  'originLoadingExperience(overall_category,metrics)',
-].join(',');
+// Jen části odpovědi, které aplikace používá (partial response). Vynechá snímek celé stránky,
+// překlady a další velké části, aby zpracování nepřekročilo limit 10 ms procesoru na bezplatném
+// tarifu Cloudflaru. Jen pole nejvyšší úrovně: podrobnější výběr (audits/*/…) Google odmítá
+// jako „invalid argument“.
+const FIELDS = 'lighthouseResult(categories,audits,finalUrl),loadingExperience,originLoadingExperience';
 
 export async function runPsi(url, strategy, { apiKey, fetchImpl, fields = FIELDS }) {
   const params = new URLSearchParams({ url, strategy, locale: 'cs' });
@@ -24,8 +21,8 @@ export async function runPsi(url, strategy, { apiKey, fetchImpl, fields = FIELDS
     return { error: e.name === 'TimeoutError' ? 'Google měření nestihl dokončit včas.' : 'Měření Googlu se nepodařilo spustit.' };
   }
   const data = await res.json().catch(() => null);
-  // Pojistka: kdyby Google výběr polí odmítl, zkusit to jednou bez něj
-  if (res.status === 400 && fields && /field/i.test(data?.error?.message || '')) {
+  // Pojistka: kdyby Google výběr polí odmítl (400), zkusit to jednou bez něj
+  if (res.status === 400 && fields) {
     console.warn('PSI odmítl fields:', data.error.message);
     return runPsi(url, strategy, { apiKey, fetchImpl, fields: null });
   }
