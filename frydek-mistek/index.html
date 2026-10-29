@@ -590,11 +590,9 @@
           <span><strong>Zdarma:</strong> zhodnocení vašeho webu při každé poptávce</span>
         </div>
       </div>
-      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="8c47b263-2ebe-4ed6-aef5-d982d35ef7c2">
+      <form id="contact-form" action="/api/contact" method="POST">
         <input type="hidden" name="subject" value="Nová poptávka z webu — Frýdek-Místek">
-        <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
-        <!-- Past na roboty: Web3Forms odmítne odeslání, když je pole zaškrtnuté -->
+        <!-- Past na roboty: server zprávu zahodí, když je pole zaškrtnuté -->
         <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-row">
           <div class="form-group">
@@ -676,7 +674,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=2e9909562d" defer></script>
+<script src="/main.js?v=5d0db810e5" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>

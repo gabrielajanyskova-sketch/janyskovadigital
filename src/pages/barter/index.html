@@ -160,10 +160,8 @@
   <section class="barter-cta" id="kontakt">
     <h2>Máte místo u vody? <em>Napište.</em></h2>
     <p>Řekněte mi, kde jste, jak to tam vypadá a co byste potřebovali za web. Odpovím do 24 hodin.</p>
-    <form class="barter-form" id="barter-form">
-      <input type="hidden" name="access_key" value="8f2c6a34-bcd1-4e7a-9b3d-2f1e5c8a0d6b">
+    <form class="barter-form" id="barter-form" action="/api/contact" method="POST">
       <input type="hidden" name="subject" value="Barterová spolupráce — poptávka">
-      <input type="hidden" name="redirect" value="https://janyskovadigital.cz/podekovani">
       <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div>
         <label for="b-jmeno">Jméno</label>

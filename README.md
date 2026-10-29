@@ -45,7 +45,7 @@ Barvy textu musí mít kontrast aspoň 4,5:1 (WCAG AA) v tmavém i světlém mot
 
 Web posílá přísnou Content-Security-Policy (skripty a styly jen z vlastní domény), izolaci oken (COOP) a omezení funkcí prohlížeče (Permissions-Policy). Kontakt pro hlášení zranitelností je v `/.well-known/security.txt`, jeho platnost (`Expires`) je potřeba jednou ročně prodloužit. `npm run check` na to upozorní 30 dní předem.
 
-- Formuláře (Web3Forms) mají past na roboty: skryté pole `botcheck`.
+- Formuláře se odesílají na `/api/contact` (Cloudflare Pages Function → Resend, klíč v proměnné `RESEND_API_KEY`). Mají past na roboty: skryté pole `botcheck`.
 - Žádné `onclick="…"`, `<script>` bez `src` ani `style="…"` v HTML. Chování patří do `src/js/`, vzhled do CSS.
 - Výjimkou je kritický `<style>` a krátký `<script>` v hlavičce, který před vykreslením nastaví světlý/tmavý motiv (jinak by stránka problikla). Jejich hashe do CSP doplní build sám.
 - Data pro Google (`<script type="application/ld+json">`) CSP neblokuje.
