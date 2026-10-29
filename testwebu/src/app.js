@@ -64,6 +64,16 @@ async function run(url) {
     .catch(e => { if (e.name === 'AbortError') return; state.speedErrors[strategy] = e.message; setStep(strategy, 'failed'); })
     .finally(() => state.audit && render());
 
+  // Pojistka: když server do 100 s neodpoví, ukázat srozumitelnou chybu místo nekonečného čekání
+  const current = controller;
+  const watchdog = setTimeout(() => {
+    if (controller !== current) return;
+    controller.abort();
+    $('progress').hidden = true;
+    $('submit').disabled = false;
+    showError(state.audit ? 'Měření rychlosti od Googlu neodpovědělo, výsledek je bez něj.' : 'Test neodpověděl do 100 sekund. Zkuste to prosím znovu za chvíli.');
+  }, 100000);
+
   const mobile = speed('mobile');
   const desktop = speed('desktop');
 
@@ -79,6 +89,7 @@ async function run(url) {
     $('results').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   } catch (e) {
     if (e.name === 'AbortError') return;
+    clearTimeout(watchdog);
     controller.abort();
     $('progress').hidden = true;
     showError(e.message);
@@ -86,6 +97,7 @@ async function run(url) {
     return;
   }
   await Promise.allSettled([mobile, desktop]);
+  clearTimeout(watchdog);
   $('submit').disabled = false;
   $('progress').hidden = true;
 }
