@@ -27,6 +27,26 @@ export function attrs(tag) {
 
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(m => attrs(m[0]));
 
+const normalizeLabel = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const privacyName = value => /\b(?:gdpr|privacy|soukromi|data[\s_-]+protection)\b|(?:ochran[a-z]*|zpracovan[a-z]*|zasad[a-z]*)[\s_-]+(?:osobn[a-z]*[\s_-]+)?udaj[a-z]*|osobn[a-z]*[\s_-]+udaj[a-z]*/.test(normalizeLabel(value));
+
+function privacyLink(html, anchors, base) {
+  const named = [...html.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a\s*>/gi)].map(m => ({
+    ...attrs(m[0].match(/^<a\b[^>]*>/i)[0]), label: text(m[1]),
+  }));
+  return [...named, ...anchors].some(a => {
+    const href = a.href?.trim();
+    if (!href || href === '#') return false;
+    let url;
+    try { url = new URL(href, base); } catch { return false; }
+    if (!['http:', 'https:'].includes(url.protocol)) return false;
+    let destination = url.pathname + url.search + url.hash;
+    try { destination = decodeURIComponent(destination); } catch { /* text odkazu lze ověřit i při chybném escapování URL */ }
+    return privacyName([a.label, a['aria-label'], a.title].filter(Boolean).join(' ')) ||
+      privacyName(destination) || /(?:^|\/)(?:ochrana|privacy|gdpr)(?:[\/._-]|$)/i.test(destination);
+  });
+}
+
 const THIRD_PARTY = [
   ['Google Analytics', /google-analytics\.com|googletagmanager\.com\/gtag|gtag\(/],
   ['Google Tag Manager', /googletagmanager\.com\/gtm\.js/],
@@ -146,7 +166,7 @@ export function analyzeHtml(html, pageUrl) {
     platforms: PLATFORMS.filter(([, re]) => re.test(head + ' ' + scriptSrcs.join(' ') + ' ' + images.map(i => i.src).join(' ') + ' ' + (body.match(/<body\b[^>]*>/i) || [''])[0])).map(([name]) => name),
     mixedContent,
     cookieBanner: /cookie[-_ ]?(consent|banner|bar|lišta|lista)|cookiebot|onetrust|cookieyes|complianz|cc-window|klaro/i.test(html),
-    privacyLink: anchors.some(a => /privacy|gdpr|ochrana|zasady.*(?:udaj|osobn|ochran|zprac)/i.test(a.href)),
+    privacyLink: privacyLink(bodyNoScripts, anchors, base),
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
     // e-mail schovaný před spamem přes Cloudflare (Email Address Obfuscation) se počítá taky
     email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)) || /\/cdn-cgi\/l\/email-protection|__cf_email__/.test(body),

@@ -406,8 +406,8 @@ export function siteChecks(r) {
     'Samotná stopa skriptu neprokazuje jeho spuštění ani porušení pravidel. Test neovládá lištu a neověřuje síťové požadavky před a po souhlasu.', 'Ručně ověřit, které služby se skutečně načítají a za jakých podmínek.'));
   out.push(check('privacy', 'privacy', 'medium', p.privacyLink ? 'pass' : (p.forms ? 'warn' : 'info'),
     p.privacyLink ? 'Web odkazuje na zásady ochrany osobních údajů' : 'Odkaz na zásady ochrany osobních údajů nebyl nalezen',
-    p.forms ? `Na stránce: ${plural(p.forms, 'formulář', 'formuláře', 'formulářů')}.` : '—',
-    'Kdo sbírá jméno nebo e-mail (formulář, newsletter), musí podle GDPR informovat, co s údaji dělá.', p.privacyLink ? '—' : 'Doplnit stránku se zásadami a odkaz v patičce a u formuláře.'));
+    (p.privacyLink ? 'Rozpoznán odkaz podle adresy nebo jeho textu či popisku. Obsah cílové stránky nebyl tímto bodem ověřen.' : 'V načteném HTML se odkaz nepodařilo rozpoznat. Může být načítán až skriptem.') + (p.forms ? ` Na stránce: ${plural(p.forms, 'formulář', 'formuláře', 'formulářů')}.` : ''),
+    'Kdo sbírá jméno nebo e-mail (formulář, newsletter), musí podle GDPR informovat, co s údaji dělá.', p.privacyLink ? '—' : 'Ověřit odkaz a jeho dostupnost u formuláře a v patičce. Pokud chybí, doplnit jej.'));
 
   return out;
 }

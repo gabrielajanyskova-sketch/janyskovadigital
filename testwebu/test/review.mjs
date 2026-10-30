@@ -94,3 +94,30 @@ test('failed pages are not diagnosed with missing titles, descriptions and headi
   assert(report.checks.find(c => c.id === 'links-unverified'));
   assert(!report.checks.some(c => c.id === 'broken-links' && c.status === 'pass'));
 });
+
+test('privacy link detection uses visible text, nested labels and legal-page fragments', () => {
+  for (const markup of [
+    '<a href="/pravni-informace#udaje">Ochrana osobních údajů</a>',
+    '<a href="/legal#personal"><span>Ochrana</span>&nbsp;osobních <strong>údajů</strong></a>',
+    '<a href="/dokumenty/123">Zásady zpracování osobních údajů</a>',
+    '<a href="/legal#data" aria-label="Ochrana osobních údajů"><img src="icon.png" alt=""></a>',
+    '<a href="/legal#data" title="Ochrana soukromí">Více</a>',
+    '<a href="#gdpr">Právní informace</a>',
+    '<a href="#osobni-udaje">Podrobnosti</a>',
+    '<a href="/ochrana-udaju">Více</a>',
+    '<a href="/z%C3%A1sady-ochrany-osobn%C3%ADch-%C3%BAdaj%C5%AF">Více</a>',
+    '<a href="https://www.firma.cz/legal#data">Privacy policy</a>',
+  ]) assert.equal(analyzeHtml(markup, 'https://firma.cz/').privacyLink, true, markup);
+});
+test('privacy link detection does not pass plain text, scripts, empty anchors or non-web links', () => {
+  for (const markup of [
+    '<p>Ochrana osobních údajů a GDPR</p>',
+    '<!-- <a href="/gdpr">Ochrana osobních údajů</a> -->',
+    '<script>const s = \'<a href="/gdpr">Ochrana osobních údajů</a>\';</script>',
+    '<a href="#">Ochrana osobních údajů</a>',
+    '<a href="">Ochrana osobních údajů</a>',
+    '<a href="javascript:openPrivacy()">Ochrana osobních údajů</a>',
+    '<a href="mailto:gdpr@firma.cz">Ochrana osobních údajů</a>',
+    '<a href="https://gdpr.example.com/kontakt">Kontakt</a>',
+  ]) assert.equal(analyzeHtml(markup, 'https://firma.cz/').privacyLink, false, markup);
+});
