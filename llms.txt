@@ -35,6 +35,7 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 
 ## Blog — všechny články
 
+- [Web už máte. Ale ozývají se vám z něj zákazníci?](https://janyskovadigital.cz/blog/web-neprivadi-zakazniky): Web běží, ale poptávky nepřicházejí? Jak poznat, kde se lidé ztrácejí, co upravit a proč se o stránky zajímám i po spuštění.
 - [Cituje vás AI? Jak to zjistit — ukázka na mém webu](https://janyskovadigital.cz/blog/cituje-vas-ai): Moje data ze Search Console a konkrétní ukázka AI odpovědi Googlu. Co lze zjistit ze zobrazení, co z nich nevyčtu a jak sleduji vlastní web.
 - [7 varovných signálů špatného webdesignéra — poznejte ho dřív, než zaplatíte](https://janyskovadigital.cz/blog/jak-poznat-spatneho-webdesignera): 7 varovných signálů špatného webdesignéra — žádné portfolio, WordPress bez ptaní, garance pozic na Googlu. Ušetřete peníze.
 - [Google, AI obsah a spam: co zkontrolovat na vlastním webu](https://janyskovadigital.cz/blog/google-ai-detekuje-ai-spam): Kdy může AI obsah porušovat pravidla Googlu, jak ověřit manuální opatření a co zkontrolovat při propadu návštěvnosti. Bez odhadování termínů aktualizací.
