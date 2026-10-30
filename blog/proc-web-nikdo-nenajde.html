@@ -15,7 +15,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Proč váš web nikdo nenajde — 7 chyb">
 <meta property="article:published_time" content="2026-07-10">
-<meta property="article:modified_time" content="2026-07-10">
+<meta property="article:modified_time" content="2026-10-30">
 <meta property="article:author" content="Gabriela Janýšková">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Proč váš web nikdo na Googlu nenajde? 7 nejčastějších chyb">
@@ -84,7 +84,7 @@
       "name": "Proč můj web není na Googlu?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nejčastější důvody: web je pomalý (PageSpeed pod 50), chybí meta tagy, nemáte Google Business Profile, web nemá strukturovaná data, nebo je označen noindex. Každý z těchto problémů lze opravit bez nutnosti tvořit nový web."
+        "text": "Nejdřív rozlište, zda stránka není indexovaná, nebo jen získává málo zobrazení. Ověřte dostupnost, noindex a canonical, potom relevanci obsahu a konkurenci. Chybějící firemní profil ani schema samy o sobě nebrání zobrazení běžné stránky."
       }
     },
     {
@@ -129,7 +129,7 @@
     }
   ]
 }</script>
-<link rel="stylesheet" href="/pages.css?v=c487327b11">
+<link rel="stylesheet" href="/pages.css?v=a6bd868eba">
 </head>
 <body class="page-blog-proc-web-nikdo-nenajde">
 <noscript><div class="noscript-msg">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
@@ -210,8 +210,8 @@
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 1</div>
         <h3>Pomalý web odrazuje lidi i Google</h3>
-        <p>Od roku 2021 jsou Core Web Vitals — LCP (největší viditelný prvek), CLS (posun layoutu) a INP (odezva na interakci) — jedním ze signálů, které Google hodnotí. Obsah má sice větší váhu, ale pomalý web navíc odrazuje návštěvníky dřív, než ho vůbec uvidí.</p>
-        <p>Weby přetížené pluginy bývají na mobilu hodně pomalé. Weby v čistém kódu bez zbytečného JavaScriptu a obrázků bez komprese dosahují 90–100.</p>
+        <p>Core Web Vitals jsou — LCP (největší viditelný prvek), CLS (posun layoutu) a INP (odezva na interakci) — jedním ze signálů, které Google hodnotí. Obsah má sice větší váhu, ale pomalý web navíc odrazuje návštěvníky dřív, než ho vůbec uvidí.</p>
+        <p>Weby přetížené pluginy bývají na mobilu hodně pomalé. Pomáhá omezit zbytečné skripty a komprimovat obrázky; konkrétní rychlost je nutné změřit.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Otestujte váš web na pagespeed.web.dev. Skóre pod 70 na mobilu je problém. Řešení: komprimovat obrázky (WebP formát), odstranit nepoužívané skripty, přejít na rychlejší hosting.</div>
       </div>
 
@@ -220,7 +220,7 @@
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 2</div>
         <h3>Google neví, co stránka obsahuje</h3>
-        <p>Title tag a meta description jsou první věci, které Google čte. Title musí obsahovat hlavní klíčové slovo a být jedinečný pro každou stránku. Meta description (max 155 znaků) nemá přímý vliv na ranking, ale ovlivňuje kliknutí — pokud ho Google zobrazí, zákazník se rozhoduje, jestli klikne.</p>
+        <p>Title tag a meta description jsou první věci, které Google čte. Title musí obsahovat hlavní klíčové slovo a být jedinečný pro každou stránku. Meta description (stručný popis bez pevného limitu znaků) nemá přímý vliv na ranking, ale ovlivňuje kliknutí — pokud ho Google zobrazí, zákazník se rozhoduje, jestli klikne.</p>
         <p>Typické chyby: stejný title na všech stránkách, chybějící description, příliš krátké nebo příliš dlouhé title tagy, klíčová slova na konci místo na začátku.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Zkontrolujte title a description každé stránky. Každá musí být unikátní, title 50–60 znaků, description 120–155 znaků s klíčovým slovem na začátku.</div>
       </div>
@@ -240,7 +240,7 @@
       <div class="chyba-card">
         <div class="chyba-num">Chyba č. 4</div>
         <h3>Google nerozumí kontextu vašeho obsahu</h3>
-        <p>Schema.org strukturovaná data jsou kód, který Googlu říká, co stránka obsahuje — jestli je to článek, firma, produkt, FAQ nebo recept. Bez nich musí Google obsah stránky hádat. Se schema daty ho přesně informujete a zvyšujete šanci na rozšířené výsledky — třeba s cenou nebo hodnocením.</p>
+        <p>Schema.org strukturovaná data jsou kód, který Googlu říká, co stránka obsahuje — jestli je to článek, firma, produkt, FAQ nebo recept. Google umí zpracovat i běžný text bez schémat. Podporovaná strukturovaná data mohou zpřesnit popis obsahu a umožnit některé rozšířené výsledky; nejsou podmínkou indexace.</p>
         <p>LocalBusiness schema sděluje Googlu váš název, adresu, telefon a oblast působení. FAQPage schema jednoznačně označí otázky a odpovědi na stránce (jako rozbalovací blok ve výsledcích se ale od května 2026 už nezobrazuje).</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Přidejte minimálně LocalBusiness schema na hlavní stránku. Pro blog použijte BlogPosting, pro produkty Product schema. Ověřte validitu na search.google.com/test/rich-results.</div>
       </div>
@@ -251,7 +251,7 @@
         <div class="chyba-num">Chyba č. 5</div>
         <h3>Google váš web nepovažuje za důvěryhodný zdroj</h3>
         <p>Zpětné odkazy (backlinky) jsou hlasy důvěry od jiných webů. Čím více kvalitních webů na vás odkazuje, tím větší autoritu Google vašemu webu přisuzuje. Nový web bez zpětných odkazů bojuje o pozice s weby, které mají desítky nebo stovky odkazů.</p>
-        <p>Pro místní podnikání jsou nejdostupnější oborové adresáře — Firmy.cz, Živéfirmy.cz, Najisto.cz, Zlatéstránky.cz. Registrace je většinou zdarma a každý odkaz pomáhá.</p>
+        <p>Pro místní podnikání jsou nejdostupnější oborové adresáře — Firmy.cz, Živéfirmy.cz, Najisto.cz, Zlatéstránky.cz. Vybírejte relevantní a důvěryhodné profily. Samotný počet odkazů není ukazatel kvality.</p>
         <div class="fix-tip"><strong>Co udělat:</strong> Zaregistrujte se do hlavních českých adresářů. Napište jeden hodnotný článek, který jiné weby ochotně sdílí. Pokud jste člen profesní asociace, přidejte si odkaz z jejích stránek.</div>
       </div>
 
@@ -294,7 +294,7 @@
 
       <details class="faq-item">
         <summary>Proč můj web není na Googlu?</summary>
-        <p>Nejčastější důvody: web je pomalý (PageSpeed pod 50), chybí meta tagy, nemáte Google Business Profile, web nemá strukturovaná data, nebo je označen noindex. Každý z těchto problémů lze opravit bez nutnosti tvořit nový web.</p>
+        <p>Nejdřív rozlište, zda stránka není indexovaná, nebo jen získává málo zobrazení. Ověřte dostupnost, noindex a canonical, potom relevanci obsahu a konkurenci. Chybějící firemní profil ani schema samy o sobě nebrání zobrazení běžné stránky.</p>
       </details>
 
       <details class="faq-item">
