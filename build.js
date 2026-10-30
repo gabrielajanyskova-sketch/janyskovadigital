@@ -336,6 +336,7 @@ async function build() {
     const cityCtx = {
       ...ctx,
       city,
+      localSeoHtml: city.slug === 'novy-jicin' ? await partial('local-seo-novy-jicin') : '',
       referencesHtml: (await Promise.all(city.references.map(r => partial(`ref-${r}`)))).join(''),
       faqHtml: faq.map(([q, a]) => `      <details class="faq-item reveal"><summary>${q}</summary><p>${a}</p></details>\n`).join(''),
       citiesSectionHtml: city.citiesSection || await partial('cities-grid'),
