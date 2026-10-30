@@ -34,7 +34,7 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preload" href="/fonts/plus-jakarta-sans-cs-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=09c604e039">
+<link rel="stylesheet" href="/style.css?v=5948439951">
 <link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[
   {
@@ -366,7 +366,7 @@
         <input id="webtest-url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
         <button type="submit" class="btn-primary">Otestovat web zdarma</button>
       </form>
-      <p class="webtest-note">Bez registrace · výsledek za minutu · <a href="https://testwebu.janyskovadigital.cz/">testwebu.janyskovadigital.cz</a></p>
+      <p class="webtest-note">Bez registrace · výsledek za minutu <a href="https://testwebu.janyskovadigital.cz/" class="webtest-more">Co test zkontroluje <span aria-hidden="true">→</span></a></p>
     </div>
   </div>
 </section>
@@ -667,43 +667,51 @@
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div>
+      <div class="footer-brand">
         <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
-        <p><a href="/tvorba-webu">Tvorba webových stránek</a> · <a href="/eshop">E-shop na míru</a> · <a href="/reference">Reference</a></p>
-        <p class="footer-desc">Tvorba moderních webů s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
-        <div class="post-blog-wrap"><a href="/blog" class="post-blog-link">Blog o webdesignu a AI →</a></div>
-        <div class="post-blog-wrap"><a href="https://testwebu.janyskovadigital.cz/" class="post-blog-link">Test webu zdarma →</a></div>
+        <p class="footer-desc">Weby na míru s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
+        <a href="https://testwebu.janyskovadigital.cz/" class="footer-test-link">Otestovat web zdarma <span aria-hidden="true">→</span></a>
       </div>
-      <div>
-        <div class="footer-heading">Kde působím</div>
+      <nav class="footer-nav" aria-label="Služby a informace">
+        <div class="footer-heading">Služby a informace</div>
         <ul class="footer-links-list">
-          <li><a href="/novy-jicin/">Webdesign Nový Jičín</a></li>
-          <li><a href="/ostrava/">Webdesign Ostrava</a></li>
-          <li><a href="/frydek-mistek/">Webdesign Frýdek-Místek</a></li>
-          <li><a href="/hranice/">Webdesign Hranice</a></li>
-          <li><a href="/pribor/">Webdesign Příbor</a></li>
-          <li><a href="/koprivnice/">Webdesign Kopřivnice</a></li>
-          <li><a href="/brno/">Webdesign Brno</a></li>
-          <li><a href="/praha/">Webdesign Praha</a></li>
-          <li><a href="/olomouc/">Webdesign Olomouc</a></li>
-          <li><a href="/zlin/">Webdesign Zlín</a></li>
-          <li><a href="/frenstat/">Webdesign Frenštát</a></li>
-          <li><a href="/jicin/">Webdesign Jičín</a></li>
-          <li><a href="/roznov/">Webdesign Rožnov</a></li>
-          <li><a href="/valasske-mezirici/">Webdesign Val. Meziříčí</a></li>
+          <li><a href="/tvorba-webu">Tvorba webových stránek</a></li>
+          <li><a href="/eshop">E-shop na míru</a></li>
+          <li><a href="/reference">Reference</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/barter">Barter</a></li>
         </ul>
-      </div>
-      <div>
-        <div class="footer-heading">Kontakt</div>
+      </nav>
+      <nav class="footer-nav" aria-label="Oblasti působnosti">
+        <div class="footer-heading">Kde působím</div>
+        <ul class="footer-links-list footer-city-list">
+          <li><a href="/novy-jicin/">Nový Jičín</a></li>
+          <li><a href="/ostrava/">Ostrava</a></li>
+          <li><a href="/frydek-mistek/">Frýdek-Místek</a></li>
+          <li><a href="/hranice/">Hranice</a></li>
+          <li><a href="/pribor/">Příbor</a></li>
+          <li><a href="/koprivnice/">Kopřivnice</a></li>
+          <li><a href="/brno/">Brno</a></li>
+          <li><a href="/praha/">Praha</a></li>
+          <li><a href="/olomouc/">Olomouc</a></li>
+          <li><a href="/zlin/">Zlín</a></li>
+          <li><a href="/frenstat/">Frenštát pod Radhoštěm</a></li>
+          <li><a href="/jicin/">Jičín</a></li>
+          <li><a href="/roznov/">Rožnov pod Radhoštěm</a></li>
+          <li><a href="/valasske-mezirici/">Valašské Meziříčí</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <div class="footer-heading">Ozvěte se</div>
         <ul class="footer-links-list">
           <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
           <li><a href="tel:+420739395800">+420 739 395 800</a></li>
-          <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Gabriela Janýšková — Starojická Lhota 45, 741 01 Starý Jičín · IČO 19616295</span>
+      <span>© 2026 Gabriela Janýšková · IČO 19616295<br>Starojická Lhota 45, 741 01 Starý Jičín</span>
       <a href="/ochrana-udaju">Ochrana osobních údajů</a>
     </div>
   </div>
