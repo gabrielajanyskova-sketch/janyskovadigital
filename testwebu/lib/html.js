@@ -6,9 +6,10 @@ const ENTITIES = {
   copy: '©', reg: '®', laquo: '«', raquo: '»', bdquo: '„', ldquo: '“', rdquo: '”', lsquo: '‘', rsquo: '’',
 };
 export function decode(s) {
+  const codePoint = n => Number.isInteger(n) && n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '\ufffd';
   return String(s || '')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&#(\d+);/g, (_, n) => codePoint(+n))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) => codePoint(parseInt(n, 16)))
     .replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n.toLowerCase()] ?? m);
 }
 
@@ -54,7 +55,10 @@ const PLATFORMS = [
 ];
 
 export function analyzeHtml(html, pageUrl) {
+  // Komentáře nejsou viditelný obsah ani aktivní značky stránky.
+  html = html.replace(/<!--[\s\S]*?-->/g, ' ');
   const base = new URL(pageUrl);
+  const resolveUrl = value => { try { return new URL(value, base).href; } catch { return null; } };
   const headEnd = html.search(/<\/head>/i);
   const head = headEnd > 0 ? html.slice(0, headEnd) : html;
   const bodyStart = html.search(/<body\b/i);
@@ -84,7 +88,6 @@ export function analyzeHtml(html, pageUrl) {
         if (Array.isArray(o)) return o.forEach(walk);
         if (o && typeof o === 'object') {
           if (o['@type']) types.push(...[].concat(o['@type']));
-          if (o['@graph']) walk(o['@graph']);
           Object.values(o).forEach(v => typeof v === 'object' && walk(v));
         }
       };
@@ -123,7 +126,7 @@ export function analyzeHtml(html, pageUrl) {
     robots: meta('robots') ?? null,
     viewport: meta('viewport') ?? null,
     generator: meta('generator') ?? null,
-    canonical: rel('canonical')[0]?.href ? new URL(rel('canonical')[0].href, base).href : null,
+    canonical: rel('canonical')[0]?.href ? resolveUrl(rel('canonical')[0].href) : null,
     hreflang: links.filter(l => (l.rel || '').toLowerCase() === 'alternate' && l.hreflang).length,
     favicon: rel('icon').length + rel('shortcut').length > 0,
     og: { title: prop('og:title'), description: prop('og:description'), image: prop('og:image'), url: prop('og:url') },
@@ -143,7 +146,7 @@ export function analyzeHtml(html, pageUrl) {
     platforms: PLATFORMS.filter(([, re]) => re.test(head + ' ' + scriptSrcs.join(' ') + ' ' + images.map(i => i.src).join(' ') + ' ' + (body.match(/<body\b[^>]*>/i) || [''])[0])).map(([name]) => name),
     mixedContent,
     cookieBanner: /cookie[-_ ]?(consent|banner|bar|lišta|lista)|cookiebot|onetrust|cookieyes|complianz|cc-window|klaro/i.test(html),
-    privacyLink: /ochrana[-_ ]osobních|ochrana[-_ ]osobnich|gdpr|zásady[-_ ]ochrany|zasady[-_ ]ochrany|privacy/i.test(bodyNoScripts),
+    privacyLink: anchors.some(a => /privacy|gdpr|ochrana|zasady.*(?:udaj|osobn|ochran|zprac)/i.test(a.href)),
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
     // e-mail schovaný před spamem přes Cloudflare (Email Address Obfuscation) se počítá taky
     email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)) || /\/cdn-cgi\/l\/email-protection|__cf_email__/.test(body),

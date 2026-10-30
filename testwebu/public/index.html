@@ -4,17 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Test webu zdarma: rychlost, SEO a technické chyby</title>
-<meta name="description" content="Bezplatný test webu za minutu: rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Srozumitelně česky, s návodem na opravu.">
+<meta name="description" content="Bezplatný test rychlosti, základního SEO a veřejně dostupných nastavení webu. Česky, s vysvětlením nálezů a návrhy oprav.">
 <link rel="canonical" href="https://testwebu.janyskovadigital.cz/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://testwebu.janyskovadigital.cz/">
 <meta property="og:title" content="Test webu zdarma | Janyskova Digital">
-<meta property="og:description" content="Rychlost, SEO, AI vyhledávače, bezpečnost a GDPR za minutu. Česky a s návodem na opravu.">
-<meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta property="og:description" content="Rychlost, základní SEO a technická nastavení webu. Zadejte adresu a zjistěte, co má cenu prověřit nebo opravit.">
+<meta property="og:image" content="https://testwebu.janyskovadigital.cz/og-test-webu.png">
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:site_name" content="Janyskova Digital">
-<meta property="og:image:alt" content="Janyskova Digital – webdesign a SEO">
+<meta property="og:image:alt" content="Gabriela Janýšková — Janyskova Digital, autorka Testu webu">
+<meta property="og:image:secure_url" content="https://testwebu.janyskovadigital.cz/og-test-webu.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Test webu zdarma | Janyskova Digital">
+<meta name="twitter:description" content="Zkontrolujte rychlost, základní SEO a technická nastavení webu. Česky a s návrhy oprav.">
+<meta name="twitter:image" content="https://testwebu.janyskovadigital.cz/og-test-webu.png">
+<meta name="twitter:image:alt" content="Gabriela Janýšková — Janyskova Digital, autorka Testu webu">
 <meta name="author" content="Gabriela Janýšková">
 <meta name="theme-color" content="#08060c">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
@@ -23,114 +31,115 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/plus-jakarta-sans-cs-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/app.css?v=a491c51df0">
+<link rel="stylesheet" href="/app.css?v=1a5d50ee7b">
 <script type="application/ld+json">{
- "@context": "https://schema.org",
- "@graph": [
-  {
-   "@type": "WebApplication",
-   "@id": "https://testwebu.janyskovadigital.cz/#app",
-   "name": "Test webu zdarma",
-   "alternateName": "Bezplatný audit webu",
-   "url": "https://testwebu.janyskovadigital.cz/",
-   "description": "Bezplatný automatický audit webu: rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Česky a s návodem na opravu.",
-   "applicationCategory": "BusinessApplication",
-   "operatingSystem": "Web",
-   "inLanguage": "cs",
-   "isAccessibleForFree": true,
-   "featureList": [
-    "Měření rychlosti Google PageSpeed (mobil i počítač)",
-    "Kontrola SEO: titulky, popisy, nadpisy, obrázky, nefunkční odkazy",
-    "Přístup AI vyhledávačů ChatGPT, Claude a Perplexity",
-    "Bezpečnostní hlavičky, HTTPS, DNSSEC a security.txt",
-    "Ochrana e-mailu před podvrhy (SPF, DMARC)",
-    "GDPR: Google Fonts, měřicí skripty, zásady ochrany údajů"
-   ],
-   "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "CZK"
-   },
-   "provider": {
-    "@type": "Person",
-    "@id": "https://janyskovadigital.cz/#person",
-    "name": "Gabriela Janýšková",
-    "url": "https://janyskovadigital.cz/"
-   }
-  },
-  {
-   "@type": "WebPage",
-   "@id": "https://testwebu.janyskovadigital.cz/#webpage",
-   "url": "https://testwebu.janyskovadigital.cz/",
-   "name": "Test webu zdarma: rychlost, SEO, AI a bezpečnost",
-   "inLanguage": "cs",
-   "mainEntity": {
-    "@id": "https://testwebu.janyskovadigital.cz/#app"
-   },
-   "isPartOf": {
-    "@type": "WebSite",
-    "@id": "https://janyskovadigital.cz/#website",
-    "url": "https://janyskovadigital.cz/",
-    "name": "Janyskova Digital"
-   }
-  },
-  {
-   "@type": "FAQPage",
-   "@id": "https://testwebu.janyskovadigital.cz/#faq",
-   "mainEntity": [
+  "@context": "https://schema.org",
+  "@graph": [
     {
-     "@type": "Question",
-     "name": "Je test webu opravdu zdarma?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Ano. Test je zdarma, bez registrace a bez omezení počtu webů. Výsledek uvidíte hned a odkaz na něj můžete poslat dál."
-     }
+      "@type": "WebApplication",
+      "@id": "https://testwebu.janyskovadigital.cz/#app",
+      "name": "Test webu zdarma",
+      "alternateName": "Bezplatný audit webu",
+      "url": "https://testwebu.janyskovadigital.cz/",
+      "description": "Automatická orientační kontrola rychlosti, SEO, veřejných nastavení a pravidel pro roboty. Nenahrazuje pentest, právní posouzení ani úplný audit přístupnosti.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "cs",
+      "isAccessibleForFree": true,
+      "featureList": [
+        "Měření rychlosti Google PageSpeed (mobil i počítač)",
+        "Kontrola SEO: titulky, popisy, nadpisy, obrázky, nefunkční odkazy",
+        "Přístup AI vyhledávačů ChatGPT, Claude a Perplexity",
+        "Bezpečnostní hlavičky, HTTPS, DNSSEC a security.txt",
+        "Ochrana e-mailu před podvrhy (SPF, DMARC)",
+        "GDPR: Google Fonts, měřicí skripty, zásady ochrany údajů"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CZK"
+      },
+      "provider": {
+        "@type": "Person",
+        "@id": "https://janyskovadigital.cz/#person",
+        "name": "Gabriela Janýšková",
+        "url": "https://janyskovadigital.cz/"
+      }
     },
     {
-     "@type": "Question",
-     "name": "Co přesně test webu kontroluje?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Rychlost na mobilu i počítači (Google PageSpeed a data skutečných návštěvníků), techniku a indexaci (HTTPS, robots.txt, mapa webu, chybové stránky), SEO (titulky, popisy, nadpisy, obrázky, nefunkční odkazy), připravenost na AI vyhledávače (strukturovaná data, přístup ChatGPT, Claude a Perplexity, llms.txt), zabezpečení webu i domény (bezpečnostní hlavičky, DNSSEC, security.txt), ochranu e-mailu před podvrhy (SPF, DMARC), GDPR a základní přístupnost."
-     }
+      "@type": "WebPage",
+      "@id": "https://testwebu.janyskovadigital.cz/#webpage",
+      "url": "https://testwebu.janyskovadigital.cz/",
+      "name": "Test webu zdarma: rychlost, SEO, AI a bezpečnost",
+      "inLanguage": "cs",
+      "mainEntity": {
+        "@id": "https://testwebu.janyskovadigital.cz/#app"
+      },
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://janyskovadigital.cz/#website",
+        "url": "https://janyskovadigital.cz/",
+        "name": "Janyskova Digital"
+      }
     },
     {
-     "@type": "Question",
-     "name": "Jak dlouho test trvá?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Obvykle 30 až 60 sekund. Nejdéle trvá měření rychlosti přes Google PageSpeed Insights."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Jak zjistím, jestli můj web vidí ChatGPT a další AI vyhledávače?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Test přečte soubor robots.txt a ověří, jestli web nezakazuje roboty ChatGPT (GPTBot, OAI-SearchBot), Claude a Perplexity. Zkontroluje také strukturovaná data a soubor llms.txt, díky kterým AI vašemu webu lépe rozumí."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Ukládáte zadané weby nebo osobní údaje?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Osobní údaje neukládáme. Zadaná adresa webu se kvůli zrychlení opakovaného testu uchovává nejvýš hodinu a pak se smaže."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Co dělat, když mi test ukáže problémy?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit do 48 hodin."
-     }
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Je test webu opravdu zdarma?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ano, zdarma a bez registrace. Kvůli ochraně služby je počet testů za krátkou dobu omezený. Odkaz můžete poslat správci webu; otevře test stejné adresy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co přesně test webu kontroluje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Rychlost přes Google PageSpeed, základní SEO a technická nastavení zadané stránky a vzorku dalších stránek. Hledá také veřejné bezpečnostní hlavičky, DNS záznamy, pravidla pro roboty a některé údaje o soukromí. Jde o orientační automatickou kontrolu, nikoli úplný audit zabezpečení, GDPR nebo přístupnosti."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak dlouho test trvá?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Obvykle 30 až 60 sekund. Nejdéle trvá měření rychlosti přes Google PageSpeed Insights."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Jak zjistím, jestli můj web vidí ChatGPT a další AI vyhledávače?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Test prověří základní pravidla robots.txt pro OAI-SearchBot, Claude-SearchBot a PerplexityBot. Roboty pro trénování posuzuje odděleně. Kontroluje také přítomnost JSON-LD a volitelného llms.txt. Neověří, zda AI obsah skutečně přečetla, pochopila nebo citovala."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ukládáte zadané weby nebo osobní údaje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Adresa a výsledek testu se mohou až hodinu používat z mezipaměti. Pro měření rychlosti se adresa posílá Googlu. Cloudflare při provozu a ochraně služby zpracovává také technické údaje o připojení. Když požádáte o osobní audit, zpracovávám jméno, e-mail a zprávu pro vyřízení žádosti."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Co dělat, když mi test ukáže problémy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit. Ozvu se do 24 hodin."
+          }
+        }
+      ],
+      "@id": "https://testwebu.janyskovadigital.cz/#faq"
     }
-   ]
-  }
- ]
+  ]
 }</script>
-<script src="/app.js?v=df2afc4e87" defer></script>
+<script src="/app.js?v=5fc2352d3a" defer></script>
 </head>
 <body>
 <a href="#main" class="skip-link">Přeskočit na obsah</a>
@@ -145,16 +154,15 @@
   <section class="hero wrap">
     <p class="eyebrow">Bezplatný test webu</p>
     <h1>Jak si stojí <em>váš web?</em></h1>
-    <p class="lead">Rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Za minutu, česky a s návodem, co opravit.</p>
-    <p>Test kontroluje veřejně dostupné technické signály. Není penetračním testem, právním posudkem ani měřením skutečných citací v AI odpovědích.</p>
+    <p class="lead">Zadejte adresu svého webu a zjistěte, co má cenu zlepšit. Test prověří rychlost, základní SEO a technická nastavení. Česky a s návrhy oprav.</p>
     <form id="audit-form" class="audit-form" novalidate>
       <label for="url" class="visually-hidden">Adresa webu</label>
-      <input id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
+      <input aria-describedby="url-hint form-error" id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
       <button type="submit" id="submit">Otestovat web</button>
     </form>
     <p class="form-error" id="form-error" role="alert" hidden></p>
-    <p class="hint">Test je zdarma a bez registrace. Neukládáme žádné osobní údaje.</p>
-    <p class="ai-hook"><strong>Novinka:</strong> zjistíte, jestli váš web smí číst ChatGPT, Claude a Perplexity a jestli mu rozumí. Bez toho vás AI asistenti těžko doporučí.</p>
+    <p class="hint" id="url-hint">Bez registrace. Zadejte veřejnou stránku bez přihlašovacích údajů a osobních údajů v adrese.</p>
+    <p class="ai-hook">Zkontroluji také strukturovaná data a pravidla robots.txt pro AI vyhledávače. Z nich ale nelze poznat, jestli vás AI opravdu doporučí.</p>
   </section>
 
   <section class="progress wrap" id="progress" hidden aria-live="polite">
@@ -172,21 +180,24 @@
       <p>Audit webu · testwebu.janyskovadigital.cz</p>
     </div>
     <div class="actions">
+      <button type="button" class="btn-small" id="share-device" hidden>Sdílet</button>
       <button type="button" class="btn-small btn-small--ghost" id="share">Zkopírovat odkaz na výsledek</button>
     </div>
     <div class="summary">
       <div class="ring" id="overall" role="img" aria-label="Celkové skóre"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" id="ring-fg"/></svg><span id="overall-num">–</span></div>
       <div>
-        <h2 id="result-title">Výsledek</h2>
+        <h2 id="result-title" tabindex="-1">Výsledek</h2>
         <p class="result-url" id="result-url"></p>
         <p class="result-meta" id="result-meta"></p>
       </div>
     </div>
+    <p class="note">Skóre shrnuje jen provedené automatické kontroly. Není potvrzením bezpečnosti, souladu s GDPR ani pozic ve vyhledávání. Výsledek může být až hodinu starý; sdílený odkaz otevře test stejné adresy.</p>
     <div class="cats" id="cats"></div>
+    <p class="note">„Info“ je doplňující údaj nebo neověřená kontrola. Skóre nemění. U neověřeného bodu najdete, co se nepodařilo zjistit a zda má smysl kontrolu zopakovat.</p>
     <div id="checks"></div>
     <aside class="cta" id="audit">
       <h2>Chcete to mít <em>v pořádku?</em></h2>
-      <p>Automatický test najde technické chyby. Obsah, odkazy a to, proč web nepřivádí zákazníky, projdu osobně, zdarma a bez závazků. Odpovím do 24 hodin.</p>
+      <p>Něco ve výsledku není jasné? Pošlete mi ho. Podívám se na váš web osobně a probereme, co má cenu změnit. Nezávazně a zdarma, odpovím do 24 hodin.</p>
       <form class="lead-form" id="lead-form" action="https://janyskovadigital.cz/api/contact" method="POST" data-turnstile>
         <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
         <input type="hidden" name="subject" id="lead-subject" value="Žádost o osobní audit z Testu webu">
@@ -202,7 +213,7 @@
         <p class="lead-note">Informace o <a href="https://janyskovadigital.cz/ochrana-udaju">zpracování údajů</a> pro vyřízení poptávky. Raději telefon? <a href="tel:+420739395800">+420&nbsp;739&nbsp;395&nbsp;800</a></p>
       </form>
       <figure class="quote">
-        <blockquote>„Naprostá spokojenost. E-shop rychle vytvořen, vše funguje jak má. Komunikace a profesionalita paní Janýškové na jedničku.“</blockquote>
+        <blockquote>„Naprostá spokojenost. E-shop rychle vytvořen, vše funguje, jak má. Komunikace a profesionalita paní Janýškové na jedničku.“</blockquote>
         <figcaption>Nikola Drn, recenze na Googlu ★★★★★</figcaption>
       </figure>
       <p class="print-contact">Gabriela Janýšková · janyskovadigital.cz · info@janyskovadigital.cz · +420&nbsp;739&nbsp;395&nbsp;800</p>
@@ -215,33 +226,33 @@
       <li><strong>Rychlost</strong>: měření Google PageSpeed na mobilu i počítači a data od skutečných návštěvníků z Chrome.</li>
       <li><strong>Technika a indexace</strong>: HTTPS, přesměrování, robots.txt (včetně blokace Googlu a Seznamu), mapa webu, chybové stránky, mobilní zobrazení.</li>
       <li><strong>Obsah a SEO</strong>: titulky, popisy, nadpisy, obrázky, nefunkční odkazy, náhledy pro sociální sítě a několik dalších stránek webu.</li>
-      <li><strong>AI vyhledávače</strong>: strukturovaná data, přístup ChatGPT, Claude a Perplexity, llms.txt.</li>
-      <li><strong>E-mail</strong>: jestli doména chrání vaše e-maily před podvržením (SPF a DMARC), aby nepadaly do spamu.</li>
-      <li><strong>Bezpečnost, GDPR a důvěryhodnost</strong>: bezpečnostní hlavičky, DNSSEC, security.txt, Google Fonts, měřicí skripty bez souhlasu, zásady ochrany údajů, IČO podnikatele.</li>
+      <li><strong>AI vyhledávače</strong>: přítomnost strukturovaných dat, základní pravidla robots.txt pro vyhledávací roboty a odděleně pravidla pro trénování. Citace AI neověřuje.</li>
+      <li><strong>E-mail</strong>: přítomnost a základní nastavení SPF a DMARC. Neověřuje DKIM ani doručení skutečných zpráv.</li>
+      <li><strong>Základní ochrany a soukromí</strong>: přítomnost bezpečnostních hlaviček a DNS záznamů, security.txt, odkazy na externí služby, zásady ochrany údajů a IČO. Neověřuje úplnost ochrany ani skutečné chování souhlasu s cookies.</li>
     </ul>
     <h2 class="sample-title">Takto vypadá výsledek</h2>
     <div class="sample" aria-label="Ukázka výsledku testu">
       <div class="sample-score"><span>72</span><small>z 100</small></div>
       <ul class="sample-checks">
-        <li class="fail"><b>Problém</b> Robots.txt blokuje ChatGPT a Perplexity</li>
+        <li class="fail"><b>Problém</b> Robots.txt zakazuje některé vyhledávací roboty</li>
         <li class="warn"><b>Zlepšit</b> Chybí popis stránky pro Google</li>
-        <li class="warn"><b>Zlepšit</b> Písma se načítají z Google Fonts (GDPR)</li>
+        <li class="warn"><b>Zlepšit</b> V HTML je odkaz na externí písma</li>
         <li class="pass"><b>V pořádku</b> Web běží na zabezpečeném HTTPS</li>
       </ul>
       <p class="sample-note">U každého bodu najdete, proč na tom záleží a jak to opravit. Odkaz na výsledek můžete poslat třeba tomu, kdo vám web spravuje.</p>
     </div>
-    <p class="note">Automatický test nevidí všechno: kvalitu textů, zpětné odkazy ani chování návštěvníků. To patří do osobního auditu.</p>
+    <p class="note">Jde o automatickou orientační kontrolu veřejných stránek. Nenahrazuje penetrační test, právní posouzení ani úplný audit přístupnosti. Citace v AI odpovědích neměří. Kvalitu textů, zpětné odkazy a skutečné poptávky je potřeba posoudit zvlášť.</p>
   </section>
 
   <section class="faq wrap" id="caste-otazky" aria-labelledby="faq-title">
     <h2 id="faq-title">Časté otázky k testu webu</h2>
     <details class="faq-item">
       <summary>Je test webu opravdu zdarma?</summary>
-      <p>Ano. Test je zdarma, bez registrace a bez omezení počtu webů. Výsledek uvidíte hned a odkaz na něj můžete poslat dál.</p>
+      <p>Ano, zdarma a bez registrace. Kvůli ochraně služby je počet testů za krátkou dobu omezený. Odkaz můžete poslat správci webu; otevře test stejné adresy.</p>
     </details>
     <details class="faq-item">
       <summary>Co přesně test webu kontroluje?</summary>
-      <p>Rychlost na mobilu i počítači (Google PageSpeed a data skutečných návštěvníků), techniku a indexaci (HTTPS, robots.txt, mapa webu, chybové stránky), SEO (titulky, popisy, nadpisy, obrázky, nefunkční odkazy), připravenost na AI vyhledávače (strukturovaná data, přístup ChatGPT, Claude a Perplexity, llms.txt), zabezpečení webu i domény (bezpečnostní hlavičky, DNSSEC, security.txt), ochranu e-mailu před podvrhy (SPF, DMARC), GDPR a základní přístupnost.</p>
+      <p>Rychlost přes Google PageSpeed, základní SEO a technická nastavení zadané stránky a vzorku dalších stránek. Hledá také veřejné bezpečnostní hlavičky, DNS záznamy, pravidla pro roboty a některé údaje o soukromí. Jde o orientační automatickou kontrolu, nikoli úplný audit zabezpečení, GDPR nebo přístupnosti.</p>
     </details>
     <details class="faq-item">
       <summary>Jak dlouho test trvá?</summary>
@@ -249,15 +260,15 @@
     </details>
     <details class="faq-item">
       <summary>Jak zjistím, jestli můj web vidí ChatGPT a další AI vyhledávače?</summary>
-      <p>Test přečte soubor robots.txt a ověří, jestli web nezakazuje roboty ChatGPT (GPTBot, OAI-SearchBot), Claude a Perplexity. Zkontroluje také strukturovaná data a soubor llms.txt, díky kterým AI vašemu webu lépe rozumí.</p>
+      <p>Test prověří základní pravidla robots.txt pro OAI-SearchBot, Claude-SearchBot a PerplexityBot. Roboty pro trénování posuzuje odděleně. Kontroluje také přítomnost JSON-LD a volitelného llms.txt. Neověří, zda AI obsah skutečně přečetla, pochopila nebo citovala.</p>
     </details>
     <details class="faq-item">
       <summary>Ukládáte zadané weby nebo osobní údaje?</summary>
-      <p>Osobní údaje neukládáme. Zadaná adresa webu se kvůli zrychlení opakovaného testu uchovává nejvýš hodinu a pak se smaže.</p>
+      <p>Adresa a výsledek testu se mohou až hodinu používat z mezipaměti. Pro měření rychlosti se adresa posílá Googlu. Cloudflare při provozu a ochraně služby zpracovává také technické údaje o připojení. Když požádáte o osobní audit, zpracovávám jméno, e-mail a zprávu pro vyřízení žádosti.</p>
     </details>
     <details class="faq-item">
       <summary>Co dělat, když mi test ukáže problémy?</summary>
-      <p>U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit do 48 hodin.</p>
+      <p>U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit. Ozvu se do 24 hodin.</p>
     </details>
   </section>
 </main>
@@ -265,7 +276,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>Test připravila <a href="https://janyskovadigital.cz/">Gabriela Janýšková</a>, webdesignérka · IČO 19616295</p>
-    <p class="small">Zadaná adresa webu se kvůli zrychlení opakovaného testu uchovává nejvýš hodinu. Osobní údaje neukládáme. Testovaný web navštíví robot TestWebuBot a měření Google PageSpeed Insights.</p>
+    <p class="small">Testovaný web navštíví TestWebuBot a Google PageSpeed Insights. Výsledky se mohou až hodinu používat z mezipaměti. Informace o zpracování údajů najdete v <a href="https://janyskovadigital.cz/ochrana-udaju">zásadách ochrany osobních údajů</a>.</p>
   </div>
 </footer>
 </body>

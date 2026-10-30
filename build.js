@@ -112,13 +112,19 @@ function syncFaqSchema(html, where) {
   return html.replace(/(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs, (all, open, json, close) => {
     let data;
     try { data = JSON.parse(json); } catch (e) { throw new Error(`${where}: neplatné JSON-LD (${e.message})`); }
-    const list = Array.isArray(data) ? data : [data];
-    const i = list.findIndex(x => x['@type'] === 'FAQPage');
-    if (i < 0) return all;
-    if (!pairs.length) throw new Error(`${where}: FAQPage ve schématu, ale žádné viditelné FAQ`);
-    list[i] = { ...faqSchema(pairs), ...(list[i]['@context'] ? {} : { '@context': undefined }) };
-    if (!list[i]['@context']) list[i]['@context'] = 'https://schema.org';
-    const out = Array.isArray(data) ? list : list[0];
+    let found = false;
+    const sync = node => {
+      if (Array.isArray(node)) return node.map(sync);
+      if (!node || typeof node !== 'object') return node;
+      if (node['@type'] === 'FAQPage') {
+        found = true;
+        if (!pairs.length) throw new Error(`${where}: FAQPage ve schématu, ale žádné viditelné FAQ`);
+        return { ...faqSchema(pairs), ...(node['@id'] ? { '@id': node['@id'] } : {}), '@context': 'https://schema.org' };
+      }
+      return node['@graph'] ? { ...node, '@graph': sync(node['@graph']) } : node;
+    };
+    const out = sync(data);
+    if (!found) return all;
     return open + JSON.stringify(out, null, json.includes('\n') ? 2 : 0) + close;
   });
 }
@@ -240,7 +246,7 @@ async function bundleTestWebu() {
   });
   // Otisk obsahu v adrese app.js a app.css: stránka a skript se nikdy nerozejdou (stará verze z cache)
   const page = 'testwebu/public/index.html';
-  let html = await read(page);
+  let html = syncFaqSchema(await read(page), page);
   for (const file of ['app.js', 'app.css']) {
     const v = hash(await read(`testwebu/public/${file}`));
     html = html.replace(new RegExp(`/${file.replace('.', '\\.')}(\\?v=\\w+)?"`, 'g'), `/${file}?v=${v}"`);

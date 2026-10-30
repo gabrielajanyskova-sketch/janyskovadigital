@@ -8,20 +8,20 @@ export const CATEGORIES = {
   ai: 'Strukturovaná data a AI vyhledávače',
   security: 'Bezpečnost',
   email: 'Ochrana e-mailu',
-  privacy: 'GDPR a důvěryhodnost',
+  privacy: 'Soukromí a údaje o firmě',
   a11y: 'Přístupnost',
 };
 
 // Nadpisy skupin ve výsledku: otázky, kterým rozumí i laik
 export const CATEGORY_QUESTIONS = {
   speed: 'Načte se web rychle i na mobilu?',
-  tech: 'Najde a správně načte Google celý web?',
+  tech: 'Co jsme zjistili o načítání a indexaci?',
   seo: 'Najdou vás zákazníci ve vyhledávání?',
-  ai: 'Rozumí vašemu webu ChatGPT a další AI?',
-  security: 'Je web bezpečný pro návštěvníky?',
-  email: 'Může někdo poslat e-mail vaším jménem?',
-  privacy: 'Splňuje web GDPR a působí důvěryhodně?',
-  a11y: 'Zvládne web i člověk se zdravotním omezením?',
+  ai: 'Jaká data a pravidla web nabízí AI vyhledávačům?',
+  security: 'Jaké základní ochrany jsme našli?',
+  email: 'Jaká pravidla má doména pro e-mail?',
+  privacy: 'Jaké informace o soukromí a firmě jsou na webu?',
+  a11y: 'Co našla automatická kontrola přístupnosti?',
 };
 
 const WEIGHT = { high: 3, medium: 2, low: 1 };
@@ -194,7 +194,7 @@ export function a11yChecks(psi) {
   return [check('a11y', 'a11y-score', 'medium', s >= 90 ? 'pass' : s >= 70 ? 'warn' : 'fail',
     `Přístupnost: ${s}/100`,
     psi.failedAccessibility.length ? `Hlavní nedostatky: ${psi.failedAccessibility.slice(0, 5).join(' · ')}` : 'Bez zásadních nedostatků.',
-    'Web musí být použitelný i pro lidi se zrakovým postižením, seniory nebo ovládání klávesnicí. Od června 2025 to pro e-shopy a služby vyžaduje i zákon (European Accessibility Act).',
+    'Automatická kontrola pokrývá jen část přístupnosti. Výsledek 100 neznamená úplný soulad s WCAG nebo zákonem; zákonné požadavky mají také výjimky.',
     'Dostatečný kontrast textu, popisky obrázků a formulářů, správné pořadí nadpisů, ovládání klávesnicí.')];
 }
 
@@ -243,7 +243,8 @@ export function siteChecks(r) {
       ? 'Web se nezobrazí ve výsledcích Seznamu, který v Česku používá velká část lidí.' : 'Web se v tomto vyhledávači nezobrazí.',
     'Odstranit zákaz (Disallow: /) pro tento vyhledávač z robots.txt.'));
 
-  if (!r.robots.exists) out.push(check('tech', 'robots', 'low', 'warn', 'Chybí soubor robots.txt', `${url.origin}/robots.txt neexistuje.`, 'Robots.txt říká vyhledávačům a AI, co smí procházet, a odkazuje na mapu webu.', 'Vytvořit robots.txt s odkazem na sitemap.xml.'));
+  if (r.robots.unavailable) out.push(check('tech', 'robots', 'low', 'info', 'Robots.txt se nepodařilo ověřit', 'Server odmítl požadavek nebo neodpověděl.', 'Neověřený výsledek není důkaz chybějícího souboru ani povoleného přístupu.', 'Ověřit robots.txt ručně nebo test zopakovat.'));
+  else if (!r.robots.exists) out.push(check('tech', 'robots', 'low', 'info', 'Robots.txt nebyl nalezen', `${url.origin}/robots.txt`, 'Bez robots.txt může vyhledávač web běžně procházet. Soubor slouží k pravidlům procházení a odkazu na sitemapu.', 'Pokud potřebujete pravidla pro roboty, vytvořit robots.txt.'));
   else if (r.robots.blocksAll) out.push(check('tech', 'robots', 'high', 'fail', 'Robots.txt blokuje celý web', 'Obsahuje „Disallow: /“ pro všechny roboty.', 'Vyhledávače nesmí web procházet. Většinou zapomenuté nastavení z vývoje.', 'Odstranit „Disallow: /“ z robots.txt.'));
   else if (!r.robots.searchBlocked.length) out.push(check('tech', 'robots', 'low', 'pass', 'Soubor robots.txt je v pořádku', 'Existuje a neblokuje celý web.', 'Vyhledávače vědí, co smí procházet.', '—'));
 
@@ -262,8 +263,8 @@ export function siteChecks(r) {
     r.notFound.status === 404 || r.notFound.status === 410 ? 'Neexistující stránky vracejí chybu 404' : `Neexistující stránka vrací kód ${r.notFound.status || 'chybu'} místo 404`,
     `Testovací adresa: ${r.notFound.url}`, 'Když web na neexistující adresy odpovídá „vše v pořádku“, Google indexuje prázdné stránky (soft 404).', 'Nastavit vracení stavového kódu 404 a vlastní chybovou stránku s odkazy dál.'));
 
-  out.push(check('tech', 'mobile', 'high', p.viewport && /width=device-width/.test(p.viewport) ? 'pass' : 'fail',
-    p.viewport ? 'Web je nastavený pro mobily' : 'Web není nastavený pro mobily', p.viewport ? `viewport: ${p.viewport}` : 'Chybí značka viewport.',
+  out.push(check('tech', 'mobile', 'high', p.viewport && /width\s*=\s*device-width/i.test(p.viewport) ? 'pass' : 'fail',
+    p.viewport && /width\s*=\s*device-width/i.test(p.viewport) ? 'Viewport odpovídá šířce zařízení' : 'Chybí viewport podle šířky zařízení', p.viewport ? `viewport: ${p.viewport}` : 'Chybí značka viewport.',
     'Většina návštěv je z mobilu a Google hodnotí mobilní verzi webu.', 'Doplnit <meta name="viewport" content="width=device-width, initial-scale=1"> a responzivní design.'));
 
   if (!p.lang) out.push(check('tech', 'lang', 'low', 'warn', 'Není uvedený jazyk stránky', 'Chybí atribut lang u <html>.', 'Pomáhá vyhledávačům, překladačům a čtečkám obrazovky.', 'Doplnit <html lang="cs">.'));
@@ -276,15 +277,15 @@ export function siteChecks(r) {
 
   // Obsah a SEO
   const t = p.title || '';
-  out.push(!t ? check('seo', 'title', 'high', 'fail', 'Chybí titulek stránky', 'Stránka nemá <title>.', 'Titulek je modrý odkaz ve výsledcích Googlu. Bez něj si ho Google vymyslí.', 'Doplnit výstižný titulek s hlavní službou a místem, 30–60 znaků.')
-    : check('seo', 'title', 'high', t.length >= 25 && t.length <= 65 ? 'pass' : 'warn', `Titulek: „${t.slice(0, 80)}${t.length > 80 ? '…' : ''}“`,
-      `${plural(t.length, 'znak', 'znaky', 'znaků')}${t.length > 65 ? ' (Google zobrazí asi 60, zbytek usekne)' : t.length < 25 ? ' (zbytečně krátký)' : ''}.`,
-      'Titulek nejvíc ovlivňuje, jestli na web ve výsledcích někdo klikne.', t.length >= 25 && t.length <= 65 ? '—' : 'Upravit na 30–60 znaků: hlavní služba, místo, značka.'));
+  out.push(!t ? check('seo', 'title', 'high', 'fail', 'Chybí titulek stránky', 'Stránka nemá <title>.', 'Výstižný titulek pomáhá návštěvníkům poznat obsah výsledku.', 'Doplnit titulek podle skutečného obsahu stránky.')
+    : check('seo', 'title', 'high', 'pass', `Titulek: „${t.slice(0, 80)}${t.length > 80 ? '…' : ''}“`,
+      `${plural(t.length, 'znak', 'znaky', 'znaků')}.`,
+      'Kontrola ověřuje přítomnost titulku. Výstižnost ani správný obsah nelze rozhodnout podle počtu znaků. Google může titulek změnit.', 'Ověřit, že titulek jasně popisuje nabídku a odlišuje stránku od ostatních.'));
 
   const d = p.description || '';
-  out.push(!d ? check('seo', 'description', 'medium', 'warn', 'Chybí popis stránky (meta description)', 'Google si úryvek vybere z textu sám.', 'Popis je text pod odkazem ve výsledcích. Dobrý popis zvyšuje počet kliknutí.', 'Doplnit popis 120–160 znaků s výhodou a výzvou k akci.')
-    : check('seo', 'description', 'medium', d.length >= 70 && d.length <= 165 ? 'pass' : 'warn', 'Popis stránky (meta description)', `${plural(d.length, 'znak', 'znaky', 'znaků')}: „${d.slice(0, 160)}${d.length > 160 ? '…' : ''}“`,
-      'Text pod odkazem ve výsledcích Googlu.', d.length >= 70 && d.length <= 165 ? '—' : 'Upravit na 120–160 znaků.'));
+  out.push(!d ? check('seo', 'description', 'medium', 'warn', 'Chybí popis stránky (meta description)', 'Google může úryvek vybrat z obsahu.', 'Vlastní popis umožňuje stručně představit stránku; jeho použití ve výsledcích není zaručeno.', 'Doplnit konkrétní a výstižný popis stránky.')
+    : check('seo', 'description', 'medium', 'pass', 'Popis stránky (meta description)', `${plural(d.length, 'znak', 'znaky', 'znaků')}: „${d.slice(0, 160)}${d.length > 160 ? '…' : ''}“`,
+      'Kontrola potvrzuje přítomnost. Počet znaků sám o sobě neurčuje kvalitu a Google může zobrazit jiný úryvek.', 'Ověřit shodu popisu s obsahem a nabídkou.'));
 
   const h1 = p.headings.filter(h => h.level === 1);
   out.push(check('seo', 'h1', 'medium', h1.length === 1 ? 'pass' : h1.length === 0 ? 'fail' : 'warn',
@@ -309,19 +310,22 @@ export function siteChecks(r) {
     og.title && og.image ? `Obrázek: ${og.image}` : 'Při sdílení na Facebooku, LinkedInu nebo WhatsAppu se nezobrazí pěkný náhled.',
     'Sdílený odkaz s obrázkem a titulkem dostane výrazně víc kliknutí.', og.title && og.image ? '—' : 'Doplnit og:title, og:description a og:image (1200 × 630 px).'));
 
-  if (p.words < 200) out.push(check('seo', 'thin', 'medium', 'warn', `Na úvodní stránce je málo textu (${p.words} slov)`, 'Vyhledávače a AI potřebují text, aby pochopily, co nabízíte.', 'Stránka s pár větami těžko získá pozice na konkurenční dotazy.', 'Popsat služby, pro koho jsou, kde působíte, ceny, časté otázky.'));
+  if (p.words < 200) out.push(check('seo', 'thin', 'medium', 'info', `Na úvodní stránce je málo textu (${p.words} slov)`, 'Vyhledávače a AI potřebují text, aby pochopily, co nabízíte.', 'Samotný počet slov neprokazuje nedostatečný obsah. Záleží na účelu stránky a tom, zda odpovídá zákazníkům.', 'Popsat služby, pro koho jsou, kde působíte, ceny, časté otázky.'));
 
   if (r.pages.length) {
     const dupTitles = dupes(r.pages.map(x => x.title).concat(p.title));
-    const noDesc = r.pages.filter(x => !x.description).length;
-    const badH1 = r.pages.filter(x => x.h1 !== 1).length;
+    const analyzed = r.pages.filter(x => x.analyzed !== false);
+    const noDesc = analyzed.filter(x => !x.description).length;
+    const badH1 = analyzed.filter(x => x.h1 !== 1).length;
+    const unverified = r.pages.filter(x => x.analyzed === false).length;
     const broken = r.pages.filter(x => x.status >= 400);
     const issues = [];
     if (dupTitles) issues.push(`${plural(dupTitles, 'duplicitní titulek', 'duplicitní titulky', 'duplicitních titulků')}`);
     if (noDesc) issues.push(`${noDesc}× chybí popis`);
     if (badH1) issues.push(`${badH1}× chybí nebo je víc H1`);
     if (broken.length) issues.push(`${broken.length}× chyba ${broken.map(b => b.status).join(', ')}`);
-    out.push(check('seo', 'subpages', 'medium', issues.length ? 'warn' : 'pass',
+    if (unverified) issues.push(`${unverified}× obsah se nepodařilo vyhodnotit`);
+    out.push(check('seo', 'subpages', 'medium', !analyzed.length && !broken.length ? 'info' : issues.length ? 'warn' : 'pass',
       `Kontrola ${plural(r.pages.length, 'další stránky', 'dalších stránek', 'dalších stránek')}`,
       (issues.length ? issues.join(' · ') + '.' : 'Titulky, popisy a nadpisy jsou v pořádku.') +
         ` Stránky: ${r.pages.map(x => { try { return decodeURI(new URL(x.url).pathname); } catch { return x.url; } }).join(', ')}`,
@@ -329,11 +333,12 @@ export function siteChecks(r) {
       issues.length ? 'Projít uvedené stránky a doplnit unikátní titulky a popisy.' : '—'));
   }
 
+  if (r.links?.unverified) out.push(check('seo', 'links-unverified', 'low', 'info', 'Některé odkazy se nepodařilo ověřit', `Bez odpovědi: ${r.links.unverified}.`, 'Timeout nebo limit kontroly neznamená, že je odkaz nefunkční.', 'Otevřít tyto odkazy ručně nebo kontrolu zopakovat.'));
   if (r.links && (r.links.checked || r.links.broken.length)) out.push(r.links.broken.length
     ? check('seo', 'broken-links', 'medium', 'fail', `${plural(r.links.broken.length, 'nefunkční odkaz', 'nefunkční odkazy', 'nefunkčních odkazů')} na úvodní stránce`,
       r.links.broken.slice(0, 5).map(l => `${l.status} ${decodeSafe(l.url)}`).join(' · '),
       'Odkaz na neexistující stránku zklame návštěvníka a Googlu říká, že web není udržovaný.', 'Opravit nebo odstranit odkazy, případně přesměrovat staré adresy na nové.')
-    : check('seo', 'broken-links', 'medium', 'pass', 'Odkazy na úvodní stránce fungují', `Počet zkontrolovaných interních odkazů: ${r.links.checked}.`, 'Nefunkční odkazy zhoršují dojem i hodnocení u Googlu.', '—'));
+    : check('seo', 'broken-links', 'medium', 'pass', 'V ověřeném vzorku nejsou chybové odpovědi odkazů', `Počet zkontrolovaných interních odkazů: ${r.links.checked}.`, 'Kontrola vzorku nenahrazuje ověření všech odkazů webu.', '—'));
 
   if (!p.favicon) out.push(check('seo', 'favicon', 'low', 'warn', 'Chybí ikona webu (favicon)', 'Stránka neodkazuje na ikonu.',
     'Ikona se zobrazuje v záložce prohlížeče a vedle odkazu ve výsledcích Googlu na mobilu.', 'Doplnit <link rel="icon"> s ikonou aspoň 48 × 48 px.'));
@@ -343,19 +348,22 @@ export function siteChecks(r) {
   const types = [...new Set(valid.flatMap(j => j.types))];
   if (p.jsonLd.some(j => !j.valid)) out.push(check('ai', 'schema-invalid', 'high', 'fail', 'Strukturovaná data obsahují chybu', 'Data JSON-LD mají chybu v zápisu (syntaxi), takže je nejde přečíst.', 'Google ani AI nástroje chybná data nepřečtou.', 'Opravit JSON-LD a ověřit v nástroji Test rozšířených výsledků od Googlu.'));
   if (valid.length || !p.jsonLd.length) out.push(valid.length
-    ? check('ai', 'schema', 'high', 'pass', 'Web má strukturovaná data (schema.org)', `Typy: ${types.slice(0, 10).join(', ')}`, 'Strojově čitelné údaje o firmě, službách a obsahu, ze kterých čerpá Google i AI.', '—')
+    ? check('ai', 'schema', 'high', 'pass', 'Data JSON-LD mají čitelný zápis', `Typy: ${types.slice(0, 10).join(', ')}`, 'Ověřena syntaxe a uvedené typy, nikoli správnost vlastností, shoda s obsahem ani způsobilost pro rozšířené výsledky.', '—')
     : check('ai', 'schema', 'high', 'warn', 'Chybí strukturovaná data (schema.org)', 'Na úvodní stránce nejsou žádná data JSON-LD.', 'Bez nich Google i AI odpovědi (ChatGPT, Google AI přehledy) hůř chápou, kdo jste, kde působíte a co nabízíte.', 'Doplnit LocalBusiness/Organization s adresou, telefonem a službami, u článků Article, u otázek FAQPage.'));
   const business = types.some(t => /LocalBusiness|Organization|ProfessionalService|Store|Restaurant|Corporation|Person/.test(t));
   if (valid.length && !business) out.push(check('ai', 'schema-business', 'medium', 'warn', 'Strukturovaná data neobsahují údaje o firmě', 'Chybí typ Organization nebo LocalBusiness.', 'AI a Google mapy potřebují vědět, kdo za webem stojí.', 'Doplnit Organization/LocalBusiness s názvem, adresou, kontaktem a IČO.'));
 
   const blocked = r.robots.aiBlocked;
-  out.push(blocked.length
-    ? check('ai', 'ai-bots', 'medium', 'warn', `Robots.txt blokuje AI nástroje: ${blocked.join(', ')}`, 'Tyto služby nesmí obsah webu číst.', 'Web se pak nemůže objevit v odpovědích ChatGPT, Perplexity nebo Claude. Někdy je to záměr, často zapomenuté nastavení.', 'Pokud chcete být v AI odpovědích, povolit tyto roboty v robots.txt.')
-    : check('ai', 'ai-bots', 'medium', 'pass', 'AI vyhledávače mají přístup', 'Robots.txt neblokuje ChatGPT, Claude, Perplexity ani Google AI.', 'Web se může objevit v odpovědích AI asistentů.', '—'));
+  out.push(r.robots.unavailable
+    ? check('ai', 'ai-bots', 'medium', 'info', 'Pravidla pro AI vyhledávače nebyla ověřena', 'Robots.txt není dostupný pro kontrolu.', 'Z neověřeného souboru nelze určit zákaz procházení.', 'Ověřit robots.txt ručně.')
+    : blocked.length
+      ? check('ai', 'ai-bots', 'medium', 'info', `Zákaz procházení pro: ${blocked.join(', ')}`, 'Nalezeno pravidlo pro kořenovou cestu /.', 'Zákaz může být záměrný. Ovlivňuje procházení tímto robotem, neprokazuje úplnou nepřítomnost webu v AI odpovědích.', 'Pokud chcete danému robotu přístup umožnit, prověřit pravidla robots.txt.')
+      : check('ai', 'ai-bots', 'medium', 'info', 'Kořenová cesta nemá nalezený zákaz pro AI vyhledávače', 'Kontrolovány OAI-SearchBot, Claude-SearchBot a PerplexityBot.', 'Pravidla jednotlivých podstránek a blokace na serveru se mohou lišit. Povolení procházení nezaručuje citaci.', '—'));
+  if (r.robots.trainingBlocked?.length) out.push(check('ai', 'ai-training', 'low', 'info', 'Web omezuje roboty pro trénování AI', r.robots.trainingBlocked.join(', '), 'Pravidla pro trénování jsou odlišná od vyhledávání. Jejich blokování samo o sobě není SEO chyba.', 'Měnit jen podle toho, jak chcete svůj obsah zpřístupnit.'));
 
   out.push(r.llms
-    ? check('ai', 'llms', 'low', 'pass', 'Web má soubor llms.txt', 'Shrnutí webu pro AI nástroje.', 'Nový standard, který AI pomáhá rychle pochopit, co web nabízí.', '—')
-    : check('ai', 'llms', 'low', 'info', 'Web nemá soubor llms.txt', 'Volitelné doporučení.', 'llms.txt je nový, zatím nepovinný standard: stručný přehled webu pro AI nástroje.', 'Vytvořit /llms.txt s popisem firmy, služeb a odkazy na hlavní stránky.'));
+    ? check('ai', 'llms', 'low', 'info', 'Web má soubor llms.txt', 'Volitelný přehled obsahu.', 'Jde o návrh formátu. Jeho přítomnost neprokazuje použití AI službami ani lepší viditelnost.', '—')
+    : check('ai', 'llms', 'low', 'info', 'Web nemá soubor llms.txt', 'Volitelný soubor, bez vlivu na skóre.', 'Není podmínkou indexace ani AI funkcí Googlu.', 'Není nutné jej doplňovat kvůli výsledku tohoto testu.'));
 
   out.push(p.phone || p.email
     ? check('ai', 'contact', 'medium', 'pass', 'Kontakt je vidět přímo na stránce', [p.phone && 'telefon', p.email && 'e-mail'].filter(Boolean).join(' a ') + ' v textu stránky.', 'Viditelný kontakt zvyšuje důvěru zákazníků i hodnocení důvěryhodnosti u Googlu a AI.', '—')
@@ -374,7 +382,7 @@ export function siteChecks(r) {
   out.push(check('security', 'headers', 'medium', missing.length === 0 ? 'pass' : missing.length <= 2 ? 'warn' : 'fail',
     missing.length ? `Chybí ${plural(missing.length, 'bezpečnostní hlavička', 'bezpečnostní hlavičky', 'bezpečnostních hlaviček')}` : 'Bezpečnostní hlavičky jsou nastavené',
     missing.length ? missing.join(', ') : 'HSTS, CSP, X-Content-Type-Options, Referrer-Policy i ochrana rámů.',
-    'Hlavičky říkají prohlížeči, jak web chránit před podvrženým kódem, odposlechem a vložením do cizí stránky.',
+    'Kontrola zjišťuje přítomnost hlaviček. Neověřuje účinnost jejich hodnot, zranitelnosti aplikace ani zabezpečení serveru.',
     missing.length ? 'Doplnit hlavičky na serveru (hosting, .htaccess nebo Cloudflare).' : '—'));
 
   const leak = [h['x-powered-by'], h['server']].filter(v => v && /\d/.test(v));
@@ -387,12 +395,12 @@ export function siteChecks(r) {
     ? check('privacy', 'ico', 'medium', 'pass', 'Na webu je uvedené IČO', 'Údaje o podnikateli jsou dohledatelné.', 'Podnikatel musí na webu uvést své IČO (§ 435 občanského zákoníku). Zvyšuje to i důvěru zákazníků.', '—')
     : check('privacy', 'ico', 'medium', 'warn', 'Na úvodní stránce nebylo nalezeno IČO', 'Typicky patří do patičky.', 'Podnikatel musí na webu uvést jméno nebo firmu, sídlo a IČO (§ 435 občanského zákoníku). Chybějící údaje snižují důvěru.', 'Doplnit do patičky název, sídlo a IČO (u firmy i zápis v obchodním rejstříku).'));
 
-  if (p.googleFonts) out.push(check('privacy', 'google-fonts', 'medium', 'warn', 'Písma se načítají z Google Fonts', 'Prohlížeč návštěvníka posílá jeho IP adresu Googlu.', 'Soudy v EU to posoudily jako porušení GDPR bez souhlasu návštěvníka.', 'Stáhnout písma a hostovat je přímo na vlastním webu.'));
+  if (p.googleFonts) out.push(check('privacy', 'google-fonts', 'medium', 'info', 'V HTML jsou odkazy na Google Fonts', 'Při jejich načtení může dojít k předání IP adresy poskytovateli.', 'Samotný odkaz neprokazuje porušení GDPR; záleží na skutečném načítání a právním posouzení.', 'Pro omezení externích požadavků lze hostovat písma na vlastním webu.'));
   const trackers = p.thirdParty.filter(n => !/vložené video|Mapy/.test(n));
   if (trackers.length) out.push(check('privacy', 'trackers', 'medium', p.cookieBanner ? 'info' : 'warn',
-    `Měřicí a marketingové nástroje: ${trackers.join(', ')}`,
-    p.cookieBanner ? 'Web má lištu pro souhlas s cookies.' : 'Lišta pro souhlas s cookies nebyla nalezena (automatická kontrola nemusí poznat každou).',
-    'Analytika a reklamní pixely smí v EU běžet až po souhlasu návštěvníka.', p.cookieBanner ? 'Ověřit, že se nástroje spouští až po souhlasu.' : 'Doplnit souhlas s cookies, nebo použít měření bez cookies.'));
+    `V HTML jsou stopy nástrojů: ${trackers.join(', ')}`,
+    p.cookieBanner ? 'V HTML je také stopa mechanismu souhlasu. Skutečné načítání nebylo ověřeno.' : 'Mechanismus souhlasu nebyl v HTML rozpoznán. Může se načítat až skriptem.',
+    'Samotná stopa skriptu neprokazuje jeho spuštění ani porušení pravidel. Test neovládá lištu a neověřuje síťové požadavky před a po souhlasu.', 'Ručně ověřit, které služby se skutečně načítají a za jakých podmínek.'));
   out.push(check('privacy', 'privacy', 'medium', p.privacyLink ? 'pass' : (p.forms ? 'warn' : 'info'),
     p.privacyLink ? 'Web odkazuje na zásady ochrany osobních údajů' : 'Odkaz na zásady ochrany osobních údajů nebyl nalezen',
     p.forms ? `Na stránce: ${plural(p.forms, 'formulář', 'formuláře', 'formulářů')}.` : '—',
@@ -427,37 +435,41 @@ export function score(checks) {
 // Ochrana domény před podvrženými e-maily (SPF a DMARC podle záznamů v DNS).
 // dns = { txt: [...], dmarc: [...], mx: počet MX záznamů } nebo null, když DNS nešlo přečíst.
 export function emailChecks(dns, domain) {
-  if (!dns) return [];
+  if (!dns) return [check('email', 'dns-unavailable', 'medium', 'info', 'E-mailová pravidla se nepodařilo ověřit', 'DNS neodpovědělo platným výsledkem.', 'Neověřený záznam není totéž co chybějící ochrana.', 'Zopakovat test nebo zkontrolovat DNS u správce domény.')];
   const out = [];
   const spf = dns.txt.filter(t => /^v=spf1(\s|$)/i.test(t));
-  const receives = dns.mx > 0;
-  const where = 'Záznam se přidává v DNS domény (u registrátora nebo v Cloudflare). Hodnotu vám řekne poskytovatel e-mailu.';
+  const where = 'Nejdřív sepište všechny služby, které za doménu odesílají, a ověřte SPF i DKIM podle jejich návodů.';
   if (spf.length > 1) {
-    out.push(check('email', 'spf', 'high', 'fail', 'Doména má víc záznamů SPF najednou', `Nalezeno ${spf.length} záznamů začínajících v=spf1.`, 'Při více záznamech SPF je ochrana neplatná a poštovní servery ji ignorují.', 'Sloučit vše do jednoho záznamu SPF.'));
+    out.push(check('email', 'spf', 'high', 'fail', 'Doména má více záznamů SPF', `Nalezeno: ${spf.length}.`, 'Více záznamů v=spf1 způsobuje chybu SPF.', 'Sloučit povolené odesílatele do jednoho záznamu.'));
   } else if (!spf.length) {
-    out.push(check('email', 'spf', 'high', receives ? 'fail' : 'warn', 'Chybí záznam SPF', `Doména ${domain} neurčuje, které servery smí posílat její e-maily.`,
-      'Kdokoli pak může snáz rozeslat podvodný e-mail, který vypadá, že je od vás, a vaše skutečné e-maily častěji padají do spamu.',
-      receives ? `Přidat TXT záznam SPF podle poskytovatele e-mailu (např. Seznam: v=spf1 include:spf.seznam.cz ~all). ${where}` : 'Doména e-maily nepoužívá: stačí TXT záznam v=spf1 -all, který posílání jejím jménem zakáže.'));
+    out.push(check('email', 'spf', 'high', 'warn', 'Záznam SPF nebyl nalezen', `Kontrolována doména ${domain}.`, 'SPF určuje povolené odesílací servery. To, že doména nepřijímá poštu, neznamená, že ji neodesílá.', `${where} Pravidlo v=spf1 -all použít jen tehdy, pokud doména skutečně nic neodesílá.`));
   } else {
-    const all = (spf[0].match(/\s([~?+-])?all\b/i) || [])[1];
-    const ok = all === '-' || all === '~';
-    out.push(check('email', 'spf', 'high', ok ? 'pass' : 'warn', ok ? 'Doména má platný záznam SPF' : 'Záznam SPF nic nezakazuje',
-      spf[0].length > 160 ? spf[0].slice(0, 160) + '…' : spf[0],
-      'SPF říká poštovním serverům, kdo smí posílat e-maily vaším jménem.',
-      ok ? '—' : 'Ukončit záznam SPF pravidlem ~all nebo -all, jinak nemá žádný účinek.'));
+    const all = [...spf[0].matchAll(/(?:^|\s)([~?+-]?)all(?=\s|$)/gi)];
+    const restricted = all.length === 1 && ['-', '~'].includes(all[0][1]) && !/\+all\b/i.test(spf[0]);
+    out.push(check('email', 'spf', 'high', restricted ? 'pass' : 'warn', restricted ? 'SPF obsahuje omezující pravidlo pro ostatní servery' : 'SPF potřebuje podrobnější kontrolu',
+      spf[0].slice(0, 300),
+      'Tato kontrola nerozbaluje include, neověřuje limit DNS dotazů ani doručení skutečné zprávy. Nejde o úplnou validaci SPF.',
+      restricted ? 'Ověřit také DKIM a výsledek SPF/DMARC v hlavičkách skutečně odeslaného e-mailu.' : `${where} Nepřepisovat záznam naslepo.`));
   }
-  const dmarc = dns.dmarc.find(t => /^v=DMARC1/i.test(t));
-  const policy = dmarc && (dmarc.match(/;\s*p\s*=\s*(\w+)/i) || [])[1]?.toLowerCase();
-  if (!dmarc) {
-    out.push(check('email', 'dmarc', 'high', 'fail', 'Chybí záznam DMARC', `Na _dmarc.${domain} není žádné pravidlo.`,
-      'DMARC říká poštovním schránkám, co dělat s e-mailem, který se za vás jen vydává. Bez něj podvodné zprávy klidně dorazí, a Gmail i Seznam čím dál víc vyžadují DMARC i od běžných odesílatelů.',
-      `Přidat TXT záznam _dmarc s hodnotou v=DMARC1; p=none; rua=mailto:vas@email.cz a po pár týdnech bez problémů zpřísnit na p=quarantine. ${where}`));
-  } else if (policy === 'none') {
-    out.push(check('email', 'dmarc', 'high', 'warn', 'DMARC jen sleduje, nechrání', dmarc,
-      'Pravidlo p=none podvodné e-maily nezastaví, jen o nich podává hlášení. Je to dobrý první krok.',
-      'Když hlášení ukazují, že vaše e-maily procházejí, změnit p=none na p=quarantine (nebo p=reject).'));
+  const records = dns.dmarc.filter(t => /^v=DMARC1(?:\s*;|\s*$)/i.test(t));
+  const dmarc = records[0];
+  const entries = dmarc?.split(';').map(t => t.trim()).filter(Boolean).map(t => (t.match(/^([^=]+)\s*=\s*(.*)$/)?.slice(1).map(x => x.trim()) || [t])) || [];
+  const tags = Object.fromEntries(entries.map(([k, v]) => [k.toLowerCase(), v]));
+  const policy = tags.p?.toLowerCase();
+  const pct = tags.pct == null ? 100 : /^\d{1,3}$/.test(tags.pct) ? Number(tags.pct) : NaN;
+  const invalid = records.length > 1 || (dmarc && (entries.some(t => t.length !== 2) || new Set(entries.map(([k]) => k.toLowerCase())).size !== entries.length || entries[1]?.[0]?.toLowerCase() !== 'p' || !['none', 'quarantine', 'reject'].includes(policy) || !Number.isFinite(pct) || pct > 100));
+  if (invalid) {
+    out.push(check('email', 'dmarc', 'high', 'fail', 'DMARC má chybné nebo nejednoznačné nastavení', records.join(' · ').slice(0, 600), 'Chybějící či neplatná politika, duplicitní značky nebo více DMARC záznamů mohou znemožnit vyhodnocení.', 'Opravit jediný záznam podle dokumentace poskytovatele. Před zpřísněním ověřit skutečné odesílatele.'));
+  } else if (!dmarc) {
+    out.push(check('email', 'dmarc', 'high', 'warn', 'Záznam DMARC nebyl nalezen', `_dmarc.${domain}`, 'DMARC určuje požadované zacházení se zprávou, která nesplní ověření a shodu domény.', `${where} Začít monitorovací politikou p=none a hlášením na adresu, kterou spravujete; zpřísňovat až po vyhodnocení.`));
+  } else if (policy === 'none' || pct === 0) {
+    const reporting = !!tags.rua;
+    out.push(check('email', 'dmarc', 'high', 'warn', 'DMARC nepožaduje karanténu ani odmítnutí zpráv', dmarc,
+      `Politika ${policy === 'none' ? 'p=none' : 's pct=0'} nevynucuje odmítnutí neověřených zpráv.${reporting ? ' Záznam uvádí adresu pro souhrnná hlášení; jejich doručení nebylo ověřeno.' : ' Chybí rua, takže záznam neurčuje příjemce souhrnných hlášení.'}`,
+      `${where} Až ověříte, že legitimní pošta prochází, zvažte postupný přechod na p=quarantine a p=reject. Bez kontroly můžete omezit vlastní poštu.`));
   } else {
-    out.push(check('email', 'dmarc', 'high', 'pass', 'Doména je chráněná pravidlem DMARC', dmarc, 'Podvodné e-maily vaším jménem skončí ve spamu nebo je schránky odmítnou.', '—'));
+    out.push(check('email', 'dmarc', 'high', pct < 100 ? 'warn' : 'pass', `DMARC požaduje ${policy === 'reject' ? 'odmítnutí' : 'karanténu'} neověřených zpráv`, dmarc,
+      `Požadavek se týká ${pct} % zpráv podle politiky. Konečné zacházení určuje přijímající server. Nebylo ověřeno DKIM, shoda domén ani skutečné doručení.`, 'Ověřit hlavičky zpráv od všech skutečných odesílatelů a sledovat DMARC hlášení.'));
   }
   return out;
 }
@@ -466,15 +478,15 @@ export function emailChecks(dns, domain) {
 export function domainChecks(dns, domain, securityTxt) {
   const out = [];
   if (dns?.ds != null) out.push(dns.ds > 0
-    ? check('security', 'dnssec', 'medium', 'pass', 'Doména je chráněná DNSSEC', `Záznamy domény ${domain} jsou digitálně podepsané.`, 'Útočník nemůže podvrhnout, kam doména vede, a přesměrovat návštěvníky nebo e-maily jinam.', '—')
+    ? check('security', 'dnssec', 'medium', 'pass', 'V DNS byl nalezen záznam DS pro DNSSEC', `Pro doménu ${domain} byl nalezen záznam DS.`, 'DS je součást nastavení DNSSEC. Tento test neověřuje celý řetězec podpisů ani správnost validace.', '—')
     : check('security', 'dnssec', 'medium', 'warn', 'Doména nemá zapnutý DNSSEC', `Záznamy domény ${domain} nejsou podepsané.`,
       'DNSSEC brání podvržení adresy domény, aby návštěvníci ani e-maily neskončili u útočníka. V Česku ho má většina domén a patří k základům kybernetické bezpečnosti.',
       'Zapnout DNSSEC u správce DNS (často jedno tlačítko, např. v Cloudflare DNS → Settings) a případně vložit záznam DS u registrátora domény.'));
   if (dns?.caa != null) out.push(dns.caa > 0
-    ? check('security', 'caa', 'low', 'pass', 'Doména určuje, kdo smí vydat její certifikát (CAA)', 'Záznam CAA je nastavený.', 'Cizí certifikační autorita nevydá certifikát pro vaši doménu.', '—')
+    ? check('security', 'caa', 'low', 'pass', 'Doména určuje, kdo smí vydat její certifikát (CAA)', 'Záznam CAA je nastavený.', 'CAA omezuje autority oprávněné vydat certifikát. Test ověřuje přítomnost záznamu, ne správnost celé politiky.', '—')
     : check('security', 'caa', 'low', 'info', 'Doména nemá záznam CAA', 'Volitelné doporučení.', 'CAA určuje, které autority smí vydat SSL certifikát pro doménu. Je to doplňková ochrana proti podvrženým certifikátům.', 'Přidat záznam CAA pro autoritu, která certifikát vydává (např. letsencrypt.org). Pozor, chybný záznam zablokuje obnovu certifikátu.'));
   out.push(securityTxt
     ? check('security', 'security-txt', 'low', 'pass', 'Web má soubor security.txt', 'Kontakt pro nahlášení bezpečnostních chyb je na /.well-known/security.txt.', 'Kdo najde na webu zranitelnost, ví, komu ji nahlásit.', '—')
-    : check('security', 'security-txt', 'low', 'warn', 'Chybí soubor security.txt', 'Na /.well-known/security.txt není kontakt pro hlášení bezpečnostních chyb.', 'Standard RFC 9116: když někdo na webu najde zranitelnost, nemá ji komu nahlásit. Kontroly podle NIS2 ho hlídají.', 'Vytvořit /.well-known/security.txt s řádky Contact: mailto:vas@email.cz a Expires: (datum za rok).'));
+    : check('security', 'security-txt', 'low', 'info', 'Chybí soubor security.txt', 'Na /.well-known/security.txt není kontakt pro hlášení bezpečnostních chyb.', 'Soubor podle RFC 9116 nabízí kontakt pro hlášení zranitelností. Jeho absence sama neprokazuje nebezpečný web ani nesoulad s NIS2.', 'Vytvořit /.well-known/security.txt s řádky Contact: mailto:vas@email.cz a Expires: (datum za rok).'));
   return out;
 }

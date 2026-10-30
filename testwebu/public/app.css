@@ -181,3 +181,13 @@ em{font-style:italic;color:var(--pink)}
 .faq-item p{padding:0 20px 18px;color:var(--dim);font-size:15px;line-height:1.6}
 @media print{.faq{display:none}}
 
+
+/* Čitelné dlouhé nálezy i při větším písmu na telefonu. */
+.hero > p:not(.eyebrow){max-width:640px;margin-left:auto;margin-right:auto}
+.hero > p:not(.lead):not(.eyebrow){color:var(--dim);font-size:14px;margin-bottom:18px}
+.check summary{grid-template-columns:auto minmax(0,1fr)}
+.check-title,.check-more,.result-meta{overflow-wrap:anywhere}
+.summary > div:last-child{min-width:0}
+.results > .note{margin-bottom:20px}
+@media(max-width:400px){.check summary{padding:14px 12px;gap:6px 10px}.badge{font-size:10px;padding:3px 6px}}
+[hidden]{display:none!important}

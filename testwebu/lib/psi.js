@@ -37,6 +37,9 @@ export async function runPsi(url, strategy, { apiKey, fetchImpl, fields = FIELDS
     if (/FAILED_DOCUMENT_REQUEST|ERRORED_DOCUMENT_REQUEST|NO_FCP/.test(reason)) return { error: 'Google se na web nedostal nebo se stránka nevykreslila.', detail };
     return { error: 'Měření Googlu se nepodařilo.', detail };
   }
+  if (data.lighthouseResult.runtimeError || data.lighthouseResult.categories?.performance?.score == null) {
+    return { error: 'Google stránku nedokázal změřit. Zkuste to prosím později.' };
+  }
   return summarizePsi(data);
 }
 

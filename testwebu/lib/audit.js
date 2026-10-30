@@ -4,7 +4,8 @@ import { normalizeUrl, assertPublicHost, fetchPage, AuditError } from './http.js
 import { analyzeHtml } from './html.js';
 import { siteChecks, emailChecks, domainChecks, score, CATEGORIES } from './checks.js';
 
-const AI_BOTS = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-Web', 'PerplexityBot', 'Google-Extended', 'Applebot-Extended'];
+const AI_BOTS = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot'];
+const TRAINING_BOTS = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended'];
 const SEARCH_BOTS = ['Googlebot', 'SeznamBot', 'Bingbot'];
 const SAMPLE_PAGES = 5;
 const MAX_LINKS = 15;
@@ -21,7 +22,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
 
   const main = await fetchPage(url.href, opts);
   if (!main.status) {
-    const msg = { timeout: 'Web neodpověděl do 12 sekund.', redirects: 'Web se zacyklil v přesměrováních.', blocked: 'Web přesměrovává na adresu, kterou nelze otestovat.' }[main.error] || 'Web se nepodařilo načíst. Zkontrolujte adresu.';
+    const msg = { timeout: 'Web neodpověděl do 12 sekund.', size: 'HTML stránky přesahuje limit 3 MB. Neúplnou stránku nelze spolehlivě vyhodnotit.', redirects: 'Web se zacyklil v přesměrováních.', blocked: 'Web přesměrovává na adresu, kterou nelze otestovat.' }[main.error] || 'Web se nepodařilo načíst. Zkontrolujte adresu.';
     throw new AuditError(msg, 422);
   }
   if (main.status >= 400) throw new AuditError(`Web odpověděl chybou ${main.status}${main.status === 403 ? ' (pravděpodobně blokuje automatické kontroly)' : ''}.`, 422);
@@ -45,6 +46,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
   ]);
 
   const robots = parseRobots(robotsRes?.status === 200 && /text\/plain/i.test(robotsRes.contentType) ? robotsRes.body : null);
+  robots.unavailable = !robotsRes?.status || robotsRes.status >= 500 || [401, 403, 429].includes(robotsRes.status);
   const sitemap = await readSitemap(robots.sitemap || `${origin}/sitemap.xml`, opts, final.hostname);
 
   // Další stránky: ze sitemapy, jinak z odkazů na úvodní stránce
@@ -52,9 +54,9 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     .filter(u => { try { const x = new URL(u); return x.hostname === final.hostname && x.href.replace(/\/$/, '') !== main.url.replace(/\/$/, '') && !/\.(pdf|jpe?g|png|webp|gif|svg|zip|docx?|xlsx?)$/i.test(x.pathname); } catch { return false; } })
     .slice(0, SAMPLE_PAGES);
   const pages = (await Promise.all(candidates.map(u => fetchPage(u, opts)))).map((res, i) => {
-    if (!res.status || !/html/i.test(res.contentType || '')) return { url: candidates[i], status: res.status || 0 };
+    if (!res.ok || !res.status || !/html/i.test(res.contentType || '')) return { url: candidates[i], status: res.status || 0, analyzed: false };
     const a = analyzeHtml(res.body, res.url);
-    return { url: res.url, status: res.status, title: a.title, description: a.description, h1: a.headings.filter(h => h.level === 1).length };
+    return { url: res.url, status: res.status, analyzed: true, title: a.title, description: a.description, h1: a.headings.filter(h => h.level === 1).length };
   });
 
   // Nefunkční odkazy z úvodní stránky (jen interní; cizí weby automatické kontroly často blokují)
@@ -69,7 +71,8 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     if ([403, 405, 501].includes(res.status)) res = await fetchPage(u, opts);   // server nepodporuje HEAD
     return { url: u, status: res.status || 0 };
   }));
-  const brokenLinks = linkResults.filter(l => l.status >= 400);
+  const unverifiedLink = l => !l.status || [401, 403, 429].includes(l.status);
+  const brokenLinks = linkResults.filter(l => l.status >= 400 && !unverifiedLink(l));
 
   const headers = Object.fromEntries([...main.headers.entries()].map(([k, v]) => [k.toLowerCase(), v]));
   const report = {
@@ -80,7 +83,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     headers,
     page,
     platforms: page.platforms,
-    httpRedirect: httpVer ? {
+    httpRedirect: httpVer?.status ? {
       toHttps: httpVer.chain.length > 0 && /^https:/.test(httpVer.url),
       permanent: [301, 308].includes(httpVer.chain[0]?.status),
     } : null,
@@ -94,7 +97,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
     llms: llmsRes?.status === 200 && /text\/(plain|markdown)/i.test(llmsRes.contentType) && llmsRes.body.trim().startsWith('#'),
     notFound: { url: probe, status: notFoundRes?.status || 0 },
     pages,
-    links: { checked: linkResults.filter(l => l.status).length, broken: brokenLinks },
+    links: { checked: linkResults.filter(l => !unverifiedLink(l)).length, unverified: linkResults.filter(unverifiedLink).length, broken: brokenLinks },
   };
 
   const checks = [...siteChecks(report), ...domainChecks(dns, domain, report.securityTxt), ...emailChecks(dns, domain)];
@@ -111,7 +114,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
 }
 
 export function parseRobots(text) {
-  if (text == null) return { exists: false, blocksAll: false, aiBlocked: [], searchBlocked: [], sitemap: null };
+  if (text == null) return { exists: false, blocksAll: false, aiBlocked: [], trainingBlocked: [], searchBlocked: [], sitemap: null };
   const groups = [];
   let current = null;
   let lastWasAgent = false;
@@ -141,7 +144,7 @@ export function parseRobots(text) {
   };
   return {
     exists: true, blocksAll: blocked('Googlebot') && blocked('*'),
-    aiBlocked: AI_BOTS.filter(blocked), searchBlocked: SEARCH_BOTS.filter(blocked), sitemap,
+    aiBlocked: AI_BOTS.filter(blocked), trainingBlocked: TRAINING_BOTS.filter(blocked), searchBlocked: SEARCH_BOTS.filter(blocked), sitemap,
   };
 }
 
@@ -173,9 +176,10 @@ export async function readDomainDns(domain, fetchImpl) {
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
   const [txt, dmarc, mx, ds, caa] = await Promise.all([lookup(domain, 'TXT'), lookup(`_dmarc.${domain}`, 'TXT'), lookup(domain, 'MX'), lookup(domain, 'DS'), lookup(domain, 'CAA')]);
-  if (!txt || !dmarc) return null;
+  const valid = res => res && [0, 3].includes(res.Status) && (res.Answer == null || Array.isArray(res.Answer));
+  if (!valid(txt) || !valid(dmarc)) return null;
   // TXT může být rozdělený na víc řetězců v uvozovkách: "v=spf1 …" "… ~all"
   const texts = (res, type) => (res.Answer || []).filter(a => a.type === type).map(a => a.data.replace(/"\s*"/g, '').replace(/^"|"$/g, '').trim());
-  const count = (res, type) => (res ? (res.Answer || []).filter(a => a.type === type).length : null);
-  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: count(mx, 15) || 0, ds: count(ds, 43), caa: count(caa, 257) };
+  const count = (res, type) => (valid(res) ? (res.Answer || []).filter(a => a.type === type).length : null);
+  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: count(mx, 15), ds: count(ds, 43), caa: count(caa, 257) };
 }

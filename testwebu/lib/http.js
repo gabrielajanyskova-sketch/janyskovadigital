@@ -67,7 +67,7 @@ export async function assertPublicHost(host, fetchImpl) {
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
   const [v4, v6] = await Promise.all([lookup('A'), lookup('AAAA')]);
-  if (!v4 || !v6 || ![0, 3].includes(v4.Status) || ![0, 3].includes(v6.Status)) throw new AuditError('DNS domény se nepodařilo bezpečně ověřit.', 422);                                                 // DNS nedostupné: rozhodne až samotné stažení
+  if (!v4 || !v6 || ![0, 3].includes(v4.Status) || ![0, 3].includes(v6.Status)) throw new AuditError('DNS domény se nepodařilo bezpečně ověřit.', 422);
   if (v4?.Status === 3) throw new AuditError('Doména neexistuje. Zkontrolujte adresu.');
   const answers = [...(v4?.Answer || []), ...(v6?.Answer || [])];
   if (!answers.some(r => r.type === 1 || r.type === 28)) throw new AuditError('Doména nemá ověřitelnou veřejnou adresu.', 422);
@@ -105,10 +105,12 @@ export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = tr
         current = new URL(location, current);
         continue;
       }
-      const body = method === 'HEAD' ? '' : await readLimited(res);
+      const headersMs = Date.now() - started;
+      const content = method === 'HEAD' ? { body: '', truncated: false } : await readLimited(res);
       if (method === 'HEAD') res.body?.cancel().catch(() => {});
+      if (content.truncated) return { ok: false, error: 'size', url: current.href, chain, body: '' };
       return { ok: res.ok, status: res.status, url: current.href, chain, headers: res.headers,
-        body, ms: Date.now() - started, contentType: res.headers.get('content-type') || '' };
+        body: content.body, ms: headersMs, contentType: res.headers.get('content-type') || '' };
     } catch (e) {
       return { ok: false, error: e.name === 'TimeoutError' ? 'timeout' : 'network', url: current.href, chain };
     }
@@ -118,7 +120,7 @@ export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = tr
 }
 
 async function readLimited(res) {
-  if (!res.body) return '';
+  if (!res.body) return { body: '', truncated: false };
   const reader = res.body.getReader();
   const chunks = [];
   let size = 0;
@@ -126,11 +128,11 @@ async function readLimited(res) {
     const { done, value } = await reader.read();
     if (done) break;
     size += value.byteLength;
-    if (size > MAX_BYTES) { await reader.cancel(); break; }
+    if (size > MAX_BYTES) { await reader.cancel(); return { body: '', truncated: true }; }
     chunks.push(value);
   }
   const all = new Uint8Array(chunks.reduce((n, c) => n + c.byteLength, 0));
   let offset = 0;
   for (const c of chunks) { all.set(c, offset); offset += c.byteLength; }
-  return new TextDecoder('utf-8', { fatal: false }).decode(all);
+  return { body: new TextDecoder('utf-8', { fatal: false }).decode(all), truncated: false };
 }
