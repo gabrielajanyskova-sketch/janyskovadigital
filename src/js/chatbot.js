@@ -7,11 +7,11 @@ const KB = [
   { keys: ['cen', 'kolik', 'stoj', 'cena', 'cenu', 'cenov', 'price'],
     a: `Web Start začíná od ${price('Web Start')} Kč a Web Business od ${price('Web Business')} Kč. Konečná cena závisí na rozsahu. Hosting prezentačního webu je v ceně tvorby; doména, individuální úpravy a externí služby se hradí zvlášť.` },
   { keys: ['dlouho', 'trva', 'kdy', 'lhut', 'tyden', 'doba', 'rychle'],
-    a: 'První náhled máte do 48 hodin od schůzky. Menší web je obvykle hotový do 7–10 dnů — záleží na rozsahu a na tom, jak rychle dodáte podklady.' },
+    a: 'První náhled obvykle posílám do 48 hodin od domluveného zahájení. Menší web mívám hotový do 7–10 dnů od dodání podkladů. Termín si potvrdíme předem.' },
   { keys: ['barter', 'vymeni', 'bez penez', 'vymena'],
     a: 'Barter je výměna — web za pobyt. Aktuálně hledám kemp u přehrady nebo jezera s místem pro karavan (červen–září). Kvalita webu je stejná jako u placené zakázky. Podrobnosti najdete na stránce Barter.' },
   { keys: ['funguj', 'postup', 'proces', 'jak to', 'krok', 'vyroba', 'zacin', 'spoluprac'],
-    a: 'Vyplníte formulář → domluvíme se na obsahu a designu → do 48 h máte první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.' },
+    a: 'Popíšete mi, co děláte, a já navrhnu stránky. Pak je spolu probíráme a ladíme, dokud s výsledkem nejste spokojení. Po spuštění sleduji vyhledávání a po čase navrhnu, co můžeme zlepšit.' },
   { keys: ['kontakt', 'email', 'telefon', 'napsat', 'napiss', 'zavolat', 'mail', 'spojit'],
     a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozvu se do 24 hodin.' },
   { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
@@ -49,6 +49,7 @@ if (toggle && panel) {
   const sendBtn   = document.getElementById('chat-send');
 
   function setIcons(open) {
+    toggle.setAttribute('aria-label', open ? 'Zavřít chatbot' : 'Otevřít chatbot');
     if (iconOpen)  iconOpen.classList.toggle('is-hidden', open);
     if (iconClose) iconClose.classList.toggle('is-hidden', !open);
   }
@@ -63,7 +64,7 @@ if (toggle && panel) {
       a.href = document.getElementById('kontakt') ? '#kontakt' : '/#kontakt';
       a.className = 'chat-cta-inline';
       a.textContent = 'Mám zájem o web →';
-      a.addEventListener('click', closePanel);
+      a.addEventListener('click', () => closePanel(false));
       messages.appendChild(a);
     }
     messages.scrollTop = messages.scrollHeight;
@@ -89,6 +90,7 @@ if (toggle && panel) {
 
   function getAnswer(text) {
     const t = text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    if (/\be[\s-]?shop\w*/.test(t)) return `Tvorba menšího e-shopu do 200 produktů začíná na ${price('E-shop na míru')} Kč. Probereme produkty, platby a dopravu a já vám řeknu přesnou cenu. Doména, poplatky platební brány a případné další služby se hradí zvlášť. Podrobnosti najdete na stránce E-shop na míru.`;
     for (let i = 0; i < KB.length; i++) {
       for (let j = 0; j < KB[i].keys.length; j++) {
         if (t.includes(KB[i].keys[j])) return KB[i].a;
@@ -108,13 +110,16 @@ if (toggle && panel) {
     }, 350);
   }
 
-  function closePanel() {
+  function closePanel(restoreFocus = true) {
     panel.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
     panel.setAttribute('aria-hidden', 'true');
     panel.inert = true;
     setIcons(false);
+    if (restoreFocus) toggle.focus({ preventScroll: true });
   }
+
+  document.getElementById('chat-close')?.addEventListener('click', () => closePanel());
 
   let initialized = false;
   toggle.addEventListener('click', function() {
@@ -128,7 +133,7 @@ if (toggle && panel) {
       addMsg('Dobrý den! Jsem automatický chatbot se základními informacemi. Pro osobní odpověď napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Co vás zajímá?', 'bot');
       setTimeout(addChips, 200);
     }
-    if (open) setTimeout(function() { input.focus(); }, 300);
+    if (open) setTimeout(function() { if (panel.classList.contains('open')) input.focus(); }, 300);
   });
 
   sendBtn.addEventListener('click', sendMessage);

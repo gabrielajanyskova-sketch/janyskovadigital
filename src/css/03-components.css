@@ -74,6 +74,11 @@ a.link-inherit{color:inherit}
 .form-msg{margin-top:12px;padding:12px 18px;border-radius:10px;font-size:14px}
 .form-msg--error{background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.25);color:#ff7080}
 .form-msg--ok{background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.25);color:var(--green)}
+.chat-close{margin-left:auto;flex-shrink:0;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:50%;background:transparent;color:var(--text);font:28px/1 sans-serif;cursor:pointer}
+.chat-close:hover{background:rgba(255,255,255,.08)}
+.chat-input{min-width:0}
+.chat-messages{min-height:0}
+@media(max-width:768px){.chat-panel{bottom:150px;max-height:calc(100vh - 180px);max-height:calc(100dvh - 180px)}}
 section.nearby-cities{padding:80px 0 20px}
 p.nearby-cities-lead{color:var(--text-dim);max-width:600px;margin-bottom:32px;line-height:1.7}
 p.nearby-cities-lead--loose{line-height:1.8}
