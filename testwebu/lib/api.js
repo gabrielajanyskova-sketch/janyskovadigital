@@ -37,12 +37,13 @@ export async function rateLimited(env, request) {
 }
 
 // Výsledek pro stejnou adresu se hodinu bere z cache (šetří limit Googlu a cizí servery)
-export async function cached(cacheKey, compute) {
+export async function cached(cacheKey, compute, { refresh = false } = {}) {
   const cache = globalThis.caches?.default;
   const versioned = new URL(cacheKey);
   versioned.pathname = `/__cache/${CACHE_VERSION}${versioned.pathname}`;
   const key = new Request(versioned);
-  if (cache) {
+  if (inFlight.has(key.url)) return inFlight.get(key.url);
+  if (cache && !refresh) {
     try {
       const hit = await cache.match(key);
       if (hit) return { data: await hit.json(), hit: true };

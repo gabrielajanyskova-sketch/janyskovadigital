@@ -18,11 +18,12 @@ export async function onRequestGet({ request, env }) {
       const psi = await runPsi(url.href, strategy, { apiKey: env.PAGESPEED_API_KEY, fetchImpl: fetch });
       if (psi.error) throw Object.assign(new Error(psi.error), { psiError: psi.error, detail: psi.detail });
       return {
+        checkedAt: new Date().toISOString(),
         strategy,
         scores: psi.scores,
         checks: [...speedChecks(strategy, psi), ...(strategy === 'mobile' ? [...a11yChecks(psi), ...lighthouseChecks(psi)] : [])],
       };
-    });
+    }, { refresh: params.get('refresh') === '1' });
     return json(data, 200, { 'x-cache': hit ? 'HIT' : 'MISS' });
   } catch (e) {
     // 424, ne 502: odpovědi 502/504 Cloudflare nahrazuje vlastní chybovou stránkou a důvod by se ztratil

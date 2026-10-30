@@ -39,7 +39,7 @@ function setStep(name, status) {
 async function getJson(url, options, signal) {
   const res = await fetch(url, { ...options, signal });
   const data = await res.json().catch(() => null);
-  if (res.ok && data) return data;
+  if (res.ok && data) return { ...data, cacheHit: res.headers.get('x-cache') === 'HIT' };
   if (data?.error) throw new Error(data.error);
   // Odpověď není od aplikace (chybová stránka Cloudflaru): ukázat srozumitelný důvod a kód
   const reason = res.status === 429 ? 'Příliš mnoho testů za krátkou dobu, zkuste to za minutu.'
@@ -48,7 +48,7 @@ async function getJson(url, options, signal) {
   throw new Error(`${reason} (kód ${res.status})`);
 }
 
-async function run(url) {
+async function run(url, { fresh = false } = {}) {
   controller?.abort();
   controller = new AbortController();
   const current = controller;
@@ -58,6 +58,7 @@ async function run(url) {
   $('results').hidden = true;
   $('progress').hidden = false;
   $('submit').disabled = true;
+  $('rerun').disabled = true;
   ['audit', 'mobile', 'desktop'].forEach(s => setStep(s, 'running'));
   state = currentState;
   input.removeAttribute('aria-invalid');
@@ -66,7 +67,7 @@ async function run(url) {
   params.set('url', url);
   history.replaceState(null, '', `?${params}`);
 
-  const speed = strategy => getJson(`/api/speed?url=${encodeURIComponent(url)}&strategy=${strategy}`, undefined, current.signal)
+  const speed = strategy => getJson(`/api/speed?url=${encodeURIComponent(url)}&strategy=${strategy}${fresh ? '&refresh=1' : ''}`, undefined, current.signal)
     .then(data => { if (!isCurrent() || current.signal.aborted) return; currentState.speed[strategy] = data; setStep(strategy, 'done'); })
     .catch(e => { if (!isCurrent() || e.name === 'AbortError') return; currentState.speedErrors[strategy] = e.message; setStep(strategy, 'failed'); })
     .finally(() => { if (isCurrent() && currentState.audit) render(); });
@@ -85,6 +86,7 @@ async function run(url) {
     else setStep('audit', 'failed');
     $('progress').hidden = true;
     $('submit').disabled = false;
+    $('rerun').disabled = false;
     showError(state.audit ? 'Měření rychlosti od Googlu neodpovědělo, výsledek je bez něj.' : 'Test neodpověděl do 100 sekund. Zkuste to prosím znovu za chvíli.');
   }, 100000);
 
@@ -95,7 +97,7 @@ async function run(url) {
     const audit = await getJson('/api/audit', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ url }),
+      body: JSON.stringify({ url, refresh: fresh }),
     }, current.signal);
     if (!isCurrent()) { clearTimeout(watchdog); return; }
     currentState.audit = audit;
@@ -114,12 +116,14 @@ async function run(url) {
     setStep('audit', 'failed');
     input.setAttribute('aria-invalid', 'true');
     $('submit').disabled = false;
+    $('rerun').disabled = false;
     return;
   }
   await Promise.allSettled([mobile, desktop]);
   clearTimeout(watchdog);
   if (!isCurrent()) return;
   $('submit').disabled = false;
+  $('rerun').disabled = false;
   $('progress').hidden = true;
 }
 
@@ -154,6 +158,7 @@ function render() {
   $('result-title').textContent = speedPending ? 'Průběžný výsledek testu' : incomplete ? 'Neúplný výsledek testu' : 'Výsledek automatického testu';
   $('result-url').textContent = a.finalUrl;
   const meta = [`Otestováno ${new Date(a.checkedAt).toLocaleString('cs-CZ')}`];
+  if (a.cacheHit || Object.values(state.speed).some(s => s.cacheHit)) meta.push('Část výsledků je uložená z předchozího testu. Pro nové měření použijte „Změřit znovu“.');
   if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
   const n = a.pages.length;
   meta.push(n ? `Načtena zadaná stránka a pokus o kontrolu ${n} dalších` : 'Načtena zadaná stránka');
@@ -225,8 +230,12 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const value = input.value.trim();
   if (!value) { showError('Zadejte adresu webu, například vas-web.cz'); input.focus(); return; }
-  try { run(normalizeUrl(value).href); }
+  try { run(normalizeUrl(value).href, { fresh: true }); }
   catch (error) { showError(error.message); input.setAttribute('aria-invalid', 'true'); input.focus(); }
+});
+
+$('rerun').addEventListener('click', () => {
+  if (state?.audit && !$('submit').disabled) run(state.audit.url || state.audit.finalUrl, { fresh: true });
 });
 
 // Tisk (Ctrl+P): před tiskem rozbalí všechna

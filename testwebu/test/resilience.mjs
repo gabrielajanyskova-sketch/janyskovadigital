@@ -92,3 +92,21 @@ test('heavy audits have a separate concurrency cap and release slots', async () 
   finally { release(1);await Promise.all([first, second]); }
   assert.equal((await cached('https://test.cz/__cache/audit?url=3', async () => 2)).data, 2);
 });
+
+test('manual refresh ignores stored data, updates it and still coalesces concurrent refreshes', async () => {
+  const original = globalThis.caches;
+  let stored = Response.json({ version: 'old' }), calls = 0, release;
+  const gate = new Promise(r => { release = r; });
+  try {
+    globalThis.caches = { default: { match: async () => stored.clone(), put: async (_, res) => { stored = res.clone(); } } };
+    const key = 'https://test.cz/__cache/refresh';
+    assert.equal((await cached(key, async () => { throw new Error('cache should be used'); })).data.version, 'old');
+    const compute = async () => { calls++; await gate; return { version: 'new' }; };
+    const jobs = [cached(key, compute, { refresh: true }), cached(key, compute, { refresh: true })];
+    release();const results = await Promise.all(jobs);
+    assert.equal(calls, 1);assert(results.every(r => !r.hit && r.data.version === 'new'));
+    assert.equal((await cached(key, async () => null)).data.version, 'new');
+    await assert.rejects(cached(key, async () => { throw new Error('offline'); }, { refresh: true }));
+    assert.equal((await cached(key, async () => null)).data.version, 'new');
+  } finally { globalThis.caches = original; }
+});

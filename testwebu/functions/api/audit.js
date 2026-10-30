@@ -15,7 +15,7 @@ export async function onRequestPost({ request, env }) {
     if (!body || typeof body !== 'object' || Array.isArray(body)) throw new AuditError('Neplatný požadavek.');
     const url = normalizeUrl(body.url);
     const origin = new URL(request.url).origin;
-    const { data, hit } = await cached(`${origin}/__cache/audit?u=${encodeURIComponent(url.href)}`, () => audit(url.href));
+    const { data, hit } = await cached(`${origin}/__cache/audit?u=${encodeURIComponent(url.href)}`, () => audit(url.href), { refresh: body.refresh === true });
     return json(data, 200, { 'x-cache': hit ? 'HIT' : 'MISS' });
   } catch (e) {
     return handleError(e);
