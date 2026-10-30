@@ -160,7 +160,8 @@
   <section class="barter-cta" id="kontakt">
     <h2>Máte místo u vody? <em>Napište.</em></h2>
     <p>Řekněte mi, kde jste, jak to tam vypadá a co byste potřebovali za web. Odpovím do 24 hodin.</p>
-    <form class="barter-form" id="barter-form" action="/api/contact" method="POST">
+    <form class="barter-form" id="barter-form" action="/api/contact" method="POST" data-turnstile>
+        <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
       <input type="hidden" name="subject" value="Barterová spolupráce — poptávka">
       <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div>

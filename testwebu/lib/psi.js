@@ -16,20 +16,20 @@ export async function runPsi(url, strategy, { apiKey, fetchImpl, fields = FIELDS
   if (fields) params.set('fields', fields);
   let res;
   try {
-    res = await fetchImpl(`${ENDPOINT}?${params}`, { signal: AbortSignal.timeout(90000) });
+    res = await fetchImpl(`${ENDPOINT}?${params}`, { signal: AbortSignal.timeout(40000) });
   } catch (e) {
     return { error: e.name === 'TimeoutError' ? 'Google měření nestihl dokončit včas.' : 'Měření Googlu se nepodařilo spustit.' };
   }
   const data = await res.json().catch(() => null);
   // Pojistka: kdyby Google výběr polí odmítl (400), zkusit to jednou bez něj
-  if (res.status === 400 && fields) {
-    console.warn('PSI odmítl fields:', data.error.message);
+  if (res.status === 400 && fields && /field/i.test(data?.error?.message || '')) {
+    console.warn('PSI odmítl výběr polí');
     return runPsi(url, strategy, { apiKey, fetchImpl, fields: null });
   }
   if (!res.ok || !data?.lighthouseResult) {
     const reason = data?.error?.message || '';
     // Technický důvod od Googlu (bez klíče) — pro diagnostiku, stránka aplikace ho neukazuje
-    const detail = `Google ${res.status}: ${reason.replace(/key=[^&\s]+/g, 'key=…').slice(0, 300)}`;
+    const detail = `Google ${res.status}`;
     console.warn('PSI chyba', detail);
     if (res.status === 429) return { error: 'Měření Googlu je teď přetížené, zkuste to za chvíli.', detail };
     if (res.status === 400 && /API key|api_key|API_KEY/i.test(reason)) return { error: 'Měření Googlu odmítlo klíč aplikace.', detail };

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test webu zdarma: rychlost, SEO, AI a bezpečnost | Janyskova Digital</title>
+<title>Test webu zdarma: rychlost, SEO a technické chyby</title>
 <meta name="description" content="Bezplatný test webu za minutu: rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Srozumitelně česky, s návodem na opravu.">
 <link rel="canonical" href="https://testwebu.janyskovadigital.cz/">
 <meta property="og:type" content="website">
@@ -130,7 +130,7 @@
   }
  ]
 }</script>
-<script src="/app.js?v=719c5ab8fd" defer></script>
+<script src="/app.js?v=df2afc4e87" defer></script>
 </head>
 <body>
 <a href="#main" class="skip-link">Přeskočit na obsah</a>
@@ -146,6 +146,7 @@
     <p class="eyebrow">Bezplatný test webu</p>
     <h1>Jak si stojí <em>váš web?</em></h1>
     <p class="lead">Rychlost na mobilu, SEO, viditelnost v AI vyhledávačích, bezpečnost a GDPR. Za minutu, česky a s návodem, co opravit.</p>
+    <p>Test kontroluje veřejně dostupné technické signály. Není penetračním testem, právním posudkem ani měřením skutečných citací v AI odpovědích.</p>
     <form id="audit-form" class="audit-form" novalidate>
       <label for="url" class="visually-hidden">Adresa webu</label>
       <input id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
@@ -186,7 +187,8 @@
     <aside class="cta" id="audit">
       <h2>Chcete to mít <em>v pořádku?</em></h2>
       <p>Automatický test najde technické chyby. Obsah, odkazy a to, proč web nepřivádí zákazníky, projdu osobně, zdarma a bez závazků. Odpovím do 24 hodin.</p>
-      <form class="lead-form" id="lead-form" action="https://janyskovadigital.cz/api/contact" method="POST">
+      <form class="lead-form" id="lead-form" action="https://janyskovadigital.cz/api/contact" method="POST" data-turnstile>
+        <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
         <input type="hidden" name="subject" id="lead-subject" value="Žádost o osobní audit z Testu webu">
         <input type="hidden" name="web" id="lead-web">
         <input type="hidden" name="vysledek" id="lead-result">
@@ -197,7 +199,7 @@
         </div>
         <label>Zpráva<textarea name="zprava" id="lead-message" rows="3" required maxlength="5000"></textarea></label>
         <button type="submit" class="btn">Chci osobní audit zdarma</button>
-        <p class="lead-note">Odesláním souhlasíte se <a href="https://janyskovadigital.cz/ochrana-udaju">zpracováním údajů</a> kvůli odpovědi. Raději telefon? <a href="tel:+420739395800">+420&nbsp;739&nbsp;395&nbsp;800</a></p>
+        <p class="lead-note">Informace o <a href="https://janyskovadigital.cz/ochrana-udaju">zpracování údajů</a> pro vyřízení poptávky. Raději telefon? <a href="tel:+420739395800">+420&nbsp;739&nbsp;395&nbsp;800</a></p>
       </form>
       <figure class="quote">
         <blockquote>„Naprostá spokojenost. E-shop rychle vytvořen, vše funguje jak má. Komunikace a profesionalita paní Janýškové na jedničku.“</blockquote>

@@ -1,3 +1,5 @@
+import '../../src/js/turnstile.js';
+
 // Stránka testu webu: spustí audit a dvě měření rychlosti souběžně a průběžně vykresluje výsledky.
 // Data z testovaného webu se vkládají jen jako text (textContent), nikdy jako HTML.
 

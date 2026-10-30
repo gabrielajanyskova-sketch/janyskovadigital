@@ -1,8 +1,11 @@
+import { business } from '../data/schema-business.json';
+const price = name => String(business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === name).price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
 // Jednoduchý chatbot se základními odpověďmi (bez AI, odpovědi podle klíčových slov)
 
 const KB = [
   { keys: ['cen', 'kolik', 'stoj', 'cena', 'cenu', 'cenov', 'price'],
-    a: 'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíte jen doménu ~200 Kč/rok.' },
+    a: `Web Start začíná od ${price('Web Start')} Kč a Web Business od ${price('Web Business')} Kč. Konečná cena závisí na rozsahu. Hosting prezentačního webu je v ceně tvorby; doména, individuální úpravy a externí služby se hradí zvlášť.` },
   { keys: ['dlouho', 'trva', 'kdy', 'lhut', 'tyden', 'doba', 'rychle'],
     a: 'První náhled máte do 48 hodin od schůzky. Menší web je obvykle hotový do 7–10 dnů — záleží na rozsahu a na tom, jak rychle dodáte podklady.' },
   { keys: ['barter', 'vymeni', 'bez penez', 'vymena'],
@@ -12,15 +15,15 @@ const KB = [
   { keys: ['kontakt', 'email', 'telefon', 'napsat', 'napiss', 'zavolat', 'mail', 'spojit'],
     a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozvu se do 24 hodin.' },
   { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
-    a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 90–100 a neplatíte za hosting ani drahé pluginy.' },
+    a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Rychlost ověřuji měřením; hosting prezentačního webu je v ceně tvorby.' },
   { keys: ['hosting', 'domena', 'domain', 'server', 'provoz', 'platit'],
-    a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
+    a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Samostatně se hradí doména a případné dohodnuté úpravy či externí služby.' },
   { keys: ['seo', 'vyhledava', 'google', 'pozice', 'hleda', 'najde'],
     a: 'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Součástí je i napojení na Google Search Console.' },
   { keys: ['refresh', 'predelat', 'prevest', 'existujici', 'stavajic'],
-    a: 'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.' },
+    a: `Web Refresh začíná od ${price('Web Refresh')} Kč za jednostránkový web a od ${price('Web Refresh — vícestránkový')} Kč za vícestránkový. Součástí plánu jsou přesměrování a sledování dopadu migrace.` },
   { keys: ['sprava', 'care', 'aktualizac', 'update', 'obsah', 'zmen'],
-    a: 'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.' }
+    a: 'Po spuštění mohu pomoci s úpravami textů, fotek nebo technickou správou. Rozsah, cenu a termín domluvíme předem podle zadání.' }
 ];
 
 const FALLBACK = 'Tohle vám přesně neřeknu, ale ráda odpovím osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozvu se do 24 hodin.';

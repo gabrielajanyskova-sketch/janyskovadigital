@@ -59,3 +59,8 @@
 .page-thanks .btn-primary{justify-content: center;}}
 /* Dekorativní čísla kroků v CSS (nečtou je čtečky ani kontrola kontrastu) */
 .page-thanks .step-num::before{content:attr(data-num)}
+
+.page-legal img{max-width:100%;height:auto;border-radius:16px}
+.article-updated{font-size:13px;color:var(--text-dim);margin:12px 0}
+.article-sources{padding-top:32px;padding-bottom:32px}
+.article-sources a{color:var(--pink-text);text-decoration:underline}

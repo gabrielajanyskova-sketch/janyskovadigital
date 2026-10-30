@@ -1,3 +1,4 @@
+import { rateLimited as checkLimit, InputError } from '../../functions/_lib/security.js';
 // Společné věci pro API endpointy: odpovědi, cache výsledků, ochrana proti zneužití.
 
 import { AuditError } from './http.js';
@@ -28,10 +29,7 @@ export function sameOrigin(request) {
 
 // Volitelné omezení počtu testů (Cloudflare Rate Limiting binding AUDIT_LIMITER ve wrangler.toml)
 export async function rateLimited(env, request) {
-  if (!env.AUDIT_LIMITER) return false;
-  const key = request.headers.get('cf-connecting-ip') || 'anon';
-  const { success } = await env.AUDIT_LIMITER.limit({ key });
-  return !success;
+  return checkLimit(env, request, { binding: 'AUDIT_LIMITER', limit: 12, windowMs: 60000 });
 }
 
 // Výsledek pro stejnou adresu se hodinu bere z cache (šetří limit Googlu a cizí servery)
@@ -52,7 +50,7 @@ export async function cached(cacheKey, compute) {
 }
 
 export function handleError(e) {
-  if (e instanceof AuditError) return json({ error: e.message }, e.status);
+  if (e instanceof AuditError || e instanceof InputError) return json({ error: e.message }, e.status);
   console.error(e);
-  return json({ error: 'Při testu nastala chyba. Zkuste to prosím znovu.', detail: String(e?.message || e).slice(0, 200) }, 500);
+  return json({ error: 'Při testu nastala chyba. Zkuste to prosím znovu.' }, 500);
 }

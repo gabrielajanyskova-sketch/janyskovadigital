@@ -1,167 +1,46 @@
-# Janyskova Digital — Tvorba webových stránek na míru
+# Janyskova Digital — webové stránky na míru
 
-> Gabriela Janýšková je webdesignérka z Nového Jičína specializující se na tvorbu webových stránek čistým kódem bez WordPressu. Weby pro OSVČ a firmy z celé České republiky.
+> Gabriela Janýšková tvoří webové stránky a menší e-shopy pro podnikatele a malé firmy. Skutečné sídlo je Starojická Lhota 45, 741 01 Starý Jičín; spolupráce probíhá po celé ČR.
 
-## O Gabriele Janýškové
+## Nabídka a orientační ceny
 
-Gabriela Janýšková je webdesignérka z Nového Jičína (Starojická Lhota, Moravskoslezský kraj). Tvoří weby od roku 2020. Píše čistý HTML/CSS/JavaScript kód bez WordPressu, šablon ani page builderů. Každý web je originální — přizpůsobený konkrétnímu klientovi, jeho oboru a zákazníkům.
+- Web Start: od 5 900 Kč.
+- Web Business: od 12 000 Kč.
+- Web Refresh: od 8 900 Kč.
+- E-shop na míru: od 25 000 Kč.
+- Web Refresh — vícestránkový: od 14 900 Kč.
 
-Specializuje se na malé firmy, podnikatele a OSVČ, kteří potřebují profesionální web bez zbytečných nákladů. Hosting je součástí ceny tvorby — klient platí pouze doménu, přibližně 200 Kč ročně.
+Ceny jsou jednorázové a orientační; rozsah a konečná cena se potvrzují předem. Hosting prezentačního webu je v ceně tvorby. Doména, dohodnuté úpravy, poplatky platební brány a další zvolené externí služby se hradí zvlášť.
 
-Dosahuje PageSpeed skóre 90–100 bodů na mobilech i desktopu. Weby jsou optimalizované pro SEO, AEO (Answer Engine Optimization) a GEO (Generative Engine Optimization) — tedy viditelné nejen v klasickém Googlu, ale i v AI přehledech Google AI Mode, ChatGPT, Perplexity a dalších nástrojích.
+## Spolupráce
 
-## Proč Janyskova Digital?
+První náhled obvykle do 48 hodin od domluveného zahájení. Menší web bývá hotový do 7–10 dnů od dodání podkladů; přesný harmonogram je součástí dohody. Po spuštění je možné individuálně domluvit úpravy obsahu a technickou pomoc. Pevné měsíční balíčky správy nejsou nabízeny.
 
-- **Čistý kód místo WordPressu** — žádné pluginy, žádné aktualizace, žádné bezpečnostní díry
-- **Hosting v ceně** — platíte jen doménu (~200 Kč/rok), nic dalšího
-- **PageSpeed 90–100** — rychlost je součást každého webu, ne placený nadstandard
-- **SEO od začátku** — meta tagy, Schema.org, sitemap, strukturovaná data jsou standardem, ne příplatkem
-- **AEO a GEO** — weby jsou stavěné tak, aby byly citovány AI nástroji (ChatGPT, Perplexity, Google AI Mode)
-- **Osobní přístup** — komunikujete přímo s Gabrielou, ne s agenturou
-- **Odpověď do 24 hodin** — podpora i po spuštění webu
-- **Lokální specialistka** — zná prostředí Moravskoslezského kraje, Ostravska i Zlínského kraje
+Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečení vyžadují kontrolu konkrétního provedení. Nelze zaručit pořadí ve vyhledávači ani citaci v AI odpovědích. SEO, GEO a AEO vycházejí z užitečného obsahu, jeho dostupnosti a pravdivých údajů; zvláštní soubor nebo typ schématu sám citace nezajistí.
 
-## Služby
+## Skutečné reference
 
-### Tvorba webových stránek na míru (čistý kód)
-Weby stavěné přímo v HTML, CSS a JavaScriptu bez WordPressu, Wix ani jiných platforem. Výsledek je rychlý, bezpečný a nenákladný na provoz. Každý web dostane plnohodnotné SEO — strukturu nadpisů, meta tagy, Schema.org data, sitemap a napojení na Google Search Console.
+- [Jaroslav Slonek](https://jaroslavslonek.cz): prezentační web finančního poradce.
+- [Nikola Hubáčková](https://hubackovafoto.cz): web fotografky s galerií a poptávkou.
+- [lufactory](https://lufactory.cz): menší e-shop s přírodními houbičkami.
+- [Stavby Literák](https://stavbyliterak.cz): web stavební firmy z Frýdku-Místku.
 
-### Web Start — od 5 900 Kč
-One-page web pro podnikatele a malé firmy. Ideální pro freelancery, řemeslníky, kosmetičky, fotografy nebo kohokoliv, kdo potřebuje profesionální online prezentaci. Zahrnuje: design na míru, kontaktní formulář, SEO optimalizaci, hosting, napojení na Google.
+## Nástroje a stránky
 
-### Web Business — od 12 000 Kč
-Vícestránkový web pro firmy a podnikatele. Ideální pro firmy s více službami, produkty nebo pobočkami. Zahrnuje: analýzu klíčových slov, lokální SEO, strukturovaná data, blog sekci, pokročilý kontaktní formulář.
-
-### Web Care — od 490 Kč/měsíc
-Správa a údržba webu. Zahrnuje: aktualizace obsahu, technický dohled, zálohování, měsíční report výkonu. Vhodné pro klienty, kteří nechtějí řešit techniku sami.
-
-### Web Refresh — od 8 900 Kč
-Převod stávajícího webu (WordPress, Wix, Webnode) na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu a bezpečnostních rizik WordPressu.
-
-### E-shop na míru — od 25 000 Kč
-Vlastní e-shop v čistém kódu bez Shoptetu a bez měsíčních poplatků za platformu. Katalog do 200 produktů, košík, objednávky, napojení na platební bránu (GoPay, Comgate, Stripe), automatické potvrzení objednávky e-mailem a jednoduchá správa produktů.
-
-## Ceny (přehled)
-
-| Služba | Cena |
-|--------|------|
-| Web Start (one-page) | od 5 900 Kč |
-| Web Business (vícestránkový) | od 12 000 Kč |
-| Web Care (správa/měs) | od 490 Kč |
-| Web Refresh (one-page) | od 8 900 Kč |
-| Web Refresh (vícestránkový) | od 14 900 Kč |
-| E-shop na míru | od 25 000 Kč |
-
-Hosting je v ceně tvorby. Klient platí pouze doménu (~200 Kč/rok).
-
-## Jak tvorba webu probíhá
-
-1. **Konzultace** — zavoláme si nebo napíšeme. Probereme, co váš web potřebuje a jaký máte rozpočet. Bez závazků.
-2. **Tvorba** — Gabriela píše web přímo v čistém kódu. Žádné šablony, žádný WordPress. Výsledek je rychlý a přesně pro vás.
-3. **Spuštění** — web propojíme s Google Search Console a Seznam Webmasterem. Od prvního dne víme, jak vás zákazníci hledají.
-4. **Podpora** — potřebujete změnit text nebo přidat fotku? Napište — odpovídá do 24 hodin.
-
-Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů.
-
-## Lokality
-
-Gabriela Janýšková tvoří weby pro klienty z celé České republiky. Spolupráce probíhá kompletně online. Fyzicky sídlí v Novém Jičíně (Moravskoslezský kraj).
-
-Specializovaně se věnuje lokálnímu SEO pro tato města a regiony:
-- Nový Jičín a okolí
-- Ostrava a Ostravský region
-- Frýdek-Místek
-- Kopřivnice
-- Příbor
-- Hranice na Moravě
-- Brno
-- Praha
-- Olomouc
-- Zlín
-- Frenštát pod Radhoštěm
-- Rožnov pod Radhoštěm
-- Valašské Meziříčí
-- Jičín
-- Moravskoslezský kraj (celý)
-- Zlínský kraj
-- Česká republika (celostátní dosah)
-
-## Časté otázky (FAQ)
-
-**Proč neplatím za hosting?**
-Weby jsou stavěné čistým kódem a hostované na Cloudflare Pages — tato platforma je pro statické weby zdarma. Hosting je součástí ceny tvorby, klient platí pouze doménu přibližně 200 Kč ročně.
-
-**Jaký je rozdíl mezi čistým kódem a WordPressem?**
-WordPress je redakční systém s databází, pluginy a šablonami. Vyžaduje placený hosting, pravidelné aktualizace a je náchylnější k bezpečnostním útokům. Čistý kód je soubor HTML/CSS/JS souborů — rychlejší, levnější na provoz a bezpečnější.
-
-**Kolik stojí webové stránky pro malou firmu?**
-One-page web vychází od 5 900 Kč. Cena zahrnuje design na míru, SEO optimalizaci a hosting. Vícestránkový web začíná od 12 000 Kč.
-
-**Jak dlouho trvá tvorba webu?**
-Menší weby (one-page) jsou hotové do 7–10 dnů od obdržení podkladů. U rozsáhlejších projektů se domlouvá harmonogram individuálně.
-
-**Potřebuji web, i když mám sociální sítě?**
-Ano. Sociální sítě jsou pronajatý prostor — algoritmický dosah se mění, platformy zanikají nebo mění podmínky. Vlastní web je vaše digitální adresa, kterou nikdo nemůže vzít. Navíc web je viditelný ve vyhledávačích, kde lidé aktivně hledají vaše služby.
-
-**Co je AEO optimalizace?**
-AEO (Answer Engine Optimization) je optimalizace webu tak, aby byl citován AI nástroji jako ChatGPT, Perplexity nebo Google AI Mode. Zahrnuje strukturované FAQ odpovědi, Schema.org data, jasné faktické věty a soubor llms.txt pro AI crawlery.
-
-**Co je GEO optimalizace?**
-GEO (Generative Engine Optimization) je optimalizace pro generativní AI vyhledávače. Zahrnuje strukturu obsahu, citovatelné odpovědi, llms.txt a signály důvěryhodnosti pro jazykové modely.
-
-**Tvoříte weby i mimo Nový Jičín?**
-Ano, spolupráce probíhá kompletně online. Weby jsou tvořeny pro klienty z celé České republiky — z Prahy, Brna, Ostravy, Olomouce i dalších měst.
-
-**Co je Web Refresh?**
-Web Refresh je převod stávajícího webu z WordPressu nebo jiné platformy na čistý kód. Výsledkem je rychlejší web bez nákladného hostingu, bez bezpečnostních rizik a s lepším PageSpeed skóre.
-
-**Jak funguje správa webu (Web Care)?**
-Web Care je měsíční služba od 490 Kč. Zahrnuje aktualizace obsahu (texty, fotky, ceník), technický dohled, měsíční report z Google Search Console a rychlou odezvu na požadavky.
-
-**Budu moci web v budoucnu upravovat?**
-Ano. Kód je psaný přehledně a čistě. Drobné změny (text, fotka, cena) Gabriela udělá obvykle do 24–48 hodin; větší úpravy pokrývá Web Care. Cílem je, aby klient nebyl závislý na dodavateli.
-
-**Děláte i SEO optimalizaci webu?**
-Ano — SEO je součástí každého webu. Zahrnuje: správnou strukturu nadpisů (H1–H3), meta tagy, kanonické URL, Schema.org strukturovaná data, XML sitemap, robots.txt a napojení na Google Search Console. U vícestránkových webů se dělá analýza klíčových slov a lokální SEO pro konkrétní region.
-
-**Pomůžete mi s výběrem domény?**
-Ano. Gabriela poradí s výběrem ideálního názvu domény a navede, kde ji koupit přímo na jméno klienta.
-
-**Kolik stojí web v Ostravě / Brně / Praze?**
-Ceny jsou stejné pro celou Českou republiku. One-page web od 5 900 Kč, vícestránkový web od 12 000 Kč. Vzdálenost nehraje roli — spolupráce probíhá online.
-
-## Hodnocení klientů
-
-Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
-
-> „S novým webem jsem naprosto spokojená. Paní odvádí skvělou práci a hlavní plus pro mě je, že za skvěle fungující stránky nemusím platit zbytečně moc peněz. Komunikace byla po celou dobu super, na všem jsme se bez problému domluvily a vše proběhlo v naprostém pořádku. Určitě doporučuji!"
-> — Nika Hubáčková, fotografka
-
-> „Paní Janýškovou jsem oslovil s tím, že chci moderní web, který bude reprezentovat moje služby. Průběžně mě informovala o postupu, na připomínky reagovala rychle a bez zbytečných průtahů. Výsledný web je přehledný, rychlý, dobře dohledatelný na Googlu a budí důvěru.“
-> — Jaroslav Slonek, finanční poradce
-
-> „Naprostá spokojenost. E-shop rychle vytvořen, vše funguje jak má. Komunikace a profesionalita paní Janýškové na jedničku.“
-> — Nikola Drn, e-shop lufactory.cz
-
-## Reference (realizované projekty)
-
-- **hubackovafoto.cz** — Nikola Hubáčková, fotografka z Olomouckého kraje. Elegantní web s galerií, ceníkem a poptávkovým formulářem.
-- **jaroslavslonek.cz** — Ing. Jaroslav Slonek, finanční poradce z Olomouckého kraje. Web s datovými kartami pro srovnání investic, postavený na konverzi.
-- **lufactory.cz** — Nikola Drnková, e-shop s přírodními houbičkami z lufy (Praha). Katalog, košík a objednávkový proces.
-- **stavbyliterak.cz** — Jan Literák, stavební firma z Frýdku-Místku.
-
-## Nástroje
-
-- [Test webu zdarma](https://testwebu.janyskovadigital.cz/): bezplatný automatický audit webu — rychlost (Google PageSpeed), technika a indexace, SEO, strukturovaná data a přístup AI vyhledávačů (ChatGPT, Claude, Perplexity), bezpečnost, GDPR a IČO. Česky, s návodem na opravu.
+- [Tvorba webu](https://janyskovadigital.cz/tvorba-webu)
+- [E-shop na míru](https://janyskovadigital.cz/eshop)
+- [Ceník](https://janyskovadigital.cz/#cenik)
+- [Test webu](https://testwebu.janyskovadigital.cz/): technická kontrola dostupných signálů. Neměří skutečné citace v AI ani neprokazuje právní soulad.
+- [Blog](https://janyskovadigital.cz/blog)
 
 ## Blog — všechny články
 
 - [Cituje vás AI? Jak to zjistit — ukázka na mém webu](https://janyskovadigital.cz/blog/cituje-vas-ai): Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.
 - [7 varovných signálů špatného webdesignéra — poznejte ho dřív než zaplatíte](https://janyskovadigital.cz/blog/jak-poznat-spatneho-webdesignera): 7 varovných signálů špatného webdesignéra — žádné portfolio, WordPress bez ptaní, garance pozic na Googlu. Ušetřete peníze.
 - [Zářijový spam update a falešní autoři: co se v říjnu 2026 změnilo](https://janyskovadigital.cz/blog/google-ai-detekuje-ai-spam): Zářijový spam update skončil po 13 dnech a Google varuje před falešným autorstvím. Co to znamená pro váš web?
-- [Google AI Mode: 93 % hledání skončí bez kliknutí](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti): Google spustil AI Mode — nový způsob hledání, kde 93 % hledání v AI Mode skončí bez jediného kliknutí na web (Semrush, 2025). Co to znamená pro vaši firmu a jak na to?
+- [AI Mode a návštěvnost: jak číst statistiky](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti): AI odpovědi mohou měnit prokliky na web. Jak rozlišit výsledky studií od vlastních dat a sledovat skutečný přínos vyhledávání pro firmu.
 - [Google teď odpovídá sám — a bere vám zákazníky](https://janyskovadigital.cz/blog/google-ai-overviews-krade-navstevniky): Google AI Overviews — nová funkce, která odpovídá na dotazy přímo ve výsledcích. Co to znamená pro váš web a co s tím dělat?
-- [Google Spam Update srpen 2026: co se stalo a jestli se vás to týká](https://janyskovadigital.cz/blog/google-spam-update-srpen-2026): Google Spam Update srpen 2026 — téměř 17 % URL z top 10 spadlo během updatu za 100. pozici. Co update cílil, koho zasáhl a jak se bránit.
+- [Google Spam Update: co dělat při propadu webu](https://janyskovadigital.cz/blog/google-spam-update-srpen-2026): Pokles návštěvnosti nemusí být penalizace. Jak zkontrolovat indexaci, technické chyby a obsah a jak rozlišit manuální opatření od jiných příčin.
 - [Co je GEO (Generative Engine Optimization) a proč ho potřebujete v roce 2026](https://janyskovadigital.cz/blog/geo-generative-engine-optimization): GEO = Generative Engine Optimization. Jak optimalizovat web tak, aby vás citoval ChatGPT, Gemini nebo Claude? Praktický průvodce pro rok 2026.
 - [Kde je hostovaný váš web a jak je zabezpečený?](https://janyskovadigital.cz/blog/kde-je-hostovany-vas-web): Weby od Janyskova Digital běží na Cloudflare Pages — rychlý hosting, HTTPS zdarma, DDoS ochrana, žádné pluginy k hacknutí.
 - [Proč váš web nikdo na Googlu nenajde? 7 nejčastějších chyb](https://janyskovadigital.cz/blog/proc-web-nikdo-nenajde): Proč váš web nikdo na Googlu nenajde? 7 konkrétních chyb — pomalé načítání, chybějící meta tagy, žádný Google Business Profile.
@@ -174,41 +53,17 @@ Janyskova Digital má na Googlu hodnocení 5,0 z 5 hvězdiček (3 recenze).
 - [SEO, meta tagy a schema v červenci 2026 — co Google AI opravdu čte](https://janyskovadigital.cz/blog/seo-meta-schema-cervenec-2026): Meta tagy, schema.org, AEO i GEO — jak nastavit SEO v roce 2026, aby vás Google AI našel a doporučil. Průvodce od webdesignérky z Nového Jičína.
 - [E-shop bez Shoptetu — kdy se to vyplatí?](https://janyskovadigital.cz/blog/eshop-bez-shoptetu): E-shop bez Shoptetu nebo WooCommerce — v čistém kódu, bez měsíčních poplatků, bez pluginů. Srovnání nákladů a rychlosti pro malé e-shopy.
 - [Proč váš web v Ostravě nenajdou — a jak to změnit](https://janyskovadigital.cz/blog/proc-web-v-ostrave-nenajdou): Web máte, zákazníci nepřicházejí. Nejčastější důvody, proč ostravské weby nenajde Google — a co s tím udělat bez velkých investic.
-- [Google AI Mode má miliardu uživatelů — co to znamená pro váš web?](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu): Google AI Mode překonal miliardu uživatelů. Návštěvnost webů klesá. Co to znamená pro podnikatele v Česku a jak se přizpůsobit.
-- [Google zrušil FAQ snippety — co to znamená pro váš web?](https://janyskovadigital.cz/blog/google-faq-snippety-2026): Google odstranil FAQ snippety z výsledků hledání. Platí to globálně i v ČR. Co to znamená pro váš web? Vysvětluje Gabriela Janýšková.
+- [Google AI Mode a váš web: co má smysl sledovat](https://janyskovadigital.cz/blog/google-ai-mode-miliarda-uzivatelu): Jak připravit firemní web pro AI vyhledávání: srozumitelná nabídka, dostupný obsah, skutečné reference a měření poptávek bez slibů zaručených citací.
+- [FAQ na webu: smysl i bez bohatých výsledků Googlu](https://janyskovadigital.cz/blog/google-faq-snippety-2026): FAQ pomáhá návštěvníkům rozhodnout se. Jak psát užitečné odpovědi a správně použít FAQPage bez slibů zobrazení ve vyhledávání nebo AI citací.
 - [Webdesign trendy: Co dělá web moderním a funkčním](https://janyskovadigital.cz/blog/trendy-webdesign-2026): Tmavý režim, AI design, rychlost nebo autenticita? Říkám rovnou, co z webdesign trendů 2026 má smysl pro malé firmy a co je jen hype.
 - [Může AI vytvořit web místo vás? Upřímná odpověď](https://janyskovadigital.cz/blog/muze-ai-vytvorit-web): Může AI vytvořit web místo vás? Upřímná odpověď — co AI zvládne, co nezvládne a kdy se vyplatí profesionál. Bez reklamních keců.
-- [Proč záleží na rychlosti webu?](https://janyskovadigital.cz/blog/rychlost-webu): Pomalý web zákazníky odrazuje a Google ho řadí níže. Vysvětlím, proč na rychlosti záleží, jak ji změřit a co s tím udělat.
+- [Proč záleží na rychlosti webu?](https://janyskovadigital.cz/blog/rychlost-webu): Pomalý web může návštěvníky odradit. Rychlost je jedním z faktorů použitelnosti a technického SEO. Vysvětlím, proč na rychlosti záleží, jak ji změřit a co s tím udělat.
 - [Kolik stojí web pro OSVČ v Novém Jičíně v roce 2026?](https://janyskovadigital.cz/blog/cena-webu-novy-jicin): Tvorba webu Nový Jičín od 5 900 Kč — bez měsíčních poplatků. Přesně z čeho se cena skládá a kde se při výběru přeplácí.
-- [Google Search Console ukazuje web v AI výsledcích — co to znamená?](https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026): Google Search Console od června 2026 ukazuje, jak váš web vypadá v AI výsledcích. Jak číst nová data a co optimalizovat pro AI vyhledávání.
+- [Jak sledovat výkon webu ve vyhledávání a AI](https://janyskovadigital.cz/blog/google-search-console-ai-cerven-2026): Praktický postup pro sledování vyhledávání: stránky, dotazy, období a relevantní poptávky. Jak interpretovat dostupné reporty a nepřisuzovat změnám falešnou příčinu.
 - [AI vyhledávání mění pravidla — je váš web připravený?](https://janyskovadigital.cz/blog/ai-vyhledavani): ChatGPT, Perplexity a Google AI Overviews odpovídají přímo. Co to znamená pro váš byznys a jak se připravit? Praktický průvodce.
-
-## Stránky webu
-
-- [Hlavní stránka](https://janyskovadigital.cz/)
-- [Webdesign Nový Jičín](https://janyskovadigital.cz/novy-jicin/)
-- [Webdesign Ostrava](https://janyskovadigital.cz/ostrava/)
-- [Webdesign Frýdek-Místek](https://janyskovadigital.cz/frydek-mistek/)
-- [Webdesign Hranice](https://janyskovadigital.cz/hranice/)
-- [Webdesign Kopřivnice](https://janyskovadigital.cz/koprivnice/)
-- [Webdesign Příbor](https://janyskovadigital.cz/pribor/)
-- [Webdesign Brno](https://janyskovadigital.cz/brno/)
-- [Webdesign Praha](https://janyskovadigital.cz/praha/)
-- [Webdesign Olomouc](https://janyskovadigital.cz/olomouc/)
-- [Webdesign Zlín](https://janyskovadigital.cz/zlin/)
-- [Webdesign Frenštát pod Radhoštěm](https://janyskovadigital.cz/frenstat/)
-- [Webdesign Rožnov pod Radhoštěm](https://janyskovadigital.cz/roznov/)
-- [Webdesign Valašské Meziříčí](https://janyskovadigital.cz/valasske-mezirici/)
-- [Webdesign Jičín](https://janyskovadigital.cz/jicin/)
-- [Barterová spolupráce](https://janyskovadigital.cz/barter)
-- [Blog o webdesignu a AI](https://janyskovadigital.cz/blog)
 
 ## Kontakt
 
-- Web: [janyskovadigital.cz](https://janyskovadigital.cz)
-- E-mail: [info@janyskovadigital.cz](mailto:info@janyskovadigital.cz)
-- Telefon: +420 739 395 800
-- Instagram: [@JanyskovaDigital](https://www.instagram.com/JanyskovaDigital)
-- Adresa: Starojická Lhota 45, 741 01 Starý Jičín, Česká republika
-- Pracovní hodiny: Po–Pá 8:00–17:00
-- Kontaktní formulář: https://janyskovadigital.cz/#kontakt
+Gabriela Janýšková, Janyskova Digital. IČO 19616295.
+E-mail: info@janyskovadigital.cz. Telefon: +420 739 395 800.
+Web: https://janyskovadigital.cz/. Instagram: https://www.instagram.com/JanyskovaDigital.

@@ -2,6 +2,8 @@
 
 const cta = document.createElement('div');
 cta.className = 'sticky-mobile-cta';
+cta.setAttribute('role', 'region');
+cta.setAttribute('aria-label', 'Rychlý kontakt');
 const kontakt = document.getElementById('kontakt');
 // Na stránkách bez kontaktního formuláře vede tlačítko na formulář na hlavní stránce
 const kontaktHref = kontakt ? '#kontakt' : '/#kontakt';

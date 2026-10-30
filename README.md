@@ -1,68 +1,56 @@
 # janyskovadigital.cz
 
-Statický web (HTML/CSS/JS) hostovaný na Cloudflare Pages. Obsah hlavní stránky se dá upravovat v Decap CMS (`/admin`).
+Statický web HTML/CSS/JS na Cloudflare Pages, bez redakčního systému. Obsah a články se upravují ve zdrojových souborech a sestavují přes Node.js 24 (viz `.nvmrc`). Používá se pouze tmavý vzhled.
 
-## Struktura
-
-| Cesta | Co obsahuje |
-|---|---|
-| `src/pages/` | Zdrojové stránky (hlavní stránka, blog, právní stránky…) |
-| `src/partials/` | Sdílené bloky: navigace, patička, kontakt, recenze, reference… |
-| `src/templates/city.html` | Šablona městských stránek |
-| `src/data/cities.json` | Texty a data jednotlivých měst |
-| `src/data/schema-business.json` | Společná strukturovaná data firmy (JSON-LD) |
-| `src/css/` | Styly – `01-base` až `05-light` se spojí do `style.css`, hero styly do `landing.css`. `05-light.css` obsahuje opravy kontrastu pro světlý motiv. |
-| `src/css/pages/` | Styly jedné stránky (např. `blog/clanek.css` platí jen pro `/blog/clanek`) → `pages.css` |
-| `src/js/` | JavaScript rozdělený podle funkcí (menu, formuláře, chatbot…) → `main.js` |
-| `src/_headers` | HTTP hlavičky pro Cloudflare včetně Content-Security-Policy → `_headers` |
-| `src/llms.txt` | Popis webu pro AI nástroje; seznam článků doplní build → `llms.txt` |
-| `functions/api/` | Přihlášení do CMS přes GitHub (OAuth, ověřuje `state` a předává token jen vlastní doméně) |
-| `content/hlavni-stranka.yml` | Texty upravované přes CMS |
-
-Soubory `*.html` v kořeni a ve složkách, `style.css`, `landing.css`, `pages.css`, `main.js`, `_headers`, `sitemap.xml` a `llms.txt` jsou **generované** – neupravujte je ručně, změny by se přepsaly.
-
-## Práce s webem
+## Vývoj
 
 ```bash
-npm install      # jednou
-npm run build    # sestaví stránky ze src/
-npm run check    # zkontroluje výstup
-npm test         # obojí
+npm ci
+npm test                 # kontakt, bezpečnost, build, kontrola HTML a obsahové regrese
+npm run testwebu:test    # audit a zpracování PageSpeed na lokálních datech
+npm run test:penetration # lokální HTTP útokové scénáře, externí služby simulované
 ```
 
-- Include: `<!-- @include nav about="/#about" -->` vloží `src/partials/nav.html`, atributy jsou dostupné jako `{{about}}`.
-- Proměnné: `{{cms.hero_title}}` (z CMS), `{{city.name}}` (městské stránky). Chybějící proměnná build zastaví.
-- FAQ strukturovaná data (FAQPage) se generují automaticky z viditelných otázek na stránce.
-- Seznam článků ve schématu stránky Blog, karty na hlavní stránce a `llms.txt` se generují z článků; článek bez obrázku ve schématu BlogPosting dostane svůj `og:image`.
-- CSS a JS dostávají v odkazu otisk obsahu (`?v=…`), takže se po změně nenačte stará verze z cache.
-- JS i CSS minifikuje [esbuild](https://esbuild.github.io/).
+`npm run build` generuje HTML, CSS, JS, hlavičky, sitemap a llms.txt. Generované soubory se neupravují ručně. Před commitem vždy sestavit a ověřit výstup.
 
-### Přístupnost a světlý motiv
+| Cesta | Účel |
+|---|---|
+| `src/pages/` | Zdrojové stránky; články jsou HTML v `src/pages/blog/` |
+| `src/partials/` | Sdílené bloky stránky |
+| `src/data/home.json` | Sdílené texty úvodu a FAQ, běžný zdrojový JSON |
+| `src/data/schema-business.json` | Jednotná fakta firmy a katalog nabídky pro úvod, města a llms.txt |
+| `src/data/cities.json` | Městské texty; skutečné sídlo se nepřepisuje podle obsluhovaného města |
+| `src/templates/city.html` | Městská šablona |
+| `src/css/` | Základní styly, komponenty, stránky; žádný světlý motiv |
+| `src/css/pages/` | Styly jednotlivých stránek, sestavují se do pages.css |
+| `src/js/` | Frontendové moduly, společné modální chování a Turnstile |
+| `functions/api/` | Kontakt přes Resend a veřejná konfigurace Turnstile |
+| `functions/_lib/` | Limity požadavků a čtení těla s bajtovým limitem |
+| `testwebu/` | Samostatná aplikace technického auditu |
 
-Barvy textu musí mít kontrast aspoň 4,5:1 (WCAG AA) v tmavém i světlém motivu. Barvy natvrdo napsané pro tmavé pozadí (neonová zelená, žlutá, bílá) potřebují ve světlém motivu přebití v `src/css/05-light.css`. Pro malý růžový text na tmavém pozadí je `--pink-text`. Dekorativní čísla (01, 02…) se vkládají přes CSS (`data-num`), aby je nečetly čtečky.
+Proměnné šablon: `{{home.hero_title}}`, `{{city.name}}`. Include: `<!-- @include nav about="/#o-mne" cenik="/#cenik" kontakt="/#kontakt" -->`. FAQPage se generuje z viditelných otázek a odpovědí. Karty blogu, sitemap a seznam článků v llms.txt se generují z článků. Nový článek přidejte jako HTML do `src/pages/blog/`, včetně metadat a data publikace; CMS ani Markdown se nepoužívají.
 
-### Bezpečnost (CSP)
+## Bezpečnost
 
-Web posílá přísnou Content-Security-Policy (skripty a styly jen z vlastní domény), izolaci oken (COOP) a omezení funkcí prohlížeče (Permissions-Policy). Kontakt pro hlášení zranitelností je v `/.well-known/security.txt`, jeho platnost (`Expires`) je potřeba jednou ročně prodloužit. `npm run check` na to upozorní 30 dní předem.
+Kontakt vyžaduje úspěšné serverové ověření Turnstile, povolený hostname a akci contact. Secret key se nikdy nevkládá do zdrojů. Konfigurace a přejímka: [Turnstile](docs/turnstile.md).
 
-- Formuláře se odesílají na `/api/contact` (Cloudflare Pages Function → Resend, klíč v proměnné `RESEND_API_KEY`). Mají past na roboty: skryté pole `botcheck`.
-- Žádné `onclick="…"`, `<script>` bez `src` ani `style="…"` v HTML. Chování patří do `src/js/`, vzhled do CSS.
-- Výjimkou je kritický `<style>` a krátký `<script>` v hlavičce, který před vykreslením nastaví světlý/tmavý motiv (jinak by stránka problikla). Jejich hashe do CSP doplní build sám.
-- Data pro Google (`<script type="application/ld+json">`) CSP neblokuje.
+- `RESEND_API_KEY` a `TURNSTILE_SECRET_KEY` jsou secrets hlavního Pages projektu.
+- Veřejný Site key je v kódu; lze jej přepsat proměnnou `TURNSTILE_SITE_KEY`.
+- Lokální limit kontaktu je 3 požadavky za 10 minut na IP v jednom isolate; audit API má společný limit 12 požadavků za minutu.
+- Pokud existují bindingy `CONTACT_LIMITER` / `AUDIT_LIMITER`, využijí se před lokálním fallbackem. Jejich skutečnou podporu a nastavení v daném prostředí je nutné ověřit; na jejich automatickou existenci se nespoléhá.
+- Per-isolate limity nejsou globální distribuovaná ochrana. Před vydáním ověřit WAF/rate limiting a kvóty na Cloudflare. Vyhodnocení jednoho auditu zahrnuje až 3 API požadavky.
+- DNS ověření je fail-closed, cíle se kontrolují před prvním stažením i při přesměrování; stejné domény se cachují pouze v rámci jednoho auditu. Samotný DNS preflight nezaručuje ochranu proti DNS rebindingu v okamžiku spojení. Produkční egress musí odmítat privátní adresy; to nelze potvrdit lokálními mocky.
+- Skripty/styly se řídí CSP; Turnstile potřebuje challenges.cloudflare.com. Automatické kontaktní testy nenahrazují průchod skutečným widgetem.
+- Platnost `.well-known/security.txt` kontroluje check.js. Neveřejné poznámky, klíče ani výpisy prostředí nepatří do repozitáře.
 
-`npm run check` porušení těchto pravidel najde.
+## Přístupnost a obsah
 
-`npm run check` hlídá: nenahrazené proměnné, title/description/canonical, jeden `h1`, IČO v patičce, platnost JSON-LD, rozbité interní odkazy, kotvy a soubory, duplicitní `id`, přeskočené úrovně nadpisů, soulad s CSP a obsah `sitemap.xml`.
+Modální menu a popup používají inertní pozadí, klávesnicový fokus a návrat na spouštěč. Na mobilu se automatický popup nezobrazuje. Respektuje se prefers-reduced-motion. Běžný text má mít kontrast alespoň 4,5 : 1. Zdrojové texty, viditelné FAQ a schémata se musí shodovat. Není nabízen paušál Web Care, pouze individuální úpravy po dohodě. Citace AI, pořadí ve vyhledávání ani absolutní bezpečnost se neslibují.
 
-### Automatické sestavení
+## Větve a vydání
 
-Při každém pushi na `main` (i po uložení v CMS) GitHub Action web sestaví, zkontroluje a sestavené soubory commitne. Cloudflare Pages pak nasadí výsledek. Pokud kontrola selže, nic se necommitne a na webu zůstane poslední funkční verze. Na ostatních větvích a v pull requestech se jen kontroluje.
+Opravy se připravují na `fixes/audit-turnstile`. **Bez výslovného pokynu majitelky nepushovat, neslučovat do main a nenasazovat.** I push jiné větve může spustit Cloudflare preview; před prvním pushem ověřit nastavení obou Pages projektů.
 
-## Nový článek / město
+GitHub Actions provádí testy a kontrolu aktuálnosti generovaných souborů na Node 24. Workflow má pouze čtecí oprávnění a nevytváří automatické commity, aby nevznikal druhý push. Nastavení skutečného deploymentu a podmínění jeho úspěchem CI se ověřuje samostatně v Cloudflare.
 
-- Článek: zkopírujte existující soubor v `src/pages/blog/`, upravte ho (vlastní styly do `src/css/pages/blog/<název>.css`) a přidejte kartu do `src/pages/blog.html`. Karta na hlavní stránce, schéma blogu, `sitemap.xml` a `llms.txt` se doplní samy.
-- Město: přidejte záznam do `src/data/cities.json`, sitemap se doplní sama.
-
-## Test webu
-
-Aplikace na `testwebu.janyskovadigital.cz` je ve složce `testwebu/` (samostatný projekt v Cloudflare Pages). Popis a nasazení: [`testwebu/README.md`](testwebu/README.md). Odkaz „Chci osobní audit“ předvyplní adresu testovaného webu v kontaktním formuláři (`?web=…`, `src/js/prefill.js`).
+Před vydáním projít [přejímku a penetrační test](docs/bezpecnost-a-vydani.md). Externí klíče zadávat pouze do zabezpečeného nastavení, nikdy do chatu nebo Gitu.

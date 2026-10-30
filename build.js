@@ -17,7 +17,6 @@
 import { readFile, writeFile, readdir, mkdir } from 'fs/promises';
 import { createHash } from 'crypto';
 import path from 'path';
-import { parse as parseYaml } from 'yaml';
 import * as esbuild from 'esbuild';
 
 const read = p => readFile(p, 'utf8');
@@ -280,7 +279,7 @@ function collectInline(html, { styles, scripts }) {
 
 async function build() {
   // Styly a skript (verze = otisk obsahu, takže prohlížeč nikdy nedrží starou verzi)
-  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages', '05-light'].map(f => read(`src/css/${f}.css`)))).join('\n'));
+  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n'));
   const landingCss = await minifyCss(await read('src/css/landing.css'));
   const { css: pagesCss, scoped } = await pageStyles();
   const mainJs = await bundleJs();
@@ -290,14 +289,25 @@ async function build() {
   await write('pages.css', pagesCss);
   await write('main.js', mainJs);
 
-  const cms = parseYaml(await read('content/hlavni-stranka.yml'));
+  const home = JSON.parse(await read('src/data/home.json'));
+  const { business } = JSON.parse(await read('src/data/schema-business.json'));
+  const price = name => {
+    const offer = business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === name);
+    if (!offer) throw new Error(`Chybí cena služby ${name}`);
+    return String(offer.price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+  const prices = { start: price('Web Start'), business: price('Web Business'), refresh: price('Web Refresh'), refreshMulti: price('Web Refresh — vícestránkový'), shop: price('E-shop na míru') };
+  home.faq7_a = `Jednostránkový web od ${prices.start} Kč, vícestránkový od ${prices.business} Kč. Hosting prezentačního webu je v ceně tvorby; doména a individuálně dohodnuté služby se hradí zvlášť.`;
+  const articles = await readArticles();
   const ctx = {
     cssv: hash(styleCss),
     landingv: hash(landingCss),
     jsv: hash(mainJs),
-    cms,
+    home,
+    prices,
+    blogCards: homeBlogCards(articles, articles.length).replaceAll("<h3>", "<h2>").replaceAll("</h3>", "</h2>"),
+    businessJsonLd: JSON.stringify(business),
   };
-  const articles = await readArticles();
   ctx.homeBlog = homeBlogCards(articles, 6);
   ctx.blogPostsJson = blogPostsJson(articles);
   const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
@@ -320,10 +330,9 @@ async function build() {
   }
 
   const cities = JSON.parse(await read('src/data/cities.json'));
-  const { business } = JSON.parse(await read('src/data/schema-business.json'));
   const template = await read('src/templates/city.html');
   for (const city of cities) {
-    const faq = [[cms.faq1_q, cms.faq1_a], [cms.faq3_q, cms.faq3_a], ...city.faq.map(f => [f.q, f.a])];
+    const faq = [[home.faq1_q, home.faq1_a], [home.faq3_q, home.faq3_a], ...city.faq.map(f => [f.q, f.a])];
     const cityCtx = {
       ...ctx,
       city,
@@ -352,7 +361,7 @@ async function build() {
 
   // llms.txt pro AI nástroje: seznam článků se doplní automaticky
   const llmsArticles = articles.map(a => `- [${a.headline}](${a.url}): ${a.description}`).join('\n');
-  await write('llms.txt', (await read('src/llms.txt')).replace('{{llmsArticles}}', llmsArticles));
+  await write('llms.txt', (await read('src/llms.txt')).replace('{{llmsArticles}}', llmsArticles).replace('{{llmsOffers}}', business.hasOfferCatalog.itemListElement.map(o => `- ${o.itemOffered.name}: od ${Number(o.price).toLocaleString('cs-CZ')} Kč.`).join('\n')));
 
   // CSP povolí jen přesně ty inline <style> a <script>, které na webu jsou
   // (kritický styl a nastavení motivu před vykreslením v hlavičce)

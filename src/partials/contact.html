@@ -10,7 +10,8 @@
           <span><strong>Zdarma:</strong> zhodnocení vašeho webu při každé poptávce</span>
         </div>
       </div>
-      <form id="contact-form" action="/api/contact" method="POST">
+      <form id="contact-form" action="/api/contact" method="POST" data-turnstile>
+        <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
         <input type="hidden" name="subject" value="Nová poptávka z webu — {{subject}}">
         <!-- Past na roboty: server zprávu zahodí, když je pole zaškrtnuté -->
         <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">

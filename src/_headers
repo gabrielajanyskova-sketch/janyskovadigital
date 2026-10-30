@@ -8,7 +8,7 @@
   Cross-Origin-Opener-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' {{cspScriptHashes}} https://static.cloudflareinsights.com; style-src 'self' {{cspStyleHashes}}; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; form-action 'self' https://testwebu.janyskovadigital.cz; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://challenges.cloudflare.com {{cspScriptHashes}} https://static.cloudflareinsights.com; style-src 'self' {{cspStyleHashes}}; img-src 'self' data:; font-src 'self'; frame-src https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com https://cloudflareinsights.com; form-action 'self' https://testwebu.janyskovadigital.cz; frame-ancestors 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
 
 /
   Link: </sitemap.xml>; rel="sitemap", </llms.txt>; rel="describedby"
@@ -25,16 +25,6 @@
 /*.html
   X-Robots-Tag: noindex, nofollow
 
-# Správa obsahu (Decap CMS) načítá skript z unpkg.com a přihlašuje se přes vyskakovací okno (window.opener) —
-# přísná CSP ani izolace oken (COOP) by ji rozbily
-/admin
-  ! Content-Security-Policy
-  ! Cross-Origin-Opener-Policy
-
-/admin/*
-  ! Content-Security-Policy
-  ! Cross-Origin-Opener-Policy
-
 # CSS a JS se odkazují s ?v=<otisk obsahu>, takže je lze cacheovat natrvalo
 /main.js
   Cache-Control: public, max-age=31536000, immutable
@@ -43,16 +33,16 @@
   Cache-Control: public, max-age=31536000, immutable
 
 /fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /img/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /*.webp
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /*.jpg
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400
 
 /favicon*
   Cache-Control: public, max-age=3600
@@ -64,4 +54,4 @@
   Cache-Control: public, max-age=3600
 
 /*.png
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=86400

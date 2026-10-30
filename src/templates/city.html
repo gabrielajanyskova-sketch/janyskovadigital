@@ -88,7 +88,7 @@
       <div class="local-cards">
         <div class="info-card"><div class="info-card-label">Schůzky</div><div class="info-card-value">{{city.meet}}</div></div>
         <div class="info-card"><div class="info-card-label">Doba realizace</div><div class="info-card-value">7–10 dnů od podkladů</div></div>
-        <div class="info-card"><div class="info-card-label">Cena webu {{city.name}}</div><div class="info-card-value">od 5 900 Kč jednorázově</div></div>
+        <div class="info-card"><div class="info-card-label">Cena webu {{city.name}}</div><div class="info-card-value">od {{prices.start}} Kč jednorázově</div></div>
       </div>
     </div>
   </div>
@@ -124,10 +124,10 @@
     <div class="section-tag">Ceník</div>
     <h2 class="section-title">Kolik stojí <em>web {{city.priceIn}}?</em></h2>
     <div class="price-mini">
-      <div class="info-card"><div class="info-card-label">Web Start · one-page</div><div class="info-card-value">5 900 Kč</div></div>
-      <div class="info-card"><div class="info-card-label">Web Business · vícestránkový</div><div class="info-card-value">od 12 000 Kč</div></div>
-      <div class="info-card"><div class="info-card-label">E-shop na míru</div><div class="info-card-value">od 25 000 Kč</div></div>
-      <div class="info-card"><div class="info-card-label">Web Care · správa</div><div class="info-card-value">od 490 Kč/měs</div></div>
+      <div class="info-card"><div class="info-card-label">Web Start · one-page</div><div class="info-card-value">{{prices.start}} Kč</div></div>
+      <div class="info-card"><div class="info-card-label">Web Business · vícestránkový</div><div class="info-card-value">od {{prices.business}} Kč</div></div>
+      <div class="info-card"><div class="info-card-label">E-shop na míru</div><div class="info-card-value">od {{prices.shop}} Kč</div></div>
+      <div class="info-card"><div class="info-card-label">Úpravy po spuštění</div><div class="info-card-value">Podle dohody</div></div>
     </div>
     <p class="price-mini-note">Cena platí stejně pro celou ČR. Hosting je v ceně, platíte jen doménu — přibližně 200 Kč ročně. <a href="/#cenik">Kompletní ceník se všemi službami →</a></p>
   </div>
@@ -147,11 +147,12 @@
 <div class="section-divider"></div>
 
 {{citiesSectionHtml}}
-</main>
+
 
 <div class="section-divider"></div>
 
 <!-- @include contact subject="{{city.subject}}" -->
+</main>
 <!-- @include footer -->
 <!-- @include scripts -->
 <!-- @include audit-popup -->

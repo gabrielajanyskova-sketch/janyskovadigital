@@ -22,7 +22,8 @@ export function normalizeUrl(input) {
   if (!['http:', 'https:'].includes(url.protocol)) throw new AuditError('Podporované jsou jen adresy http a https.');
   if (url.username || url.password) throw new AuditError('Adresa nesmí obsahovat přihlašovací údaje.');
   if (url.port && !['80', '443'].includes(url.port)) throw new AuditError('Adresa s nestandardním portem není podporovaná.');
-  const host = url.hostname.toLowerCase();
+  const host = url.hostname.toLowerCase().replace(/\.$/, '');
+  url.hostname = host;
   if (!host.includes('.') || isBlockedHost(host)) throw new AuditError('Tuto adresu nelze otestovat. Zadejte veřejný web.');
   url.hash = '';
   return url;
@@ -36,31 +37,40 @@ function isBlockedHost(host) {
 }
 
 export function isPrivateIPv4(ip) {
-  const [a, b] = ip.split('.').map(Number);
+  if (!/^\d{1,3}(?:\.\d{1,3}){3}$/.test(ip)) return true;
+  const parts = ip.split('.').map(Number);
+  if (parts.some(n => n > 255)) return true;
+  const [a, b, c] = parts;
   return a === 0 || a === 10 || a === 127 || a >= 224 ||
     (a === 100 && b >= 64 && b <= 127) || (a === 169 && b === 254) ||
-    (a === 172 && b >= 16 && b <= 31) || (a === 192 && b === 168) || (a === 198 && (b === 18 || b === 19));
+    (a === 172 && b >= 16 && b <= 31) ||
+    (a === 192 && (b === 168 || b === 0 || (b === 88 && c === 99))) ||
+    (a === 198 && (b === 18 || b === 19 || (b === 51 && c === 100))) ||
+    (a === 203 && b === 0 && c === 113);
 }
 
 export function isPrivateIPv6(ip) {
-  const a = ip.toLowerCase();
-  if (a === '::' || a === '::1') return true;
-  if (/^f[cd]/.test(a) || /^fe[89ab]/.test(a)) return true;              // fc00::/7 (ULA), fe80::/10 (link-local)
-  const mapped = a.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
-  return mapped ? isPrivateIPv4(mapped[1]) : false;
+  // Přijímáme pouze globální unicast 2000::/3; ostatní a neplatné tvary odmítáme.
+  let host;
+  try { host = new URL(`http://[${ip}]/`).hostname.slice(1, -1).toLowerCase(); }
+  catch { return true; }
+  if (!/^[23]/.test(host)) return true; // zahrnuje i všechny IPv4-mapped adresy
+  return /^2001:(?:db8|0|10|2[0-9a-f]):/.test(host) || host.startsWith('2001::') || host.startsWith('2002:');
 }
 
 // Ověří přes DNS-over-HTTPS, že doména míří na veřejné IP (IPv4 i IPv6) — ochrana proti doméně namířené dovnitř sítě.
 export async function assertPublicHost(host, fetchImpl) {
+  normalizeUrl(`https://${host}/`);
   if (/^\d+\.\d+\.\d+\.\d+$/.test(host)) return;
   const lookup = type => fetchImpl(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(host)}&type=${type}`, {
     headers: { accept: 'application/dns-json' },
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
   const [v4, v6] = await Promise.all([lookup('A'), lookup('AAAA')]);
-  if (!v4 && !v6) return;                                                 // DNS nedostupné: rozhodne až samotné stažení
+  if (!v4 || !v6 || ![0, 3].includes(v4.Status) || ![0, 3].includes(v6.Status)) throw new AuditError('DNS domény se nepodařilo bezpečně ověřit.', 422);                                                 // DNS nedostupné: rozhodne až samotné stažení
   if (v4?.Status === 3) throw new AuditError('Doména neexistuje. Zkontrolujte adresu.');
   const answers = [...(v4?.Answer || []), ...(v6?.Answer || [])];
+  if (!answers.some(r => r.type === 1 || r.type === 28)) throw new AuditError('Doména nemá ověřitelnou veřejnou adresu.', 422);
   if (answers.some(r => (r.type === 1 && isPrivateIPv4(r.data)) || (r.type === 28 && isPrivateIPv6(r.data)))) {
     throw new AuditError('Tuto adresu nelze otestovat. Zadejte veřejný web.');
   }
@@ -68,16 +78,15 @@ export async function assertPublicHost(host, fetchImpl) {
 
 // Stáhne URL a ručně projde přesměrování (každý krok znovu ověří). Vrací řetěz přesměrování,
 // konečnou odpověď, hlavičky a tělo (oříznuté na MAX_BYTES).
-export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = true } = {}) {
+export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = true, checkedHosts = new Set() } = {}) {
   const chain = [];
   let current = new URL(url);
-  let checkedHost = checkHost ? current.hostname : null;
   for (let i = 0; i <= MAX_REDIRECTS; i++) {
     if (checkHost) {
       try { normalizeUrl(current.href); } catch { return { ok: false, error: 'blocked', url: current.href, chain }; }
-      if (current.hostname !== checkedHost) {
+      if (!checkedHosts.has(current.hostname)) {
         try { await assertPublicHost(current.hostname, fetchImpl); } catch { return { ok: false, error: 'blocked', url: current.href, chain }; }
-        checkedHost = current.hostname;
+        checkedHosts.add(current.hostname);
       }
     }
     const started = Date.now();
@@ -89,20 +98,21 @@ export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = tr
         headers: { 'user-agent': USER_AGENT, accept: 'text/html,application/xhtml+xml,*/*;q=0.8', 'accept-language': 'cs,en;q=0.8' },
         signal: AbortSignal.timeout(TIMEOUT_MS),
       });
+      const location = res.headers.get('location');
+      if (res.status >= 300 && res.status < 400 && location) {
+        res.body?.cancel().catch(() => {});
+        chain.push({ url: current.href, status: res.status });
+        current = new URL(location, current);
+        continue;
+      }
+      const body = method === 'HEAD' ? '' : await readLimited(res);
+      if (method === 'HEAD') res.body?.cancel().catch(() => {});
+      return { ok: res.ok, status: res.status, url: current.href, chain, headers: res.headers,
+        body, ms: Date.now() - started, contentType: res.headers.get('content-type') || '' };
     } catch (e) {
       return { ok: false, error: e.name === 'TimeoutError' ? 'timeout' : 'network', url: current.href, chain };
     }
-    const location = res.headers.get('location');
-    if (res.status >= 300 && res.status < 400 && location) {
-      chain.push({ url: current.href, status: res.status });
-      current = new URL(location, current);
-      continue;
-    }
-    const body = method === 'HEAD' ? '' : await readLimited(res);
-    return {
-      ok: res.ok, status: res.status, url: current.href, chain, headers: res.headers,
-      body, ms: Date.now() - started, contentType: res.headers.get('content-type') || '',
-    };
+
   }
   return { ok: false, error: 'redirects', url: current.href, chain };
 }

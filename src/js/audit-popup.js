@@ -1,45 +1,23 @@
-// Popup s nabídkou auditu — při odjezdu myši z okna, na mobilu po dočtení většiny stránky
-
-const KEY   = 'audit_popup_seen';
+import { openModal, modalIsOpen } from './modal.js';
+const KEY = 'audit_popup_seen';
 const popup = document.getElementById('audit-popup');
-
-if (popup && !sessionStorage.getItem(KEY)) {
+let seen = false;
+try { seen = sessionStorage.getItem(KEY) === '1'; } catch { /* uložiště není podmínka funkčnosti */ }
+// Na dotykových a malých obrazovkách automatický interstitial nezobrazujeme.
+const desktop = matchMedia('(min-width: 769px) and (hover: hover)');
+if (popup && !seen && desktop.matches) {
+  let shown = false, release;
   const closeBtn = document.getElementById('audit-close');
-  const ctaBtn   = document.getElementById('audit-cta');
-  let shown = false;
-  let lastFocus = null;
-
+  function hide() { release?.(); release = null; popup.style.display = 'none'; }
   function show() {
-    if (shown || sessionStorage.getItem(KEY)) return;
-    shown = true;
-    lastFocus = document.activeElement;
-    popup.style.display = 'flex';
-    sessionStorage.setItem(KEY, '1');
-    if (closeBtn) closeBtn.focus();
+    if (shown || modalIsOpen() || !desktop.matches) return;
+    shown = true; popup.style.display = 'flex';
+    try { sessionStorage.setItem(KEY, '1'); } catch { /* jednou za aktuální načtení */ }
+    release = openModal(popup, { initialFocus: closeBtn, onEscape: hide });
   }
-
-  function hide() {
-    if (popup.style.display === 'none') return;
-    popup.style.display = 'none';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
-  }
-
-  if (closeBtn) closeBtn.addEventListener('click', hide);
-  if (ctaBtn)   ctaBtn.addEventListener('click', hide);
-  popup.addEventListener('click', function(e) { if (e.target === popup) hide(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') hide(); });
-
-  let exitFired = false;
-  document.addEventListener('mouseleave', function(e) {
-    if (e.clientY < 10 && !exitFired) { exitFired = true; setTimeout(show, 300); }
-  });
-  // Na mobilu žádný časovač (rušivý interstitial) — popup až když návštěvník dočte víc než polovinu stránky
-  if (/Mobi|Android/i.test(navigator.userAgent)) {
-    window.addEventListener('scroll', function onScroll() {
-      const depth = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (depth > 0.6) { window.removeEventListener('scroll', onScroll); show(); }
-    }, { passive: true });
-  } else {
-    setTimeout(show, 25000);
-  }
+  desktop.addEventListener('change', event => { if (!event.matches) hide(); });
+  closeBtn?.addEventListener('click', hide);
+  popup.addEventListener('click', event => { if (event.target === popup || event.target.closest('a')) hide(); });
+  document.addEventListener('mouseleave', event => { if (event.clientY < 10) setTimeout(show, 300); });
+  setTimeout(show, 25000);
 }

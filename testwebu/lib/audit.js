@@ -17,7 +17,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
   const budgeted = (u, o) => (++used > SUBREQUEST_BUDGET ? Promise.reject(new Error('subrequest budget')) : fetchImpl(u, o));
   const remaining = () => SUBREQUEST_BUDGET - used;
   if (checkHost) await assertPublicHost(url.hostname, budgeted);
-  const opts = { fetchImpl: budgeted, checkHost };
+  const opts = { fetchImpl: budgeted, checkHost, checkedHosts: new Set(checkHost ? [url.hostname] : []) };
 
   const main = await fetchPage(url.href, opts);
   if (!main.status) {
@@ -135,8 +135,9 @@ export function parseRobots(text) {
     if (k === 'allow' && value.trim() === '/') current.allowAll = true;
   }
   const blocked = agent => {
-    const g = groups.find(x => x.agents.includes(agent.toLowerCase())) || groups.find(x => x.agents.includes('*'));
-    return !!g && g.disallowAll && !g.allowAll;
+    const specific = groups.filter(x => x.agents.includes(agent.toLowerCase()));
+    const selected = specific.length ? specific : groups.filter(x => x.agents.includes('*'));
+    return selected.some(g => g.disallowAll) && !selected.some(g => g.allowAll);
   };
   return {
     exists: true, blocksAll: blocked('Googlebot') && blocked('*'),
@@ -145,6 +146,8 @@ export function parseRobots(text) {
 }
 
 async function readSitemap(url, opts, host, depth = 0) {
+  try { if (new URL(url).hostname !== host) return { url: null, count: 0, list: [] }; }
+  catch { return { url: null, count: 0, list: [] }; }
   const res = await fetchPage(url, opts).catch(() => null);
   if (!res || res.status !== 200 || !/<(urlset|sitemapindex)\b/i.test(res.body || '')) return { url: null, count: 0, list: [] };
   const locs = [...res.body.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi)].map(m => m[1].replace(/&amp;/g, '&'));

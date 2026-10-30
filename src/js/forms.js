@@ -1,3 +1,5 @@
+import { resetTurnstile } from './turnstile.js';
+
 // Odesílání formulářů přes vlastní endpoint /api/contact (Resend) — kontaktní formulář a barter
 
 const ENDPOINT = '/api/contact';
@@ -40,6 +42,7 @@ if (contactForm) {
     try {
       await submit(contactForm);
     } catch {
+      resetTurnstile(contactForm);
       showMsg('Něco se pokazilo. Zkuste to znovu nebo mi napište přímo na info@janyskovadigital.cz', 'error');
       submitBtn.disabled = false;
       submitBtn.innerHTML = origLabel;
@@ -65,6 +68,7 @@ if (barterForm) {
     try {
       await submit(barterForm);
     } catch {
+      resetTurnstile(barterForm);
       btn.disabled = false;
       btn.textContent = orig;
     }
