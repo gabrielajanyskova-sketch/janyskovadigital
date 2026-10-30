@@ -36,7 +36,7 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 ## Blog — všechny články
 
 - [Cituje vás AI? Jak to zjistit — ukázka na mém webu](https://janyskovadigital.cz/blog/cituje-vas-ai): Google mě za 3 měsíce ukázal v AI odpovědích 204krát. Ukážu, kde to v Search Console najdete, jak data číst a jak si to ověřit sami.
-- [7 varovných signálů špatného webdesignéra — poznejte ho dřív než zaplatíte](https://janyskovadigital.cz/blog/jak-poznat-spatneho-webdesignera): 7 varovných signálů špatného webdesignéra — žádné portfolio, WordPress bez ptaní, garance pozic na Googlu. Ušetřete peníze.
+- [7 varovných signálů špatného webdesignéra — poznejte ho dřív, než zaplatíte](https://janyskovadigital.cz/blog/jak-poznat-spatneho-webdesignera): 7 varovných signálů špatného webdesignéra — žádné portfolio, WordPress bez ptaní, garance pozic na Googlu. Ušetřete peníze.
 - [Google, AI obsah a spam: co zkontrolovat na vlastním webu](https://janyskovadigital.cz/blog/google-ai-detekuje-ai-spam): Kdy může AI obsah porušovat pravidla Googlu, jak ověřit manuální opatření a co zkontrolovat při propadu návštěvnosti. Bez odhadování termínů aktualizací.
 - [AI Mode a návštěvnost: jak číst statistiky](https://janyskovadigital.cz/blog/google-ai-mode-konec-kliknuti): AI odpovědi mohou měnit prokliky na web. Jak rozlišit výsledky studií od vlastních dat a sledovat skutečný přínos vyhledávání pro firmu.
 - [Google teď odpovídá sám — a bere vám zákazníky](https://janyskovadigital.cz/blog/google-ai-overviews-krade-navstevniky): Google AI Overviews — nová funkce, která odpovídá na dotazy přímo ve výsledcích. Co to znamená pro váš web a co s tím dělat?
