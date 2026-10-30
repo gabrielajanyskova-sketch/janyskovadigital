@@ -200,6 +200,18 @@ export function a11yChecks(psi) {
 
 // ── Technika, SEO, AI, bezpečnost, GDPR ─────────────────────────────────────
 
+export function formAntispamChecks(p) {
+  if (!p.forms) return [];
+  const a = p.formAntispam || { recognizedForms: 0, methods: [] };
+  return [check('security', 'form-antispam', 'low', 'info',
+    a.recognizedForms ? 'Ve formulářích jsou známky antispamové ochrany' : 'Antispam formulářů nebyl v HTML rozpoznán',
+    a.recognizedForms
+      ? `Rozpoznáno: ${a.methods.join(', ')}. Známky ochrany u ${a.recognizedForms} z ${p.forms} formulářů v načteném HTML. To nepotvrzuje ochranu všech formulářů ani její funkčnost.`
+      : 'Ochrana může být načítána JavaScriptem nebo fungovat pouze na serveru. Její nepřítomnost nelze z tohoto výsledku vyvodit.',
+    'Přítomnost widgetu nedokazuje serverové ověření tokenu. Tento test formuláře neodesílá, nespouští JavaScript a neověřuje Siteverify ani limity požadavků. Bod nemění skóre.',
+    'U vlastního webu ověřit serverovou validaci, odmítnutí chybějícího či neplatného tokenu a omezení četnosti odesílání. Skryté návnadové pole je pouze doplňková ochrana.')];
+}
+
 export function siteChecks(r) {
   const out = [];
   const p = r.page;
@@ -392,6 +404,8 @@ export function siteChecks(r) {
   if (leak.length) out.push(check('security', 'version-leak', 'low', 'warn', 'Server prozrazuje verzi softwaru', leak.join(', '), 'Útočník podle verze snadno najde známé zranitelnosti.', 'Skrýt verze v hlavičkách Server a X-Powered-By.'));
 
   if (r.platforms.includes('WordPress')) out.push(check('security', 'wordpress', 'low', 'info', 'Web běží na WordPressu', p.generator || 'Rozpoznáno podle souborů webu.', 'WordPress a jeho pluginy jsou nejčastějším cílem útoků. Bezpečnost stojí na pravidelných aktualizacích.', 'Aktualizovat jádro, šablonu i pluginy, odstranit nepoužívané pluginy, zálohovat.'));
+
+  out.push(...formAntispamChecks(p));
 
   // GDPR a důvěryhodnost
   out.push(p.ico

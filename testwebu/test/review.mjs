@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { analyzeHtml, decode } from '../lib/html.js';
 import { parseRobots, readDomainDns, audit } from '../lib/audit.js';
-import { emailChecks, score } from '../lib/checks.js';
+import { emailChecks, score, formAntispamChecks } from '../lib/checks.js';
 import { sameOrigin } from '../lib/api.js';
 import { runPsi } from '../lib/psi.js';
 import { fetchPage } from '../lib/http.js';
@@ -120,4 +120,20 @@ test('privacy link detection does not pass plain text, scripts, empty anchors or
     '<a href="mailto:gdpr@firma.cz">Ochrana osobních údajů</a>',
     '<a href="https://gdpr.example.com/kontakt">Kontakt</a>',
   ]) assert.equal(analyzeHtml(markup, 'https://firma.cz/').privacyLink, false, markup);
+});
+
+
+test('form antispam is informational, scoped to forms, and never confirms validation', () => {
+  const inspect = markup => analyzeHtml(markup, 'https://firma.cz/');
+  const p = inspect('<form data-turnstile><input name="email"></form><form><div class="g-recaptcha"></div></form><form><input name="_gotcha"></form><form><input name="csrf" type="hidden"></form>');
+  assert.deepEqual(p.formAntispam, { analyzedForms: 4, recognizedForms: 3, methods: ['Turnstile', 'reCAPTCHA', 'možný honeypot'] });
+  const c = formAntispamChecks(p)[0];
+  assert.equal(c.status, 'info');
+  assert.match(c.description || c.detail || JSON.stringify(c), /3 z 4/);
+  assert.deepEqual(score([c]), {});
+  const clean = inspect('<!--<form data-turnstile></form>--><script>"<form><div class=cf-turnstile></div></form>"</script><div class="cf-turnstile"></div><form><input type="hidden" name="csrf"><p>reCAPTCHA</p></form>');
+  assert.equal(clean.formAntispam.recognizedForms, 0);
+  assert.equal(formAntispamChecks(clean)[0].status, 'info');
+  assert.deepEqual(formAntispamChecks(inspect('<p>No forms</p>')), []);
+  assert.deepEqual(inspect('<form><textarea name="h-captcha-response"></textarea></form>').formAntispam.methods, ['hCaptcha']);
 });

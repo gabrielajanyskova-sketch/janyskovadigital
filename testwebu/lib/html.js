@@ -27,6 +27,28 @@ export function attrs(tag) {
 
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(m => attrs(m[0]));
 
+// Pouze statické indicie uvnitř formulářů, nikoli důkaz serverového ověření.
+function formAntispam(html) {
+  const forms = [...html.matchAll(/<form\b[^>]*>[\s\S]*?<\/form\s*>/gi)];
+  const methods = new Set();
+  let recognizedForms = 0;
+  for (const [form] of forms) {
+    const found = new Set();
+    for (const m of form.matchAll(/<[a-z][^>]*>/gi)) {
+      const a = attrs(m[0]);
+      const classes = (a.class || '').split(/\s+/);
+      if ('data-turnstile' in a || classes.includes('cf-turnstile') || a.name === 'cf-turnstile-response') found.add('Turnstile');
+      if (classes.includes('g-recaptcha') || a.name === 'g-recaptcha-response') found.add('reCAPTCHA');
+      if (classes.includes('h-captcha') || a.name === 'h-captcha-response') found.add('hCaptcha');
+      // Běžné hidden pole či CSRF token samo o sobě není honeypot.
+      if ('data-honeypot' in a || a.name === '_gotcha' || a.name === 'form-name-honeypot' || a.name === 'cf7-honeypot' || 'netlify-honeypot' in a || 'data-netlify-honeypot' in a) found.add('možný honeypot');
+    }
+    if (found.size) recognizedForms++;
+    for (const method of found) methods.add(method);
+  }
+  return { analyzedForms: forms.length, recognizedForms, methods: [...methods] };
+}
+
 const normalizeLabel = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 const privacyName = value => /\b(?:gdpr|privacy|soukromi|data[\s_-]+protection)\b|(?:ochran[a-z]*|zpracovan[a-z]*|zasad[a-z]*)[\s_-]+(?:osobn[a-z]*[\s_-]+)?udaj[a-z]*|osobn[a-z]*[\s_-]+udaj[a-z]*/.test(normalizeLabel(value));
 
@@ -170,6 +192,7 @@ export function analyzeHtml(html, pageUrl) {
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
     // e-mail schovaný před spamem přes Cloudflare (Email Address Obfuscation) se počítá taky
     email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)) || /\/cdn-cgi\/l\/email-protection|__cf_email__/.test(body),
+    formAntispam: formAntispam(bodyNoScripts),
     forms: (body.match(/<form\b/gi) || []).length,
     // IČO podnikatele (§ 435 občanského zákoníku): „IČO: 12345678“, „IČ 123 45 678“
     ico: /I[ČC]O?\s*[:.]?\s*(\d\s?){8}/i.test(text(bodyNoScripts)),
