@@ -35,3 +35,7 @@ Po schváleném nasazení zapsat datum. Porovnat přibližně 28 dní proti stej
 ## Ověření
 
 Build a kontrola 49 stránek, obsahové testy 5/5 a kontrola whitespace prošly. V místním Chromium všech 49 adres při 390 a 1440 px: jedna H1 a bez vodorovného přetečení. Axe v hlavním obsahu odhalilo dva nerozlišené odkazy a nízký kontrast štítku souboru; opraveno a dotčené stránky znovu ověřeny bez nálezů. Původní slogan obnoven a vizuálně zkontrolován na mobilu podle přání uživatelky. Automatická kontrola nenahrazuje ruční audit každé interakce ani plnou shodu WCAG. Změny nejsou publikované.
+
+## Úprava tónu podle přání uživatelky
+
+Původní slogan zůstává. Hlavní text, karty, úvody všech měst, vybrané FAQ, nabídky webu/e-shopu, reference a místní SEO sekce přeformulovány do kratších přirozených vět v první osobě. Bez vymýšlení zážitků nebo nových slibů. Výrazy služeb zůstávají na relevantních místech; tón není podřízen mechanickému opakování klíčových slov. Citace klientů a právní texty se kvůli tónu nepřepisovaly.
