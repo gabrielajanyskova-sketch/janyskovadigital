@@ -4,6 +4,7 @@ import '../../src/js/turnstile.js';
 // Data z testovaného webu se vkládají jen jako text (textContent), nikdy jako HTML.
 
 import { CATEGORIES, CATEGORY_QUESTIONS, score } from '../lib/checks.js';
+import { normalizeUrl } from '../lib/http.js';
 
 const $ = id => document.getElementById(id);
 const form = $('audit-form');
@@ -141,22 +142,23 @@ function render() {
   const scores = score(checks);
   const speedPending = ['mobile', 'desktop'].some(s => !state.speed[s] && !state.speedErrors[s]);
   const speedFailed = Object.keys(state.speedErrors).length > 0;
+  const incomplete = speedFailed || a.incomplete;
   const values = Object.values(scores);
   const overall = values.length ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : 0;
 
   $('overall-num').textContent = overall;
-  $('overall').setAttribute('aria-label', `Skóre provedených kontrol ${overall} ze 100${speedPending || speedFailed ? ', měření není úplné' : ''}`);
+  $('overall').setAttribute('aria-label', `Skóre provedených kontrol ${overall} ze 100${speedPending || incomplete ? ', výsledek není úplný' : ''}`);
   const ring = $('ring-fg');
   ring.style.strokeDashoffset = String(327 - (327 * overall) / 100);
   ring.style.stroke = overall >= 90 ? 'var(--pass)' : overall >= 60 ? 'var(--warn)' : 'var(--fail)';
-  $('result-title').textContent = speedPending ? 'Průběžný výsledek testu' : speedFailed ? 'Výsledek bez části měření' : 'Výsledek automatického testu';
+  $('result-title').textContent = speedPending ? 'Průběžný výsledek testu' : incomplete ? 'Neúplný výsledek testu' : 'Výsledek automatického testu';
   $('result-url').textContent = a.finalUrl;
   const meta = [`Otestováno ${new Date(a.checkedAt).toLocaleString('cs-CZ')}`];
   if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
   const n = a.pages.length;
   meta.push(n ? `Načtena zadaná stránka a pokus o kontrolu ${n} dalších` : 'Načtena zadaná stránka');
   if (speedPending) meta.push('Rychlost se ještě měří…');
-  if (speedFailed) meta.push('Část měření není dostupná; skóre je neúplné.');
+  if (incomplete) meta.push('Část kontrol není dostupná; skóre je neúplné.');
   $('result-meta').textContent = meta.join(' · ');
 
   const cats = $('cats');
@@ -186,14 +188,14 @@ function render() {
   $('lead-subject').value = `Žádost o osobní audit: ${host}`;
   const message = $('lead-message');
   if (!message.dataset.edited) {
-    message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Skóre provedených automatických kontrol: ${overall}/100${speedPending || speedFailed ? ' (měření není úplné)' : ''}.`;
+    message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Skóre provedených automatických kontrol: ${overall}/100${speedPending || incomplete ? ' (výsledek není úplný)' : ''}.`;
   }
-  $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending, speedFailed);
+  $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending, incomplete);
 }
 
 // Shrnutí výsledku do e-mailu s žádostí o osobní audit (aby bylo hned vidět, co na webu je špatně)
-function resultSummary(a, checks, scores, overall, speedPending, speedFailed) {
-  const lines = [`Skóre provedených kontrol: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : speedFailed ? ' (část měření není dostupná)' : ''}`];
+function resultSummary(a, checks, scores, overall, speedPending, incomplete) {
+  const lines = [`Skóre provedených kontrol: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : incomplete ? ' (část kontrol není dostupná)' : ''}`];
   lines.push(Object.entries(CATEGORIES).filter(([k]) => scores[k] != null).map(([k, name]) => `${name}: ${scores[k]}`).join(' · '));
   const list = status => checks.filter(c => c.status === status).map(c => `- ${c.title}${c.detail ? ` — ${c.detail}` : ''}`.slice(0, 220));
   const fails = list('fail');
@@ -223,7 +225,8 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const value = input.value.trim();
   if (!value) { showError('Zadejte adresu webu, například vas-web.cz'); input.focus(); return; }
-  run(value);
+  try { run(normalizeUrl(value).href); }
+  catch (error) { showError(error.message); input.setAttribute('aria-invalid', 'true'); input.focus(); }
 });
 
 // Tisk (Ctrl+P): před tiskem rozbalí všechna
@@ -269,4 +272,13 @@ if (typeof navigator.share === 'function') {
 }
 
 const initial = new URLSearchParams(location.search).get('url');
-if (initial) { input.value = initial; run(initial); }
+if (initial) {
+  input.value = initial;
+  try { run(normalizeUrl(initial).href); }
+  catch (error) {
+    showError(error.message);
+    input.setAttribute('aria-invalid', 'true');
+    const params = new URLSearchParams(location.search); params.delete('url');
+    history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
+  }
+}

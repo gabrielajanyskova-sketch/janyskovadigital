@@ -10,7 +10,6 @@
 //   (sitemap.xml se generuje z indexovatelných stránek)
 //   src/llms.txt     popis webu pro AI nástroje (seznam článků se doplní) → llms.txt
 //   src/_headers     HTTP hlavičky pro Cloudflare (CSP se doplní automaticky) → _headers
-//   content/         texty spravované přes CMS (/admin)
 //
 // Proměnné se píšou {{název}} nebo {{objekt.vlastnost}}. Chybějící proměnná build zastaví.
 
@@ -216,7 +215,9 @@ function cityJsonLd(city, business) {
 // ── CSS a JS ────────────────────────────────────────────────────────────────
 
 async function minifyCss(css) {
-  return (await esbuild.transform(css, { loader: 'css', minify: true, target: TARGET })).code;
+  const result = await esbuild.transform(css, { loader: 'css', minify: true, target: TARGET });
+  if (result.warnings.length) throw new Error(`Chyba ve stylech: ${result.warnings.map(w => w.text).join('; ')}`);
+  return result.code;
 }
 
 // Styly jedné stránky (src/css/pages/blog/clanek.css) se obalí :where(.page-blog-clanek),

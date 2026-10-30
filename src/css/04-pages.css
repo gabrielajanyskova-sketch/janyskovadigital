@@ -1,66 +1,367 @@
-/* Samostatné stránky: Ochrana osobních údajů, Poděkování, 404 */
-/* ochrana-udaju.html */
-.page-legal h1,.page-legal h2,.page-legal h3{font-family: 'DM Serif Display', Georgia, serif; font-weight: 400;}
-.page-legal{flex: 1; padding: 60px 0 100px; position: relative; z-index: 1;}
-.page-legal .container{max-width: 760px; margin: 0 auto; padding: 0 28px;}
-.page-legal .page-tag{font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;}
-.page-legal .page-tag::before{content: ''; width: 20px; height: 1px; background: var(--pink); flex-shrink: 0;}
-.page-legal h1{font-size: clamp(32px, 4vw, 50px); line-height: 1.1; margin-bottom: 40px;}
-.page-legal h1 em{font-style: italic; color: var(--pink);}
-.page-legal .info-card{background: rgba(240,20,122,0.05); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 44px; font-size: 15px; color: var(--text-dim); line-height: 1.75;}
-.page-legal .info-card strong{color: var(--text); font-weight: 600; display: block; margin-bottom: 8px;}
-.page-legal h2{font-size: 21px; color: var(--text); margin: 40px 0 12px; display: flex; align-items: center; gap: 12px;}
-.page-legal h2::before{content: ''; display: inline-block; width: 4px; height: 22px; background: var(--pink); border-radius: 2px; flex-shrink: 0;}
-.page-legal p{font-size: 15px; color: var(--text-dim); line-height: 1.85; margin-bottom: 16px;}
-.page-legal p strong{color: var(--text);}
-.page-legal a{color: var(--pink); text-decoration: none; transition: opacity 0.2s;}
-.page-legal a:hover{opacity: 0.8; text-decoration: underline;}
-
-/* podekovani.html */
-.page-thanks h1,.page-thanks h2,.page-thanks h3{font-family: 'DM Serif Display', Georgia, serif; font-weight: 400;}
-.page-thanks{flex: 1; display: flex; align-items: center; justify-content: center; padding: 60px 28px; position: relative; z-index: 1;}
-.page-thanks .wrap{max-width: 680px; width: 100%;}
-.page-thanks .eyebrow{display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;}
-.page-thanks .eyebrow-dot{width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 12px var(--green); animation: thanksPulseDot 2s infinite;}
-@keyframes thanksPulseDot{ 0%,100%{opacity:0.5;} 50%{opacity:1;} }
-.page-thanks .eyebrow-text{font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); font-weight: 600;}
-.page-thanks .heading-block{margin-bottom: 48px; position: relative;}
-.page-thanks .big-heading{font-size: clamp(52px, 9vw, 96px); line-height: 0.95; letter-spacing: -3px; margin-bottom: 0;}
-.page-thanks .big-heading .line1{display: block; color: var(--text);}
-.page-thanks .big-heading .line2{display: block; color: transparent; -webkit-text-stroke: 1px rgba(240,20,122,0.6);}
-.page-thanks .big-heading .line3{display: block; font-style: italic; color: var(--pink); text-shadow: 0 0 60px rgba(240,20,122,0.4);}
-.page-thanks .heading-deco{position: absolute; right: 0; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; align-items: flex-end;}
-.page-thanks .deco-line{height: 1px; background: linear-gradient(90deg, transparent, var(--pink)); animation: thanksLinePulse 2s ease-in-out infinite;}
-.page-thanks .deco-line:nth-child(1){width: 60px; animation-delay: 0s;}
-.page-thanks .deco-line:nth-child(2){width: 40px; animation-delay: 0.3s;}
-.page-thanks .deco-line:nth-child(3){width: 80px; animation-delay: 0.6s;}
-.page-thanks .deco-line:nth-child(4){width: 30px; animation-delay: 0.9s;}
-@keyframes thanksLinePulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
-.page-thanks .perex{font-size: 17px; color: var(--text-dim); line-height: 1.8; margin-bottom: 40px; max-width: 520px;}
-.page-thanks .steps{display: flex; flex-direction: column; gap: 0; margin-bottom: 44px;}
-.page-thanks .step{display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid rgba(240,20,122,0.08); align-items: flex-start;}
-.page-thanks .step:last-child{border-bottom: none;}
-.page-thanks .step-num{font-family: 'DM Serif Display', serif; font-size: 40px; color: rgba(240,20,122,0.2); line-height: 1; flex-shrink: 0; width: 48px; transition: color 0.3s;}
-.page-thanks .step:hover .step-num{color: rgba(240,20,122,0.55);}
-.page-thanks .step-content h2{font-family: "DM Serif Display", Georgia, serif; font-weight: 700; font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px;}
-.page-thanks .step-content p{font-size: 14px; color: var(--text-dim); line-height: 1.6;}
-.page-thanks .btns{display: flex; gap: 14px; flex-wrap: wrap;}
-.page-thanks .btn-primary{display: inline-flex; align-items: center; gap: 10px; background:var(--pink-strong); color: white; padding: 15px 34px; border-radius: 100px; text-decoration: none; font-size: 14px; font-weight: 700; transition: all 0.3s; box-shadow: 0 8px 28px rgba(240,20,122,0.35);}
-.page-thanks .btn-primary:hover{transform: translateY(-1px); box-shadow: 0 12px 36px rgba(240,20,122,0.5); background: var(--pink-light);}
-.page-thanks .btn-primary svg{width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;}
-.page-thanks .footer-inner{max-width: 1100px; margin: 0 auto; padding: 0 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: rgba(245,240,250,0.3);}
-.page-thanks .footer-inner a{color: rgba(240,20,122,0.6); text-decoration: none; transition: color 0.2s;}
-.page-thanks .footer-inner a:hover{color: var(--pink);}
-.page-thanks .footer-logo{font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--text); text-decoration: none;}
-.page-thanks .footer-logo em{font-style: italic; color: var(--pink);}
-@media(max-width: 600px){.page-thanks .big-heading{font-size: 52px; letter-spacing: -2px;}
-.page-thanks .heading-deco{display: none;}
-.page-thanks .btns{flex-direction: column;}
-.page-thanks .btn-primary{justify-content: center;}}
-/* Dekorativní čísla kroků v CSS (nečtou je čtečky ani kontrola kontrastu) */
-.page-thanks .step-num::before{content:attr(data-num)}
-
-.page-legal img{max-width:100%;height:auto;border-radius:16px}
-.article-updated{font-size:13px;color:var(--text-dim);margin:12px 0}
-.article-sources{padding-top:32px;padding-bottom:32px}
-.article-sources a{color:var(--pink-text);text-decoration:underline}
+.page-legal h1,
+.page-legal h2,
+.page-legal h3 {
+  font-family:
+    "DM Serif Display",
+    Georgia,
+    serif;
+  font-weight: 400;
+}
+.page-legal {
+  flex: 1;
+  padding: 60px 0 100px;
+  position: relative;
+  z-index: 1;
+}
+.page-legal .container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.page-legal .page-tag {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--pink);
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.page-legal .page-tag::before {
+  content: "";
+  width: 20px;
+  height: 1px;
+  background: var(--pink);
+  flex-shrink: 0;
+}
+.page-legal h1 {
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1.1;
+  margin-bottom: 40px;
+}
+.page-legal h1 em {
+  font-style: italic;
+  color: var(--pink);
+}
+.page-legal .info-card {
+  background: rgba(240, 20, 122, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 44px;
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+.page-legal .info-card strong {
+  color: var(--text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+.page-legal h2 {
+  font-size: 21px;
+  color: var(--text);
+  margin: 40px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.page-legal h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: var(--pink);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.page-legal p {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.page-legal p strong {
+  color: var(--text);
+}
+.page-legal a {
+  color: var(--pink);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.page-legal a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+.page-thanks h1,
+.page-thanks h2,
+.page-thanks h3 {
+  font-family:
+    "DM Serif Display",
+    Georgia,
+    serif;
+  font-weight: 400;
+}
+.page-thanks {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 28px;
+  position: relative;
+  z-index: 1;
+}
+.page-thanks .wrap {
+  max-width: 680px;
+  width: 100%;
+}
+.page-thanks .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.page-thanks .eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+  animation: thanksPulseDot 2s infinite;
+}
+@keyframes thanksPulseDot {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.page-thanks .eyebrow-text {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+}
+.page-thanks .heading-block {
+  margin-bottom: 48px;
+  position: relative;
+}
+.page-thanks .big-heading {
+  font-size: clamp(52px, 9vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  margin-bottom: 0;
+}
+.page-thanks .big-heading .line1 {
+  display: block;
+  color: var(--text);
+}
+.page-thanks .big-heading .line2 {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240, 20, 122, 0.6);
+}
+.page-thanks .big-heading .line3 {
+  display: block;
+  font-style: italic;
+  color: var(--pink);
+  text-shadow: 0 0 60px rgba(240, 20, 122, 0.4);
+}
+.page-thanks .heading-deco {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+.page-thanks .deco-line {
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--pink));
+  animation: thanksLinePulse 2s ease-in-out infinite;
+}
+.page-thanks .deco-line:nth-child(1) {
+  width: 60px;
+  animation-delay: 0s;
+}
+.page-thanks .deco-line:nth-child(2) {
+  width: 40px;
+  animation-delay: 0.3s;
+}
+.page-thanks .deco-line:nth-child(3) {
+  width: 80px;
+  animation-delay: 0.6s;
+}
+.page-thanks .deco-line:nth-child(4) {
+  width: 30px;
+  animation-delay: 0.9s;
+}
+@keyframes thanksLinePulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.page-thanks .perex {
+  font-size: 17px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  max-width: 520px;
+}
+.page-thanks .steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 44px;
+}
+.page-thanks .step {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(240, 20, 122, 0.08);
+  align-items: flex-start;
+}
+.page-thanks .step:last-child {
+  border-bottom: none;
+}
+.page-thanks .step-num {
+  font-family: "DM Serif Display", serif;
+  font-size: 40px;
+  color: rgba(240, 20, 122, 0.2);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+  transition: color 0.3s;
+}
+.page-thanks .step:hover .step-num {
+  color: rgba(240, 20, 122, 0.55);
+}
+.page-thanks .step-content h2 {
+  font-family:
+    "DM Serif Display",
+    Georgia,
+    serif;
+  font-weight: 700;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.page-thanks .step-content p {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.page-thanks .btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.page-thanks .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--pink-strong);
+  color: white;
+  padding: 15px 34px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 8px 28px rgba(240, 20, 122, 0.35);
+}
+.page-thanks .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 36px rgba(240, 20, 122, 0.5);
+  background: var(--pink-light);
+}
+.page-thanks .btn-primary svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.page-thanks .footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 12px;
+  color: rgba(245, 240, 250, 0.3);
+}
+.page-thanks .footer-inner a {
+  color: rgba(240, 20, 122, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.page-thanks .footer-inner a:hover {
+  color: var(--pink);
+}
+.page-thanks .footer-logo {
+  font-family: "DM Serif Display", serif;
+  font-size: 18px;
+  color: var(--text);
+  text-decoration: none;
+}
+.page-thanks .footer-logo em {
+  font-style: italic;
+  color: var(--pink);
+}
+@media (max-width: 600px) {
+  .page-thanks .big-heading {
+    font-size: 52px;
+    letter-spacing: -2px;
+  }
+  .page-thanks .heading-deco {
+    display: none;
+  }
+  .page-thanks .btns {
+    flex-direction: column;
+  }
+  .page-thanks .btn-primary {
+    justify-content: center;
+  }
+}
+.page-thanks .step-num::before {
+  content: attr(data-num);
+}
+.page-legal img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.article-updated {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 12px 0;
+}
+.article-sources {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.article-sources a {
+  color: var(--pink-text);
+  text-decoration: underline;
+}

@@ -12,10 +12,16 @@ const MAX_LINKS = 15;
 // Bezplatný tarif Workers dovoluje 50 odchozích požadavků na jedno volání; necháme rezervu
 const SUBREQUEST_BUDGET = 45;
 
-export async function audit(input, { fetchImpl = fetch, checkHost = true } = {}) {
+export async function audit(input, { fetchImpl = fetch, checkHost = true, deadlineMs = 55000 } = {}) {
   const url = checkHost ? normalizeUrl(input) : new URL(input);
   let used = 0;
-  const budgeted = (u, o) => (++used > SUBREQUEST_BUDGET ? Promise.reject(new Error('subrequest budget')) : fetchImpl(u, o));
+  const deadline = AbortSignal.timeout(deadlineMs);
+  const budgeted = async (u, o = {}) => {
+    deadline.throwIfAborted();
+    if (++used > SUBREQUEST_BUDGET) return Promise.reject(new Error('subrequest budget'));
+    const signal = o.signal ? AbortSignal.any([o.signal, deadline]) : deadline;
+    return fetchImpl(u, { ...o, signal });
+  };
   const remaining = () => SUBREQUEST_BUDGET - used;
   if (checkHost) await assertPublicHost(url.hostname, budgeted);
   const opts = { fetchImpl: budgeted, checkHost, checkedHosts: new Set(checkHost ? [url.hostname] : []) };
@@ -92,20 +98,24 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true } = {})
       consistent: new URL(wwwVer.url).hostname === final.hostname,
     } : null,
     robots,
-    sitemap: { url: sitemap.url, urls: sitemap.count },
-    securityTxt: securityTxt?.status === 200 && /text\/plain/i.test(securityTxt.contentType) && /^contact:/im.test(securityTxt.body),
+    sitemap: { url: sitemap.url, urls: sitemap.count, unavailable: sitemap.unavailable },
+    securityTxt: !securityTxt?.status || securityTxt.status >= 500 || [401, 403, 429].includes(securityTxt.status) ? null : securityTxt.status === 200 && /text\/plain/i.test(securityTxt.contentType) && /^contact:/im.test(securityTxt.body),
     llms: llmsRes?.status === 200 && /text\/(plain|markdown)/i.test(llmsRes.contentType) && llmsRes.body.trim().startsWith('#'),
     notFound: { url: probe, status: notFoundRes?.status || 0 },
     pages,
     links: { checked: linkResults.filter(l => !unverifiedLink(l)).length, unverified: linkResults.filter(unverifiedLink).length, broken: brokenLinks },
   };
+  const incomplete = deadline.aborted || used > SUBREQUEST_BUDGET || robots.unavailable || sitemap.unavailable ||
+    report.securityTxt === null || pages.some(p => !p.status || [401, 403, 429].includes(p.status)) || report.links.unverified > 0 || dns === null;
 
   const checks = [...siteChecks(report), ...domainChecks(dns, domain, report.securityTxt), ...emailChecks(dns, domain)];
+  if (incomplete) checks.push({ category: 'tech', id: 'coverage', weight: 1, status: 'info', title: 'Část kontrol se nepodařilo dokončit', detail: 'Některé údaje nebyly dostupné nebo byl dosažen časový či provozní limit.', why: 'Skóre se počítá pouze z ověřených bodů.', fix: 'Zopakovat test později a důležité neověřené body zkontrolovat ručně.' });
   return {
     url: report.url,
     finalUrl: report.finalUrl,
     platforms: report.platforms,
     checkedAt: new Date().toISOString(),
+    incomplete: !!incomplete,
     categories: CATEGORIES,
     scores: score(checks),
     checks,
@@ -149,14 +159,14 @@ export function parseRobots(text) {
 }
 
 async function readSitemap(url, opts, host, depth = 0) {
-  try { if (new URL(url).hostname !== host) return { url: null, count: 0, list: [] }; }
+  try { if (new URL(url).hostname !== host) return { url: null, count: 0, list: [], unavailable: true }; }
   catch { return { url: null, count: 0, list: [] }; }
   const res = await fetchPage(url, opts).catch(() => null);
-  if (!res || res.status !== 200 || !/<(urlset|sitemapindex)\b/i.test(res.body || '')) return { url: null, count: 0, list: [] };
+  if (!res || res.status !== 200 || !/<(urlset|sitemapindex)\b/i.test(res.body || '')) return { url: null, count: 0, list: [], unavailable: !res?.status || res.status >= 500 || [401, 403, 429].includes(res.status) };
   const locs = [...res.body.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi)].map(m => m[1].replace(/&amp;/g, '&'));
   if (/<sitemapindex\b/i.test(res.body) && depth === 0 && locs.length) {
     const child = await readSitemap(locs[0], opts, host, 1);
-    return { url: res.url, count: child.count, list: child.list };
+    return { url: res.url, count: child.count, list: child.list, unavailable: child.unavailable };
   }
   return { url: res.url, count: locs.length, list: locs };
 }

@@ -45,3 +45,12 @@ Výsledky stejné adresy se hodinu berou z cache (šetří kvótu Googlu a testo
 - **10 ms procesoru na požadavek:** PageSpeed se proto volá s `fields` (bez snímků obrazovky a překladů). Kdyby Google výběr odmítl (400), dotaz se zopakuje bez něj.
 - **50 odchozích požadavků na volání:** audit má rozpočet 45 a kontrolu odkazů zkrátí podle zbývajícího rozpočtu.
 - **Odpovědi 502/504** Cloudflare nahrazuje vlastní chybovou stránkou, proto chyby měření vrací 424.
+
+
+## Odolnost a provozní kontrola
+
+Technická kontrola má společný síťový limit 55 sekund. V jednom izolátu se sdílejí běžící kontroly stejné adresy a omezují nové souběžné úlohy (nejvýše 8 celkem, 2 technické audity). Nenahrazuje to WAF ani globální omezení požadavků. Výpadek cache neblokuje již získaný výsledek.
+
+Omezení prohlídky DNS, DNS rebindingu a nutné ověření v účtu Cloudflare jsou v [dokumentaci vývojářské kontroly](../docs/vyvojarska-kontrola-2026-10-30.md). Netvrdit, že běžný fetch připíná cílovou IP nebo že lokální testy dokazují vlastnosti produkční sítě.
+
+Další regresní testy: `node testwebu/test/resilience.mjs`, také součást `npm run testwebu:test`.

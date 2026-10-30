@@ -248,7 +248,9 @@ export function siteChecks(r) {
   else if (r.robots.blocksAll) out.push(check('tech', 'robots', 'high', 'fail', 'Robots.txt blokuje celý web', 'Obsahuje „Disallow: /“ pro všechny roboty.', 'Vyhledávače nesmí web procházet. Většinou zapomenuté nastavení z vývoje.', 'Odstranit „Disallow: /“ z robots.txt.'));
   else if (!r.robots.searchBlocked.length) out.push(check('tech', 'robots', 'low', 'pass', 'Soubor robots.txt je v pořádku', 'Existuje a neblokuje celý web.', 'Vyhledávače vědí, co smí procházet.', '—'));
 
-  out.push(r.sitemap.urls > 0
+  out.push(r.sitemap.unavailable
+    ? check('tech', 'sitemap', 'medium', 'info', 'Mapu webu se nepodařilo ověřit', 'Nebylo možné dokončit stažení v rámci této kontroly.', 'Neověřená mapa není důkaz chybějícího souboru.', 'Ověřit adresu sitemapy ručně nebo test zopakovat.')
+    : r.sitemap.urls > 0
     ? check('tech', 'sitemap', 'medium', 'pass', `Mapa webu (sitemap) obsahuje ${plural(r.sitemap.urls, 'stránku', 'stránky', 'stránek')}`, r.sitemap.url, 'Pomáhá Googlu najít všechny stránky, hlavně nové.', r.robots.sitemap ? '—' : 'Doplnit odkaz na sitemap do robots.txt.')
     : check('tech', 'sitemap', 'medium', 'warn', 'Mapa webu (sitemap.xml) nebyla nalezena', 'Není na obvyklé adrese ani v robots.txt.', 'Google pak nové stránky najde pomaleji nebo vůbec.', 'Vytvořit sitemap.xml, odkázat ji v robots.txt a odeslat v Google Search Console.'));
 
@@ -259,7 +261,8 @@ export function siteChecks(r) {
       same ? p.canonical : `Stránka ${r.finalUrl} uvádí jako hlavní ${p.canonical}.`, 'Říká Googlu, kterou adresu stránky zobrazovat.', same ? '—' : 'Ověřit, že canonical odkazuje sám na sebe (pokud to není záměr).'));
   }
 
-  if (r.notFound) out.push(check('tech', '404', 'medium', r.notFound.status === 404 || r.notFound.status === 410 ? 'pass' : 'warn',
+  if (r.notFound && !r.notFound.status) out.push(check('tech', '404', 'medium', 'info', 'Chování neexistující stránky se nepodařilo ověřit', r.notFound.url, 'Server neodpověděl v rámci kontroly.', 'Zopakovat test nebo otevřít neexistující adresu ručně.'));
+  else if (r.notFound) out.push(check('tech', '404', 'medium', r.notFound.status === 404 || r.notFound.status === 410 ? 'pass' : 'warn',
     r.notFound.status === 404 || r.notFound.status === 410 ? 'Neexistující stránky vracejí chybu 404' : `Neexistující stránka vrací kód ${r.notFound.status || 'chybu'} místo 404`,
     `Testovací adresa: ${r.notFound.url}`, 'Když web na neexistující adresy odpovídá „vše v pořádku“, Google indexuje prázdné stránky (soft 404).', 'Nastavit vracení stavového kódu 404 a vlastní chybovou stránku s odkazy dál.'));
 
@@ -485,7 +488,9 @@ export function domainChecks(dns, domain, securityTxt) {
   if (dns?.caa != null) out.push(dns.caa > 0
     ? check('security', 'caa', 'low', 'pass', 'Doména určuje, kdo smí vydat její certifikát (CAA)', 'Záznam CAA je nastavený.', 'CAA omezuje autority oprávněné vydat certifikát. Test ověřuje přítomnost záznamu, ne správnost celé politiky.', '—')
     : check('security', 'caa', 'low', 'info', 'Doména nemá záznam CAA', 'Volitelné doporučení.', 'CAA určuje, které autority smí vydat SSL certifikát pro doménu. Je to doplňková ochrana proti podvrženým certifikátům.', 'Přidat záznam CAA pro autoritu, která certifikát vydává (např. letsencrypt.org). Pozor, chybný záznam zablokuje obnovu certifikátu.'));
-  out.push(securityTxt
+  out.push(securityTxt === null
+    ? check('security', 'security-txt', 'low', 'info', 'Soubor security.txt se nepodařilo ověřit', 'Server neodpověděl nebo automatickou kontrolu odmítl.', 'Nejde o potvrzení chybějícího souboru.', 'Ověřit /.well-known/security.txt ručně.')
+    : securityTxt
     ? check('security', 'security-txt', 'low', 'pass', 'Web má soubor security.txt', 'Kontakt pro nahlášení bezpečnostních chyb je na /.well-known/security.txt.', 'Kdo najde na webu zranitelnost, ví, komu ji nahlásit.', '—')
     : check('security', 'security-txt', 'low', 'info', 'Chybí soubor security.txt', 'Na /.well-known/security.txt není kontakt pro hlášení bezpečnostních chyb.', 'Soubor podle RFC 9116 nabízí kontakt pro hlášení zranitelností. Jeho absence sama neprokazuje nebezpečný web ani nesoulad s NIS2.', 'Vytvořit /.well-known/security.txt s řádky Contact: mailto:vas@email.cz a Expires: (datum za rok).'));
   return out;

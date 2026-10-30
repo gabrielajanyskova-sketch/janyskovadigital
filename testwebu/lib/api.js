@@ -4,6 +4,11 @@ import { rateLimited as checkLimit, InputError } from '../../functions/_lib/secu
 import { AuditError } from './http.js';
 
 const CACHE_SECONDS = 3600;
+const CACHE_VERSION = 'v2';
+const MAX_IN_FLIGHT = 8;
+const MAX_AUDITS_IN_FLIGHT = 2;
+const inFlight = new Map();
+let auditsInFlight = 0;
 
 export function json(data, status = 200, extra = {}) {
   return new Response(JSON.stringify(data), {
@@ -34,18 +39,34 @@ export async function rateLimited(env, request) {
 // Výsledek pro stejnou adresu se hodinu bere z cache (šetří limit Googlu a cizí servery)
 export async function cached(cacheKey, compute) {
   const cache = globalThis.caches?.default;
-  const key = new Request(cacheKey);
+  const versioned = new URL(cacheKey);
+  versioned.pathname = `/__cache/${CACHE_VERSION}${versioned.pathname}`;
+  const key = new Request(versioned);
   if (cache) {
-    const hit = await cache.match(key);
-    if (hit) return { data: await hit.json(), hit: true };
+    try {
+      const hit = await cache.match(key);
+      if (hit) return { data: await hit.json(), hit: true };
+    } catch { console.warn('Cache výsledků není dostupná.'); }
   }
-  const data = await compute();
-  if (cache) {
-    await cache.put(key, new Response(JSON.stringify(data), {
-      headers: { 'content-type': 'application/json', 'cache-control': `public, max-age=${CACHE_SECONDS}` },
-    }));
-  }
-  return { data, hit: false };
+  // Souběžné dotazy stejného izolátu sdílejí jedno měření. Nejde o globální limit.
+  if (inFlight.has(key.url)) return inFlight.get(key.url);
+  const isAudit = versioned.pathname.endsWith('/audit');
+  if (inFlight.size >= MAX_IN_FLIGHT || (isAudit && auditsInFlight >= MAX_AUDITS_IN_FLIGHT)) throw new AuditError('Test je teď vytížený. Zkuste to prosím za chvíli.', 503);
+  if (isAudit) auditsInFlight++;
+  const task = Promise.resolve().then(async () => {
+    const data = await compute();
+    if (cache) {
+      try {
+        await cache.put(key, new Response(JSON.stringify(data), {
+          headers: { 'content-type': 'application/json', 'cache-control': `public, max-age=${CACHE_SECONDS}` },
+        }));
+      } catch { console.warn('Výsledek se nepodařilo uložit do cache.'); }
+    }
+    return { data, hit: false };
+  });
+  inFlight.set(key.url, task);
+  try { return await task; }
+  finally { inFlight.delete(key.url); if (isAudit) auditsInFlight--; }
 }
 
 export function handleError(e) {

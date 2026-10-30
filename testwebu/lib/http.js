@@ -21,6 +21,8 @@ export function normalizeUrl(input) {
   try { url = new URL(value); } catch { throw new AuditError('Tohle nevypadá jako adresa webu.'); }
   if (!['http:', 'https:'].includes(url.protocol)) throw new AuditError('Podporované jsou jen adresy http a https.');
   if (url.username || url.password) throw new AuditError('Adresa nesmí obsahovat přihlašovací údaje.');
+  const secretParams = /^(?:access_token|id_token|refresh_token|password|passwd|api_key|apikey|secret|authorization)$/i;
+  if ([...url.searchParams.keys()].some(name => secretParams.test(name))) throw new AuditError('Adresa obsahuje parametr pro heslo nebo přístupový klíč. Zadejte veřejnou adresu bez těchto údajů.');
   if (url.port && !['80', '443'].includes(url.port)) throw new AuditError('Adresa s nestandardním portem není podporovaná.');
   const host = url.hostname.toLowerCase().replace(/\.$/, '');
   url.hostname = host;
@@ -55,7 +57,8 @@ export function isPrivateIPv6(ip) {
   try { host = new URL(`http://[${ip}]/`).hostname.slice(1, -1).toLowerCase(); }
   catch { return true; }
   if (!/^[23]/.test(host)) return true; // zahrnuje i všechny IPv4-mapped adresy
-  return /^2001:(?:db8|0|10|2[0-9a-f]):/.test(host) || host.startsWith('2001::') || host.startsWith('2002:');
+  return /^2001:(?:db8|0|2|10|2[0-9a-f]):/.test(host) || host.startsWith('2001::') || host.startsWith('2002:') ||
+    (host.startsWith('3fff:') && parseInt(host.split(':')[1] || '0', 16) <= 0x0fff);
 }
 
 // Ověří přes DNS-over-HTTPS, že doména míří na veřejné IP (IPv4 i IPv6) — ochrana proti doméně namířené dovnitř sítě.
@@ -67,8 +70,9 @@ export async function assertPublicHost(host, fetchImpl) {
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
   const [v4, v6] = await Promise.all([lookup('A'), lookup('AAAA')]);
-  if (!v4 || !v6 || ![0, 3].includes(v4.Status) || ![0, 3].includes(v6.Status)) throw new AuditError('DNS domény se nepodařilo bezpečně ověřit.', 422);
-  if (v4?.Status === 3) throw new AuditError('Doména neexistuje. Zkontrolujte adresu.');
+  if (!v4 || !v6 || ![0, 3].includes(v4.Status) || ![0, 3].includes(v6.Status) ||
+      (v4.Answer != null && !Array.isArray(v4.Answer)) || (v6.Answer != null && !Array.isArray(v6.Answer))) throw new AuditError('DNS domény se nepodařilo bezpečně ověřit.', 422);
+  if (v4.Status === 3 || v6.Status === 3) throw new AuditError('DNS nevrátilo shodné platné údaje o doméně. Zkontrolujte adresu nebo test zopakujte.');
   const answers = [...(v4?.Answer || []), ...(v6?.Answer || [])];
   if (!answers.some(r => r.type === 1 || r.type === 28)) throw new AuditError('Doména nemá ověřitelnou veřejnou adresu.', 422);
   if (answers.some(r => (r.type === 1 && isPrivateIPv4(r.data)) || (r.type === 28 && isPrivateIPv6(r.data)))) {
@@ -77,7 +81,7 @@ export async function assertPublicHost(host, fetchImpl) {
 }
 
 // Stáhne URL a ručně projde přesměrování (každý krok znovu ověří). Vrací řetěz přesměrování,
-// konečnou odpověď, hlavičky a tělo (oříznuté na MAX_BYTES).
+// konečnou odpověď, hlavičky a tělo; neúplnou odpověď nad MAX_BYTES odmítne.
 export async function fetchPage(url, { fetchImpl, method = 'GET', checkHost = true, checkedHosts = new Set() } = {}) {
   const chain = [];
   let current = new URL(url);

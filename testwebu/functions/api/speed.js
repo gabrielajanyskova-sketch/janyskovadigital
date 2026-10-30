@@ -12,6 +12,7 @@ export async function onRequestGet({ request, env }) {
     const params = new URL(request.url).searchParams;
     const strategy = params.get('strategy') === 'desktop' ? 'desktop' : 'mobile';
     const url = normalizeUrl(params.get('url'));
+    if (!env.PAGESPEED_API_KEY) return json({ error: 'Měření rychlosti není nakonfigurované. Ostatní kontroly můžete použít.' }, 503);
     const origin = new URL(request.url).origin;
     const { data, hit } = await cached(`${origin}/__cache/speed?s=${strategy}&u=${encodeURIComponent(url.href)}`, async () => {
       const psi = await runPsi(url.href, strategy, { apiKey: env.PAGESPEED_API_KEY, fetchImpl: fetch });
