@@ -35,3 +35,59 @@ test('readiness: estimates follow catalogue changes and sit after the price list
   assert.ok(page.indexOf('id="cenik"') < page.indexOf('<!-- @include readiness -->'));
   assert.ok(page.indexOf('<!-- @include readiness -->') < page.indexOf('<!-- @include contact'));
 });
+
+test('readiness: enquiry fills the message, reveals the contact and scrolls to it', async () => {
+  const { runInNewContext } = await import('node:vm');
+  const { questions } = await import('../src/js/readiness-data.js');
+  const listeners = new Map();
+  const nodes = new Map();
+  let focused;
+  let scrolled;
+  let visible = false;
+  let hash;
+  const node = id => {
+    if (!nodes.has(id)) nodes.set(id, {
+      value: '',
+      addEventListener(type, handler) { listeners.set(`${id}:${type}`, handler); },
+      querySelectorAll() { return []; },
+      querySelector(selector) {
+        if (selector === '.reveal') return { classList: { add(value) { visible = value === 'visible'; } } };
+        if (selector === 'h3') return node('result-heading');
+        return { value: '0' };
+      },
+      replaceChildren() {},
+      append() {},
+      reportValidity() { return true; },
+      dispatchEvent() {},
+      focus(options) { focused = { id, options }; },
+      scrollIntoView(options) { scrolled = { id, options }; },
+    });
+    return nodes.get(id);
+  };
+  const source = (await readFile(new URL('../src/js/readiness.js', import.meta.url), 'utf8'))
+    .replace(/^import .*;\n/gm, '');
+  runInNewContext(source, {
+    questions, catalogue, estimateReadiness, formatEstimate,
+    document: { getElementById: node, createElement: () => node(Symbol()) },
+    window: { matchMedia: () => ({ matches: true }) },
+    history: { replaceState(_state, _title, url) { hash = url; } },
+    Event: class {},
+  });
+  node('zprava').value = 'Moje poznámka';
+  listeners.get('readiness-form:submit')({ preventDefault() {} });
+  listeners.get('readiness-contact:click')();
+  const message = node('zprava').value;
+  assert.ok(message.startsWith('Moje poznámka'));
+  assert.ok(message.includes('Moje zadání z testu připravenosti:'));
+  assert.equal(visible, true);
+  assert.equal(focused.id, 'jmeno');
+  assert.equal(focused.options.preventScroll, true);
+  assert.equal(scrolled.id, 'kontakt');
+  assert.equal(scrolled.options.behavior, 'auto');
+  assert.equal(hash, '#kontakt');
+  listeners.get('readiness-contact:click')();
+  assert.equal(node('zprava').value, message);
+  node('jmeno').value = 'Jana';
+  listeners.get('readiness-contact:click')();
+  assert.equal(focused.id, 'email');
+});

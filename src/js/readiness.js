@@ -85,6 +85,16 @@ if (form) {
     transferred = summary;
     message.dispatchEvent(new Event('input', { bubbles: true }));
     document.getElementById('readiness-transfer-status').textContent = 'Odpovědi jsou ve zprávě. Doplňte kontakt a zprávu odešlete, až budete chtít.';
-    message.focus();
+    const contact = document.getElementById('kontakt');
+    // The reveal animation can keep the form invisible until it enters the viewport.
+    contact?.querySelector('.reveal')?.classList.add('visible');
+    const firstEmpty = ['jmeno', 'email'].map(id => document.getElementById(id))
+      .find(field => field && !field.value.trim());
+    (firstEmpty || message).focus({ preventScroll: true });
+    contact?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'start',
+    });
+    history.replaceState(null, '', '#kontakt');
   });
 }
