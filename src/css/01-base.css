@@ -2699,22 +2699,14 @@ footer {
   }
 }
 @media (max-width:768px) {
-  .float-wa {
-    bottom: 76px;
-  }
-  .chat-toggle {
-    bottom: 76px;
-  }
+  .sticky-mobile-cta { padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px)); }
+  .float-wa, .chat-toggle { bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+  .mobile-cta-visible .float-wa,
+  .mobile-cta-visible .chat-toggle { bottom: calc(88px + env(safe-area-inset-bottom, 0px)); }
 }
 @media (max-width:600px) {
-  .float-wa {
-    bottom: 72px;
-    left: 16px;
-  }
-  .chat-toggle {
-    bottom: 72px;
-    right: 16px;
-  }
+  .float-wa { left: 16px; }
+  .chat-toggle { right: 16px; }
 }
 .tools-bar {
   padding: 40px 0;
