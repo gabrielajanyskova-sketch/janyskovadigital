@@ -938,3 +938,33 @@ footer .footer-bottom a:hover {
     grid-row: 3;
   }
 }
+
+/* Test připravenosti na nový web */
+.readiness { padding: 48px 0; scroll-margin-top: 100px; }
+.readiness [hidden] { display: none !important; }
+.readiness-card { max-width: 850px; margin: 0 auto; padding: clamp(24px, 5vw, 48px); border: 1px solid rgba(240,20,122,.35); border-radius: 24px; background: #151218; }
+.readiness-card > p { color: #d4cbd2; line-height: 1.75; margin-bottom: 20px; }
+.readiness form { margin-top: 28px; }
+.readiness progress { display: block; width: 100%; height: 8px; margin: 12px 0 28px; accent-color: #f0147a; }
+.readiness fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.readiness legend { font-size: clamp(20px, 3vw, 26px); font-weight: 700; margin-bottom: 20px; color: #fff; }
+.readiness-options { display: grid; gap: 12px; }
+.readiness-options label { display: flex; align-items: center; gap: 12px; padding: 16px; border: 1px solid #655761; border-radius: 12px; cursor: pointer; color: #f3edf1; line-height: 1.5; }
+.readiness-options label:hover, .readiness-options label:focus-within { border-color: #fa6aaa; background: #251a23; }
+.readiness-options input { width: 20px; height: 20px; flex: 0 0 20px; accent-color: #f0147a; }
+.readiness-options input:checked + span { font-weight: 700; }
+.readiness-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+.readiness button { cursor: pointer; white-space: normal; text-align: center; }
+.readiness button:disabled { opacity: .5; cursor: default; }
+.readiness :focus-visible { outline: 3px solid #ff98c8; outline-offset: 4px; }
+.readiness h3 { margin: 24px 0 16px; font-size: 26px; }
+#readiness-checklist { list-style: none; padding: 0; margin: 24px 0; }
+#readiness-checklist li { padding: 20px 0; border-bottom: 1px solid #4a3d46; line-height: 1.6; }
+#readiness-checklist p { margin-top: 8px; color: #d4cbd2; }
+.readiness-note { font-size: 14px; color: #d4cbd2; margin-top: 20px; line-height: 1.6; }
+@media (max-width: 480px) { .readiness-actions > button { width: 100%; justify-content: center; } }
+.readiness .btn-ghost { padding: 14px 22px; background: transparent; border: 1px solid #85717e; border-radius: 100px; color: #fff; font: inherit; }
+.readiness-estimate { margin: 24px 0; padding: 24px; border: 1px solid #b33a73; border-radius: 16px; background: #251a23; line-height: 1.7; }
+.readiness-estimate .readiness-price { margin: 8px 0; font-size: clamp(30px, 6vw, 44px); font-weight: 800; color: #ff98c8; }
+.readiness-estimate ul { margin: 16px 0 0; padding-left: 20px; }
+.readiness-estimate li + li { margin-top: 10px; }

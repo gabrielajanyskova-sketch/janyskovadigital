@@ -297,13 +297,13 @@ async function build() {
   await write('main.js', mainJs);
 
   const home = JSON.parse(await read('src/data/home.json'));
-  const { business } = JSON.parse(await read('src/data/schema-business.json'));
+  const { business, estimates } = JSON.parse(await read('src/data/schema-business.json'));
   const price = name => {
     const offer = business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === name);
     if (!offer) throw new Error(`Chybí cena služby ${name}`);
     return String(offer.price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
-  const prices = { start: price('Web Start'), business: price('Web Business'), refresh: price('Web Refresh'), refreshMulti: price('Web Refresh — vícestránkový'), shop: price('E-shop na míru') };
+  const prices = { businessMax: String(estimates.businessMax).replace(/\B(?=(\d{3})+(?!\d))/g, ' '), start: price('Web Start'), business: price('Web Business'), refresh: price('Web Refresh'), refreshMulti: price('Web Refresh — vícestránkový'), shop: price('E-shop na míru') };
   home.faq7_a = `Jednostránkový web od ${prices.start} Kč, vícestránkový od ${prices.business} Kč. Hosting prezentačního webu je v ceně tvorby; doména a individuálně dohodnuté služby se hradí zvlášť.`;
   const articles = await readArticles();
   const ctx = {

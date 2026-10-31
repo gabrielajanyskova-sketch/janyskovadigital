@@ -16,3 +16,5 @@ import './sticky-cta.js';
 import './process-carousel.js';
 import './magnet-buttons.js';
 import './article-tools.js';
+
+import './readiness.js';

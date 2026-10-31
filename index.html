@@ -37,7 +37,7 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="preload" href="/fonts/plus-jakarta-sans-cs-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>html,body{background:#08060c;color:#f5f0fa}</style>
-<link rel="stylesheet" href="/style.css?v=e4fc42a0ed">
+<link rel="stylesheet" href="/style.css?v=3a86bb4194">
 <link rel="stylesheet" href="/landing.css?v=f470847aee">
 <script type="application/ld+json">[{"@context":"https://schema.org","@type":["LocalBusiness","ProfessionalService"],"@id":"https://janyskovadigital.cz/#business","name":"Janyskova Digital","url":"https://janyskovadigital.cz","telephone":"+420739395800","email":"info@janyskovadigital.cz","address":{"@type":"PostalAddress","streetAddress":"Starojická Lhota 45","addressLocality":"Starý Jičín","postalCode":"741 01","addressCountry":"CZ"},"geo":{"@type":"GeoCoordinates","latitude":"49.5933","longitude":"18.0139"},"priceRange":"5900–25000 CZK","founder":{"@type":"Person","name":"Gabriela Janýšková","@id":"https://janyskovadigital.cz/#person"},"sameAs":["https://www.instagram.com/JanyskovaDigital"],"hasOfferCatalog":{"@type":"OfferCatalog","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web Start","provider":{"@id":"https://janyskovadigital.cz/#business"},"serviceType":"Web Start"},"price":"5900","priceCurrency":"CZK","description":"Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web Business","provider":{"@id":"https://janyskovadigital.cz/#business"},"serviceType":"Web Business"},"price":"12000","priceCurrency":"CZK","description":"Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web Refresh","provider":{"@id":"https://janyskovadigital.cz/#business"},"serviceType":"Web Refresh"},"price":"8900","priceCurrency":"CZK","description":"Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."},{"@type":"Offer","itemOffered":{"@type":"Service","name":"E-shop na míru","provider":{"@id":"https://janyskovadigital.cz/#business"},"serviceType":"E-shop na míru"},"price":"25000","priceCurrency":"CZK","description":"Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web Refresh — vícestránkový","provider":{"@id":"https://janyskovadigital.cz/#business"}},"price":"14900","priceCurrency":"CZK","description":"Cena od 14 900 Kč podle rozsahu."}]},"openingHours":["Mo-Fr 08:00-17:00"],"logo":{"@type":"ImageObject","url":"https://janyskovadigital.cz/web-app-manifest-512x512.png","width":512,"height":512},"image":"https://janyskovadigital.cz/og-image.png","identifier":{"@type":"PropertyValue","name":"IČO","value":"19616295"},"description":"Tvorba webových stránek a e-shopů na míru pro podnikatele a malé firmy. Skutečné sídlo: Starojická Lhota u Nového Jičína. Spolupráce po celé ČR.","areaServed":{"@type":"Country","name":"Česká republika"}},
   {
@@ -672,10 +672,91 @@
       </div>
     </div>
     <div class="pricing-note">
+      <p><a class="btn-primary" href="#pripravenost">Nevíte, co potřebujete? Zjistěte orientační cenu</a></p>
       <p><strong>Vše si domluvíme předem.</strong> Ceny jsou orientační. Rozsah, konečnou cenu a případné průběžné náklady vám potvrdím v nabídce.</p>
       <p>Po spuštění mohu pomoci s úpravami podle individuální dohody. U e-shopu počítejte také s poplatky zvolené platební brány a externích služeb.</p>
     </div>
   </div>
+</section>
+
+<section class="readiness" id="pripravenost" aria-labelledby="readiness-title">
+  <div class="container"><div class="readiness-card">
+    <div class="section-tag">Než začneme tvořit</div>
+    <h2 class="section-title" id="readiness-title">Jste připraveni <em>na nový web?</em></h2>
+    <p>Za 2 minuty zjistíte, co už máte připravené a co ještě potřebujete vyřešit. Získáte orientační cenu a vlastní checklist — zdarma a bez zadávání e-mailu.</p>
+    <p>Chybí vám texty, fotografie nebo kvalitní logo? I s tím vám pomohu, od návrhu nového loga po úpravu stávajícího.</p>
+    <noscript><p>Pro interaktivní test zapněte JavaScript. S přípravou webu i loga vám ráda pomohu také přes <a href="#kontakt">kontaktní formulář</a>.</p></noscript>
+    <button type="button" class="btn-primary" id="readiness-start" hidden>Zjistit, co mám připravené</button>
+    <form id="readiness-form" hidden>
+      <p id="readiness-progress" role="status" aria-live="polite"></p>
+      <progress id="readiness-meter" max="10" value="1" aria-label="Postup testem"></progress>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Co má váš nový web přinášet?</legend><div class="readiness-options">
+        <label><input type="radio" name="goal" value="0" required><span>Poptávky od zákazníků</span></label>
+        <label><input type="radio" name="goal" value="1" required><span>Prodej produktů</span></label>
+        <label><input type="radio" name="goal" value="2" required><span>Rezervace služeb</span></label>
+        <label><input type="radio" name="goal" value="3" required><span>Představení firmy</span></label>
+        <label><input type="radio" name="goal" value="4" required><span>Ještě si potřebuji ujasnit cíl</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Jak velký web potřebujete?</legend><div class="readiness-options">
+        <label><input type="radio" name="scope" value="0" required><span>Jedna přehledná stránka</span></label>
+        <label><input type="radio" name="scope" value="1" required><span>Více stránek pro firmu a služby</span></label>
+        <label><input type="radio" name="scope" value="2" required><span>E-shop s produkty a objednávkami</span></label>
+        <label><input type="radio" name="scope" value="3" required><span>Ještě nevím, potřebuji poradit</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Jaké funkce má web mít?</legend><div class="readiness-options">
+        <label><input type="radio" name="features" value="0" required><span>Prezentace a kontaktní formulář</span></label>
+        <label><input type="radio" name="features" value="1" required><span>Rezervace termínů nebo napojení rezervační služby</span></label>
+        <label><input type="radio" name="features" value="2" required><span>Košík, objednávky a online platby</span></label>
+        <label><input type="radio" name="features" value="3" required><span>Jiné funkce nebo zatím nevím</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Víte, koho chcete oslovit?</legend><div class="readiness-options">
+        <label><input type="radio" name="audience" value="0" required><span>Ano, své zákazníky znám</span></label>
+        <label><input type="radio" name="audience" value="1" required><span>Mám přibližnou představu</span></label>
+        <label><input type="radio" name="audience" value="2" required><span>Potřebuji s tím pomoct</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte jasno ve své nabídce?</legend><div class="readiness-options">
+        <label><input type="radio" name="offer" value="0" required><span>Ano, mám seznam služeb nebo produktů</span></label>
+        <label><input type="radio" name="offer" value="1" required><span>Nabídku ještě ladím</span></label>
+        <label><input type="radio" name="offer" value="2" required><span>Potřebuji pomoct s jejím představením</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte texty a fotografie?</legend><div class="readiness-options">
+        <label><input type="radio" name="content" value="0" required><span>Ano, obojí mám připravené</span></label>
+        <label><input type="radio" name="content" value="1" required><span>Mám jen část podkladů</span></label>
+        <label><input type="radio" name="content" value="2" required><span>Zatím nemám, potřebuji pomoc</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte logo pro svůj web?</legend><div class="readiness-options">
+        <label><input type="radio" name="logo" value="0" required><span>Ano, mám ho v dobré kvalitě</span></label>
+        <label><input type="radio" name="logo" value="1" required><span>Mám logo, ale je malé nebo rozmazané</span></label>
+        <label><input type="radio" name="logo" value="2" required><span>Chci logo upravit nebo modernizovat</span></label>
+        <label><input type="radio" name="logo" value="3" required><span>Logo nemám a potřebuji ho vytvořit</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Kdo bude web po spuštění spravovat?</legend><div class="readiness-options">
+        <label><input type="radio" name="maintenance" value="0" required><span>Chci si obsah upravovat sama / sám</span></label>
+        <label><input type="radio" name="maintenance" value="1" required><span>Chci úpravy svěřit vám</span></label>
+        <label><input type="radio" name="maintenance" value="2" required><span>Ještě nevím</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte představu o rozpočtu?</legend><div class="readiness-options">
+        <label><input type="radio" name="budget" value="0" required><span>Ano, mám stanovený rozpočet</span></label>
+        <label><input type="radio" name="budget" value="1" required><span>Mám přibližnou představu</span></label>
+        <label><input type="radio" name="budget" value="2" required><span>Potřebuji doporučit možnosti</span></label>
+      </div></fieldset>
+      <fieldset data-readiness-step hidden><legend tabindex="-1">Kdy chcete web spustit?</legend><div class="readiness-options">
+        <label><input type="radio" name="timing" value="0" required><span>Co nejdříve</span></label>
+        <label><input type="radio" name="timing" value="1" required><span>Mám konkrétní termín</span></label>
+        <label><input type="radio" name="timing" value="2" required><span>Termín je flexibilní</span></label>
+      </div></fieldset>
+      <div class="readiness-actions"><button type="button" class="btn-ghost" id="readiness-back">Zpět</button><button type="submit" class="btn-primary" id="readiness-next">Pokračovat</button></div>
+    </form>
+    <div id="readiness-result" hidden>
+      <h3 tabindex="-1">Vaše orientační cena a checklist</h3>
+      <div class="readiness-estimate"><p id="readiness-package"></p><p id="readiness-price" class="readiness-price"></p><p id="readiness-price-note"></p><ul id="readiness-extras"></ul></div>
+      <p>Nemusíte mít všechno hotové. Tohle je výchozí bod pro naši spolupráci.</p>
+      <ul id="readiness-checklist"></ul>
+      <p id="readiness-transfer-status" role="status"></p>
+      <div class="readiness-actions"><button type="button" class="btn-primary" id="readiness-contact">Chci nezávaznou nabídku</button><button type="button" class="btn-ghost" id="readiness-edit">Upravit odpovědi</button></div>
+      <p class="readiness-note">Odpovědi se nikam neodesílají. Do zprávy je přenesete tlačítkem výše a poptávku odešlete až po jejím doplnění.</p>
+    </div>
+  </div></div>
 </section>
 
 <div class="section-divider"></div>
@@ -895,7 +976,7 @@
     </div>
   </div>
 </footer>
-<script src="/main.js?v=0f6aaa6b86" defer></script>
+<script src="/main.js?v=0a6f253b40" defer></script>
 <div id="audit-popup" class="audit-popup" role="dialog" aria-modal="true" aria-labelledby="audit-popup-title">
   <div class="audit-box">
     <div class="audit-bar"></div>

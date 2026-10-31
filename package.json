@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node build.js",
     "check": "node check.js",
-    "test": "node test/contact.test.mjs && node test/security.test.mjs && node build.js && node check.js && node test/content.test.mjs",
+    "test": "node test/contact.test.mjs && node test/security.test.mjs && node build.js && node check.js && node test/content.test.mjs && node test/readiness.test.mjs",
     "testwebu:test": "node testwebu/test/run.mjs && node testwebu/test/psi.mjs && node testwebu/test/review.mjs && node testwebu/test/resilience.mjs",
     "testwebu:dev": "node testwebu/test/dev.mjs",
     "test:security": "node test/contact.test.mjs && node test/security.test.mjs",

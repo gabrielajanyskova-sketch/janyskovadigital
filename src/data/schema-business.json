@@ -125,5 +125,8 @@
       "@type": "Country",
       "name": "Česká republika"
     }
+  },
+  "estimates": {
+    "businessMax": 20000
   }
 }
