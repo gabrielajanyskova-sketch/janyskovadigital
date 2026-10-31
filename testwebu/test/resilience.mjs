@@ -40,7 +40,7 @@ test('cache version and size bound protect cold and repeated runs', async () => 
   try {
     globalThis.caches = { default: { match: async request => { key = request.url; return Response.json(42); } } };
     assert.equal((await cached('https://test.cz/__cache/example', async () => 0)).data, 42);
-    assert.match(key, /\/__cache\/v2\//);
+    assert.match(key, /\/__cache\/v3\//);
   } finally { globalThis.caches = original; }
 });
 test('DNS rejects inconsistent NXDOMAIN replies and malformed answers', async () => {

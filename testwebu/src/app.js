@@ -5,12 +5,12 @@ import '../../src/js/turnstile.js';
 
 import { CATEGORIES, CATEGORY_QUESTIONS, score } from '../lib/checks.js';
 import { normalizeUrl } from '../lib/http.js';
+import { checkStatusLabel, explanationCopy } from './check-copy.js';
 
 const $ = id => document.getElementById(id);
 const form = $('audit-form');
 const input = $('url');
 const STATUS_ORDER = { fail: 0, warn: 1, pass: 2, info: 3 };
-const STATUS_LABEL = { pass: 'V pořádku', warn: 'Zlepšit', fail: 'Problém', info: 'Info' };
 
 let state = null;
 let controller = null;
@@ -161,7 +161,7 @@ function render() {
   if (a.cacheHit || Object.values(state.speed).some(s => s.cacheHit)) meta.push('Část výsledků je uložená z předchozího testu. Pro nové měření použijte „Změřit znovu“.');
   if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
   const n = a.pages.length;
-  meta.push(n ? `Načtena zadaná stránka a pokus o kontrolu ${n} dalších` : 'Načtena zadaná stránka');
+  meta.push(n ? `Test zahrnul zadanou stránku a ${n} dalších adres` : 'Test zahrnul zadanou stránku');
   if (speedPending) meta.push('Rychlost se ještě měří…');
   if (incomplete) meta.push('Část kontrol není dostupná; skóre je neúplné.');
   $('result-meta').textContent = meta.join(' · ');
@@ -190,10 +190,10 @@ function render() {
   // Formulář pro osobní audit: adresa webu a výsledek se vyplní samy (zprávu lze upravit)
   const host = new URL(a.finalUrl).hostname.replace(/^www\./, '');
   $('lead-web').value = a.finalUrl;
-  $('lead-subject').value = `Žádost o osobní audit: ${host}`;
+  $('lead-subject').value = `Dotaz k výsledku testu: ${host}`;
   const message = $('lead-message');
   if (!message.dataset.edited) {
-    message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Skóre provedených automatických kontrol: ${overall}/100${speedPending || incomplete ? ' (výsledek není úplný)' : ''}.`;
+    message.value = `Dobrý den, prosím o vysvětlení výsledku testu webu ${a.finalUrl}. Skóre dokončených kontrol: ${overall}/100${speedPending || incomplete ? ' (výsledek není úplný)' : ''}.`;
   }
   $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending, incomplete);
 }
@@ -213,12 +213,13 @@ function resultSummary(a, checks, scores, overall, speedPending, incomplete) {
 }
 
 function renderCheck(c, open = false) {
+  const copy = explanationCopy(c);
   const more = el('div', { class: 'check-more' });
-  if (c.why) more.append(el('p', {}, el('strong', {}, 'Proč na tom záleží: '), c.why));
-  if (c.fix && c.fix !== '—') more.append(el('p', {}, el('strong', {}, 'Jak to opravit: '), c.fix));
+  if (c.why) more.append(el('p', {}, el('strong', {}, copy.meaningLabel), c.why));
+  if (copy.action) more.append(el('p', {}, el('strong', {}, copy.actionLabel), copy.action));
   return el('details', { class: `check ${c.status}`, 'data-check-id': c.id, ...(open ? { open: '' } : {}) },
     el('summary', {},
-      el('span', { class: 'badge' }, STATUS_LABEL[c.status]),
+      el('span', { class: 'badge' }, checkStatusLabel(c)),
       el('span', { class: 'check-title' }, c.title),
       el('span', { class: 'check-detail' }, c.detail)),
     more);

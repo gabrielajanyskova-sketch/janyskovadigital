@@ -20,7 +20,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Test webu zdarma | Janyskova Digital">
-<meta name="twitter:description" content="Zkontrolujte rychlost, základní SEO a technická nastavení webu. Česky a s návrhy oprav.">
+<meta name="twitter:description" content="Zkontrolujte rychlost, základní SEO a technická nastavení webu. Srozumitelně a s doporučením, co udělat dál.">
 <meta name="twitter:image" content="https://testwebu.janyskovadigital.cz/og-test-webu.png">
 <meta name="twitter:image:alt" content="Gabriela Janýšková — Janyskova Digital, autorka Testu webu">
 <meta name="author" content="Gabriela Janýšková">
@@ -131,7 +131,7 @@
           "name": "Co dělat, když mi test ukáže problémy?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit. Ozvu se do 24 hodin."
+            "text": "U každého bodu najdete vysvětlení. Když test najde problém, doporučí další postup. Výsledek můžete poslat správci webu nebo se mě zeptat přes formulář. Ozvu se do 24 hodin."
           }
         }
       ],
@@ -139,7 +139,7 @@
     }
   ]
 }</script>
-<script src="/app.js?v=53ae24ff78" defer></script>
+<script src="/app.js?v=64ca5c5982" defer></script>
 </head>
 <body>
 <a href="#main" class="skip-link">Přeskočit na obsah</a>
@@ -154,7 +154,7 @@
   <section class="hero wrap">
     <p class="eyebrow">Bezplatný test webu</p>
     <h1>Jak si stojí <em>váš web?</em></h1>
-    <p class="lead">Zadejte adresu svého webu a zjistěte, co má cenu zlepšit. Test prověří rychlost, základní SEO a technická nastavení. Česky a s návrhy oprav.</p>
+    <p class="lead">Zadejte adresu svého webu a zjistěte, co má cenu zlepšit. Test prověří rychlost, základní SEO a technická nastavení. Srozumitelně a s doporučením, co udělat dál.</p>
     <form id="audit-form" class="audit-form" novalidate>
       <label for="url" class="visually-hidden">Adresa webu</label>
       <input aria-describedby="url-hint form-error" id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="vas-web.cz" required spellcheck="false">
@@ -162,13 +162,13 @@
     </form>
     <p class="form-error" id="form-error" role="alert" hidden></p>
     <p class="hint" id="url-hint">Bez registrace. Zadejte veřejnou stránku bez přihlašovacích údajů a osobních údajů v adrese.</p>
-    <p class="ai-hook">Zkontroluji také strukturovaná data a pravidla robots.txt pro AI vyhledávače. Z nich ale nelze poznat, jestli vás AI opravdu doporučí.</p>
+    <p class="ai-hook">Podívám se také na údaje a pravidla, které web nabízí vyhledávačům a AI. Jestli vás AI skutečně doporučuje, tento test nezjistí.</p>
   </section>
 
   <section class="progress wrap" id="progress" hidden aria-live="polite">
     <h2 class="visually-hidden">Průběh testu</h2>
     <ol class="steps">
-      <li data-step="audit"><span class="dot" aria-hidden="true"></span>Technika, SEO, AI a bezpečnost</li>
+      <li data-step="audit"><span class="dot" aria-hidden="true"></span>Nastavení, obsah a základní zabezpečení webu</li>
       <li data-step="mobile"><span class="dot" aria-hidden="true"></span>Rychlost na mobilu (měří Google, 15–40 s)</li>
       <li data-step="desktop"><span class="dot" aria-hidden="true"></span>Rychlost na počítači</li>
     </ol>
@@ -177,7 +177,7 @@
   <section class="results wrap" id="results" hidden>
     <div class="print-head" aria-hidden="true">
       <p class="print-brand">Janyskova <em>Digital</em></p>
-      <p>Audit webu · testwebu.janyskovadigital.cz</p>
+      <p>Výsledek testu webu · testwebu.janyskovadigital.cz</p>
     </div>
     <div class="actions">
       <button type="button" class="btn-small" id="rerun">Změřit znovu</button>
@@ -192,16 +192,16 @@
         <p class="result-meta" id="result-meta"></p>
       </div>
     </div>
-    <p class="note">Skóre shrnuje jen provedené automatické kontroly. Není potvrzením bezpečnosti, souladu s GDPR ani pozic ve vyhledávání. Sdílený odkaz může otevřít až hodinu starý výsledek. Tlačítko „Změřit znovu“ spustí čerstvou kontrolu; totéž platí při odeslání adresy formulářem nahoře.</p>
+    <p class="note">Skóre vychází jen z dokončených kontrol. Ani 100/100 neznamená, že je celý web bez chyby. Výsledek může být až hodinu starý; tlačítko „Změřit znovu“ spustí aktuální kontrolu.</p>
     <div class="cats" id="cats"></div>
-    <p class="note">„Info“ je doplňující údaj nebo neověřená kontrola. Skóre nemění. U neověřeného bodu najdete, co se nepodařilo zjistit a zda má smysl kontrolu zopakovat.</p>
+    <p class="note">„Informace“ je doplňující údaj. „Neověřeno“ znamená, že test nedokázal něco zjistit. Ani jeden stav není automaticky chyba a nemění skóre.</p>
     <div id="checks"></div>
     <aside class="cta" id="audit">
-      <h2>Chcete to mít <em>v pořádku?</em></h2>
-      <p>Něco ve výsledku není jasné? Pošlete mi ho. Podívám se na váš web osobně a probereme, co má cenu změnit. Nezávazně a zdarma, odpovím do 24 hodin.</p>
+      <h2>Probereme <em>váš výsledek?</em></h2>
+      <p>Některému bodu nerozumíte nebo chcete poradit, čím začít? Pošlete mi výsledek. Ozvu se do 24 hodin a zdarma probereme, co má pro váš web smysl.</p>
       <form class="lead-form" id="lead-form" action="https://janyskovadigital.cz/api/contact" method="POST" data-turnstile>
         <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
-        <input type="hidden" name="subject" id="lead-subject" value="Žádost o osobní audit z Testu webu">
+        <input type="hidden" name="subject" id="lead-subject" value="Dotaz k výsledku Testu webu">
         <input type="hidden" name="web" id="lead-web">
         <input type="hidden" name="vysledek" id="lead-result">
         <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -210,7 +210,7 @@
           <label>E-mail<input type="email" name="email" required autocomplete="email" maxlength="254"></label>
         </div>
         <label>Zpráva<textarea name="zprava" id="lead-message" rows="3" required maxlength="5000"></textarea></label>
-        <button type="submit" class="btn">Chci osobní audit zdarma</button>
+        <button type="submit" class="btn">Probrat výsledek zdarma</button>
         <p class="lead-note">Informace o <a href="https://janyskovadigital.cz/ochrana-udaju">zpracování údajů</a> pro vyřízení poptávky. Raději telefon? <a href="tel:+420739395800">+420&nbsp;739&nbsp;395&nbsp;800</a></p>
       </form>
       <figure class="quote">
@@ -224,12 +224,13 @@
   <section class="about wrap">
     <h2>Co test kontroluje</h2>
     <ul class="about-list">
-      <li><strong>Rychlost</strong>: měření Google PageSpeed na mobilu i počítači a data od skutečných návštěvníků z Chrome.</li>
-      <li><strong>Technika a indexace</strong>: HTTPS, přesměrování, robots.txt (včetně blokace Googlu a Seznamu), mapa webu, chybové stránky, mobilní zobrazení.</li>
-      <li><strong>Obsah a SEO</strong>: titulky, popisy, nadpisy, obrázky, nefunkční odkazy, náhledy pro sociální sítě a několik dalších stránek webu.</li>
-      <li><strong>AI vyhledávače</strong>: přítomnost strukturovaných dat, základní pravidla robots.txt pro vyhledávací roboty a odděleně pravidla pro trénování. Citace AI neověřuje.</li>
-      <li><strong>E-mail</strong>: přítomnost a základní nastavení SPF a DMARC. Neověřuje DKIM ani doručení skutečných zpráv.</li>
-      <li><strong>Základní ochrany a soukromí</strong>: přítomnost bezpečnostních hlaviček a DNS záznamů, security.txt, odkazy na externí služby, zásady ochrany údajů a IČO. Neověřuje úplnost ochrany ani skutečné chování souhlasu s cookies.</li>
+      <li><strong>Rychlost</strong>: jak dlouho trvá zobrazení a reakce stránky při měření Googlu. Když jsou dostupná, také souhrnná data návštěvníků z Chrome.</li>
+      <li><strong>Technické nastavení</strong>: šifrované připojení, přesměrování adres, pravidla pro vyhledávače, mapa webu a nastavení šířky pro mobil.</li>
+      <li><strong>Obsah</strong>: názvy a popisy stránek, nadpisy, popisky obrázků, vybrané odkazy a náhled pro sdílení na sociálních sítích.</li>
+      <li><strong>Vyhledávače a AI</strong>: zda web nabízí doplňující údaje o svém obsahu a jaká má pravidla pro přístup robotů. Test nezjišťuje, jestli vás AI doporučuje.</li>
+      <li><strong>E-mail</strong>: základní pravidla proti podvržení pošty z vaší domény (SPF a DMARC). Test neodesílá skutečné zprávy ani neověřuje jejich doručení.</li>
+      <li><strong>Zabezpečení a soukromí</strong>: některá ochranná nastavení, údaje o firmě a odkaz na zásady ochrany údajů. Test nezkouší útok na web ani ovládání cookie lišty.</li>
+      <li><strong>Přístupnost</strong>: automatické hodnocení Googlu, pokud je dostupné. Nejde o úplné vyzkoušení webu lidmi se zrakovým nebo jiným omezením.</li>
     </ul>
     <h2 class="sample-title">Takto vypadá výsledek</h2>
     <div class="sample" aria-label="Ukázka výsledku testu">
@@ -242,7 +243,7 @@
       </ul>
       <p class="sample-note">U každého bodu najdete, proč na tom záleží a jak to opravit. Odkaz na výsledek můžete poslat třeba tomu, kdo vám web spravuje.</p>
     </div>
-    <p class="note">Jde o automatickou orientační kontrolu veřejných stránek. Nenahrazuje penetrační test, právní posouzení ani úplný audit přístupnosti. Citace v AI odpovědích neměří. Kvalitu textů, zpětné odkazy a skutečné poptávky je potřeba posoudit zvlášť.</p>
+    <p class="note">Test je orientační a kontroluje pouze veřejně dostupné údaje. Nenahrazuje ruční prověření celého webu, bezpečnostní audit ani právní posouzení. Nezjišťuje, zda vás AI doporučuje nebo kolik zákazníků vám web přivádí.</p>
   </section>
 
   <section class="faq wrap" id="caste-otazky" aria-labelledby="faq-title">
@@ -269,7 +270,7 @@
     </details>
     <details class="faq-item">
       <summary>Co dělat, když mi test ukáže problémy?</summary>
-      <p>U každého bodu najdete, proč na tom záleží a jak to opravit. Výsledek můžete poslat tomu, kdo vám web spravuje, nebo si přímo z testu požádat o osobní audit. Ozvu se do 24 hodin.</p>
+      <p>U každého bodu najdete vysvětlení. Když test najde problém, doporučí další postup. Výsledek můžete poslat správci webu nebo se mě zeptat přes formulář. Ozvu se do 24 hodin.</p>
     </details>
   </section>
 </main>
@@ -277,7 +278,7 @@
 <footer class="foot">
   <div class="wrap">
     <p>Test připravila <a href="https://janyskovadigital.cz/">Gabriela Janýšková</a>, webdesignérka · IČO 19616295</p>
-    <p class="small">Testovaný web navštíví TestWebuBot a Google PageSpeed Insights. Výsledky se mohou až hodinu používat z mezipaměti. Informace o zpracování údajů najdete v <a href="https://janyskovadigital.cz/ochrana-udaju">zásadách ochrany osobních údajů</a>.</p>
+    <p class="small">Testovaný web navštíví TestWebuBot a Google PageSpeed Insights. Stejný uložený výsledek se může zobrazovat až hodinu. Informace o zpracování údajů najdete v <a href="https://janyskovadigital.cz/ochrana-udaju">zásadách ochrany osobních údajů</a>.</p>
   </div>
 </footer>
 </body>
