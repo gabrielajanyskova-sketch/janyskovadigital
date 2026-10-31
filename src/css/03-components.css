@@ -1074,3 +1074,23 @@ a.action-link:focus-visible, .home-offer:focus-visible, .home-tool-links a:focus
   .personal-cta-card .btn-primary { width: 100%; padding: 16px 20px; }
 }
 @media (prefers-reduced-motion: reduce) { .home-work-card img { transition: none; } }
+
+/* Kompaktní úvod nástrojů: jedna hierarchie a rychlý přístup k ovládání. */
+.tool-heading { padding-top: 40px; padding-bottom: 0; }
+.tool-heading .tool-back { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-bottom: 24px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text-dim); font-size: 13px; font-weight: 600; text-decoration: none; }
+.tool-heading .tool-back:hover { color: var(--text); border-color: var(--pink-light); }
+.tool-heading .tool-back:focus-visible { outline: 3px solid var(--pink-light); outline-offset: 4px; }
+.tool-heading .section-tag { margin-bottom: 12px; }
+.tool-heading h1 { margin: 0 0 16px; }
+.tool-heading h1 em { color: var(--pink-light); }
+.tool-page-costs .kalk-section { padding: 28px 0 48px; }
+.tool-page-costs .kalk-wrap { max-width: 100%; }
+.tool-page > .readiness, .tool-page > .faq-section { padding-top: 28px; }
+@media (max-width: 600px) {
+  .tool-heading { padding-top: 24px; }
+  .tool-heading .tool-back { margin-bottom: 20px; }
+  .tool-heading h1 { font-size: 34px; line-height: 1.18; margin-bottom: 12px; }
+  .tool-heading > p { font-size: 15px; line-height: 1.65; }
+  .tool-page-costs .kalk-section { padding-top: 24px; }
+  .tool-page-costs .kalk-wrap { padding: 24px 20px; }
+}
