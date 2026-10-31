@@ -34,6 +34,7 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 - [Zadání webu a orientační cena](https://janyskovadigital.cz/priprava-webu): test připravenosti, doporučený rozsah a nezávazný odhad ceny.
 - [Kalkulačka nákladů](https://janyskovadigital.cz/naklady-webu): orientační model podle zadaných nákladů.
 - [Časté otázky](https://janyskovadigital.cz/caste-otazky): ceny, podklady a průběh spolupráce.
+- [O mně](https://janyskovadigital.cz/o-mne): původní příběh Gabriely Janýškové a její přístup ke spolupráci.
 - [Reference](https://janyskovadigital.cz/reference)
 - [Blog](https://janyskovadigital.cz/blog)
 

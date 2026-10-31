@@ -69,7 +69,7 @@ test('SEO: each indexable page has unique metadata, consistent canonical and a p
       nodes.some(
         (node) =>
           node.url === canonical &&
-          ['WebPage', 'CollectionPage', 'FAQPage'].includes(node['@type']),
+          ['WebPage', 'CollectionPage', 'FAQPage', 'AboutPage'].includes(node['@type']),
       ),
       file,
     );
@@ -85,7 +85,7 @@ test('SEO: each indexable page has unique metadata, consistent canonical and a p
         );
     }
   }
-  assert.equal(canonicals.size, 50);
+  assert.equal(canonicals.size, [...sitemap.matchAll(/<loc>/g)].length);
 });
 
 test('SEO: default completion preserves explicit metadata, nested breadcrumbs and idempotence', () => {
