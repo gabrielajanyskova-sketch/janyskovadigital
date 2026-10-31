@@ -1,6 +1,6 @@
 // Hlavní tlačítka se lehce „přitahují“ ke kurzoru (jen na zařízeních s myší)
 
-if (!window.matchMedia('(hover: none)').matches) {
+if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
   document.querySelectorAll('.btn-primary').forEach(function(btn) {
     btn.addEventListener('mousemove', function(e) {
       const rect = btn.getBoundingClientRect();

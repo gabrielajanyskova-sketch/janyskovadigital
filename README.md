@@ -23,10 +23,13 @@ npm run test:penetration # lokální HTTP útokové scénáře, externí služby
 | `src/templates/city.html` | Městská šablona |
 | `src/css/` | Základní styly, komponenty, stránky; žádný světlý motiv |
 | `src/css/pages/` | Styly jednotlivých stránek, sestavují se do pages.css |
+| `src/lib/seo.js` | Doplnění metadat a schémat při sestavení; explicitní hodnoty stránky se zachovávají |
 | `src/js/` | Frontendové moduly, společné modální chování a Turnstile |
 | `functions/api/` | Kontakt přes Resend a veřejná konfigurace Turnstile |
 | `functions/_lib/` | Limity požadavků a čtení těla s bajtovým limitem |
 | `testwebu/` | Samostatná aplikace technického auditu |
+
+Otázky testu připravenosti mají jediný zdroj v `src/js/readiness-data.js`; HTML kroků generuje build. SEO regresní testy jsou v `test/seo.test.mjs`. Výsledky poslední revize: [audit webu 31. 10. 2026](docs/audit-webu-2026-10-31.md).
 
 Proměnné šablon: `{{home.hero_title}}`, `{{city.name}}`. Include: `<!-- @include nav about="/#o-mne" cenik="/#cenik" kontakt="/#kontakt" -->`. FAQPage se generuje z viditelných otázek a odpovědí. Karty blogu, sitemap a seznam článků v llms.txt se generují z článků. Nový článek přidejte jako HTML do `src/pages/blog/`, včetně metadat a data publikace; CMS ani Markdown se nepoužívají.
 

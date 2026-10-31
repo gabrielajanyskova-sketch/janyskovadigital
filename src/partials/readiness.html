@@ -8,62 +8,8 @@
     <button type="button" class="btn-primary" id="readiness-start" hidden>Zjistit, co mám připravené</button>
     <form id="readiness-form" hidden>
       <p id="readiness-progress" role="status" aria-live="polite"></p>
-      <progress id="readiness-meter" max="10" value="1" aria-label="Postup testem"></progress>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Co má váš nový web přinášet?</legend><div class="readiness-options">
-        <label><input type="radio" name="goal" value="0" required><span>Poptávky od zákazníků</span></label>
-        <label><input type="radio" name="goal" value="1" required><span>Prodej produktů</span></label>
-        <label><input type="radio" name="goal" value="2" required><span>Rezervace služeb</span></label>
-        <label><input type="radio" name="goal" value="3" required><span>Představení firmy</span></label>
-        <label><input type="radio" name="goal" value="4" required><span>Ještě si potřebuji ujasnit cíl</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Jak velký web potřebujete?</legend><div class="readiness-options">
-        <label><input type="radio" name="scope" value="0" required><span>Jedna přehledná stránka</span></label>
-        <label><input type="radio" name="scope" value="1" required><span>Více stránek pro firmu a služby</span></label>
-        <label><input type="radio" name="scope" value="2" required><span>E-shop s produkty a objednávkami</span></label>
-        <label><input type="radio" name="scope" value="3" required><span>Ještě nevím, potřebuji poradit</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Jaké funkce má web mít?</legend><div class="readiness-options">
-        <label><input type="radio" name="features" value="0" required><span>Prezentace a kontaktní formulář</span></label>
-        <label><input type="radio" name="features" value="1" required><span>Rezervace termínů nebo napojení rezervační služby</span></label>
-        <label><input type="radio" name="features" value="2" required><span>Košík, objednávky a online platby</span></label>
-        <label><input type="radio" name="features" value="3" required><span>Jiné funkce nebo zatím nevím</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Víte, koho chcete oslovit?</legend><div class="readiness-options">
-        <label><input type="radio" name="audience" value="0" required><span>Ano, své zákazníky znám</span></label>
-        <label><input type="radio" name="audience" value="1" required><span>Mám přibližnou představu</span></label>
-        <label><input type="radio" name="audience" value="2" required><span>Potřebuji s tím pomoct</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte jasno ve své nabídce?</legend><div class="readiness-options">
-        <label><input type="radio" name="offer" value="0" required><span>Ano, mám seznam služeb nebo produktů</span></label>
-        <label><input type="radio" name="offer" value="1" required><span>Nabídku ještě ladím</span></label>
-        <label><input type="radio" name="offer" value="2" required><span>Potřebuji pomoct s jejím představením</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte texty a fotografie?</legend><div class="readiness-options">
-        <label><input type="radio" name="content" value="0" required><span>Ano, obojí mám připravené</span></label>
-        <label><input type="radio" name="content" value="1" required><span>Mám jen část podkladů</span></label>
-        <label><input type="radio" name="content" value="2" required><span>Zatím nemám, potřebuji pomoc</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte logo pro svůj web?</legend><div class="readiness-options">
-        <label><input type="radio" name="logo" value="0" required><span>Ano, mám ho v dobré kvalitě</span></label>
-        <label><input type="radio" name="logo" value="1" required><span>Mám logo, ale je malé nebo rozmazané</span></label>
-        <label><input type="radio" name="logo" value="2" required><span>Chci logo upravit nebo modernizovat</span></label>
-        <label><input type="radio" name="logo" value="3" required><span>Logo nemám a potřebuji ho vytvořit</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Kdo bude web po spuštění spravovat?</legend><div class="readiness-options">
-        <label><input type="radio" name="maintenance" value="0" required><span>Chci si obsah upravovat sama / sám</span></label>
-        <label><input type="radio" name="maintenance" value="1" required><span>Chci úpravy svěřit vám</span></label>
-        <label><input type="radio" name="maintenance" value="2" required><span>Ještě nevím</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Máte představu o rozpočtu?</legend><div class="readiness-options">
-        <label><input type="radio" name="budget" value="0" required><span>Ano, mám stanovený rozpočet</span></label>
-        <label><input type="radio" name="budget" value="1" required><span>Mám přibližnou představu</span></label>
-        <label><input type="radio" name="budget" value="2" required><span>Potřebuji doporučit možnosti</span></label>
-      </div></fieldset>
-      <fieldset data-readiness-step hidden><legend tabindex="-1">Kdy chcete web spustit?</legend><div class="readiness-options">
-        <label><input type="radio" name="timing" value="0" required><span>Co nejdříve</span></label>
-        <label><input type="radio" name="timing" value="1" required><span>Mám konkrétní termín</span></label>
-        <label><input type="radio" name="timing" value="2" required><span>Termín je flexibilní</span></label>
-      </div></fieldset>
+      <progress id="readiness-meter" max="{{readinessCount}}" value="1" aria-label="Postup testem"></progress>
+{{readinessFields}}
       <div class="readiness-actions"><button type="button" class="btn-ghost" id="readiness-back">Zpět</button><button type="submit" class="btn-primary" id="readiness-next">Pokračovat</button></div>
     </form>
     <div id="readiness-result" hidden>

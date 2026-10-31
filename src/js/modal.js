@@ -19,7 +19,7 @@ export function openModal(container, { initialFocus, returnFocus = document.acti
   function keydown(event) {
     if (event.key === 'Escape') { event.preventDefault(); onEscape?.(); return; }
     if (event.key !== 'Tab') return;
-    const targets = focusable(), first = targets[0], last = targets.at(-1);
+    const targets = focusable(), first = targets[0], last = targets[targets.length - 1];
     if (!first) { event.preventDefault(); container.focus(); return; }
     if (!container.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)) {
       event.preventDefault(); (event.shiftKey ? last : first).focus();

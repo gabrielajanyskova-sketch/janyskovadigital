@@ -124,7 +124,8 @@
     "areaServed": {
       "@type": "Country",
       "name": "Česká republika"
-    }
+    },
+    "hasMap": "https://maps.app.goo.gl/LQaMJHRX8iiGCxid7?g_st=ic"
   },
   "estimates": {
     "businessMax": 20000

@@ -945,6 +945,7 @@ footer .footer-bottom a:hover {
 .readiness [hidden] { display: none !important; }
 .readiness-card { max-width: 850px; margin: 0 auto; padding: clamp(24px, 5vw, 48px); border: 1px solid rgba(240,20,122,.35); border-radius: 24px; background: #151218; }
 .readiness-card > p { color: #d4cbd2; line-height: 1.75; margin-bottom: 20px; }
+.readiness .section-tag { color: var(--pink-light); }
 .readiness form { margin-top: 28px; }
 .readiness progress { display: block; width: 100%; height: 8px; margin: 12px 0 28px; accent-color: #f0147a; }
 .readiness fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
@@ -996,8 +997,8 @@ footer .footer-bottom a:hover {
 .home-about-inner .section-title { font-size: clamp(28px, 4vw, 44px); }
 .home-about-inner p { color: var(--text-dim); line-height: 1.8; }
 .home-process { margin: 24px 0; scroll-margin-top: 100px; }
-.tool-heading { padding-top: 140px; padding-bottom: 16px; max-width: 900px; }
-.tool-heading h1 { font-family: "DM Serif Display", serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.2; margin: 24px 0 16px; }
+.tool-heading { padding-top: 40px; padding-bottom: 0; max-width: 900px; }
+.tool-heading h1 { font-family: "DM Serif Display", serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.2; margin: 0 0 16px; }
 .tool-heading p { color: var(--text-dim); }
 @media (max-width: 800px) { .home-offers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) {
@@ -1076,12 +1077,10 @@ a.action-link:focus-visible, .home-offer:focus-visible, .home-tool-links a:focus
 @media (prefers-reduced-motion: reduce) { .home-work-card img { transition: none; } }
 
 /* Kompaktní úvod nástrojů: jedna hierarchie a rychlý přístup k ovládání. */
-.tool-heading { padding-top: 40px; padding-bottom: 0; }
 .tool-heading .tool-back { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; margin-bottom: 24px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 10px; color: var(--text-dim); font-size: 13px; font-weight: 600; text-decoration: none; }
 .tool-heading .tool-back:hover { color: var(--text); border-color: var(--pink-light); }
 .tool-heading .tool-back:focus-visible { outline: 3px solid var(--pink-light); outline-offset: 4px; }
 .tool-heading .section-tag { margin-bottom: 12px; }
-.tool-heading h1 { margin: 0 0 16px; }
 .tool-heading h1 em { color: var(--pink-light); }
 .tool-page-costs .kalk-section { padding: 28px 0 48px; }
 .tool-page-costs .kalk-wrap { max-width: 100%; }

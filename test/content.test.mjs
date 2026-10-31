@@ -45,5 +45,9 @@ test('CI runs tests on supported pinned Node; prices originate from shared data'
   assert(read('.github/workflows/build.yml').includes('run: npm test'));
   assert.equal(read('.nvmrc').trim(), '24');
   assert(read('build.js').includes('businessJsonLd: JSON.stringify(business)'));
-  assert(read('build.js').includes("replace('{{llmsOffers}}'"));
+  const { business } = JSON.parse(read('src/data/schema-business.json'));
+  for (const offer of business.hasOfferCatalog.itemListElement) {
+    assert(read('llms.txt').includes(offer.itemOffered.name));
+    assert(read('llms.txt').includes(Number(offer.price).toLocaleString('cs-CZ')));
+  }
 });

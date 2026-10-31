@@ -27,6 +27,10 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 - [E-shop na míru](https://janyskovadigital.cz/eshop)
 - [Ceník](https://janyskovadigital.cz/#cenik)
 - [Test webu](https://testwebu.janyskovadigital.cz/): technická kontrola dostupných signálů. Neměří skutečné citace v AI ani neprokazuje právní soulad.
+- [Zadání webu a orientační cena](https://janyskovadigital.cz/priprava-webu): test připravenosti, doporučený rozsah a nezávazný odhad ceny.
+- [Kalkulačka nákladů](https://janyskovadigital.cz/naklady-webu): orientační model podle zadaných nákladů.
+- [Časté otázky](https://janyskovadigital.cz/caste-otazky): ceny, podklady a průběh spolupráce.
+- [Reference](https://janyskovadigital.cz/reference)
 - [Blog](https://janyskovadigital.cz/blog)
 
 ## Blog — všechny články

@@ -1,3 +1,5 @@
+import { withTimeout } from './request-timeout.js';
+
 // Sdílené pro kontakt, barter i formulář na subdoméně testwebu.
 let scriptPromise;
 function loadScript() {
@@ -37,7 +39,8 @@ for (const form of document.querySelectorAll('form[data-turnstile]')) {
   const configUrl = new URL('/api/turnstile', form.action);
   Promise.all([
     loadScript(),
-    fetch(configUrl, { credentials: 'omit', signal: AbortSignal.timeout(10000) }).then(async response => {
+    withTimeout(10000, async signal => {
+      const response = await fetch(configUrl, { credentials: 'omit', signal });
       if (!response.ok) throw new Error('Configuration unavailable');
       const data = await response.json();
       if (!data.sitekey) throw new Error('Site key missing');

@@ -1,4 +1,5 @@
 import { resetTurnstile } from './turnstile.js';
+import { withTimeout } from './request-timeout.js';
 
 // Odesílání formulářů přes vlastní endpoint /api/contact (Resend) — kontaktní formulář a barter
 
@@ -6,8 +7,11 @@ const ENDPOINT = '/api/contact';
 const THANKS   = '/podekovani';
 
 async function submit(form) {
-  const res = await fetch(ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form), signal: AbortSignal.timeout(20000) });
-  const data = await res.json().catch(() => null);
+  const { res, data } = await withTimeout(20000, async signal => {
+    const res = await fetch(ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form), signal });
+    const data = await res.json().catch(() => null);
+    return { res, data };
+  });
   if (!res.ok || data?.success !== true) throw new Error(data?.message || (res.status === 429 ? 'Příliš mnoho zpráv. Zkuste to za 10 minut.' : 'Odeslání se nepodařilo potvrdit. Zkuste to později nebo napište na info@janyskovadigital.cz.'));
   window.location.href = THANKS;
 }

@@ -3,6 +3,10 @@
 setTimeout(function() {
   document.querySelectorAll('.score-num').forEach(function(el) {
     const target = parseInt(el.dataset.target, 10);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = target;
+      return;
+    }
     const start  = performance.now();
     requestAnimationFrame(function tick(now) {
       const p = Math.min((now - start) / 1400, 1);

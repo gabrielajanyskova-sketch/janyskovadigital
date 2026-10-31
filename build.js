@@ -17,10 +17,13 @@ import { readFile, writeFile, readdir, mkdir } from 'fs/promises';
 import { createHash } from 'crypto';
 import path from 'path';
 import * as esbuild from 'esbuild';
+import { completeSeo } from './src/lib/seo.js';
+import { questions } from './src/js/readiness-data.js';
 
-const read = p => readFile(p, 'utf8');
-const hash = s => createHash('sha256').update(s).digest('hex').slice(0, 10);
-const cspHash = s => `'sha256-${createHash('sha256').update(s).digest('base64')}'`;
+const read = (p) => readFile(p, 'utf8');
+const hash = (s) => createHash('sha256').update(s).digest('hex').slice(0, 10);
+const cspHash = (s) =>
+  `'sha256-${createHash('sha256').update(s).digest('base64')}'`;
 
 // Prohlížeče, pro které se CSS a JS překládá (vnořené CSS se rozbalí, moderní JS zůstane)
 const TARGET = ['chrome90', 'safari14', 'firefox90'];
@@ -29,7 +32,7 @@ async function walk(dir, ext = '.html') {
   const out = [];
   for (const e of await readdir(dir, { withFileTypes: true })) {
     const p = path.join(dir, e.name);
-    if (e.isDirectory()) out.push(...await walk(p, ext));
+    if (e.isDirectory()) out.push(...(await walk(p, ext)));
     else if (e.name.endsWith(ext)) out.push(p);
   }
   return out.sort();
@@ -44,29 +47,37 @@ async function write(file, content) {
 
 const partialCache = new Map();
 async function partial(name) {
-  if (!partialCache.has(name)) partialCache.set(name, await read(`src/partials/${name}.html`));
+  if (!partialCache.has(name))
+    partialCache.set(name, await read(`src/partials/${name}.html`));
   return partialCache.get(name);
 }
 
-const INCLUDE = /<!-- @include ([a-z0-9-]+)((?:\s+[a-zA-Z]+="[^"]*")*)\s*-->\n?/g;
+const INCLUDE =
+  /<!-- @include ([a-z0-9-]+)((?:\s+[a-zA-Z]+="[^"]*")*)\s*-->\n?/g;
 
 async function expandIncludes(text, depth = 0) {
   if (depth > 10) throw new Error('Příliš hluboké vnoření @include');
   const found = [...text.matchAll(INCLUDE)];
   if (!found.length) return text;
-  const parts = await Promise.all(found.map(async ([, name, attrs]) => {
-    let body = await partial(name);
-    for (const [, k, v] of attrs.matchAll(/([a-zA-Z]+)="([^"]*)"/g)) body = body.replaceAll(`{{${k}}}`, v);
-    return expandIncludes(body, depth + 1);
-  }));
+  const parts = await Promise.all(
+    found.map(async ([, name, attrs]) => {
+      let body = await partial(name);
+      for (const [, k, v] of attrs.matchAll(/([a-zA-Z]+)="([^"]*)"/g))
+        body = body.replaceAll(`{{${k}}}`, v);
+      return expandIncludes(body, depth + 1);
+    }),
+  );
   let i = 0;
   return text.replace(INCLUDE, () => parts[i++]);
 }
 
 function fillVars(text, ctx, where) {
   return text.replace(/\{\{\s*([a-zA-Z0-9_.]+)\s*\}\}/g, (_, key) => {
-    const val = key.split('.').reduce((o, k) => (o == null ? undefined : o[k]), ctx);
-    if (val === undefined || val === null) throw new Error(`${where}: chybí proměnná {{${key}}}`);
+    const val = key
+      .split('.')
+      .reduce((o, k) => (o == null ? undefined : o[k]), ctx);
+    if (val === undefined || val === null)
+      throw new Error(`${where}: chybí proměnná {{${key}}}`);
     return String(val);
   });
 }
@@ -77,12 +88,19 @@ async function render(text, ctx, where) {
 
 // ── Pomocné funkce ───────────────────────────────────────────────────────────
 
-const ENTITIES = { '&nbsp;': ' ', '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" };
+const ENTITIES = {
+  '&nbsp;': ' ',
+  '&amp;': '&',
+  '&lt;': '<',
+  '&gt;': '>',
+  '&quot;': '"',
+  '&#39;': "'",
+};
 function htmlToText(html) {
   return html
     .replace(/<!--.*?-->/gs, '')
     .replace(/<[^>]+>/g, '')
-    .replace(/&[a-z#0-9]+;/g, e => ENTITIES[e] ?? e)
+    .replace(/&[a-z#0-9]+;/g, (e) => ENTITIES[e] ?? e)
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -95,69 +113,130 @@ function visibleFaq(html) {
     /<summary[^>]*>(.*?)<\/summary>\s*<p[^>]*>(.*?)<\/p>/gs,
     /class="faq-q">(.*?)<\/div>\s*<p class="faq-a">(.*?)<\/p>/gs,
   ];
-  return patterns.flatMap(re => [...body.matchAll(re)].map(m => [htmlToText(m[1]), htmlToText(m[2])]));
+  return patterns.flatMap((re) =>
+    [...body.matchAll(re)].map((m) => [htmlToText(m[1]), htmlToText(m[2])]),
+  );
 }
 
 function faqSchema(pairs) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: pairs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    mainEntity: pairs.map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
   };
 }
 
 function syncFaqSchema(html, where) {
   const pairs = visibleFaq(html);
-  return html.replace(/(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs, (all, open, json, close) => {
-    let data;
-    try { data = JSON.parse(json); } catch (e) { throw new Error(`${where}: neplatné JSON-LD (${e.message})`); }
-    let found = false;
-    const sync = node => {
-      if (Array.isArray(node)) return node.map(sync);
-      if (!node || typeof node !== 'object') return node;
-      if (node['@type'] === 'FAQPage') {
-        found = true;
-        if (!pairs.length) throw new Error(`${where}: FAQPage ve schématu, ale žádné viditelné FAQ`);
-        return { ...faqSchema(pairs), ...(node['@id'] ? { '@id': node['@id'] } : {}), '@context': 'https://schema.org' };
+  return html.replace(
+    /(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs,
+    (all, open, json, close) => {
+      let data;
+      try {
+        data = JSON.parse(json);
+      } catch (e) {
+        throw new Error(`${where}: neplatné JSON-LD (${e.message})`);
       }
-      return node['@graph'] ? { ...node, '@graph': sync(node['@graph']) } : node;
-    };
-    const out = sync(data);
-    if (!found) return all;
-    return open + JSON.stringify(out, null, json.includes('\n') ? 2 : 0) + close;
-  });
+      let found = false;
+      const sync = (node) => {
+        if (Array.isArray(node)) return node.map(sync);
+        if (!node || typeof node !== 'object') return node;
+        if (node['@type'] === 'FAQPage') {
+          found = true;
+          if (!pairs.length)
+            throw new Error(
+              `${where}: FAQPage ve schématu, ale žádné viditelné FAQ`,
+            );
+          return {
+            ...faqSchema(pairs),
+            ...(node['@id'] ? { '@id': node['@id'] } : {}),
+            '@context': 'https://schema.org',
+          };
+        }
+        return node['@graph']
+          ? { ...node, '@graph': sync(node['@graph']) }
+          : node;
+      };
+      const out = sync(data);
+      if (!found) return all;
+      return (
+        open + JSON.stringify(out, null, json.includes('\n') ? 2 : 0) + close
+      );
+    },
+  );
 }
 
-// ── Karty nejnovějších článků na hlavní stránce ──────────────────────────────
+// ── Karty článků na blogu ──────────────────────────────
 
-const MONTHS = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
+const MONTHS = [
+  'Leden',
+  'Únor',
+  'Březen',
+  'Duben',
+  'Květen',
+  'Červen',
+  'Červenec',
+  'Srpen',
+  'Září',
+  'Říjen',
+  'Listopad',
+  'Prosinec',
+];
 
 async function readArticles() {
   const articles = [];
   for (const file of await walk('src/pages/blog')) {
     const html = await read(file);
-    const date = html.match(/<meta property="article:published_time" content="([^"]+)"/);
+    const date = html.match(
+      /<meta property="article:published_time" content="([^"]+)"/,
+    );
     if (!date) continue;
-    const title = html.match(/<title>([^<]+)<\/title>/)[1].replace(/\s*[|—].*$/, '').trim();
-    const description = html.match(/<meta name="description" content="([^"]+)"/)[1];
-    const rawTag = (html.match(/class="article-tag">([^<]+)</) || [, 'Blog'])[1].trim();
+    const title = html
+      .match(/<title>([^<]+)<\/title>/)[1]
+      .replace(/\s*[|—].*$/, '')
+      .trim();
+    const description = html.match(
+      /<meta name="description" content="([^"]+)"/,
+    )[1];
+    const rawTag = (html.match(/class="article-tag">([^<]+)</) || [
+      ,
+      'Blog',
+    ])[1].trim();
     const tag = rawTag.replace(/\s*·\s*\p{L}+\s+\d{4}\s*$/u, '');
     const slug = path.basename(file, '.html');
-    const headline = (html.match(/"@type": ?"BlogPosting",[^]*?"headline": ?"([^"]+)"/) || [, title])[1];
-    articles.push({ slug, url: `https://janyskovadigital.cz/blog/${slug}`, date: new Date(date[1]), title, headline, description, tag });
+    const headline = (html.match(
+      /"@type": ?"BlogPosting",[^]*?"headline": ?"([^"]+)"/,
+    ) || [, title])[1];
+    articles.push({
+      slug,
+      url: `https://janyskovadigital.cz/blog/${slug}`,
+      date: new Date(date[1]),
+      title,
+      headline,
+      description,
+      tag,
+    });
   }
   return articles.sort((a, b) => b.date - a.date);
 }
 
 function homeBlogCards(articles, count) {
-  return articles.slice(0, count).map(a =>
-    `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${MONTHS[a.date.getMonth()]} ${a.date.getFullYear()}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`
-  ).join('\n      ');
+  return articles
+    .slice(0, count)
+    .map(
+      (a) =>
+        `<a href="/blog/${a.slug}" class="blog-card reveal"><div class="blog-tag">${a.tag} · ${MONTHS[a.date.getMonth()]} ${a.date.getFullYear()}</div><h3>${a.title}</h3><p>${a.description}</p><span>Číst článek →</span></a>`,
+    )
+    .join('\n      ');
 }
 
 // Seznam článků ve schématu stránky Blog
 function blogPostsJson(articles) {
-  const posts = articles.map(a => ({
+  const posts = articles.map((a) => ({
     '@type': 'BlogPosting',
     headline: a.headline,
     url: a.url,
@@ -170,14 +249,22 @@ function blogPostsJson(articles) {
 function articleSchemaImage(html) {
   const og = html.match(/<meta property="og:image" content="([^"]+)"/);
   if (!og) return html;
-  return html.replace(/(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs, (all, open, json, close) => {
-    const data = JSON.parse(json);
-    let changed = false;
-    for (const item of Array.isArray(data) ? data : [data]) {
-      if (item['@type'] === 'BlogPosting' && !item.image) { item.image = og[1]; changed = true; }
-    }
-    return changed ? open + JSON.stringify(data, null, json.includes('\n') ? 2 : 0) + close : all;
-  });
+  return html.replace(
+    /(<script type="application\/ld\+json">)(.*?)(<\/script>)/gs,
+    (all, open, json, close) => {
+      const data = JSON.parse(json);
+      let changed = false;
+      for (const item of Array.isArray(data) ? data : [data]) {
+        if (item['@type'] === 'BlogPosting' && !item.image) {
+          item.image = og[1];
+          changed = true;
+        }
+      }
+      return changed
+        ? open + JSON.stringify(data, null, json.includes('\n') ? 2 : 0) + close
+        : all;
+    },
+  );
 }
 
 // ── Městské stránky ──────────────────────────────────────────────────────────
@@ -204,7 +291,12 @@ function cityJsonLd(city, business) {
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://janyskovadigital.cz/' },
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Domů',
+          item: 'https://janyskovadigital.cz/',
+        },
         { '@type': 'ListItem', position: 2, name: s.breadcrumbName, item: url },
       ],
     },
@@ -215,8 +307,15 @@ function cityJsonLd(city, business) {
 // ── CSS a JS ────────────────────────────────────────────────────────────────
 
 async function minifyCss(css) {
-  const result = await esbuild.transform(css, { loader: 'css', minify: true, target: TARGET });
-  if (result.warnings.length) throw new Error(`Chyba ve stylech: ${result.warnings.map(w => w.text).join('; ')}`);
+  const result = await esbuild.transform(css, {
+    loader: 'css',
+    minify: true,
+    target: TARGET,
+  });
+  if (result.warnings.length)
+    throw new Error(
+      `Chyba ve stylech: ${result.warnings.map((w) => w.text).join('; ')}`,
+    );
   return result.code;
 }
 
@@ -250,7 +349,10 @@ async function bundleTestWebu() {
   let html = syncFaqSchema(await read(page), page);
   for (const file of ['app.js', 'app.css']) {
     const v = hash(await read(`testwebu/public/${file}`));
-    html = html.replace(new RegExp(`/${file.replace('.', '\\.')}(\\?v=\\w+)?"`, 'g'), `/${file}?v=${v}"`);
+    html = html.replace(
+      new RegExp(`/${file.replace('.', '\\.')}(\\?v=\\w+)?"`, 'g'),
+      `/${file}?v=${v}"`,
+    );
   }
   await write(page, html);
 }
@@ -273,20 +375,34 @@ function collectSitemap(html, list) {
   if (/name="robots" content="[^"]*noindex/.test(head)) return;
   const loc = (head.match(/rel="canonical" href="([^"]+)"/) || [])[1];
   if (!loc) return;
-  const dates = [...head.matchAll(/"date(?:Modified|Published)": ?"(\d{4}-\d{2}-\d{2})/g)].map(m => m[1]).sort();
+  const dates = [
+    ...head.matchAll(/"date(?:Modified|Published)": ?"(\d{4}-\d{2}-\d{2})/g),
+  ]
+    .map((m) => m[1])
+    .sort();
   list.push({ loc, lastmod: dates.pop() });
 }
 
 function collectInline(html, { styles, scripts }) {
-  for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs)) styles.add(css);
-  for (const [, js] of html.matchAll(/<script>(.*?)<\/script>/gs)) scripts.add(js);
+  for (const [, css] of html.matchAll(/<style>(.*?)<\/style>/gs))
+    styles.add(css);
+  for (const [, js] of html.matchAll(/<script>(.*?)<\/script>/gs))
+    scripts.add(js);
 }
 
 // ── Sestavení ────────────────────────────────────────────────────────────────
 
 async function build() {
   // Styly a skript (verze = otisk obsahu, takže prohlížeč nikdy nedrží starou verzi)
-  const styleCss = await minifyCss((await Promise.all(['01-base', '03-components', '04-pages'].map(f => read(`src/css/${f}.css`)))).join('\n'));
+  const styleCss = await minifyCss(
+    (
+      await Promise.all(
+        ['01-base', '03-components', '04-pages'].map((f) =>
+          read(`src/css/${f}.css`),
+        ),
+      )
+    ).join('\n'),
+  );
   const landingCss = await minifyCss(await read('src/css/landing.css'));
   const { css: pagesCss, scoped } = await pageStyles();
   const mainJs = await bundleJs();
@@ -297,13 +413,27 @@ async function build() {
   await write('main.js', mainJs);
 
   const home = JSON.parse(await read('src/data/home.json'));
-  const { business, estimates } = JSON.parse(await read('src/data/schema-business.json'));
-  const price = name => {
-    const offer = business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === name);
+  const { business, estimates } = JSON.parse(
+    await read('src/data/schema-business.json'),
+  );
+  const price = (name) => {
+    const offer = business.hasOfferCatalog.itemListElement.find(
+      (o) => o.itemOffered.name === name,
+    );
     if (!offer) throw new Error(`Chybí cena služby ${name}`);
     return String(offer.price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
-  const prices = { businessMax: String(estimates.businessMax).replace(/\B(?=(\d{3})+(?!\d))/g, ' '), start: price('Web Start'), business: price('Web Business'), refresh: price('Web Refresh'), refreshMulti: price('Web Refresh — vícestránkový'), shop: price('E-shop na míru') };
+  const prices = {
+    businessMax: String(estimates.businessMax).replace(
+      /\B(?=(\d{3})+(?!\d))/g,
+      ' ',
+    ),
+    start: price('Web Start'),
+    business: price('Web Business'),
+    refresh: price('Web Refresh'),
+    refreshMulti: price('Web Refresh — vícestránkový'),
+    shop: price('E-shop na míru'),
+  };
   home.faq7_a = `Jednostránkový web od ${prices.start} Kč, vícestránkový od ${prices.business} Kč. Hosting prezentačního webu je v ceně tvorby; doména a individuálně dohodnuté služby se hradí zvlášť.`;
   const articles = await readArticles();
   const ctx = {
@@ -312,10 +442,25 @@ async function build() {
     jsv: hash(mainJs),
     home,
     prices,
-    blogCards: homeBlogCards(articles, articles.length).replaceAll("<h3>", "<h2>").replaceAll("</h3>", "</h2>"),
+    readinessCount: questions.length,
+    readinessFields: questions
+      .map(
+        (question) =>
+          `      <fieldset data-readiness-step hidden><legend tabindex="-1">${question.title}</legend><div class="readiness-options">\n` +
+          question.options
+            .map(
+              (option, index) =>
+                `        <label><input type="radio" name="${question.name}" value="${index}" required><span>${option.label}</span></label>`,
+            )
+            .join('\n') +
+          '\n      </div></fieldset>',
+      )
+      .join('\n'),
+    blogCards: homeBlogCards(articles, articles.length)
+      .replaceAll('<h3>', '<h2>')
+      .replaceAll('</h3>', '</h2>'),
     businessJsonLd: JSON.stringify(business),
   };
-  ctx.homeBlog = homeBlogCards(articles, 6);
   ctx.blogPostsJson = blogPostsJson(articles);
   const pagesLink = `<link rel="stylesheet" href="/pages.css?v=${hash(pagesCss)}">\n`;
   const inline = { styles: new Set(), scripts: new Set() };
@@ -324,11 +469,17 @@ async function build() {
   let count = 0;
   for (const file of await walk('src/pages')) {
     const rel = path.relative('src/pages', file);
-    let html = articleSchemaImage(syncFaqSchema(await render(await read(file), ctx, rel), rel));
+    let html = articleSchemaImage(
+      syncFaqSchema(await render(await read(file), ctx, rel), rel),
+    );
+    html = completeSeo(html, visibleFaq(html));
     const scope = scoped.get(rel.slice(0, -5));
     if (scope) {
-      html = html.replace('</head>', pagesLink + '</head>').replace('<body>', `<body class="${scope}">`);
-      if (!html.includes(`class="${scope}"`)) throw new Error(`${rel}: chybí <body> pro třídu ${scope}`);
+      html = html
+        .replace('</head>', pagesLink + '</head>')
+        .replace('<body>', `<body class="${scope}">`);
+      if (!html.includes(`class="${scope}"`))
+        throw new Error(`${rel}: chybí <body> pro třídu ${scope}`);
     }
     collectInline(html, inline);
     collectSitemap(html, sitemap);
@@ -339,19 +490,36 @@ async function build() {
   const cities = JSON.parse(await read('src/data/cities.json'));
   const template = await read('src/templates/city.html');
   for (const city of cities) {
-    const faq = [[home.faq1_q, home.faq1_a], [home.faq3_q, home.faq3_a], ...city.faq.map(f => [f.q, f.a])];
+    const faq = [
+      [home.faq1_q, home.faq1_a],
+      [home.faq3_q, home.faq3_a],
+      ...city.faq.map((f) => [f.q, f.a]),
+    ];
     const cityCtx = {
       ...ctx,
       city,
-      localSeoHtml: city.slug === 'novy-jicin' ? await partial('local-seo-novy-jicin') : '',
-      referencesHtml: (await Promise.all(city.references.map(r => partial(`ref-${r}`)))).join(''),
-      faqHtml: faq.map(([q, a]) => `      <details class="faq-item reveal"><summary>${q}</summary><p>${a}</p></details>\n`).join(''),
-      citiesSectionHtml: city.citiesSection || await partial('cities-grid'),
+      localSeoHtml:
+        city.slug === 'novy-jicin' ? await partial('local-seo-novy-jicin') : '',
+      referencesHtml: (
+        await Promise.all(city.references.map((r) => partial(`ref-${r}`)))
+      ).join(''),
+      faqHtml: faq
+        .map(
+          ([q, a]) =>
+            `      <details class="faq-item reveal"><summary>${q}</summary><p>${a}</p></details>\n`,
+        )
+        .join(''),
+      citiesSectionHtml: city.citiesSection || (await partial('cities-grid')),
       cityJsonLd: cityJsonLd(city, business),
-      faqJsonLd: JSON.stringify(faqSchema(faq.map(([q, a]) => [htmlToText(q), htmlToText(a)])), null, 2),
+      faqJsonLd: JSON.stringify(
+        faqSchema(faq.map(([q, a]) => [htmlToText(q), htmlToText(a)])),
+        null,
+        2,
+      ),
     };
     const where = `${city.slug}/index.html`;
-    const html = syncFaqSchema(await render(template, cityCtx, where), where);
+    let html = syncFaqSchema(await render(template, cityCtx, where), where);
+    html = completeSeo(html, visibleFaq(html));
     collectInline(html, inline);
     collectSitemap(html, sitemap);
     await write(where, html);
@@ -359,17 +527,58 @@ async function build() {
   }
 
   // Sitemap: všechny indexovatelné stránky; lastmod jen tam, kde ho známe (datum úpravy článku),
-  // hlavní stránka a blog podle nejnovějšího článku (zobrazují jeho kartu)
-  const newest = sitemap.filter(p => p.lastmod).map(p => p.lastmod).sort().pop();
-  for (const p of sitemap) if (/^https:\/\/janyskovadigital\.cz\/(blog)?$/.test(p.loc)) p.lastmod = newest;
-  const order = p => (p.loc.endsWith('.cz/') ? 0 : p.loc.endsWith('/blog') ? 1 : p.loc.includes('/blog/') ? 2 : 3);
-  sitemap.sort((a, b) => order(a) - order(b) || (b.lastmod || '').localeCompare(a.lastmod || '') || a.loc.localeCompare(b.loc));
-  await write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-    sitemap.map(p => `  <url><loc>${p.loc}</loc>${p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : ''}</url>`).join('\n') + '\n</urlset>\n');
+  // blog podle nejnovějšího článku; úvod už karty článků nezobrazuje.
+  const newest = sitemap
+    .filter((p) => p.lastmod)
+    .map((p) => p.lastmod)
+    .sort()
+    .pop();
+  for (const p of sitemap)
+    if (p.loc === 'https://janyskovadigital.cz/blog') p.lastmod = newest;
+  const order = (p) =>
+    p.loc.endsWith('.cz/')
+      ? 0
+      : p.loc.endsWith('/blog')
+        ? 1
+        : p.loc.includes('/blog/')
+          ? 2
+          : 3;
+  sitemap.sort(
+    (a, b) =>
+      order(a) - order(b) ||
+      (b.lastmod || '').localeCompare(a.lastmod || '') ||
+      a.loc.localeCompare(b.loc),
+  );
+  await write(
+    'sitemap.xml',
+    '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      sitemap
+        .map(
+          (p) =>
+            `  <url><loc>${p.loc}</loc>${p.lastmod ? `<lastmod>${p.lastmod}</lastmod>` : ''}</url>`,
+        )
+        .join('\n') +
+      '\n</urlset>\n',
+  );
 
   // llms.txt pro AI nástroje: seznam článků se doplní automaticky
-  const llmsArticles = articles.map(a => `- [${a.headline}](${a.url}): ${a.description}`).join('\n');
-  await write('llms.txt', (await read('src/llms.txt')).replace('{{llmsArticles}}', llmsArticles).replace('{{llmsOffers}}', business.hasOfferCatalog.itemListElement.map(o => `- ${o.itemOffered.name}: od ${Number(o.price).toLocaleString('cs-CZ')} Kč.`).join('\n')));
+  const llmsArticles = articles
+    .map((a) => `- [${a.headline}](${a.url}): ${a.description}`)
+    .join('\n');
+  await write(
+    'llms.txt',
+    (await read('src/llms.txt'))
+      .replace('{{llmsArticles}}', llmsArticles)
+      .replace(
+        '{{llmsOffers}}',
+        business.hasOfferCatalog.itemListElement
+          .map(
+            (o) =>
+              `- ${o.itemOffered.name}: od ${Number(o.price).toLocaleString('cs-CZ')} Kč.`,
+          )
+          .join('\n'),
+      ),
+  );
 
   // CSP povolí jen přesně ty inline <style> a <script>, které na webu jsou
   // (kritický styl a nastavení motivu před vykreslením v hlavičce)
@@ -378,7 +587,12 @@ async function build() {
     .replace('{{cspScriptHashes}}', [...inline.scripts].map(cspHash).join(' '));
   await write('_headers', headers);
 
-  console.log(`✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), pages.css (${scoped.size} stránek), main.js (${ctx.jsv})`);
+  console.log(
+    `✓ Sestaveno ${count} stránek, style.css (${ctx.cssv}), landing.css (${ctx.landingv}), pages.css (${scoped.size} stránek), main.js (${ctx.jsv})`,
+  );
 }
 
-build().catch(err => { console.error('✗', err.message); process.exit(1); });
+build().catch((err) => {
+  console.error('✗', err.message);
+  process.exit(1);
+});
