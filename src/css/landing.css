@@ -73,10 +73,10 @@
   }
 }
 .hero-header {
-  animation: heroFadeUp .7s ease both;
+  animation: none;
 }
 .hero-btns {
-  animation: heroFadeUp .7s .18s ease both;
+  animation: none;
 }
 .hero-right {
   animation: heroFadeUp .7s .08s ease both;

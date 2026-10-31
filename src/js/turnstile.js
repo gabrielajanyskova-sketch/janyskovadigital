@@ -23,7 +23,7 @@ for (const form of document.querySelectorAll('form[data-turnstile]')) {
   const status = document.createElement('p');
   status.setAttribute('role', 'status');
   status.setAttribute('aria-live', 'polite');
-  status.textContent = 'Načítám ochranu proti spamu…';
+  status.textContent = 'Ochrana proti spamu se načte u formuláře.';
   const button = form.querySelector('button[type="submit"]');
   button.before(container, status);
   const unavailable = () => { status.textContent = 'Ověření proti spamu se nepodařilo načíst. Obnovte stránku nebo napište na info@janyskovadigital.cz.'; };
@@ -36,23 +36,45 @@ for (const form of document.querySelectorAll('form[data-turnstile]')) {
     }
   }, true);
 
-  const configUrl = new URL('/api/turnstile', form.action);
-  Promise.all([
-    loadScript(),
-    withTimeout(10000, async signal => {
-      const response = await fetch(configUrl, { credentials: 'omit', signal });
-      if (!response.ok) throw new Error('Configuration unavailable');
-      const data = await response.json();
-      if (!data.sitekey) throw new Error('Site key missing');
-      return data.sitekey;
-    }),
-  ]).then(([turnstile, sitekey]) => {
-    form.dataset.turnstileId = turnstile.render(container, {
-      sitekey, action: 'contact', language: 'cs', theme: 'auto', size: 'flexible',
-      callback: () => { status.textContent = 'Ověření dokončeno.'; },
-      'expired-callback': () => { status.textContent = 'Platnost ověření vypršela. Počkejte prosím na nové ověření.'; },
-      'error-callback': () => { unavailable(); },
-    });
-    status.textContent = 'Před odesláním dokončete ověření proti spamu.';
-  }).catch(unavailable);
+  let started = false;
+  function initialize() {
+    if (started) return;
+    started = true;
+    status.textContent = 'Načítám ochranu proti spamu…';
+    const configUrl = new URL('/api/turnstile', form.action);
+    Promise.all([
+      loadScript(),
+      withTimeout(10000, async signal => {
+        const response = await fetch(configUrl, { credentials: 'omit', signal });
+        if (!response.ok) throw new Error('Configuration unavailable');
+        const data = await response.json();
+        if (!data.sitekey) throw new Error('Site key missing');
+        return data.sitekey;
+      }),
+    ]).then(([turnstile, sitekey]) => {
+      form.dataset.turnstileId = turnstile.render(container, {
+        sitekey, action: 'contact', language: 'cs', theme: 'auto', size: 'flexible',
+        callback: () => { status.textContent = 'Ověření dokončeno.'; },
+        'expired-callback': () => { status.textContent = 'Platnost ověření vypršela. Počkejte prosím na nové ověření.'; },
+        'error-callback': () => { unavailable(); },
+      });
+      status.textContent = 'Před odesláním dokončete ověření proti spamu.';
+    }).catch(unavailable);
+  }
+
+  // Avoid downloading the verification widget while visitors are still in the hero.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      initialize();
+    }, { rootMargin: '400px' });
+    observer.observe(form);
+    form.addEventListener('focusin', () => {
+      observer.disconnect();
+      initialize();
+    }, { once: true });
+  } else {
+    initialize();
+  }
 }

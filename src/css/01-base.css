@@ -84,14 +84,14 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/dm-serif-display-latin-regular.woff2)format("woff2");
+  src: url(/fonts/dm-serif-display-cs-regular.woff2)format("woff2");
 }
 @font-face {
   font-family: "DM Serif Display";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: url(/fonts/dm-serif-display-latin-italic.woff2)format("woff2");
+  src: url(/fonts/dm-serif-display-cs-italic.woff2)format("woff2");
 }
 @font-face {
   font-family: "DM Serif Display Fallback";
