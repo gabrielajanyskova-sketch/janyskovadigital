@@ -488,28 +488,26 @@ async function build() {
   }
 
   const cities = JSON.parse(await read('src/data/cities.json'));
+  const referenceCatalog = JSON.parse(await read('src/data/references.json'));
   const template = await read('src/templates/city.html');
   for (const city of cities) {
-    const faq = [
-      [home.faq1_q, home.faq1_a],
-      [home.faq3_q, home.faq3_a],
-      ...city.faq.map((f) => [f.q, f.a]),
-    ];
+    const faq = city.faq.slice(0, 3).map((f) => [f.q, f.a]);
     const cityCtx = {
       ...ctx,
       city,
       localSeoHtml:
         city.slug === 'novy-jicin' ? await partial('local-seo-novy-jicin') : '',
-      referencesHtml: (
-        await Promise.all(city.references.map((r) => partial(`ref-${r}`)))
-      ).join(''),
+      referencesHtml: city.references.slice(0, 2).map(key => {
+        const reference = referenceCatalog[key];
+        if (!reference) throw new Error(`Neznámá reference: ${key}`);
+        return `<article class="home-work-card"><img src="/img/${reference.image}" alt="Ukázka webu ${reference.name}" width="612" height="408" loading="lazy"><div><h3>${reference.name}</h3><p>${reference.description}</p><a class="city-reference-link" href="${reference.url}" target="_blank" rel="noopener noreferrer">Prohlédnout web <span aria-hidden="true">↗</span></a></div></article>`;
+      }).join('\n'),
       faqHtml: faq
         .map(
           ([q, a]) =>
             `      <details class="faq-item reveal"><summary>${q}</summary><p>${a}</p></details>\n`,
         )
         .join(''),
-      citiesSectionHtml: city.citiesSection || (await partial('cities-grid')),
       cityJsonLd: cityJsonLd(city, business),
       faqJsonLd: JSON.stringify(
         faqSchema(faq.map(([q, a]) => [htmlToText(q), htmlToText(a)])),

@@ -1,0 +1,26 @@
+{
+  "hubackova": {
+    "name": "Nikola Hubáčková",
+    "image": "nikola-desktop.webp",
+    "description": "Web fotografky s galerií a poptávkou focení.",
+    "url": "https://hubackovafoto.cz"
+  },
+  "slonek": {
+    "name": "Jaroslav Slonek",
+    "image": "slonek-desktop-v1.webp",
+    "description": "Přehledný web finančního poradce.",
+    "url": "https://jaroslavslonek.cz"
+  },
+  "lufactory": {
+    "name": "lufactory",
+    "image": "lufactory-desktop.webp",
+    "description": "E-shop s přírodními houbičkami z lufy.",
+    "url": "https://lufactory.cz"
+  },
+  "literak": {
+    "name": "Stavby Literák",
+    "image": "literak-desktop.webp",
+    "description": "Prezentace služeb stavební firmy z Frýdku-Místku.",
+    "url": "https://stavbyliterak.cz"
+  }
+}

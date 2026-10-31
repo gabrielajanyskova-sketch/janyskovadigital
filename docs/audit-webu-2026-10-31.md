@@ -52,3 +52,7 @@ GEO ve významu generativního vyhledávání a AEO stojí na dostupném, konkr�
 ## Zbývající technický dluh
 
 Sdílené CSS je stále rozsáhlé a obsahuje historické definice. Další dělení komponent by zlepšilo údržbu, ale samo nezlepší SEO. Sestavení používá regulární výrazy nad řízenými HTML šablonami; nejde o univerzální HTML parser. Při zásadní změně struktury šablon je nutné zachovat testy nebo přejít na parser. Rozsáhlý přepis těchto částí není podmínkou pro opravy z tohoto auditu.
+
+## Navazující zkrácení městských stránek
+
+Všech 14 měst používá kratší šablonu se sedmi hlavními bloky, dvěma ukázkami práce a třemi místními FAQ. Místní odstavce, skutečné sídlo firmy, canonical a schema zůstávají zachované. Přibyl regresní test stručnosti šablony; aktuální `npm test` má 69 úspěšných testů. Návrh měst je pouze v pracovní větvi, nikoli na produkci.

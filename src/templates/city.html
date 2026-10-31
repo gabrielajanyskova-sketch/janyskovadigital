@@ -29,7 +29,7 @@
 <script type="application/ld+json">{{cityJsonLd}}</script>
 <script type="application/ld+json">{{faqJsonLd}}</script>
 </head>
-<body>
+<body class="city-simple">
 <!-- @include body-start -->
 <!-- @include nav about="/#o-mne" cenik="#cenik" kontakt="#kontakt" -->
 
@@ -43,10 +43,6 @@
           <h1>{{city.h1}}</h1>
           <p class="hero-sub">{{city.heroSub}}</p>
         </header>
-        <div class="hero-note">
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" class="hero-note-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-          {{city.heroNote}}
-        </div>
         <div class="hero-btns">
           <a href="#kontakt" class="btn-primary">
             Pojďme na to
@@ -54,10 +50,6 @@
           </a>
           <a href="#reference" class="btn-outline">Ukázky práce</a>
         </div>
-        <a href="https://testwebu.janyskovadigital.cz/" class="hero-test">
-          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Už web máte? <strong>Otestujte ho zdarma za minutu</strong> →</span>
-        </a>
       </div>
       <div class="hero-right">
         <div class="hero-showcase">
@@ -72,93 +64,55 @@
   </div>
 </section>
 
+
 <div class="section-divider"></div>
-
-<!-- @include webtest-promo -->
-
-<section class="local-section">
+<section class="local-section city-local">
   <div class="container">
-    <div class="section-tag">Webdesign {{city.name}}</div>
+    <div class="section-tag">Spolupráce {{city.priceIn}}</div>
     <h2 class="section-title">{{city.localH2}}</h2>
-    <div class="local-grid">
-      <div>
-        <p>{{city.localP1}}</p>
-        <p>{{city.localP2}}</p>
-      </div>
-      <div class="local-cards">
-        <div class="info-card"><div class="info-card-label">Schůzky</div><div class="info-card-value">{{city.meet}}</div></div>
-        <div class="info-card"><div class="info-card-label">Doba realizace</div><div class="info-card-value">7–10 dnů od podkladů</div></div>
-        <div class="info-card"><div class="info-card-label">Cena webu {{city.name}}</div><div class="info-card-value">od {{prices.start}} Kč jednorázově</div></div>
-      </div>
-    </div>
+    <div class="city-local-copy"><p>{{city.localP1}}</p><p>{{city.localP2}}</p></div>
+    <p class="city-facts"><strong>{{city.meet}}</strong><span>Menší web obvykle za 7–10 dnů od dodání podkladů.</span></p>
+    {{localSeoHtml}}
   </div>
 </section>
-
 <div class="section-divider"></div>
-
-{{localSeoHtml}}
-
 <section class="ref-section" id="reference">
   <div class="container">
-    <div class="section-tag">Reference</div>
-    <h2 class="section-title">Weby, které jsem <em>postavila.</em></h2>
-    <div class="ref-slider-wrap">
-      <div class="ref-track" id="refTrack">
-{{referencesHtml}}      </div>
-      <button class="ref-arrow ref-arrow-prev" id="refPrev" type="button" aria-label="Předchozí reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="ref-arrow ref-arrow-next" id="refNext" type="button" aria-label="Další reference"><svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
+    <div class="section-tag">Ukázky práce</div>
+    <h2 class="section-title">Podívejte se, <em>co tvořím.</em></h2>
+    <div class="home-work-grid city-work-grid">{{referencesHtml}}</div>
+    <p class="home-more"><a class="action-link" href="/reference">Všechny realizace <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
-
 <div class="section-divider"></div>
-
-<!-- @include reviews -->
-
-<div class="section-divider"></div>
-
-<!-- @include about-short -->
-
-<div class="section-divider"></div>
-
 <section class="pricing-section" id="cenik">
   <div class="container">
-    <div class="section-tag">Ceník</div>
+    <div class="section-tag">Orientační ceny</div>
     <h2 class="section-title">Kolik stojí <em>web {{city.priceIn}}?</em></h2>
-    <div class="price-mini">
-      <div class="info-card"><div class="info-card-label">Web Start · one-page</div><div class="info-card-value">{{prices.start}} Kč</div></div>
-      <div class="info-card"><div class="info-card-label">Web Business · vícestránkový</div><div class="info-card-value">od {{prices.business}} Kč</div></div>
-      <div class="info-card"><div class="info-card-label">E-shop na míru</div><div class="info-card-value">od {{prices.shop}} Kč</div></div>
-      <div class="info-card"><div class="info-card-label">Úpravy po spuštění</div><div class="info-card-value">Podle dohody</div></div>
+    <div class="home-offers city-offers">
+      <a class="home-offer" href="/tvorba-webu"><h3>Web Start</h3><p class="home-offer-price">od {{prices.start}} Kč</p><p>Jedna přehledná stránka pro nabídku a kontakt.</p><span>Co je v ceně →</span></a>
+      <a class="home-offer home-offer-featured" href="/tvorba-webu"><span class="home-offer-badge">Pro růst vaší firmy</span><h3>Web Business</h3><p class="home-offer-price">{{prices.business}}–{{prices.businessMax}} Kč</p><p>Více stránek pro firmu a její služby.</p><span>Co je v ceně →</span></a>
+      <a class="home-offer" href="/eshop"><h3>E-shop</h3><p class="home-offer-price">od {{prices.shop}} Kč</p><p>Produkty, košík, objednávky a online platby.</p><span>Co je v ceně →</span></a>
     </div>
-    <p class="price-mini-note">Cena platí stejně pro celou ČR. Hosting je v ceně, platíte jen doménu — přibližně 200 Kč ročně. <a href="/#cenik">Kompletní ceník se všemi službami →</a></p>
+    <p class="home-price-note">Stejné ceny po celé ČR. Hosting v ceně tvorby; doména, další služby a úpravy podle dohody. Rozsah i konečnou cenu si potvrdíme předem.</p>
+    <p class="home-more"><a class="action-link" href="/priprava-webu">Pomozte mi vybrat web <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
-
 <div class="section-divider"></div>
-
+<!-- @include reviews -->
+<div class="section-divider"></div>
 <section class="faq-section" id="faq">
   <div class="container">
-    <div class="section-tag centered">Časté otázky</div>
-    <h2 class="section-title centered faq-title">Na co se <em>ptáte nejčastěji.</em></h2>
-    <div class="faq-list">
-{{faqHtml}}    </div>
+    <div class="section-tag">Než se ozvete</div>
+    <h2 class="section-title">Na co se <em>ptáte.</em></h2>
+    <div class="faq-list">{{faqHtml}}</div>
+    <p class="home-more"><a class="action-link" href="/caste-otazky">Další otázky a odpovědi <span aria-hidden="true">→</span></a></p>
   </div>
 </section>
-
-<div class="section-divider"></div>
-
-{{citiesSectionHtml}}
-
-
-<div class="section-divider"></div>
-
 <!-- @include contact subject="{{city.subject}}" -->
 </main>
 <!-- @include footer -->
 <!-- @include scripts -->
-<!-- @include audit-popup -->
 <!-- @include whatsapp -->
-<!-- @include chat -->
 </body>
 </html>

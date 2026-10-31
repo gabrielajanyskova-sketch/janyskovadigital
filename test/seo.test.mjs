@@ -132,3 +132,21 @@ test('request timeout: aborts pending work and preserves non-timeout errors', as
     true,
   );
 });
+
+test('city pages stay concise and keep their local content and business identity', async () => {
+  const cities = JSON.parse(await readFile('src/data/cities.json', 'utf8'));
+  const { business } = JSON.parse(await readFile('src/data/schema-business.json', 'utf8'));
+  for (const city of cities) {
+    const html = await readFile(`${city.slug}/index.html`, 'utf8');
+    const main = html.split('<main id="main">')[1].split('</main>')[0];
+    assert.equal((main.match(/<section\b/g) || []).length, 7, city.slug);
+    assert.equal((main.match(/<article class="home-work-card">/g) || []).length, 2, city.slug);
+    assert.ok(html.includes(city.localP1), city.slug);
+    assert.ok(!html.includes('id="audit-popup"'), city.slug);
+    const nodes = schemaNodes(html);
+    const faq = nodes.find(node => node['@type'] === 'FAQPage');
+    assert.equal(faq.mainEntity.length, 3, city.slug);
+    const localBusiness = nodes.find(node => node['@id'] === business['@id'] && node.address);
+    assert.deepEqual(localBusiness.address, business.address, city.slug);
+  }
+});
