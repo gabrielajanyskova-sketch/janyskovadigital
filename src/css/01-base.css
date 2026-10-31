@@ -129,6 +129,10 @@ html {
   overflow-x: clip;
   overscroll-behavior-x: none;
 }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
   background: var(--bg);
   color: var(--text);

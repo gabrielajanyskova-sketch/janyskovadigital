@@ -1093,3 +1093,11 @@ a.action-link:focus-visible, .home-offer:focus-visible, .home-tool-links a:focus
   .tool-page-costs .kalk-section { padding-top: 24px; }
   .tool-page-costs .kalk-wrap { padding: 24px 20px; }
 }
+
+/* iOS zvětšuje stránku při fokusu do textového pole s písmem menším než 16 px. */
+@media (max-width: 600px) {
+  input:is([type="text"], [type="email"], [type="url"], [type="search"], [type="tel"], [type="number"]),
+  textarea,
+  .form-group textarea,
+  select { font-size: 16px; }
+}
