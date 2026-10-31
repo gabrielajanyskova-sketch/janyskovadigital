@@ -1018,3 +1018,33 @@ footer .footer-bottom a:hover {
 .home-work-card h3 { font-size: 20px; margin-bottom: 8px; }
 .home-work-card p { color: var(--text-dim); font-size: 14px; }
 @media (max-width: 600px) { .home-work-grid { grid-template-columns: minmax(0, 1fr); } .home-work-card img { max-height: 200px; } }
+
+/* Jednotné doplňující akce: čitelné a pohodlně ovladatelné i na mobilu. */
+a.action-link,
+.home-simple :is(.home-more, .home-about-inner) a.action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 48px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border: 1px solid rgba(248, 85, 160, .35);
+  border-radius: 12px;
+  background: rgba(240, 20, 122, .06);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: border-color .2s, background .2s;
+}
+a.action-link > span[aria-hidden] { color: var(--pink-light); font-size: 20px; flex-shrink: 0; }
+a.action-link:hover { background: rgba(240, 20, 122, .13); border-color: var(--pink-light); }
+a.action-link:focus-visible, .home-offer:focus-visible, .home-tool-links a:focus-visible { outline: 3px solid var(--pink-light); outline-offset: 4px; }
+.home-offer > span { align-self: flex-start; padding: 9px 13px; border: 1px solid rgba(248,85,160,.3); border-radius: 10px; color: var(--text); background: rgba(240,20,122,.06); }
+.home-offer:hover > span { border-color: var(--pink-light); background: rgba(240,20,122,.14); }
+.home-tool-links a { position: relative; padding-right: 56px; transition: border-color .2s, background .2s; }
+.home-tool-links a::after { content: '→'; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--pink-light); font-size: 24px; }
+.home-tool-links a:hover { border-color: var(--pink-light); background: rgba(240,20,122,.06); }
+@media (max-width: 600px) { .home-more a.action-link { width: 100%; } }
