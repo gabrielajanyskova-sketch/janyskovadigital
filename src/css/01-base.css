@@ -126,6 +126,8 @@
 body,
 html {
   overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 body {
   background: var(--bg);
@@ -671,6 +673,8 @@ nav {
 .ref-img img {
   border-radius: 12px;
   max-height: 220px;
+  max-width: 100%;
+  height: auto;
   width: auto;
   margin: 0 auto;
 }
@@ -776,12 +780,14 @@ nav {
 }
 .kalk-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 36px;
   margin-bottom: 44px;
 }
 .kalk-label {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
   justify-content: space-between;
   margin-bottom: 12px;
   font-size: 12px;
@@ -1709,6 +1715,7 @@ footer {
 }
 .ref-body,
 .ref-img {
+  min-width: 0;
   justify-content: center;
 }
 .ref-img {
@@ -1744,7 +1751,7 @@ footer {
   text-decoration: none;
 }
 .ref-card {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 .ref-img {
   display: flex;

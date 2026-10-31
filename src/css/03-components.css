@@ -969,3 +969,10 @@ footer .footer-bottom a:hover {
 .readiness-estimate .readiness-price { margin: 8px 0; font-size: clamp(30px, 6vw, 44px); font-weight: 800; color: #ff98c8; }
 .readiness-estimate ul { margin: 16px 0 0; padding-left: 20px; }
 .readiness-estimate li + li { margin-top: 10px; }
+
+@media (max-width: 480px) {
+  .kalk-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .pricing-note .btn-primary { max-width: 100%; text-align: center; justify-content: center; }
+  .readiness-card { min-width: 0; overflow-wrap: anywhere; }
+  .readiness legend { max-width: 100%; }
+}
