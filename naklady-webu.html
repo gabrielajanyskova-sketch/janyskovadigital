@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porovnejte náklady na svůj web | Janyskova Digital</title>
+<meta name="description" content="Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.">
+<link rel="canonical" href="https://janyskovadigital.cz/naklady-webu">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Porovnejte náklady na svůj web"><meta property="og:description" content="Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.">
+<meta property="og:url" content="https://janyskovadigital.cz/naklady-webu"><meta property="og:type" content="website"><meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<meta name="google-site-verification" content="mgNcqEFOqWsfFpNu6nEBnMaQmOUbuSZT6J9JkmlaW2M">
+<meta name="seznam-wmt" content="mHbCZLluKw46tN2Rnhuk6zSVQETrHyhh">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="preload" href="/fonts/plus-jakarta-sans-cs-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>html,body{background:#08060c;color:#f5f0fa}</style>
+<link rel="stylesheet" href="/style.css?v=618348b172">
+</head><body>
+<noscript><div class="noscript-msg">Pro plnou funkčnost webu povolte JavaScript. Kontakt: <a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a> | +420 739 395 800</div></noscript>
+<div class="bg-blobs" aria-hidden="true"></div>
+<a href="#main" class="skip-link">Přeskočit na obsah</a>
+<nav role="navigation" aria-label="Hlavní navigace">
+  <div class="container nav-inner">
+    <a href="/" class="logo" aria-label="Janyskova Digital — zpět na začátek">Janyskova <em>Digital</em></a>
+    <div class="nav-links">
+      <a href="/#o-mne">O mně</a>
+      <a href="/#cenik">Ceník</a>
+      <a href="/barter">Barter</a>
+      <a href="/blog">Blog</a>
+      <a href="https://testwebu.janyskovadigital.cz/" class="nav-test">Test webu <span class="nav-badge">zdarma</span></a>
+      <a href="/#kontakt" class="cta">Mám zájem</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="fullscreen-menu" id="mobile-menu" role="dialog" aria-label="Mobilní navigace" aria-hidden="true">
+  <div class="menu-group">
+    <div class="menu-group-label">O Janyskova Digital</div>
+    <a href="/#o-mne">O mně</a>
+    <a href="/#cenik">Ceník</a>
+  </div>
+  <div class="menu-group">
+    <div class="menu-group-label">Služby</div>
+    <a href="/barter">Barter</a>
+    <a href="https://testwebu.janyskovadigital.cz/">Test webu zdarma</a>
+  </div>
+  <a href="/blog">Blog</a>
+  <a href="/#kontakt" class="menu-cta">Mám zájem</a>
+  <div class="menu-sub">info@janyskovadigital.cz</div>
+</div>
+<main id="main" class="tool-page"><div class="container tool-heading"><a href="/">← Zpět na úvod</a><h1>Porovnejte náklady na svůj web</h1><p>Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.</p></div>
+<section class="kalk-section" id="kalkulacka">
+  <div class="container">
+    <div class="section-tag centered">Kalkulačka úspor</div>
+    <h2 class="section-title centered">Kolik vás stojí <em>váš současný web?</em></h2>
+    <p class="kalk-intro">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
+    <div class="kalk-wrap reveal">
+      <div class="kalk-grid">
+        <div><div class="kalk-label">Hosting / rok <span id="k-hosting-out">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range" aria-label="Hosting za rok"></div>
+        <div><div class="kalk-label">Rozpočet úprav / rok (obě varianty) <span id="k-sprava-out">2 000 Kč</span></div><input type="range" id="k-sprava" min="0" max="20000" step="100" value="2000" class="kalk-range" aria-label="Správa webu za rok"></div>
+        <div><div class="kalk-label">Doména / rok <span id="k-domena-out">250 Kč</span></div><input type="range" id="k-domena" min="100" max="1000" step="50" value="250" class="kalk-range" aria-label="Doména za rok"></div>
+        <div><div class="kalk-label">Počet let <span id="k-roky-out">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range" aria-label="Počet let"></div>
+      </div>
+      <div class="kalk-results">
+        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">26 250 Kč</div></div>
+        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">17 150 Kč</div></div>
+        <div class="kalk-box save"><div class="kalk-box-label">Rozdíl nákladů</div><div class="kalk-box-val" id="k-uspora">9 100 Kč</div></div>
+      </div>
+      <div class="kalk-bar-wrap">
+        <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
+        <div class="kalk-bar-track"><div class="kalk-bar-current" id="k-bar-ted"></div><div class="kalk-bar-jd" id="k-bar-jd"></div></div>
+      </div>
+      <div class="kalk-footer">
+        <p class="kalk-note">Model: současný hosting, rozpočet úprav a doména × roky versus tvorba od 5 900 Kč + stejný rozpočet úprav a domény × roky. Kladný rozdíl znamená úsporu, záporný vyšší náklady nového webu. Hosting v ceně tvorby.* <br><small>* U Janyskova Digital je hosting zdarma v ceně tvorby. Správa webu (aktualizace obsahu, technický dohled) je volitelná — více v <a href="/#cenik">ceníku</a>.</small></p>
+        <a href="/#kontakt" class="btn-primary">Chci ušetřit</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main><footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo-link">Janyskova <em>Digital</em></a>
+        <p class="footer-desc">Weby na míru s čistým kódem a hostingem v ceně tvorby. Nový Jičín a celá ČR.</p>
+        <a href="https://testwebu.janyskovadigital.cz/" class="footer-test-link">Otestovat web zdarma <span aria-hidden="true">→</span></a>
+      </div>
+      <nav class="footer-nav" aria-label="Služby a informace">
+        <div class="footer-heading">Služby a informace</div>
+        <ul class="footer-links-list">
+          <li><a href="/tvorba-webu">Tvorba webových stránek</a></li>
+          <li><a href="/eshop">E-shop na míru</a></li>
+          <li><a href="/reference">Reference</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/priprava-webu">Zadání webu a orientační cena</a></li>
+          <li><a href="/naklady-webu">Kalkulačka nákladů</a></li>
+          <li><a href="/caste-otazky">Časté otázky</a></li>
+          <li><a href="/barter">Barter</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Oblasti působnosti">
+        <div class="footer-heading">Kde působím</div>
+        <ul class="footer-links-list footer-city-list">
+          <li><a href="/novy-jicin/">Nový Jičín</a></li>
+          <li><a href="/ostrava/">Ostrava</a></li>
+          <li><a href="/frydek-mistek/">Frýdek-Místek</a></li>
+          <li><a href="/hranice/">Hranice</a></li>
+          <li><a href="/pribor/">Příbor</a></li>
+          <li><a href="/koprivnice/">Kopřivnice</a></li>
+          <li><a href="/brno/">Brno</a></li>
+          <li><a href="/praha/">Praha</a></li>
+          <li><a href="/olomouc/">Olomouc</a></li>
+          <li><a href="/zlin/">Zlín</a></li>
+          <li><a href="/frenstat/">Frenštát pod Radhoštěm</a></li>
+          <li><a href="/jicin/">Jičín</a></li>
+          <li><a href="/roznov/">Rožnov pod Radhoštěm</a></li>
+          <li><a href="/valasske-mezirici/">Valašské Meziříčí</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <div class="footer-heading">Ozvěte se</div>
+        <ul class="footer-links-list">
+          <li><a href="mailto:info@janyskovadigital.cz">info@janyskovadigital.cz</a></li>
+          <li><a href="tel:+420739395800">+420 739 395 800</a></li>
+          <li><a href="https://www.instagram.com/JanyskovaDigital" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Gabriela Janýšková · IČO 19616295<br>Starojická Lhota 45, 741 01 Starý Jičín</span>
+      <a href="/ochrana-udaju">Ochrana osobních údajů</a>
+    </div>
+  </div>
+</footer>
+<script src="/main.js?v=d442021282" defer></script>
+</body></html>

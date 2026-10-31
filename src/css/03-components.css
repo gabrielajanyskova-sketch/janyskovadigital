@@ -976,3 +976,45 @@ footer .footer-bottom a:hover {
   .readiness-card { min-width: 0; overflow-wrap: anywhere; }
   .readiness legend { max-width: 100%; }
 }
+
+/* Návrh kratšího úvodu: soustředěná nabídka a samostatné nástroje. */
+.home-simple .hero { padding-bottom: 64px; }
+.home-simple :is(.ref-section, .pricing-section, .about-section, .faq-section) { padding: 64px 0; }
+.home-offers { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.home-offer { display: flex; flex-direction: column; gap: 16px; padding: 28px 22px; border: 1px solid var(--border); border-radius: 20px; background: var(--card-bg); color: var(--text); text-decoration: none; transition: border-color .2s; }
+.home-offer:hover { border-color: var(--pink-light); }
+.home-offer h3 { font-size: 21px; }
+.home-offer p { color: var(--text-dim); font-size: 14px; }
+.home-offer .home-offer-price { font-size: 20px; color: var(--pink-light); font-weight: 700; }
+.home-offer span { margin-top: auto; font-size: 13px; color: var(--pink-light); }
+.home-price-note, .home-more { margin-top: 24px; font-size: 14px; color: var(--text-dim); }
+.home-tool-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.home-tool-links a { display: flex; flex-direction: column; gap: 8px; padding: 22px 24px; border: 1px solid var(--border); border-radius: 16px; color: var(--text); text-decoration: none; }
+.home-tool-links span { font-size: 14px; color: var(--pink-light); }
+.home-about-inner { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; align-items: center; }
+.home-about-inner > img { width: 100%; height: auto; border-radius: 24px; }
+.home-about-inner .section-title { font-size: clamp(28px, 4vw, 44px); }
+.home-about-inner p { color: var(--text-dim); line-height: 1.8; }
+.home-process { margin: 24px 0; scroll-margin-top: 100px; }
+.tool-heading { padding-top: 140px; padding-bottom: 16px; max-width: 900px; }
+.tool-heading h1 { font-family: "DM Serif Display", serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.2; margin: 24px 0 16px; }
+.tool-heading p { color: var(--text-dim); }
+@media (max-width: 800px) { .home-offers { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .home-simple :is(.ref-section, .pricing-section, .about-section, .faq-section) { padding: 44px 0; }
+  .home-tool-links, .home-about-inner { grid-template-columns: minmax(0, 1fr); }
+  .home-about-inner { gap: 24px; }
+  .home-about-inner > img { width: 140px; }
+  .home-offer { padding: 20px 16px; gap: 12px; }
+  .home-offer h3 { font-size: 18px; }
+  .home-offer .home-offer-price { font-size: 17px; }
+}
+@media (max-width: 360px) { .home-offers { grid-template-columns: minmax(0, 1fr); } }
+.home-simple :is(.home-more, .home-about-inner) a { color: var(--pink-light); text-underline-offset: 4px; }
+.home-work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.home-work-card { border: 1px solid var(--border); background: var(--card-bg); border-radius: 20px; overflow: hidden; }
+.home-work-card img { width: 100%; height: auto; aspect-ratio: 1.5; object-fit: contain; background: var(--bg2); display: block; padding: 16px; }
+.home-work-card > div { padding: 22px; }
+.home-work-card h3 { font-size: 20px; margin-bottom: 8px; }
+.home-work-card p { color: var(--text-dim); font-size: 14px; }
+@media (max-width: 600px) { .home-work-grid { grid-template-columns: minmax(0, 1fr); } .home-work-card img { max-height: 200px; } }

@@ -27,13 +27,15 @@ test('readiness: missing materials and logo never create an invented surcharge',
   assert.ok(reservation.extras.some(text => text.includes('Rezervace')));
 });
 
-test('readiness: estimates follow catalogue changes and sit after the price list', async () => {
+test('readiness: estimates follow catalogue changes and are available on the preparation page', async () => {
   const changed = structuredClone(catalogue);
   changed.business.hasOfferCatalog.itemListElement.find(offer => offer.itemOffered.name === 'Web Start').price = '6500';
   assert.equal(estimateReadiness(base, changed).min, 6500);
   const page = await readFile(new URL('../src/pages/index.html', import.meta.url), 'utf8');
-  assert.ok(page.indexOf('id="cenik"') < page.indexOf('<!-- @include readiness -->'));
-  assert.ok(page.indexOf('<!-- @include readiness -->') < page.indexOf('<!-- @include contact'));
+  assert.ok(page.includes('href="/priprava-webu"'));
+  const preparation = await readFile(new URL('../src/pages/priprava-webu.html', import.meta.url), 'utf8');
+  assert.ok(preparation.indexOf('<!-- @include readiness -->') < preparation.indexOf('<!-- @include contact'));
+
 });
 
 test('readiness: enquiry fills the message, reveals the contact and scrolls to it', async () => {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porovnejte náklady na svůj web | Janyskova Digital</title>
+<meta name="description" content="Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.">
+<link rel="canonical" href="https://janyskovadigital.cz/naklady-webu">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Porovnejte náklady na svůj web"><meta property="og:description" content="Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.">
+<meta property="og:url" content="https://janyskovadigital.cz/naklady-webu"><meta property="og:type" content="website"><meta property="og:image" content="https://janyskovadigital.cz/og-image.png">
+<!-- @include head-common -->
+</head><body>
+<!-- @include body-start -->
+<!-- @include nav about="/#o-mne" cenik="/#cenik" kontakt="/#kontakt" -->
+<main id="main" class="tool-page"><div class="container tool-heading"><a href="/">← Zpět na úvod</a><h1>Porovnejte náklady na svůj web</h1><p>Spočítejte si orientační rozdíl nákladů na současný a nový web podle vlastního rozpočtu.</p></div>
+<section class="kalk-section" id="kalkulacka">
+  <div class="container">
+    <div class="section-tag centered">Kalkulačka úspor</div>
+    <h2 class="section-title centered">Kolik vás stojí <em>váš současný web?</em></h2>
+    <p class="kalk-intro">Nastavte posuvníky a uvidíte, kolik skutečně ušetříte.</p>
+    <div class="kalk-wrap reveal">
+      <div class="kalk-grid">
+        <div><div class="kalk-label">Hosting / rok <span id="k-hosting-out">3 000 Kč</span></div><input type="range" id="k-hosting" min="0" max="20000" step="100" value="3000" class="kalk-range" aria-label="Hosting za rok"></div>
+        <div><div class="kalk-label">Rozpočet úprav / rok (obě varianty) <span id="k-sprava-out">2 000 Kč</span></div><input type="range" id="k-sprava" min="0" max="20000" step="100" value="2000" class="kalk-range" aria-label="Správa webu za rok"></div>
+        <div><div class="kalk-label">Doména / rok <span id="k-domena-out">250 Kč</span></div><input type="range" id="k-domena" min="100" max="1000" step="50" value="250" class="kalk-range" aria-label="Doména za rok"></div>
+        <div><div class="kalk-label">Počet let <span id="k-roky-out">5 let</span></div><input type="range" id="k-roky" min="1" max="10" step="1" value="5" class="kalk-range" aria-label="Počet let"></div>
+      </div>
+      <div class="kalk-results">
+        <div class="kalk-box current"><div class="kalk-box-label">Současný web</div><div class="kalk-box-val" id="k-ted">26 250 Kč</div></div>
+        <div class="kalk-box jd"><div class="kalk-box-label">Janyskova Digital</div><div class="kalk-box-val" id="k-jd">17 150 Kč</div></div>
+        <div class="kalk-box save"><div class="kalk-box-label">Rozdíl nákladů</div><div class="kalk-box-val" id="k-uspora">9 100 Kč</div></div>
+      </div>
+      <div class="kalk-bar-wrap">
+        <div class="kalk-bar-labels"><span>Současný web</span><span>Janyskova Digital</span></div>
+        <div class="kalk-bar-track"><div class="kalk-bar-current" id="k-bar-ted"></div><div class="kalk-bar-jd" id="k-bar-jd"></div></div>
+      </div>
+      <div class="kalk-footer">
+        <p class="kalk-note">Model: současný hosting, rozpočet úprav a doména × roky versus tvorba od {{prices.start}} Kč + stejný rozpočet úprav a domény × roky. Kladný rozdíl znamená úsporu, záporný vyšší náklady nového webu. Hosting v ceně tvorby.* <br><small>* U Janyskova Digital je hosting zdarma v ceně tvorby. Správa webu (aktualizace obsahu, technický dohled) je volitelná — více v <a href="/#cenik">ceníku</a>.</small></p>
+        <a href="/#kontakt" class="btn-primary">Chci ušetřit</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main><!-- @include footer --><!-- @include scripts --></body></html>
