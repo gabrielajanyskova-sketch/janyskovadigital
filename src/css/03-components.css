@@ -1048,3 +1048,29 @@ a.action-link:focus-visible, .home-offer:focus-visible, .home-tool-links a:focus
 .home-tool-links a::after { content: '→'; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--pink-light); font-size: 24px; }
 .home-tool-links a:hover { border-color: var(--pink-light); background: rgba(240,20,122,.06); }
 @media (max-width: 600px) { .home-more a.action-link { width: 100%; } }
+
+/* Klidné zvýraznění hlavní služby a osobní zakončení stránek. */
+.home-offer-featured { position: relative; border-color: #ed5196; background: linear-gradient(160deg, rgba(240,20,122,.12), var(--card-bg) 75%); box-shadow: 0 0 28px rgba(240,20,122,.08); }
+.home-offer > .home-offer-badge { position: absolute; top: -14px; left: 18px; margin: 0; padding: 5px 10px; background: #c0105f; color: #fff; border: 0; border-radius: 8px; font-size: 11px; font-weight: 700; line-height: 1.5; }
+.home-offer-featured:hover > .home-offer-badge { background: #c0105f; }
+.home-offers { row-gap: 28px; }
+.home-work-card img { transition: transform .35s ease; }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-work-card:hover img { transform: scale(1.035); }
+}
+.contact-portrait { display: block; width: 80px; height: 80px; object-fit: cover; object-position: center 25%; border-radius: 50%; margin: 0 auto 20px; border: 2px solid var(--pink-border); }
+.personal-cta { padding: 48px 0 64px; }
+.personal-cta-card { display: flex; align-items: center; gap: 24px; padding: 32px; border: 1px solid var(--pink-border); border-radius: 24px; background: var(--card-bg); }
+.personal-cta-card > img { width: 96px; height: 96px; object-fit: cover; object-position: center 25%; border-radius: 50%; flex-shrink: 0; }
+.personal-cta-card > div { flex: 1; min-width: 0; }
+.personal-cta-card h2 { font-family: "DM Serif Display", serif; font-size: 30px; line-height: 1.25; margin-bottom: 10px; }
+.personal-cta-card h2 em { color: var(--pink-light); }
+.personal-cta-card p { color: var(--text-dim); font-size: 14px; }
+.personal-cta-card .btn-primary { flex-shrink: 0; justify-content: center; text-align: center; }
+#contact-form { scroll-margin-top: 100px; }
+@media (max-width: 700px) {
+  .personal-cta-card { flex-direction: column; align-items: flex-start; padding: 24px; gap: 20px; }
+  .personal-cta-card > img { width: 72px; height: 72px; }
+  .personal-cta-card .btn-primary { width: 100%; padding: 16px 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .home-work-card img { transition: none; } }
