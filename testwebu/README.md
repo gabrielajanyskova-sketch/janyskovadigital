@@ -54,3 +54,17 @@ Technická kontrola má společný síťový limit 55 sekund. V jednom izolátu 
 Omezení prohlídky DNS, DNS rebindingu a nutné ověření v účtu Cloudflare jsou v [dokumentaci vývojářské kontroly](../docs/vyvojarska-kontrola-2026-10-30.md). Netvrdit, že běžný fetch připíná cílovou IP nebo že lokální testy dokazují vlastnosti produkční sítě.
 
 Další regresní testy: `node testwebu/test/resilience.mjs`, také součást `npm run testwebu:test`.
+
+## Rozpoznávání technologií
+
+Výsledek obsahuje tabulku systému, editoru a složek WordPress šablon nalezených ve veřejném HTML testované stránky. Rozpoznání je orientační a neovlivňuje skóre. Název složky nemusí být obchodním názvem šablony a více složek může patřit rodičovské i odvozené šabloně. Nerozpoznaný systém neznamená statický web. Neprovádíme další požadavky na soubory šablon.
+
+Regresní test: `node testwebu/test/technology.mjs` (také součást `npm run testwebu:test`).
+
+## Doména a poskytovatelé
+
+Pro .cz (CZ.NIC), .com a .net (Verisign) načítáme veřejný RDAP z pevně povolených HTTPS adres bez následování přesměrování. V odpovědi testu a jeho cache zůstává pouze registrátor, expirace a zdroj, nikoli držitel ani jeho kontakty či celé odpovědi registru. Limit RDAP: 4,5 s a 128 KiB; používá společný rozpočet auditu. DNS NS přidává jeden dotaz, MX se používá z existující kontroly. Neúspěch této doplňkové kontroly nemění skóre. Datum expirace je údaj registru, ne termín fakturace zákazníka.
+
+DNS a poštovní poskytovatelé jsou indicie podle konkrétních domén serverů. Hosting/CDN se odhaduje pouze z HTTP hlaviček. Cloudflare neoznačujeme jako prokázaný origin hosting. Podporu dalších koncovek přidávat až po ověření oficiálního endpointu a podmínek služby; nesledovat libovolné odkazy z RDAP odpovědi.
+
+Zdroje: https://www.nic.cz/page/2256/rdap/ a https://www.verisign.com/news-insights/registration-data-access-protocol/help/ . Regresní test: `node testwebu/test/providers.mjs`.

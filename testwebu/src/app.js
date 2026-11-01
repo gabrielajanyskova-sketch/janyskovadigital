@@ -159,12 +159,24 @@ function render() {
   $('result-url').textContent = a.finalUrl;
   const meta = [`Otestováno ${new Date(a.checkedAt).toLocaleString('cs-CZ')}`];
   if (a.cacheHit || Object.values(state.speed).some(s => s.cacheHit)) meta.push('Část výsledků je uložená z předchozího testu. Pro nové měření použijte „Změřit znovu“.');
-  if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
+
   const n = a.pages.length;
   meta.push(n ? `Test zahrnul zadanou stránku a ${n} dalších adres` : 'Test zahrnul zadanou stránku');
   if (speedPending) meta.push('Rychlost se ještě měří…');
   if (incomplete) meta.push('Část kontrol není dostupná; skóre je neúplné.');
   $('result-meta').textContent = meta.join(' · ');
+  $('technology-rows').replaceChildren(...technologyRows(a).map(([label, value]) =>
+    el('tr', {}, el('th', { scope: 'row' }, label), el('td', {}, value))));
+
+  $('provider-rows').replaceChildren(...providerRows(a).map(([label, value]) =>
+    el('tr', {}, el('th', { scope: 'row' }, label), el('td', {}, value))));
+  const sources = $('provider-sources');
+  sources.replaceChildren();
+  const p = a.providers;
+  const rdapSources = { cz: 'https://rdap.nic.cz/domain/', com: 'https://rdap.verisign.com/com/v1/domain/', net: 'https://rdap.verisign.com/net/v1/domain/' };
+  const base = rdapSources[p?.domain?.split('.').at(-1)];
+  if (base && p.registration?.status === 'ok') sources.append('Zdroj registrace: ', el('a', { href: base + encodeURIComponent(p.domain), target: '_blank', rel: 'noopener noreferrer' }, 'veřejný registr RDAP'), '. ');
+  if (p?.nameservers?.length || p?.mailservers?.length) sources.append('DNS a MX: veřejné DNS záznamy přes Cloudflare DNS.');
 
   const cats = $('cats');
   cats.replaceChildren(...Object.entries(CATEGORIES).map(([key, name]) => {
@@ -198,6 +210,33 @@ function render() {
   $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending, incomplete);
 }
 
+function technologyRows(a) {
+  const tech = a.technology;
+  return [
+    ['Systém / platforma', tech?.platforms?.join(', ') || 'Nerozpoznáno'],
+    ['Editor / builder', tech?.builders?.join(', ') || 'Nerozpoznáno'],
+    ['Šablona (název složky)', tech?.themes?.join(', ') || 'Z veřejného kódu nezjištěna'],
+    ['Základ stránky', 'HTML'],
+  ];
+}
+
+function providerRows(a) {
+  const p = a.providers;
+  const r = p?.registration;
+  const unavailable = r?.status === 'unsupported' ? 'Tato koncovka zatím není podporována' : 'Nepodařilo se ověřit';
+  const expiration = r?.expires && Number.isFinite(Date.parse(r.expires)) ? new Date(r.expires).toLocaleDateString('cs-CZ', { timeZone: 'UTC' }) : null;
+  return [
+    ['Doména', p?.domain || 'Nezjištěna'],
+    ['Registrátor (RDAP)', r?.registrar || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
+    ['Expirace v registru', expiration || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
+    ['DNS servery (NS)', p?.nameservers?.join(', ') || 'Nepodařilo se zjistit'],
+    ['DNS poskytovatel (indicie)', p?.dnsProviders?.join(', ') || 'Nerozpoznán'],
+    ['Poštovní servery (MX)', p?.mailservers?.join(', ') || 'Nezjištěny; neznamená to, že doména neodesílá e-maily'],
+    ['Poskytovatel pošty (indicie)', p?.mailProviders?.join(', ') || 'Nerozpoznán'],
+    ['Hosting / CDN (indicie)', p?.delivery?.join(', ') || 'Z veřejných hlaviček nerozpoznán'],
+  ];
+}
+
 // Shrnutí výsledku do e-mailu s žádostí o osobní audit (aby bylo hned vidět, co na webu je špatně)
 function resultSummary(a, checks, scores, overall, speedPending, incomplete) {
   const lines = [`Skóre provedených kontrol: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : incomplete ? ' (část kontrol není dostupná)' : ''}`];
@@ -207,7 +246,8 @@ function resultSummary(a, checks, scores, overall, speedPending, incomplete) {
   const warns = list('warn');
   if (fails.length) lines.push('', 'Problémy:', ...fails);
   if (warns.length) lines.push('', 'Ke zlepšení:', ...warns);
-  if (a.platforms.length) lines.push('', `Platforma: ${a.platforms.join(', ')}`);
+  lines.push('', 'Doména a poskytovatelé:', ...providerRows(a).map(([label, value]) => `${label}: ${value}`));
+  lines.push('', 'Technologie:', ...technologyRows(a).map(([label, value]) => `${label}: ${value}`));
   lines.push('', `Celý výsledek: https://testwebu.janyskovadigital.cz/?url=${encodeURIComponent(a.finalUrl)}`);
   return lines.join('\n').slice(0, 4900);
 }

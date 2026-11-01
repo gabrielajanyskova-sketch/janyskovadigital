@@ -2,6 +2,7 @@
 
 import { normalizeUrl, assertPublicHost, fetchPage, AuditError } from './http.js';
 import { analyzeHtml } from './html.js';
+import { readRegistration, providerSummary } from './providers.js';
 import { siteChecks, emailChecks, domainChecks, score, CATEGORIES } from './checks.js';
 
 const AI_BOTS = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot'];
@@ -41,7 +42,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true, deadli
   const otherHost = final.hostname.startsWith('www.') ? final.hostname.slice(4) : 'www.' + final.hostname;
   const probe = `${origin}/tato-stranka-neexistuje-${Math.random().toString(36).slice(2, 8)}`;
   const domain = registrableDomain(final.hostname);
-  const [httpVer, wwwVer, robotsRes, llmsRes, notFoundRes, securityTxt, dns] = await Promise.all([
+  const [httpVer, wwwVer, robotsRes, llmsRes, notFoundRes, securityTxt, dns, registration] = await Promise.all([
     final.protocol === 'https:' ? fetchPage(`http://${final.host}${final.pathname}`, opts) : null,
     fetchPage(`${final.protocol}//${otherHost}${final.pathname}`, opts).catch(() => null),
     fetchPage(`${origin}/robots.txt`, opts),
@@ -49,6 +50,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true, deadli
     fetchPage(probe, opts),
     fetchPage(`${origin}/.well-known/security.txt`, opts),
     domain ? readDomainDns(domain, budgeted) : null,
+    domain ? readRegistration(domain, budgeted) : null,
   ]);
 
   const robots = parseRobots(robotsRes?.status === 200 && /text\/plain/i.test(robotsRes.contentType) ? robotsRes.body : null);
@@ -114,6 +116,8 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true, deadli
     url: report.url,
     finalUrl: report.finalUrl,
     platforms: report.platforms,
+    technology: page.technology,
+    providers: providerSummary(domain, dns, registration, headers),
     checkedAt: new Date().toISOString(),
     incomplete: !!incomplete,
     categories: CATEGORIES,
@@ -185,11 +189,14 @@ export async function readDomainDns(domain, fetchImpl) {
     headers: { accept: 'application/dns-json' },
     signal: AbortSignal.timeout(5000),
   }).then(r => (r.ok ? r.json() : null)).catch(() => null);
-  const [txt, dmarc, mx, ds, caa] = await Promise.all([lookup(domain, 'TXT'), lookup(`_dmarc.${domain}`, 'TXT'), lookup(domain, 'MX'), lookup(domain, 'DS'), lookup(domain, 'CAA')]);
+  const [txt, dmarc, mx, ds, caa, ns] = await Promise.all([lookup(domain, 'TXT'), lookup(`_dmarc.${domain}`, 'TXT'), lookup(domain, 'MX'), lookup(domain, 'DS'), lookup(domain, 'CAA'), lookup(domain, 'NS')]);
   const valid = res => res && [0, 3].includes(res.Status) && (res.Answer == null || Array.isArray(res.Answer));
   if (!valid(txt) || !valid(dmarc)) return null;
   // TXT může být rozdělený na víc řetězců v uvozovkách: "v=spf1 …" "… ~all"
   const texts = (res, type) => (res.Answer || []).filter(a => a.type === type).map(a => a.data.replace(/"\s*"/g, '').replace(/^"|"$/g, '').trim());
   const count = (res, type) => (valid(res) ? (res.Answer || []).filter(a => a.type === type).length : null);
-  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: count(mx, 15), ds: count(ds, 43), caa: count(caa, 257) };
+  return { txt: texts(txt, 16), dmarc: texts(dmarc, 16), mx: count(mx, 15), ds: count(ds, 43), caa: count(caa, 257),
+    nameservers: valid(ns) ? (ns.Answer || []).filter(a => a.type === 2 && typeof a.data === 'string').map(a => a.data) : null,
+    mailservers: valid(mx) ? (mx.Answer || []).filter(a => a.type === 15 && typeof a.data === 'string').map(a => a.data.replace(/^\d+\s+/, '')) : null,
+  };
 }

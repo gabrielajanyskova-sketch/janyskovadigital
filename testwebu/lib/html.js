@@ -84,17 +84,47 @@ const THIRD_PARTY = [
   ['Google Mapy', /google\.com\/maps\/embed|maps\.googleapis\.com/],
 ];
 
-const PLATFORMS = [
-  ['WordPress', /wp-content\/|wp-includes\/|<meta[^>]+generator[^>]+WordPress/i],
-  ['Wix', /static\.wixstatic\.com|<meta[^>]+generator[^>]+Wix/i],
-  ['Webnode', /<meta[^>]+generator[^>]+Webnode|webnode\.(cz|com)\/[a-z_]*\/?(js|css|_files)|\.webnode\.page/i],
-  ['Shoptet', /cdn\.myshoptet\.com|<meta[^>]+generator[^>]+Shoptet/i],
-  ['Squarespace', /static1\.squarespace\.com/i],
-  ['Shopify', /cdn\.shopify\.com/i],
-  ['Webflow', /website-files\.com|<html[^>]+data-wf-site/i],
-  ['Joomla', /<meta[^>]+generator[^>]+Joomla/i],
-  ['Elementor', /\/plugins\/elementor\/|class="[^"]*\belementor-[a-z]/i],
-];
+// Rozpoznávání pouze z aktivních značek a adres prostředků, nikoli z textu článků.
+export function analyzeTechnologies(html, pageUrl) {
+  html = html.replace(/<!--[\s\S]*?-->/g, ' ');
+  const markup = html.replace(/<(script|style|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi,
+    block => block.match(/^<[^>]+>/)?.[0] || '');
+  const elements = [...markup.matchAll(/<[a-z][^>]*>/gi)].map(m => attrs(m[0]));
+  const resources = elements.flatMap(a => [a.src, a.href].filter(Boolean)).flatMap(value => {
+    try { const url = new URL(value, pageUrl); return /^https?:$/.test(url.protocol) ? [url.origin + url.pathname] : []; } catch { return []; }
+  });
+  const urls = resources.join(' ');
+  const classes = elements.map(a => a.class || '').join(' ');
+  const generator = elements.filter(a => a.name?.toLowerCase() === 'generator').map(a => a.content || '').join(' ');
+  const platforms = [
+    ['WordPress', /wp-content\/|wp-includes\//i.test(urls) || /\bWordPress\b/i.test(generator)],
+    ['Wix', /static\.wixstatic\.com/i.test(urls) || /\bWix\b/i.test(generator)],
+    ['Webnode', /\bWebnode\b/i.test(generator) || /(?:\.webnode\.page|webnode\.(?:cz|com)\/)/i.test(urls)],
+    ['Shoptet', /cdn\.myshoptet\.com/i.test(urls) || /\bShoptet\b/i.test(generator)],
+    ['Squarespace', /static1\.squarespace\.com/i.test(urls) || /\bSquarespace\b/i.test(generator)],
+    ['Shopify', /cdn\.shopify\.com/i.test(urls) || /\bShopify\b/i.test(generator)],
+    ['Webflow', /website-files\.com/i.test(urls) || elements.some(a => 'data-wf-site' in a)],
+    ['Joomla', /\bJoomla\b/i.test(generator)],
+    ['Drupal', /\bDrupal\b/i.test(generator)],
+  ].filter(([, found]) => found).map(([name]) => name);
+  const builders = [
+    ['Elementor', /\/plugins\/elementor(?:-pro)?\//i.test(urls) || /(?:^|\s)elementor(?:-|\s|$)/i.test(classes)],
+    ['Divi', /\/(?:themes\/Divi|plugins\/divi-builder)\//i.test(urls) || /(?:^|\s)et_pb_[\w-]+/i.test(classes)],
+    ['WPBakery', /\/plugins\/js_composer\//i.test(urls) || /(?:^|\s)wpb_(?:wrapper|content_element)(?:\s|$)/i.test(classes)],
+    ['Bricks', /\/themes\/bricks\//i.test(urls) || /(?:^|\s)brxe-[\w-]+/i.test(classes)],
+    ['Oxygen', /\/plugins\/oxygen\//i.test(urls)],
+    ['Beaver Builder', /\/plugins\/bb-plugin\//i.test(urls) || /(?:^|\s)fl-builder-content(?:\s|$)/i.test(classes)],
+    ['Bloky WordPressu (Gutenberg)', platforms.includes('WordPress') && /(?:^|\s)wp-block-[\w-]+/i.test(classes)],
+  ].filter(([, found]) => found).map(([name]) => name);
+  const themes = [...new Set(resources.flatMap(value => {
+    let pathname;
+    try { pathname = new URL(value).pathname; } catch { return []; }
+    const match = pathname.match(/\/wp-content\/themes\/([^/]+)\//i);
+    if (!match) return [];
+    try { return [decodeURIComponent(match[1]).slice(0, 100)]; } catch { return [match[1].slice(0, 100)]; }
+  }))].slice(0, 10);
+  return { platforms, builders, themes };
+}
 
 export function analyzeHtml(html, pageUrl) {
   // Komentáře nejsou viditelný obsah ani aktivní značky stránky.
@@ -161,7 +191,9 @@ export function analyzeHtml(html, pageUrl) {
 
   const words = text(bodyNoScripts).split(/\s+/).filter(w => /\p{L}/u.test(w)).length;
 
+  const technology = analyzeTechnologies(html, pageUrl);
   return {
+    technology,
     lang: (html.match(/<html\b[^>]*\blang\s*=\s*["']?([a-zA-Z-]+)/i) || [])[1] || null,
     title: text((head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '') || null,
     description: meta('description') ?? null,
@@ -185,7 +217,7 @@ export function analyzeHtml(html, pageUrl) {
     stylesheets: stylesheets.length,
     googleFonts: /fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html),
     thirdParty: THIRD_PARTY.filter(([, re]) => re.test(html)).map(([name]) => name),
-    platforms: PLATFORMS.filter(([, re]) => re.test(head + ' ' + scriptSrcs.join(' ') + ' ' + images.map(i => i.src).join(' ') + ' ' + (body.match(/<body\b[^>]*>/i) || [''])[0])).map(([name]) => name),
+    platforms: [...technology.platforms, ...technology.builders],
     mixedContent,
     cookieBanner: /cookie[-_ ]?(consent|banner|bar|lišta|lista)|cookiebot|onetrust|cookieyes|complianz|cc-window|klaro/i.test(html),
     privacyLink: privacyLink(bodyNoScripts, anchors, base),

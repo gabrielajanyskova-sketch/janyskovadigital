@@ -39,7 +39,7 @@ test('DNS failure and partial DNS failure stay unknown, not missing', async () =
   assert.equal(down, null);
   assert.equal(emailChecks(down, 'firma.cz')[0].status, 'info');
   const partial = await readDomainDns('firma.cz', async u => Response.json({ Status: ['TXT'].includes(new URL(u).searchParams.get('type')) ? 0 : 2 }));
-  assert.deepEqual(partial, { txt: [], dmarc: [], mx: null, ds: null, caa: null });
+  assert.deepEqual(partial, { txt: [], dmarc: [], mx: null, ds: null, caa: null, nameservers: null, mailservers: null });
 });
 test('robots: training restrictions do not imply search restrictions', () => {
   const r = parseRobots('User-agent: GPTBot\nDisallow: /\nUser-agent: ClaudeBot\nDisallow: /');
