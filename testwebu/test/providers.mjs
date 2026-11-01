@@ -9,7 +9,7 @@ const record = {
     { roles: ['registrant'], vcardArray: ['vcard', [['fn', {}, 'text', 'PRIVATE OWNER']]] },
     { roles: ['registrar'], handle: 'REG-DEMO', vcardArray: ['vcard', [['fn', {}, 'text', 'Demo registrar']]], entities: [{ roles: ['abuse'], email: 'private@example.cz' }] },
   ],
-  events: [{ eventAction: 'expiration', eventDate: '2027-01-02T00:00:00Z' }],
+  events: [{ eventAction: 'registration', eventDate: '2020-06-15T12:00:00+02:00' }, { eventAction: 'last changed', eventDate: '2026-10-01T12:00:00Z' }, { eventAction: 'expiration', eventDate: '2027-01-02T00:00:00Z' }],
 };
 test('RDAP returns only registrar and registry expiration, never owner contacts', async () => {
   const result = await readRegistration('example.cz', async (url, options) => {
@@ -19,6 +19,8 @@ test('RDAP returns only registrar and registry expiration, never owner contacts'
   });
   assert.equal(result.status, 'ok');
   assert.equal(result.registrar, 'Demo registrar');
+  assert.equal(result.registered, '2020-06-15T10:00:00.000Z');
+  assert.equal(result.changed, '2026-10-01T12:00:00.000Z');
   assert.equal(result.expires, '2027-01-02T00:00:00.000Z');
   assert(!JSON.stringify(result).includes('PRIVATE'));
   assert(!JSON.stringify(result).includes('private@'));
@@ -30,7 +32,7 @@ test('unknown registrars, absent dates, unsupported TLDs and unavailable RDAP re
     assert.equal((await readRegistration('example.cz', async () => response)).status, 'unavailable');
   }
   assert.equal((await readRegistration('example.cz', async () => { throw new Error('timeout'); })).status, 'unavailable');
-  assert.deepEqual(registrationSummary({ ...record, entities: [{ roles: ['registrar'], handle: 'REG-DEMO' }], events: [] }, 'example.cz'), { registrar: 'REG-DEMO', expires: null });
+  assert.deepEqual(registrationSummary({ ...record, entities: [{ roles: ['registrar'], handle: 'REG-DEMO' }], events: [] }, 'example.cz'), { registrar: 'REG-DEMO', registered: null, changed: null, expires: null });
 });
 test('DNS and mail are separate indications; Cloudflare does not disclose origin hosting', () => {
   const result = providerSummary('example.cz', { nameservers: ['bob.ns.cloudflare.com.', 'bob.ns.cloudflare.com.'], mailservers: ['example-cz.mail.protection.outlook.com.'] }, null, { server: 'cloudflare' });
@@ -73,4 +75,11 @@ test('RDAP failures have actionable reasons without exposing response bodies', a
   assert.equal((await readRegistration('example.cz', async () => new Response('private', { status: 429 }))).reason, 'rate-limit');
   assert.equal((await readRegistration('example.cz', async () => { throw new Error('private details'); })).reason, 'network-error');
   assert.equal((await readRegistration('example.cz', async () => Response.json({}))).reason, 'invalid-response');
+});
+
+test('registration dates are not replaced with unrelated transfer or expiration events', () => {
+  const result = registrationSummary({ ...record, events: [{ eventAction: 'registration', eventDate: 'invalid' }, { eventAction: 'transfer', eventDate: '2021-01-01T00:00:00Z' }] }, 'example.cz');
+  assert.equal(result.registered, null);
+  assert.equal(result.changed, null);
+  assert.equal(result.expires, null);
 });

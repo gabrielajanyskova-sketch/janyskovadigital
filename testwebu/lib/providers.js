@@ -13,10 +13,15 @@ export function registrationSummary(data, domain) {
   const registrar = (Array.isArray(data.entities) ? data.entities : []).find(e => Array.isArray(e.roles) && e.roles.includes('registrar'));
   const cards = Array.isArray(registrar?.vcardArray?.[1]) ? registrar.vcardArray[1] : [];
   const name = cards.find(v => Array.isArray(v) && v[0] === 'fn')?.[3];
-  const expiration = (Array.isArray(data.events) ? data.events : []).find(e => e.eventAction === 'expiration')?.eventDate;
+  const eventDate = action => {
+    const value = (Array.isArray(data.events) ? data.events : []).find(e => e.eventAction === action)?.eventDate;
+    return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(value) && Number.isFinite(Date.parse(value)) ? new Date(value).toISOString() : null;
+  };
   return {
     registrar: clean(name) || clean(registrar?.handle),
-    expires: typeof expiration === 'string' && /^\d{4}-\d{2}-\d{2}T/.test(expiration) && Number.isFinite(Date.parse(expiration)) ? new Date(expiration).toISOString() : null,
+    registered: eventDate('registration'),
+    changed: eventDate('last changed'),
+    expires: eventDate('expiration'),
   };
 }
 
