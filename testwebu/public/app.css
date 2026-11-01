@@ -198,3 +198,8 @@ em{font-style:italic;color:var(--pink)}
 .technology-table th,.technology-table td{text-align:left;vertical-align:top;padding:10px 8px;border-bottom:1px solid var(--border, #382033);overflow-wrap:anywhere;font-size:15px}
 .technology-table th{width:42%;font-weight:700}
 .technology-note{font-size:13px;color:var(--dim);margin:14px 0 0}
+
+/* Neurčitý průběh: vlastní prstenec ponechá skóre i jeho barevný oblouk čitelné. */
+.ring.is-loading::after{content:"";position:absolute;inset:-7px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--pink);border-right-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite;pointer-events:none}
+.score-status{color:var(--pink-text);font-size:14px;font-weight:700;margin-top:8px}
+@media print{.ring.is-loading::after{display:none}}

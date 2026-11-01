@@ -150,6 +150,11 @@ function render() {
   const values = Object.values(scores);
   const overall = values.length ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : 0;
 
+  // Kroužek indikuje běžící měření, nikoli procento dokončení testu.
+  $('overall').classList.toggle('is-loading', speedPending);
+  $('overall').setAttribute('aria-busy', String(speedPending));
+  $('score-status').textContent = speedPending ? 'Test ještě běží… Výsledek se průběžně doplňuje.'
+    : incomplete ? 'Test skončil. Část kontrol se nepodařilo dokončit.' : 'Test je dokončen.';
   $('overall-num').textContent = overall;
   $('overall').setAttribute('aria-label', `Skóre provedených kontrol ${overall} ze 100${speedPending || incomplete ? ', výsledek není úplný' : ''}`);
   const ring = $('ring-fg');
