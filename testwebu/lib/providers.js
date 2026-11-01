@@ -33,11 +33,28 @@ export async function readRegistration(domain, fetchImpl = fetch) {
   const failed = reason => ({ ...unavailable, reason });
   const signal = AbortSignal.timeout(4500);
   let reader;
+  let stage = 'connect';
   try {
-    // Nepřejímáme odkazy ani přesměrování od registru (pevný seznam cílových serverů).
-    const res = await fetchImpl(source, { headers: { accept: 'application/rdap+json, application/json' }, redirect: 'error', signal });
+    // Připustíme jen kanonizaci stejné domény na stejném HTTPS serveru.
+    // Nikdy nepřejdeme na adresu registranta ani libovolný odkaz z RDAP.
+    let target = source;
+    let res;
+    for (let hop = 0; hop < 3; hop++) {
+      res = await fetchImpl(target, { headers: { accept: 'application/rdap+json, application/json' }, redirect: 'manual', signal });
+      if (![301, 302, 303, 307, 308].includes(res.status)) break;
+      await res.body?.cancel();
+      const location = res.headers.get('location');
+      let next;
+      try { next = new URL(location, target); } catch { return failed('redirect-error'); }
+      const expected = new URL(source);
+      if (!location || next.origin !== expected.origin || next.username || next.password || next.search || next.hash ||
+          ![expected.pathname, expected.pathname + '/'].includes(next.pathname) || next.href === target || hop === 2) return failed('redirect-error');
+      target = next.href;
+    }
+    stage = 'response';
     if (!res.ok) return failed(res.status === 429 ? 'rate-limit' : res.status === 404 ? 'not-found' : 'http-error');
     if (!res.body || !/(?:application\/rdap\+json|application\/json)/i.test(res.headers.get('content-type') || '')) return failed('invalid-response');
+    stage = 'read';
     reader = res.body.getReader();
     const chunks = []; let length = 0;
     while (true) {
@@ -50,9 +67,17 @@ export async function readRegistration(domain, fetchImpl = fetch) {
     }
     const buffer = new Uint8Array(length); let offset = 0;
     for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.length; }
-    const summary = registrationSummary(JSON.parse(new TextDecoder().decode(buffer)), domain);
+    stage = 'parse';
+    let data;
+    try { data = JSON.parse(new TextDecoder().decode(buffer)); } catch { return failed('invalid-response'); }
+    const summary = registrationSummary(data, domain);
     return summary ? { status: 'ok', ...summary, source } : failed('invalid-response');
-  } catch (error) { return failed(signal.aborted || ['TimeoutError', 'AbortError'].includes(error.name) ? 'timeout' : 'network-error'); }
+  } catch (error) {
+    // Jen bezpečné provozní údaje, bez obsahu registru a osobních kontaktů.
+    console.warn('RDAP request failed', { registry: new URL(source).hostname, stage,
+      errorName: ['TypeError', 'AbortError', 'TimeoutError', 'SyntaxError'].includes(error.name) ? error.name : 'Error' });
+    return failed(signal.aborted || ['TimeoutError', 'AbortError'].includes(error.name) ? 'timeout' : 'network-error');
+  }
   finally { if (reader) await reader.cancel().catch(() => {}); }
 }
 

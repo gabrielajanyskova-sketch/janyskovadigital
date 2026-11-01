@@ -14,7 +14,7 @@ const record = {
 test('RDAP returns only registrar and registry expiration, never owner contacts', async () => {
   const result = await readRegistration('example.cz', async (url, options) => {
     assert.equal(url, 'https://rdap.nic.cz/domain/example.cz');
-    assert.equal(options.redirect, 'error');
+    assert.equal(options.redirect, 'manual');
     return Response.json(record);
   });
   assert.equal(result.status, 'ok');
@@ -82,4 +82,24 @@ test('registration dates are not replaced with unrelated transfer or expiration 
   assert.equal(result.registered, null);
   assert.equal(result.changed, null);
   assert.equal(result.expires, null);
+});
+
+test('RDAP permits only bounded same-registry canonical redirects', async () => {
+  const calls = [];
+  const ok = await readRegistration('example.cz', async url => {
+    calls.push(url);
+    return calls.length === 1 ? new Response(null, { status: 301, headers: { location: '/domain/example.cz/' } }) : Response.json(record);
+  });
+  assert.equal(ok.status, 'ok');
+  assert.equal(calls.length, 2);
+  for (const location of ['http://rdap.nic.cz/domain/example.cz', 'https://evil.cz/domain/example.cz', '/domain/other.cz', '/domain/example.cz/?token=private', '/domain/example.cz']) {
+    let requests = 0;
+    const result = await readRegistration('example.cz', async () => { requests++; return new Response(null, { status: 302, headers: { location } }); });
+    assert.equal(result.reason, 'redirect-error');
+    assert.equal(requests, 1);
+  }
+});
+test('malformed JSON is not misreported as a connection failure', async () => {
+  const result = await readRegistration('example.cz', async () => new Response('{broken', { headers: { 'content-type': 'application/rdap+json' } }));
+  assert.equal(result.reason, 'invalid-response');
 });

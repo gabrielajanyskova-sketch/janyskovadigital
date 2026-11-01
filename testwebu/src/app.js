@@ -245,6 +245,7 @@ function providerRows(a) {
     'http-error': 'Registr nyní údaje neposkytl. Lze je ověřit ručně níže.',
     'network-error': 'Spojení s registrem se nepodařilo. Lze ověřit ručně níže.',
     'invalid-response': 'Odpověď registru se nepodařilo zpracovat. Lze ověřit ručně níže.',
+    'redirect-error': 'Registr změnil adresu odpovědi. Automatické ověření není dostupné.',
     'size-limit': 'Odpověď registru překročila limit testu. Lze ověřit ručně níže.',
   };
   const unavailable = r?.status === 'unsupported' ? 'Tato koncovka zatím není podporována' : reasons[r?.reason] || 'Nepodařilo se ověřit';
@@ -253,10 +254,12 @@ function providerRows(a) {
     : r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable;
   return [
     ['Doména', p?.domain || 'Nezjištěna'],
+    ...(r?.status === 'ok' ? [
     ['Registrátor (RDAP)', r?.registrar || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
     ['Datum registrace', displayDate(r?.registered)],
     ['Poslední změna v registru', displayDate(r?.changed)],
     ['Expirace v registru', displayDate(r?.expires)],
+    ] : [['Údaje z registru', unavailable]]),
     ['DNS servery (NS)', p?.nameservers?.join('\n') || 'Nepodařilo se zjistit'],
     ['DNS poskytovatel (indicie)', p?.dnsProviders?.join(', ') || 'Nerozpoznán'],
     ['Poštovní servery (MX)', p?.mailservers?.join('\n') || 'Nezjištěny; neznamená to, že doména neodesílá e-maily'],
