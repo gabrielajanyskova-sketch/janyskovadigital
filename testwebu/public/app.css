@@ -203,3 +203,27 @@ em{font-style:italic;color:var(--pink)}
 .ring.is-loading::after{content:"";position:absolute;inset:-7px;border:3px solid rgba(255,255,255,.12);border-top-color:var(--pink);border-right-color:var(--pink);border-radius:50%;animation:spin 1s linear infinite;pointer-events:none}
 .score-status{color:var(--pink-text);font-size:14px;font-weight:700;margin-top:8px}
 @media print{.ring.is-loading::after{display:none}}
+
+.technology-table td{white-space:pre-line}
+@media screen and (max-width:600px){
+  .technology-table,.technology-table tbody,.technology-table tr,.technology-table th,.technology-table td{display:block;width:100%}
+  .technology-table tr{padding:12px 0;border-bottom:1px solid var(--border)}
+  .technology-table th,.technology-table td{border:0;padding:0;text-align:left}
+  .technology-table th{font-size:13px;color:var(--dim);margin-bottom:6px}
+  .technology-table td{font-size:15px}
+}
+
+/* Indikátor zůstává viditelný od odeslání formuláře i při čtení průběžných výsledků. */
+.run-indicator{position:sticky;top:12px;z-index:20;display:flex;align-items:center;gap:14px;width:calc(100% - 40px);max-width:600px;margin:0 auto 24px;padding:16px 20px;background:#1b0b19;border:1px solid var(--pink);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.35)}
+.run-indicator[hidden]{display:none}
+.run-spinner{display:block;flex:0 0 34px;width:34px;height:34px;border:3px solid rgba(240,20,122,.2);border-top-color:var(--pink-text);border-right-color:var(--pink-text);border-radius:50%;animation:spin .85s linear infinite}
+.run-indicator strong{font-size:15px}
+.run-indicator-note{display:block;font-size:13px;color:var(--dim)}
+.technology-details{background:var(--card);padding:0 20px;margin:14px 0}
+.technology-details>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;padding:18px 0}
+.technology-details>summary::-webkit-details-marker{display:none}
+.technology-details>summary h3{margin:0;font-size:18px}
+.technology-toggle{font-size:24px;line-height:1;color:var(--pink-text)}
+.technology-details[open] .technology-toggle{transform:rotate(45deg)}
+.technology-details[open]{padding-bottom:20px}
+@media print{.run-indicator{display:none!important}}

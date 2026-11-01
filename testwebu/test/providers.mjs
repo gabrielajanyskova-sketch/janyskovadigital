@@ -62,3 +62,15 @@ test('audit includes public provider summary; unavailable optional registration 
   assert.deepEqual(a.scores, b.scores);
   assert.equal(a.incomplete, b.incomplete);
 });
+
+test('Seznam Email Profi matches customer-specific MX names without matching lookalike domains', () => {
+  const summarize = host => providerSummary('example.cz', { mailservers: [host] }, null).mailProviders;
+  assert.deepEqual(summarize('7e672a7af9551dff.mx2.emailprofi.seznam.cz.'), ['Seznam Email Profi']);
+  assert.deepEqual(summarize('7e672a7af9551dff.mx1.emailprofi.seznam.cz.'), ['Seznam Email Profi']);
+  assert.deepEqual(summarize('mx1.emailprofi.seznam.cz.evil.cz'), []);
+});
+test('RDAP failures have actionable reasons without exposing response bodies', async () => {
+  assert.equal((await readRegistration('example.cz', async () => new Response('private', { status: 429 }))).reason, 'rate-limit');
+  assert.equal((await readRegistration('example.cz', async () => { throw new Error('private details'); })).reason, 'network-error');
+  assert.equal((await readRegistration('example.cz', async () => Response.json({}))).reason, 'invalid-response');
+});

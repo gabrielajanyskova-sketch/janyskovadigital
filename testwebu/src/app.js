@@ -48,6 +48,10 @@ async function getJson(url, options, signal) {
   throw new Error(`${reason} (kód ${res.status})`);
 }
 
+function showRunning(running) {
+  $('run-indicator').hidden = !running;
+}
+
 async function run(url, { fresh = false } = {}) {
   controller?.abort();
   controller = new AbortController();
@@ -57,6 +61,7 @@ async function run(url, { fresh = false } = {}) {
   $('form-error').hidden = true;
   $('results').hidden = true;
   $('progress').hidden = false;
+  showRunning(true);
   $('submit').disabled = true;
   $('rerun').disabled = true;
   ['audit', 'mobile', 'desktop'].forEach(s => setStep(s, 'running'));
@@ -85,6 +90,7 @@ async function run(url, { fresh = false } = {}) {
     if (currentState.audit) render();
     else setStep('audit', 'failed');
     $('progress').hidden = true;
+    showRunning(false);
     $('submit').disabled = false;
     $('rerun').disabled = false;
     showError(state.audit ? 'Měření rychlosti od Googlu neodpovědělo, výsledek je bez něj.' : 'Test neodpověděl do 100 sekund. Zkuste to prosím znovu za chvíli.');
@@ -112,6 +118,7 @@ async function run(url, { fresh = false } = {}) {
     clearTimeout(watchdog);
     controller.abort();
     $('progress').hidden = true;
+    showRunning(false);
     showError(e.message);
     setStep('audit', 'failed');
     input.setAttribute('aria-invalid', 'true');
@@ -125,6 +132,7 @@ async function run(url, { fresh = false } = {}) {
   $('submit').disabled = false;
   $('rerun').disabled = false;
   $('progress').hidden = true;
+  showRunning(false);
 }
 
 function allChecks() {
@@ -151,6 +159,7 @@ function render() {
   const overall = values.length ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : 0;
 
   // Kroužek indikuje běžící měření, nikoli procento dokončení testu.
+  showRunning(speedPending);
   $('overall').classList.toggle('is-loading', speedPending);
   $('overall').setAttribute('aria-busy', String(speedPending));
   $('score-status').textContent = speedPending ? 'Test ještě běží… Výsledek se průběžně doplňuje.'
@@ -180,7 +189,8 @@ function render() {
   const p = a.providers;
   const rdapSources = { cz: 'https://rdap.nic.cz/domain/', com: 'https://rdap.verisign.com/com/v1/domain/', net: 'https://rdap.verisign.com/net/v1/domain/' };
   const base = rdapSources[p?.domain?.split('.').at(-1)];
-  if (base && p.registration?.status === 'ok') sources.append('Zdroj registrace: ', el('a', { href: base + encodeURIComponent(p.domain), target: '_blank', rel: 'noopener noreferrer' }, 'veřejný registr RDAP'), '. ');
+  if (base) sources.append(p.registration?.status === 'ok' ? 'Zdroj registrace: ' : 'Registraci lze ověřit ručně: ', el('a', { href: base + encodeURIComponent(p.domain), target: '_blank', rel: 'noopener noreferrer' }, 'veřejný registr RDAP'), '. ');
+  if (p?.domain?.endsWith('.cz') && p.registration?.status !== 'ok') sources.append(el('a', { href: 'https://www.nic.cz/whois/domain/' + encodeURIComponent(p.domain) + '/', target: '_blank', rel: 'noopener noreferrer' }, 'vyhledávání CZ.NIC'), '. ');
   if (p?.nameservers?.length || p?.mailservers?.length) sources.append('DNS a MX: veřejné DNS záznamy přes Cloudflare DNS.');
 
   const cats = $('cats');
@@ -228,15 +238,24 @@ function technologyRows(a) {
 function providerRows(a) {
   const p = a.providers;
   const r = p?.registration;
-  const unavailable = r?.status === 'unsupported' ? 'Tato koncovka zatím není podporována' : 'Nepodařilo se ověřit';
+  const reasons = {
+    'rate-limit': 'Registr dočasně omezil počet dotazů. Zkuste to později.',
+    'not-found': 'Registr pro tuto doménu nevrátil záznam.',
+    'timeout': 'Registr neodpověděl včas. Zkuste to později.',
+    'http-error': 'Registr nyní údaje neposkytl. Lze je ověřit ručně níže.',
+    'network-error': 'Spojení s registrem se nepodařilo. Lze ověřit ručně níže.',
+    'invalid-response': 'Odpověď registru se nepodařilo zpracovat. Lze ověřit ručně níže.',
+    'size-limit': 'Odpověď registru překročila limit testu. Lze ověřit ručně níže.',
+  };
+  const unavailable = r?.status === 'unsupported' ? 'Tato koncovka zatím není podporována' : reasons[r?.reason] || 'Nepodařilo se ověřit';
   const expiration = r?.expires && Number.isFinite(Date.parse(r.expires)) ? new Date(r.expires).toLocaleDateString('cs-CZ', { timeZone: 'UTC' }) : null;
   return [
     ['Doména', p?.domain || 'Nezjištěna'],
     ['Registrátor (RDAP)', r?.registrar || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
     ['Expirace v registru', expiration || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
-    ['DNS servery (NS)', p?.nameservers?.join(', ') || 'Nepodařilo se zjistit'],
+    ['DNS servery (NS)', p?.nameservers?.join('\n') || 'Nepodařilo se zjistit'],
     ['DNS poskytovatel (indicie)', p?.dnsProviders?.join(', ') || 'Nerozpoznán'],
-    ['Poštovní servery (MX)', p?.mailservers?.join(', ') || 'Nezjištěny; neznamená to, že doména neodesílá e-maily'],
+    ['Poštovní servery (MX)', p?.mailservers?.join('\n') || 'Nezjištěny; neznamená to, že doména neodesílá e-maily'],
     ['Poskytovatel pošty (indicie)', p?.mailProviders?.join(', ') || 'Nerozpoznán'],
     ['Hosting / CDN (indicie)', p?.delivery?.join(', ') || 'Z veřejných hlaviček nerozpoznán'],
   ];

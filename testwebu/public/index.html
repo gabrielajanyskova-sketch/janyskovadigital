@@ -31,7 +31,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/plus-jakarta-sans-cs-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/dm-serif-display-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/app.css?v=265f2943ba">
+<link rel="stylesheet" href="/app.css?v=4784a579d2">
 <script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
@@ -88,7 +88,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Je test webu opravdu zdarma?",
+          "name": "Na čem web běží?+ Rozpoznáno z veřejného kódu testované stránky. Skryté technologie nemusíme poznat. HTML používají i weby na WordPressu; nerozpoznaný systém neznamená web bez redakčního systému. Technologie nemění skóre testu. Doména a poskytovatelé+ Údaje se týkají domény výsledné adresy po přesměrování. Registrátora a expiraci zkoušíme zjistit pro .cz, .com a .net. Poskytovatelé podle DNS a HTTP hlaviček jsou indicie; registrátor, DNS, pošta a hosting mohou být různé firmy. Expirace v registru není termín vaší faktury. Osobní kontakty držitele nezobrazujeme. Tyto údaje nemění skóre. Probereme váš výsledek? Některému bodu nerozumíte nebo chcete poradit, čím začít? Pošlete mi výsledek. Ozvu se do 24 hodin a zdarma probereme, co má pro váš web smysl. Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz. Jméno E-mail Zpráva Probrat výsledek zdarma Informace o zpracování údajů pro vyřízení poptávky. Raději telefon? +420 739 395 800 „Naprostá spokojenost. E-shop rychle vytvořen, vše funguje, jak má. Komunikace a profesionalita paní Janýškové na jedničku.“ Nikola Drn, recenze na Googlu ★★★★★ Gabriela Janýšková · janyskovadigital.cz · info@janyskovadigital.cz · +420 739 395 800 Co test kontroluje Rychlost: jak dlouho trvá zobrazení a reakce stránky při měření Googlu. Když jsou dostupná, také souhrnná data návštěvníků z Chrome. Technické nastavení: šifrované připojení, přesměrování adres, pravidla pro vyhledávače, mapa webu a nastavení šířky pro mobil. Obsah: názvy a popisy stránek, nadpisy, popisky obrázků, vybrané odkazy a náhled pro sdílení na sociálních sítích. Vyhledávače a AI: zda web nabízí doplňující údaje o svém obsahu a jaká má pravidla pro přístup robotů. Test nezjišťuje, jestli vás AI doporučuje. E-mail: základní pravidla proti podvržení pošty z vaší domény (SPF a DMARC). Test neodesílá skutečné zprávy ani neověřuje jejich doručení. Zabezpečení a soukromí: některá ochranná nastavení, údaje o firmě a odkaz na zásady ochrany údajů. Test nezkouší útok na web ani ovládání cookie lišty. Přístupnost: automatické hodnocení Googlu, pokud je dostupné. Nejde o úplné vyzkoušení webu lidmi se zrakovým nebo jiným omezením. Takto vypadá výsledek 72z 100 Problém Robots.txt zakazuje některé vyhledávací roboty Zlepšit Chybí popis stránky pro Google Zlepšit V HTML je odkaz na externí písma V pořádku Web běží na zabezpečeném HTTPS U každého bodu najdete, proč na tom záleží a jak to opravit. Odkaz na výsledek můžete poslat třeba tomu, kdo vám web spravuje. Test je orientační a kontroluje pouze veřejně dostupné údaje. Nenahrazuje ruční prověření celého webu, bezpečnostní audit ani právní posouzení. Nezjišťuje, zda vás AI doporučuje nebo kolik zákazníků vám web přivádí. Časté otázky k testu webu Je test webu opravdu zdarma?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Ano, zdarma a bez registrace. Kvůli ochraně služby je počet testů za krátkou dobu omezený. Odkaz můžete poslat správci webu; otevře test stejné adresy."
@@ -139,7 +139,7 @@
     }
   ]
 }</script>
-<script src="/app.js?v=254151d4a1" defer></script>
+<script src="/app.js?v=f6e5f3b440" defer></script>
 </head>
 <body>
 <a href="#main" class="skip-link">Přeskočit na obsah</a>
@@ -164,6 +164,11 @@
     <p class="hint" id="url-hint">Bez registrace. Zadejte veřejnou stránku bez přihlašovacích údajů a osobních údajů v adrese.</p>
     <p class="ai-hook">Podívám se také na údaje a pravidla, které web nabízí vyhledávačům a AI. Jestli vás AI skutečně doporučuje, tento test nezjistí.</p>
   </section>
+
+  <div class="run-indicator" id="run-indicator" hidden role="status" aria-live="polite">
+    <span class="run-spinner" aria-hidden="true"></span>
+    <span><strong>Test právě běží…</strong><span class="run-indicator-note">Výsledky se ještě doplňují.</span></span>
+  </div>
 
   <section class="progress wrap" id="progress" hidden aria-live="polite">
     <h2 class="visually-hidden">Průběh testu</h2>
@@ -193,20 +198,20 @@
         <p class="score-status" id="score-status" role="status" aria-live="polite" aria-atomic="true"></p>
       </div>
     </div>
-    <section class="technology" aria-labelledby="technology-title">
-      <h3 id="technology-title">Na čem web běží?</h3>
-      <table class="technology-table" aria-labelledby="technology-title"><tbody id="technology-rows"></tbody></table>
-      <p class="technology-note">Rozpoznáno z veřejného kódu testované stránky. Skryté technologie nemusíme poznat. HTML používají i weby na WordPressu; nerozpoznaný systém neznamená web bez redakčního systému. Technologie nemění skóre testu.</p>
-    </section>
-    <section class="technology" aria-labelledby="providers-title">
-      <h3 id="providers-title">Doména a poskytovatelé</h3>
-      <table class="technology-table" aria-labelledby="providers-title"><tbody id="provider-rows"></tbody></table>
-      <p class="technology-note">Údaje se týkají domény výsledné adresy po přesměrování. Registrátora a expiraci zkoušíme zjistit pro .cz, .com a .net. Poskytovatelé podle DNS a HTTP hlaviček jsou indicie; registrátor, DNS, pošta a hosting mohou být různé firmy. Expirace v registru není termín vaší faktury. Osobní kontakty držitele nezobrazujeme. Tyto údaje nemění skóre.</p>
-      <p class="technology-note" id="provider-sources"></p>
-    </section>
     <p class="note">Skóre vychází jen z dokončených kontrol. Ani 100/100 neznamená, že je celý web bez chyby. Výsledek může být až hodinu starý; tlačítko „Změřit znovu“ spustí aktuální kontrolu.</p>
     <div class="cats" id="cats"></div>
     <p class="note">„Informace“ je doplňující údaj. „Neověřeno“ znamená, že test nedokázal něco zjistit. Ani jeden stav není automaticky chyba a nemění skóre.</p>
+    <details class="technology technology-details" aria-labelledby="technology-title">
+      <summary><h3 id="technology-title">Na čem web běží?</h3><span aria-hidden="true" class="technology-toggle">+</span></summary>
+      <table class="technology-table" aria-labelledby="technology-title"><tbody id="technology-rows"></tbody></table>
+      <p class="technology-note">Rozpoznáno z veřejného kódu testované stránky. Skryté technologie nemusíme poznat. HTML používají i weby na WordPressu; nerozpoznaný systém neznamená web bez redakčního systému. Technologie nemění skóre testu.</p>
+    </details>
+    <details class="technology technology-details" aria-labelledby="providers-title">
+      <summary><h3 id="providers-title">Doména a poskytovatelé</h3><span aria-hidden="true" class="technology-toggle">+</span></summary>
+      <table class="technology-table" aria-labelledby="providers-title"><tbody id="provider-rows"></tbody></table>
+      <p class="technology-note">Údaje se týkají domény výsledné adresy po přesměrování. Registrátora a expiraci zkoušíme zjistit pro .cz, .com a .net. Poskytovatelé podle DNS a HTTP hlaviček jsou indicie; registrátor, DNS, pošta a hosting mohou být různé firmy. Expirace v registru není termín vaší faktury. Osobní kontakty držitele nezobrazujeme. Tyto údaje nemění skóre.</p>
+      <p class="technology-note" id="provider-sources"></p>
+    </details>
     <div id="checks"></div>
     <aside class="cta" id="audit">
       <h2>Probereme <em>váš výsledek?</em></h2>

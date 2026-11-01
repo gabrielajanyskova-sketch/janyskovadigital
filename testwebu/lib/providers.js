@@ -25,12 +25,14 @@ export async function readRegistration(domain, fetchImpl = fetch) {
   if (!base || !domainName(domain)) return { status: 'unsupported', registrar: null, expires: null, source: null };
   const source = base + encodeURIComponent(domain);
   const unavailable = { status: 'unavailable', registrar: null, expires: null, source };
+  const failed = reason => ({ ...unavailable, reason });
   const signal = AbortSignal.timeout(4500);
   let reader;
   try {
     // Nepřejímáme odkazy ani přesměrování od registru (pevný seznam cílových serverů).
     const res = await fetchImpl(source, { headers: { accept: 'application/rdap+json, application/json' }, redirect: 'error', signal });
-    if (!res.ok || !res.body || !/(?:application\/rdap\+json|application\/json)/i.test(res.headers.get('content-type') || '')) return unavailable;
+    if (!res.ok) return failed(res.status === 429 ? 'rate-limit' : res.status === 404 ? 'not-found' : 'http-error');
+    if (!res.body || !/(?:application\/rdap\+json|application\/json)/i.test(res.headers.get('content-type') || '')) return failed('invalid-response');
     reader = res.body.getReader();
     const chunks = []; let length = 0;
     while (true) {
@@ -38,14 +40,14 @@ export async function readRegistration(domain, fetchImpl = fetch) {
       const { done, value } = await reader.read();
       if (done) break;
       length += value.byteLength;
-      if (length > 131072) return unavailable;
+      if (length > 131072) return failed('size-limit');
       chunks.push(value);
     }
     const buffer = new Uint8Array(length); let offset = 0;
     for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.length; }
     const summary = registrationSummary(JSON.parse(new TextDecoder().decode(buffer)), domain);
-    return summary ? { status: 'ok', ...summary, source } : unavailable;
-  } catch { return unavailable; }
+    return summary ? { status: 'ok', ...summary, source } : failed('invalid-response');
+  } catch (error) { return failed(signal.aborted || ['TimeoutError', 'AbortError'].includes(error.name) ? 'timeout' : 'network-error'); }
   finally { if (reader) await reader.cancel().catch(() => {}); }
 }
 
@@ -60,6 +62,7 @@ const DNS_PROVIDERS = [
 const MAIL_PROVIDERS = [
   ['Google', ['aspmx.l.google.com', 'alt1.aspmx.l.google.com', 'alt2.aspmx.l.google.com', 'alt3.aspmx.l.google.com', 'alt4.aspmx.l.google.com', 'smtp.google.com']],
   ['Microsoft 365', ['mail.protection.outlook.com']],
+  ['Seznam Email Profi', ['mx1.emailprofi.seznam.cz', 'mx2.emailprofi.seznam.cz']],
   ['Seznam', ['mx.seznam.cz', 'mx1.seznam.cz', 'mx2.seznam.cz', 'mx3.seznam.cz']],
   ['WEDOS', ['wedos.net']],
   ['FORPSI', ['forpsi.com']],
