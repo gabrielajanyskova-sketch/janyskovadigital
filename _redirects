@@ -67,3 +67,16 @@
 /admin/* / 301
 /api/auth / 301
 /api/callback / 301
+/grafika/ / 301
+/eshop/ / 301
+/seo/ / 301
+
+# Adresy z hlášení Search Console „Nenalezeno (404)“ (listopad 2026)
+/gdpr.html /ochrana-udaju 301
+/gdpr /ochrana-udaju 301
+/:dir/ochrana-udaju.html /ochrana-udaju 301
+/blog/google-ai-mode.html /blog/google-ai-mode-miliarda-uzivatelu 301
+/blog/jak-poznat-spatneho-webdesign%C3%A9ra /blog/jak-poznat-spatneho-webdesignera 301
+/blog/jak-vybrat-webdesign%C3%A9ra /blog/jak-vybrat-webdesignera 301
+/blog/jak-poznat-spatneho-webdesignéra /blog/jak-poznat-spatneho-webdesignera 301
+/blog/jak-vybrat-webdesignéra /blog/jak-vybrat-webdesignera 301
