@@ -96,7 +96,9 @@ for (const [f, s] of html) {
     const [p, hash] = href.split('#');
     let target = f;
     if (p) {
-      if (redirects.includes(p.replace(/\/$/, '')) || redirects.includes(p)) continue;
+      // Odkaz přímo na přesměrovanou adresu: Google ho hlásí jako „Stránka s přesměrováním“
+      if (redirects.includes(p)) { err(f, `odkaz ${href} vede na přesměrování, odkazujte rovnou na cíl`); continue; }
+      if (redirects.includes(p.replace(/\/$/, ''))) continue;
       target = await resolve(p.startsWith('/') ? p : path.join(path.dirname('/' + f), p));
       if (!target) { err(f, `rozbitý odkaz ${href}`); continue; }
     }
