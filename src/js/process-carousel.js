@@ -7,6 +7,9 @@ const dots  = document.querySelectorAll('.process-dot');
 const wrap  = document.getElementById('process-focus');
 
 if (cards.length) {
+  const pauseButton = document.createElement('button');
+  pauseButton.type = 'button'; pauseButton.className = 'process-pause'; pauseButton.textContent = 'Pozastavit střídání kroků';
+  wrap?.after(pauseButton);
   const INTERVAL = 3200;
   let current = 0;
   let timer = null;
@@ -34,9 +37,17 @@ if (cards.length) {
 
   function choose(n) {
     stopped = true;
+    pauseButton.textContent = 'Spustit střídání kroků';
     pause();
     show(n);
   }
+
+  pauseButton.hidden = stopped;
+  pauseButton.addEventListener('click', () => {
+    stopped = !stopped;
+    pauseButton.textContent = stopped ? 'Spustit střídání kroků' : 'Pozastavit střídání kroků';
+    if (stopped) pause(); else play();
+  });
 
   cards.forEach(function(card, i) {
     card.addEventListener('click', function() { if (i !== current) choose(i); });

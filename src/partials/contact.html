@@ -1,16 +1,18 @@
 <section class="contact-section" id="kontakt">
   <div class="container">
     <div class="contact-wrap reveal">
+      <img class="contact-portrait" src="/gabca-mobilni-verze.webp" alt="Gabriela Janýšková" width="80" height="80" loading="lazy">
       <div class="section-tag centered">Kontakt</div>
-      <h2 class="section-title centered">Napište mi.<br><em>Uvidíte sami.</em></h2>
-      <p class="contact-lead">Odpovím do 24 hodin — a rovnou vám řeknu, co by dávalo smysl pro váš web.</p>
+      <h2 class="section-title centered">Pojďme probrat<br><em>váš web.</em></h2>
+      <p class="contact-lead">Stačí mi napsat, co máte v hlavě. Ozvu se vám osobně do 24 hodin.</p>
       <div class="section-cta--sm">
         <div class="hero-guarantee">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#f0147a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
           <span><strong>Zdarma:</strong> zhodnocení vašeho webu při každé poptávce</span>
         </div>
       </div>
-      <form id="contact-form" action="/api/contact" method="POST">
+      <form id="contact-form" action="/api/contact" method="POST" data-turnstile>
+        <noscript>Pro odeslání zapněte JavaScript, nebo napište na info@janyskovadigital.cz.</noscript>
         <input type="hidden" name="subject" value="Nová poptávka z webu — {{subject}}">
         <!-- Past na roboty: server zprávu zahodí, když je pole zaškrtnuté -->
         <input type="checkbox" name="botcheck" class="form-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -47,6 +49,14 @@
         <a href="tel:+420739395800">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.1 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z"/></svg>
           +420 739 395 800
+        </a>
+        <a href="https://www.instagram.com/janyskovadigital.cz" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5"/></svg>
+          Instagram <span aria-hidden="true">↗</span>
+        </a>
+        <a href="https://www.facebook.com/share/1Fqd1skkB3/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M14 7h-1a2 2 0 00-2 2v12M8 12h7"/></svg>
+          Facebook <span aria-hidden="true">↗</span>
         </a>
       </div>
     </div>

@@ -12,16 +12,18 @@ export async function onRequestGet({ request, env }) {
     const params = new URL(request.url).searchParams;
     const strategy = params.get('strategy') === 'desktop' ? 'desktop' : 'mobile';
     const url = normalizeUrl(params.get('url'));
+    if (!env.PAGESPEED_API_KEY) return json({ error: 'Měření rychlosti není nakonfigurované. Ostatní kontroly můžete použít.' }, 503);
     const origin = new URL(request.url).origin;
     const { data, hit } = await cached(`${origin}/__cache/speed?s=${strategy}&u=${encodeURIComponent(url.href)}`, async () => {
       const psi = await runPsi(url.href, strategy, { apiKey: env.PAGESPEED_API_KEY, fetchImpl: fetch });
       if (psi.error) throw Object.assign(new Error(psi.error), { psiError: psi.error, detail: psi.detail });
       return {
+        checkedAt: new Date().toISOString(),
         strategy,
         scores: psi.scores,
         checks: [...speedChecks(strategy, psi), ...(strategy === 'mobile' ? [...a11yChecks(psi), ...lighthouseChecks(psi)] : [])],
       };
-    });
+    }, { refresh: params.get('refresh') === '1' });
     return json(data, 200, { 'x-cache': hit ? 'HIT' : 'MISS' });
   } catch (e) {
     // 424, ne 502: odpovědi 502/504 Cloudflare nahrazuje vlastní chybovou stránkou a důvod by se ztratil

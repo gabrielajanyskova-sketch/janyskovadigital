@@ -18,8 +18,8 @@ if (track && prev && next) {
     next.disabled = maxScroll <= 2 || track.scrollLeft >= maxScroll;
   }
 
-  prev.addEventListener('click', function() { track.scrollBy({ left: -viewW, behavior: 'smooth' }); });
-  next.addEventListener('click', function() { track.scrollBy({ left:  viewW, behavior: 'smooth' }); });
+  prev.addEventListener('click', function() { track.scrollBy({ left: -viewW, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
+  next.addEventListener('click', function() { track.scrollBy({ left:  viewW, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
   track.addEventListener('scroll', updateBtns, { passive: true });
   window.addEventListener('resize', function() {
     requestAnimationFrame(function() { measure(); updateBtns(); });

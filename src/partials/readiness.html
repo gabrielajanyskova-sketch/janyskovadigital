@@ -1,0 +1,25 @@
+<section class="readiness" id="pripravenost" aria-labelledby="readiness-title">
+  <div class="container"><div class="readiness-card">
+    <div class="section-tag">Než začneme tvořit</div>
+    <h2 class="section-title" id="readiness-title">Jste připraveni <em>na nový web?</em></h2>
+    <p>Za 2 minuty zjistíte, co už máte připravené a co ještě potřebujete vyřešit. Získáte orientační cenu a vlastní checklist — zdarma a bez zadávání e-mailu.</p>
+    <p>Chybí vám texty, fotografie nebo kvalitní logo? I s tím vám pomohu, od návrhu nového loga po úpravu stávajícího.</p>
+    <noscript><p>Pro interaktivní test zapněte JavaScript. S přípravou webu i loga vám ráda pomohu také přes <a href="#kontakt">kontaktní formulář</a>.</p></noscript>
+    <button type="button" class="btn-primary" id="readiness-start" hidden>Zjistit, co mám připravené</button>
+    <form id="readiness-form" hidden>
+      <p id="readiness-progress" role="status" aria-live="polite"></p>
+      <progress id="readiness-meter" max="{{readinessCount}}" value="1" aria-label="Postup testem"></progress>
+{{readinessFields}}
+      <div class="readiness-actions"><button type="button" class="btn-ghost" id="readiness-back">Zpět</button><button type="submit" class="btn-primary" id="readiness-next">Pokračovat</button></div>
+    </form>
+    <div id="readiness-result" hidden>
+      <h3 tabindex="-1">Vaše orientační cena a checklist</h3>
+      <div class="readiness-estimate"><p id="readiness-package"></p><p id="readiness-price" class="readiness-price"></p><p id="readiness-price-note"></p><ul id="readiness-extras"></ul></div>
+      <p>Nemusíte mít všechno hotové. Tohle je výchozí bod pro naši spolupráci.</p>
+      <ul id="readiness-checklist"></ul>
+      <p id="readiness-transfer-status" role="status"></p>
+      <div class="readiness-actions"><button type="button" class="btn-primary" id="readiness-contact">Chci nezávaznou nabídku</button><button type="button" class="btn-ghost" id="readiness-edit">Upravit odpovědi</button></div>
+      <p class="readiness-note">Odpovědi se nikam neodesílají. Do zprávy je přenesete tlačítkem výše a poptávku odešlete až po jejím doplnění.</p>
+    </div>
+  </div></div>
+</section>

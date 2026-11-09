@@ -1,22 +1,23 @@
-# Test webu zdarma (Janyskova Digital)
+# Test webu zdarma — Janyskova Digital
 
-> Bezplatný automatický audit webu v češtině na https://testwebu.janyskovadigital.cz/. Za 30–60 sekund zkontroluje rychlost na mobilu i počítači (Google PageSpeed Insights), techniku a indexaci, SEO, připravenost na AI vyhledávače (ChatGPT, Claude, Perplexity), bezpečnost, GDPR a přístupnost. Ke každému problému vysvětlí, proč na něm záleží a jak ho opravit.
+> Automatická orientační kontrola veřejného webu v češtině. https://testwebu.janyskovadigital.cz/
 
-Test provozuje Gabriela Janýšková, webdesignérka a SEO specialistka (IČO 19616295), https://janyskovadigital.cz/. Je zdarma, bez registrace a neukládá osobní údaje.
+Provozuje Gabriela Janýšková, IČO 19616295. Bez registrace, s omezením počtu požadavků pro ochranu služby.
 
-## Co test kontroluje
+## Rozsah
 
-- Rychlost: skóre a Core Web Vitals (LCP, CLS, TBT) z Google PageSpeed, data skutečných návštěvníků z Chrome, velikost stránky a konkrétní doporučení
-- Technika a indexace: HTTPS a přesměrování, robots.txt (včetně blokace Googlebot, SeznamBot a Bingbot), sitemap.xml, chybová stránka 404, mobilní zobrazení, favicon
-- SEO: titulek, meta popis, nadpisy, alt texty obrázků, kanonická adresa, Open Graph, nefunkční odkazy, kontrola až 5 dalších podstránek
-- AI vyhledávače (GEO/AEO): přístup GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot a dalších, strukturovaná data schema.org, llms.txt
-- Bezpečnost: HSTS, CSP, X-Frame-Options a další hlavičky, smíšený obsah, DNSSEC, CAA a security.txt
-- E-mail: záznamy SPF a DMARC, které chrání doménu před podvrženými e-maily
-- GDPR a důvěryhodnost: Google Fonts, měřicí skripty bez souhlasu, cookie lišta, zásady ochrany údajů, IČO, kontakt
-- Přístupnost: hlavní body z Lighthouse
+- Rychlost: Google PageSpeed Insights pro mobil i počítač; dostupná data Chrome UX Report. Měření může selhat nebo trvat déle.
+- Technika a SEO: zadaná stránka a vzorek až pěti dalších, titulky, popisy, nadpisy, obrázky, přesměrování a interní odkazy.
+- AI: přítomnost JSON-LD a základní pravidla robots.txt pro OAI-SearchBot, Claude-SearchBot a PerplexityBot. Trénovací roboti jsou uvedeni zvlášť. Citace a doporučení AI se neměří; llms.txt je volitelný a neovlivňuje skóre.
+- Ochrany: přítomnost bezpečnostních hlaviček, DS, CAA a security.txt; nejde o validaci celého zabezpečení.
+- E-mail: základní kontrola záznamů SPF a DMARC, bez rozbalení SPF, testu DKIM a doručování zpráv.
+- Soukromí: stopy externích služeb a odkazy na zásady, nikoli právní posouzení nebo ovládání cookie lišty.
+- Přístupnost: automatické kontroly Lighthouse, nikoli úplný audit WCAG.
+
+Výsledek není penetrační test ani potvrzení souladu s GDPR nebo záruka pozic. Výsledky se mohou až hodinu opakovaně používat z mezipaměti. Adresa se předává Googlu pro měření; provoz a ochrana služby zahrnují technické údaje o připojení.
 
 ## Odkazy
 
-- [Test webu](https://testwebu.janyskovadigital.cz/): spuštění testu
-- [Janyskova Digital](https://janyskovadigital.cz/): tvorba webů, SEO a optimalizace pro AI vyhledávače
-- [Osobní audit a kontakt](https://janyskovadigital.cz/#kontakt): podrobný ruční audit do 48 hodin
+- [Spustit test](https://testwebu.janyskovadigital.cz/)
+- [Tvorba webů a kontakt](https://janyskovadigital.cz/)
+- [Zpracování údajů](https://janyskovadigital.cz/ochrana-udaju)

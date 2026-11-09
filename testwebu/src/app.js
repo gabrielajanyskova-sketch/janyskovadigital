@@ -1,13 +1,16 @@
+import '../../src/js/turnstile.js';
+
 // Stránka testu webu: spustí audit a dvě měření rychlosti souběžně a průběžně vykresluje výsledky.
 // Data z testovaného webu se vkládají jen jako text (textContent), nikdy jako HTML.
 
 import { CATEGORIES, CATEGORY_QUESTIONS, score } from '../lib/checks.js';
+import { normalizeUrl } from '../lib/http.js';
+import { checkStatusLabel, explanationCopy } from './check-copy.js';
 
 const $ = id => document.getElementById(id);
 const form = $('audit-form');
 const input = $('url');
 const STATUS_ORDER = { fail: 0, warn: 1, pass: 2, info: 3 };
-const STATUS_LABEL = { pass: 'V pořádku', warn: 'Zlepšit', fail: 'Problém', info: 'Info' };
 
 let state = null;
 let controller = null;
@@ -33,10 +36,10 @@ function setStep(name, status) {
   li.classList.add(status);
 }
 
-async function getJson(url, options) {
-  const res = await fetch(url, { ...options, signal: controller.signal });
+async function getJson(url, options, signal) {
+  const res = await fetch(url, { ...options, signal });
   const data = await res.json().catch(() => null);
-  if (res.ok && data) return data;
+  if (res.ok && data) return { ...data, cacheHit: res.headers.get('x-cache') === 'HIT' };
   if (data?.error) throw new Error(data.error);
   // Odpověď není od aplikace (chybová stránka Cloudflaru): ukázat srozumitelný důvod a kód
   const reason = res.status === 429 ? 'Příliš mnoho testů za krátkou dobu, zkuste to za minutu.'
@@ -45,32 +48,51 @@ async function getJson(url, options) {
   throw new Error(`${reason} (kód ${res.status})`);
 }
 
-async function run(url) {
+function showRunning(running) {
+  $('run-indicator').hidden = !running;
+}
+
+async function run(url, { fresh = false } = {}) {
   controller?.abort();
   controller = new AbortController();
+  const current = controller;
+  const currentState = { audit: null, speed: {}, speedErrors: {} };
+  const isCurrent = () => controller === current;
   $('form-error').hidden = true;
   $('results').hidden = true;
   $('progress').hidden = false;
+  showRunning(true);
   $('submit').disabled = true;
+  $('rerun').disabled = true;
   ['audit', 'mobile', 'desktop'].forEach(s => setStep(s, 'running'));
-  state = { audit: null, speed: {}, speedErrors: {} };
+  state = currentState;
+  input.removeAttribute('aria-invalid');
 
   const params = new URLSearchParams(location.search);
   params.set('url', url);
   history.replaceState(null, '', `?${params}`);
 
-  const speed = strategy => getJson(`/api/speed?url=${encodeURIComponent(url)}&strategy=${strategy}`)
-    .then(data => { state.speed[strategy] = data; setStep(strategy, 'done'); })
-    .catch(e => { if (e.name === 'AbortError') return; state.speedErrors[strategy] = e.message; setStep(strategy, 'failed'); })
-    .finally(() => state.audit && render());
+  const speed = strategy => getJson(`/api/speed?url=${encodeURIComponent(url)}&strategy=${strategy}${fresh ? '&refresh=1' : ''}`, undefined, current.signal)
+    .then(data => { if (!isCurrent() || current.signal.aborted) return; currentState.speed[strategy] = data; setStep(strategy, 'done'); })
+    .catch(e => { if (!isCurrent() || e.name === 'AbortError') return; currentState.speedErrors[strategy] = e.message; setStep(strategy, 'failed'); })
+    .finally(() => { if (isCurrent() && currentState.audit) render(); });
 
   // Pojistka: když server do 100 s neodpoví, ukázat srozumitelnou chybu místo nekonečného čekání
-  const current = controller;
   const watchdog = setTimeout(() => {
-    if (controller !== current) return;
-    controller.abort();
+    if (!isCurrent()) return;
+    for (const strategy of ['mobile', 'desktop']) {
+      if (!currentState.speed[strategy] && !currentState.speedErrors[strategy]) {
+        currentState.speedErrors[strategy] = 'Google neodpověděl v časovém limitu.';
+        setStep(strategy, 'failed');
+      }
+    }
+    current.abort();
+    if (currentState.audit) render();
+    else setStep('audit', 'failed');
     $('progress').hidden = true;
+    showRunning(false);
     $('submit').disabled = false;
+    $('rerun').disabled = false;
     showError(state.audit ? 'Měření rychlosti od Googlu neodpovědělo, výsledek je bez něj.' : 'Test neodpověděl do 100 sekund. Zkuste to prosím znovu za chvíli.');
   }, 100000);
 
@@ -78,28 +100,39 @@ async function run(url) {
   const desktop = speed('desktop');
 
   try {
-    state.audit = await getJson('/api/audit', {
+    const audit = await getJson('/api/audit', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ url }),
-    });
+      body: JSON.stringify({ url, refresh: fresh }),
+    }, current.signal);
+    if (!isCurrent()) { clearTimeout(watchdog); return; }
+    currentState.audit = audit;
     setStep('audit', 'done');
     render();
     $('results').hidden = false;
+    $('result-title').focus({ preventScroll: true });
     $('results').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   } catch (e) {
+    if (!isCurrent()) { clearTimeout(watchdog); return; }
     if (e.name === 'AbortError') return;
     clearTimeout(watchdog);
     controller.abort();
     $('progress').hidden = true;
+    showRunning(false);
     showError(e.message);
+    setStep('audit', 'failed');
+    input.setAttribute('aria-invalid', 'true');
     $('submit').disabled = false;
+    $('rerun').disabled = false;
     return;
   }
   await Promise.allSettled([mobile, desktop]);
   clearTimeout(watchdog);
+  if (!isCurrent()) return;
   $('submit').disabled = false;
+  $('rerun').disabled = false;
   $('progress').hidden = true;
+  showRunning(false);
 }
 
 function allChecks() {
@@ -119,73 +152,145 @@ function render() {
   const a = state.audit;
   const checks = allChecks();
   const scores = score(checks);
-  const speedPending = !state.speed.mobile && !state.speedErrors.mobile;
+  const speedPending = ['mobile', 'desktop'].some(s => !state.speed[s] && !state.speedErrors[s]);
+  const speedFailed = Object.keys(state.speedErrors).length > 0;
+  const incomplete = speedFailed || a.incomplete;
   const values = Object.values(scores);
   const overall = values.length ? Math.round(values.reduce((s, v) => s + v, 0) / values.length) : 0;
 
+  // Kroužek indikuje běžící měření, nikoli procento dokončení testu.
+  showRunning(speedPending);
+  $('overall').classList.toggle('is-loading', speedPending);
+  $('overall').setAttribute('aria-busy', String(speedPending));
+  $('score-status').textContent = speedPending ? 'Test ještě běží… Výsledek se průběžně doplňuje.'
+    : incomplete ? 'Test skončil. Část kontrol se nepodařilo dokončit.' : 'Test je dokončen.';
   $('overall-num').textContent = overall;
-  $('overall').setAttribute('aria-label', `Celkové skóre ${overall} ze 100`);
+  $('overall').setAttribute('aria-label', `Skóre provedených kontrol ${overall} ze 100${speedPending || incomplete ? ', výsledek není úplný' : ''}`);
   const ring = $('ring-fg');
   ring.style.strokeDashoffset = String(327 - (327 * overall) / 100);
   ring.style.stroke = overall >= 90 ? 'var(--pass)' : overall >= 60 ? 'var(--warn)' : 'var(--fail)';
-  $('result-title').textContent = overall >= 90 ? 'Výborný web' : overall >= 75 ? 'Dobrý základ, je co zlepšit' : overall >= 50 ? 'Web potřebuje péči' : 'Web má vážné nedostatky';
+  $('result-title').textContent = speedPending ? 'Průběžný výsledek testu' : incomplete ? 'Neúplný výsledek testu' : 'Výsledek automatického testu';
   $('result-url').textContent = a.finalUrl;
   const meta = [`Otestováno ${new Date(a.checkedAt).toLocaleString('cs-CZ')}`];
-  if (a.platforms.length) meta.push(`Platforma: ${a.platforms.join(', ')}`);
+  if (a.cacheHit || Object.values(state.speed).some(s => s.cacheHit)) meta.push('Část výsledků je uložená z předchozího testu. Pro nové měření použijte „Změřit znovu“.');
+
   const n = a.pages.length;
-  meta.push(n ? `Zkontrolována úvodní stránka a ${n} ${n === 1 ? 'další stránka' : n <= 4 ? 'další stránky' : 'dalších stránek'}` : 'Zkontrolována úvodní stránka');
+  meta.push(n ? `Test zahrnul zadanou stránku a ${n} dalších adres` : 'Test zahrnul zadanou stránku');
   if (speedPending) meta.push('Rychlost se ještě měří…');
+  if (incomplete) meta.push('Část kontrol není dostupná; skóre je neúplné.');
   $('result-meta').textContent = meta.join(' · ');
+  $('technology-rows').replaceChildren(...technologyRows(a).map(([label, value]) =>
+    el('tr', {}, el('th', { scope: 'row' }, label), el('td', {}, value))));
+
+  $('provider-rows').replaceChildren(...providerRows(a).map(([label, value]) =>
+    el('tr', {}, el('th', { scope: 'row' }, label), el('td', {}, value))));
+  const sources = $('provider-sources');
+  sources.replaceChildren();
+  const p = a.providers;
+  const rdapSources = { cz: 'https://rdap.nic.cz/domain/', com: 'https://rdap.verisign.com/com/v1/domain/', net: 'https://rdap.verisign.com/net/v1/domain/' };
+  const base = rdapSources[p?.domain?.split('.').at(-1)];
+  if (base) sources.append(p.registration?.status === 'ok' ? 'Zdroj registrace: ' : 'Registraci lze ověřit ručně: ', el('a', { href: base + encodeURIComponent(p.domain), target: '_blank', rel: 'noopener noreferrer' }, 'veřejný registr RDAP'), '. ');
+  if (p?.domain?.endsWith('.cz') && p.registration?.status !== 'ok') sources.append(el('a', { href: 'https://www.nic.cz/whois/domain/' + encodeURIComponent(p.domain) + '/', target: '_blank', rel: 'noopener noreferrer' }, 'vyhledávání CZ.NIC'), '. ');
+  if (p?.nameservers?.length || p?.mailservers?.length) sources.append('DNS a MX: veřejné DNS záznamy přes Cloudflare DNS.');
 
   const cats = $('cats');
   cats.replaceChildren(...Object.entries(CATEGORIES).map(([key, name]) => {
     const pending = scores[key] == null;
-    const running = pending && ['speed', 'a11y'].includes(key) && !state.speedErrors.mobile;
+    const running = pending && (key === 'speed' ? speedPending : key === 'a11y' && !state.speed.mobile && !state.speedErrors.mobile);
     const level = pending ? ' pending' : scores[key] >= 90 ? ' good' : scores[key] >= 50 ? ' mid' : ' bad';
-    return el('a', { class: `cat${level}`, href: `#group-${key}` },
+    const hasGroup = checks.some(c => c.category === key);
+    return el(hasGroup ? 'a' : 'div', { class: `cat${level}`, ...(hasGroup ? { href: `#group-${key}` } : {}) },
       el('strong', {}, pending ? (running ? '…' : '–') : String(scores[key])), el('span', {}, name));
   }));
 
+  const openChecks = new Set([...$('checks').querySelectorAll('details[open]')].map(d => d.dataset.checkId));
+  const focusedCheck = document.activeElement?.closest('details')?.dataset.checkId;
   const groups = Object.entries(CATEGORIES).map(([key, name]) => {
     const list = checks.filter(c => c.category === key).sort((x, y) => STATUS_ORDER[x.status] - STATUS_ORDER[y.status] || y.weight - x.weight);
     if (!list.length) return null;
     return el('section', { class: 'group', id: `group-${key}` },
-      el('h3', {}, CATEGORY_QUESTIONS[key] || name), el('p', { class: 'group-name' }, name), ...list.map(renderCheck));
+      el('h3', {}, CATEGORY_QUESTIONS[key] || name), el('p', { class: 'group-name' }, name), ...list.map(c => renderCheck(c, openChecks.has(c.id))));
   }).filter(Boolean);
   $('checks').replaceChildren(...groups);
+  if (focusedCheck) [...$('checks').querySelectorAll('details')].find(d => d.dataset.checkId === focusedCheck)?.querySelector('summary')?.focus({ preventScroll: true });
 
   // Formulář pro osobní audit: adresa webu a výsledek se vyplní samy (zprávu lze upravit)
   const host = new URL(a.finalUrl).hostname.replace(/^www\./, '');
   $('lead-web').value = a.finalUrl;
-  $('lead-subject').value = `Žádost o osobní audit: ${host}`;
+  $('lead-subject').value = `Dotaz k výsledku testu: ${host}`;
   const message = $('lead-message');
   if (!message.dataset.edited) {
-    message.value = `Dobrý den, prosím o osobní audit webu ${a.finalUrl}. Automatický test mu dal ${overall}/100.`;
+    message.value = `Dobrý den, prosím o vysvětlení výsledku testu webu ${a.finalUrl}. Skóre dokončených kontrol: ${overall}/100${speedPending || incomplete ? ' (výsledek není úplný)' : ''}.`;
   }
-  $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending);
+  $('lead-result').value = resultSummary(a, checks, scores, overall, speedPending, incomplete);
+}
+
+function technologyRows(a) {
+  const tech = a.technology;
+  return [
+    ['Systém / platforma', tech?.platforms?.join(', ') || 'Nerozpoznáno'],
+    ['Editor / builder', tech?.builders?.join(', ') || 'Nerozpoznáno'],
+    ['Šablona (název složky)', tech?.themes?.join(', ') || 'Z veřejného kódu nezjištěna'],
+    ['Základ stránky', 'HTML'],
+  ];
+}
+
+function providerRows(a) {
+  const p = a.providers;
+  const r = p?.registration;
+  const reasons = {
+    'rate-limit': 'Registr dočasně omezil počet dotazů. Zkuste to později.',
+    'not-found': 'Registr pro tuto doménu nevrátil záznam.',
+    'timeout': 'Registr neodpověděl včas. Zkuste to později.',
+    'http-error': 'Registr nyní údaje neposkytl. Lze je ověřit ručně níže.',
+    'network-error': 'Spojení s registrem se nepodařilo. Lze ověřit ručně níže.',
+    'invalid-response': 'Odpověď registru se nepodařilo zpracovat. Lze ověřit ručně níže.',
+    'redirect-error': 'Registr změnil adresu odpovědi. Automatické ověření není dostupné.',
+    'size-limit': 'Odpověď registru překročila limit testu. Lze ověřit ručně níže.',
+  };
+  const unavailable = r?.status === 'unsupported' ? 'Tato koncovka zatím není podporována' : reasons[r?.reason] || 'Nepodařilo se ověřit';
+  const displayDate = value => value && Number.isFinite(Date.parse(value))
+    ? new Date(value).toLocaleDateString('cs-CZ', { timeZone: 'UTC' })
+    : r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable;
+  return [
+    ['Doména', p?.domain || 'Nezjištěna'],
+    ...(r?.status === 'ok' ? [
+    ['Registrátor (RDAP)', r?.registrar || (r?.status === 'ok' ? 'Registr údaj neuvedl' : unavailable)],
+    ['Datum registrace', displayDate(r?.registered)],
+    ['Poslední změna v registru', displayDate(r?.changed)],
+    ['Expirace v registru', displayDate(r?.expires)],
+    ] : [['Údaje z registru', unavailable]]),
+    ['DNS servery (NS)', p?.nameservers?.join('\n') || 'Nepodařilo se zjistit'],
+    ['DNS poskytovatel (indicie)', p?.dnsProviders?.join(', ') || 'Nerozpoznán'],
+    ['Poštovní servery (MX)', p?.mailservers?.join('\n') || 'Nezjištěny; neznamená to, že doména neodesílá e-maily'],
+    ['Poskytovatel pošty (indicie)', p?.mailProviders?.join(', ') || 'Nerozpoznán'],
+    ['Hosting / CDN (indicie)', p?.delivery?.join(', ') || 'Z veřejných hlaviček nerozpoznán'],
+  ];
 }
 
 // Shrnutí výsledku do e-mailu s žádostí o osobní audit (aby bylo hned vidět, co na webu je špatně)
-function resultSummary(a, checks, scores, overall, speedPending) {
-  const lines = [`Celkové skóre: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : ''}`];
+function resultSummary(a, checks, scores, overall, speedPending, incomplete) {
+  const lines = [`Skóre provedených kontrol: ${overall}/100${speedPending ? ' (rychlost se ještě měřila)' : incomplete ? ' (část kontrol není dostupná)' : ''}`];
   lines.push(Object.entries(CATEGORIES).filter(([k]) => scores[k] != null).map(([k, name]) => `${name}: ${scores[k]}`).join(' · '));
   const list = status => checks.filter(c => c.status === status).map(c => `- ${c.title}${c.detail ? ` — ${c.detail}` : ''}`.slice(0, 220));
   const fails = list('fail');
   const warns = list('warn');
   if (fails.length) lines.push('', 'Problémy:', ...fails);
   if (warns.length) lines.push('', 'Ke zlepšení:', ...warns);
-  if (a.platforms.length) lines.push('', `Platforma: ${a.platforms.join(', ')}`);
+  lines.push('', 'Doména a poskytovatelé:', ...providerRows(a).map(([label, value]) => `${label}: ${value}`));
+  lines.push('', 'Technologie:', ...technologyRows(a).map(([label, value]) => `${label}: ${value}`));
   lines.push('', `Celý výsledek: https://testwebu.janyskovadigital.cz/?url=${encodeURIComponent(a.finalUrl)}`);
   return lines.join('\n').slice(0, 4900);
 }
 
-function renderCheck(c) {
+function renderCheck(c, open = false) {
+  const copy = explanationCopy(c);
   const more = el('div', { class: 'check-more' });
-  if (c.why) more.append(el('p', {}, el('strong', {}, 'Proč na tom záleží: '), c.why));
-  if (c.fix && c.fix !== '—') more.append(el('p', {}, el('strong', {}, 'Jak to opravit: '), c.fix));
-  return el('details', { class: `check ${c.status}` },
+  if (c.why) more.append(el('p', {}, el('strong', {}, copy.meaningLabel), c.why));
+  if (copy.action) more.append(el('p', {}, el('strong', {}, copy.actionLabel), copy.action));
+  return el('details', { class: `check ${c.status}`, 'data-check-id': c.id, ...(open ? { open: '' } : {}) },
     el('summary', {},
-      el('span', { class: 'badge' }, STATUS_LABEL[c.status]),
+      el('span', { class: 'badge' }, checkStatusLabel(c)),
       el('span', { class: 'check-title' }, c.title),
       el('span', { class: 'check-detail' }, c.detail)),
     more);
@@ -197,7 +302,12 @@ form.addEventListener('submit', e => {
   e.preventDefault();
   const value = input.value.trim();
   if (!value) { showError('Zadejte adresu webu, například vas-web.cz'); input.focus(); return; }
-  run(value);
+  try { run(normalizeUrl(value).href, { fresh: true }); }
+  catch (error) { showError(error.message); input.setAttribute('aria-invalid', 'true'); input.focus(); }
+});
+
+$('rerun').addEventListener('click', () => {
+  if (state?.audit && !$('submit').disabled) run(state.audit.url || state.audit.finalUrl, { fresh: true });
 });
 
 // Tisk (Ctrl+P): před tiskem rozbalí všechna
@@ -230,5 +340,26 @@ $('share').addEventListener('click', async () => {
   }
 });
 
+// Na podporovaném telefonu otevře systémovou nabídku (např. WhatsApp).
+if (typeof navigator.share === 'function') {
+  $('share-device').hidden = false;
+  $('share-device').addEventListener('click', async () => {
+    try {
+      await navigator.share({ title: 'Test webu zdarma | Janyskova Digital', url: location.href });
+    } catch (e) {
+      if (e.name !== 'AbortError') $('share-device').textContent = 'Použijte kopírování odkazu';
+    }
+  });
+}
+
 const initial = new URLSearchParams(location.search).get('url');
-if (initial) { input.value = initial; run(initial); }
+if (initial) {
+  input.value = initial;
+  try { run(normalizeUrl(initial).href); }
+  catch (error) {
+    showError(error.message);
+    input.setAttribute('aria-invalid', 'true');
+    const params = new URLSearchParams(location.search); params.delete('url');
+    history.replaceState(null, '', `${location.pathname}${params.size ? `?${params}` : ''}`);
+  }
+}

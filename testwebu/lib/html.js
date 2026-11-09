@@ -6,9 +6,10 @@ const ENTITIES = {
   copy: '©', reg: '®', laquo: '«', raquo: '»', bdquo: '„', ldquo: '“', rdquo: '”', lsquo: '‘', rsquo: '’',
 };
 export function decode(s) {
+  const codePoint = n => Number.isInteger(n) && n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '\ufffd';
   return String(s || '')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&#(\d+);/g, (_, n) => codePoint(+n))
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) => codePoint(parseInt(n, 16)))
     .replace(/&([a-z]+);/gi, (m, n) => ENTITIES[n.toLowerCase()] ?? m);
 }
 
@@ -26,6 +27,48 @@ export function attrs(tag) {
 
 const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, 'gi'))].map(m => attrs(m[0]));
 
+// Pouze statické indicie uvnitř formulářů, nikoli důkaz serverového ověření.
+function formAntispam(html) {
+  const forms = [...html.matchAll(/<form\b[^>]*>[\s\S]*?<\/form\s*>/gi)];
+  const methods = new Set();
+  let recognizedForms = 0;
+  for (const [form] of forms) {
+    const found = new Set();
+    for (const m of form.matchAll(/<[a-z][^>]*>/gi)) {
+      const a = attrs(m[0]);
+      const classes = (a.class || '').split(/\s+/);
+      if ('data-turnstile' in a || classes.includes('cf-turnstile') || a.name === 'cf-turnstile-response') found.add('Turnstile');
+      if (classes.includes('g-recaptcha') || a.name === 'g-recaptcha-response') found.add('reCAPTCHA');
+      if (classes.includes('h-captcha') || a.name === 'h-captcha-response') found.add('hCaptcha');
+      // Běžné hidden pole či CSRF token samo o sobě není honeypot.
+      if ('data-honeypot' in a || a.name === '_gotcha' || a.name === 'form-name-honeypot' || a.name === 'cf7-honeypot' || 'netlify-honeypot' in a || 'data-netlify-honeypot' in a) found.add('možný honeypot');
+    }
+    if (found.size) recognizedForms++;
+    for (const method of found) methods.add(method);
+  }
+  return { analyzedForms: forms.length, recognizedForms, methods: [...methods] };
+}
+
+const normalizeLabel = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const privacyName = value => /\b(?:gdpr|privacy|soukromi|data[\s_-]+protection)\b|(?:ochran[a-z]*|zpracovan[a-z]*|zasad[a-z]*)[\s_-]+(?:osobn[a-z]*[\s_-]+)?udaj[a-z]*|osobn[a-z]*[\s_-]+udaj[a-z]*/.test(normalizeLabel(value));
+
+function privacyLink(html, anchors, base) {
+  const named = [...html.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a\s*>/gi)].map(m => ({
+    ...attrs(m[0].match(/^<a\b[^>]*>/i)[0]), label: text(m[1]),
+  }));
+  return [...named, ...anchors].some(a => {
+    const href = a.href?.trim();
+    if (!href || href === '#') return false;
+    let url;
+    try { url = new URL(href, base); } catch { return false; }
+    if (!['http:', 'https:'].includes(url.protocol)) return false;
+    let destination = url.pathname + url.search + url.hash;
+    try { destination = decodeURIComponent(destination); } catch { /* text odkazu lze ověřit i při chybném escapování URL */ }
+    return privacyName([a.label, a['aria-label'], a.title].filter(Boolean).join(' ')) ||
+      privacyName(destination) || /(?:^|\/)(?:ochrana|privacy|gdpr)(?:[\/._-]|$)/i.test(destination);
+  });
+}
+
 const THIRD_PARTY = [
   ['Google Analytics', /google-analytics\.com|googletagmanager\.com\/gtag|gtag\(/],
   ['Google Tag Manager', /googletagmanager\.com\/gtm\.js/],
@@ -41,20 +84,53 @@ const THIRD_PARTY = [
   ['Google Mapy', /google\.com\/maps\/embed|maps\.googleapis\.com/],
 ];
 
-const PLATFORMS = [
-  ['WordPress', /wp-content\/|wp-includes\/|<meta[^>]+generator[^>]+WordPress/i],
-  ['Wix', /static\.wixstatic\.com|<meta[^>]+generator[^>]+Wix/i],
-  ['Webnode', /<meta[^>]+generator[^>]+Webnode|webnode\.(cz|com)\/[a-z_]*\/?(js|css|_files)|\.webnode\.page/i],
-  ['Shoptet', /cdn\.myshoptet\.com|<meta[^>]+generator[^>]+Shoptet/i],
-  ['Squarespace', /static1\.squarespace\.com/i],
-  ['Shopify', /cdn\.shopify\.com/i],
-  ['Webflow', /website-files\.com|<html[^>]+data-wf-site/i],
-  ['Joomla', /<meta[^>]+generator[^>]+Joomla/i],
-  ['Elementor', /\/plugins\/elementor\/|class="[^"]*\belementor-[a-z]/i],
-];
+// Rozpoznávání pouze z aktivních značek a adres prostředků, nikoli z textu článků.
+export function analyzeTechnologies(html, pageUrl) {
+  html = html.replace(/<!--[\s\S]*?-->/g, ' ');
+  const markup = html.replace(/<(script|style|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi,
+    block => block.match(/^<[^>]+>/)?.[0] || '');
+  const elements = [...markup.matchAll(/<[a-z][^>]*>/gi)].map(m => attrs(m[0]));
+  const resources = elements.flatMap(a => [a.src, a.href].filter(Boolean)).flatMap(value => {
+    try { const url = new URL(value, pageUrl); return /^https?:$/.test(url.protocol) ? [url.origin + url.pathname] : []; } catch { return []; }
+  });
+  const urls = resources.join(' ');
+  const classes = elements.map(a => a.class || '').join(' ');
+  const generator = elements.filter(a => a.name?.toLowerCase() === 'generator').map(a => a.content || '').join(' ');
+  const platforms = [
+    ['WordPress', /wp-content\/|wp-includes\//i.test(urls) || /\bWordPress\b/i.test(generator)],
+    ['Wix', /static\.wixstatic\.com/i.test(urls) || /\bWix\b/i.test(generator)],
+    ['Webnode', /\bWebnode\b/i.test(generator) || /(?:\.webnode\.page|webnode\.(?:cz|com)\/)/i.test(urls)],
+    ['Shoptet', /cdn\.myshoptet\.com/i.test(urls) || /\bShoptet\b/i.test(generator)],
+    ['Squarespace', /static1\.squarespace\.com/i.test(urls) || /\bSquarespace\b/i.test(generator)],
+    ['Shopify', /cdn\.shopify\.com/i.test(urls) || /\bShopify\b/i.test(generator)],
+    ['Webflow', /website-files\.com/i.test(urls) || elements.some(a => 'data-wf-site' in a)],
+    ['Joomla', /\bJoomla\b/i.test(generator)],
+    ['Drupal', /\bDrupal\b/i.test(generator)],
+  ].filter(([, found]) => found).map(([name]) => name);
+  const builders = [
+    ['Elementor', /\/plugins\/elementor(?:-pro)?\//i.test(urls) || /(?:^|\s)elementor(?:-|\s|$)/i.test(classes)],
+    ['Divi', /\/(?:themes\/Divi|plugins\/divi-builder)\//i.test(urls) || /(?:^|\s)et_pb_[\w-]+/i.test(classes)],
+    ['WPBakery', /\/plugins\/js_composer\//i.test(urls) || /(?:^|\s)wpb_(?:wrapper|content_element)(?:\s|$)/i.test(classes)],
+    ['Bricks', /\/themes\/bricks\//i.test(urls) || /(?:^|\s)brxe-[\w-]+/i.test(classes)],
+    ['Oxygen', /\/plugins\/oxygen\//i.test(urls)],
+    ['Beaver Builder', /\/plugins\/bb-plugin\//i.test(urls) || /(?:^|\s)fl-builder-content(?:\s|$)/i.test(classes)],
+    ['Bloky WordPressu (Gutenberg)', platforms.includes('WordPress') && /(?:^|\s)wp-block-[\w-]+/i.test(classes)],
+  ].filter(([, found]) => found).map(([name]) => name);
+  const themes = [...new Set(resources.flatMap(value => {
+    let pathname;
+    try { pathname = new URL(value).pathname; } catch { return []; }
+    const match = pathname.match(/\/wp-content\/themes\/([^/]+)\//i);
+    if (!match) return [];
+    try { return [decodeURIComponent(match[1]).slice(0, 100)]; } catch { return [match[1].slice(0, 100)]; }
+  }))].slice(0, 10);
+  return { platforms, builders, themes };
+}
 
 export function analyzeHtml(html, pageUrl) {
+  // Komentáře nejsou viditelný obsah ani aktivní značky stránky.
+  html = html.replace(/<!--[\s\S]*?-->/g, ' ');
   const base = new URL(pageUrl);
+  const resolveUrl = value => { try { return new URL(value, base).href; } catch { return null; } };
   const headEnd = html.search(/<\/head>/i);
   const head = headEnd > 0 ? html.slice(0, headEnd) : html;
   const bodyStart = html.search(/<body\b/i);
@@ -84,7 +160,6 @@ export function analyzeHtml(html, pageUrl) {
         if (Array.isArray(o)) return o.forEach(walk);
         if (o && typeof o === 'object') {
           if (o['@type']) types.push(...[].concat(o['@type']));
-          if (o['@graph']) walk(o['@graph']);
           Object.values(o).forEach(v => typeof v === 'object' && walk(v));
         }
       };
@@ -116,14 +191,16 @@ export function analyzeHtml(html, pageUrl) {
 
   const words = text(bodyNoScripts).split(/\s+/).filter(w => /\p{L}/u.test(w)).length;
 
+  const technology = analyzeTechnologies(html, pageUrl);
   return {
+    technology,
     lang: (html.match(/<html\b[^>]*\blang\s*=\s*["']?([a-zA-Z-]+)/i) || [])[1] || null,
     title: text((head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '') || null,
     description: meta('description') ?? null,
     robots: meta('robots') ?? null,
     viewport: meta('viewport') ?? null,
     generator: meta('generator') ?? null,
-    canonical: rel('canonical')[0]?.href ? new URL(rel('canonical')[0].href, base).href : null,
+    canonical: rel('canonical')[0]?.href ? resolveUrl(rel('canonical')[0].href) : null,
     hreflang: links.filter(l => (l.rel || '').toLowerCase() === 'alternate' && l.hreflang).length,
     favicon: rel('icon').length + rel('shortcut').length > 0,
     og: { title: prop('og:title'), description: prop('og:description'), image: prop('og:image'), url: prop('og:url') },
@@ -140,13 +217,14 @@ export function analyzeHtml(html, pageUrl) {
     stylesheets: stylesheets.length,
     googleFonts: /fonts\.googleapis\.com|fonts\.gstatic\.com/i.test(html),
     thirdParty: THIRD_PARTY.filter(([, re]) => re.test(html)).map(([name]) => name),
-    platforms: PLATFORMS.filter(([, re]) => re.test(head + ' ' + scriptSrcs.join(' ') + ' ' + images.map(i => i.src).join(' ') + ' ' + (body.match(/<body\b[^>]*>/i) || [''])[0])).map(([name]) => name),
+    platforms: [...technology.platforms, ...technology.builders],
     mixedContent,
     cookieBanner: /cookie[-_ ]?(consent|banner|bar|lišta|lista)|cookiebot|onetrust|cookieyes|complianz|cc-window|klaro/i.test(html),
-    privacyLink: /ochrana[-_ ]osobních|ochrana[-_ ]osobnich|gdpr|zásady[-_ ]ochrany|zasady[-_ ]ochrany|privacy/i.test(bodyNoScripts),
+    privacyLink: privacyLink(bodyNoScripts, anchors, base),
     phone: /(\+420\s?)?\d{3}\s?\d{3}\s?\d{3}/.test(text(bodyNoScripts)),
     // e-mail schovaný před spamem přes Cloudflare (Email Address Obfuscation) se počítá taky
     email: /[\w.+-]+@[\w-]+\.[\w.]+/.test(text(bodyNoScripts)) || /\/cdn-cgi\/l\/email-protection|__cf_email__/.test(body),
+    formAntispam: formAntispam(bodyNoScripts),
     forms: (body.match(/<form\b/gi) || []).length,
     // IČO podnikatele (§ 435 občanského zákoníku): „IČO: 12345678“, „IČ 123 45 678“
     ico: /I[ČC]O?\s*[:.]?\s*(\d\s?){8}/i.test(text(bodyNoScripts)),

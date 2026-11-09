@@ -1,26 +1,29 @@
+import { business } from '../data/schema-business.json';
+const price = name => String(business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === name).price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+
 // Jednoduchý chatbot se základními odpověďmi (bez AI, odpovědi podle klíčových slov)
 
 const KB = [
   { keys: ['cen', 'kolik', 'stoj', 'cena', 'cenu', 'cenov', 'price'],
-    a: 'One-page web (Web Start) je za 5 900 Kč. Vícestránkový web (Web Business) od 12 000 do 20 000 Kč dle rozsahu — cena je vždy jasná předem. Hosting je v ceně, dál platíte jen doménu ~200 Kč/rok.' },
+    a: `Web Start začíná od ${price('Web Start')} Kč a Web Business od ${price('Web Business')} Kč. Konečná cena závisí na rozsahu. Hosting prezentačního webu je v ceně tvorby; doména, individuální úpravy a externí služby se hradí zvlášť.` },
   { keys: ['dlouho', 'trva', 'kdy', 'lhut', 'tyden', 'doba', 'rychle'],
-    a: 'První náhled máte do 48 hodin od schůzky. Menší web je obvykle hotový do 7–10 dnů — záleží na rozsahu a na tom, jak rychle dodáte podklady.' },
+    a: 'První náhled obvykle posílám do 48 hodin od domluveného zahájení. Menší web mívám hotový do 7–10 dnů od dodání podkladů. Termín si potvrdíme předem.' },
   { keys: ['barter', 'vymeni', 'bez penez', 'vymena'],
     a: 'Barter je výměna — web za pobyt. Aktuálně hledám kemp u přehrady nebo jezera s místem pro karavan (červen–září). Kvalita webu je stejná jako u placené zakázky. Podrobnosti najdete na stránce Barter.' },
   { keys: ['funguj', 'postup', 'proces', 'jak to', 'krok', 'vyroba', 'zacin', 'spoluprac'],
-    a: 'Vyplníte formulář → domluvíme se na obsahu a designu → do 48 h máte první náhled → po schválení web spustíme. Bez WordPressu, bez měsíčních poplatků.' },
+    a: 'Popíšete mi, co děláte, a já navrhnu stránky. Pak je spolu probíráme a ladíme, dokud s výsledkem nejste spokojení. Po spuštění sleduji vyhledávání a po čase navrhnu, co můžeme zlepšit.' },
   { keys: ['kontakt', 'email', 'telefon', 'napsat', 'napiss', 'zavolat', 'mail', 'spojit'],
     a: 'Napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Nebo vyplňte formulář níže — ozvu se do 24 hodin.' },
   { keys: ['wordpress', 'wp', 'sablona', 'template', 'wix', 'squarespace'],
-    a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Proto mají PageSpeed skóre 90–100 a neplatíte za hosting ani drahé pluginy.' },
+    a: 'Nepracuji s WordPressem ani šablonami — každý web je psaný v čistém kódu. Rychlost ověřuji měřením; hosting prezentačního webu je v ceně tvorby.' },
   { keys: ['hosting', 'domena', 'domain', 'server', 'provoz', 'platit'],
-    a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Dál platíte jen doménu, přibližně 200 Kč ročně.' },
+    a: 'Hosting je v ceně tvorby — neplatíte nic navíc. Samostatně se hradí doména a případné dohodnuté úpravy či externí služby.' },
   { keys: ['seo', 'vyhledava', 'google', 'pozice', 'hleda', 'najde'],
     a: 'SEO je součástí každého webu — správná struktura, meta tagy, rychlost načítání, schéma dat. Součástí je i napojení na Google Search Console.' },
   { keys: ['refresh', 'predelat', 'prevest', 'existujici', 'stavajic'],
-    a: 'Web Refresh je převod stávajícího webu z WordPressu na čistý kód. Jednostránkový za 8 900 Kč, vícestránkový od 14 900 Kč. Výsledek: rychlejší web bez drahého hostingu.' },
+    a: `Web Refresh začíná od ${price('Web Refresh')} Kč za jednostránkový web a od ${price('Web Refresh — vícestránkový')} Kč za vícestránkový. Součástí plánu jsou přesměrování a sledování dopadu migrace.` },
   { keys: ['sprava', 'care', 'aktualizac', 'update', 'obsah', 'zmen'],
-    a: 'Web Care (správa webu) začíná od 490 Kč/měsíc — základní plán. Standard je 990 Kč/měsíc. Nebo hodinově za 850 Kč/hod. Zahrnuje aktualizace obsahu a technický dohled.' }
+    a: 'Po spuštění mohu pomoci s úpravami textů, fotek nebo technickou správou. Rozsah, cenu a termín domluvíme předem podle zadání.' }
 ];
 
 const FALLBACK = 'Tohle vám přesně neřeknu, ale ráda odpovím osobně. Napište na info@janyskovadigital.cz nebo vyplňte formulář níže — ozvu se do 24 hodin.';
@@ -46,6 +49,7 @@ if (toggle && panel) {
   const sendBtn   = document.getElementById('chat-send');
 
   function setIcons(open) {
+    toggle.setAttribute('aria-label', open ? 'Zavřít chatbot' : 'Otevřít chatbot');
     if (iconOpen)  iconOpen.classList.toggle('is-hidden', open);
     if (iconClose) iconClose.classList.toggle('is-hidden', !open);
   }
@@ -60,7 +64,7 @@ if (toggle && panel) {
       a.href = document.getElementById('kontakt') ? '#kontakt' : '/#kontakt';
       a.className = 'chat-cta-inline';
       a.textContent = 'Mám zájem o web →';
-      a.addEventListener('click', closePanel);
+      a.addEventListener('click', () => closePanel(false));
       messages.appendChild(a);
     }
     messages.scrollTop = messages.scrollHeight;
@@ -86,6 +90,7 @@ if (toggle && panel) {
 
   function getAnswer(text) {
     const t = text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    if (/\be[\s-]?shop\w*/.test(t)) return `Tvorba menšího e-shopu do 200 produktů začíná na ${price('E-shop na míru')} Kč. Probereme produkty, platby a dopravu a já vám řeknu přesnou cenu. Doména, poplatky platební brány a případné další služby se hradí zvlášť. Podrobnosti najdete na stránce E-shop na míru.`;
     for (let i = 0; i < KB.length; i++) {
       for (let j = 0; j < KB[i].keys.length; j++) {
         if (t.includes(KB[i].keys[j])) return KB[i].a;
@@ -105,13 +110,16 @@ if (toggle && panel) {
     }, 350);
   }
 
-  function closePanel() {
+  function closePanel(restoreFocus = true) {
     panel.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
     panel.setAttribute('aria-hidden', 'true');
     panel.inert = true;
     setIcons(false);
+    if (restoreFocus) toggle.focus({ preventScroll: true });
   }
+
+  document.getElementById('chat-close')?.addEventListener('click', () => closePanel());
 
   let initialized = false;
   toggle.addEventListener('click', function() {
@@ -125,7 +133,7 @@ if (toggle && panel) {
       addMsg('Dobrý den! Jsem automatický chatbot se základními informacemi. Pro osobní odpověď napište na info@janyskovadigital.cz nebo zavolejte na +420 739 395 800. Co vás zajímá?', 'bot');
       setTimeout(addChips, 200);
     }
-    if (open) setTimeout(function() { input.focus(); }, 300);
+    if (open) setTimeout(function() { if (panel.classList.contains('open')) input.focus(); }, 300);
   });
 
   sendBtn.addEventListener('click', sendMessage);

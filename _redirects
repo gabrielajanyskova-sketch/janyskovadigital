@@ -15,7 +15,7 @@
 
 # Standalone stránky .html → čistá URL
 /blog.html /blog 301
-/eshop.html / 301
+/eshop.html /eshop 301
 /seo.html / 301
 /grafika.html / 301
 /ochrana-udaju.html /ochrana-udaju 301
@@ -55,10 +55,15 @@
 
 # Staré stránky, které už neexistují (Google je má pořád v indexu)
 /grafika / 301
-/eshop / 301
 /seo / 301
 
 /blog/cituje-vas-ai.html /blog/cituje-vas-ai 301
 
 # Zdrojové soubory aplikace Test webu nemají být dostupné na hlavní doméně
 /testwebu/* https://testwebu.janyskovadigital.cz/ 301
+
+# Zrušená administrace a staré OAuth vstupy
+/admin / 301
+/admin/* / 301
+/api/auth / 301
+/api/callback / 301

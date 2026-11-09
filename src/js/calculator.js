@@ -1,3 +1,6 @@
+import { business } from '../data/schema-business.json';
+const startPrice = Number(business.hasOfferCatalog.itemListElement.find(o => o.itemOffered.name === 'Web Start').price);
+
 // Kalkulačka úspor (WordPress vs. web v čistém kódu)
 
 const hostingEl = document.getElementById('k-hosting');
@@ -20,8 +23,8 @@ if (hostingEl) {
     $('k-roky-out').textContent    = r + (r === 1 ? ' rok' : r < 5 ? ' roky' : ' let');
 
     const ted    = (h + s + d) * r;
-    const jd     = 5900 + d * r;
-    const uspora = Math.max(0, ted - jd);
+    const jd     = startPrice + (d + s) * r;
+    const uspora = ted - jd;
     const max    = Math.max(ted, jd, 1);
 
     $('k-ted').textContent     = fmt(ted);

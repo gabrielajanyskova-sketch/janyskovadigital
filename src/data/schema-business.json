@@ -25,10 +25,12 @@
     "priceRange": "5900–25000 CZK",
     "founder": {
       "@type": "Person",
-      "name": "Gabriela Janýšková"
+      "name": "Gabriela Janýšková",
+      "@id": "https://janyskovadigital.cz/#person"
     },
     "sameAs": [
-      "https://www.instagram.com/JanyskovaDigital"
+      "https://www.instagram.com/janyskovadigital.cz",
+      "https://www.facebook.com/share/1Fqd1skkB3/?mibextid=wwXIfr"
     ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -37,46 +39,70 @@
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web Start"
+            "name": "Web Start",
+            "provider": {
+              "@id": "https://janyskovadigital.cz/#business"
+            },
+            "serviceType": "Web Start"
           },
           "price": "5900",
-          "priceCurrency": "CZK"
+          "priceCurrency": "CZK",
+          "description": "Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web Business"
+            "name": "Web Business",
+            "provider": {
+              "@id": "https://janyskovadigital.cz/#business"
+            },
+            "serviceType": "Web Business"
           },
           "price": "12000",
-          "priceCurrency": "CZK"
+          "priceCurrency": "CZK",
+          "description": "Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Web Care"
-          },
-          "price": "490",
-          "priceCurrency": "CZK"
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Web Refresh"
+            "name": "Web Refresh",
+            "provider": {
+              "@id": "https://janyskovadigital.cz/#business"
+            },
+            "serviceType": "Web Refresh"
           },
           "price": "8900",
-          "priceCurrency": "CZK"
+          "priceCurrency": "CZK",
+          "description": "Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "E-shop na míru"
+            "name": "E-shop na míru",
+            "provider": {
+              "@id": "https://janyskovadigital.cz/#business"
+            },
+            "serviceType": "E-shop na míru"
           },
           "price": "25000",
-          "priceCurrency": "CZK"
+          "priceCurrency": "CZK",
+          "description": "Jednorázová tvorba; orientační cena od uvedené částky. Rozsah a konečná cena podle dohody."
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Web Refresh — vícestránkový",
+            "provider": {
+              "@id": "https://janyskovadigital.cz/#business"
+            }
+          },
+          "price": "14900",
+          "priceCurrency": "CZK",
+          "description": "Cena od 14 900 Kč podle rozsahu."
         }
       ]
     },
@@ -90,6 +116,19 @@
       "height": 512
     },
     "image": "https://janyskovadigital.cz/og-image.png",
-    "taxID": "19616295"
+    "identifier": {
+      "@type": "PropertyValue",
+      "name": "IČO",
+      "value": "19616295"
+    },
+    "description": "Tvorba webových stránek a e-shopů na míru pro podnikatele a malé firmy. Skutečné sídlo: Starojická Lhota u Nového Jičína. Spolupráce po celé ČR.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Česká republika"
+    },
+    "hasMap": "https://www.google.com/maps/place/JanyskovaDigital/@49.5735828,17.9154239,17z/data=!4m8!3m7!1s0x47139513c2c7b081:0xddc3448958f6ba46!8m2!3d49.5735828!4d17.9154239!9m1!1b1!16s%2Fg%2F11zbr8pjlr"
+  },
+  "estimates": {
+    "businessMax": 20000
   }
 }
