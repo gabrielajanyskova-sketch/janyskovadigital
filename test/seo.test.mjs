@@ -139,7 +139,9 @@ test('city pages stay concise and keep their local content and business identity
   for (const city of cities) {
     const html = await readFile(`${city.slug}/index.html`, 'utf8');
     const main = html.split('<main id="main">')[1].split('</main>')[0];
-    assert.equal((main.match(/<section\b/g) || []).length, 7, city.slug);
+    // 7 obsahových sekcí + blok Testu webu pod úvodem
+    assert.equal((main.match(/<section\b/g) || []).length, 8, city.slug);
+    assert.ok(main.includes('id="webtest-title"') && main.includes('class="hero-test"'), city.slug);
     assert.equal((main.match(/<article class="home-work-card">/g) || []).length, 2, city.slug);
     assert.ok(html.includes(city.localP1), city.slug);
     assert.ok(!html.includes('id="audit-popup"'), city.slug);
