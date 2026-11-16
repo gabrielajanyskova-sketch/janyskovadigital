@@ -505,7 +505,7 @@
     "geoPlacename": "Nový Jičín",
     "geoPosition": "49.5933;18.0139",
     "h1": "Tvorba webových stránek v&nbsp;<em>Novém Jičíně.</em>",
-    "heroSub": "Dělám webové stránky pro živnostníky a malé firmy z Nového Jičína a okolí. S návrhem, texty i spuštěním se obracíte na mě. Jednoduchý web začíná na 5 900 Kč.",
+    "heroSub": "Dělám webové stránky pro řemeslníky, živnostníky a malé firmy z Nového Jičína a okolí. S návrhem, texty i spuštěním se obracíte na mě. Jednoduchý web začíná na 5 900 Kč.",
     "heroNote": "Sídlím ve Starojické Lhotě u Nového Jičína. Úvodní domluvu zvládneme online, osobní schůzku si sjednáme podle potřeby.",
     "showcase": {
       "url": "https://jaroslavslonek.cz",
@@ -537,6 +537,10 @@
         "a": "Nejdřív se podívám, jestli Google vaše stránky vůbec najde a co se z nich dozví o vašich službách. Pak navrhnu, co opravit nebo dopsat. Pokud můžete mít firemní profil na Googlu, projdeme i ten. Konkrétní místo ve výsledcích vám ale slíbit nemůžu."
       },
       {
+        "q": "Děláte weby i pro řemeslníky z okolí Nového Jičína?",
+        "a": "Ano, hlavně pro ně. Pracuji pro řemeslníky a živnostníky z Nového Jičína, Kopřivnice, Příboru, Oder, Bílovce, Frenštátu i dalších obcí v okolí. Sídlím ve Starojické Lhotě, takže se po domluvě klidně potkáme osobně."
+      },
+      {
         "q": "Kolik stojí tvorba webových stránek v Novém Jičíně?",
         "a": "Tvorba webových stránek v Novém Jičíně začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
       },
@@ -553,7 +557,7 @@
         "a": "Ano, pošlete mi odkaz a napište, co vás trápí. Podívám se, co můžu upravit, a předem se domluvíme na práci i ceně. U nového webu jsou základní SEO nastavení už v ceně tvorby."
       }
     ],
-    "citiesSection": "<section>\n  <div class=\"container\">\n    <div class=\"section-tag\">Novojičínsko a okolí</div>\n    <h2 class=\"section-title\">Tvořím weby i pro <em>okolní města.</em></h2>\n    <p class=\"nearby-cities-lead nearby-cities-lead--loose\">Sídlím ve Starojické Lhotě kousek od Nového Jičína, takže schůzku domluvíme osobně nebo online. Webové stránky dělám i pro firmy a podnikatele z Kopřivnice, Příboru, Frenštátu nebo Hranic.</p>\n    <div class=\"city-grid city-grid--compact\">\n      <a href=\"/koprivnice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Kopřivnice</span>\n        <span class=\"city-card-link\">10 km · Webdesign Kopřivnice →</span>\n      </a>\n      <a href=\"/pribor/\" class=\"city-card\">\n        <span class=\"city-card-name\">Příbor</span>\n        <span class=\"city-card-link\">9 km · Webdesign Příbor →</span>\n      </a>\n      <a href=\"/frenstat/\" class=\"city-card\">\n        <span class=\"city-card-name\">Frenštát p. R.</span>\n        <span class=\"city-card-link\">15 km · Webdesign Frenštát →</span>\n      </a>\n      <a href=\"/hranice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Hranice</span>\n        <span class=\"city-card-link\">25 km · Webdesign Hranice →</span>\n      </a>\n      <a href=\"/roznov/\" class=\"city-card\">\n        <span class=\"city-card-name\">Rožnov p. R.</span>\n        <span class=\"city-card-link\">20 km · Webdesign Rožnov →</span>\n      </a>\n      <a href=\"/valasske-mezirici/\" class=\"city-card\">\n        <span class=\"city-card-name\">Val. Meziříčí</span>\n        <span class=\"city-card-link\">25 km · Webdesign Val. Meziříčí →</span>\n      </a>\n    </div>\n  </div>\n</section>",
+    "citiesSection": "<section>\n  <div class=\"container\">\n    <div class=\"section-tag\">Novojičínsko a okolí</div>\n    <h2 class=\"section-title\">Tvořím weby i pro <em>okolní města.</em></h2>\n    <p class=\"nearby-cities-lead nearby-cities-lead--loose\">Sídlím ve Starojické Lhotě kousek od Nového Jičína, takže schůzku domluvíme osobně nebo online. Webové stránky dělám i pro firmy a podnikatele z Kopřivnice, Příboru, Oder, Bílovce, Frenštátu nebo Hranic.</p>\n    <div class=\"city-grid city-grid--compact\">\n      <a href=\"/koprivnice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Kopřivnice</span>\n        <span class=\"city-card-link\">10 km · Webdesign Kopřivnice →</span>\n      </a>\n      <a href=\"/pribor/\" class=\"city-card\">\n        <span class=\"city-card-name\">Příbor</span>\n        <span class=\"city-card-link\">9 km · Webdesign Příbor →</span>\n      </a>\n      <a href=\"/bilovec/\" class=\"city-card\">\n        <span class=\"city-card-name\">Bílovec</span>\n        <span class=\"city-card-link\">15 km · Webdesign Bílovec →</span>\n      </a>\n      <a href=\"/odry/\" class=\"city-card\">\n        <span class=\"city-card-name\">Odry</span>\n        <span class=\"city-card-link\">18 km · Webdesign Odry →</span>\n      </a>\n      <a href=\"/frenstat/\" class=\"city-card\">\n        <span class=\"city-card-name\">Frenštát p. R.</span>\n        <span class=\"city-card-link\">15 km · Webdesign Frenštát →</span>\n      </a>\n      <a href=\"/hranice/\" class=\"city-card\">\n        <span class=\"city-card-name\">Hranice</span>\n        <span class=\"city-card-link\">25 km · Webdesign Hranice →</span>\n      </a>\n      <a href=\"/roznov/\" class=\"city-card\">\n        <span class=\"city-card-name\">Rožnov p. R.</span>\n        <span class=\"city-card-link\">20 km · Webdesign Rožnov →</span>\n      </a>\n      <a href=\"/valasske-mezirici/\" class=\"city-card\">\n        <span class=\"city-card-name\">Val. Meziříčí</span>\n        <span class=\"city-card-link\">25 km · Webdesign Val. Meziříčí →</span>\n      </a>\n    </div>\n  </div>\n</section>",
     "subject": "Nový Jičín",
     "schema": {
       "businessDescription": "Gabriela Janýšková tvoří weby na míru. Skutečné sídlo: Starojická Lhota u Nového Jičína, spolupráce online po celé ČR. Obsluhovaná oblast: Nový Jičín a okolí.",
@@ -561,6 +565,14 @@
         {
           "@type": "City",
           "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Bílovec"
+        },
+        {
+          "@type": "City",
+          "name": "Odry"
         },
         {
           "@type": "City",
@@ -924,6 +936,184 @@
       "pageName": "Tvorba webových stránek Příbor | Janyskova Digital",
       "pageDescription": "Tvorba webových stránek Příbor od 5 900 Kč. Popis služeb, ukázky vaší práce a kontakt na jednom místě. Sídlím u Nového Jičína, schůzka podle dohody.",
       "breadcrumbName": "Příbor"
+    }
+  },
+  {
+    "slug": "odry",
+    "name": "Odry",
+    "title": "Tvorba webu Odry pro řemeslníky a živnostníky",
+    "description": "Web, přes který vám zavolají noví zákazníci. Pro řemeslníky a živnostníky v Odrách a okolí. Od 5 900 Kč, hosting v ceně, bez měsíčních poplatků.",
+    "ogTitle": "Tvorba webu Odry pro řemeslníky a živnostníky",
+    "ogDescription": "Web, přes který vám zavolají noví zákazníci. Pro řemeslníky a živnostníky v Odrách a okolí. Od 5 900 Kč, hosting v ceně, bez měsíčních poplatků.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Odry",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Odry",
+    "geoPosition": "49.6625;17.8309",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Odrách.</em><!--/CMS:hero_title-->",
+    "heroSub": "Dělám webové stránky pro řemeslníky a živnostníky z Oder a okolí. Sídlím u Nového Jičína, asi 18 km od vás, takže se můžeme po domluvě i potkat. Jednoduchý web začíná na 5 900 Kč.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro řemeslníka<br><em>z Oder.</em>",
+    "localP1": "Řemeslník nepotřebuje složitý web. Potřebuje, aby zákazník hned viděl, co děláte, fotky hotové práce, kam dojíždíte a jak vám zavolat. Přesně tohle na web dáme. Texty s vámi připravím podle toho, co mi o své práci řeknete, a telefon bude jít z mobilu vytočit jedním klepnutím.",
+    "localP2": "Mezi moje realizace patří <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"link-accent\">Stavby Literák z Frýdku-Místku</a>. Prohlédněte si, jak web představuje jednotlivé stavební služby. Další obory najdete v <a href=\"/reference\" class=\"link-accent\">přehledu referencí</a>.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Odrách",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Oder?",
+        "a": "Ano, když je to potřeba. Sídlím u Nového Jičína, asi 18 km od vás. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Nemám texty ani pořádné fotky. Stačí to?",
+        "a": "Stačí. Řeknete mi, co děláte a na co se vás zákazníci ptají, a texty připravím já. Fotky hotové práce z mobilu většinou úplně postačí, poradím vám, jak je nafotit."
+      },
+      {
+        "q": "Jak se dostat na Google v Odrách?",
+        "a": "Nejdřív se podívám, jestli Google vaše stránky vůbec najde a co se z nich dozví o vašich službách. Pak navrhnu, co opravit nebo dopsat. Pokud můžete mít firemní profil na Googlu, projdeme i ten. Konkrétní místo ve výsledcích vám ale slíbit nemůžu."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Odrách?",
+        "a": "Tvorba webových stránek v Odrách začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Odry",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří weby na míru. Skutečné sídlo: Starojická Lhota u Nového Jičína, spolupráce online po celé ČR. Obsluhovaná oblast: Odry a okolí.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Odry"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Fulnek"
+        },
+        {
+          "@type": "City",
+          "name": "Vítkov"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Odersko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Odry",
+      "pageName": "Tvorba webových stránek Odry | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek Odry od 5 900 Kč pro řemeslníky a živnostníky. Služby, fotky práce a kontakt na jednom místě. Sídlím u Nového Jičína.",
+      "breadcrumbName": "Odry"
+    }
+  },
+  {
+    "slug": "bilovec",
+    "name": "Bílovec",
+    "title": "Tvorba webu Bílovec pro řemeslníky a živnostníky",
+    "description": "Web, přes který vám zavolají noví zákazníci. Pro řemeslníky a živnostníky v Bílovci a okolí. Od 5 900 Kč, hosting v ceně, bez měsíčních poplatků.",
+    "ogTitle": "Tvorba webu Bílovec pro řemeslníky a živnostníky",
+    "ogDescription": "Web, přes který vám zavolají noví zákazníci. Pro řemeslníky a živnostníky v Bílovci a okolí. Od 5 900 Kč, hosting v ceně, bez měsíčních poplatků.",
+    "imageAlt": "Gabriela Janýšková — tvorba webů Bílovec",
+    "geoRegion": "CZ-80",
+    "geoPlacename": "Bílovec",
+    "geoPosition": "49.7564;18.0158",
+    "h1": "<!--CMS:hero_title-->Tvorba webových stránek<br>v&nbsp;<em>Bílovci.</em><!--/CMS:hero_title-->",
+    "heroSub": "Dělám webové stránky pro řemeslníky a živnostníky z Bílovce a okolí. Sídlím u Nového Jičína, asi 15 km od vás, takže se můžeme po domluvě i potkat. Jednoduchý web začíná na 5 900 Kč.",
+    "heroNote": "Většinu vyřešíme online, ať se mnou neztrácíte čas. Když je potřeba, přijedu osobně — po Moravskoslezském kraji jezdím.",
+    "showcase": {
+      "url": "https://jaroslavslonek.cz",
+      "aria": "Web jaroslavslonek.cz",
+      "img": "/img/slonek-desktop-v1.webp",
+      "alt": "Web jaroslavslonek.cz",
+      "width": "600",
+      "height": "400",
+      "label": "jaroslavslonek.cz"
+    },
+    "localH2": "Web pro řemeslníka<br><em>z Bílovce.</em>",
+    "localP1": "Řemeslník nepotřebuje složitý web. Potřebuje, aby zákazník hned viděl, co děláte, fotky hotové práce, kam dojíždíte a jak vám zavolat. Přesně tohle na web dáme. Texty s vámi připravím podle toho, co mi o své práci řeknete, a telefon bude jít z mobilu vytočit jedním klepnutím.",
+    "localP2": "Mezi moje realizace patří <a href=\"https://stavbyliterak.cz\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"link-accent\">Stavby Literák z Frýdku-Místku</a>. Prohlédněte si, jak web představuje jednotlivé stavební služby. Další obory najdete v <a href=\"/reference\" class=\"link-accent\">přehledu referencí</a>.",
+    "meet": "Osobně i online",
+    "references": [
+      "literak",
+      "hubackova",
+      "slonek",
+      "lufactory"
+    ],
+    "priceIn": "v Bílovci",
+    "faq": [
+      {
+        "q": "Přijedete osobně do Bílovce?",
+        "a": "Ano, když je to potřeba. Sídlím u Nového Jičína, asi 15 km od vás. Většinu ale vyřešíme online, e-mailem nebo krátkým hovorem, abyste se mnou neztráceli čas a mohli se věnovat práci."
+      },
+      {
+        "q": "Nemám texty ani pořádné fotky. Stačí to?",
+        "a": "Stačí. Řeknete mi, co děláte a na co se vás zákazníci ptají, a texty připravím já. Fotky hotové práce z mobilu většinou úplně postačí, poradím vám, jak je nafotit."
+      },
+      {
+        "q": "Jak se dostat na Google v Bílovci?",
+        "a": "Nejdřív se podívám, jestli Google vaše stránky vůbec najde a co se z nich dozví o vašich službách. Pak navrhnu, co opravit nebo dopsat. Pokud můžete mít firemní profil na Googlu, projdeme i ten. Konkrétní místo ve výsledcích vám ale slíbit nemůžu."
+      },
+      {
+        "q": "Kolik stojí tvorba webových stránek v Bílovci?",
+        "a": "Tvorba webových stránek v Bílovci začíná od 5 900 Kč za one-page web. Vícestránkový web od 12 000 Kč. Hosting je v ceně tvorby — platíte jen doménu přibližně 200 Kč ročně."
+      }
+    ],
+    "citiesSection": null,
+    "subject": "Bílovec",
+    "schema": {
+      "businessDescription": "Gabriela Janýšková tvoří weby na míru. Skutečné sídlo: Starojická Lhota u Nového Jičína, spolupráce online po celé ČR. Obsluhovaná oblast: Bílovec a okolí.",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Bílovec"
+        },
+        {
+          "@type": "City",
+          "name": "Nový Jičín"
+        },
+        {
+          "@type": "City",
+          "name": "Studénka"
+        },
+        {
+          "@type": "City",
+          "name": "Fulnek"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Bílovecko"
+        },
+        {
+          "@type": "State",
+          "name": "Moravskoslezský kraj"
+        }
+      ],
+      "serviceArea": null,
+      "catalogName": "Tvorba webových stránek Bílovec",
+      "pageName": "Tvorba webových stránek Bílovec | Janyskova Digital",
+      "pageDescription": "Tvorba webových stránek Bílovec od 5 900 Kč pro řemeslníky a živnostníky. Služby, fotky práce a kontakt na jednom místě. Sídlím u Nového Jičína.",
+      "breadcrumbName": "Bílovec"
     }
   },
   {
