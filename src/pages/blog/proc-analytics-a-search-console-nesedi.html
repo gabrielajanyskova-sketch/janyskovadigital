@@ -119,7 +119,7 @@
       <div class="meta-dot"></div>
       <span>17. listopadu 2026</span>
       <div class="meta-dot"></div>
-      <span>4 min čtení</span>
+      <span>5 min čtení</span>
     </div>
 
     <article class="article-body">
@@ -130,17 +130,29 @@
       <p>Nová stránka popisuje, jak návštěvy z Google Search poznat ve vlastním měření návštěvnosti a v záznamech serveru. Hlavní sdělení: <strong>čísla z měřicích nástrojů a kliknutí v Search Console se jedna ku jedné shodovat nebudou.</strong> Rozpoznání návštěvy z Googlu podle údaje o odkazující stránce (takzvaný Referer) není přesné.</p>
       <p>Google také uvádí, že tento údaj obsahuje jen adresu Googlu, ne to, co člověk hledal. <strong>Hledané dotazy proto najdete jen v Search Console</strong>, v přehledu Výkon. Měřicí nástroj vašeho webu je nezjistí.</p>
 
-      <h2>Proč se čísla liší</h2>
+      <h2>Proč se čísla liší podle Googlu</h2>
       <h3>1. Každý nástroj měří jindy</h3>
       <p>Search Console počítá kliknutí přímo ve výsledcích vyhledávání. Měřicí nástroj, třeba Google Analytics, počítá návštěvu až ve chvíli, kdy se stránka načte a spustí se jeho kód. Když člověk klikne a stránku zavře dřív, než se načte, Search Console kliknutí započítá, Analytics návštěvu ne.</p>
-      <h3>2. Část lidí měření nepovolí</h3>
-      <p>Pokud web používá Google Analytics s cookie lištou a návštěvník souhlas nedá, část údajů chybí. Stejně tak u lidí, kteří měření blokují v prohlížeči. Search Console tohle neovlivní, protože kliknutí počítá na straně Googlu.</p>
-      <h3>3. Analytics počítá i jiné vyhledávače</h3>
-      <p>V Analytics bývá „organické vyhledávání“ součet všech vyhledávačů. V Česku je to vedle Googlu hlavně Seznam, případně Bing. Search Console ukazuje jen Google. Pokud vás lidé hledají přes Seznam, Analytics může ukazovat víc než Search Console a je to v pořádku.</p>
-      <h3>4. Search Console nepočítá reklamu</h3>
-      <p>Kliknutí na placené reklamy Google Ads v Search Console nejsou. Pokud v měřicím nástroji nemáte placenou a neplacenou návštěvnost oddělenou, čísla se rozejdou.</p>
-      <h3>5. Přesměrování a nastavení soukromí</h3>
-      <p>Když návštěvník projde přesměrováním nebo má přísnější nastavení soukromí, údaj o tom, odkud přišel, se může ztratit. Návštěva se pak v měření objeví jako přímá, ne z Googlu.</p>
+      <h3>2. Soukromí, souhlas s cookies a blokátory</h3>
+      <p>Nastavení soukromí v prohlížeči, rozšíření, blokátory reklam nebo nesouhlas s měřením mohou měřicí kód zablokovat nebo smazat údaj o tom, odkud člověk přišel. Search Console tohle neovlivní, protože kliknutí počítá na straně Googlu.</p>
+      <h3>3. Search Console nepočítá reklamu</h3>
+      <p>Search Console ukazuje jen neplacená kliknutí z Google Search, ne kliknutí na reklamy Google Ads. Měřicí nástroj je podle nastavení může mít v součtu.</p>
+      <h3>4. Přesměrování na vašem webu</h3>
+      <p>Přesměrování přes JavaScript nebo meta refresh může údaj o původu nahradit adresou vaší vlastní stránky. Přesměrování s přísnějším nastavením (Referrer-Policy) ho může odstranit úplně. Návštěva z Googlu se pak v měření tváří jako něco jiného.</p>
+
+      <h2>Kdy se údaj o původu návštěvy ztrácí úplně</h2>
+      <p>Google uvádí, že prohlížeč nebo telefon údaj o tom, odkud člověk přišel, někdy vůbec nepošle. Běžně se to stává:</p>
+      <ul>
+        <li>v anonymním okně a při ochraně proti sledování v prohlížeči,</li>
+        <li>v některých prohlížečích při otevření výsledku v nové záložce,</li>
+        <li>při přechodu z vyhledávacího widgetu na mobilu do prohlížeče,</li>
+        <li>u lidí s rozšířeními pro soukromí nebo přísným nastavením prohlížeče.</li>
+      </ul>
+      <p>Takové návštěvy se v měření obvykle objeví jako přímé, ne z Googlu.</p>
+      <p><strong>Tip od Googlu:</strong> pokud vám návštěvy z Googlu v měření chybí nebo se ukazují jako odkazy z jiných webů či přímé návštěvy, zkontrolujte v nastavení měřicího nástroje vlastní pravidla kanálů, vyloučení odkazujících webů a filtry. Mohou návštěvy z Googlu zařazovat jinam.</p>
+
+      <h2>A jeden důvod, který Google nezmiňuje</h2>
+      <p>V Google Analytics bývá „organické vyhledávání“ součet všech vyhledávačů. V Česku je to vedle Googlu hlavně Seznam, případně Bing. Search Console ukazuje jen Google. Pokud vás lidé hledají přes Seznam, Analytics může ukazovat víc než Search Console a je to v pořádku.</p>
 
       <h2>Která čísla tedy platí?</h2>
       <p>Obě, ale na něco jiného:</p>
@@ -148,7 +160,7 @@
         <li><strong>Search Console</strong> použijte pro výkon ve vyhledávání Google: zobrazení, kliknutí, pozice a hledané dotazy.</li>
         <li><strong>Měřicí nástroj webu</strong> (Google Analytics, Cloudflare Web Analytics a podobné) použijte pro to, co lidé dělají na webu: které stránky čtou, odkud přišli celkově a jestli vás kontaktují.</li>
       </ul>
-      <p>Nesčítejte je a nehledejte, kde je „chyba“. Porovnávejte vždy stejný nástroj se sebou samým v čase: tento měsíc proti minulému, letošní listopad proti loňskému.</p>
+      <p>Podrobněji to Google rozebírá na stránce <a href="https://developers.google.com/search/docs/monitor-debug/google-analytics-search-console#discrepancies" rel="noopener">o rozdílech mezi Google Analytics a Search Console</a>. Nesčítejte je a nehledejte, kde je „chyba“. Porovnávejte vždy stejný nástroj se sebou samým v čase: tento měsíc proti minulému, letošní listopad proti loňskému.</p>
 
       <h2>Co si z toho vzít pro malou firmu</h2>
       <ul>
@@ -161,8 +173,8 @@
       <section class="article-faq" aria-labelledby="faq-title">
         <h2 id="faq-title">Na co se mě ptáte</h2>
         <div class="faq-list">
-          <details class="faq-item"><summary>Proč mám v Google Analytics víc návštěv z vyhledávání než kliknutí v Search Console?</summary><p>Analytics často počítá do organického vyhledávání i Seznam a další vyhledávače. Search Console ukazuje jen Google. Rozdíl je běžný a neznamená chybu.</p></details>
-          <details class="faq-item"><summary>Proč mám naopak víc kliknutí v Search Console než návštěv v Analytics?</summary><p>Search Console počítá kliknutí ve výsledcích Googlu. Analytics započítá návštěvu až po načtení stránky a jen když měření proběhne. Část lidí odejde dřív, nedá souhlas s měřením nebo měření blokuje.</p></details>
+          <details class="faq-item"><summary>Proč mám v Google Analytics víc návštěv z vyhledávání než kliknutí v Search Console?</summary><p>Google Analytics obvykle počítá do organického vyhledávání i Seznam a další vyhledávače, Search Console ukazuje jen Google. Rozdíl je běžný a neznamená chybu.</p></details>
+          <details class="faq-item"><summary>Proč mám naopak víc kliknutí v Search Console než návštěv v Analytics?</summary><p>Search Console počítá kliknutí ve výsledcích Googlu. Analytics započítá návštěvu až po načtení stránky a jen když měření proběhne. Část lidí odejde dřív, nedá souhlas s měřením nebo měření blokuje. U jiných se údaj o původu ztratí, například v anonymním okně, a návštěva se ukáže jako přímá.</p></details>
           <details class="faq-item"><summary>Kde zjistím, co lidé hledali, když našli můj web?</summary><p>V Search Console v přehledu Výkon. Měřicí nástroj webu hledané dotazy z Googlu nezná, protože Google je při přechodu na web nepředává.</p></details>
         </div>
       </section>
