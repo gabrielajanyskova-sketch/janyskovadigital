@@ -59,3 +59,13 @@ console.log('✓ Ochrana e-mailu Cloudflare (bez falešného nefunkčního odkaz
   assert.deepEqual(a.headings.map(h => h.level), [1, 2, 3]);
   console.log('✓ Samouzavírací <svg/> neschová nadpisy');
 }
+
+// Koncová značka rozdělená na řádky (</svg\n>, typické pro Prettier) nesmí schovat nadpisy
+{
+  const { analyzeHtml } = await import('../lib/html.js');
+  const assert = (await import('node:assert/strict')).default;
+  const a = analyzeHtml('<html><head><title>x</title\n></head><body><h1>Malé světlo.</h1><a><svg viewBox="0 0 32 32">\n  <use href="#i" /></svg\n></a><h2>Vaše chvíle. <em>Vaše vůně.</em></h2\n><a><svg viewBox="0 0 32 32"><use href="#j" /></svg></a><h3>Dárek pro ni</h3></body></html>', 'https://firma.cz/');
+  assert.deepEqual(a.headings.map(h => h.level), [1, 2, 3]);
+  assert.equal(a.title, 'x');
+  console.log('✓ Koncové značky rozdělené na řádky neschovají nadpisy');
+}

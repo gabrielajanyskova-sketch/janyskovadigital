@@ -87,7 +87,7 @@ const THIRD_PARTY = [
 // Rozpoznávání pouze z aktivních značek a adres prostředků, nikoli z textu článků.
 export function analyzeTechnologies(html, pageUrl) {
   html = html.replace(/<!--[\s\S]*?-->/g, ' ');
-  const markup = html.replace(/<(script|style|noscript|template)\b[^>]*>[\s\S]*?<\/\1>/gi,
+  const markup = html.replace(/<(script|style|noscript|template)\b[^>]*>[\s\S]*?<\/\1\s*>/gi,
     block => block.match(/^<[^>]+>/)?.[0] || '');
   const elements = [...markup.matchAll(/<[a-z][^>]*>/gi)].map(m => attrs(m[0]));
   const resources = elements.flatMap(a => [a.src, a.href].filter(Boolean)).flatMap(value => {
@@ -131,7 +131,7 @@ export function analyzeHtml(html, pageUrl) {
   html = html.replace(/<!--[\s\S]*?-->/g, ' ');
   const base = new URL(pageUrl);
   const resolveUrl = value => { try { return new URL(value, base).href; } catch { return null; } };
-  const headEnd = html.search(/<\/head>/i);
+  const headEnd = html.search(/<\/head\s*>/i);
   const head = headEnd > 0 ? html.slice(0, headEnd) : html;
   const bodyStart = html.search(/<body\b/i);
   const body = bodyStart >= 0 ? html.slice(bodyStart) : html;
@@ -139,7 +139,7 @@ export function analyzeHtml(html, pageUrl) {
   // pohltilo všechno až po další </svg>, včetně nadpisů a textu mezi nimi
   const bodyNoScripts = body
     .replace(/<(svg|template)\b[^>]*\/>/gi, ' ')
-    .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ');
+    .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1\s*>/gi, ' ');
 
   const metas = tags(head, 'meta');
   const meta = name => metas.find(m => (m.name || '').toLowerCase() === name)?.content;
@@ -147,7 +147,7 @@ export function analyzeHtml(html, pageUrl) {
   const links = tags(head, 'link');
   const rel = r => links.filter(l => (l.rel || '').toLowerCase().split(/\s+/).includes(r));
 
-  const headings = [...bodyNoScripts.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/gi)]
+  const headings = [...bodyNoScripts.matchAll(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1\s*>/gi)]
     .map(m => ({ level: +m[1], text: text(m[2]).slice(0, 160) }));
 
   const images = tags(bodyNoScripts, 'img').map(i => ({
@@ -156,7 +156,7 @@ export function analyzeHtml(html, pageUrl) {
   }));
 
   const jsonLd = [];
-  for (const m of html.matchAll(/<script\b[^>]*type\s*=\s*["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script>/gi)) {
+  for (const m of html.matchAll(/<script\b[^>]*type\s*=\s*["']?application\/ld\+json["']?[^>]*>([\s\S]*?)<\/script\s*>/gi)) {
     try {
       const data = JSON.parse(m[1].trim());
       const types = [];
@@ -199,7 +199,7 @@ export function analyzeHtml(html, pageUrl) {
   return {
     technology,
     lang: (html.match(/<html\b[^>]*\blang\s*=\s*["']?([a-zA-Z-]+)/i) || [])[1] || null,
-    title: text((head.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i) || [])[1] || '') || null,
+    title: text((head.match(/<title\b[^>]*>([\s\S]*?)<\/title\s*>/i) || [])[1] || '') || null,
     description: meta('description') ?? null,
     robots: meta('robots') ?? null,
     viewport: meta('viewport') ?? null,
