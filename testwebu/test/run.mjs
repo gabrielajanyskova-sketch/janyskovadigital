@@ -41,3 +41,12 @@ const cf = analyzeHtml('<html><body><a href="/cdn-cgi/l/email-protection#a1b2">[
 assert.deepEqual(cf.internalLinks, ['https://firma.cz/kontakt']);
 assert.equal(cf.email, true);
 console.log('✓ Ochrana e-mailu Cloudflare (bez falešného nefunkčního odkazu)');
+
+// Přeskočené úrovně nadpisů: test ukáže stránku a konkrétní nadpisy
+{
+  const { headingSkips } = await import('../lib/checks.js');
+  const skips = headingSkips([{ level: 1, text: 'Úvod' }, { level: 3, text: 'Služby' }, { level: 2, text: 'Kontakt' }, { level: 4, text: 'Adresa' }]);
+  const assert = (await import('node:assert/strict')).default;
+  assert.deepEqual(skips.map(s => `${s.from.level}>${s.to.level}:${s.to.text}`), ['1>3:Služby', '2>4:Adresa']);
+  console.log('✓ Přeskočené nadpisy se hlásí i s konkrétními nadpisy');
+}

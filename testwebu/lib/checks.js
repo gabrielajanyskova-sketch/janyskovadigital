@@ -309,8 +309,28 @@ export function siteChecks(r) {
     h1.map(h => `„${h.text}“`).slice(0, 3).join(', ') || 'Stránka nemá žádný nadpis H1.',
     'Hlavní nadpis říká Googlu, AI i návštěvníkovi, o čem stránka je.', h1.length === 1 ? '—' : 'Mít na stránce právě jeden H1 s hlavním tématem.'));
 
-  const skips = p.headings.filter((h, i) => i > 0 && h.level > p.headings[i - 1].level + 1).length;
-  if (skips) out.push(check('seo', 'heading-order', 'low', 'warn', 'Nadpisy přeskakují úrovně', `${plural(skips, 'místo', 'místa', 'míst')}, kde např. po H1 následuje rovnou H3.`, 'Logická osnova nadpisů pomáhá vyhledávačům, AI i čtečkám obrazovky.', 'Řadit nadpisy H1 → H2 → H3 bez přeskakování.'));
+  // Přeskočené úrovně nadpisů na úvodní i dalších kontrolovaných stránkách, s konkrétními nadpisy
+  const skipPages = [{ url: r.finalUrl, skips: headingSkips(p.headings) }]
+    .concat((r.pages || []).filter(x => x.headingSkips?.length).map(x => ({ url: x.url, skips: x.headingSkips })))
+    .filter(x => x.skips.length);
+  const skipCount = skipPages.reduce((n, x) => n + x.skips.length, 0);
+  if (skipCount) {
+    const quote = h => `H${h.level} „${h.text.length > 50 ? h.text.slice(0, 50) + '…' : h.text || '(bez textu)'}“`;
+    // Stejná chyba na více stránkách (typicky v šabloně) se vypíše jednou se seznamem stránek
+    const groups = new Map();
+    for (const x of skipPages) {
+      const text = `${x.skips.slice(0, 3).map(s => `${quote(s.from)} → ${quote(s.to)}`).join('; ')}${x.skips.length > 3 ? ` a další (${x.skips.length - 3})` : ''}`;
+      if (!groups.has(text)) groups.set(text, []);
+      groups.get(text).push(x.url === r.finalUrl ? 'úvodní stránka' : decodeSafe(x.url));
+    }
+    const where = [...groups].map(([text, urls]) => urls.length > 1
+      ? `${text} (stejně na ${urls.length} stránkách, nejspíš v šabloně webu: ${urls.join(', ')})`
+      : `${urls[0][0].toUpperCase() + urls[0].slice(1)}: ${text}`);
+    out.push(check('seo', 'heading-order', 'low', 'warn', 'Nadpisy přeskakují úrovně',
+      `${plural(skipCount, 'místo', 'místa', 'míst')}. ${where.join(' · ')}`,
+      'Logická osnova nadpisů pomáhá vyhledávačům, AI i čtečkám obrazovky.',
+      'U uvedeného nadpisu použít o úroveň nižší číslo (třeba H2 místo H3), nebo doplnit chybějící mezistupeň. Pokud jde jen o velikost písma, upravit ji stylem, ne úrovní nadpisu.'));
+  }
 
   const noAlt = p.images.filter(i => !i.hasAlt).length;
   if (p.images.length) out.push(check('seo', 'alt', 'medium', noAlt === 0 ? 'pass' : 'warn',
@@ -509,4 +529,9 @@ export function domainChecks(dns, domain, securityTxt) {
     ? check('security', 'security-txt', 'low', 'pass', 'Web má soubor security.txt', 'Kontakt pro nahlášení bezpečnostních chyb je na /.well-known/security.txt.', 'Kdo najde na webu zranitelnost, ví, komu ji nahlásit.', '—')
     : check('security', 'security-txt', 'low', 'info', 'Chybí soubor security.txt', 'Na /.well-known/security.txt není kontakt pro hlášení bezpečnostních chyb.', 'Jde o doplňkový kontakt pro lidi, kteří objeví bezpečnostní chybu. Chybějící soubor sám o sobě neznamená, že je web nebezpečný nebo porušuje zákon.', 'Vytvořit /.well-known/security.txt s řádky Contact: mailto:vas@email.cz a Expires: (datum za rok).'));
   return out;
+}
+
+// Místa, kde nadpis přeskočí úroveň (např. po H1 rovnou H3): dvojice předchozí → problematický nadpis
+export function headingSkips(headings) {
+  return headings.flatMap((h, i) => (i > 0 && h.level > headings[i - 1].level + 1 ? [{ from: headings[i - 1], to: h }] : []));
 }

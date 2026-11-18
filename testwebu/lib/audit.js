@@ -3,7 +3,7 @@
 import { normalizeUrl, assertPublicHost, fetchPage, AuditError } from './http.js';
 import { analyzeHtml } from './html.js';
 import { readRegistration, providerSummary } from './providers.js';
-import { siteChecks, emailChecks, domainChecks, score, CATEGORIES } from './checks.js';
+import { headingSkips, siteChecks, emailChecks, domainChecks, score, CATEGORIES } from './checks.js';
 
 const AI_BOTS = ['OAI-SearchBot', 'Claude-SearchBot', 'PerplexityBot'];
 const TRAINING_BOTS = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'Applebot-Extended'];
@@ -64,7 +64,7 @@ export async function audit(input, { fetchImpl = fetch, checkHost = true, deadli
   const pages = (await Promise.all(candidates.map(u => fetchPage(u, opts)))).map((res, i) => {
     if (!res.ok || !res.status || !/html/i.test(res.contentType || '')) return { url: candidates[i], status: res.status || 0, analyzed: false };
     const a = analyzeHtml(res.body, res.url);
-    return { url: res.url, status: res.status, analyzed: true, title: a.title, description: a.description, h1: a.headings.filter(h => h.level === 1).length };
+    return { url: res.url, status: res.status, analyzed: true, title: a.title, description: a.description, h1: a.headings.filter(h => h.level === 1).length, headingSkips: headingSkips(a.headings) };
   });
 
   // Nefunkční odkazy z úvodní stránky (jen interní; cizí weby automatické kontroly často blokují)
