@@ -135,7 +135,11 @@ export function analyzeHtml(html, pageUrl) {
   const head = headEnd > 0 ? html.slice(0, headEnd) : html;
   const bodyStart = html.search(/<body\b/i);
   const body = bodyStart >= 0 ? html.slice(bodyStart) : html;
-  const bodyNoScripts = body.replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ');
+  // Samouzavírací <svg … /> (běžné u ikon) nejdřív zvlášť, jinak by párové odstranění
+  // pohltilo všechno až po další </svg>, včetně nadpisů a textu mezi nimi
+  const bodyNoScripts = body
+    .replace(/<(svg|template)\b[^>]*\/>/gi, ' ')
+    .replace(/<(script|style|noscript|template|svg)\b[\s\S]*?<\/\1>/gi, ' ');
 
   const metas = tags(head, 'meta');
   const meta = name => metas.find(m => (m.name || '').toLowerCase() === name)?.content;

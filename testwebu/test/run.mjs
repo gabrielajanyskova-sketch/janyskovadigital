@@ -50,3 +50,12 @@ console.log('✓ Ochrana e-mailu Cloudflare (bez falešného nefunkčního odkaz
   assert.deepEqual(skips.map(s => `${s.from.level}>${s.to.level}:${s.to.text}`), ['1>3:Služby', '2>4:Adresa']);
   console.log('✓ Přeskočené nadpisy se hlásí i s konkrétními nadpisy');
 }
+
+// Samouzavírací ikona <svg … /> nesmí „spolknout“ nadpisy za sebou
+{
+  const { analyzeHtml } = await import('../lib/html.js');
+  const assert = (await import('node:assert/strict')).default;
+  const a = analyzeHtml('<html><head><title>x</title></head><body><h1>Malé světlo. Velká atmosféra.</h1><svg class="i"/><h2>Vaše chvíle. <em>Vaše vůně.</em></h2><svg viewBox="0 0 1 1"><path d="M0 0"/></svg><h3>Mořská sůl</h3></body></html>', 'https://firma.cz/');
+  assert.deepEqual(a.headings.map(h => h.level), [1, 2, 3]);
+  console.log('✓ Samouzavírací <svg/> neschová nadpisy');
+}
