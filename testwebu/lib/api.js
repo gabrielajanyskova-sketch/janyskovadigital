@@ -4,7 +4,8 @@ import { rateLimited as checkLimit, InputError } from '../../functions/_lib/secu
 import { AuditError } from './http.js';
 
 const CACHE_SECONDS = 3600;
-const CACHE_VERSION = 'v8';
+// Verze cache = otisk kódu kontrol (generuje build.js): nová verze testu nevrací staré výsledky
+import { CACHE_VERSION } from './cache-version.js';
 const MAX_IN_FLIGHT = 8;
 const MAX_AUDITS_IN_FLIGHT = 2;
 const inFlight = new Map();

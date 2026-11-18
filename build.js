@@ -335,6 +335,11 @@ async function pageStyles() {
 
 // Aplikace testwebu.janyskovadigital.cz (samostatný projekt v Cloudflare Pages, kořen testwebu/)
 async function bundleTestWebu() {
+  // Otisk kódu kontrol pro klíč cache výsledků (testwebu/lib/api.js)
+  const libFiles = (await readdir('testwebu/lib')).filter(f => f.endsWith('.js') && f !== 'cache-version.js').sort();
+  const libHash = hash((await Promise.all(libFiles.map(f => read(`testwebu/lib/${f}`)))).join('\n'));
+  await write('testwebu/lib/cache-version.js', `// Generuje build.js z obsahu testwebu/lib, neupravovat ručně\nexport const CACHE_VERSION = '${libHash}';\n`);
+
   await esbuild.build({
     entryPoints: ['testwebu/src/app.js'],
     outfile: 'testwebu/public/app.js',

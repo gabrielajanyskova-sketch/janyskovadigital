@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { cached } from '../lib/api.js';
 import { assertPublicHost, isPrivateIPv6, normalizeUrl } from '../lib/http.js';
 import { onRequestGet as speed } from '../functions/api/speed.js';
+import { CACHE_VERSION } from '../lib/cache-version.js';
 
 test('cache coalesces concurrent identical work and frees failed jobs for retries', async () => {
   let release, calls = 0;
@@ -40,7 +41,8 @@ test('cache version and size bound protect cold and repeated runs', async () => 
   try {
     globalThis.caches = { default: { match: async request => { key = request.url; return Response.json(42); } } };
     assert.equal((await cached('https://test.cz/__cache/example', async () => 0)).data, 42);
-    assert.match(key, /\/__cache\/v8\//);
+    // verze cache = otisk kódu kontrol (testwebu/lib/cache-version.js)
+    assert.match(key, new RegExp(`/__cache/${CACHE_VERSION}/`));
   } finally { globalThis.caches = original; }
 });
 test('DNS rejects inconsistent NXDOMAIN replies and malformed answers', async () => {
