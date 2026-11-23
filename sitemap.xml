@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://janyskovadigital.cz/</loc></url>
-  <url><loc>https://janyskovadigital.cz/blog</loc><lastmod>2026-11-17</lastmod></url>
+  <url><loc>https://janyskovadigital.cz/blog</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://janyskovadigital.cz/blog/predelani-stareho-webu</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://janyskovadigital.cz/blog/google-core-update-listopad-2026</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://janyskovadigital.cz/blog/proc-analytics-a-search-console-nesedi</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://janyskovadigital.cz/blog/novy-web-kdy-prijdou-poptavky</loc><lastmod>2026-11-01</lastmod></url>
@@ -34,7 +35,6 @@
   <url><loc>https://janyskovadigital.cz/blog/web-neprivadi-zakazniky</loc><lastmod>2026-10-30</lastmod></url>
   <url><loc>https://janyskovadigital.cz/barter</loc></url>
   <url><loc>https://janyskovadigital.cz/bilovec/</loc></url>
-  <url><loc>https://janyskovadigital.cz/brno/</loc></url>
   <url><loc>https://janyskovadigital.cz/caste-otazky</loc></url>
   <url><loc>https://janyskovadigital.cz/eshop</loc></url>
   <url><loc>https://janyskovadigital.cz/frenstat/</loc></url>
@@ -46,14 +46,11 @@
   <url><loc>https://janyskovadigital.cz/novy-jicin/</loc></url>
   <url><loc>https://janyskovadigital.cz/o-mne</loc></url>
   <url><loc>https://janyskovadigital.cz/odry/</loc></url>
-  <url><loc>https://janyskovadigital.cz/olomouc/</loc></url>
   <url><loc>https://janyskovadigital.cz/ostrava/</loc></url>
-  <url><loc>https://janyskovadigital.cz/praha/</loc></url>
   <url><loc>https://janyskovadigital.cz/pribor/</loc></url>
   <url><loc>https://janyskovadigital.cz/priprava-webu</loc></url>
   <url><loc>https://janyskovadigital.cz/reference</loc></url>
   <url><loc>https://janyskovadigital.cz/roznov/</loc></url>
   <url><loc>https://janyskovadigital.cz/tvorba-webu</loc></url>
   <url><loc>https://janyskovadigital.cz/valasske-mezirici/</loc></url>
-  <url><loc>https://janyskovadigital.cz/zlin/</loc></url>
 </urlset>

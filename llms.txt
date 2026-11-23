@@ -40,6 +40,7 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 
 ## Blog — všechny články
 
+- [Předělání starého webu: kdy se vyplatí a kdy stačí oprava](https://janyskovadigital.cz/blog/predelani-stareho-webu): Starý web nemusíte hned zahodit. Popisuji, podle čeho poznat, že se vyplatí redesign, kdy stačí menší úprava a jak při předělání neztratit pozice na Googlu.
 - [Google core update listopad 2026: co dělat, když se pozice hýbou](https://janyskovadigital.cz/blog/google-core-update-listopad-2026): Google 10. 11. 2026 spustil listopadový core update. Co se ví, co ne, kdy vyhodnocovat Search Console a co na webu nedělat ve spěchu.
 - [Proč Google Analytics a Search Console ukazují jiná čísla](https://janyskovadigital.cz/blog/proc-analytics-a-search-console-nesedi): Analytics ukazuje 50 návštěv z Googlu, Search Console 30 kliknutí? Google v listopadu 2026 vysvětlil proč. Která čísla platí a jak je číst.
 - [Máte nový web, ale žádné poptávky? Co čekat od Googlu](https://janyskovadigital.cz/blog/novy-web-kdy-prijdou-poptavky): Nový web nepřináší poptávky? Srozumitelně vysvětluji, jak funguje Google, proč indexace nestačí a co sledovat po spuštění stránek.

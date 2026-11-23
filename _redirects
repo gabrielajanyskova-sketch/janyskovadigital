@@ -1,9 +1,5 @@
 # City pages bez lomítka → s lomítkem
-/zlin /zlin/ 301
-/brno /brno/ 301
 /ostrava /ostrava/ 301
-/praha /praha/ 301
-/olomouc /olomouc/ 301
 /frenstat /frenstat/ 301
 /roznov /roznov/ 301
 /valasske-mezirici /valasske-mezirici/ 301
@@ -54,6 +50,20 @@
 /blog/testovaci-prispevek /blog 301
 /blog/google-ai-detekuje-ai-spam.html /blog/google-ai-detekuje-ai-spam 301
 /blog/jak-poznat-spatneho-webdesignera.html /blog/jak-poznat-spatneho-webdesignera 301
+
+# Zrušené vzdálené městské stránky (duplicitní obsah) → obecná nabídka
+/praha /tvorba-webu 301
+/praha/ /tvorba-webu 301
+/praha/* /tvorba-webu 301
+/brno /tvorba-webu 301
+/brno/ /tvorba-webu 301
+/brno/* /tvorba-webu 301
+/zlin /tvorba-webu 301
+/zlin/ /tvorba-webu 301
+/zlin/* /tvorba-webu 301
+/olomouc /tvorba-webu 301
+/olomouc/ /tvorba-webu 301
+/olomouc/* /tvorba-webu 301
 
 # Staré stránky, které už neexistují (Google je má pořád v indexu)
 /grafika / 301
