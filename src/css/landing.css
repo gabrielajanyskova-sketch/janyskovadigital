@@ -78,21 +78,10 @@
 .hero-btns {
   animation: none;
 }
-.hero-right {
-  animation: heroFadeUp .7s .08s ease both;
-}
-.hero-showcase {
-  animation: showcaseFloat 5s ease-in-out infinite;
-}
-.hero-showcase a {
-  animation: glowPulse 4s ease-in-out infinite;
-}
+
 @media (prefers-reduced-motion:reduce) {
   .hero-header,
-  .hero-btns,
-  .hero-right,
-  .hero-showcase,
-  .hero-showcase a {
+.hero-btns {
     animation: none;
   }
 }
@@ -131,16 +120,7 @@
   color: var(--pink);
   font-size: 12px;
 }
-.btn-card {
-  display: block;
-  text-align: center;
-  margin-top: 16px;
-  padding: 12px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 15px;
-}
+
 @media (max-width:900px) {
   .hero {
     padding: 30px 0 20px;
@@ -150,9 +130,7 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-  .hero-right {
-    display: block;
-  }
+  
 }
 
 /* Abstraktní AI síť v hero, bez opakování ukázek realizací. */

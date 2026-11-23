@@ -1,6 +1,5 @@
 // Společné modální chování: inertní pozadí, uzamčení scrollu, fokus a jeho návrat.
 let active = null;
-export const modalIsOpen = () => active !== null;
 export function openModal(container, { initialFocus, returnFocus = document.activeElement, onEscape } = {}) {
   if (active) return null;
   const saved = [];

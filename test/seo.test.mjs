@@ -144,7 +144,6 @@ test('city pages stay concise and keep their local content and business identity
     assert.ok(main.includes('id="webtest-title"') && main.includes('class="hero-test"'), city.slug);
     assert.equal((main.match(/<article class="home-work-card">/g) || []).length, 2, city.slug);
     assert.ok(html.includes(city.localP1), city.slug);
-    assert.ok(!html.includes('id="audit-popup"'), city.slug);
     const nodes = schemaNodes(html);
     const faq = nodes.find(node => node['@type'] === 'FAQPage');
     assert.equal(faq.mainEntity.length, 3, city.slug);
