@@ -48,7 +48,7 @@ Kontakt vyžaduje úspěšné serverové ověření Turnstile, povolený hostnam
 
 ## Přístupnost a obsah
 
-Modální menu a popup používají inertní pozadí, klávesnicový fokus a návrat na spouštěč. Na mobilu se automatický popup nezobrazuje. Respektuje se prefers-reduced-motion. Běžný text má mít kontrast alespoň 4,5 : 1. Zdrojové texty, viditelné FAQ a schémata se musí shodovat. Není nabízen paušál Web Care, pouze individuální úpravy po dohodě. Citace AI, pořadí ve vyhledávání ani absolutní bezpečnost se neslibují.
+Modální mobilní menu používá inertní pozadí, klávesnicový fokus a návrat na spouštěč. Respektuje se prefers-reduced-motion. Běžný text má mít kontrast alespoň 4,5 : 1. Zdrojové texty, viditelné FAQ a schémata se musí shodovat. Není nabízen paušál Web Care, pouze individuální úpravy po dohodě. Citace AI, pořadí ve vyhledávání ani absolutní bezpečnost se neslibují.
 
 ## Větve a vydání
 
