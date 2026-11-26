@@ -40,6 +40,7 @@ Weby vznikají v HTML, CSS a JavaScriptu. Rychlost, přístupnost a zabezpečen�
 
 ## Blog — všechny články
 
+- [Jak dostat web na první stránku Googlu: co platí v roce 2026](https://janyskovadigital.cz/blog/jak-dostat-web-na-prvni-stranku-google): Jak se dostat na první stránku Googlu bez placených triků. Co se změnilo v listopadu 2026, co Google sám doporučuje a co pro malou firmu dává smysl jako první.
 - [Předělání starého webu: kdy se vyplatí a kdy stačí oprava](https://janyskovadigital.cz/blog/predelani-stareho-webu): Starý web nemusíte hned zahodit. Popisuji, podle čeho poznat, že se vyplatí redesign, kdy stačí menší úprava a jak při předělání neztratit pozice na Googlu.
 - [Google core update listopad 2026: co dělat, když se pozice hýbou](https://janyskovadigital.cz/blog/google-core-update-listopad-2026): Listopadový core update 2026 probíhal od 10. do 24. 11. a Google už ohlásil prosincový. Co se ví, jak vyhodnotit Search Console a co na webu nedělat ve spěchu.
 - [Proč Google Analytics a Search Console ukazují jiná čísla](https://janyskovadigital.cz/blog/proc-analytics-a-search-console-nesedi): Analytics ukazuje 50 návštěv z Googlu, Search Console 30 kliknutí? Google v listopadu 2026 vysvětlil proč. Která čísla platí a jak je číst.
