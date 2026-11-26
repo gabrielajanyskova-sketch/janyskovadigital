@@ -11,7 +11,6 @@ export function estimateReadiness(answers, catalogue) {
   const min = Number(
     offers.find((offer) => offer.itemOffered.name === name).price,
   );
-  const max = name === 'Web Business' ? catalogue.estimates.businessMax : null;
   const extras = [];
   if (answers.features === 1 || answers.goal === 2)
     extras.push(
@@ -37,13 +36,11 @@ export function estimateReadiness(answers, catalogue) {
     'Doména a případné poplatky externích služeb nejsou zahrnuté. Hosting je v ceně tvorby; následné úpravy podle dohody.',
   );
   const provisional = answers.scope === 3 && !shop;
-  return { name, min, max, extras, provisional };
+  return { name, min, extras, provisional };
 }
 
 export function formatEstimate(estimate) {
   const fmt = (value) =>
     String(value).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0');
-  return estimate.max
-    ? `${fmt(estimate.min)}–${fmt(estimate.max)} Kč`
-    : `od ${fmt(estimate.min)} Kč`;
+  return `od ${fmt(estimate.min)} Kč`;
 }

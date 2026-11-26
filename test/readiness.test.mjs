@@ -8,7 +8,7 @@ const base = { goal: 0, scope: 0, features: 0, content: 0, logo: 0 };
 
 test('readiness: scope and required commerce features select the appropriate offer', () => {
   assert.equal(formatEstimate(estimateReadiness(base, catalogue)), 'od 5\u00a0900 Kč');
-  assert.equal(formatEstimate(estimateReadiness({ ...base, scope: 1 }, catalogue)), '12\u00a0000–20\u00a0000 Kč');
+  assert.equal(formatEstimate(estimateReadiness({ ...base, scope: 1 }, catalogue)), 'od 12\u00a0000 Kč');
   for (const selection of [{ goal: 1 }, { scope: 2 }, { features: 2 }]) {
     assert.equal(estimateReadiness({ ...base, ...selection }, catalogue).name, 'E-shop na míru');
   }
@@ -20,7 +20,6 @@ test('readiness: missing materials and logo never create an invented surcharge',
   for (let logo = 0; logo < 4; logo++) {
     const estimate = estimateReadiness({ ...base, content: 2, logo }, catalogue);
     assert.equal(estimate.min, original.min);
-    assert.equal(estimate.max, original.max);
     if (logo === 1) assert.ok(estimate.extras.some(text => text.includes('po posouzení podkladu')));
   }
   const reservation = estimateReadiness({ ...base, goal: 2 }, catalogue);

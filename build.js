@@ -418,7 +418,7 @@ async function build() {
   await write('main.js', mainJs);
 
   const home = JSON.parse(await read('src/data/home.json'));
-  const { business, estimates } = JSON.parse(
+  const { business } = JSON.parse(
     await read('src/data/schema-business.json'),
   );
   const price = (name) => {
@@ -429,10 +429,6 @@ async function build() {
     return String(offer.price).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
   const prices = {
-    businessMax: String(estimates.businessMax).replace(
-      /\B(?=(\d{3})+(?!\d))/g,
-      ' ',
-    ),
     start: price('Web Start'),
     business: price('Web Business'),
     refresh: price('Web Refresh'),
